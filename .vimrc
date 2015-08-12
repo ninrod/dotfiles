@@ -77,16 +77,17 @@ let g:syntastic_mode_map = { 'mode': 'passive',
                            \ 'passive_filetypes': [] }
 " Theme
 set background=dark
-let g:solarized_visibility="high"
-let g:solarized_contrast="high"
 let g:solarized_bold = 1
 let g:solarized_underline= 0
+let g:solarized_visibility="high"
+let g:solarized_contrast="high"
+
 if !has("gui_running")
-    let g:solarized_termtrans=1
     let g:solarized_termcolors=16
 else
-    set guifont=Sauce\ Code\ Powerline:h14
+    set guifont=Sauce\ Code\ Powerline:h12
 endif
+
 colorscheme solarized
 
 "EasyMotion bindings
