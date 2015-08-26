@@ -177,8 +177,13 @@ nmap s <Plug>(easymotion-s)
 omap s <plug>(easymotion-s)
 vmap s <plug>(easymotion-s)
 
+" remapeando por causa do camelcasemotion
+nnoremap ,, ,
+xnoremap ,, ,
+onoremap ,, ,
+
 nnoremap - :Bufferlist<cr>
-nnoremap <BS> :w<cr>
+nnoremap <cr> :w<cr>
 nnoremap + :Scratch<cr>
 nnoremap & :noh<cr>
 
@@ -189,6 +194,7 @@ map <leader>w[ <C-W>= " equalize all windows
 map <leader>v <C-W>v
 map <leader>x <C-W>s
 map <Leader>ww :ChooseWin<cr>
+nnoremap <BS> <C-W>w
 
 " Tabularize
 " map <Leader>e :Tabularize /=<cr>
