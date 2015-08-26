@@ -221,6 +221,8 @@ map <leader>k <plug>(easymotion-k)
 map <leader>t <plug>(easymotion-bd-t)
 nmap s <Plug>(easymotion-s)
 omap s <plug>(easymotion-s)
+
+" o xmap é melhor que o vmap porque o vmap mapea tanto para o visual quanto para o select mode. o xmap é só para o modo visual.
 xmap s <plug>(easymotion-s)
 
 " remapeando por causa do camelcasemotion
