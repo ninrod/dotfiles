@@ -199,8 +199,8 @@ highlight clear SignColumn
 " Mappings {{{
 
 nmap <Space> <Leader>
-vmap <Space> <Leader>
 omap <Space> <Leader>
+xmap <Space> <Leader>
 
 nnoremap <f2> :NERDTreeTabsToggle<cr>
 nnoremap <f4> :BD<cr>
