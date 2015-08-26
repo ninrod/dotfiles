@@ -66,10 +66,20 @@ set colorcolumn=175
 execute pathogen#infect()
 filetype plugin indent on " required by Pathogen Plugin Manager
 
+runtime macros/matchit.vim
+
 "Rust Racer autocomplete tool"
 let g:racer_cmd ="/Users/ninrod/code/lib/rust/racer/target/release/racer"
 
+" Emmet
+" let g:user_emmet_leader_key='S'
+" let g:user_emmet_mode='n'
 
+""" Ultisnips
+let g:UltiSnipsExpandTrigger="<TAB>"
+let g:UltiSnipsListSnippets="<C-y>"
+" let g:UltiSnipsJumpForwardTrigger="<>"
+" let g:UltiSnipsJumpBackwardTrigger="<>"
 
 " Syntastic options
 let g:syntastic_mode_map = { 'mode': 'passive',
@@ -114,8 +124,8 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*.,*/.DS_Store " CtrlP -> files matched 
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""' " CtrlP -> use Ag for searching instead of VimScript. Might not work with ctrlp_show_hidden and ctrlp_custom_ignore.
 let g:ctrlp_custom_ignore = '\v[\/]((node_modules)|\.(git|svn|grunt|sass-cache))$' " CtrlP -> directories to ignore when fuzzy finding
 
-" Ack (uses Ag behind the scenes)
-let g:ackprg = 'ag --nogroup --nocolor --column'
+" Ag (the silver searcher)
+let g:agprg = 'ag --nogroup --nocolor --column'
 
 " Airline (status line)
 let g:airline_powerline_fonts = 1
@@ -175,7 +185,7 @@ map <leader>k <plug>(easymotion-k)
 map <leader>t <plug>(easymotion-bd-t)
 nmap s <Plug>(easymotion-s)
 omap s <plug>(easymotion-s)
-vmap s <plug>(easymotion-s)
+xmap s <plug>(easymotion-s)
 
 " remapeando por causa do camelcasemotion
 nnoremap ,, ,
