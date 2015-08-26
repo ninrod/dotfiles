@@ -1,6 +1,6 @@
 " Settings {{{
-" Switch syntax highlighting on, when the terminal has colors
 
+" Switch syntax highlighting on, when the terminal has colors
 syntax on
 
 " Use vim, not vi api
