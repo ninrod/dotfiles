@@ -188,6 +188,9 @@ let g:github_token = $GITHUB_TOKEN
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
 
+" vim.polyglot configs
+let g:polyglot_disabled = ['rust']
+
 " Git gutter
 let g:gitgutter_enabled = 1
 let g:gitgutter_eager = 0
