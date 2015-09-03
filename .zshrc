@@ -14,6 +14,7 @@ ZSH_THEME="ninrod"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git brew nin-vi-mode)
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -27,9 +28,12 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$GOROOT/bin"
 export PATH=/usr/local/gradle-2.1/bin:$PATH
 export LANG=en_US.UTF-8
 
+setopt extended_glob
+
 docker-ip() {
   boot2docker ip 2> /dev/null
 }
 
 # configurações do modo vi do zsh
 export KEYTIMEOUT=1
+# export TERM=xterm-256color
