@@ -176,7 +176,6 @@ let g:ctrlp_arg_map = 1
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*.,*/.DS_Store
 
 ""' " CtrlP -> use Ag for searching instead of VimScript. Might not work with ctrlp_show_hidden and ctrlp_custom_ignore.
-" let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden -g ""'
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
 " CtrlP -> directories to ignore when fuzzy finding
