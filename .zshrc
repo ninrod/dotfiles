@@ -24,7 +24,8 @@ export DOCKER_CERT_PATH=/Users/ninrod/.boot2docker/certs/boot2docker-vm
 export DOCKER_TLS_VERIFY=1
 export GOROOT=/usr/local/go
 export GOPATH=~/code/lib/go
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$GOROOT/bin"
+export RACER_PATH=~/code/lib/rust/racer/target/release
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$GOROOT/bin:$RACER_PATH"
 export PATH=/usr/local/gradle-2.1/bin:$PATH
 export LANG=en_US.UTF-8
 

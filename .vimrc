@@ -130,6 +130,10 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': [],
                            \ 'passive_filetypes': [] }
+
+
+
+
 " Theme
 set background=dark
 let g:solarized_bold = 1
@@ -251,6 +255,9 @@ map <leader>v <C-W>v
 map <leader>x <C-W>s
 map <Leader>ww :ChooseWin<cr>
 nnoremap <BS> <C-W>w
+
+" um atalho mais decente para o omni completion
+inoremap <C-p> <C-x><C-o>
 
 " Tabularize
 " map <Leader>e :Tabularize /=<cr>
