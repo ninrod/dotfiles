@@ -144,7 +144,7 @@ let g:solarized_contrast="high"
 if !has("gui_running")
     let g:solarized_termcolors=16
 else
-    set guifont=Sauce\ Code\ Powerline:h12
+    set guifont=Sauce\ Code\ Powerline:h16
 endif
 
 colorscheme solarized

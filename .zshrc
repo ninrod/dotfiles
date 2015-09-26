@@ -29,7 +29,11 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$GOROOT/bin:$RACER_PAT
 export PATH=/usr/local/gradle-2.1/bin:$PATH
 export LANG=en_US.UTF-8
 
+export DISABLE_AUTO_TITLE="true"
+
 setopt extended_glob
+
+alias c='clear'
 
 docker-ip() {
   boot2docker ip 2> /dev/null
