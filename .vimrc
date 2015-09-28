@@ -69,6 +69,7 @@ set laststatus=2
 
 " Set the status line to something useful
 set statusline=%f\ %=L:%l/%L\ %c\ (%p%%)
+" set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 " Hide the toolbar
 set guioptions-=T
@@ -136,8 +137,8 @@ let g:syntastic_mode_map = { 'mode': 'active',
 
 " Theme
 set background=dark
-let g:solarized_bold = 1
-let g:solarized_underline= 0
+let g:solarized_bold=1
+let g:solarized_underline=0
 let g:solarized_visibility="high"
 let g:solarized_contrast="high"
 
@@ -227,7 +228,6 @@ inoremap <leader>c <C-x><C-o>
 autocmd FileType javascript vnoremap <buffer>  <leader>= :call RangeJsBeautify()<cr>
 autocmd FileType html vnoremap <buffer> <leader>= :call RangeHtmlBeautify()<cr>
 autocmd FileType less,css vnoremap <buffer> <leader>= :call RangeCSSBeautify()<cr>
-
 map <leader>j <plug>(easymotion-j)
 map <leader>k <plug>(easymotion-k)
 map <leader>t <plug>(easymotion-bd-t)
@@ -269,6 +269,12 @@ inoremap <C-p> <C-x><C-o>
 autocmd BufReadPost *
   \ if line("'\"") > 0 && line("'\"") <= line("$") |
   \   exe "normal g`\"" |
+  \ endif
+
+autocmd BufReadPost fugitive://* set bufhidden=delete
+autocmd User fugitive
+  \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+  \   nnoremap <buffer> .. :edit %:h<CR> |
   \ endif
 
 " file formats
