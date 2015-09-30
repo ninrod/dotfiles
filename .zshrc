@@ -14,10 +14,19 @@ ZSH_THEME="ninrod"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git brew nin-vi-mode)
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/home/vagrant/.linuxbrew/bin"
+export RUST_SRC_PATH=~/code/lib/rust/src/src
+export DOCKER_HOST=tcp://192.168.59.103:2376
+export DOCKER_CERT_PATH=/Users/ninrod/.boot2docker/certs/boot2docker-vm
+export DOCKER_TLS_VERIFY=1
+export GOROOT=/usr/local/go
+export GOPATH=~/code/lib/go
+export RACER_PATH=~/code/lib/rust/racer/target/release
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$GOROOT/bin:$RACER_PATH"
+export PATH=/usr/local/gradle-2.1/bin:$PATH
 export LANG=en_US.UTF-8
 export TERM=xterm-256color
 
@@ -25,6 +34,12 @@ alias c='clear'
 alias gw='grunt server-stubby'
 alias nm='node mocks/rest_mock.js'
 alias gr='grunt stubby'
+
+export DISABLE_AUTO_TITLE="true"
+
+setopt extended_glob
+
+alias c='clear'
 
 docker-ip() {
   boot2docker ip 2> /dev/null

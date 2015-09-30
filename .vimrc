@@ -69,6 +69,7 @@ set laststatus=2
 
 " Set the status line to something useful
 set statusline=%f\ %=L:%l/%L\ %c\ (%p%%)
+" set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 " Hide the toolbar
 set guioptions-=T
@@ -125,20 +126,32 @@ let g:racer_cmd ="/Users/ninrod/code/lib/rust/racer/target/release/racer"
 let g:NumberToggleTrigger="K"
 
 " Syntastic options
-let g:syntastic_mode_map = { 'mode': 'passive',
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': [],
                            \ 'passive_filetypes': [] }
+
+
+
+
 " Theme
 set background=dark
-let g:solarized_bold = 1
-let g:solarized_underline= 0
+let g:solarized_bold=1
+let g:solarized_underline=0
 let g:solarized_visibility="high"
 let g:solarized_contrast="high"
 
 if !has("gui_running")
     let g:solarized_termcolors=16
 else
-    set guifont=Sauce\ Code\ Powerline:h12
+    set guifont=Sauce\ Code\ Powerline:h16
 endif
 
 colorscheme solarized
@@ -168,6 +181,7 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*.,*/.DS_Store
 
 ""' " CtrlP -> use Ag for searching instead of VimScript. Might not work with ctrlp_show_hidden and ctrlp_custom_ignore.
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
 " CtrlP -> directories to ignore when fuzzy finding
 let g:ctrlp_custom_ignore = '\v[\/]((node_modules)|\.(git|svn|grunt|sass-cache))$'
 
@@ -209,7 +223,6 @@ nnoremap <f11> :so $MYVIMRC<cr>
 
 nnoremap <leader>p :CtrlP<cr>
 nnoremap <leader>r :CtrlPMRU<cr>
-inoremap <leader>c <C-x><C-o>
 
 autocmd FileType javascript vnoremap <buffer>  <leader>= :call RangeJsBeautify()<cr>
 autocmd FileType html vnoremap <buffer> <leader>= :call RangeHtmlBeautify()<cr>
@@ -239,6 +252,9 @@ nnoremap <BS> <C-W>w
 nnoremap <buffer>  ) <C-]>
 nnoremap <buffer> (  <C-T>
 
+" um atalho mais decente para o omni completion
+inoremap <C-p> <C-x><C-o>
+
 " Tabularize
 " map <Leader>e :Tabularize /=<cr>
 " map <Leader>c :Tabularize /:<cr>
@@ -249,6 +265,12 @@ nnoremap <buffer> (  <C-T>
 autocmd BufReadPost *
   \ if line("'\"") > 0 && line("'\"") <= line("$") |
   \   exe "normal g`\"" |
+  \ endif
+
+autocmd BufReadPost fugitive://* set bufhidden=delete
+autocmd User fugitive
+  \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+  \   nnoremap <buffer> .. :edit %:h<CR> |
   \ endif
 
 " file formats
