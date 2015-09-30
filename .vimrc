@@ -105,9 +105,9 @@ set lazyredraw
 " highlight a matching [{()}] when cursor is placed on start/end character
 set showmatch
 
-" régua de limite horizontal
+" ruler|regua|régua de limite horizontal
 autocmd BufWinEnter * highlight ColorColumn ctermbg=darkred
-set colorcolumn=175
+set colorcolumn=201
 " }}}
 
 " Plugins {{{
@@ -120,6 +120,9 @@ runtime macros/matchit.vim
 
 "Rust Racer autocomplete tool"
 let g:racer_cmd ="/Users/ninrod/code/lib/rust/racer/target/release/racer"
+
+" bind para o plugin vim-numbertoggle
+let g:NumberToggleTrigger="K"
 
 " Syntastic options
 let g:syntastic_mode_map = { 'mode': 'passive',
@@ -139,13 +142,6 @@ else
 endif
 
 colorscheme solarized
-
-"EasyMotion bindings
-" Disable default mappings
-let g:EasyMotion_do_mapping = 0
-
-" type `l` and match `l`&`L`
-let g:EasyMotion_smartcase = 1
 
 " vim-commentary: desabilitando o double backslash
 let g:commentary_map_backslash=0
@@ -171,8 +167,7 @@ let g:ctrlp_arg_map = 1
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*.,*/.DS_Store
 
 ""' " CtrlP -> use Ag for searching instead of VimScript. Might not work with ctrlp_show_hidden and ctrlp_custom_ignore.
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g'
-
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 " CtrlP -> directories to ignore when fuzzy finding
 let g:ctrlp_custom_ignore = '\v[\/]((node_modules)|\.(git|svn|grunt|sass-cache))$'
 
@@ -199,14 +194,15 @@ highlight clear SignColumn
 
 " }}}
 
-" Mappings {{{
+" mappings {{{
 
+" adicionando space como leader key
 nmap <Space> <Leader>
 omap <Space> <Leader>
 xmap <Space> <Leader>
 
 nnoremap <f2> :NERDTreeTabsToggle<cr>
-nnoremap <f4> :BD<cr>
+nnoremap <F4> :BD<cr>
 nnoremap <f8> :SyntasticToggleMode<cr>
 nnoremap <f12> :e $MYVIMRC<cr>
 nnoremap <f11> :so $MYVIMRC<cr>
@@ -219,16 +215,7 @@ autocmd FileType javascript vnoremap <buffer>  <leader>= :call RangeJsBeautify()
 autocmd FileType html vnoremap <buffer> <leader>= :call RangeHtmlBeautify()<cr>
 autocmd FileType less,css vnoremap <buffer> <leader>= :call RangeCSSBeautify()<cr>
 
-map <leader>j <plug>(easymotion-j)
-map <leader>k <plug>(easymotion-k)
-map <leader>t <plug>(easymotion-bd-t)
-nmap s <Plug>(easymotion-s)
-omap s <plug>(easymotion-s)
-
-" o xmap é melhor que o vmap porque o vmap mapea tanto para o visual quanto para o select mode. o xmap é só para o modo visual.
-xmap s <plug>(easymotion-s)
-
-" remapeando por causa do camelcasemotion
+" remapeando por causa do camelcasemotion que roubou o , por causa dos ,w
 nnoremap ,, ,
 xnoremap ,, ,
 onoremap ,, ,
@@ -238,14 +225,19 @@ nnoremap <cr> :w<cr>
 nnoremap + :Scratch<cr>
 nnoremap & :noh<cr>
 
-map <leader>w- <C-W>- " decrement height
-map <leader>w+ <C-W>+ " increment height
-map <leader>w] <C-W>_ " maximize height
-map <leader>w[ <C-W>= " equalize all windows
+" map <leader>w- <C-W>- " decrement height
+" map <leader>w+ <C-W>+ " increment height
+" map <leader>w] <C-W>_ " maximize height
+" map <leader>w[ <C-W>= " equalize all windows
+
 map <leader>v <C-W>v
 map <leader>x <C-W>s
-map <Leader>ww :ChooseWin<cr>
+map <Leader>w :ChooseWin<cr>
 nnoremap <BS> <C-W>w
+
+" para navegar nos help files do vim
+nnoremap <buffer>  ) <C-]>
+nnoremap <buffer> (  <C-T>
 
 " Tabularize
 " map <Leader>e :Tabularize /=<cr>
@@ -260,7 +252,7 @@ autocmd BufReadPost *
   \ endif
 
 " file formats
-autocmd Filetype gitcommit setlocal spell textwidth=72
+autocmd Filetype gitcommit setlocal spell textwidth=80
 autocmd Filetype markdown setlocal wrap linebreak nolist textwidth=0 wrapmargin=0 " http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
 autocmd FileType sh,ruby,yaml,zsh,vim setlocal shiftwidth=2 tabstop=2 expandtab
 
@@ -289,4 +281,5 @@ fun! SetDiffColors()
   highlight DiffText   cterm=bold ctermfg=white ctermbg=DarkRed
 endfun
 autocmd FilterWritePre * call SetDiffColors()
+
 " }}}

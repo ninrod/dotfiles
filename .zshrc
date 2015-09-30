@@ -17,15 +17,14 @@ plugins=(git brew nin-vi-mode)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-export RUST_SRC_PATH=~/code/lib/rust/src/src
-export DOCKER_HOST=tcp://192.168.59.103:2376
-export DOCKER_CERT_PATH=/Users/ninrod/.boot2docker/certs/boot2docker-vm
-export DOCKER_TLS_VERIFY=1
-export GOROOT=/usr/local/go
-export GOPATH=~/code/lib/go
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$GOROOT/bin"
-export PATH=/usr/local/gradle-2.1/bin:$PATH
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/home/vagrant/.linuxbrew/bin"
 export LANG=en_US.UTF-8
+export TERM=xterm-256color
+
+alias c='clear'
+alias gw='grunt server-stubby'
+alias nm='node mocks/rest_mock.js'
+alias gr='grunt stubby'
 
 docker-ip() {
   boot2docker ip 2> /dev/null
