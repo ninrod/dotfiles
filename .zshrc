@@ -29,6 +29,7 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$GOROOT/bin:$RACER_PAT
 export PATH=/usr/local/gradle-2.1/bin:$PATH
 export LANG=en_US.UTF-8
 export TERM=xterm-256color
+export EDITOR=vim
 
 alias c='clear'
 alias gw='grunt server-stubby'
@@ -40,6 +41,7 @@ export DISABLE_AUTO_TITLE="true"
 setopt extended_glob
 
 alias c='clear'
+alias n='node'
 
 docker-ip() {
   boot2docker ip 2> /dev/null
