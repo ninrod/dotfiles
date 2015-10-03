@@ -2,7 +2,7 @@ export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
-plugins=(git nin-vi-mode)
+plugins=(git zsh-syntax-highlighting nin-vi-mode)
 
 # configs para o powerlevel9k theme
 POWERLEVEL9K_DISABLE_RPROMPT=true
