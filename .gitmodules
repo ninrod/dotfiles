@@ -118,3 +118,6 @@
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
 	url = https://github.com/ninrod/oh-my-zsh.git
+[submodule ".dircolors"]
+	path = .dircolors
+	url = https://github.com/seebi/dircolors-solarized.git
