@@ -121,3 +121,9 @@
 [submodule ".dircolors"]
 	path = .dircolors
 	url = https://github.com/seebi/dircolors-solarized.git
+[submodule ".vim/bundle/vim-racer"]
+	path = .vim/bundle/vim-racer
+	url = https://github.com/racer-rust/vim-racer.git
+[submodule ".vim/bundle/vim-numbertoggle"]
+	path = .vim/bundle/vim-numbertoggle
+	url = https://github.com/jeffkreeftmeijer/vim-numbertoggle.git
