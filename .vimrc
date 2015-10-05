@@ -134,7 +134,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_mode_map = { 'mode': 'active',
+let g:syntastic_mode_map = { 'mode': 'passive',
                            \ 'active_filetypes': [],
                            \ 'passive_filetypes': [] }
 
@@ -217,7 +217,7 @@ xmap <Space> <Leader>
 
 nnoremap <f2> :NERDTreeTabsToggle<cr>
 nnoremap <F4> :BD<cr>
-nnoremap <f8> :SyntasticToggleMode<cr>
+nnoremap <f8> :SyntasticCheck<cr>
 nnoremap <f12> :e $MYVIMRC<cr>
 nnoremap <f11> :so $MYVIMRC<cr>
 
