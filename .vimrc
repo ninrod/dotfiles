@@ -119,6 +119,12 @@ filetype plugin indent on
 
 runtime macros/matchit.vim
 
+" habilitando o rainbow
+let g:rainbow_active = 1
+
+" desabilitando os default mappings do bufExplorer
+let g:bufExplorerDisableDefaultKeyMapping=1
+
 "Rust Racer autocomplete tool"
 let g:racer_cmd ="/Users/ninrod/code/lib/rust/racer/target/release/racer"
 
@@ -164,6 +170,7 @@ let g:signaturemarkertexthldynamic = 1
 
 " nerdtree configs
 let g:nerdtree_tabs_open_on_gui_startup = 0
+let g:NERDTreeShowHidden=1
 
 " CtrlP configurations
 let g:ctrlp_show_hidden=1
@@ -177,13 +184,13 @@ let g:ctrlp_reuse_window = 'Scratch'
 let g:ctrlp_arg_map = 1
 
 " CtrlP -> files matched are ignored when expanding wildcards
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*.,*/.DS_Store
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*.,*/.DS_Store,*/.idea/*,*/.tmp/*
 
 ""' " CtrlP -> use Ag for searching instead of VimScript. Might not work with ctrlp_show_hidden and ctrlp_custom_ignore.
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+" let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
 " CtrlP -> directories to ignore when fuzzy finding
-let g:ctrlp_custom_ignore = '\v[\/]((node_modules)|\.(git|svn|grunt|sass-cache))$'
+let g:ctrlp_custom_ignore = '\v[\/]((node_modules)|\.(git|svn|grunt|sass-cache)|(bower_components))$'
 
 " Ag (the silver searcher)
 let g:agprg = 'ag --nogroup --nocolor --column'
@@ -233,7 +240,7 @@ nnoremap ,, ,
 xnoremap ,, ,
 onoremap ,, ,
 
-nnoremap - :Bufferlist<cr>
+nnoremap - :ToggleBufExplorer<cr>
 nnoremap <cr> :w<cr>
 nnoremap + :Scratch<cr>
 nnoremap & :noh<cr>
@@ -286,14 +293,6 @@ autocmd Bufread,BufNewFile *.md set filetype=markdown " Vim interprets .md as 'm
 autocmd BufRead * setlocal foldmethod=marker
 set foldlevelstart=20
 " autocmd BufRead * normal zM
-
-" Rainbow parenthesis always on!
-if exists(':RainbowParenthesesToggle')
-  autocmd VimEnter * RainbowParenthesesToggle
-  autocmd Syntax * RainbowParenthesesLoadRound
-  autocmd Syntax * RainbowParenthesesLoadSquare
-  autocmd Syntax * RainbowParenthesesLoadBraces
-endif
 
 " Change colourscheme when diffing
 fun! SetDiffColors()

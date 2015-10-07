@@ -1,5 +1,5 @@
-export ZSH=$HOME/.oh-my-zsh
-
+# config do oh-my-zsh
+ZSH_THEME="powerlevel9k/powerlevel9k"
 plugins=(git zsh-syntax-highlighting nin-vi-mode)
 
 ZSH_THEME="powerlevel9k/powerlevel9k"
@@ -20,14 +20,15 @@ eval `dircolors ~/.osx-config/.dircolors/dircolors.256dark`
 
 source $ZSH/oh-my-zsh.sh
 
-# aliases
+# alguns alias uteis
 alias c='clear'
 alias vi='vim'
+alias v='vim ~/.zshrc'
 alias s='source ~/.zshrc'
+alias tarc='tar -zcvf'
+alias tarx='tar -zxvf'
+alias n='node'
 
-# configs de zsh
-export DISABLE_AUTO_TITLE="true"
+# configs do zsh
 setopt extended_glob
 
-# configurações do modo vi do zsh
-export KEYTIMEOUT=1
