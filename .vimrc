@@ -148,9 +148,6 @@ let g:syntastic_mode_map = { 'mode': 'passive',
                            \ 'active_filetypes': [],
                            \ 'passive_filetypes': [] }
 
-
-
-
 " Theme
 set background=dark
 let g:solarized_bold=1
@@ -226,11 +223,20 @@ nmap <Space> <Leader>
 omap <Space> <Leader>
 xmap <Space> <Leader>
 
+" mapeamento das functions keys
 nnoremap <f2> :NERDTreeTabsToggle<cr>
-nnoremap <F4> :BD<cr>
-nnoremap <f8> :SyntasticCheck<cr>
-nnoremap <f12> :e $MYVIMRC<cr>
+" nnoremap <f3> :alguma coisa<cr>
+nnoremap <f4> :BD<cr>
+
+nnoremap <f5> :windo diffthis<cr>
+nnoremap <f6> :diffoff!<cr>
+nnoremap <f7> :diffget<cr>
+nnoremap <f8> :diffput<cr>
+
+nnoremap <f9> :diffupdate<cr>
+nnoremap <f10> :SyntasticCheck<cr>
 nnoremap <f11> :so $MYVIMRC<cr>
+nnoremap <f12> :e $MYVIMRC<cr>
 
 nnoremap <leader>p :CtrlP<cr>
 nnoremap <leader>r :CtrlPMRU<cr>
@@ -255,9 +261,16 @@ nnoremap s :Gstatus<cr>
 " map <leader>w] <C-W>_ " maximize height
 " map <leader>w[ <C-W>= " equalize all windows
 
+" abrir uma janela vertical
 map <leader>v <C-W>v
+
+" abrir uma janela horizontal
 map <leader>x <C-W>s
+
+" mostra opções para pular direto para uma janela específica
 map <Leader>w :ChooseWin<cr>
+
+" faz um cycle nas janelas abertas
 nnoremap <BS> <C-W>w
 
 " para navegar nos help files do vim
