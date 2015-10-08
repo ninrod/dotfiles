@@ -21,7 +21,7 @@ PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH
 
 # cores para o ls
-eval `dircolors ~/.osx-config/.dircolors/dircolors.256dark`
+eval `dircolors ~/.lscolors`
 
 # bootstrap do oh-my-zsh
 export ZSH=$HOME/.oh-my-zsh
