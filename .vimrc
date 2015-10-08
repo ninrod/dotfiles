@@ -113,6 +113,7 @@ set colorcolumn=201
 
 " Plugins {{{
 execute pathogen#infect()
+call pathogen#helptags()
 
 " required by Pathogen Plugin Manager
 filetype plugin indent on
@@ -244,6 +245,7 @@ nnoremap - :ToggleBufExplorer<cr>
 nnoremap <cr> :w<cr>
 nnoremap + :Scratch<cr>
 nnoremap & :noh<cr>
+nnoremap s :Gstatus<cr>
 
 " map <leader>w- <C-W>- " decrement height
 " map <leader>w+ <C-W>+ " increment height
