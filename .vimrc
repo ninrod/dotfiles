@@ -123,6 +123,9 @@ runtime macros/matchit.vim
 " habilitando o rainbow
 let g:rainbow_active = 1
 
+" o rainbow fica muito ruim no html
+let g:rainbow_conf = {'separately': {'html': 0}}
+
 " desabilitando os default mappings do bufExplorer
 let g:bufExplorerDisableDefaultKeyMapping=1
 
