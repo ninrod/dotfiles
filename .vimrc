@@ -113,7 +113,6 @@ set colorcolumn=201
 
 " Plugins {{{
 execute pathogen#infect()
-call pathogen#helptags()
 
 " required by Pathogen Plugin Manager
 filetype plugin indent on

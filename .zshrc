@@ -30,6 +30,7 @@ source $ZSH/oh-my-zsh.sh
 
 # alguns alias uteis
 alias c='clear'
+alias e='exit'
 alias vi='vim'
 alias v='vim'
 alias s='source ~/.zshrc'
