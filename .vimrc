@@ -262,6 +262,7 @@ nnoremap <cr> :w<cr>
 nnoremap + :Scratch<cr>
 nnoremap & :noh<cr>
 nnoremap s :Gstatus<cr>
+nnoremap Q ZQ
 
 " map <leader>w- <C-W>- " decrement height
 " map <leader>w+ <C-W>+ " increment height
