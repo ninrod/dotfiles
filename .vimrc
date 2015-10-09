@@ -184,13 +184,21 @@ let g:ctrlp_reuse_window = 'Scratch'
 let g:ctrlp_arg_map = 1
 
 " CtrlP -> files matched are ignored when expanding wildcards
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*.,*/.DS_Store,*/.idea/*,*/.tmp/*
+set wildignore+=*/.hg/*,*/.svn/*.,*/.DS_Store,*/.idea/*,*/.tmp/*,*/target/*
 
 ""' " CtrlP -> use Ag for searching instead of VimScript. Might not work with ctrlp_show_hidden and ctrlp_custom_ignore.
 " let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
 " CtrlP -> directories to ignore when fuzzy finding
-let g:ctrlp_custom_ignore = '\v[\/]((node_modules)|\.(git|svn|grunt|sass-cache)|(bower_components))$'
+let g:ctrlp_custom_ignore = '
+      \\.git$\|
+      \\.hg$\|
+      \\.grunt$\|
+      \\.sass-cache$\|
+      \bower_components$\|
+      \node_modules$\|
+      \\.svn$
+      \'
 
 " Ag (the silver searcher)
 let g:agprg = 'ag --nogroup --nocolor --column'
@@ -229,8 +237,8 @@ nnoremap <f4> :BD<cr>
 
 nnoremap <f5> :windo diffthis<cr>
 nnoremap <f6> :diffoff!<cr>
-nnoremap <f7> :diffget<cr>
-nnoremap <f8> :diffput<cr>
+nnoremap <f7> :diffput<cr>
+nnoremap <f8> :diffget<cr>
 
 nnoremap <f9> :diffupdate<cr>
 nnoremap <f10> :SyntasticCheck<cr>
