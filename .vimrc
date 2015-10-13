@@ -263,11 +263,17 @@ nnoremap + :Scratch<cr>
 nnoremap & :noh<cr>
 nnoremap s :Gstatus<cr>
 nnoremap Q ZQ
+nnoremap Z ZZ
 
 " map <leader>w- <C-W>- " decrement height
 " map <leader>w+ <C-W>+ " increment height
 " map <leader>w] <C-W>_ " maximize height
 " map <leader>w[ <C-W>= " equalize all windows
+
+map <leader>h <C-W>h
+map <leader>j <C-W>j
+map <leader>k <C-W>k
+map <leader>l <C-W>l
 
 " abrir uma janela vertical
 map <leader>v <C-W>v
