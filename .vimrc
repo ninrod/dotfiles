@@ -119,6 +119,9 @@ filetype plugin indent on
 
 runtime macros/matchit.vim
 
+" desabilitando os mappings do gitgutter
+let g:gitgutter_map_keys = 0
+
 " habilitando o rainbow
 let g:rainbow_active = 1
 
@@ -265,27 +268,38 @@ nnoremap s :Gstatus<cr>
 nnoremap Q ZQ
 nnoremap Z ZZ
 
-" map <leader>w- <C-W>- " decrement height
-" map <leader>w+ <C-W>+ " increment height
-" map <leader>w] <C-W>_ " maximize height
-" map <leader>w[ <C-W>= " equalize all windows
+" redimensionando janelas
+map <leader>> <C-W>10>
+map <leader>< <C-W>10<
+map <leader>+ <C-W>10+
+map <leader>- <C-W>10-
 
+" equaliza o tamanho das janelas
+map <leader>= <C-W>=
+
+" movimentando-se entre janelas
 map <leader>h <C-W>h
 map <leader>j <C-W>j
 map <leader>k <C-W>k
 map <leader>l <C-W>l
+
+" movimenta uma janela para outro lugar
+map <leader>H <C-W>H
+map <leader>J <C-W>J
+map <leader>K <C-W>K
+map <leader>L <C-W>L
+
+" faz um cycle de movimento nas janelas abertas
+nnoremap <BS> <C-W>w
+
+" mostra opções para pular direto para uma janela específica
+map <Leader>w :ChooseWin<cr>
 
 " abrir uma janela vertical
 map <leader>v <C-W>v
 
 " abrir uma janela horizontal
 map <leader>x <C-W>s
-
-" mostra opções para pular direto para uma janela específica
-map <Leader>w :ChooseWin<cr>
-
-" faz um cycle nas janelas abertas
-nnoremap <BS> <C-W>w
 
 " para navegar nos help files do vim
 nnoremap <buffer>  ) <C-]>
