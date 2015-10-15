@@ -269,10 +269,10 @@ nnoremap Q ZQ
 nnoremap Z ZZ
 
 " redimensionando janelas
-map <leader>> <C-W>10>
-map <leader>< <C-W>10<
-map <leader>+ <C-W>10+
-map <leader>- <C-W>10-
+map <leader><right> <C-W>10>
+map <leader><left>  <C-W>10<
+map <leader><up>    <C-W>10+
+map <leader><down>  <C-W>10-
 
 " equaliza o tamanho das janelas
 map <leader>= <C-W>=
