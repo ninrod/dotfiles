@@ -107,8 +107,8 @@ set lazyredraw
 set showmatch
 
 " ruler|regua|régua de limite horizontal
-autocmd BufWinEnter * highlight ColorColumn ctermbg=darkred
-set colorcolumn=201
+" autocmd BufWinEnter * highlight ColorColumn ctermbg=darkred
+" set colorcolumn=201
 " }}}
 
 " Plugins {{{
