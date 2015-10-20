@@ -308,6 +308,10 @@ nnoremap <buffer> (  <C-T>
 " um atalho mais decente para o omni completion
 inoremap <C-p> <C-x><C-o>
 
+" pelo menos no putty o <c-k> não é escapado. Fazendo um rebind para o <c-t>
+inoremap <C-t> <C-k>
+
+
 " Tabularize
 " map <Leader>e :Tabularize /=<cr>
 " map <Leader>c :Tabularize /:<cr>
