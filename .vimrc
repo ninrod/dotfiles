@@ -195,6 +195,9 @@ set wildignore+=*/.hg/*,*/.svn/*.,*/.DS_Store,*/.idea/*,*/.tmp/*,*/target/*
 " CtrlP -> directories to ignore when fuzzy finding
 let g:ctrlp_custom_ignore = '
       \\.git$\|
+      \\.pdf$\|
+      \\.log$\|
+      \\.aux$\|
       \\.hg$\|
       \\.grunt$\|
       \\.sass-cache$\|
