@@ -119,6 +119,9 @@ filetype plugin indent on
 
 runtime macros/matchit.vim
 
+" habilitando o emmet somente para o insert mode. caso contrário ele ferra o <c-y> para o scroll down
+let g:user_emmet_mode='i'
+
 " desabilitando os mappings do gitgutter
 let g:gitgutter_map_keys = 0
 
