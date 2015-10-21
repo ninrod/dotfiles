@@ -33,19 +33,19 @@ source $ZSH/oh-my-zsh.sh
 # alguns alias uteis
 alias c='clear'
 alias e='exit'
-alias vi='vim'
-alias v='vim'
+alias p='pwd'
+alias n='node'
 alias s='source ~/.zshrc'
+alias v='vim'
+alias vi='vim'
+alias vz='vim ~/.zshrc'
 alias tarc='tar -zcvf'
 alias tarx='tar -zxvf'
-alias n='node'
 
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit -v'
 alias gp='git push'
-alias gf='git fetch'
-alias gm='git merge'
 
 # configs do zsh
 setopt extended_glob
