@@ -261,7 +261,7 @@ autocmd FileType javascript vnoremap <buffer>  <leader>= :call RangeJsBeautify()
 autocmd FileType html vnoremap <buffer> <leader>= :call RangeHtmlBeautify()<cr>
 autocmd FileType less,css vnoremap <buffer> <leader>= :call RangeCSSBeautify()<cr>
 
-" remapeando por causa do camelcasemotion que roubou o , por causa dos ,w
+" remapeando por causa do plugin camelcasemotion que roubou o , por causa dos ,w
 nnoremap ,, ,
 xnoremap ,, ,
 onoremap ,, ,
@@ -271,6 +271,7 @@ nnoremap <cr> :w<cr>
 nnoremap + :Scratch<cr>
 nnoremap & :noh<cr>
 nnoremap s :Gstatus<cr>
+nnoremap S :Gpush<cr>
 nnoremap Q ZQ
 nnoremap Z ZZ
 
