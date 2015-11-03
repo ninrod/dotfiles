@@ -124,3 +124,6 @@
 [submodule ".vim/bundle/bufexplorer"]
 	path = .vim/bundle/bufexplorer
 	url = https://github.com/jlanzarotta/bufexplorer.git
+[submodule ".vim/bundle/Apprentice"]
+	path = .vim/bundle/Apprentice
+	url = https://github.com/romainl/Apprentice.git
