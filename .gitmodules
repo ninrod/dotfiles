@@ -133,3 +133,6 @@
 [submodule ".vim/bundle/vim-textobj-function-javascript"]
 	path = .vim/bundle/vim-textobj-function-javascript
 	url = https://github.com/thinca/vim-textobj-function-javascript
+[submodule ".vim/bundle/vim-indentobject"]
+	path = .vim/bundle/vim-indentobject
+	url = https://github.com/austintaylor/vim-indentobject.git
