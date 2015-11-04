@@ -127,3 +127,9 @@
 [submodule ".vim/bundle/gitv"]
 	path = .vim/bundle/gitv
 	url = https://github.com/gregsexton/gitv.git
+[submodule ".vim/bundle/vim-textobj-function"]
+	path = .vim/bundle/vim-textobj-function
+	url = https://github.com/kana/vim-textobj-function.git
+[submodule ".vim/bundle/vim-textobj-function-javascript"]
+	path = .vim/bundle/vim-textobj-function-javascript
+	url = https://github.com/thinca/vim-textobj-function-javascript
