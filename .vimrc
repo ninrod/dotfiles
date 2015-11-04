@@ -201,9 +201,6 @@ let g:ctrlp_custom_ignore = '
       \\.svn$
       \'
 
-" Ag (the silver searcher)
-let g:agprg = 'ag --nogroup --nocolor --column'
-
 " Airline (status line)
 let g:airline_powerline_fonts = 1
 
