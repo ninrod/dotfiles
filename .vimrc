@@ -246,10 +246,6 @@ nnoremap <f12> :e $MYVIMRC<cr>
 nnoremap <leader>p :CtrlP<cr>
 nnoremap <leader>r :CtrlPMRU<cr>
 
-autocmd FileType javascript vnoremap <buffer>  <leader>= :call RangeJsBeautify()<cr>
-autocmd FileType html vnoremap <buffer> <leader>= :call RangeHtmlBeautify()<cr>
-autocmd FileType less,css vnoremap <buffer> <leader>= :call RangeCSSBeautify()<cr>
-
 " remapeando por causa do plugin camelcasemotion que roubou o , por causa dos ,w
 nnoremap ,, ,
 xnoremap ,, ,
@@ -298,8 +294,8 @@ map <leader>v <C-W>v
 map <leader>x <C-W>s
 
 " para navegar nos help files do vim
-nnoremap <buffer>  ) <C-]>
-nnoremap <buffer> (  <C-T>
+nnoremap  ) <C-]>
+nnoremap (  <C-T>
 
 " um atalho mais decente para o omni completion
 inoremap <C-p> <C-x><C-o>
