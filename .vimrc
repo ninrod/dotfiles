@@ -157,8 +157,8 @@ let g:syntastic_mode_map = { 'mode': 'passive',
 set background=dark
 let g:solarized_bold=1
 let g:solarized_underline=0
-" let g:solarized_visibility="high"
-" let g:solarized_contrast="high"
+let g:solarized_visibility="high"
+let g:solarized_contrast="high"
 
 if !has("gui_running")
     let g:solarized_termcolors=16
@@ -166,8 +166,8 @@ else
     set guifont=Sauce\ Code\ Powerline:h16
 endif
 
-colorscheme apprentice
-" colorscheme solarized
+" colorscheme apprentice
+colorscheme solarized
 
 " vim-commentary: desabilitando o double backslash
 let g:commentary_map_backslash=0
@@ -176,7 +176,7 @@ let g:commentary_map_backslash=0
 let g:signaturemarkertexthldynamic = 1
 
 " nerdtree configs
-let g:nerdtree_tabs_open_on_gui_startup = 0
+let g:nerdtree_tabs_open_on_gui_startup=0
 let g:NERDTreeShowHidden=1
 
 " CtrlP configurations
