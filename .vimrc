@@ -232,6 +232,9 @@ highlight clear SignColumn
 
 " mappings {{{
 
+" teste de cycling de registers
+xnoremap p "_dP
+
 " adicionando space como leader key
 nmap <Space> <Leader>
 omap <Space> <Leader>
@@ -252,7 +255,7 @@ nnoremap <f10> :SyntasticCheck<cr>
 nnoremap <f11> :so $MYVIMRC<cr>
 nnoremap <f12> :e $MYVIMRC<cr>
 
-nnoremap <leader>p :CtrlP<cr>
+nnoremap <leader>f :CtrlP<cr>
 nnoremap <leader>r :CtrlPMRU<cr>
 
 " remapeando por causa do plugin camelcasemotion que roubou o , por causa dos ,w
