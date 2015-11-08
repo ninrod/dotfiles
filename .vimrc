@@ -232,11 +232,14 @@ highlight clear SignColumn
 
 " mappings {{{
 
-" teste de cycling de registers
+" mappings para fazer o cut/paste funcionar melhor
 xnoremap ( "0P
 xnoremap ) "0p
 nnoremap ( "0P
 nnoremap ) "0p
+
+nnoremap D "0d
+xnoremap D "0d
 
 " adicionando space como leader key
 nmap <Space> <Leader>
