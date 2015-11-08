@@ -233,7 +233,10 @@ highlight clear SignColumn
 " mappings {{{
 
 " teste de cycling de registers
-xnoremap p "_dP
+xnoremap ( "0P
+xnoremap ) "0p
+nnoremap ( "0P
+nnoremap ) "0p
 
 " adicionando space como leader key
 nmap <Space> <Leader>
@@ -246,11 +249,11 @@ nnoremap <f2> :NERDTreeTabsToggle<cr>
 nnoremap <f4> :BD<cr>
 
 nnoremap <f5> :windo diffthis<cr>
-nnoremap <f6> :diffoff!<cr>
-nnoremap <f7> :diffput<cr>
-nnoremap <f8> :diffget<cr>
+" nnoremap <f6> :alguma coisa<cr>
+" nnoremap <f7> :alguma coisa<cr>
+" nnoremap <f8> :alguma coisa<cr>
 
-nnoremap <f9> :diffupdate<cr>
+" nnoremap <f9> :alguma coisa<cr>
 nnoremap <f10> :SyntasticCheck<cr>
 nnoremap <f11> :so $MYVIMRC<cr>
 nnoremap <f12> :e $MYVIMRC<cr>
@@ -306,8 +309,8 @@ map <leader>v <C-W>v
 map <leader>x <C-W>s
 
 " para navegar nos help files do vim
-nnoremap  ) <C-]>
-nnoremap (  <C-T>
+nnoremap  } <C-]>
+nnoremap {  <C-T>
 
 " um atalho mais decente para o omni completion
 inoremap <C-p> <C-x><C-o>
