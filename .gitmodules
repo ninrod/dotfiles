@@ -133,3 +133,6 @@
 [submodule ".vim/bundle/vim-indentobject"]
 	path = .vim/bundle/vim-indentobject
 	url = https://github.com/austintaylor/vim-indentobject.git
+[submodule ".vim/bundle/auto-pairs"]
+	path = .vim/bundle/auto-pairs
+	url = https://github.com/jiangmiao/auto-pairs.git
