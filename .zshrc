@@ -26,9 +26,16 @@ export PATH
 # cores para o ls
 eval `dircolors ~/.lscolors`
 
+# inicialização do fasd
+eval "$(fasd --init auto)"
+
 # bootstrap do oh-my-zsh
 export ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
+
+export PAGER=/usr/local/bin/vimpager
+alias less=$PAGER
+alias zless=$PAGER
 
 # alguns alias uteis
 alias c='clear'

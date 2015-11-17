@@ -119,6 +119,9 @@ filetype plugin indent on
 
 runtime macros/matchit.vim
 
+" disable less compatibility mode, and use regular vim motion commands
+let g:vimpager_less_mode = 0
+
 " habilitando o emmet somente para o insert mode. caso contrário ele ferra o <c-y> para o scroll down
 let g:user_emmet_mode='i'
 
