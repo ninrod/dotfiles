@@ -136,3 +136,6 @@
 [submodule ".vim/bundle/auto-pairs"]
 	path = .vim/bundle/auto-pairs
 	url = https://github.com/jiangmiao/auto-pairs.git
+[submodule ".vim/bundle/IndexedSearch"]
+	path = .vim/bundle/IndexedSearch
+	url = https://github.com/vim-scripts/IndexedSearch.git
