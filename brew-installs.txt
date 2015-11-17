@@ -1,0 +1,2 @@
+brew install fasd
+brew install vimpager
