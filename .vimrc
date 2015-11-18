@@ -267,11 +267,6 @@ nnoremap <f12> :e $MYVIMRC<cr>
 nnoremap <leader>f :CtrlP<cr>
 nnoremap <leader>r :CtrlPMRU<cr>
 
-" remapeando por causa do plugin camelcasemotion que roubou o , por causa dos ,w
-nnoremap ,, ,
-xnoremap ,, ,
-onoremap ,, ,
-
 nnoremap - :ToggleBufExplorer<cr>
 nnoremap <cr> :w<cr>
 nnoremap + :Scratch<cr>
