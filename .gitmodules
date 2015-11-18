@@ -139,3 +139,6 @@
 [submodule ".vim/bundle/IndexedSearch"]
 	path = .vim/bundle/IndexedSearch
 	url = https://github.com/vim-scripts/IndexedSearch.git
+[submodule ".vim/bundle/vim-textobj-underscore"]
+	path = .vim/bundle/vim-textobj-underscore
+	url = https://github.com/lucapette/vim-textobj-underscore.git
