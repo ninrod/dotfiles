@@ -241,8 +241,9 @@ xnoremap ) "0p
 nnoremap ( "0P
 nnoremap ) "0p
 
-nnoremap D "0d
-xnoremap D "0d
+" raras as vezes em que precisei usar o backspace
+nnoremap X "0d
+xnoremap X "0d
 
 " adicionando space como leader key
 nmap <Space> <Leader>
