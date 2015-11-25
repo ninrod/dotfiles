@@ -53,7 +53,9 @@ alias tarx='tar -zxvf'
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit -v'
+alias gl='git log --oneline'
 alias gp='git push'
+alias gf='git fetch'
 
 # configs do zsh
 setopt extended_glob
