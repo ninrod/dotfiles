@@ -1,0 +1,17 @@
+[user]
+    name = ninrod
+    email = filipe.silva@gmail.com
+[push]
+    default = simple
+[core]
+    editor = vim
+[credential]
+    helper = osxkeychain
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    log = auto
+    interactive = auto
+    ui = true
+    pager = true
