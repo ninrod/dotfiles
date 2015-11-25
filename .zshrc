@@ -47,6 +47,7 @@ alias tarc='tar -zcvf'
 alias tarx='tar -zxvf'
 
 alias gs='git status'
+alias gss='git status --short'
 alias ga='git add'
 alias gc='git commit -v'
 alias gl='git log --oneline'
