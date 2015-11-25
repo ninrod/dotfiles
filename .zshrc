@@ -33,10 +33,6 @@ eval "$(fasd --init auto)"
 export ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-export PAGER=/usr/local/bin/vimpager
-alias less=$PAGER
-alias zless=$PAGER
-
 # alguns alias uteis
 alias c='clear'
 alias e='exit'

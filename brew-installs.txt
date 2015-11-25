@@ -1,5 +1,4 @@
 brew install fasd
-brew install vimpager
 brew install ctags
 brew install coreutils
 brew install reattach-to-user-namespace
