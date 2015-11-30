@@ -46,7 +46,7 @@ alias vz='vim ~/.zshrc'
 alias tarc='tar -zcvf'
 alias tarx='tar -zxvf'
 
-alias gss='git status'
+alias gsl='git status'
 alias gs='git status --short'
 alias ga='git add'
 alias gc='git commit -v'
