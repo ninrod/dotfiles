@@ -245,6 +245,9 @@ nnoremap ) "0p
 nnoremap X "0d
 xnoremap X "0d
 
+" por padrão o exchange.vim mapeia o X no visual mode
+xmap E <Plug>(Exchange)
+
 " adicionando space como leader key
 nmap <Space> <Leader>
 omap <Space> <Leader>
