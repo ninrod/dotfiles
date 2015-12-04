@@ -204,6 +204,7 @@ let g:ctrlp_custom_ignore = '
       \\.git$\|
       \\.pdf$\|
       \\.log$\|
+      \\.out$\|
       \\.aux$\|
       \\.hg$\|
       \\.grunt$\|
