@@ -5,7 +5,10 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 plugins=(zsh-syntax-highlighting nin-vi-mode)
 
 # configs para o powerlevel9k theme
-POWERLEVEL9K_DISABLE_RPROMPT=true
+POWERLEVEL9K_DISABLE_RPROMPT=false
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode)
 
 # Config do user
 export LANG=en_US.UTF-8
