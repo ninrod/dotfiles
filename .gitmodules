@@ -133,3 +133,6 @@
 [submodule ".vim/bundle/vim-textobj-underscore"]
 	path = .vim/bundle/vim-textobj-underscore
 	url = https://github.com/lucapette/vim-textobj-underscore.git
+[submodule ".oh-my-zsh"]
+	path = .oh-my-zsh
+	url = https://github.com/robbyrussell/oh-my-zsh.git
