@@ -70,17 +70,3 @@ bindkey "^[[4~" end-of-line
 bindkey "^[[3~" delete-char
 bindkey "^H" backward-delete-char
 bindkey "^?" backward-delete-char
-
-# if mode indicator wasn't setup by theme, define default
-if [[ "$MODE_INDICATOR" == "" ]]; then
-  MODE_INDICATOR="%{$fg_bold[blue]%}-- NORMAL --%{$reset_color%}"
-fi
-
-function vi_mode_prompt_info() {
-  echo "${${KEYMAP/vicmd/$MODE_INDICATOR}/(main|viins)/}"
-}
-
-# define right prompt, if it wasn't defined by a theme
-if [[ "$RPS1" == "" && "$RPROMPT" == "" ]]; then
-  RPS1='$(vi_mode_prompt_info)'
-fi
