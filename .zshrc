@@ -2,7 +2,7 @@
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # plugins do oh-my-zsh
-plugins=(zsh-syntax-highlighting nin-vi-mode)
+plugins=(bower zsh-syntax-highlighting nin-vi-mode)
 
 # configs para o powerlevel9k theme
 POWERLEVEL9K_DISABLE_RPROMPT=false
@@ -44,8 +44,7 @@ alias n='node'
 alias v='vim'
 alias o='open'
 alias vi='vim'
-alias vz='vim ~/.zshrc'
-alias tarc='tar -zcvf'
+alias tarc='tar -zcvf file.tar.gz'
 alias tarx='tar -zxvf'
 
 alias gsl='git status'
@@ -55,6 +54,13 @@ alias gc='git commit -v'
 alias gl='git log --oneline'
 alias gp='git push'
 alias gf='git fetch'
+
+# configs de 'open with'
+alias -s txt=vim
+alias -s js=vim
+alias -s log=vim
+alias -s html=vim
+
 
 # configs do zsh
 setopt extended_glob
