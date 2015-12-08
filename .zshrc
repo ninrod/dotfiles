@@ -54,6 +54,7 @@ alias gc='git commit -v'
 alias gl='git log --oneline'
 alias gp='git push'
 alias gf='git fetch'
+alias gm='git merge'
 
 # configs de 'open with'
 alias -s txt=vim
