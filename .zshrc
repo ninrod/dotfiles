@@ -61,6 +61,7 @@ alias -s txt=vim
 alias -s js=vim
 alias -s log=vim
 alias -s html=vim
+alias -s conf=vim
 
 
 # configs do zsh
