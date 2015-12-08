@@ -119,8 +119,7 @@ filetype plugin indent on
 
 runtime macros/matchit.vim
 
-" disable less compatibility mode, and use regular vim motion commands
-let g:vimpager_less_mode = 0
+let g:signify_vcs_list = ['git']
 
 " habilitando o emmet somente para o insert mode. caso contrário ele ferra o <c-y> para o scroll down
 let g:user_emmet_mode='i'
@@ -169,7 +168,6 @@ else
     set guifont=Sauce\ Code\ Powerline:h16
 endif
 
-" colorscheme apprentice
 colorscheme solarized
 
 " vim-commentary: desabilitando o double backslash
@@ -242,9 +240,12 @@ xnoremap ) "0p
 nnoremap ( "0P
 nnoremap ) "0p
 
-" raras as vezes em que precisei usar o backspace
+" raras foram as vezes em que precisei usar o backspace
 nnoremap X "0d
 xnoremap X "0d
+
+" ativando o refresh do signature
+nnoremap m= :SignatureRefresh<cr>
 
 " por padrão o exchange.vim mapeia o X no visual mode
 xmap E <Plug>(Exchange)
@@ -271,6 +272,9 @@ nnoremap <f12> :e $MYVIMRC<cr>
 
 nnoremap <leader>f :CtrlP<cr>
 nnoremap <leader>r :CtrlPMRU<cr>
+
+" para esconder os line numbers
+nnoremap <leader>n :set nonumber<cr>
 
 nnoremap - :ToggleBufExplorer<cr>
 nnoremap <cr> :w<cr>
