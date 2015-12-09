@@ -244,6 +244,9 @@ nnoremap ) "0p
 nnoremap X "0d
 xnoremap X "0d
 
+" facilitando o uso do 'very magic mode'
+nnoremap / /\v
+
 " ativando o refresh do signature
 nnoremap m= :SignatureRefresh<cr>
 
