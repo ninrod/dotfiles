@@ -54,12 +54,14 @@ alias gc='git commit -v'
 alias gl='git log --oneline'
 alias gp='git push'
 alias gf='git fetch'
+alias gm='git merge'
 
 # configs de 'open with'
 alias -s txt=vim
 alias -s js=vim
 alias -s log=vim
 alias -s html=vim
+alias -s conf=vim
 
 
 # configs do zsh
