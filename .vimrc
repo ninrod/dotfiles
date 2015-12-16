@@ -57,6 +57,9 @@ set shiftwidth=4
 " Turn on line numbers
 set number
 
+" UTF encoding
+set encoding=utf-8
+
 " Highlight tailing whitespace
 set list listchars=tab:\ \ ,trail:·
 
@@ -73,9 +76,6 @@ set statusline=%f\ %=L:%l/%L\ %c\ (%p%%)
 
 " Hide the toolbar
 set guioptions-=T
-
-" UTF encoding
-set encoding=utf-8
 
 " Autoload files that have changed outside of vim
 set autoread
@@ -124,9 +124,6 @@ let g:signify_vcs_list = ['git']
 " habilitando o emmet somente para o insert mode. caso contrário ele ferra o <c-y> para o scroll down
 let g:user_emmet_mode='i'
 
-" desabilitando os mappings do gitgutter
-let g:gitgutter_map_keys = 0
-
 " habilitando o rainbow
 let g:rainbow_active = 1
 
@@ -163,9 +160,11 @@ let g:solarized_visibility="high"
 let g:solarized_contrast="high"
 
 if !has("gui_running")
+    " se eu estou no terminal vim...
     let g:solarized_termcolors=16
 else
-    set guifont=Sauce\ Code\ Powerline:h16
+    " se eu estou no gVim ou macVim
+    set guifont=Sauce\ Code\ Powerline:h11
 endif
 
 colorscheme solarized
@@ -194,9 +193,6 @@ let g:ctrlp_arg_map = 1
 " CtrlP -> files matched are ignored when expanding wildcards
 set wildignore+=*/.hg/*,*/.svn/*.,*/.DS_Store,*/.idea/*,*/.tmp/*,*/target/*
 
-""' " CtrlP -> use Ag for searching instead of VimScript. Might not work with ctrlp_show_hidden and ctrlp_custom_ignore.
-" let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
 " CtrlP -> directories to ignore when fuzzy finding
 let g:ctrlp_custom_ignore = '
       \\.git$\|
@@ -215,21 +211,7 @@ let g:ctrlp_custom_ignore = '
 " Airline (status line)
 let g:airline_powerline_fonts = 1
 
-" Gist authorisation settings
-let g:github_user = $GITHUB_USER
-let g:github_token = $GITHUB_TOKEN
-let g:gist_detect_filetype = 1
-let g:gist_open_browser_after_post = 1
-
-" vim.polyglot configs
-let g:polyglot_disabled = ['rust']
-
-" Git gutter
-let g:gitgutter_enabled = 1
-let g:gitgutter_eager = 0
-let g:gitgutter_sign_column_always = 1
 highlight clear SignColumn
-
 " }}}
 
 " mappings {{{
@@ -311,9 +293,6 @@ map <leader>L <C-W>L
 
 " faz um cycle de movimento nas janelas abertas
 nnoremap <BS> <C-W>w
-
-" mostra opções para pular direto para uma janela específica
-map <Leader>w :ChooseWin<cr>
 
 " abrir uma janela vertical
 map <leader>v <C-W>v
