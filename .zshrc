@@ -7,8 +7,9 @@ plugins=(bower zsh-syntax-highlighting nin-vi-mode)
 # configs para o powerlevel9k theme
 POWERLEVEL9K_DISABLE_RPROMPT=false
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status vi_mode)
+POWERLEVEL9K_STATUS_VERBOSE=false
 
 # Config do user
 export LANG=en_US.UTF-8
