@@ -32,7 +32,7 @@ bindkey -v
 
 # allow vim to edit the command line (standard behaviour)
 autoload -Uz edit-command-line
-bindkey -M vicmd 's' edit-command-line
+bindkey -M vicmd 'S' edit-command-line
 
 bindkey -M vicmd 'k' vi-up-line-or-history
 bindkey -M vicmd 'j' vi-down-line-or-history
@@ -54,15 +54,6 @@ for m in visual viopp; do
     bindkey -M $m $c select-quoted
   done
 done
-
-autoload -Uz surround
-zle -N delete-surround surround
-zle -N add-surround surround
-zle -N change-surround surround
-bindkey -a cs change-surround
-bindkey -a ds delete-surround
-bindkey -a ys add-surround
-bindkey -M visual S add-surround
 
 # fix de escape codes do zsh
 bindkey "^[[1~" beginning-of-line
