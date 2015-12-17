@@ -2,7 +2,7 @@
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # plugins do oh-my-zsh
-plugins=(bower zsh-syntax-highlighting nin-vi-mode)
+plugins=(zsh-syntax-highlighting nin-vi-mode)
 
 # configs para o powerlevel9k theme
 POWERLEVEL9K_DISABLE_RPROMPT=false
