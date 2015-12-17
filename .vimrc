@@ -121,9 +121,6 @@ runtime macros/matchit.vim
 
 let g:signify_vcs_list = ['git']
 
-" habilitando o emmet somente para o insert mode. caso contrário ele ferra o <c-y> para o scroll down
-let g:user_emmet_mode='i'
-
 " habilitando o rainbow
 let g:rainbow_active = 1
 
