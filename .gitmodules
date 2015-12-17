@@ -1,6 +1,3 @@
-[submodule ".vim/bundle/vim-signature"]
-	path = .vim/bundle/vim-signature
-	url = https://github.com/kshenoy/vim-signature.git
 [submodule ".vim/bundle/vim-surround"]
 	path = .vim/bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
