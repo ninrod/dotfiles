@@ -28,9 +28,6 @@
 [submodule ".vim/bundle/vim-bufkill"]
 	path = .vim/bundle/vim-bufkill
 	url = https://github.com/qpkorr/vim-bufkill.git
-[submodule ".vim/bundle/vim-choosewin"]
-	path = .vim/bundle/vim-choosewin
-	url = https://github.com/t9md/vim-choosewin.git
 [submodule ".vim/bundle/vim-closetag"]
 	path = .vim/bundle/vim-closetag
 	url = https://github.com/alvan/vim-closetag.git
