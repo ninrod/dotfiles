@@ -1,9 +1,6 @@
 [submodule ".vim/bundle/vim-unimpaired"]
 	path = .vim/bundle/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
-[submodule ".dircolors"]
-	path = .dircolors
-	url = https://github.com/seebi/dircolors-solarized.git
 [submodule ".vim/bundle/vim-racer"]
 	path = .vim/bundle/vim-racer
 	url = https://github.com/racer-rust/vim-racer.git
