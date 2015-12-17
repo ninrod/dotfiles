@@ -1,6 +1,3 @@
-[submodule ".vim/bundle/vim-textobj-xmlattr"]
-	path = .vim/bundle/vim-textobj-xmlattr
-	url = https://github.com/whatyouhide/vim-textobj-xmlattr.git
 [submodule ".vim/bundle/vitality.vim"]
 	path = .vim/bundle/vitality.vim
 	url = https://github.com/sjl/vitality.vim.git
