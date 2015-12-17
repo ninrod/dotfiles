@@ -1,6 +1,3 @@
-[submodule ".vim/bundle/vim-textobj-entire"]
-	path = .vim/bundle/vim-textobj-entire
-	url = https://github.com/kana/vim-textobj-entire.git
 [submodule ".vim/bundle/vim-textobj-user"]
 	path = .vim/bundle/vim-textobj-user
 	url = https://github.com/kana/vim-textobj-user.git
