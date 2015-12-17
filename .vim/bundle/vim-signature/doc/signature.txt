@@ -1,0 +1,382 @@
+*signature.txt*  A plugin to toggle, display and navigate marks
+
+     _________.__                            __                              ~
+    /   _____/|__|   ____    ____  _____   _/  |_  __ __ _______   ____      ~
+    \_____  \ |  |  / ___\  /    \ \__  \  \   __\|  |  \\_  __ \_/ __ \     ~
+    /        \|  | / /_/  >|   |  \ / __ \_ |  |  |  |  / |  | \/\  ___/     ~
+   /_______  /|__| \___  / |___|  /(____  / |__|  |____/  |__|    \___  >    ~
+           \/     /_____/       \/      \/                            \/     ~
+
+
+==============================================================================
+1. Contents                                   *signature-contents* *signature*
+
+  1. Contents         |signature-contents|
+  2. Mappings         |signature-mappings|
+  3. Commands         |signature-commands|
+  4. Customization    |signature-customization|
+  5. Contributing     |signature-contributing|
+  6. Credits          |signature-credits|
+  7. License          |signature-license|
+
+
+==============================================================================
+2. Mappings                                               *signature-mappings*
+
+Out of the box, the followings mappings are defined by default
+
+  mx           Toggle mark 'x' and display it in the leftmost column
+  dmx          Remove mark 'x' where x is a-zA-Z
+
+  m,           Place the next available mark
+  m.           If no mark on line, place the next available mark. Otherwise,
+               remove (first) existing mark.
+  m-           Delete all marks from the current line
+  m<Space>     Delete all marks from the current buffer
+  ]`           Jump to next mark
+  [`           Jump to prev mark
+  ]'           Jump to start of next line containing a mark
+  ['           Jump to start of prev line containing a mark
+  `]           Jump by alphabetical order to next mark
+  `[           Jump by alphabetical order to prev mark
+  ']           Jump by alphabetical order to start of next line having a mark
+  '[           Jump by alphabetical order to start of prev line having a mark
+  m/           Open location list and display marks from current buffer
+
+  m[0-9]       Toggle the corresponding marker !@#$%^&*()
+  m<S-[0-9]>   Remove all markers of the same type
+  ]-           Jump to next line having a marker of the same type
+  [-           Jump to prev line having a marker of the same type
+  ]=           Jump to next line having a marker of any type
+  [=           Jump to prev line having a marker of any type
+  m?           Open location list and display markers from current buffer
+  m<BS>        Remove all markers
+
+This will allow the use of default behavior of m to set marks and, if
+the line already contains the mark, it'll be unset. The default behavior
+of ]', [', ]` and [` is supported and enhanced by wrapping around when
+beginning or end of file is reached. ]-, [-, ]= and [= also accept a count.
+
+To directly jump to a given marker, the following maps can be used
+>
+  nnoremap [1 :call signature#marker#Goto('prev', 1, v:count)
+  nnoremap ]1 :call signature#marker#Goto('next', 1, v:count)
+  nnoremap [2 :call signature#marker#Goto('prev', 2, v:count)
+  nnoremap ]2 :call signature#marker#Goto('next', 2, v:count)
+<
+etc. These are not defined by default
+
+
+==============================================================================
+3. Commands                                               *signature-commands*
+
+SignatureToggleSigns
+  Toggle the display of signs. This won't affect the marks or the mappings.
+
+SignatureRefresh
+  Force the display of signs in the buffer to refresh. Use this to correct
+  the signs if things go awry
+
+SignatureListMarks
+  List all the marks used in the current buffer in the location list
+
+SignatureListMarkers [marker]
+  List all instances of the specified marker used in the current buffer in
+  the location list. If no argument is given, it lists all markers
+
+
+==============================================================================
+4. Customization                                     *signature-customization*
+
+                                                            *'g:SignatureMap'*
+  Type: Dictionary, Default:
+  To set up your own mappings copy the following dictionary and edit it
+>
+      let g:SignatureMap = {
+        \ 'Leader'             :  "m",
+        \ 'PlaceNextMark'      :  "m,",
+        \ 'ToggleMarkAtLine'   :  "m.",
+        \ 'PurgeMarksAtLine'   :  "m-",
+        \ 'DeleteMark'         :  "dm",
+        \ 'PurgeMarks'         :  "m<Space>",
+        \ 'PurgeMarkers'       :  "m<BS>",
+        \ 'GotoNextLineAlpha'  :  "']",
+        \ 'GotoPrevLineAlpha'  :  "'[",
+        \ 'GotoNextSpotAlpha'  :  "`]",
+        \ 'GotoPrevSpotAlpha'  :  "`[",
+        \ 'GotoNextLineByPos'  :  "]'",
+        \ 'GotoPrevLineByPos'  :  "['",
+        \ 'GotoNextSpotByPos'  :  "]`",
+        \ 'GotoPrevSpotByPos'  :  "[`",
+        \ 'GotoNextMarker'     :  "[+",
+        \ 'GotoPrevMarker'     :  "[-",
+        \ 'GotoNextMarkerAny'  :  "]=",
+        \ 'GotoPrevMarkerAny'  :  "[=",
+        \ 'ListLocalMarks'     :  "m/",
+        \ 'ListLocalMarkers'   :  "m?"
+        \ }
+<
+  By default, it defines the mappings as shown in |signature-mappings|
+  To disable a map entirely, specify it as an empty string.
+  If a key is not specified, the default value will be picked up.
+  These same characters will be used to invoke the shortcuts.
+
+
+                                                   *'g:SignatureIncludeMarks'*
+  String, Default : 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+  Specify the marks that can be controlled by this plugin.
+  Only supports Alphabetical marks at the moment.
+  'b:SignatureIncludeMarks' can be set separately for buffer-specific marks.
+
+
+                                                 *'g:SignatureIncludeMarkers'*
+  String, Default : '!@#$%^&*()'
+
+  Specify the markers that can be used by the plugin.
+  'b:SignatureIncludeMarkers' can be specified separately for each buffer
+
+
+                               *g:SignatureMap['Leader']* *'SignatureMapLeader'*
+  String, Default: 'm'
+
+  Set the key used to toggle marks and markers.
+  For eg. If this key is set to `<leader>m`,
+    `<leader>ma`       will toggle the mark 'a' on the current line
+    `<leader>m,`       will place the next available mark
+    `<leader>m.`       will place the next available mark if there are no
+                     marks already on the line; otherwise, will remove
+                     first mark from line
+    `<leader>m<Space>` will delete all marks
+    `<leader>m1`       will toggle the marker '!'
+    `<leader>m!`       will remove all the '!' markers
+    `<leader>m<BS>`    will remove all markers
+
+  Note:
+  Currently, either marks or markers can be displayed in front of a line.
+  Both can't be displayed simultaenously.
+
+  To set this to mapleader or maplocalleader
+>
+    let g:SignatureMap['Leader'] = '<Leader>'
+    let g:SignatureMap['Leader'] = '<LocalLeader>'
+<
+
+                                                      *'g:SignatureWrapJumps'*
+  Boolean, Default : 1
+
+  Specify if jumping to marks should wrap-around.
+  'b:SignatureWrapJumps' can be set to specify buffer-specific settings.
+
+
+                                                      *'g:SignatureMarkOrder'*
+  String, Default : "\p\m"
+
+  Signature allows you to display upto marks in front of a line. This controls
+  the order in which marks are displayed.
+    '\m' indicates the current or latest mark placed on the line
+    '\p' indicates the previous mark placed on the line
+
+  For eg,
+    `g:SignatureMarkOrder="\m."`  : Display last mark with '.' suffixed
+    `g:SignatureMarkOrder="_\m"`  : Display last mark with '_' prefixed
+    `g:SignatureMarkOrder=">"`    : Display only a ">" for a line with a mark.
+                                  The mark is not displayed
+    `g:SignatureMarkOrder="\m\p"` : Display last two marks placed
+
+  Note:
+  The signs feature allows only 2 characters to be displayed. This is not and
+  arbitratry limitation of the plugin.
+
+
+                                                     *'g:SignatureMarkTextHL'*
+  String, Default : "'Exception'"
+
+  The highlight group used for mark signs. This can be set either to a string
+  or to a |Funcref|.
+
+  If it holds a string, it must be an expression suitable for passing to
+  |eval()|. In the simple case, it can be the name of a highlight group. It can
+  also hold more complicated expressions, in which case the expression `a:lnum`
+  may be helpful. It holds the number of the line where the current mark is to
+  be highlighted.
+
+  If it holds a |Funcref|, then the function will be called with one argument,
+  the line number of the mark to be highlighted. The function should return
+  the name of a highlight group.
+
+  Example of simple string highlight group. Note the two sets of quotation
+  marks:
+>
+    let g:SignatureMarkTextHL = "'Exception'"
+<
+  Example of complex string expression:
+>
+    function Example(lineno)
+    endfunction
+    let g:SignatureMarkTextHL = "Example(a:lnum)"
+<
+  Example of |Funcref|:
+>
+    function Example(lineno)
+      return "Exception"
+    endfunction
+    let g:SignatureMarkTextHL = function("Example")
+<
+
+                                              *'g:SignatureMarkTextHLDynamic'*
+  Boolean, Default: 0
+
+  Highlight signs of marks dynamically based upon state indicated by
+  vim-gitgutter or vim-signify. Setting this to `1` prior to plugin
+  initialization overwrites |g:SignatureMarkTextHL|.
+
+
+                                                     *'g:SignatureMarkLineHL'*
+  String, Default : ''
+
+  The highlight group used for hightlighting lines having mark signs. This can
+  be a string or a |Funcref|. See |g:SignatureMarkTextHL| for details.
+
+
+                                                   *'g:SignatureMarkerTextHL'*
+  String, Default : "'WarningMsg'"
+
+  The highlight group used for marker signs. This can be a string or a
+  |Funcref|. See |g:SignatureMarkTextHL| for details.
+>
+    let g:SignatureMarkTextHL = "'WarningMsg'"
+<
+
+                                            *'g:SignatureMarkerTextHLDynamic'*
+  Boolean, Default: 0
+
+  Highlight signs of markers dynamically based upon state indicated by
+  vim-gitgutter or vim-signify. Setting this to `1` prior to plugin
+  initialization overwrites |g:SignatureMarkerTextHL|.
+
+
+                                                   *'g:SignatureMarkerLineHL'*
+  String, Default : ''
+
+  The highlight group used for hightlighting lines having marker signs. This
+  can be a string or a |Funcref|. See |g:SignatureMarkTextHL| for details.
+
+
+                                             *'g:SignatureDeleteConfirmation'*
+  Boolean, Default: 0
+
+  An option for the more clumsy-fingered of us. Asks for confirmation before
+  moving/replacing/overwriting any marks
+
+
+                                              *'g:SignaturePurgeConfirmation'*
+  Boolean, Default: 0
+
+  Similar to g:SignatureDeleteConfirmation. Asks for confirmation before
+  deleting all marks/markers
+
+
+                                                *'g:SignaturePeriodicRefresh'*
+  Boolean, Default: 1
+
+  Enable the display to refresh periodically. Generally a good thing to have.
+  This makes use of the CursorHold autocmd event to execute periodically.
+  The frequency of this event can be controlled by changing the value of the
+  updatetime variable in milliseconds
+    `set updatetime = 100`
+
+
+                                                *'g:SignaturePrioritizeMarks'*
+  Boolean, Default: 1
+
+  When a line has both marks and markers, display the sign for marks. If set
+  to 0, it will display the sign for markers instead
+
+
+                                               *'g:SignatureEnabledAtStartup'*
+  Boolean, Default: 1
+
+  Control if the signs should be shown by default. If set to 0, the signs
+  won't be visible until `:SignatureToggleSigns` has been called
+
+
+                                                 *'g:SignatureDeferPlacement'*
+  Boolean, Default: 1
+
+  NOTE: Not supported currently. Code was highly inefficient.
+  Check if any other plugin has already placed a sign and if set to 1,
+  Signature will hold off from placing a sign. If set to 0, Signature will
+  overwrite any signs that are already present.
+
+
+                                    *'g:SignatureUnconditionallyRecycleMarks'*
+  Boolean, Default: 0
+
+  Controls behavior when trying to place next available mark and all marks
+  have been used. If set to 0, then either an error or warning message will be
+  emitted, depending on the setting of |g:SignatureErrorIfNoAvailableMarks|.
+  If set to 1, then the first local mark (e.g., 'a') will be removed from its
+  existing location and applied to the current line.
+
+
+                                        *'g:SignatureErrorIfNoAvailableMarks'*
+  Boolean, Default: 1
+
+  Controls behavior when unable to place a new mark. If set to 1, then an
+  error is raised. If set to 0, then just a warning message.
+
+
+                                              *'g:SignatureForceRemoveGlobal'*
+  Boolean, Default: 1
+
+  Vim's handling of global marks is a bit iffy. This option forces the removal
+  of global marks by deleting it from the .viminfo file.
+
+
+                                             *'g:SignatureForceMarkPlacement'*
+  Boolean, Default: 0
+
+  When set to 1, will always place marks instead of toggling them
+
+
+                                           *'g:SignatureForceMarkerPlacement'*
+  Boolean, Default: 0
+
+  When set to 1, will always place markers instead of toggling them
+
+
+
+==============================================================================
+5. Contributing                                       *signature-contributing*
+
+  Please post any issues and all your suggestions on Github
+    https://github.com/kshenoy/vim-signature
+
+  Show some love by spreading the word and rating on
+    http://www.vim.org/scripts/script.php?script_id=4118
+
+
+==============================================================================
+6. Credits                                                 *signature-credits*
+
+A great thanks to these guys for providing the idea and inspiration to develop
+Signature
+
+* Sergey Khorev for mark-tools
+  http://www.vim.org/scripts/script.php?script_id=2929
+
+* Zak Johnson for vim-showmarks
+  https://github.com/zakj/vim-showmarks
+
+I'd also like to thank Steve J. Losh for learningvimscriptthehardway.com
+without whose detailed guide this plugin would not have seen the light of day.
+
+
+==============================================================================
+7. License                                                 *signature-license*
+
+Signature is MIT/X11 licensed
+
+
+vim:tw=78:ts=2:et:sts=2:sw=2:ft=help
