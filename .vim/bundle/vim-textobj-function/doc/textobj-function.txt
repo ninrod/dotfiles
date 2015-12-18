@@ -1,0 +1,354 @@
+*textobj-function.txt*	Text objects for functions
+
+Version 0.4.0
+Script ID: 2619
+Copyright (C) 2007-2014 Kana Natsuno <http://whileimautomaton.net/>
+License: MIT license  {{{
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be included
+    in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+    OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+    CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+    TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+    SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+}}}
+
+CONTENTS					*textobj-function-contents*
+
+Introduction		|textobj-function-introduction|
+Interface		|textobj-function-interface|
+  Key Mappings		  |textobj-function-key-mappings|
+Language-specific notes	  |textobj-function-language-specific-notes|
+Support New Languages	|textobj-function-support-new-languages|
+Known Issues		|textobj-function-known-issues|
+Changelog		|textobj-function-changelog|
+
+
+
+
+==============================================================================
+INTRODUCTION					*textobj-function-introduction*
+
+*textobj-function* is a Vim plugin to text objects for functions.  You can
+directly target a function (|af|) or the code inside a function (|if|).
+For example,
+
+- `daf` to Delete A Function, and
+- `vif` to Visually select the code Inside a Function.
+
+You can also use |aF| to target a function with leading or trailing blank
+lines like |ap|, or use |iF| to target just a function like |ip|.
+For example,
+
+- `yaF` to Yank A Function with leading or trailing blank lines, and
+- `viF` to visually select a function without leading or trailing blank lines.
+
+The syntax of a "function" is varied for each language.  So that you have to
+tell the syntax of a function to textobj-function before editing.  By default,
+the following languages are supported:
+					    *textobj-function-known-languages*
+- C language		|textobj-function-c|
+- Java			|textobj-function-java|
+- Vim script		|textobj-function-vim|
+  (including |vspec|-specific syntax)
+
+To support new languages, see:
+
+- |textobj-function-support-new-languages| for API, and
+- after/ftplugin/*/textobj-function.vim bundled with this plugin for examples.
+
+
+Requirements:
+- Vim 7.2 or later
+- |textobj-user| 0.3.7 or later (vimscript#2100)
+  https://github.com/kana/vim-textobj-user
+
+Installation:
+- Recommended way: Use vim-flavor <https://github.com/kana/vim-flavor>.
+
+Latest version:
+https://github.com/kana/vim-textobj-function
+
+Document in HTML format:
+http://vim-doc.heroku.com/view?https://github.com/kana/vim-textobj-function/blob/master/doc/textobj-function.txt
+
+
+
+
+==============================================================================
+INTERFACE					*textobj-function-interface*
+
+------------------------------------------------------------------------------
+KEY MAPPINGS				       *textobj-function-key-mappings*
+
+DEFAULT KEY MAPPINGS		       *textobj-function-default-key-mappings*
+
+The following key mappings are defined in Visual mode and Operator-pending
+mode:
+
+	{lhs}	{rhs}				~
+	-----	---------------------------	~
+	*af*	|<Plug>(textobj-function-a)|
+	*if*	|<Plug>(textobj-function-i)|
+	*aF*	|<Plug>(textobj-function-A)|
+	*iF*	|<Plug>(textobj-function-I)|
+
+				  *g:textobj_function_no_default_key_mappings*
+If you don't need these key mappings, define a global variable
+|g:textobj_function_no_default_key_mappings| before this plugin is loaded
+(typically in your |vimrc|).
+
+					  *:TextobjFunctionDefaultKeyMappings*
+You can also use |:TextobjFunctionDefaultKeyMappings| to redefine these key
+mappings.  This command doesn't override existing {lhs}s unless [!] is given.
+
+
+NAMED KEY MAPPINGS			*textobj-function-named-key-mappings*
+
+The following key mappings are defined in Visual, Select and Operator-pending
+modes.
+
+
+<Plug>(textobj-function-a)			*<Plug>(textobj-function-a)*
+			"a function" - Select the all range of a function.
+			This text object is |linewise| by default, but it may
+			be |characterwise| or |blockwise| depending on what
+			function is being selected.
+
+			Note that this text object doesn't include leading and
+			trailing spaces.  Because this text object is similar
+			to |ab|, |at|, and etc rather than |aw|, |ap|, etc.
+
+<Plug>(textobj-function-i)			*<Plug>(textobj-function-i)*
+			"inner function" - Like |<Plug>(textobj-function-a)|,
+			but select the body of a function, other parts of
+			a function are not included e.g. its name, its
+			arguments and so forth).
+
+<Plug>(textobj-function-A)			*<Plug>(textobj-function-A)*
+			Similar to |<Plug>(textobj-function-a)|, but select
+			also the leading or trailing blank lines like |ap|.
+
+<Plug>(textobj-function-I)			*<Plug>(textobj-function-I)*
+			Same as |<Plug>(textobj-function-a)|.
+			While |<Plug>(textobj-function-A)| is like |ap|,
+			<Plug>(textobj-function-I) is like |ip|.
+
+
+
+
+==============================================================================
+LANGUAGE-SPECIFIC NOTES		    *textobj-function-language-specific-notes*
+
+------------------------------------------------------------------------------
+C LANGUAGE					*textobj-function-c*
+
+- Assumption: C functions must be written in one of the following styles:
+>
+	return-type
+	function-name(arg1, arg2, ..., argN)
+	{
+		...
+	}
+
+	/* OR */
+
+	return-type
+	function-name(arg1, arg2, ..., argN) {
+		...
+	}
+<
+  - return-type must be written in one line.
+  - function-name must be followed by "(".
+  - argument list may be written in one or more lines, but the last line must
+    end with ")".
+
+- If the cursor is between two functions, the next function will be selected.
+
+
+------------------------------------------------------------------------------
+JAVA						*textobj-function-java*
+
+- Since Java does not have functions, |af| and |if| actually targets methods.
+
+- Lines may be broken before "{".  For example:
+>
+	Foo makeFoo() {
+	  ...
+	}
+
+	Foo makeFoo()
+	{
+	  ...
+	}
+<
+- Lines may be broken in argument lists.  For example:
+>
+	Foo makeFoo(Bar bar,
+	            Baz baz) {
+	  ...
+	}
+
+	Foo makeFoo(
+	  Bar bar,
+	  Baz baz
+	) {
+	  ...
+	}
+<
+
+------------------------------------------------------------------------------
+VIM SCRIPT					*textobj-function-vim*
+
+- Not only a plain |:function| but also |vspec|-specific syntax such as
+  |:describe|, |:it|, |:before| and |:after| blocks are recognized as
+  functions.  See also: https://github.com/kana/vim-vspec
+
+- Assumption: |:function| and |:endfunction| must be written solely in their
+  own lines, as follows:
+>
+	function GoodOne()
+	  return 'o'
+	endfunction
+<
+  Not as follows:
+>
+	echo 'x' | function BadOne()
+	  return 'x'
+	endfunction
+<
+
+
+
+
+==============================================================================
+SUPPORT NEW LANGUAGES		      *textobj-function-support-new-languages*
+
+To support a new language, you have to
+
+* Add a filetype plugin.
+  Recommended path: after/ftplugin/{filetype}/textobj-function.vim
+* Define |b:textobj_function_select| in the filetype plugin.
+
+See also after/ftplugin/{filetype}/textobj-funtion.vim bundled with this
+plugin for the real world examples.
+
+
+b:textobj_function_select			*b:textobj_function_select*
+		A |Funcref| to a function which returns a range of a function
+		or the code inside a function.  This function will be called
+		whenever user types |af| and |if|.
+
+		This function takes a single argument which specifies the type
+		of an object.  This can be one of the following values:
+
+			Value	Meaning		~
+			----------------------- ~
+			'a'	"a function"
+			'i'	"inner function"
+
+		This function returns:
+
+		- A list to indicate the range of an object, or
+		- 0 if there is no function to target.
+
+		The list must have the following 3 elements:
+>
+			[{*wise}, {start-position}, {end-position}]
+<
+		- {*wise} denotes the default type of selection.  Valid values
+		  are "v", "V" or "\<C-v>".  The meaning of the values are
+		  characterwise, linewise or blockwise.
+		- {start-position} denotes the start position of the area to
+		  be selected.  The detail of this value is the same as
+		  |getpos()|.
+		- {end-position} is like {start-position}, but it denotes the
+		  end position of the area to be selected.
+
+		In this function, it is allowd to move the cursor to anywhere.
+		The cursor will be automatically adjusted or restored after
+		calling this function.
+
+
+
+
+==============================================================================
+KNOWN ISSUES				       *textobj-function-known-issues*
+
+- See also |textobj-user-known-issues|.
+
+- If you have any suggestion, please let me know via
+  https://github.com/kana/vim-textobj-user/issues
+
+
+
+
+==============================================================================
+CHANGELOG					*textobj-function-changelog*
+
+0.4.0	2014-05-03T17:48:27+09:00	    *textobj-function-changelog-0.4.0*
+	- Add a variant of function text objects |aF| and |iF|.
+
+0.3.0	2014-04-23T22:40:01+09:00	    *textobj-function-changelog-0.3.0*
+	- Vim script: Support also |vspec|-specific syntax.
+
+0.2.0	2014-04-02T23:20:30+09:00	    *textobj-function-changelog-0.2.0*
+	- Add Java support.  See also |textobj-function-java|.  Thanks to Jan
+	  Larres for the patch.
+	- Revise the internal structure.  Loading time is a bit reduced.
+	- Revise the document.
+
+0.1.5	2014-02-06T23:25:52+09:00	    *textobj-function-changelog-0.1.5*
+	- C: Support functions with alternative brace style such as: >
+		int
+		foo(void) {
+		  ...
+		}
+
+0.1.4	2013-04-06T23:23:43+09:00	    *textobj-function-changelog-0.1.4*
+	- C: Fix a bug that functions are not properly selected if "[[" and
+	  "][" in Normal mode are customized.  Thanks to Jan Larres for
+	  a patch.
+
+0.1.3	2013-02-04T22:58:30+09:00	    *textobj-function-changelog-0.1.3*
+	- C: Fix to select a right function if the cursor is placed on the last
+	  line of a function.  Thanks to John Szakmeister for a patch.
+	- Vim script: Fix |af| not to select the current line if the cursor is
+	  not placed on any function.
+
+0.1.2	2013-01-18T20:11:40+09:00	    *textobj-function-changelog-0.1.2*
+	- Support vim-flavor <https://github.com/kana/vim-flavor>.
+	- Update |textobj-function-introduction|.
+
+0.1.1	2012-03-24T14:45:28+09:00	    *textobj-function-changelog-0.1.1*
+	- Refine the document a bit.
+	- Refine the internal structure a bit.
+
+0.1.0	2009-04-25T14:17:41+09:00	    *textobj-function-changelog-0.1.0*
+	- Rename the name of this plugin as textobj-function.  The old name is
+	  tofunc and it's not clear to indicate what this plugin does.
+	- Change to use |textobj-user| instead of its own framework.
+	- Change the API.  See |textobj-function-support-new-languages| for
+	  the details.  It is now incompatible with old versions.
+	- Add documents for sample scripts.
+	  See |textobj-function-known-languages|.
+
+0.0	2007-XX-XX			      *textobj-function-changelog-0.0*
+	- Initial version.
+
+
+
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:fen:fdl=0:fdm=marker:
