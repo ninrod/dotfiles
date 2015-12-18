@@ -10,4 +10,6 @@ ln -s .gitconfig(:a) ~/.gitconfig
 
 ln -s oh-my-zsh-extras/nin-vi-mode(:a) ~/.oh-my-zsh/custom/plugins/nin-vi-mode
 ln -s oh-my-zsh-extras/zsh-syntax-highlighting(:a) ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+
+mkdir ~/.oh-my-zsh/custom/themes
 ln -s oh-my-zsh-extras/powerlevel9k(:a) ~/.oh-my-zsh/custom/themes/powerlevel9k
