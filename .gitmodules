@@ -1,9 +1,6 @@
 [submodule ".vim/bundle/vim-unimpaired"]
 	path = .vim/bundle/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
-[submodule ".vim/bundle/bufexplorer"]
-	path = .vim/bundle/bufexplorer
-	url = https://github.com/jlanzarotta/bufexplorer.git
 [submodule ".vim/bundle/gitv"]
 	path = .vim/bundle/gitv
 	url = https://github.com/gregsexton/gitv.git
