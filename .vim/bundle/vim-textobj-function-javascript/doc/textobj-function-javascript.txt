@@ -1,0 +1,72 @@
+*textobj-function-javascript.txt*   Text objects for functions in javascript.
+
+Version: 0.2
+Author : thinca <thinca+vim@gmail.com>
+License: zlib License
+
+==============================================================================
+CONTENTS			       *textobj-function-javascript-contents*
+
+Introduction		|textobj-function-javascript-introduction|
+Interface		|textobj-function-javascript-interface|
+Bugs			|textobj-function-javascript-bugs|
+Changelog		|textobj-function-javascript-changelog|
+
+
+==============================================================================
+INTRODUCTION			   *textobj-function-javascript-introduction*
+
+*textobj-function-javascript* is a Vim additional filetype plugin to provide
+text objects for functions in javascript.  This is a support script for
+|textobj-function|, so that you have to install it to enable the text objects.
+Unless installing, this script does nothing.
+
+
+Requirements:
+- Vim 7.2 or later
+- |textobj-function| 0.1.0 or later (vimscript#2619)
+
+Options:
+- |matchit| (vimscript#39)
+
+
+==============================================================================
+INTERFACE			      *textobj-function-javascript-interface*
+
+See |textobj-function| for the details.  Because this plugin just enhances the
+power of textobj-function and does not provide any user interface.
+
+
+==============================================================================
+BUGS					   *textobj-function-javascript-bugs*
+
+- This script uses |%| to get the region of function.  And use the user mapped
+  |%| to use |matchit|.  So this script do not work if you map |%| to other.
+
+- This script use the information of |syntax|.  You must enable |syntax|.
+
+- See |textobj-function-bugs| for further information.
+
+
+
+
+==============================================================================
+CHANGELOG			      *textobj-function-javascript-changelog*
+
+0.2	2014-04-29
+	- Use autoload function.
+	  - The previous version doesn't work on Vim 7.4.260 or later.
+	- Change the license.
+	  - Creative Commons Attribution 2.1 Japan License => zlib License
+
+0.1.1	2009-05-01
+	- Improved the expression closures support.
+	- Add this document.
+	- "af" uses linewise if possible.
+
+0.1	2009-04-25
+	- Initial version.
+
+
+==============================================================================
+vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl
