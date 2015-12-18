@@ -1,0 +1,35 @@
+*textobj-underscoere.txt*	Text objects for underscored words
+
+Version 0.0.1
+
+CONTENTS					*textobj-underscore-contents*
+
+Introduction		|textobj-underscore-introduction|
+Copyright		|textobj-underscore-copyright|
+
+
+==============================================================================
+INTRODUCTION					*textobj-underscore-introduction*
+
+The *textobj-underscore* plugin provides two new |text-objects| which are
+triggered by `a_` and `i_` respectively. You can use them when you have to
+deal with the following type of words:
+
+- foo_bar_baz
+
+Now, suppose you have to change bar to qux (* for cursor position). You can do
+the following:
+
+`foo_b*ar_bar` and type `ci_` to get `foo_*_bar`. Or you can type `da_` to
+get `foobar`
+
+Latest version:
+http://github.com/lucapette/vim-textobj-underscore
+
+==============================================================================
+COPYRIGHT					*textobj-underscore-copyright*
+
+  Copyright (c) Luca Pette. Distributed under the same terms as Vim itself.
+  See |license|.
+
+vim:tw=78:ts=8:ft=help:norl:
