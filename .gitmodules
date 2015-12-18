@@ -1,9 +1,6 @@
 [submodule ".vim/bundle/vim-unimpaired"]
 	path = .vim/bundle/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
-[submodule ".vim/bundle/gitv"]
-	path = .vim/bundle/gitv
-	url = https://github.com/gregsexton/gitv.git
 [submodule ".vim/bundle/vim-textobj-function"]
 	path = .vim/bundle/vim-textobj-function
 	url = https://github.com/kana/vim-textobj-function.git
