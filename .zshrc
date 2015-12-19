@@ -65,6 +65,10 @@ alias -s log=vim
 alias -s html=vim
 alias -s conf=vim
 
+# o .oh-my-zsh cria um alias d que colide com o alias do fasd
+unalias d
+alias d='fasd -d'
+alias di='dirs'
 
 # configs do zsh
 setopt extended_glob
