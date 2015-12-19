@@ -1,14 +1,19 @@
 #!/usr/local/bin/zsh
 
-vimfolder=~/.vim
-target=.vim(:a)
+#1. criação do link simbólico para ~/.vim
+
+vimfolder_link=~/.vim
+vimfolder_target=.vim(:a)
+
 # verificando se o link simbólico da pasta ~/.vim já está montado.
-if [[ -h $vimfolder ]]; then
-  print '"'$vimfolder'" já existe.'
-else
-  print 'montando link simbólico "'$vimfolder'" -> "'$target'"'
-  ln -s .vim(:a) ~/.vim
+if [[ -h $vimfolder_link ]]; then
+  print '"'$vimfolder_link'" já existe. removendo...'
+  rm $vimfolder_link
 fi
+
+print 'montando link simbólico "'$vimfolder_link'" -> "'$vimfolder_target'"'
+ln -s .vim(:a) ~/.vim
+print '"'$vimfolder_link'" criado.'
 
 # ln -s .vimrc(:a) ~/.vimrc
 
