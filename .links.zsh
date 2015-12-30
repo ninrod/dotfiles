@@ -1,15 +1,51 @@
 #!/usr/local/bin/zsh
 
-ln -s .dircolors/dircolors.256dark(:a) ~/.lscolors
-ln -s .zshrc(:a) ~/.zshrc
-ln -s .oh-my-zsh(:a) ~/.oh-my-zsh
-ln -s .vim(:a) ~/.vim
-ln -s .vimrc(:a) ~/.vimrc
-ln -s .tmux.conf(:a) ~/.tmux.conf
-ln -s .gitconfig(:a) ~/.gitconfig
+update_theme_dir() {
+  # -d testa se o parâmetro existe e se é um diretório
+  if [[ ! -d $1 ]]; then
+    print 'o diretório "'$1'" não existe. criando...'
+    mkdir $1
+  else
+    print 'o diretório "'$1'" já existe.'
+  fi
+}
 
-ln -s oh-my-zsh-extras/nin-vi-mode(:a) ~/.oh-my-zsh/custom/plugins/nin-vi-mode
-ln -s oh-my-zsh-extras/zsh-syntax-highlighting(:a) ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+updatelinks() {
+  #$1 : é o link simbólico
+  #$2 : é a pasta local (target)
 
-mkdir ~/.oh-my-zsh/custom/themes
-ln -s oh-my-zsh-extras/powerlevel9k(:a) ~/.oh-my-zsh/custom/themes/powerlevel9k
+  # o switch -h testa se o argumento existe e é um link.
+  if [[ -h $1 ]]; then
+    print '"'$1'" symlink já existe. removendo...'
+    rm $1
+  fi
+
+  print 'montando link simbólico "'$1'" -> "'${2:a}'"'
+  ln -s ${2:a} $1
+}
+
+# vim
+updatelinks ~/.vim .vim
+updatelinks ~/.vimrc .vimrc
+
+# tmux
+updatelinks ~/.tmux.conf .tmux.conf
+
+# git
+updatelinks ~/.gitconfig .gitconfig
+
+# ag (Ag - the silver searcher)
+updatelinks ~/.agignore .agignore
+
+# comando ls
+updatelinks ~/.lscolors .dircolors/dircolors.256dark
+
+# zsh
+updatelinks ~/.zshrc .zshrc
+
+# oh-my-zsh
+updatelinks ~/.oh-my-zsh .oh-my-zsh
+updatelinks ~/.oh-my-zsh/custom/plugins/nin-vi-mode oh-my-zsh-extras/nin-vi-mode
+updatelinks ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting oh-my-zsh-extras/zsh-syntax-highlighting
+update_theme_dir ~/.oh-my-zsh/custom/themes
+updatelinks ~/.oh-my-zsh/custom/themes/powerlevel9k oh-my-zsh-extras/powerlevel9k
