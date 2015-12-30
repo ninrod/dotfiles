@@ -49,8 +49,10 @@ alias vi='vim'
 alias tarc='tar -zcvf file.tar.gz'
 alias tarx='tar -zxvf'
 
+# alias para o git
 alias gsl='git status'
 alias gs='git status --short'
+alias gd='git diff'
 alias ga='git add'
 alias gc='git commit -v'
 alias gl='git log --oneline'
@@ -65,10 +67,14 @@ alias -s log=vim
 alias -s html=vim
 alias -s conf=vim
 
+#configs do Ag (the silver searcher)
+alias ag='ag --path-to-agignore=~/.agignore'
+
 # o .oh-my-zsh cria um alias d que colide com o alias do fasd
 unalias d
 alias d='fasd -d'
 alias di='dirs -v | head -n 10'
 
 # configs do zsh
+alias print='print -l'
 setopt extended_glob
