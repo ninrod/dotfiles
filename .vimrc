@@ -230,7 +230,7 @@ nnoremap / /\v
 nnoremap m= :SignatureRefresh<cr>
 
 " por padrão o exchange.vim mapeia o X no visual mode
-xmap E <Plug>(Exchange)
+xmap Y <Plug>(Exchange)
 
 " adicionando space como leader key
 nmap <Space> <Leader>
@@ -262,8 +262,7 @@ nnoremap - :ToggleBufExplorer<cr>
 nnoremap <cr> :w<cr>
 nnoremap + :Scratch<cr>
 nnoremap & :noh<cr>
-nnoremap s :Gstatus<cr>
-nnoremap S :Gpush<cr>
+nnoremap <BS> :Gstatus<cr>
 nnoremap Q ZQ
 nnoremap Z ZZ
 
@@ -289,7 +288,7 @@ map <leader>K <C-W>K
 map <leader>L <C-W>L
 
 " faz um cycle de movimento nas janelas abertas
-nnoremap <BS> <C-W>w
+nnoremap <leader>w <C-W>w
 
 " abrir uma janela vertical
 map <leader>v <C-W>v
