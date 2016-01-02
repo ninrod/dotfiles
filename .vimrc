@@ -219,18 +219,18 @@ xnoremap ) "0p
 nnoremap ( "0P
 nnoremap ) "0p
 
+" eu quero que o vim ilumine a palavra atual sem saltar para a próxima
+nnoremap * *N
+
 " raras foram as vezes em que precisei usar o backspace
-nnoremap X "0d
-xnoremap X "0d
+nnoremap Y "0d
+xnoremap Y "0d
 
 " facilitando o uso do 'very magic mode'
 nnoremap / /\v
 
 " ativando o refresh do signature
 nnoremap m= :SignatureRefresh<cr>
-
-" por padrão o exchange.vim mapeia o X no visual mode
-xmap Y <Plug>(Exchange)
 
 " adicionando space como leader key
 nmap <Space> <Leader>
