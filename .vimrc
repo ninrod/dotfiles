@@ -255,9 +255,6 @@ nnoremap <f12> :e $MYVIMRC<cr>
 nnoremap <leader>f :CtrlP<cr>
 nnoremap <leader>r :CtrlPMRU<cr>
 
-" para esconder os line numbers
-nnoremap <leader>n :set nonumber<cr>
-
 nnoremap - :ToggleBufExplorer<cr>
 nnoremap <cr> :w<cr>
 nnoremap + :Scratch<cr>
