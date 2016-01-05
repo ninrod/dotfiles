@@ -229,7 +229,7 @@ nnoremap / /\v
 " ativando o refresh do signature
 nnoremap m= :SignatureRefresh<cr>
 
-" adicionando space como leader key
+" space is my leader key, but '\' remains as leader
 nmap <Space> <Leader>
 omap <Space> <Leader>
 xmap <Space> <Leader>
