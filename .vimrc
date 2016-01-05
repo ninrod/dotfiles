@@ -255,8 +255,9 @@ nnoremap <f12> :e $MYVIMRC<cr>
 nnoremap <leader>f :CtrlP<cr>
 nnoremap <leader>r :CtrlPMRU<cr>
 
-nnoremap <BS> :ToggleBufExplorer<cr>
+nnoremap Z ZZ
 nnoremap Q ZQ
+nnoremap <BS> :ToggleBufExplorer<cr>
 nnoremap <cr> :w<cr>
 nnoremap & :Scratch<cr>
 nnoremap - :noh<cr>
