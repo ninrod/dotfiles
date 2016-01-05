@@ -208,17 +208,20 @@ highlight clear SignColumn
 nnoremap U za
 
 " mappings para fazer o cut/paste funcionar melhor
+" nesse caso, os parênteses acessaram o 'yank register', que é o registrador 0
 xnoremap ( "0P
 xnoremap ) "0p
 nnoremap ( "0P
 nnoremap ) "0p
 
-" eu quero que o vim destaque a palavra atual sem saltar para a próxima
-nnoremap * *N
-
 " raras foram as vezes em que precisei usar o backspace
+" o Y é uma bind livre porque yy já faz o que o Y se propõe a fazer que é
+" copiar a linha inteira. Então o meu Y vai virar o 'cut'
 nnoremap Y "0d
 xnoremap Y "0d
+
+" eu quero que o vim destaque a palavra atual sem saltar para a próxima
+nnoremap * *N
 
 " facilitando o uso do 'very magic mode'
 nnoremap / /\v
@@ -235,69 +238,79 @@ xmap <Space> <Leader>
 nnoremap <f2> :NERDTreeTabsToggle<cr>
 " nnoremap <f3> :alguma coisa<cr>
 nnoremap <f4> :BD<cr>
-
 nnoremap <f5> :windo diffthis<cr>
 " nnoremap <f6> :alguma coisa<cr>
 " nnoremap <f7> :alguma coisa<cr>
 " nnoremap <f8> :alguma coisa<cr>
-
 " nnoremap <f9> :alguma coisa<cr>
 " nnoremap <f10> :alguma coisa<cr>
 nnoremap <f11> :so $MYVIMRC<cr>
 nnoremap <f12> :e $MYVIMRC<cr>
 
+" exits saving file
 nnoremap Z ZZ
+
+" exits without saving file
 nnoremap Q ZQ
+
+" navigate buffers
 nnoremap <BS> :ToggleBufExplorer<cr>
+
+" enter saves file
 nnoremap <cr> :w<cr>
+
+" opens scratch buffer
 nnoremap & :Scratch<cr>
+
+" turn off search highlighting
 nnoremap - :noh<cr>
+
+" fugitive Gstatus command
 nnoremap # :Gstatus<cr>
 
-"meus custom pagedown e pageup
-nmap <leader>gu Hz.
-nmap <leader>gd Lz.
-nmap <leader>d 35jz.
-nmap <leader>u 35kz.
+" my custom pageups and pagedowns
+nmap <leader>d LztM
+nmap <leader>u HzbM
 
+" CtrlP bindings
 nnoremap <leader>f :CtrlP<cr>
 nnoremap <leader>r :CtrlPMRU<cr>
 
-" redimensionando janelas
+" resizing windows
 map <leader><right> <C-W>10>
 map <leader><left>  <C-W>10<
 map <leader><up>    <C-W>10+
 map <leader><down>  <C-W>10-
 
-" equaliza o tamanho das janelas
+" equalizing windows
 map <leader>= <C-W>=
 
-" movimentando-se entre janelas
+" moving between windows
 map <leader>h <C-W>h
 map <leader>j <C-W>j
 map <leader>k <C-W>k
 map <leader>l <C-W>l
 
-" movimenta uma janela para outro lugar
+" moving windows
 map <leader>H <C-W>H
 map <leader>J <C-W>J
 map <leader>K <C-W>K
 map <leader>L <C-W>L
 
-" abrir uma janela vertical
+" open a vertical window
 map <leader>v <C-W>v
 
-" abrir uma janela horizontal
+" open a horizontal window
 map <leader>x <C-W>s
 
-" para navegar nos help files do vim
+" navigate vim help files
 nnoremap  } <C-]>
 nnoremap {  <C-T>
 
-" um atalho mais decente para o omni completion
+" omni completion alternative binding
 inoremap <C-p> <C-x><C-o>
 
-" pelo menos no putty o <c-k> não é escapado. Fazendo um rebind para o <c-t>
+" <c-k> does not work on terminal vim
 inoremap <C-t> <C-k>
 
 " Tabularize
