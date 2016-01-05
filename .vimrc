@@ -106,7 +106,7 @@ set lazyredraw
 " highlight a matching [{()}] when cursor is placed on start/end character
 set showmatch
 
-" ruler|regua|régua de limite horizontal
+" vertical ruler
 " autocmd BufWinEnter * highlight ColorColumn ctermbg=darkred
 " set colorcolumn=201
 " }}}
