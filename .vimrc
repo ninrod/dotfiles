@@ -125,20 +125,18 @@ endif
 
 let g:signify_vcs_list = ['git']
 
-" habilitando o rainbow
+" enabling rainbow plugin at start
 let g:rainbow_active = 1
 
-" o rainbow fica muito ruim no html
+" rainbow sucks on html
 let g:rainbow_conf = {'separately': {'html': 0}}
 
-" desabilitando os default mappings do bufExplorer
+" no default mappings for bufExplorer
 let g:bufExplorerDisableDefaultKeyMapping=1
 
 "Rust Racer autocomplete tool"
 let g:racer_cmd ="/Users/ninrod/code/lib/rust/racer/target/release/racer"
 
-" bind para o plugin vim-numbertoggle
-let g:NumberToggleTrigger="+"
 
 " Theme
 set background=dark
@@ -148,16 +146,16 @@ let g:solarized_visibility="high"
 let g:solarized_contrast="high"
 
 if !has("gui_running")
-    " se eu estou no terminal vim...
+    " terminal vim...
     let g:solarized_termcolors=16
 else
-    " se eu estou no gVim ou macVim
+    " macVim | gVim
     set guifont=Sauce\ Code\ Powerline:h11
 endif
 
 colorscheme solarized
 
-" vim-commentary: desabilitando o double backslash
+" vim-commentary: disabling double backslash
 let g:commentary_map_backslash=0
 
 " vim-signature bookmark plugin
@@ -167,12 +165,12 @@ let g:signaturemarkertexthldynamic = 1
 let g:nerdtree_tabs_open_on_gui_startup=0
 let g:NERDTreeShowHidden=1
 
-" CtrlP configurations
+" CtrlP configs
 let g:ctrlp_show_hidden=1
 let g:ctrlp_working_path_mode=0
 let g:ctrlp_max_height=10
 
-" permitir que o ctrlp reuse a janela do Scratch
+" let ctrlp reuse Scratch's windows
 let g:ctrlp_reuse_window = 'Scratch'
 
 " CtrlP -> override <C-o> to provide options for how to open files
@@ -203,6 +201,9 @@ highlight clear SignColumn
 " }}}
 
 " mappings {{{
+
+" vim-numbertoggle binding
+let g:NumberToggleTrigger="+"
 
 " toggle fold
 nnoremap U za
