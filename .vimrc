@@ -134,7 +134,7 @@ let g:bufExplorerDisableDefaultKeyMapping=1
 let g:racer_cmd ="/Users/ninrod/code/lib/rust/racer/target/release/racer"
 
 " bind para o plugin vim-numbertoggle
-let g:NumberToggleTrigger="K"
+let g:NumberToggleTrigger="+"
 
 " Syntastic options
 set statusline+=%#warningmsg#
@@ -255,13 +255,18 @@ nnoremap <f12> :e $MYVIMRC<cr>
 nnoremap <leader>f :CtrlP<cr>
 nnoremap <leader>r :CtrlPMRU<cr>
 
-nnoremap - :ToggleBufExplorer<cr>
-nnoremap <cr> :w<cr>
-nnoremap + :Scratch<cr>
-nnoremap & :noh<cr>
-nnoremap <BS> :Gstatus<cr>
+nnoremap <BS> :ToggleBufExplorer<cr>
 nnoremap Q ZQ
-nnoremap Z ZZ
+nnoremap <cr> :w<cr>
+nnoremap & :Scratch<cr>
+nnoremap - :noh<cr>
+nnoremap # :Gstatus<cr>
+
+"meus custom pagedown e pageup
+nmap <leader>gu Hz.
+nmap <leader>gd Lz.
+nmap <leader>d 50jz.
+nmap <leader>u 50kz.
 
 " redimensionando janelas
 map <leader><right> <C-W>10>
@@ -302,7 +307,6 @@ inoremap <C-p> <C-x><C-o>
 
 " pelo menos no putty o <c-k> não é escapado. Fazendo um rebind para o <c-t>
 inoremap <C-t> <C-k>
-
 
 " Tabularize
 " map <Leader>e :Tabularize /=<cr>
