@@ -219,7 +219,7 @@ xnoremap ) "0p
 nnoremap ( "0P
 nnoremap ) "0p
 
-" eu quero que o vim ilumine a palavra atual sem saltar para a próxima
+" eu quero que o vim destaque a palavra atual sem saltar para a próxima
 nnoremap * *N
 
 " raras foram as vezes em que precisei usar o backspace
@@ -252,9 +252,6 @@ nnoremap <f10> :SyntasticCheck<cr>
 nnoremap <f11> :so $MYVIMRC<cr>
 nnoremap <f12> :e $MYVIMRC<cr>
 
-nnoremap <leader>f :CtrlP<cr>
-nnoremap <leader>r :CtrlPMRU<cr>
-
 nnoremap Z ZZ
 nnoremap Q ZQ
 nnoremap <BS> :ToggleBufExplorer<cr>
@@ -268,6 +265,9 @@ nmap <leader>gu Hz.
 nmap <leader>gd Lz.
 nmap <leader>d 50jz.
 nmap <leader>u 50kz.
+
+nnoremap <leader>f :CtrlP<cr>
+nnoremap <leader>r :CtrlPMRU<cr>
 
 " redimensionando janelas
 map <leader><right> <C-W>10>
@@ -289,9 +289,6 @@ map <leader>H <C-W>H
 map <leader>J <C-W>J
 map <leader>K <C-W>K
 map <leader>L <C-W>L
-
-" faz um cycle de movimento nas janelas abertas
-nnoremap <leader>w <C-W>w
 
 " abrir uma janela vertical
 map <leader>v <C-W>v
