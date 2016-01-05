@@ -213,6 +213,9 @@ highlight clear SignColumn
 
 " mappings {{{
 
+" toggle fold
+nnoremap U za
+
 " mappings para fazer o cut/paste funcionar melhor
 xnoremap ( "0P
 xnoremap ) "0p
