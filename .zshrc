@@ -73,6 +73,7 @@ alias ag='ag --path-to-agignore=~/.agignore'
 unalias d
 alias d='fasd -d'
 alias di='dirs -v | head -n 10'
+alias dic='dirs -c'
 
 # configs do zsh
 alias print='print -l'
