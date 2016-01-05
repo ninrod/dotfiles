@@ -214,7 +214,7 @@ nnoremap ( "0P
 nnoremap ) "0p
 
 " backspace is really not needed
-" 'Y' can easily be replaced by 'yy', so 'Y' turns out to be a true cut
+" 'Y' can easily be replaced by 'yy', so I make 'Y' a better 'cut'
 nnoremap Y "0d
 xnoremap Y "0d
 
