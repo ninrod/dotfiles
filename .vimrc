@@ -263,8 +263,8 @@ nnoremap # :Gstatus<cr>
 "meus custom pagedown e pageup
 nmap <leader>gu Hz.
 nmap <leader>gd Lz.
-nmap <leader>d 50jz.
-nmap <leader>u 50kz.
+nmap <leader>d 35jz.
+nmap <leader>u 35kz.
 
 nnoremap <leader>f :CtrlP<cr>
 nnoremap <leader>r :CtrlPMRU<cr>
