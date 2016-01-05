@@ -136,19 +136,6 @@ let g:racer_cmd ="/Users/ninrod/code/lib/rust/racer/target/release/racer"
 " bind para o plugin vim-numbertoggle
 let g:NumberToggleTrigger="+"
 
-" Syntastic options
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_mode_map = { 'mode': 'passive',
-                           \ 'active_filetypes': [],
-                           \ 'passive_filetypes': [] }
-
 " Theme
 set background=dark
 let g:solarized_bold=1
