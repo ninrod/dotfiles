@@ -119,6 +119,10 @@ filetype plugin indent on
 
 runtime macros/matchit.vim
 
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
 let g:signify_vcs_list = ['git']
 
 " habilitando o rainbow
@@ -238,7 +242,7 @@ nnoremap <f5> :windo diffthis<cr>
 " nnoremap <f8> :alguma coisa<cr>
 
 " nnoremap <f9> :alguma coisa<cr>
-nnoremap <f10> :SyntasticCheck<cr>
+" nnoremap <f10> :alguma coisa<cr>
 nnoremap <f11> :so $MYVIMRC<cr>
 nnoremap <f12> :e $MYVIMRC<cr>
 
@@ -327,6 +331,7 @@ autocmd Bufread,BufNewFile *.md set filetype=markdown " Vim interprets .md as 'm
 autocmd BufRead * setlocal foldmethod=marker
 " abrir os folds por padrão
 " set foldlevelstart=20
+autocmd BufRead * normal zM
 
 " Change colourscheme when diffing
 fun! SetDiffColors()
