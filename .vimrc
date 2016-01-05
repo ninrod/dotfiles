@@ -207,43 +207,38 @@ highlight clear SignColumn
 " toggle fold
 nnoremap U za
 
-" mappings para fazer o cut/paste funcionar melhor
-" nesse caso, os parênteses acessaram o 'yank register', que é o registrador 0
+" better cut/paste
 xnoremap ( "0P
 xnoremap ) "0p
 nnoremap ( "0P
 nnoremap ) "0p
 
-" raras foram as vezes em que precisei usar o backspace
-" o Y é uma bind livre porque yy já faz o que o Y se propõe a fazer que é
-" copiar a linha inteira. Então o meu Y vai virar o 'cut'
+" backspace is really not needed
+" 'Y' can easily be replaced by 'yy', so 'Y' turns out to be a true cut
 nnoremap Y "0d
 xnoremap Y "0d
 
-" eu quero que o vim destaque a palavra atual sem saltar para a próxima
+" just highlight the word, without moving to the next.
 nnoremap * *N
 
-" facilitando o uso do 'very magic mode'
+" very magic mode on.
 nnoremap / /\v
-
-" ativando o refresh do signature
-nnoremap m= :SignatureRefresh<cr>
 
 " space is my leader key, but '\' remains as leader
 nmap <Space> <Leader>
 omap <Space> <Leader>
 xmap <Space> <Leader>
 
-" mapeamento das functions keys
+" my function keys
 nnoremap <f2> :NERDTreeTabsToggle<cr>
-" nnoremap <f3> :alguma coisa<cr>
+" nnoremap <f3> :something<cr>
 nnoremap <f4> :BD<cr>
 nnoremap <f5> :windo diffthis<cr>
-" nnoremap <f6> :alguma coisa<cr>
-" nnoremap <f7> :alguma coisa<cr>
-" nnoremap <f8> :alguma coisa<cr>
-" nnoremap <f9> :alguma coisa<cr>
-" nnoremap <f10> :alguma coisa<cr>
+" nnoremap <f6> :something<cr>
+" nnoremap <f7> :something<cr>
+" nnoremap <f8> :something<cr>
+" nnoremap <f9> :something<cr>
+" nnoremap <f10> :something<cr>
 nnoremap <f11> :so $MYVIMRC<cr>
 nnoremap <f12> :e $MYVIMRC<cr>
 
