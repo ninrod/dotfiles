@@ -2,7 +2,7 @@
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # plugins do oh-my-zsh
-plugins=(zsh-syntax-highlighting nin-vi-mode)
+plugins=(zsh-syntax-highlighting nin-vi-mode zsh-bd)
 
 # configs para o powerlevel9k theme
 POWERLEVEL9K_DISABLE_RPROMPT=false
@@ -40,7 +40,6 @@ source $ZSH/oh-my-zsh.sh
 # alguns alias uteis
 alias c='clear'
 alias e='exit'
-alias p='pwd'
 alias n='node'
 alias v='vim'
 alias o='open'
