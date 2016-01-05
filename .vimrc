@@ -109,6 +109,7 @@ set showmatch
 " vertical ruler
 " autocmd BufWinEnter * highlight ColorColumn ctermbg=darkred
 " set colorcolumn=201
+
 " }}}
 
 " Plugins {{{
@@ -200,7 +201,7 @@ let g:airline_powerline_fonts = 1
 highlight clear SignColumn
 " }}}
 
-" mappings {{{
+" Mappings {{{
 
 " vim-numbertoggle binding
 let g:NumberToggleTrigger="#"
@@ -314,7 +315,7 @@ inoremap <C-t> <C-k>
 " map <Leader>c :Tabularize /:<cr>
 " }}}
 
-" Commands {{{
+" Auto Commands {{{
 " jump to last cursor
 autocmd BufReadPost *
   \ if line("'\"") > 0 && line("'\"") <= line("$") |
