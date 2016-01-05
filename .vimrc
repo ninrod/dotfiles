@@ -307,9 +307,6 @@ nnoremap {  <C-T>
 " omni completion alternative binding
 inoremap <C-p> <C-x><C-o>
 
-" <c-k> does not work on terminal vim
-inoremap <C-t> <C-k>
-
 " Tabularize
 " map <Leader>e :Tabularize /=<cr>
 " map <Leader>c :Tabularize /:<cr>
@@ -351,5 +348,8 @@ fun! SetDiffColors()
   highlight DiffText   cterm=bold ctermfg=white ctermbg=DarkRed
 endfun
 autocmd FilterWritePre * call SetDiffColors()
+
+" disabling auto commenting on new line, e.g. 'o' and 'O'
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " }}}
