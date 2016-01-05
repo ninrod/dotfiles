@@ -203,7 +203,7 @@ highlight clear SignColumn
 " mappings {{{
 
 " vim-numbertoggle binding
-let g:NumberToggleTrigger="+"
+let g:NumberToggleTrigger="#"
 
 " toggle fold
 nnoremap U za
@@ -262,7 +262,7 @@ nnoremap & :Scratch<cr>
 nnoremap - :noh<cr>
 
 " fugitive Gstatus command
-nnoremap # :Gstatus<cr>
+nnoremap + :Gstatus<cr>
 
 " my custom pageups and pagedowns
 nmap <leader>d LztM
