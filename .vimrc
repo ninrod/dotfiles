@@ -198,7 +198,8 @@ let g:ctrlp_custom_ignore = '
 " Airline (status line)
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#enabled = 0
-let g:airline_theme='powerlineish'
+let g:airline_theme='base16'
+
 
 highlight clear SignColumn
 " }}}
