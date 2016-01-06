@@ -75,6 +75,8 @@ alias d='fasd -d'
 alias di='dirs -v | head -n 10'
 alias dic='dirs -c'
 
+alias dot='l `find ~ -maxdepth 1 -type l`'
+
 # configs do zsh
 alias print='print -l'
 setopt extended_glob
