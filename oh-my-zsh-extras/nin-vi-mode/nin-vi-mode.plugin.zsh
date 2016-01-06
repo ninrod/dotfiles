@@ -64,12 +64,21 @@ bindkey -a ds delete-surround
 bindkey -a ys add-surround
 bindkey -M visual S add-surround
 
-# fix de escape codes do zsh
+### fix de escape codes do zsh
+
+# home key
 bindkey "^[[1~" beginning-of-line
+
+# end key
 bindkey "^[[4~" end-of-line
+
+#delete key and backspace
 bindkey "^[[3~" delete-char
 bindkey "^H" backward-delete-char
 bindkey "^?" backward-delete-char
+
+#numeric keypad return (enter)
+bindkey "${terminfo[kent]}" accept-line
 
 # if mode indicator wasn't setup by theme, define default
 if [[ "$MODE_INDICATOR" == "" ]]; then
