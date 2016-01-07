@@ -266,6 +266,8 @@ nnoremap <cr> :w<cr>
 nnoremap & :Scratch<cr>
 
 " turn off search highlighting
+" 'cl' is equivalent to 's' and opens up a nice bind.
+" by the way 'cc' is equivalent to 'S'
 nnoremap s :noh<cr>
 
 " fugitive Gstatus command
