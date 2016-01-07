@@ -44,7 +44,7 @@ alias n='node'
 alias v='vim'
 alias o='open'
 alias t='tree -d'
-alias vi='vim'
+alias vi='vim -u NONE'
 alias tarc='tar -zcvf file.tar.gz'
 alias tarx='tar -zxvf'
 
