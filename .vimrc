@@ -340,8 +340,8 @@ autocmd Bufread,BufNewFile *.md set filetype=markdown " Vim interprets .md as 'm
 " foldmethod configurations
 autocmd BufRead * setlocal foldmethod=marker
 " abrir os folds por padrão
-" set foldlevelstart=20
-autocmd BufRead * normal zM
+set foldlevelstart=20
+" autocmd BufRead * normal zM
 
 " Change colourscheme when diffing
 fun! SetDiffColors()
