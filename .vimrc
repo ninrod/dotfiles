@@ -257,7 +257,7 @@ nnoremap Z ZZ
 nnoremap Q ZQ
 
 " navigate buffers
-nnoremap <BS> :ToggleBufExplorer<cr>
+nnoremap - :ToggleBufExplorer<cr>
 
 " enter saves file
 nnoremap <cr> :w<cr>
@@ -266,7 +266,7 @@ nnoremap <cr> :w<cr>
 nnoremap & :Scratch<cr>
 
 " turn off search highlighting
-nnoremap - :noh<cr>
+nnoremap s :noh<cr>
 
 " fugitive Gstatus command
 nnoremap + :Gstatus<cr>
@@ -293,6 +293,8 @@ map <leader>h <C-W>h
 map <leader>j <C-W>j
 map <leader>k <C-W>k
 map <leader>l <C-W>l
+map <leader>w <C-W>w
+
 
 " moving windows
 map <leader>H <C-W>H
@@ -357,5 +359,9 @@ autocmd FilterWritePre * call SetDiffColors()
 
 " disabling auto commenting on new line, e.g. 'o' and 'O'
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" enabling <cr> to work properly on the quickfix window
+autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+
 
 " }}}
