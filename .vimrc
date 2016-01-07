@@ -120,6 +120,9 @@ filetype plugin indent on
 
 runtime macros/matchit.vim
 
+" auto-pairs plugin binds 'â' in insert mode
+let g:AutoPairsShortcutBackInsert=''
+
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
