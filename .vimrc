@@ -211,9 +211,7 @@ highlight clear SignColumn
 
 " vim-numbertoggle binding
 let g:NumberToggleTrigger="#"
-
-" toggle fold
-nnoremap U za
+nmap <leader># :set nu!
 
 " better cut/paste
 xnoremap ( "0P
@@ -230,7 +228,8 @@ xnoremap Y "0d
 nnoremap * *N
 
 " very magic mode on.
-nnoremap / /\v
+nnoremap ? /\v
+
 
 " space is my leader key, but '\' remains as leader
 nmap <Space> <Leader>
