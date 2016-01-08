@@ -282,33 +282,37 @@ nnoremap <leader>f :CtrlP<cr>
 nnoremap <leader>r :CtrlPMRU<cr>
 
 " resizing windows
-map <leader><right> <C-W>10>
-map <leader><left>  <C-W>10<
-map <leader><up>    <C-W>10+
-map <leader><down>  <C-W>10-
+nmap <leader><right> <C-W>10>
+nmap <leader><left>  <C-W>10<
+nmap <leader><up>    <C-W>10+
+nmap <leader><down>  <C-W>10-
 
 " equalizing windows
-map <leader>= <C-W>=
+nmap <leader>= <C-W>=
 
 " moving between windows
-map <leader>h <C-W>h
-map <leader>j <C-W>j
-map <leader>k <C-W>k
-map <leader>l <C-W>l
-map <leader>w <C-W>w
+nmap <leader>h <C-W>h
+nmap <leader>j <C-W>j
+nmap <leader>k <C-W>k
+nmap <leader>l <C-W>l
 
+" cycling through windows
+nnoremap <BS> <C-W>w
 
 " moving windows
-map <leader>H <C-W>H
-map <leader>J <C-W>J
-map <leader>K <C-W>K
-map <leader>L <C-W>L
+nmap <leader>H <C-W>H
+nmap <leader>J <C-W>J
+nmap <leader>K <C-W>K
+nmap <leader>L <C-W>L
+
+" toggle zooming in a window
+nnoremap U :ZoomWin<CR>
 
 " open a vertical window
-map <leader>v <C-W>v
+nmap <leader>v <C-W>v
 
 " open a horizontal window
-map <leader>x <C-W>s
+nmap <leader>x <C-W>s
 
 " navigate vim help files
 nnoremap  } <C-]>
