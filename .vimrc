@@ -209,13 +209,8 @@ highlight clear SignColumn
 
 " Mappings {{{
 
-" scratch.vim configs
-let g:scratch_no_mappings = 1
-nmap gs <plug>(scratch-insert-reuse)
-nmap gS <plug>(scratch-insert-clear)
-xmap gs <plug>(scratch-selection-reuse)
-xmap gi <plug>(scratch-selection-clear)
-
+" scratch buffer
+nnoremap gs :Scratch<CR>
 
 " vim-numbertoggle binding
 let g:NumberToggleTrigger="#"
