@@ -209,9 +209,17 @@ highlight clear SignColumn
 
 " Mappings {{{
 
+" scratch.vim configs
+let g:scratch_no_mappings = 1
+nmap gs <plug>(scratch-insert-reuse)
+nmap gS <plug>(scratch-insert-clear)
+xmap gs <plug>(scratch-selection-reuse)
+xmap gi <plug>(scratch-selection-clear)
+
+
 " vim-numbertoggle binding
 let g:NumberToggleTrigger="#"
-nmap <leader># :set nu!
+nmap <leader># :set nu!<CR>
 
 " better cut/paste
 xnoremap ( "0P
@@ -367,6 +375,5 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " enabling <cr> to work properly on the quickfix window
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
-
 
 " }}}
