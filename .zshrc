@@ -49,8 +49,8 @@ alias tarc='tar -zcvf file.tar.gz'
 alias tarx='tar -zxvf'
 
 # alias para o git
-alias gsl='git status'
-alias gs='git status --short'
+alias gs='git status'
+alias g='git status --short'
 alias gd='git diff'
 alias ga='git add'
 alias gc='git commit -v'
