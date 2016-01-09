@@ -210,7 +210,7 @@ highlight clear SignColumn
 " Mappings {{{
 
 " scratch buffer
-nnoremap gs :Scratch<CR>
+nnoremap gs :NinScratch<CR>
 
 " vim-numbertoggle binding
 let g:NumberToggleTrigger="#"
