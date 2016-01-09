@@ -15,3 +15,9 @@
     interactive = auto
     ui = true
     pager = true
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[alias]
+	d = difftool
