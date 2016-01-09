@@ -32,5 +32,5 @@ endfunction
 
 autocmd BufNewFile __Scratch__ call s:ScratchMarkBuffer()
 
-" Command to edit the scratch buffer in the current window
+" Command to invoke the scratch buffer
 command! -nargs=0 NinScratch call s:ScratchBufferOpen()
