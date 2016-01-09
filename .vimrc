@@ -270,7 +270,7 @@ nnoremap & :Scratch<cr>
 " turn off search highlighting
 " 'cl' is equivalent to 's' and opens up a nice bind.
 " by the way 'cc' is equivalent to 'S'
-nnoremap s :noh<cr>
+nnoremap U :noh<cr>
 
 " fugitive Gstatus command
 nnoremap + :Gstatus<cr>
@@ -298,9 +298,6 @@ nmap <leader>j <C-W>j
 nmap <leader>k <C-W>k
 nmap <leader>l <C-W>l
 
-" cycling through windows
-nnoremap <BS> <C-W>w
-
 " moving windows
 nmap <leader>H <C-W>H
 nmap <leader>J <C-W>J
@@ -308,7 +305,7 @@ nmap <leader>K <C-W>K
 nmap <leader>L <C-W>L
 
 " toggle zooming in a window
-nnoremap U :ZoomWin<CR>
+nnoremap <BS> :ZoomWin<CR>
 
 " open a vertical window
 nmap <leader>v <C-W>v
@@ -335,11 +332,11 @@ autocmd BufReadPost *
   \   exe "normal g`\"" |
   \ endif
 
-autocmd BufReadPost fugitive://* set bufhidden=delete
-autocmd User fugitive
-  \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
-  \   nnoremap <buffer> .. :edit %:h<CR> |
-  \ endif
+" autocmd BufReadPost fugitive://* set bufhidden=delete
+" autocmd User fugitive
+"   \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+"   \   nnoremap <buffer> .. :edit %:h<CR> |
+"   \ endif
 
 " file formats
 autocmd Filetype gitcommit setlocal spell textwidth=80
