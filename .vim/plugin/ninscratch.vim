@@ -1,3 +1,8 @@
+if exists('loaded_scratch') || &cp
+    finish
+endif
+let loaded_scratch=1
+
 let ScratchBufferName = "__Scratch__"
 function! s:ScratchBufferOpen()
   " Check whether the scratch buffer is already created
