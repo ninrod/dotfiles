@@ -259,18 +259,13 @@ nnoremap Z ZZ
 nnoremap Q ZQ
 
 " navigate buffers
-nnoremap - :ToggleBufExplorer<cr>
+nnoremap <BS> :ToggleBufExplorer<cr>
 
 " enter saves file
 nnoremap <cr> :w<cr>
 
-" opens scratch buffer
-nnoremap & :Scratch<cr>
-
 " turn off search highlighting
-" 'cl' is equivalent to 's' and opens up a nice bind.
-" by the way 'cc' is equivalent to 'S'
-nnoremap U :noh<cr>
+nnoremap & :noh<cr>
 
 " fugitive Gstatus command
 nnoremap + :Gstatus<cr>
@@ -305,7 +300,7 @@ nmap <leader>K <C-W>K
 nmap <leader>L <C-W>L
 
 " toggle zooming in a window
-nnoremap <BS> :ZoomWin<CR>
+nnoremap U :ZoomWin<CR>
 
 " open a vertical window
 nmap <leader>v <C-W>v
