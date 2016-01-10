@@ -34,6 +34,9 @@ updatelinks ~/.tmux.conf .tmux.conf
 # git
 updatelinks ~/.gitconfig .gitconfig
 
+# tig
+updatelinks ~/.tigrc .tigrc
+
 # ag (Ag - the silver searcher)
 updatelinks ~/.agignore .agignore
 
