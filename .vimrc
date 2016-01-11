@@ -291,6 +291,7 @@ nmap <leader>h <C-W>h
 nmap <leader>j <C-W>j
 nmap <leader>k <C-W>k
 nmap <leader>l <C-W>l
+nmap <leader>w <C-W>w
 
 " moving windows
 nmap <leader>H <C-W>H
