@@ -1,1 +1,0 @@
-bind generic I @sh -c "echo %(blob) | pbcopy"
