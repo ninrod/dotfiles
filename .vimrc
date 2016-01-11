@@ -209,13 +209,7 @@ highlight clear SignColumn
 
 " Mappings {{{
 
-" scratch.vim options
-let g:scratch_no_mappings = 1
-nmap gs <plug>(scratch-insert-reuse)
-nmap gS <plug>(scratch-insert-clear)
-xmap gs <plug>(scratch-selection-reuse)
-xmap gi <plug>(scratch-selection-clear)
-nnoremap S :Scratch<CR>
+nnoremap gs :NinScratch<CR>
 
 " vim-numbertoggle binding
 let g:NumberToggleTrigger="#"
@@ -333,10 +327,6 @@ autocmd BufReadPost *
   \ endif
 
 autocmd BufReadPost fugitive://* set bufhidden=delete
-autocmd User fugitive
-  \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
-  \   nnoremap <buffer> .. :edit %:h<CR> |
-  \ endif
 
 " file formats
 autocmd Filetype gitcommit setlocal spell textwidth=80
