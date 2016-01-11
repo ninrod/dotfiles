@@ -332,11 +332,11 @@ autocmd BufReadPost *
   \   exe "normal g`\"" |
   \ endif
 
-" autocmd BufReadPost fugitive://* set bufhidden=delete
-" autocmd User fugitive
-"   \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
-"   \   nnoremap <buffer> .. :edit %:h<CR> |
-"   \ endif
+autocmd BufReadPost fugitive://* set bufhidden=delete
+autocmd User fugitive
+  \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+  \   nnoremap <buffer> .. :edit %:h<CR> |
+  \ endif
 
 " file formats
 autocmd Filetype gitcommit setlocal spell textwidth=80

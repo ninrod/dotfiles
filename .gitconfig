@@ -3,8 +3,15 @@
     email = filipe.silva@gmail.com
 [push]
     default = simple
+[diff]
+    tool = vimdiff
+[merge]
+    tool = vimdiff
+[difftool]
+    prompt = false
 [core]
     editor = vim
+    autocrlf = input
 [credential]
     helper = osxkeychain
 [color]
@@ -15,9 +22,5 @@
     interactive = auto
     ui = true
     pager = true
-[diff]
-	tool = vimdiff
-[difftool]
-	prompt = false
-[alias]
-	d = difftool
+[url "https://"]
+    insteadOf = git://
