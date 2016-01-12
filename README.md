@@ -3,7 +3,7 @@
 ### Screenshot
 ![screenshot-vi-tmux](https://raw.githubusercontent.com/ninrod/unix-shell-config/misc/images/screenshot.png)
 
-## Enviando comandos para o tmux: o `<prefix>`
+## TMUX: terminal multiplexer
 
 Você interage com o tmux no shell escapando os comandos por meio de uma sequência de teclas chamada `prefix`. Na configuração atual, essa sequência é `<Control> + <spacebar>`.
 Isso signfica que `<prefix> + c` é você clicar ao mesmo em `<ctrl>+<spacebar>` e depois disso apertar a tecla `c`.
