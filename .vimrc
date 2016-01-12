@@ -203,7 +203,6 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline_theme='base16'
 
-
 highlight clear SignColumn
 " }}}
 
@@ -216,6 +215,12 @@ nnoremap & :set buftype=nofile<CR>
 " vim-numbertoggle binding
 let g:NumberToggleTrigger="#"
 nmap <leader># :set nu!<CR>
+
+" bind to facilitate bracket selection
+omap ir i[
+omap ar a[
+xmap ir i[
+xmap ar a[
 
 " better cut/paste
 xnoremap ( "0P
