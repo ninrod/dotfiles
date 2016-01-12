@@ -1,4 +1,4 @@
-# Personal configuration for __tmux, zsh, vim, git__
+# My dotfile repo for __tmux, zsh, vim, git__
 
 ### Screenshot
 ![screenshot-vi-tmux](https://raw.githubusercontent.com/ninrod/unix-shell-config/misc/images/screenshot.png)
