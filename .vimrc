@@ -209,7 +209,9 @@ highlight clear SignColumn
 
 " Mappings {{{
 
+" scratch mappings
 nnoremap gs :NinScratch<CR>
+nnoremap & :set buftype=nofile<CR>
 
 " vim-numbertoggle binding
 let g:NumberToggleTrigger="#"
@@ -232,22 +234,15 @@ nnoremap * *N
 " very magic mode on.
 nnoremap ? /\v
 
-
 " space is my leader key, but '\' remains as leader
 nmap <Space> <Leader>
 omap <Space> <Leader>
 xmap <Space> <Leader>
 
-" my function keys
+" function keys
 nnoremap <f2> :NERDTreeTabsToggle<cr>
-" nnoremap <f3> :something<cr>
 nnoremap <f4> :BD<cr>
 nnoremap <f5> :windo diffthis<cr>
-" nnoremap <f6> :something<cr>
-" nnoremap <f7> :something<cr>
-" nnoremap <f8> :something<cr>
-" nnoremap <f9> :something<cr>
-" nnoremap <f10> :something<cr>
 nnoremap <f11> :so $MYVIMRC<cr>
 nnoremap <f12> :e $MYVIMRC<cr>
 
@@ -264,7 +259,7 @@ nnoremap <BS> :ToggleBufExplorer<cr>
 nnoremap <cr> :w<cr>
 
 " turn off search highlighting
-nnoremap & :noh<cr>
+nnoremap - :noh<cr>
 
 " fugitive Gstatus command
 nnoremap + :Gstatus<cr>
