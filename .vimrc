@@ -239,6 +239,9 @@ nmap <Space> <Leader>
 omap <Space> <Leader>
 xmap <Space> <Leader>
 
+" open quickfix window
+nmap <leader>q :copen<CR>
+
 " function keys
 nnoremap <f2> :NERDTreeTabsToggle<cr>
 nnoremap <f4> :BD<cr>
