@@ -1,4 +1,4 @@
-" Stolen from Steve Losh 
+" Stolen from Steve Losh
 " https://github.com/sjl/dotfiles/blob/master/vim/vimrc#L1380
 "
 " Motion for "next/last object".  "Last" here means "previous", not "final".
@@ -8,7 +8,7 @@
 " object of the given type.  These don't necessarily have to be in the current
 " line.
 "
-" Currently works for (, [, {, and their shortcuts b, r, B. 
+" Currently works for (, [, {, and their shortcuts b, r, B.
 "
 " Next kind of works for ' and " as long as there are no escaped versions of
 " them in the string (TODO: fix that).  Last is currently broken for quotes
@@ -75,7 +75,7 @@ function! s:NextTextObject(motion, dir)
         let open = ''
         let close = ''
 
-        if c ==# "(" 
+        if c ==# "("
             let open = "("
             let close = ")"
         elseif c ==# "{"
