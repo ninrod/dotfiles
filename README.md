@@ -1,7 +1,7 @@
 # Config files for __tmux, zsh, vim, git__
 
 ### Screenshot
-![screenshot-vi-tmux](http://git.bcnet.bcb.gov.br/DEINF.FILIPE/unix-shell-config/raw/misc/images/screenshot.png)
+![screenshot-vi-tmux](https://raw.githubusercontent.com/ninrod/unix-shell-config/misc/images/screenshot.png)
 
 ## Enviando comandos para o tmux: o `<prefix>`
 
