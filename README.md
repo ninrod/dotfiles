@@ -26,10 +26,12 @@ cd ~/.unix-shell-config
 
 #### VIM Window binds
 
-* `<leader> + v`: creates a new windows in a vertical split
-* `<leader> + x`: creates a new windows in a horizontal split
-* `<leader> + [h|j|k|l]`: navigates through open windows
-* `<leader> + w`: cycle through windows
+bind                  | action
+-------------         | -------------
+`<leader> + v`        | creates a new windows in a vertical split
+`<leader> + x`        | creates a new windows in a horizontal split
+`<leader> + [h|j|k|l]`| navigates through open windows
+`<leader> + w`        | cycle through windows
 
 ## TMUX: terminal multiplexer
 
