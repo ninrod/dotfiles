@@ -33,6 +33,9 @@ eval `dircolors ~/.lscolors`
 # inicialização do fasd
 eval "$(fasd --init auto)"
 
+# inicialização do fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # bootstrap do oh-my-zsh
 export ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
