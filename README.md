@@ -9,6 +9,7 @@
 * [zsh][zsh_link] >= 5.0.8
 * install [fasd][fasd_link]
 * install a [powerline patched font][powerline_fonts] on your OS and configure your terminal to use said font.
+* configure your terminal to use the [solarized dark theme][solarized_link]
 * git clone this repo and run the zsh script `.links.zsh`
 
 ```sh
@@ -56,3 +57,4 @@ You interact with tmux escaping commands through a key combo called `prefix`. I'
 [fasd_link]: <https://github.com/clvv/fasd.git>
 [tmux_link]: <https://github.com/tmux/tmux.git>
 [zsh_link]: <https://github.com/zsh-users/zsh.git>
+[solarized_link]: <https://github.com/altercation/solarized.git>
