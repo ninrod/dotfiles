@@ -5,26 +5,25 @@
 
 ## TMUX: terminal multiplexer
 
-Você interage com o tmux no shell escapando os comandos por meio de uma sequência de teclas chamada `prefix`. Na configuração atual, essa sequência é `<Control> + <spacebar>`.
-Isso signfica que `<prefix> + c` é você clicar ao mesmo em `<ctrl>+<spacebar>` e depois disso apertar a tecla `c`.
+You interact with tmux escaping commands through a key combo called `prefix`. I've remapped `prefix` to `<control>+<spacebar>`.
 
-#### Manipulação de janelas
+#### Window binds
 
- * `<prefix> + c` - cria uma nova janela. 
- * `<prefix> + 1` - navega para a janela 1 (ou 2 para navegar para a janela 2).
- * `<prefix> + n` - 'next' navega para a próxima janela.
- * `<prefix> + p` - navega para a 'última' janela. Apertando várias vezes faz o cycle entre as duas últimas.
- * `<prefix> + ,` - renomeia uma janela
+ * `<prefix> + c` - creates a new window
+ * `<prefix> + 1` - navigates to window 1 (or 2 to navigate to window 2, etc...)
+ * `<prefix> + n` - navigates to the next window
+ * `<prefix> + p` - cycles through the last two visited windows
+ * `<prefix> + ,` - to rename a window
 
-#### Manipulação de painéis
+#### Panel binds
 
- * `<prefix> + v` - divide a janela verticalmente
- * `<prefix> + x` - divide a janela horizontalmente
- * `<prefix> + <space>` - itera entre diferentes layouts pré-definidos (muito útil).
- * `<prefix> + <setadirecional>` - navega para o painel de cima, de baixo, da esquerda ou da direita.
- * `<prefix> + s` - abre um prompt em que vc pode escrever o nome da janela para onde vc quer enviar o painel atual.
+ * `<prefix> + v` - creates a new shell panel vertically splitting the viewport.
+ * `<prefix> + x` - creates a new shell panel horizontally splitting the viewport.
+ * `<prefix> + <space>` - cycles through different panel layouts.
+ * `<prefix> + <directionalkey>` - navigates to the panel indicated by the directional key.
+ * `<prefix> + s` - shows a prompt where you can type the name of the window you want to send the panel to.
 
-#### Fechando janelas ou paineis
+#### exiting panels and windows
 
- * `exit` - fecha um painel. Quando o último painel de uma janela é fechado, a janela é fechada
+ * `exit` - closes a panel. When the last panel of the window is closed, the window is also closed. 
 
