@@ -3,14 +3,14 @@
 ### Screenshot
 ![screenshot-vi-tmux](https://raw.githubusercontent.com/ninrod/unix-shell-config/misc/images/screenshot.png)
 
-## INSTALLATION requirements
+## INSTALLATION instructions
 
-* [tmux][tmux_link] >= 1.8
-* [zsh][zsh_link] >= 5.0.8
+* Verify that you have [tmux][tmux_link] >= 1.8
+* Verify that you have [zsh][zsh_link] >= 5.0.8
 * install [fasd][fasd_link]
 * install a [powerline patched font][powerline_fonts] on your OS and configure your terminal to use said font.
 * configure your terminal to use the [solarized dark theme][solarized_link]
-* git clone this repo and run the zsh script `.links.zsh`
+* git clone this repo and run the zsh script `.links.zsh`. Like so (just a suggestion):
 
 ```sh
 git clone https://github.com/ninrod/unix-shell-config.git ~/.unix-shell-config
