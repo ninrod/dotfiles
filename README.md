@@ -3,6 +3,10 @@
 ### Screenshot
 ![screenshot-vi-tmux](https://raw.githubusercontent.com/ninrod/unix-shell-config/misc/images/screenshot.png)
 
+## INSTALLATION requirements
+
+* a powerline patched font (you can find one [here][powerline-fonts])
+
 ## VIM: powerful shell text editor tweaked with plugins
 
 #### VIM Window binds
@@ -34,3 +38,5 @@
 
  * `exit` - closes a panel. When the last panel of the window is closed, the window is also closed. 
 
+
+[powerline-fonts]: <https://github.com/powerline/fonts.git> 
