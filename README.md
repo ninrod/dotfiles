@@ -8,6 +8,7 @@
 * Verify that you have [tmux][tmux_link] >= 1.8
 * Verify that you have [zsh][zsh_link] >= 5.0.8
 * install [fasd][fasd_link]
+* install [fzf][fzf_link]
 * install a [powerline patched font][powerline_fonts] on your OS and configure your terminal to use said font.
 * configure your terminal to use the [solarized dark theme][solarized_link]
 * git clone this repo and run the zsh script `.links.zsh`. Like so:
@@ -101,3 +102,4 @@ bind                           | action
 [vim-colors-solarized_link]: <https://github.com/altercation/vim-colors-solarized.git>
 [vim-commentary_link]: <https://github.com/tpope/vim-commentary.git>
 [vim-easy-align_link]: <https://github.com/junegunn/vim-easy-align.git>
+[fzf_link]: <https://github.com/junegunn/fzf.git>
