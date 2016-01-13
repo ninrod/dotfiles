@@ -7,6 +7,7 @@
     tool = vimdiff
 [merge]
     tool = vimdiff
+    defaultToUpstream = true
 [difftool]
     prompt = false
 [core]
