@@ -5,7 +5,10 @@
 
 ## INSTALLATION requirements
 
-* a powerline patched font (you can find one [here][powerline-fonts])
+* install a powerline patched font on your OS. (you can choose one [here][powerline-fonts])
+* configure your terminal to use said font.
+* git clone this repo and run the zsh script `.links.zsh`
+* done!
 
 ## VIM: powerful shell text editor tweaked with plugins
 
