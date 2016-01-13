@@ -41,6 +41,7 @@ vim .gitconfig #change user info
 14. [vim-colors-solarized][vim-colors-solarized_link]: well designed vim colorscheme.
 15. [vim-commentary][vim-commentary_link]: automatic commentary wrapping.
 16. [vim-easy-align][vim-easy-align_link]: automatic commentary wrapping.
+17. [vim-endwise][vim-endwise_link]: automatic insert mode if/for/case completions for some languages.
 
 #### VIM Window binds
 
@@ -105,3 +106,4 @@ bind                           | action
 [vim-commentary_link]: <https://github.com/tpope/vim-commentary.git>
 [vim-easy-align_link]: <https://github.com/junegunn/vim-easy-align.git>
 [fzf_link]: <https://github.com/junegunn/fzf.git>
+[vim-endwise_link]: <https://github.com/tpope/vim-endwise.git>
