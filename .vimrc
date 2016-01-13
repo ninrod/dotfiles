@@ -208,6 +208,10 @@ highlight clear SignColumn
 
 " Mappings {{{
 
+" easyalign mappings
+xmap <cr> <Plug>(EasyAlign)
+nmap ga   <Plug>(EasyAlign)
+
 " scratch mappings
 nnoremap gs :NinScratch<CR>
 nnoremap & :set buftype=nofile<CR>
