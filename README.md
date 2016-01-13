@@ -20,7 +20,7 @@ vim .gitconfig #change user info
 ./.links.zsh
 ```
 
-* done!
+* That's it, your're all set.
 
 ## VIM: Powerful shell text editor. Tweaked with plugins.
 
