@@ -18,6 +18,8 @@
 
 ## TMUX: terminal multiplexer
 
+You interact with tmux escaping commands through a key combo called `prefix`. I've remapped `prefix` to `<control>+<spacebar>`.
+
 #### TMUX Window binds
 
  * `<prefix> + c` - creates a new window
