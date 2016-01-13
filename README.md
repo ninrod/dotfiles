@@ -12,6 +12,8 @@
 * git clone this repo and run the zsh script `.links.zsh`
 
 ```sh
+git clone https://github.com/ninrod/unix-shell-config.git ~/.unix-shell-config
+cd ~/.unix-shell-config
 ./.links.zsh
 ```
 * done!
