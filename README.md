@@ -7,8 +7,8 @@
 
 * tmux >= 1.8
 * zsh >= 5.0.8
-* install a powerline patched font on your OS. (you can choose one [here][powerline-fonts])
-* configure your terminal to use said font.
+* install [fasd][fasd_link]
+* install a powerline patched font on your OS and configure your terminal to use said font. (you can choose one [here][powerline_fonts])
 * git clone this repo and run the zsh script `.links.zsh`
 
 ```sh
@@ -50,4 +50,5 @@ You interact with tmux escaping commands through a key combo called `prefix`. I'
  * `exit` - closes a panel. When the last panel of the window is closed, the window is also closed. 
 
 
-[powerline-fonts]: <https://github.com/powerline/fonts.git> 
+[powerline_fonts]: <https://github.com/powerline/fonts.git> 
+[fasd_link]: <https://github.com/clvv/fasd.git>
