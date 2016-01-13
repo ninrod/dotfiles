@@ -3,11 +3,18 @@
 ### Screenshot
 ![screenshot-vi-tmux](https://raw.githubusercontent.com/ninrod/unix-shell-config/misc/images/screenshot.png)
 
+## VIM: powerful shell text editor tweaked with plugins
+
+#### VIM Window binds
+
+* `<leader> + v`: creates a new windows in a vertical split
+* `<leader> + x`: creates a new windows in a horizontal split
+* `<leader> + [h|j|k|l]`: navigates through open windows
+* `<leader> + w`: cycle through windows
+
 ## TMUX: terminal multiplexer
 
-You interact with tmux escaping commands through a key combo called `prefix`. I've remapped `prefix` to `<control>+<spacebar>`.
-
-#### Window binds
+#### TMUX Window binds
 
  * `<prefix> + c` - creates a new window
  * `<prefix> + 1` - navigates to window 1 (or 2 to navigate to window 2, etc...)
@@ -15,7 +22,7 @@ You interact with tmux escaping commands through a key combo called `prefix`. I'
  * `<prefix> + p` - cycles through the last two visited windows
  * `<prefix> + ,` - to rename a window
 
-#### Panel binds
+#### TMUX Panel binds
 
  * `<prefix> + v` - creates a new shell panel vertically splitting the viewport.
  * `<prefix> + x` - creates a new shell panel horizontally splitting the viewport.
@@ -23,7 +30,7 @@ You interact with tmux escaping commands through a key combo called `prefix`. I'
  * `<prefix> + <directionalkey>` - navigates to the panel indicated by the directional key.
  * `<prefix> + s` - shows a prompt where you can type the name of the window you want to send the panel to.
 
-#### exiting panels and windows
+#### exiting panels and windows in TMUX
 
  * `exit` - closes a panel. When the last panel of the window is closed, the window is also closed. 
 
