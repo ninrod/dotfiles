@@ -28,8 +28,8 @@ cd ~/.unix-shell-config
 
 bind                  | action
 -------------         | -------------
-`<leader> + v`        | creates a new windows in a vertical split
-`<leader> + x`        | creates a new windows in a horizontal split
+`<leader> + v`        | creates a new window in a vertical split
+`<leader> + x`        | creates a new window in a horizontal split
 `<leader> + [h|j|k|l]`| navigates through open windows
 `<leader> + w`        | cycle through windows
 
