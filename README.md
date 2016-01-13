@@ -5,12 +5,12 @@
 
 ## INSTALLATION instructions
 
-* Verify that you have [tmux][tmux_link] >= 1.8
-* Verify that you have [zsh][zsh_link] >= 5.0.8
-* install [fasd][fasd_link]
-* install [fzf][fzf_link]
+* Verify that you have [tmux][tmux_link] >= 1.8.
+* Verify that you have [zsh][zsh_link] >= 5.0.8.
+* install [fasd][fasd_link].
+* install [fzf][fzf_link].
 * install a [powerline patched font][powerline_fonts] on your OS and configure your terminal to use said font.
-* configure your terminal to use the [solarized dark theme][solarized_link]
+* configure your terminal to use the [solarized dark theme][solarized_link].
 * git clone this repo, change the git user info inside the .gitconfig file within the repo and run the zsh script `.links.zsh` like so:
 
 ```sh
