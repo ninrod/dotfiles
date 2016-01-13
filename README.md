@@ -11,11 +11,14 @@
 * install [fzf][fzf_link]
 * install a [powerline patched font][powerline_fonts] on your OS and configure your terminal to use said font.
 * configure your terminal to use the [solarized dark theme][solarized_link]
-* git clone this repo and run the zsh script `.links.zsh`. Like so:
+* git clone this repo: ``
+* change the user info inside the .gitconfig file within the repo.
+* run the zsh script `.links.zsh`. Like so:
 
 ```sh
 git clone https://github.com/ninrod/unix-shell-config.git ~/.unix-shell-config
 cd ~/.unix-shell-config
+vim .gitconfig #change user info
 ./.links.zsh
 ```
 * done!
