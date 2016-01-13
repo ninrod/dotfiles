@@ -19,10 +19,25 @@ cd ~/.unix-shell-config
 ```
 * done!
 
-## VIM: powerful shell text editor tweaked with plugins
+## VIM: Powerful shell text editor. Tweaked with plugins.
 
 ### installed plugins
-* [auto-pairs][auto-pairs_link]: plugin to complete pairs of brackets and similar stuff
+01. [ack.vim][ack.vim_link]: front for ack/ag, search inside files.
+02. [auto-pairs][auto-pairs_link]: plugin to complete pairs of brackets and similar stuff.
+03. [bufexplorer][bufexplorer_link]: easier vim buffer navigation.
+04. [ctrlp.vim][ctlrp_link]: easier vim buffer navigation.
+05. [gitv][gitv_link]: gitk for vim.
+06. [nerdtree][nerdtree_link]: tree like file navigation.
+07. [rainbow][rainbow_link]: nicer round bracket visualization.
+08. [supertab][supertab_link]: insert mode completions triggered by <TAB>.
+09. [targets.vim][targets_link]: creates various useful textobjects.
+10. [ultisnips][ultisnips_link]: snippet engine for vim (needs +python).
+11. [vim-airline][airline_link]: lightweight powerline clone written in pure VimL. 
+12. [vim-bufkill][bufkill_link]: easier buffer unloading.
+13. [vim-closetag][closetag_link]: auto close for html tags.
+14. [vim-colors-solarized][vim-colors-solarized_link]: well designed vim colorscheme.
+15. [vim-commentary][vim-commentary_link]: automatic commentary wrapping.
+16. [vim-easy-align][vim-easy-align_link]: automatic commentary wrapping.
 
 #### VIM Window binds
 
@@ -70,4 +85,19 @@ bind                           | action
 [zsh_link]: <https://github.com/zsh-users/zsh.git>
 [solarized_link]: <https://github.com/altercation/solarized.git>
 
+[ack.vim_link]: <https://github.com/mileszs/ack.vim>
 [auto-pairs_link]: <https://github.com/jiangmiao/auto-pairs.git>
+[bufexplorer_link]: <https://github.com/jlanzarotta/bufexplorer.git>
+[ctlrp_link]: <https://github.com/ctrlpvim/ctrlp.vim.git>
+[gitv_link]: <https://github.com/ctrlpvim/ctrlp.vim.git>
+[nerdtree_link]: <https://github.com/scrooloose/nerdtree.git>
+[rainbow_link]: <https://github.com/luochen1990/rainbow.git>
+[supertab_link]: <https://github.com/ervandew/supertab.git>
+[targets_link]: <https://github.com/wellle/targets.vim.git>
+[ultisnips_link]: <https://github.com/SirVer/ultisnips.git>
+[airline_link]: <https://github.com/bling/vim-airline.git>
+[bufkill_link]: <https://github.com/qpkorr/vim-bufkill.git>
+[closetag_link]: <https://github.com/alvan/vim-closetag.git>
+[vim-colors-solarized_link]: <https://github.com/altercation/vim-colors-solarized.git>
+[vim-commentary_link]: <https://github.com/tpope/vim-commentary.git>
+[vim-easy-align_link]: <https://github.com/junegunn/vim-easy-align.git>
