@@ -5,8 +5,8 @@
 
 ## INSTALLATION requirements
 
-* tmux >= 1.8
-* zsh >= 5.0.8
+* [tmux][tmux_link] >= 1.8
+* [zsh][zsh_link] >= 5.0.8
 * install [fasd][fasd_link]
 * install a powerline patched font on your OS and configure your terminal to use said font. (you can choose one [here][powerline_fonts])
 * git clone this repo and run the zsh script `.links.zsh`
@@ -52,3 +52,5 @@ You interact with tmux escaping commands through a key combo called `prefix`. I'
 
 [powerline_fonts]: <https://github.com/powerline/fonts.git> 
 [fasd_link]: <https://github.com/clvv/fasd.git>
+[tmux_link]: <https://github.com/tmux/tmux.git>
+[zsh_link]: <https://github.com/zsh-users/zsh.git>
