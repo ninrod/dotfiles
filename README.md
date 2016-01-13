@@ -10,7 +10,7 @@
 * install [fasd][fasd_link]
 * install a [powerline patched font][powerline_fonts] on your OS and configure your terminal to use said font.
 * configure your terminal to use the [solarized dark theme][solarized_link]
-* git clone this repo and run the zsh script `.links.zsh`. Like so (just a suggestion):
+* git clone this repo and run the zsh script `.links.zsh`. Like so:
 
 ```sh
 git clone https://github.com/ninrod/unix-shell-config.git ~/.unix-shell-config
