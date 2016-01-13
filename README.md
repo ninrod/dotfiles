@@ -21,6 +21,9 @@ cd ~/.unix-shell-config
 
 ## VIM: powerful shell text editor tweaked with plugins
 
+### installed plugins
+* [auto-pairs][auto-pairs_link]: plugin to complete pairs of brackets and similar stuff
+
 #### VIM Window binds
 
 * `<leader> + v`: creates a new windows in a vertical split
@@ -58,3 +61,5 @@ You interact with tmux escaping commands through a key combo called `prefix`. I'
 [tmux_link]: <https://github.com/tmux/tmux.git>
 [zsh_link]: <https://github.com/zsh-users/zsh.git>
 [solarized_link]: <https://github.com/altercation/solarized.git>
+
+[auto-pairs_link]: <https://github.com/jiangmiao/auto-pairs.git>
