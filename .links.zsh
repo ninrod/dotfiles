@@ -1,4 +1,4 @@
-#!/usr/local/bin/zsh
+#!/bin/zsh
 
 update_theme_dir() {
   # -d testa se o parâmetro existe e se é um diretório
