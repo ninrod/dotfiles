@@ -8,7 +8,7 @@
 * [tmux][tmux_link] >= 1.8
 * [zsh][zsh_link] >= 5.0.8
 * install [fasd][fasd_link]
-* install a powerline patched font on your OS and configure your terminal to use said font. (you can choose one [here][powerline_fonts])
+* install a [powerline patched font][powerline_fonts] on your OS and configure your terminal to use said font.
 * git clone this repo and run the zsh script `.links.zsh`
 
 ```sh
