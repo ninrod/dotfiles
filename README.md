@@ -5,9 +5,15 @@
 
 ## INSTALLATION requirements
 
+* tmux >= 1.8
+* zsh >= 5.0.8
 * install a powerline patched font on your OS. (you can choose one [here][powerline-fonts])
 * configure your terminal to use said font.
 * git clone this repo and run the zsh script `.links.zsh`
+
+```sh
+./.links.zsh
+```
 * done!
 
 ## VIM: powerful shell text editor tweaked with plugins
