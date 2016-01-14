@@ -35,6 +35,8 @@ eval "$(fasd --init auto)"
 
 # inicialização do fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='ag --hidden -g ""'
+export FZF_CTRL_T_COMMAND='ag --hidden -g ""'
 
 # bootstrap do oh-my-zsh
 export ZSH=$HOME/.oh-my-zsh
