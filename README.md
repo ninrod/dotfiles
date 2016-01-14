@@ -9,6 +9,7 @@
 * Verify that you have [zsh][zsh_link] >= 5.0.8.
 * install [fasd][fasd_link].
 * install [fzf][fzf_link].
+* if you're on OSX, you need to `brew install [reattach-to-user-namespace][reattach_link]`.
 * install a [powerline patched font][powerline_fonts] on your OS and configure your terminal to use said font.
 * configure your terminal to use the [solarized dark theme][solarized_link].
 * git clone this repo, change the git user info inside the .gitconfig file within the repo and run the zsh script `.links.zsh` like so:
@@ -128,3 +129,4 @@ bind                           | action
 [vim-signify_link]: <https://github.com/mhinz/vim-signify.git>
 [vim-snippets_link]: <https://github.com/honza/vim-snippets.git>
 [vim-surround_link]: <https://github.com/tpope/vim-surround.git>
+[reattach_link]: <https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard.git>
