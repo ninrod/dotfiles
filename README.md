@@ -31,17 +31,27 @@ vim .gitconfig #change user info
 04. [ctrlp.vim][ctlrp_link]: easier vim buffer navigation.
 05. [gitv][gitv_link]: gitk for vim.
 06. [nerdtree][nerdtree_link]: tree like file navigation.
-07. [rainbow][rainbow_link]: nicer round bracket visualization.
-08. [supertab][supertab_link]: insert mode completions triggered by <TAB>.
-09. [targets.vim][targets_link]: creates various useful textobjects.
-10. [ultisnips][ultisnips_link]: snippet engine for vim (needs +python).
-11. [vim-airline][airline_link]: lightweight powerline clone written in pure VimL. 
-12. [vim-bufkill][bufkill_link]: easier buffer unloading.
-13. [vim-closetag][closetag_link]: auto close for html tags.
-14. [vim-colors-solarized][vim-colors-solarized_link]: well designed vim colorscheme.
-15. [vim-commentary][vim-commentary_link]: automatic commentary wrapping.
-16. [vim-easy-align][vim-easy-align_link]: automatic commentary wrapping.
-17. [vim-endwise][vim-endwise_link]: automatic insert mode if/for/case completions for some languages.
+07. [nerdtree-tabs][nerdtree-tabs_link]: 'toggle' behaviour for nerdtree.
+08. [rainbow][rainbow_link]: nicer round bracket visualization.
+09. [supertab][supertab_link]: insert mode completions triggered by <TAB>.
+10. [targets.vim][targets_link]: creates various useful textobjects.
+11. [ultisnips][ultisnips_link]: snippet engine for vim (needs +python).
+12. [vim-airline][airline_link]: lightweight powerline clone written in pure VimL. 
+13. [vim-bufkill][bufkill_link]: easier buffer unloading.
+14. [vim-closetag][closetag_link]: auto close for html tags.
+15. [vim-colors-solarized][vim-colors-solarized_link]: well designed vim colorscheme.
+16. [vim-commentary][vim-commentary_link]: automatic commentary wrapping.
+17. [vim-easy-align][vim-easy-align_link]: automatic commentary wrapping.
+18. [vim-endwise][vim-endwise_link]: automatic insert mode if/for/case completions for some languages.
+19. [vim-exchange][vim-exchange_link]: easily swap of two regions of text.
+20. [vim-fugitive][vim-fugitive_link]: very good git wrapper for vim.
+21. [vim-fugitive][vim-fugitive_link]: very good git wrapper for vim.
+22. [vim-numbertoggle][vim-numbertoggle_link]: eases the use of relative line numbers.
+23. [vim-polyglot][vim-polyglot_link]: big syntax highlighting language pack.
+24. [vim-repeat][vim-repeat_link]: expands usage opportunities for the '.' (dot) repeat command.
+25. [vim-signature][vim-signature_link]: expands usage opportunities for the '.' (dot) repeat command.
+26. [vim-signify][vim-signify_link]: signs to indicate added, modified and removed lines of files under a VCS.
+27. [vim-snippets][vim-snippets_link]: snippets for various programming languages.
 
 #### VIM Window binds
 
@@ -52,7 +62,7 @@ bind                   | action
 `<leader> + [h,j,k,l]` | navigates through open windows
 `<leader> + w`         | cycle through windows
 
-## TMUX: terminal multiplexer
+## TMUX: the terminal multiplexer
 
 You interact with tmux escaping commands through a key combo called `prefix`. I've remapped `prefix` to `<control>+<spacebar>`.
 
@@ -107,3 +117,12 @@ bind                           | action
 [vim-easy-align_link]: <https://github.com/junegunn/vim-easy-align.git>
 [fzf_link]: <https://github.com/junegunn/fzf.git>
 [vim-endwise_link]: <https://github.com/tpope/vim-endwise.git>
+[vim-exchange_link]: <https://github.com/tommcdo/vim-exchange.git>
+[vim-fugitive_link]: <https://github.com/tpope/vim-fugitive.git>
+[nerdtree-tabs_link]: <https://github.com/jistr/vim-nerdtree-tabs.git>
+[vim-numbertoggle_link]: <https://github.com/jeffkreeftmeijer/vim-numbertoggle.git>
+[vim-polyglot_link]: <https://github.com/sheerun/vim-polyglot.git>
+[vim-repeat_link]: <https://github.com/tpope/vim-repeat.git>
+[vim-signature_link]: <https://github.com/kshenoy/vim-signature.git>
+[vim-signify_link]: <https://github.com/mhinz/vim-signify.git>
+[vim-snippets_link]: <https://github.com/honza/vim-snippets.git>
