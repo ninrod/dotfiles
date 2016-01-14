@@ -79,6 +79,10 @@ alias d='fasd -d'
 alias di='dirs -v | head -n 10'
 alias dic='dirs -c'
 
+# OMZ creates an 'rd' alias for rmdir, which I don't use.
+unalias rd
+alias rd='rm -rf'
+
 alias dot='l `find ~ -maxdepth 1 -type l`'
 
 # configs do zsh
