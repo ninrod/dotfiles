@@ -52,6 +52,7 @@ vim .gitconfig #change user info
 25. [vim-signature][vim-signature_link]: expands usage opportunities for the '.' (dot) repeat command.
 26. [vim-signify][vim-signify_link]: signs to indicate added, modified and removed lines of files under a VCS.
 27. [vim-snippets][vim-snippets_link]: snippets for various programming languages.
+28. [vim-surround][vim-surround_link]: easily add/change surrounding {},'',(), <htmltags>, etc...
 
 #### VIM Window binds
 
@@ -126,3 +127,4 @@ bind                           | action
 [vim-signature_link]: <https://github.com/kshenoy/vim-signature.git>
 [vim-signify_link]: <https://github.com/mhinz/vim-signify.git>
 [vim-snippets_link]: <https://github.com/honza/vim-snippets.git>
+[vim-surround_link]: <https://github.com/tpope/vim-surround.git>
