@@ -209,14 +209,13 @@ highlight clear SignColumn
 " Mappings {{{
 
 " :Gpush
-nnoremap ^ :Gpush<CR>
+nnoremap gp :Gpush<CR>
 
 " easyalign mappings
 xmap <cr> <Plug>(EasyAlign)
 
 " scratch mappings
 nnoremap gs :NinScratch<CR>
-nnoremap & :set buftype=nofile<CR>
 
 " vim-numbertoggle binding
 let g:NumberToggleTrigger="#"
