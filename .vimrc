@@ -213,7 +213,7 @@ nnoremap ^ :Gpush<CR>
 
 " easyalign mappings
 xmap <cr> <Plug>(EasyAlign)
-nmap ga   <Plug>(EasyAlign)
+" nmap ga   <Plug>(EasyAlign)
 
 " scratch mappings
 nnoremap gs :NinScratch<CR>
