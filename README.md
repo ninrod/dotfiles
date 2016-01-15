@@ -102,15 +102,20 @@ bind                           | action
 ------------------------       | ------------------------------------------
 `gp`                           | `:Gpush`
 `+`                            | `:Gstatus`
+`-`                            | `:noh` turns off highlighted search terms.
 `gs`                           | open scratch buffer
 `#`                            | toggles showing relative line numbers.
-`-`                            | `:noh` turns off highlighted search terms.
+`Z`                            | alias for ZZ. exits saving file (:wq)
+`Q`                            | alias for ZQ. exits without saving file (:q)
+`{`, `}`                       | navigate vim help files. `}` jumps to term. `{` jumps back.
 `<leader> + #`                 | turns off line numbers
+`<leader> + d`                 | custom pagedown. alias for `LztM`.
+`<leader> + u`                 | custom pageup. alias for `HzbM`.
+`<leader> + f`                 | `:CtrlP`. fuzzy file finder
+`<leader> + r`                 | `:CtrlPMRU`. Most recent used file finder.
 `ir`, `ar` (visual and normal) | alias for `i[` and `a[`
 `(`, `)` (visual and normal)   | alias for `"0p`,`"0P`. Easier access to the 'yank' register
 `Y` (visual and normal)        | alias for `"0d`. cut and fill yank register. (register `"0`)
-`Z`                            | alias for ZZ. exits saving file (:wq)
-`Q`                            | alias for ZQ. exits without saving file (:q)
 `<BACKSPACE>`                  | buffer explorer
 `<ENTER>`                      | `:w` (writes buffer)
 `<ENTER>` (visual)             | `:EasyAlign`
