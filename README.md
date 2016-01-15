@@ -168,5 +168,5 @@ bind                           | action
 [vim-textobj-user_link]: <https://github.com/kana/vim-textobj-user.git>
 [vim-textobj-xmlattr_link]: <https://github.com/whatyouhide/vim-textobj-xmlattr.git>
 [vim-unimpaired_link]: <https://github.com/tpope/vim-unimpaired.git>
-[vis_link]: <https://github.com/sencer/vis/commit/7d2bafb806a3c6a50dd06b81c94d7bf36562c7d6>
+[vis_link]: <https://github.com/sencer/vis.git>
 [ZoomWin_link]: <https://github.com/regedarek/ZoomWin.git>
