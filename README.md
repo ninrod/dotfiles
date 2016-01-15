@@ -10,6 +10,7 @@
 * install [fasd][fasd_link].
 * install [fzf][fzf_link].
 * if you're on OSX, you need to `brew install` [reattach-to-user-namespace][reattach_link].
+* git clone this repo: `git clone https://github.com/ninrod/unix-shell-config.git ~/.unix-shell-config`.
 * if you're on Linux, you need to edit .tmux.conf like so:
 
 ```sh
@@ -23,7 +24,7 @@ bind -t vi-copy y copy-pipe 'pbcopy'
 * install a [powerline patched font][powerline_fonts] on your OS and configure your terminal to use said font. 
 I recommend [Sauce Code Powerline Regular (Source code Pro)][saucecode_link].
 * configure your terminal to use the [solarized dark theme][solarized_link].
-* git clone this repo, change the git user info inside the .gitconfig file within the repo and run the zsh script `.links.zsh` like so:
+* , change the git user info inside the .gitconfig file within the repo and run the zsh script `.links.zsh` like so:
 
 ```sh
 git clone https://github.com/ninrod/unix-shell-config.git ~/.unix-shell-config
