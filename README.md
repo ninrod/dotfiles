@@ -10,10 +10,14 @@
 * install [fasd][fasd_link].
 * install [fzf][fzf_link].
 * if you're on OSX, you need to `brew install` [reattach-to-user-namespace][reattach_link].
-* if you're on Linux, you need to comment the following line on `.tmux.conf`.
+* if you're on Linux, you need to edit .tmux.conf like so:
 
 ```sh
+#comment this line
 set -g default-command "reattach-to-user-namespace -l /usr/local/bin/zsh"
+
+#change OSx pbcopy for xclip or an equivalent linux command
+bind -t vi-copy y copy-pipe 'pbcopy'
 ```
 
 * install a [powerline patched font][powerline_fonts] on your OS and configure your terminal to use said font. 
