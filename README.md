@@ -83,14 +83,49 @@ vim .gitconfig #change user info
 34. [vis][vis_link]: within visual selection search and replace. (block or linewise)
 35. [ZoomWin][ZoomWin_link]: makes a vim window go temporarilly fullscreen.
 
-#### VIM Window binds
+#### VIM: note about the `<leader>` key
+
+* I've remapped `<space>` to be an alias to the `<leader>` key.
+
+#### VIM: function keys
+bind                         | action
+-----------------------------|-------------------------------------------
+`<F2>`  | toggle nerdtree file explorer
+`<F4>`  | kill the current buffer
+`<F5>`  | :windo diffthis
+`<F11>` | source ~/.vimrc
+`<F12>` | open ~/.vimrc
+
+#### VIM: misc binds
+
+bind                           | action
+------------------------       | ------------------------------------------
+`gp`                           | `:Gpush`
+`+`                            | `:Gstatus`
+`gs`                           | open scratch buffer
+`#`                            | toggles showing relative line numbers.
+`-`                            | `:noh` turns off highlighted search terms.
+`<leader> + #`                 | turns off line numbers
+`ir`, `ar` (visual and normal) | alias for `i[` and `a[`
+`(`, `)` (visual and normal)   | alias for `"0p`,`"0P`. Easier access to the 'yank' register
+`Y` (visual and normal)        | alias for `"0d`. cut and fill yank register. (register `"0`)
+`Z`                            | alias for ZZ. exits saving file (:wq)
+`Q`                            | alias for ZQ. exits without saving file (:q)
+`<BACKSPACE>`                  | buffer explorer
+`<ENTER>`                      | `:w` (writes buffer)
+`<ENTER>` (visual)             | `:EasyAlign`
+
+#### VIM: window manipulation
 
 bind                   | action
 -----------------------|------------------------------------------
 `<leader> + v`         | creates a new window in a vertical split
 `<leader> + x`         | creates a new window in a horizontal split
-`<leader> + [h,j,k,l]` | navigates through open windows
 `<leader> + w`         | cycle through windows
+`<leader> + U`         | zooms into a window
+`<leader> + [h,j,k,l]` | navigates through open windows
+`<leader> + [H,J,K,L]` | moves the window to the right, left, etc...
+`<leader> + [arrowkey]`| resizes the window
 
 ## TMUX: the terminal multiplexer
 
