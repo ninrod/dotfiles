@@ -208,6 +208,9 @@ highlight clear SignColumn
 
 " Mappings {{{
 
+" :Gpush
+nnoremap ^ :Gpush<CR>
+
 " easyalign mappings
 xmap <cr> <Plug>(EasyAlign)
 nmap ga   <Plug>(EasyAlign)
