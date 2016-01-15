@@ -74,7 +74,7 @@ vim .gitconfig #change user info
 25. [vim-snippets][vim-snippets_link]: snippets for various programming languages.
 26. [vim-surround][vim-surround_link]: easily add/change surrounding {},'',(), <htmltags>, etc...
 27. [vim-textobj-entire][vim-textobj-entire_link]: adds textobjs `ie` and `ae` for selecting the entire buffer.
-28. [vim-textobj-function][vim-textobj-function_link]: adds textobjs `if` and `af` for selecting a function body. Works for some languages but can be extended.
+28. [vim-textobj-function][vim-textobj-function_link]: adds textobjs `if` and `af` for selecting a function body.
 29. [vim-textobj-function-javascript][vim-textobj-function-javascript_link]: expands [vim-textobj-function][vim-textobj-function_link] adding javascript functions.
 30. [vim-textobj-underscore][vim-textobj-underscore_link]: adds `a_` and `i_` text objects for manipulating words between underscores.
 31. [vim-textobj-user][vim-textobj-user_link]: base library for other text objects.
