@@ -56,7 +56,7 @@ vim .gitconfig #change user info
 14. [vim-closetag][closetag_link]: auto close for html tags.
 15. [vim-colors-solarized][vim-colors-solarized_link]: well designed vim colorscheme.
 16. [vim-commentary][vim-commentary_link]: automatic commentary wrapping.
-17. [vim-easy-align][vim-easy-align_link]: automatic commentary wrapping.
+17. [vim-easy-align][vim-easy-align_link]: very good text alignment tool.
 18. [vim-endwise][vim-endwise_link]: automatic insert mode if/for/case completions for some languages.
 19. [vim-exchange][vim-exchange_link]: easily swap of two regions of text.
 20. [vim-fugitive][vim-fugitive_link]: very good git wrapper for vim.
