@@ -17,7 +17,7 @@ set -g default-command "reattach-to-user-namespace -l /usr/local/bin/zsh"
 ```
 
 * install a [powerline patched font][powerline_fonts] on your OS and configure your terminal to use said font. 
-I recommend [Sauce Code Powerline Regular(Source code Pro)][saucecode_link].
+I recommend [Sauce Code Powerline Regular (Source code Pro)][saucecode_link].
 * configure your terminal to use the [solarized dark theme][solarized_link].
 * git clone this repo, change the git user info inside the .gitconfig file within the repo and run the zsh script `.links.zsh` like so:
 
