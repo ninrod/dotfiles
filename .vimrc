@@ -128,7 +128,7 @@ let g:bufExplorerDisableDefaultKeyMapping=1
 "Path to the Rust Racer autocomplete tool"
 let g:racer_cmd ="/Users/ninrod/code/lib/rust/racer/target/release/racer"
 
-" Theme Settings
+" Solarized Dark Theme
 " set background=dark
 " let g:solarized_bold=1
 " let g:solarized_underline=0
@@ -143,6 +143,7 @@ let g:racer_cmd ="/Users/ninrod/code/lib/rust/racer/target/release/racer"
 " endif
 " colorscheme solarized
 
+" papercolor theme
 set background=light
 colorscheme PaperColor
 
