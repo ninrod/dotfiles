@@ -113,28 +113,27 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
+" as we only use git, we tell this to signify for a little performance gain. Every bit counts.
 let g:signify_vcs_list = ['git']
 
 " enabling rainbow plugin at start
 let g:rainbow_active = 1
 
-" rainbow sucks on html
+" rainbow plugin sucks on html
 let g:rainbow_conf = {'separately': {'html': 0}}
 
-" no default mappings for bufExplorer
+" no default mappings for bufExplorer. We just need the toggle bind.
 let g:bufExplorerDisableDefaultKeyMapping=1
 
-"Rust Racer autocomplete tool"
+"Path to the Rust Racer autocomplete tool"
 let g:racer_cmd ="/Users/ninrod/code/lib/rust/racer/target/release/racer"
 
-
-" Theme
+" Theme Settings
 set background=dark
 let g:solarized_bold=1
 let g:solarized_underline=0
 let g:solarized_visibility="high"
 let g:solarized_contrast="high"
-
 if !has("gui_running")
     " terminal vim...
     let g:solarized_termcolors=16
@@ -142,34 +141,25 @@ else
     " macVim | gVim
     set guifont=Sauce\ Code\ Powerline:h11
 endif
-
 colorscheme solarized
 
 " vim-commentary: disabling double backslash
 let g:commentary_map_backslash=0
 
-" vim-signature bookmark plugin
-let g:signaturemarkertexthldynamic = 1
-
 " nerdtree configs
+" we don't need nerdtree firing up on startup.
 let g:nerdtree_tabs_open_on_gui_startup=0
+
+" nerd tree needs to show hidden files for us
 let g:NERDTreeShowHidden=1
 
 " CtrlP configs
 let g:ctrlp_show_hidden=1
 let g:ctrlp_working_path_mode=0
 let g:ctrlp_max_height=10
-
-" let ctrlp reuse Scratch's windows
 let g:ctrlp_reuse_window = 'Scratch'
-
-" CtrlP -> override <C-o> to provide options for how to open files
 let g:ctrlp_arg_map = 1
-
-" CtrlP -> files matched are ignored when expanding wildcards
 set wildignore+=*/.hg/*,*/.svn/*.,*/.DS_Store,*/.idea/*,*/.tmp/*,*/target/*
-
-" CtrlP -> directories to ignore when fuzzy finding
 let g:ctrlp_custom_ignore = '
       \\.git$\|
       \\.pdf$\|
@@ -189,7 +179,10 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline_theme='base16'
 
+" fix git-gutter|signify contrast issue with solarized dark.
+" https://github.com/airblade/vim-gitgutter/issues/164
 highlight clear SignColumn
+
 " }}}
 
 " Mappings {{{
