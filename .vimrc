@@ -116,12 +116,6 @@ endif
 " as we only use git, we tell this to signify for a little performance gain. Every bit counts.
 let g:signify_vcs_list = ['git']
 
-" enabling rainbow plugin at start
-let g:rainbow_active = 1
-
-" rainbow plugin sucks on html
-let g:rainbow_conf = {'separately': {'html': 0}}
-
 " no default mappings for bufExplorer. We just need the toggle bind.
 let g:bufExplorerDisableDefaultKeyMapping=1
 
