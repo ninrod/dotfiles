@@ -129,19 +129,22 @@ let g:bufExplorerDisableDefaultKeyMapping=1
 let g:racer_cmd ="/Users/ninrod/code/lib/rust/racer/target/release/racer"
 
 " Theme Settings
-set background=dark
-let g:solarized_bold=1
-let g:solarized_underline=0
-let g:solarized_visibility="high"
-let g:solarized_contrast="high"
-if !has("gui_running")
-    " terminal vim...
-    let g:solarized_termcolors=16
-else
-    " macVim | gVim
-    set guifont=Sauce\ Code\ Powerline:h11
-endif
-colorscheme solarized
+" set background=dark
+" let g:solarized_bold=1
+" let g:solarized_underline=0
+" let g:solarized_visibility="high"
+" let g:solarized_contrast="high"
+" if !has("gui_running")
+"     " terminal vim...
+"     let g:solarized_termcolors=16
+" else
+"     " macVim | gVim
+"     set guifont=Sauce\ Code\ Powerline:h11
+" endif
+" colorscheme solarized
+
+set background=light
+colorscheme PaperColor
 
 " vim-commentary: disabling double backslash
 let g:commentary_map_backslash=0
