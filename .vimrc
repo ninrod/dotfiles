@@ -70,10 +70,6 @@ set timeout timeoutlen=1000 ttimeoutlen=100
 " Always show status bar
 set laststatus=2
 
-" Set the status line to something useful
-set statusline=%f\ %=L:%l/%L\ %c\ (%p%%)
-" set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
-
 " Hide the toolbar
 set guioptions-=T
 
@@ -94,21 +90,11 @@ set splitright
 " Highlight the current line
 set cursorline
 
-" Ensure Vim doesn't beep at you every time you make a mistype
-set visualbell
-
 " Visual autocomplete for command menu (e.g. :e ~/path/to/file)
 set wildmenu
 
-" redraw only when we need to (i.e. don't redraw when executing a macro)
-set lazyredraw
-
 " highlight a matching [{()}] when cursor is placed on start/end character
 set showmatch
-
-" vertical ruler
-" autocmd BufWinEnter * highlight ColorColumn ctermbg=darkred
-" set colorcolumn=201
 
 " }}}
 
@@ -120,7 +106,7 @@ filetype plugin indent on
 
 runtime macros/matchit.vim
 
-" auto-pairs plugin binds 'â' in insert mode
+" auto-pairs plugin binds 'â' in insert mode limiting our ability to type 'â'. So we fix it.
 let g:AutoPairsShortcutBackInsert=''
 
 if executable('ag')
