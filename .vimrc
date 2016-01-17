@@ -329,15 +329,6 @@ autocmd BufRead * setlocal foldmethod=marker
 set foldlevelstart=20
 " autocmd BufRead * normal zM
 
-" Change colourscheme when diffing
-" fun! SetDiffColors()
-"   highlight DiffAdd    cterm=bold ctermfg=black ctermbg=DarkGreen
-"   highlight DiffDelete cterm=bold ctermfg=black ctermbg=DarkGrey
-"   highlight DiffChange cterm=bold ctermfg=black ctermbg=DarkBlue
-"   highlight DiffText   cterm=bold ctermfg=black ctermbg=DarkRed
-" endfun
-" autocmd FilterWritePre * call SetDiffColors()
-
 " disabling auto commenting on new line, e.g. 'o' and 'O'
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
