@@ -139,7 +139,7 @@ You interact with tmux escaping commands through a key combo called `prefix`. I'
 
 bind                 | action
 -------------------- | -----------------------------------------------------------
-`<prefix> + <space>` | enter copy-mode (rebound from `<prefix> + [`).
+`<prefix> + <space>` | enter copy-mode (tip VIII. from [sheerun][sheerun_tip_link]).
 
 #### TMUX Window binds
 
@@ -177,6 +177,7 @@ bind                           | action
 [reattach_link]: <https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard.git>
 [ruby_link]: <https://github.com/ruby/ruby.git>
 [python_link]: <http://python.org>
+[sheerun_tip_link]: <https://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/>
 
 [ack.vim_link]: <https://github.com/mileszs/ack.vim>
 [auto-pairs_link]: <https://github.com/jiangmiao/auto-pairs.git>
