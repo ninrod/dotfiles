@@ -139,7 +139,7 @@ You interact with tmux escaping commands through a key combo called `prefix`. I'
 
 bind                 | action
 -------------------- | -----------------------------------------------------------
-`<prefix> + <space>` | enter copy-mode (rebind from `<prefix> + [`).
+`<prefix> + <space>` | enter copy-mode (rebound from `<prefix> + [`).
 
 #### TMUX Window binds
 
