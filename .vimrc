@@ -18,6 +18,9 @@ set noswapfile
 " Command history
 set history=100
 
+" diff options. without this Gdiff was splitting horizontally on OSx.
+set diffopt=filler,vertical
+
 " Always show cursor
 set ruler
 
