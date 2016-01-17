@@ -135,6 +135,12 @@ bind                   | action
 
 You interact with tmux escaping commands through a key combo called `prefix`. I've remapped `prefix` to `<control>+<spacebar>`.
 
+#### TMUX copy-mode | history | scroll mode
+
+bind                 | action
+-------------------- | -----------------------------------------------------------
+`<prefix> + <space>` | enter copy-mode (rebind from `<prefix> + [`).
+
 #### TMUX Window binds
 
 bind           | action
@@ -148,7 +154,7 @@ bind           | action
 #### TMUX Panel binds
 
 bind                          | action
-------------------------------|-----------------------------------------------------------------------------------------
+----------------------------- | ----------------------------------------------------------------------------------------
 `<prefix> + v`                | creates a new shell panel vertically splitting the viewport.
 `<prefix> + x`                | creates a new shell panel horizontally splitting the viewport.
 `<prefix> + <space>`          | cycles through different panel layouts.
