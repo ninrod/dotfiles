@@ -218,19 +218,8 @@ nnoremap ) "0p
 nnoremap Y "0d
 xnoremap Y "0d
 
-" just highlight the word, without moving to the next.
-nnoremap * *N
-
-" very magic mode on.
-nnoremap ? /\v
-
-" space is my leader key, but '\' remains as leader
-nmap <Space> <Leader>
-omap <Space> <Leader>
-xmap <Space> <Leader>
-
-" open quickfix window
-nmap <leader>q :copen<CR>
+" space is my leader key.
+let mapleader = "\<Space>"
 
 " function keys
 nnoremap <f2> :NERDTreeTabsToggle<cr>
