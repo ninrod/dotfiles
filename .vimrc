@@ -344,4 +344,12 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " enabling <cr> to work properly on the quickfix window
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 
+" trailing whitespace hack
+highlight ExtraWhitespace ctermbg=218 guibg=218
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
 " }}}
