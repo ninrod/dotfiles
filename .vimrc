@@ -107,6 +107,7 @@ execute pathogen#infect()
 " required by Pathogen Plugin Manager
 filetype plugin indent on
 
+" expands '%' operator behaviour to work on opening and closing html tags.
 runtime macros/matchit.vim
 
 " auto-pairs plugin binds 'â' in insert mode limiting our ability to type 'â'. So we fix it.
