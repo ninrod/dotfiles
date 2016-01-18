@@ -218,8 +218,10 @@ nnoremap ) "0p
 nnoremap Y "0d
 xnoremap Y "0d
 
-" space is my leader key.
-let mapleader = "\<Space>"
+" space is my leader key, but '\' remains as leader.
+nmap <Space> <Leader>
+omap <Space> <Leader>
+xmap <Space> <Leader>
 
 " function keys
 nnoremap <f2> :NERDTreeTabsToggle<cr>
