@@ -191,10 +191,10 @@ let g:airline_powerline_fonts = 1
 " let g:airline_right_sep=''
 
 " airline: hunks, branch
-" let g:airline_section_b = ''
+let g:airline_section_b = ''
 
 " airline: fileencoding, fileformat
-" let g:airline_section_y = ''
+let g:airline_section_y = ''
 
 " airline: line, column number
 " let g:airline_section_z = ''
@@ -356,5 +356,7 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
+
+highlight CursorLineNr cterm=bold ctermfg=124
 
 " }}}
