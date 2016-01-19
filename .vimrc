@@ -180,6 +180,9 @@ let g:ctrlp_custom_ignore = '
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline_theme='base16'
+" let g:airline_left_sep=''
+" let g:airline_right_sep=''
+" let g:airline_section_z=''
 
 " fix git-gutter|signify contrast issue with solarized dark.
 " https://github.com/airblade/vim-gitgutter/issues/164
