@@ -304,9 +304,6 @@ nnoremap {  <C-T>
 " omni completion alternative binding
 inoremap <C-p> <C-x><C-o>
 
-" Tabularize
-" map <Leader>e :Tabularize /=<cr>
-" map <Leader>c :Tabularize /:<cr>
 " }}}
 
 " Auto Commands {{{
