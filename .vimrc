@@ -200,7 +200,6 @@ let g:airline_powerline_fonts = 1
 " let g:airline_section_z = ''
 
 " airline: extension configs
-" let g:airline_extensions = []
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#hunks#enabled = 0
 
