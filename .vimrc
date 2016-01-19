@@ -110,6 +110,9 @@ filetype plugin indent on
 " expands '%' operator behaviour to work on opening and closing html tags.
 runtime macros/matchit.vim
 
+" vim-rsi plugin
+let g:rsi_no_meta = 1
+
 " auto-pairs plugin binds 'â' in insert mode limiting our ability to type 'â'. So we fix it.
 let g:AutoPairsShortcutBackInsert=''
 
@@ -127,23 +130,24 @@ let g:bufExplorerDisableDefaultKeyMapping=1
 let g:racer_cmd ="/Users/ninrod/code/lib/rust/racer/target/release/racer"
 
 " Solarized Dark Theme
-" set background=dark
-" let g:solarized_bold=1
-" let g:solarized_underline=0
-" let g:solarized_visibility="high"
-" let g:solarized_contrast="high"
-" if !has("gui_running")
-"     " terminal vim...
-"     let g:solarized_termcolors=16
-" else
-"     " macVim | gVim
-"     set guifont=Sauce\ Code\ Powerline:h11
-" endif
-" colorscheme solarized
+set background=dark
+let g:solarized_bold=1
+let g:solarized_underline=0
+let g:solarized_visibility="high"
+let g:solarized_contrast="high"
+let g:solarized_diffmode="high"
+if !has("gui_running")
+    " terminal vim...
+    let g:solarized_termcolors=16
+else
+    " macVim | gVim
+    set guifont=Sauce\ Code\ Powerline:h11
+endif
+colorscheme solarized
 
 " papercolor theme
-set background=light
-colorscheme PaperColor
+" set background=light
+" colorscheme PaperColor
 
 " vim-commentary: disabling double backslash
 let g:commentary_map_backslash=0
@@ -176,19 +180,29 @@ let g:ctrlp_custom_ignore = '
       \\.svn$
       \'
 
-" Airline (status line)
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#whitespace#enabled = 0
+" Airline configs(status line)
+
+" airline theme
 let g:airline_theme='base16'
-" if you don't want to use a powerline patched font
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-" (hunks, branch)
-let g:airline_section_b = ''
-" (fileencoding, fileformat)
-let g:airline_section_y = ''
-" (line, column number)
-let g:airline_section_z = ''
+
+" airline: if you don't want to use a powerline patched font
+let g:airline_powerline_fonts = 1
+" let g:airline_left_sep=''
+" let g:airline_right_sep=''
+
+" airline: hunks, branch
+" let g:airline_section_b = ''
+
+" airline: fileencoding, fileformat
+" let g:airline_section_y = ''
+
+" airline: line, column number
+" let g:airline_section_z = ''
+
+" airline: extension configs
+" let g:airline_extensions = []
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#hunks#enabled = 0
 
 " fix git-gutter|signify contrast issue with solarized dark.
 " https://github.com/airblade/vim-gitgutter/issues/164
