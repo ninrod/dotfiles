@@ -113,7 +113,7 @@ runtime macros/matchit.vim
 " vim-rsi plugin
 let g:rsi_no_meta = 1
 
-" auto-pairs plugin binds 'â' in insert mode limiting our ability to type 'â'. So we fix it.
+" auto-pairs plugin maps 'â' in insert mode limiting our ability to type 'â'. So we fix it.
 let g:AutoPairsShortcutBackInsert=''
 
 if executable('ag')
@@ -209,7 +209,10 @@ highlight clear SignColumn
 
 " }}}
 
-" Mappings {{{
+" Binds {{{
+
+" quick map for signify hunk refresh
+nmap <leader>- :SignifyRefresh<CR>
 
 " :Gpush
 nnoremap gp :Gpush<CR>
