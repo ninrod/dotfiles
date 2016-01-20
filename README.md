@@ -12,7 +12,7 @@
 * make sure you vim 7.4+ with [+clipboard][vim_clipboard_link] and +python.
 * if you're on OSX, you need to `brew install` [reattach-to-user-namespace][reattach_link].
 * install a [powerline patched font][powerline_fonts] on your OS and configure your terminal to use said font.
-  I recommend [Source code Pro][saucecode_link].
+  I recommend [Source code Pro][saucecode_link], 14pt, for a 13" display.
 * git clone this repo.
 
 ```sh
