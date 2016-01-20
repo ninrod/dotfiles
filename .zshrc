@@ -66,10 +66,19 @@ alias gd='git diff'
 alias ga='git add'
 alias gc='git commit -v'
 alias gl='git log --graph --oneline'
+alias gla='git log --pretty=format:"%h%x09%an%x09%ad%x09%s" --date=short'
 alias glf='git log --follow -p -- '
 alias gp='git push'
 alias gf='git fetch'
 alias gm='git merge'
+alias gb='git branch '
+
+# configs de 'open with'
+alias -s txt=vim
+alias -s js=vim
+alias -s log=vim
+alias -s html=vim
+alias -s conf=vim
 
 #configs do Ag (the silver searcher)
 alias ag='ag --path-to-agignore=~/.agignore'
@@ -80,12 +89,13 @@ alias d='fasd -d'
 alias di='dirs -v | head -n 10'
 alias dic='dirs -c'
 
-# OMZ creates an 'rd' alias for rmdir, which I don't use.
+alias dot='l `find ~ -maxdepth 1 -type l`'
+
+# easier to use than rm -r | rm -rf alias
+# OMZ already binds rd for rmdir.
 unalias rd
 alias rd='rm -r'
 alias rdf='rm -rf'
-
-alias dot='l `find ~ -maxdepth 1 -type l`'
 
 # configs do zsh
 alias print='print -l'
