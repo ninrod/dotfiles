@@ -7,12 +7,10 @@
 
 * get [tmux][tmux_link] 1.8+
 * get [zsh][zsh_link] 5.0.8+
-* get [ruby][ruby_link] 1.9+
 * get [python][python_link] 2.7+
 * get [fasd][fasd_link].
-* get [fzf][fzf_link].
 * if you're on OSX, you need to `brew install` [reattach-to-user-namespace][reattach_link].
-* install a [powerline patched font][powerline_fonts] on your OS and configure your terminal to use said font. 
+* install a [powerline patched font][powerline_fonts] on your OS and configure your terminal to use said font.
   I recommend [Source code Pro][saucecode_link].
 * git clone this repo.
 
@@ -33,7 +31,7 @@ set -g default-command "reattach-to-user-namespace -l /usr/local/bin/zsh"
 bind -t vi-copy y copy-pipe 'pbcopy'
 ```
 
-* configure your terminal to use the [solarized dark theme][solarized_link].
+* configure your terminal to use the [papercolor theme][papercolor_link].
 * change the git user info inside the .gitconfig file within the repo and run the zsh script `.links.zsh` like so:
 
 ```sh
@@ -167,8 +165,8 @@ bind                           | action
 ------------------------------ | -----------------------------------------------------------------------------------------
 `exit`                         | closes a panel. When the last panel of the window is closed, the window is also closed.
 
-
-[powerline_fonts]: <https://github.com/powerline/fonts.git> 
+[papercolor_link]: <https://github.com/NLKNguyen/papercolor-theme.git>
+[powerline_fonts]: <https://github.com/powerline/fonts.git>
 [fasd_link]: <https://github.com/clvv/fasd.git>
 [tmux_link]: <https://github.com/tmux/tmux.git>
 [zsh_link]: <https://github.com/zsh-users/zsh.git>
