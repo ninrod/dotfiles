@@ -41,7 +41,6 @@ eval `dircolors ~/.lscolors`
 eval "$(fasd --init auto)"
 
 # inicialização do fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='ag --hidden -g ""'
 export FZF_CTRL_T_COMMAND='ag --hidden -g ""'
 
@@ -72,13 +71,6 @@ alias gp='git push'
 alias gf='git fetch'
 alias gm='git merge'
 
-# configs de 'open with'
-alias -s txt=vim
-alias -s js=vim
-alias -s log=vim
-alias -s html=vim
-alias -s conf=vim
-
 #configs do Ag (the silver searcher)
 alias ag='ag --path-to-agignore=~/.agignore'
 
@@ -98,3 +90,4 @@ alias dot='l `find ~ -maxdepth 1 -type l`'
 # configs do zsh
 alias print='print -l'
 setopt extended_glob
+SAVEHIST=0
