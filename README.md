@@ -9,6 +9,7 @@
 * get [zsh][zsh_link] 5.0.8+
 * get [python][python_link] 2.7+
 * get [fasd][fasd_link].
+* make sure you vim 7.4+ [+clipboard][vim_clipboard_link] and +python.
 * if you're on OSX, you need to `brew install` [reattach-to-user-namespace][reattach_link].
 * install a [powerline patched font][powerline_fonts] on your OS and configure your terminal to use said font.
   I recommend [Source code Pro][saucecode_link].
@@ -165,6 +166,8 @@ bind                           | action
 ------------------------------ | -----------------------------------------------------------------------------------------
 `exit`                         | closes a panel. When the last panel of the window is closed, the window is also closed.
 
+
+[vim_clipboard_link]: <http://vimcasts.org/blog/2013/11/getting-vim-with-clipboard-support>
 [papercolor_link]: <https://github.com/NLKNguyen/papercolor-theme.git>
 [powerline_fonts]: <https://github.com/powerline/fonts.git>
 [fasd_link]: <https://github.com/clvv/fasd.git>
