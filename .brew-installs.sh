@@ -1,7 +1,11 @@
 #/bin/sh
 
+# dependencies
 brew install fasd
-brew install tig
-brew install ctags
 brew install coreutils
+
+# only for OSx
 brew install reattach-to-user-namespace
+
+# optional
+brew install ctags
