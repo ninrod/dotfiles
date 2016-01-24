@@ -11,13 +11,6 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status vi_mode)
 POWERLEVEL9K_STATUS_VERBOSE=false
 
-# configs for papercolor theme
-POWERLEVEL9K_COLOR_SCHEME='light'
-POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND='064' #green
-POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND='white'
-POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='240' #grey
-POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='white'
-
 # Config do user
 export LANG=en_US.UTF-8
 export TERM=xterm-256color
@@ -66,6 +59,7 @@ alias gs='git status'
 alias g='git status --short'
 alias gd='git diff'
 alias ga='git add'
+alias gal='git add -A'
 alias gc='git commit -v'
 alias gl='git log --graph --oneline'
 alias gla='git log --pretty=format:"%h%x09%an%x09%ad%x09%s" --date=short'

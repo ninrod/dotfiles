@@ -130,24 +130,20 @@ let g:bufExplorerDisableDefaultKeyMapping=1
 let g:racer_cmd ="/Users/ninrod/code/lib/rust/racer/target/release/racer"
 
 " Solarized Dark Theme
-" set background=dark
-" let g:solarized_bold=1
-" let g:solarized_underline=0
-" let g:solarized_visibility="high"
-" let g:solarized_contrast="high"
-" let g:solarized_diffmode="high"
-" if !has("gui_running")
-"     " terminal vim...
-"     let g:solarized_termcolors=16
-" else
-"     " macVim | gVim
-"     set guifont=Sauce\ Code\ Powerline:h11
-" endif
-" colorscheme solarized
-
-" papercolor theme
-set background=light
-colorscheme PaperColor
+set background=dark
+let g:solarized_bold=1
+let g:solarized_underline=0
+let g:solarized_visibility="high"
+let g:solarized_contrast="high"
+let g:solarized_diffmode="high"
+if !has("gui_running")
+    " terminal vim...
+    let g:solarized_termcolors=16
+else
+    " macVim | gVim
+    set guifont=Sauce\ Code\ Powerline:h11
+endif
+colorscheme solarized
 
 " vim-commentary: disabling double backslash
 let g:commentary_map_backslash=0
