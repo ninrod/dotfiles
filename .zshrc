@@ -35,10 +35,6 @@ eval `dircolors ~/.lscolors`
 # inicialização do fasd
 eval "$(fasd --init auto)"
 
-# inicialização do fzf
-export FZF_DEFAULT_COMMAND='ag --hidden -g ""'
-export FZF_CTRL_T_COMMAND='ag --hidden -g ""'
-
 # bootstrap do oh-my-zsh
 export ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
@@ -62,7 +58,7 @@ alias ga='git add'
 alias gal='git add -A'
 alias gc='git commit -v'
 alias gl='git log --graph --oneline'
-alias gla='git log --pretty=format:"%h%x09%an%x09%ad%x09%s" --date=short'
+alias gla='git log --pretty=format:"%C(yellow)%h%Creset %C(cyan)%an%Creset %C(magenta)%ad%Creset %s" --date=short --graph'
 alias glf='git log --follow -p -- '
 alias gp='git push'
 alias gf='git fetch'
