@@ -96,4 +96,3 @@ alias rdf='rm -rf'
 # configs do zsh
 alias print='print -l'
 setopt extended_glob
-SAVEHIST=0
