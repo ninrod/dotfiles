@@ -123,7 +123,13 @@ endif
 " as we only use git, we tell this to signify for a little performance gain. Every bit counts.
 let g:signify_vcs_list = ['git']
 
-" no default mappings for bufExplorer. We just need the toggle bind.
+" enabling rainbow plugin at start
+let g:rainbow_active = 1
+
+" rainbow sucks on html
+let g:rainbow_conf = {'separately': {'html': 0}}
+
+" no default mappings for bufExplorer
 let g:bufExplorerDisableDefaultKeyMapping=1
 
 "Path to the Rust Racer autocomplete tool"
@@ -207,6 +213,9 @@ highlight clear SignColumn
 
 " Binds {{{
 
+" quick map for g_
+nnoremap - g_
+
 " quick map for signify hunk refresh
 nmap <leader>- :SignifyRefresh<CR>
 
@@ -265,7 +274,7 @@ nnoremap <BS> :ToggleBufExplorer<cr>
 nnoremap <cr> :w<cr>
 
 " turn off search highlighting
-nnoremap - :noh<cr>
+nnoremap <leader>/ :noh<cr>
 
 " fugitive Gstatus command
 nnoremap + :Gstatus<cr>
@@ -313,7 +322,7 @@ nmap <leader>x <C-W>s
 nnoremap  } <C-]>
 nnoremap {  <C-T>
 
-" omni completion alternative binding
+" omni completion alternative binding. see :h omnifunc
 inoremap <C-p> <C-x><C-o>
 
 " }}}
@@ -347,14 +356,6 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " enabling <cr> to work properly on the quickfix window
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
-
-" trailing whitespace hack
-highlight ExtraWhitespace ctermbg=218 guibg=218
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
 
 highlight CursorLineNr cterm=bold ctermfg=124
 
