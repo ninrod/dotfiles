@@ -112,6 +112,9 @@ filetype plugin indent on
 " expands '%' operator behaviour to work on opening and closing html tags.
 runtime macros/matchit.vim
 
+" conceal indent lines on cursor line
+let g:indentLine_concealcursor = 'vc'
+
 " vim-rsi plugin
 let g:rsi_no_meta = 1
 
