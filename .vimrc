@@ -99,6 +99,8 @@ set wildmenu
 " highlight a matching [{()}] when cursor is placed on start/end character
 set showmatch
 
+set showbreak=←⟿
+
 " }}}
 
 " Plugins {{{
@@ -215,6 +217,7 @@ highlight clear SignColumn
 
 " quick map for g_
 nnoremap - g_
+nnoremap g- g$
 
 " quick map for signify hunk refresh
 nmap <leader>- :SignifyRefresh<CR>
@@ -358,5 +361,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 
 highlight CursorLineNr cterm=bold ctermfg=124
+
+command! -nargs=* Wrap set wrap linebreak nolist
 
 " }}}
