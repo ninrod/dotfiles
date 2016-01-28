@@ -114,6 +114,7 @@ runtime macros/matchit.vim
 
 " conceal indent lines on cursor line
 let g:indentLine_concealcursor = 'vc'
+let g:indentLine_char = '┆'
 
 " vim-rsi plugin
 let g:rsi_no_meta = 1
