@@ -136,9 +136,9 @@ bind                   | action
 bind        | action
 ------------|-------------------------
 `s`         | equivalent to `cl`.
-`g + char`  | free binds: `gh`,`gf`,`gl`,`gp`,`gr`,`gs`,`gx`,`gy`,`gz`.
 `S`         | equivalent to `cc`.
 `K`         | word lookup does not seem to be of much use.
+`g + char`  | free binds: `gh`,`gf`,`gl`,`gp`,`gr`,`gs`,`gx`,`gy`,`gz`.
 `-`         | equivalent to `k0`.
 `&`         | repeat last substitute. rarely useful.
 
