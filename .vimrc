@@ -219,10 +219,6 @@ highlight clear SignColumn
 
 " Binds {{{
 
-" quick map for g_
-nnoremap - g_
-nnoremap g- g$
-
 " quick map for signify hunk refresh
 nmap <leader>- :SignifyRefresh<CR>
 
