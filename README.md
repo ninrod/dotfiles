@@ -86,37 +86,38 @@ vim .gitconfig #change user info
 * I've remapped `<space>` to be an alias to the `<leader>` key.
 
 #### VIM: function keys
-bind                         | action
------------------------------|-------------------------------------------
-`<F2>`  | toggle nerdtree file explorer
-`<F4>`  | kill the current buffer
-`<F5>`  | :windo diffthis
-`<F11>` | source ~/.vimrc
-`<F12>` | open ~/.vimrc
+bind    |action
+--------|-------------------------------------------
+`<F2>`  |toggle nerdtree file explorer
+`<F4>`  |kill the current buffer
+`<F5>`  |:windo diffthis
+`<F11>` |source ~/.vimrc
+`<F12>` |open ~/.vimrc
 
 #### VIM: misc binds
 
 bind                           | action
-------------------------       | ------------------------------------------
+------------------------------ | ------------------------------------------
 `gp`                           | `:Gpush`
-`+`                            | `:Gstatus`
-`-`                            | `:noh` turns off highlighted search terms.
 `gs`                           | open scratch buffer
-`#`                            | toggles showing relative line numbers.
 `Z`                            | alias for ZZ. exits saving file (:wq)
 `Q`                            | alias for ZQ. exits without saving file (:q)
-`{`, `}`                       | navigate vim help files. `}` jumps to term. `{` jumps back.
+`U`                            | toggle zoom in and zoom out of a window
+`+`                            | `:Gstatus`
+`#`                            | toggles showing relative line numbers.
 `<leader> + #`                 | turns off line numbers
+`<leader> + -`                 | `:noh` turns off highlighted search terms.
 `<leader> + d`                 | custom pagedown. alias for `LztM`.
 `<leader> + u`                 | custom pageup. alias for `HzbM`.
 `<leader> + f`                 | `:CtrlP`. fuzzy file finder
 `<leader> + r`                 | `:CtrlPMRU`. Most recent used file finder.
+`<ENTER>`                      | `:w` (writes buffer)
+`<ENTER>` (visual)             | `:EasyAlign`
+`<BACKSPACE>`                  | buffer explorer
+`{`, `}`                       | navigate vim help files. `}` jumps to term. `{` jumps back.
 `ir`, `ar` (visual and normal) | alias for `i[` and `a[`
 `(`, `)` (visual and normal)   | alias for `"0p`,`"0P`. Easier access to the 'yank' register
 `Y` (visual and normal)        | alias for `"0d`. cut and fill yank register. (register `"0`)
-`<BACKSPACE>`                  | buffer explorer
-`<ENTER>`                      | `:w` (writes buffer)
-`<ENTER>` (visual)             | `:EasyAlign`
 
 #### VIM: window manipulation
 
@@ -125,7 +126,6 @@ bind                   | action
 `<leader> + v`         | creates a new window in a vertical split
 `<leader> + x`         | creates a new window in a horizontal split
 `<leader> + w`         | cycle through windows
-`<leader> + U`         | zooms into a window
 `<leader> + [h,j,k,l]` | navigates through open windows
 `<leader> + [H,J,K,L]` | moves the window to the right, left, etc...
 `<leader> + [arrowkey]`| resizes the window

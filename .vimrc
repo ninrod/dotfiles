@@ -99,7 +99,7 @@ set wildmenu
 " highlight a matching [{()}] when cursor is placed on start/end character
 set showmatch
 
-set showbreak=←⟿
+set showbreak=←←
 
 " }}}
 
