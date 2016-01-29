@@ -106,9 +106,8 @@ set showbreak=←←
 " Plugins {{{
 execute pathogen#infect()
 
-" vim-markdown (by plasticboy)
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_no_default_key_mappings = 1
+" if you want to disable polyglot for some specific language
+let g:polyglot_disabled = ['markdown']
 
 " required by Pathogen Plugin Manager
 filetype plugin indent on
@@ -339,19 +338,15 @@ autocmd BufReadPost *
   \   exe "normal g`\"" |
   \ endif
 
-autocmd BufReadPost fugitive://* set bufhidden=delete
-
-" file formats
-autocmd Filetype gitcommit setlocal spell textwidth=80
-
-" http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
-autocmd Filetype markdown setlocal wrap linebreak nolist textwidth=0 wrapmargin=0 conceallevel=0
-autocmd Filetype markdown setlocal wrap linebreak nolist textwidth=0 wrapmargin=0 " http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
-autocmd FileType sh,ruby,yaml,zsh,vim setlocal shiftwidth=2 tabstop=2 expandtab
-
 " specify syntax highlighting for specific files
 autocmd Bufread,BufNewFile *.spv set filetype=php
 autocmd Bufread,BufNewFile *.md set filetype=markdown " Vim interprets .md as 'modula2' otherwise, see :set filetype?
+
+" http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
+autocmd Filetype markdown setlocal wrap linebreak nolist textwidth=0 wrapmargin=0 conceallevel=0
+autocmd FileType sh,ruby,yaml,zsh,vim setlocal shiftwidth=2 tabstop=2 expandtab
+autocmd Filetype gitcommit setlocal spell textwidth=80
+autocmd BufReadPost fugitive://* set bufhidden=delete
 
 " foldmethod configurations
 autocmd BufRead * setlocal foldmethod=marker
@@ -365,8 +360,10 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " enabling <cr> to work properly on the quickfix window
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 
+" highlight cursor line line number
 highlight CursorLineNr cterm=bold ctermfg=124
 
+" quick bind for a 'wrap' command
 command! -nargs=* Wrap set wrap linebreak nolist
 
 " machit.vim extends % operator to work on html tags.
