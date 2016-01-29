@@ -106,17 +106,17 @@ set showbreak=←←
 " Plugins {{{
 execute pathogen#infect()
 
+" vim-markdown (by plasticboy)
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_no_default_key_mappings = 1
+
 " required by Pathogen Plugin Manager
 filetype plugin indent on
-
-" expands '%' operator behaviour to work on opening and closing html tags.
-runtime macros/matchit.vim
-
-let g:polyglot_disabled = ['rust']
 
 " conceal indent lines on cursor line
 let g:indentLine_concealcursor = 'vc'
 let g:indentLine_char = '┆'
+let g:indentLine_fileTypeExclude = ['txt', 'jsp']
 
 " vim-rsi plugin
 let g:rsi_no_meta = 1
@@ -343,6 +343,9 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 
 " file formats
 autocmd Filetype gitcommit setlocal spell textwidth=80
+
+" http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
+autocmd Filetype markdown setlocal wrap linebreak nolist textwidth=0 wrapmargin=0 conceallevel=0
 autocmd Filetype markdown setlocal wrap linebreak nolist textwidth=0 wrapmargin=0 " http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
 autocmd FileType sh,ruby,yaml,zsh,vim setlocal shiftwidth=2 tabstop=2 expandtab
 
@@ -365,5 +368,11 @@ autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 highlight CursorLineNr cterm=bold ctermfg=124
 
 command! -nargs=* Wrap set wrap linebreak nolist
+
+" machit.vim extends % operator to work on html tags.
+runtime macros/matchit.vim
+
+" without this hack, % operator breaks on markdown file match navigation. e.g: '[' and '['.
+autocmd BufReadPre,FileReadPre *.md MatchDebug
 
 " }}}
