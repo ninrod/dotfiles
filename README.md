@@ -136,9 +136,11 @@ bind                   | action
 bind        | action
 ------------|-------------------------
 `s`         | equivalent to `cl`.
+`g + char`  | free binds: `gh`,`gf`,`gl`,`gp`,`gr`,`gs`,`gx`,`gy`,`gz`.
 `S`         | equivalent to `cc`.
+`K`         | word lookup does not seem to be of much use.
 `-`         | equivalent to `k0`.
-`g + char`  | some good combos here: `gh`,`gf`,`gl`,`gp`,`gr`,`gs`,`gx`,`gy`,`gz`.
+`&`         | repeat last substitute. rarely useful.
 
 ## TMUX: the terminal multiplexer
 
