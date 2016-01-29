@@ -111,6 +111,7 @@ bind                           | action
 `<leader> + u`                 | custom pageup. alias for `HzbM`.
 `<leader> + f`                 | `:CtrlP`. fuzzy file finder
 `<leader> + r`                 | `:CtrlPMRU`. Most recent used file finder.
+`<leader> + /`                 | `:noh`
 `<ENTER>`                      | `:w` (writes buffer)
 `<ENTER>` (visual)             | `:EasyAlign`
 `<BACKSPACE>`                  | buffer explorer
@@ -129,6 +130,15 @@ bind                   | action
 `<leader> + [h,j,k,l]` | navigates through open windows
 `<leader> + [H,J,K,L]` | moves the window to the right, left, etc...
 `<leader> + [arrowkey]`| resizes the window
+
+#### VIM: potentially useful binds
+
+bind        | action
+------------|-------------------------
+`s`         | equivalent to `cl`.
+`S`         | equivalent to `cc`.
+`-`         | equivalent to `k0`.
+`g + char`  | some good combos here: `gh`,`gf`,`gl`,`gp`,`gr`,`gs`,`gx`,`gy`,`gz`.
 
 ## TMUX: the terminal multiplexer
 
