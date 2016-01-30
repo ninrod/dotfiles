@@ -1,5 +1,5 @@
-# no delays
-# export KEYTIMEOUT=1
+# no delays when leaving to normal mode (in milliseconds)
+export KEYTIMEOUT=1
 
 # Updates editor information when the keymap changes.
 function zle-keymap-select() {
