@@ -177,9 +177,11 @@ let g:ctrlp_arg_map = 1
 set wildignore+=*/.hg/*,*/.svn/*.,*/.DS_Store,*/.idea/*,*/.tmp/*,*/target/*
 let g:ctrlp_custom_ignore = '
       \\.git$\|
+      \\.vagrant$\|
       \\.pdf$\|
       \\.log$\|
       \\.out$\|
+      \\.box$\|
       \\.aux$\|
       \\.hg$\|
       \\.grunt$\|
