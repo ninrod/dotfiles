@@ -44,31 +44,20 @@ for m in visual viopp; do
   done
 done
 
+############# zsh escape code fixes #############
 
-### fix de escape codes do zsh ###
 # home key
 bindkey "^[[1~" beginning-of-line
+
 # end key
 bindkey "^[[4~" end-of-line
-#delete key and backspace
+
+#delete key
 bindkey "^[[3~" delete-char
+
+# backspace key
 bindkey "^H" backward-delete-char
 bindkey "^?" backward-delete-char
+
 #numeric keypad return (enter)
 bindkey "${terminfo[kent]}" accept-line
-### END fix de escape codes do zsh ###
-
-
-# if mode indicator wasn't setup by theme, define default
-if [[ "$MODE_INDICATOR" == "" ]]; then
-  MODE_INDICATOR="%{$fg_bold[blue]%}-- NORMAL --%{$reset_color%}"
-fi
-
-function vi_mode_prompt_info() {
-  echo "${${KEYMAP/vicmd/$MODE_INDICATOR}/(main|viins)/}"
-}
-
-# define right prompt, if it wasn't defined by a theme
-if [[ "$RPS1" == "" && "$RPROMPT" == "" ]]; then
-  RPS1='$(vi_mode_prompt_info)'
-fi
