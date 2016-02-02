@@ -372,6 +372,10 @@ command! -nargs=* Wrap set wrap linebreak nolist
 runtime macros/matchit.vim
 
 " without this hack, % operator breaks on markdown file match navigation. e.g: '[' and '['.
-autocmd BufReadPre,FileReadPre *.md MatchDebug
+" I suspect that other filetypes also need this.
+autocmd BufReadPre,FileReadPre *.md,*.jsp MatchDebug
+
+" quick fix for <CR> in command-line-window
+autocmd CmdwinEnter * nunmap <CR>
 
 " }}}
