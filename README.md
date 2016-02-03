@@ -138,7 +138,7 @@ bind    |action
 `<F11>` |source ~/.vimrc
 `<F12>` |open ~/.vimrc
 
-#### VIM: potentially useful binds
+#### VIM: potentially useful binds (not currentelly in use)
 
 bind        | action
 ------------|-------------------------
