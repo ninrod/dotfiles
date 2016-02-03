@@ -67,8 +67,12 @@ vim .gitconfig #change user info
 * [vim-endwise][vim-endwise_link]: automatic insert mode if/for/case completions for some languages.
 * [vim-exchange][vim-exchange_link]: easily swap of two regions of text.
 * [vim-fugitive][vim-fugitive_link]: very good git wrapper for vim.
+* [vim-instant-markdown][vim-instant-markdown_link]: quick markdown visualization tool.
+* [vim-json][vim-json_link]: better json syntax highlighting.
 * [vim-numbertoggle][vim-numbertoggle_link]: eases the use of relative line numbers.
+* [vim-polyglot][vim-polyglot_link]: syntax highlighting for a bunch of languages.
 * [vim-repeat][vim-repeat_link]: expands usage opportunities for the '.' (dot) repeat command.
+* [vim-rsi][vim-rsi_link]: readline style insertion.
 * [vim-signature][vim-signature_link]: adds visual notation for vim marks.
 * [vim-signify][vim-signify_link]: signs to indicate added, modified and removed lines of files under a VCS.
 * [vim-snippets][vim-snippets_link]: snippets for various programming languages.
@@ -232,3 +236,7 @@ bind                           | action
 [vim-unimpaired_link]: <https://github.com/tpope/vim-unimpaired.git>
 [vis_link]: <https://github.com/sencer/vis.git>
 [ZoomWin_link]: <https://github.com/regedarek/ZoomWin.git>
+[vim-instant-markdown_link]: <https://github.com/suan/vim-instant-markdown.git>
+[vim-json_link]: <https://github.com/elzr/vim-json.git>
+[vim-polyglot_link]: <https://github.com/sheerun/vim-polyglot.git>
+[vim-rsi_link]: <https://github.com/tpope/vim-rsi.git>
