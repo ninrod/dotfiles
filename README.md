@@ -101,8 +101,8 @@ bind                           | action
 ------------------------------ | ------------------------------------------
 `gp`                           | `:Gpush`
 `gs`                           | open scratch buffer
-`Z`                            | alias for ZZ. exits saving file (:wq)
-`Q`                            | alias for ZQ. exits without saving file (:q)
+`Z`                            | alias for ZZ. exits saving file
+`Q`                            | alias for ZQ. exits without saving file
 `U`                            | toggle zoom in and zoom out of a window
 `+`                            | `:Gstatus`
 `<leader> + -`                 | `:noh` turns off highlighted search terms.
