@@ -46,40 +46,42 @@ vim .gitconfig #change user info
 ## VIM: Powerful shell text editor. Tweaked with plugins.
 
 ### installed plugins
-01. [ack.vim][ack.vim_link]: front for ack/ag, search inside files.
-02. [auto-pairs][auto-pairs_link]: plugin to complete pairs of brackets and similar stuff.
-03. [bufexplorer][bufexplorer_link]: easier vim buffer navigation.
-04. [ctrlp.vim][ctlrp_link]: easier vim buffer navigation.
-05. [gitv][gitv_link]: gitk for vim.
-06. [nerdtree][nerdtree_link]: tree like file navigation.
-07. [nerdtree-tabs][nerdtree-tabs_link]: 'toggle' behaviour for nerdtree.
-08. [supertab][supertab_link]: insert mode completions triggered by <TAB>.
-09. [targets.vim][targets_link]: creates various useful textobjects.
-10. [ultisnips][ultisnips_link]: snippet engine for vim (needs +python).
-11. [vim-airline][airline_link]: lightweight powerline clone written in pure VimL.
-12. [vim-bufkill][bufkill_link]: easier buffer unloading.
-13. [vim-closetag][closetag_link]: auto close for html tags.
-14. [vim-colors-solarized][vim-colors-solarized_link]: well designed vim colorscheme.
-15. [vim-commentary][vim-commentary_link]: automatic commentary wrapping.
-16. [vim-easy-align][vim-easy-align_link]: very good text alignment tool.
-17. [vim-endwise][vim-endwise_link]: automatic insert mode if/for/case completions for some languages.
-18. [vim-exchange][vim-exchange_link]: easily swap of two regions of text.
-19. [vim-fugitive][vim-fugitive_link]: very good git wrapper for vim.
-20. [vim-numbertoggle][vim-numbertoggle_link]: eases the use of relative line numbers.
-21. [vim-repeat][vim-repeat_link]: expands usage opportunities for the '.' (dot) repeat command.
-22. [vim-signature][vim-signature_link]: adds visual notation for vim marks.
-23. [vim-signify][vim-signify_link]: signs to indicate added, modified and removed lines of files under a VCS.
-24. [vim-snippets][vim-snippets_link]: snippets for various programming languages.
-25. [vim-surround][vim-surround_link]: easily add/change surrounding {},'',(), <htmltags>, etc...
-26. [vim-textobj-entire][vim-textobj-entire_link]: adds textobjs `ie` and `ae` for selecting the entire buffer.
-27. [vim-textobj-function][vim-textobj-function_link]: adds textobjs `if` and `af` for selecting a function body.
-28. [vim-textobj-function-javascript][vim-textobj-function-javascript_link]: expands [vim-textobj-function][vim-textobj-function_link] adding javascript functions.
-29. [vim-textobj-underscore][vim-textobj-underscore_link]: adds `a_` and `i_` text objects for manipulating words between underscores.
-30. [vim-textobj-user][vim-textobj-user_link]: base library for other text objects.
-31. [vim-textobj-xmlattr][vim-textobj-xmlattr_link]: adds `ax` and `ix` text objects for manipulating xml attributes of tags.
-32. [vim-unimpaired][vim-unimpaired_link]: adds various `[ + bind` and `] + bind` useful bindings.
-33. [vis][vis_link]: within visual selection search and replace. (block or linewise)
-34. [ZoomWin][ZoomWin_link]: makes a vim window go temporarilly fullscreen.
+* [ack.vim][ack.vim_link]: front for ack/ag, search inside files.
+* [auto-pairs][auto-pairs_link]: plugin to complete pairs of brackets and similar stuff.
+* [bufexplorer][bufexplorer_link]: easier vim buffer navigation.
+* [ctrlp.vim][ctlrp_link]: easier vim buffer navigation.
+* [gitv][gitv_link]: gitk for vim.
+* [indentLine][indentLine_link]: visual cues for indentation.
+* [nerdtree][nerdtree_link]: tree like file navigation.
+* [nerdtree-tabs][nerdtree-tabs_link]: 'toggle' behaviour for nerdtree.
+* [supertab][supertab_link]: insert mode completions triggered by <TAB>.
+* [targets.vim][targets_link]: creates various useful textobjects.
+* [ultisnips][ultisnips_link]: snippet engine for vim (needs +python).
+* [vim-airline][airline_link]: lightweight powerline clone written in pure VimL.
+* [vim-bufkill][bufkill_link]: easier buffer unloading.
+* [vim-characterize][vim-characterize_link]: improve information given by `<C-a>`. (`h: <C-a>`)
+* [vim-closetag][closetag_link]: auto close for html tags.
+* [vim-colors-solarized][vim-colors-solarized_link]: well designed vim colorscheme.
+* [vim-commentary][vim-commentary_link]: automatic commentary wrapping.
+* [vim-easy-align][vim-easy-align_link]: very good text alignment tool.
+* [vim-endwise][vim-endwise_link]: automatic insert mode if/for/case completions for some languages.
+* [vim-exchange][vim-exchange_link]: easily swap of two regions of text.
+* [vim-fugitive][vim-fugitive_link]: very good git wrapper for vim.
+* [vim-numbertoggle][vim-numbertoggle_link]: eases the use of relative line numbers.
+* [vim-repeat][vim-repeat_link]: expands usage opportunities for the '.' (dot) repeat command.
+* [vim-signature][vim-signature_link]: adds visual notation for vim marks.
+* [vim-signify][vim-signify_link]: signs to indicate added, modified and removed lines of files under a VCS.
+* [vim-snippets][vim-snippets_link]: snippets for various programming languages.
+* [vim-surround][vim-surround_link]: easily add/change surrounding {},'',(), <htmltags>, etc...
+* [vim-textobj-entire][vim-textobj-entire_link]: adds textobjs `ie` and `ae` for selecting the entire buffer.
+* [vim-textobj-function][vim-textobj-function_link]: adds textobjs `if` and `af` for selecting a function body.
+* [vim-textobj-function-javascript][vim-textobj-function-javascript_link]: expands [vim-textobj-function][vim-textobj-function_link] adding javascript functions.
+* [vim-textobj-underscore][vim-textobj-underscore_link]: adds `a_` and `i_` text objects for manipulating words between underscores.
+* [vim-textobj-user][vim-textobj-user_link]: base library for other text objects.
+* [vim-textobj-xmlattr][vim-textobj-xmlattr_link]: adds `ax` and `ix` text objects for manipulating xml attributes of tags.
+* [vim-unimpaired][vim-unimpaired_link]: adds various `[ + bind` and `] + bind` useful bindings.
+* [vis][vis_link]: within visual selection search and replace. (block or linewise)
+* [ZoomWin][ZoomWin_link]: makes a vim window go temporarilly fullscreen.
 
 #### VIM: note about the `<leader>` key
 
@@ -198,12 +200,14 @@ bind                           | action
 [bufexplorer_link]: <https://github.com/jlanzarotta/bufexplorer.git>
 [ctlrp_link]: <https://github.com/ctrlpvim/ctrlp.vim.git>
 [gitv_link]: <https://github.com/ctrlpvim/ctrlp.vim.git>
+[indentLine_link]: <https://github.com/Yggdroot/indentLine.git>
 [nerdtree_link]: <https://github.com/scrooloose/nerdtree.git>
 [supertab_link]: <https://github.com/ervandew/supertab.git>
 [targets_link]: <https://github.com/wellle/targets.vim.git>
 [ultisnips_link]: <https://github.com/SirVer/ultisnips.git>
 [airline_link]: <https://github.com/bling/vim-airline.git>
 [bufkill_link]: <https://github.com/qpkorr/vim-bufkill.git>
+[vim-characterize_link]: <https://github.com/tpope/vim-characterize.git>
 [closetag_link]: <https://github.com/alvan/vim-closetag.git>
 [vim-colors-solarized_link]: <https://github.com/altercation/vim-colors-solarized.git>
 [vim-commentary_link]: <https://github.com/tpope/vim-commentary.git>
