@@ -19,7 +19,7 @@
 git clone https://github.com/ninrod/unix-shell-config.git ~/.unix-shell-config
 ```
 
-* if you're on Linux, you need to edit .tmux.conf like so:
+* if you are not on OSx (e.g. GNU/Linux), you need to edit .tmux.conf like so:
 
 ```sh
 cd ~/.unix-shell-config
