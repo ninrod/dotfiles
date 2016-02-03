@@ -32,7 +32,7 @@ set -g default-command "reattach-to-user-namespace -l /usr/local/bin/zsh"
 bind -t vi-copy y copy-pipe 'pbcopy'
 ```
 
-* configure your terminal to use the [solariezed theme][solarized_link].
+* configure your terminal to use the [solarized theme][solarized_link].
 * change the git user info inside the .gitconfig file within the repo and run the zsh script `.links.zsh` like so:
 
 ```sh
