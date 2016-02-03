@@ -92,15 +92,15 @@ bind                    | action
 `<leader> + v`          | creates a new window in a vertical split
 `<leader> + x`          | creates a new window in a horizontal split
 `<leader> + w`          | cycle through windows
-`<leader> + [h,j,k,l]`  | navigates through open windows
-`<leader> + [H,J,K,L]`  | moves the window to the right, left, etc...
-`<leader> + [arrowkey]` | resizes the window
 `<leader> + -`          | `:noh` turns off highlighted search terms.
 `<leader> + d`          | custom pagedown. alias for `LztM`.
 `<leader> + u`          | custom pageup. alias for `HzbM`.
 `<leader> + f`          | `:CtrlP`. fuzzy file finder
 `<leader> + r`          | `:CtrlPMRU`. Most recent used file finder.
 `<leader> + /`          | `:noh`
+`<leader> + [h,j,k,l]`  | navigates through open windows
+`<leader> + [H,J,K,L]`  | moves the window to the right, left, etc...
+`<leader> + [arrowkey]` | resizes the window
 
 #### VIM: misc keys
 
