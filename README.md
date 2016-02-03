@@ -91,6 +91,7 @@ bind    |action
 `<F2>`  |toggle nerdtree file explorer
 `<F4>`  |kill the current buffer
 `<F5>`  |:windo diffthis
+`<F9>`  | toggles showing relative line numbers.
 `<F11>` |source ~/.vimrc
 `<F12>` |open ~/.vimrc
 
@@ -104,8 +105,6 @@ bind                           | action
 `Q`                            | alias for ZQ. exits without saving file (:q)
 `U`                            | toggle zoom in and zoom out of a window
 `+`                            | `:Gstatus`
-`#`                            | toggles showing relative line numbers.
-`<leader> + #`                 | turns off line numbers
 `<leader> + -`                 | `:noh` turns off highlighted search terms.
 `<leader> + d`                 | custom pagedown. alias for `LztM`.
 `<leader> + u`                 | custom pageup. alias for `HzbM`.

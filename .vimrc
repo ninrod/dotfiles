@@ -238,8 +238,7 @@ xmap <cr> <Plug>(EasyAlign)
 nnoremap gs :NinScratch<CR>
 
 " vim-numbertoggle binding
-let g:NumberToggleTrigger="#"
-nmap <leader># :set nu!<CR>
+let g:NumberToggleTrigger="<F9>"
 
 " bind to facilitate bracket selection
 omap ir i[
