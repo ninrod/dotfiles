@@ -106,6 +106,9 @@ set showbreak=←←
 " Plugins {{{
 execute pathogen#infect()
 
+" don't let bufkill clutter <leader> binds
+let g:BufKillCreateMappings = 0
+
 " if you want to disable polyglot for some specific language
 let g:polyglot_disabled = ['markdown']
 
