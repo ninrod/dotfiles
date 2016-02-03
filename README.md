@@ -55,6 +55,7 @@ vim .gitconfig #change user info
 * [nerdtree][nerdtree_link]: tree like file navigation.
 * [nerdtree-tabs][nerdtree-tabs_link]: 'toggle' behaviour for nerdtree.
 * [supertab][supertab_link]: insert mode completions triggered by <TAB>.
+* [startify][startify_link]: improved start screen.
 * [targets.vim][targets_link]: creates various useful textobjects.
 * [ultisnips][ultisnips_link]: snippet engine for vim (needs +python).
 * [vim-airline][airline_link]: lightweight powerline clone written in pure VimL.
@@ -85,6 +86,7 @@ vim .gitconfig #change user info
 * [vim-textobj-xmlattr][vim-textobj-xmlattr_link]: adds `ax` and `ix` text objects for manipulating xml attributes of tags.
 * [vim-unimpaired][vim-unimpaired_link]: adds various `[ + bind` and `] + bind` useful bindings.
 * [vis][vis_link]: within visual selection search and replace. (block or linewise)
+* [vitality][vitality_link]: better cursor display within iterm2.
 * [ZoomWin][ZoomWin_link]: makes a vim window go temporarilly fullscreen.
 
 #### VIM: note about the `<leader>` key
@@ -240,3 +242,5 @@ bind                           | action
 [vim-json_link]: <https://github.com/elzr/vim-json.git>
 [vim-polyglot_link]: <https://github.com/sheerun/vim-polyglot.git>
 [vim-rsi_link]: <https://github.com/tpope/vim-rsi.git>
+[startify_link]: <https://github.com/mhinz/vim-startify.git>
+[vitality_link]: <https://github.com/sjl/vitality.vim.git>
