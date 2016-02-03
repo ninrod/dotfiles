@@ -231,6 +231,9 @@ nmap <leader>- :SignifyRefresh<CR>
 " :Gpush
 nnoremap gp :Gpush<CR>
 
+" trying out gl for `G`
+nnoremap gl G
+
 " easyalign mappings
 xmap <cr> <Plug>(EasyAlign)
 
