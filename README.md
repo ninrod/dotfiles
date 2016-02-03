@@ -85,6 +85,41 @@ vim .gitconfig #change user info
 
 * I've remapped `<space>` to be an alias to the `<leader>` key.
 
+#### VIM: `<leader>` binds
+
+bind                    | action
+------------------------| ------------------------------------------
+`<leader> + v`          | creates a new window in a vertical split
+`<leader> + x`          | creates a new window in a horizontal split
+`<leader> + w`          | cycle through windows
+`<leader> + [h,j,k,l]`  | navigates through open windows
+`<leader> + [H,J,K,L]`  | moves the window to the right, left, etc...
+`<leader> + [arrowkey]` | resizes the window
+`<leader> + -`          | `:noh` turns off highlighted search terms.
+`<leader> + d`          | custom pagedown. alias for `LztM`.
+`<leader> + u`          | custom pageup. alias for `HzbM`.
+`<leader> + f`          | `:CtrlP`. fuzzy file finder
+`<leader> + r`          | `:CtrlPMRU`. Most recent used file finder.
+`<leader> + /`          | `:noh`
+
+#### VIM: misc keys
+
+bind                           | action
+-----------------------        | ------------------------------------------
+`gp`                           | `:Gpush`
+`gs`                           | open scratch buffer
+`Z`                            | alias for ZZ. exits saving file
+`Q`                            | alias for ZQ. exits without saving file
+`U`                            | toggle zoom in and zoom out of a window
+`+`                            | `:Gstatus`
+`<ENTER>`                      | `:w` (writes buffer)
+`<ENTER>` (visual)             | `:EasyAlign`
+`<BACKSPACE>`                  | buffer explorer
+`{`, `}`                       | navigate vim help files. `}` jumps to term. `{` jumps back.
+`ir`, `ar` (visual and normal) | alias for `i[` and `a[`
+`(`, `)` (visual and normal)   | alias for `"0p`,`"0P`. Easier access to the 'yank' register
+`Y` (visual and normal)        | alias for `"0d`. cut and fill yank register. (register `"0`)
+
 #### VIM: function keys
 bind    |action
 --------|-------------------------------------------
@@ -94,41 +129,6 @@ bind    |action
 `<F9>`  | toggles showing relative line numbers.
 `<F11>` |source ~/.vimrc
 `<F12>` |open ~/.vimrc
-
-#### VIM: misc binds
-
-bind                           | action
------------------------------- | ------------------------------------------
-`gp`                           | `:Gpush`
-`gs`                           | open scratch buffer
-`Z`                            | alias for ZZ. exits saving file
-`Q`                            | alias for ZQ. exits without saving file
-`U`                            | toggle zoom in and zoom out of a window
-`+`                            | `:Gstatus`
-`<leader> + -`                 | `:noh` turns off highlighted search terms.
-`<leader> + d`                 | custom pagedown. alias for `LztM`.
-`<leader> + u`                 | custom pageup. alias for `HzbM`.
-`<leader> + f`                 | `:CtrlP`. fuzzy file finder
-`<leader> + r`                 | `:CtrlPMRU`. Most recent used file finder.
-`<leader> + /`                 | `:noh`
-`<ENTER>`                      | `:w` (writes buffer)
-`<ENTER>` (visual)             | `:EasyAlign`
-`<BACKSPACE>`                  | buffer explorer
-`{`, `}`                       | navigate vim help files. `}` jumps to term. `{` jumps back.
-`ir`, `ar` (visual and normal) | alias for `i[` and `a[`
-`(`, `)` (visual and normal)   | alias for `"0p`,`"0P`. Easier access to the 'yank' register
-`Y` (visual and normal)        | alias for `"0d`. cut and fill yank register. (register `"0`)
-
-#### VIM: window manipulation
-
-bind                   | action
------------------------|------------------------------------------
-`<leader> + v`         | creates a new window in a vertical split
-`<leader> + x`         | creates a new window in a horizontal split
-`<leader> + w`         | cycle through windows
-`<leader> + [h,j,k,l]` | navigates through open windows
-`<leader> + [H,J,K,L]` | moves the window to the right, left, etc...
-`<leader> + [arrowkey]`| resizes the window
 
 #### VIM: potentially useful binds
 
