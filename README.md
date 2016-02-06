@@ -9,6 +9,7 @@
 * get [zsh][zsh_link] 5.0.8+
 * get [python][python_link] 2.7+
 * get [fasd][fasd_link].
+* get [ag][ag_link] (you can `brew install ag` on OSx).
 * make sure you vim 7.4+ with [+clipboard][vim_clipboard_link] and +python.
 * if you're on OSX, you need to `brew install` [reattach-to-user-namespace][reattach_link].
 * install a [powerline patched font][powerline_fonts] on your OS and configure your terminal to use said font.
@@ -243,3 +244,4 @@ bind                           | action
 [vim-rsi_link]: <https://github.com/tpope/vim-rsi.git>
 [vitality_link]: <https://github.com/sjl/vitality.vim.git>
 [papercolor_link]: <https://github.com/NLKNguyen/papercolor-theme.git>
+[ag_link]: <https://github.com/ggreer/the_silver_searcher.git>
