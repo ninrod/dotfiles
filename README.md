@@ -92,7 +92,8 @@ vim .gitconfig #change user info
 
 #### VIM: note about the `<leader>` key
 
-* I've remapped `<space>` to be an alias to the `<leader>` key.
+`<prefix> + <space>` | enter copy-mode ([tip VIII][sheerun_tip_link] from [sheerun][sheerun_link]).
+* I've remapped `<space>` to be an alias to the `<leader>` key (tip [I][sheerun_tip_link] from [sheerun][sheerun_link])
 
 #### VIM: `<leader>` binds
 
