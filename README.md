@@ -3,7 +3,7 @@
 ### Screenshot
 ![screenshot-vi-tmux](https://raw.githubusercontent.com/ninrod/mac-shell-config/misc/images/papercolor-screenshot.png)
 
-## INSTALLATION instructions
+## Install Instructions
 
 * get [tmux][tmux_link] 1.8+
 * get [zsh][zsh_link] 5.0.8+
