@@ -14,7 +14,7 @@
 * if you're on OSX, you need to `brew install` [reattach-to-user-namespace][reattach_link].
 * install a [powerline patched font][powerline_fonts] on your OS and configure your terminal to use said font.
   I recommend [Source code Pro][saucecode_link], 14pt, for a 13" display.
-* I strongly recommend using [iTerm2][iterm2_link].
+* I strongly recommend using [iTerm2][iterm2_link] on OSx.
 * git clone this repo.
 
 ```sh
@@ -87,7 +87,7 @@ vim .gitconfig #change user info
 37. [vim-textobj-xmlattr][vim-textobj-xmlattr_link]: adds `ax` and `ix` text objects for manipulating xml attributes of tags.
 38. [vim-unimpaired][vim-unimpaired_link]: adds various `[ + bind` and `] + bind` useful bindings.
 39. [vis][vis_link]: within visual selection search and replace. (block or linewise)
-40. [vitality][vitality_link]: better cursor display within iterm2 on OSx.
+40. [vitality][vitality_link]: better cursor display within iterm2.
 41. [ZoomWin][ZoomWin_link]: makes a vim window go temporarilly fullscreen.
 
 #### VIM: note about the `<leader>` key
