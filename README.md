@@ -14,6 +14,7 @@
 * if you're on OSX, you need to `brew install` [reattach-to-user-namespace][reattach_link].
 * install a [powerline patched font][powerline_fonts] on your OS and configure your terminal to use said font.
   I recommend [Source code Pro][saucecode_link], 14pt, for a 13" display.
+* I strongly recommend using [iTerm2][iterm2_link].
 * git clone this repo.
 
 ```sh
@@ -245,3 +246,4 @@ bind                           | action
 [vitality_link]: <https://github.com/sjl/vitality.vim.git>
 [papercolor_link]: <https://github.com/NLKNguyen/papercolor-theme.git>
 [ag_link]: <https://github.com/ggreer/the_silver_searcher.git>
+[iterm2_link]: <https://github.com/gnachman/iTerm2.git>
