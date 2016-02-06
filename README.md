@@ -60,7 +60,7 @@ vim .gitconfig #change user info
 12. [ultisnips][ultisnips_link]: snippet engine for vim (needs +python).
 13. [vim-airline][airline_link]: lightweight powerline clone written in pure VimL.
 14. [vim-bufkill][bufkill_link]: easier buffer unloading.
-15. [vim-characterize][vim-characterize_link]: improve information given by `<C-a>`. (`h: <C-a>`)
+15. [vim-characterize][vim-characterize_link]: improve information given by `ga`. (`h: ga`)
 16. [vim-closetag][closetag_link]: auto close for html tags.
 17. [vim-colors-solarized][vim-colors-solarized_link]: well designed vim colorscheme.
 18. [vim-commentary][vim-commentary_link]: automatic commentary wrapping.
