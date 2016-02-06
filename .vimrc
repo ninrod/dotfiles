@@ -142,21 +142,9 @@ let g:rainbow_conf = {'separately': {'html': 0}}
 " no default mappings for bufExplorer
 let g:bufExplorerDisableDefaultKeyMapping=1
 
-" Solarized Dark Theme
+" papercolor theme
 set background=light
-let g:solarized_bold=1
-let g:solarized_underline=0
-let g:solarized_visibility="high"
-let g:solarized_contrast="high"
-let g:solarized_diffmode="high"
-if !has("gui_running")
-    " terminal vim...
-    let g:solarized_termcolors=16
-else
-    " macVim | gVim
-    set guifont=Sauce\ Code\ Powerline:h11
-endif
-colorscheme solarized
+colorscheme PaperColor
 
 " vim-commentary: disabling double backslash
 let g:commentary_map_backslash=0
@@ -194,7 +182,7 @@ let g:ctrlp_custom_ignore = '
 " Airline configs(status line)
 
 " airline theme
-let g:airline_theme='base16'
+let g:airline_theme='PaperColor'
 
 " airline: if you don't want to use a powerline patched font
 let g:airline_powerline_fonts = 1
