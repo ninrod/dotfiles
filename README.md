@@ -55,39 +55,38 @@ vim .gitconfig #change user info
 07. [nerdtree][nerdtree_link]: tree like file navigation.
 08. [nerdtree-tabs][nerdtree-tabs_link]: 'toggle' behaviour for nerdtree.
 09. [supertab][supertab_link]: insert mode completions triggered by <TAB>.
-10. [startify][startify_link]: improved start screen.
-11. [targets.vim][targets_link]: creates various useful textobjects.
-12. [ultisnips][ultisnips_link]: snippet engine for vim (needs +python).
-13. [vim-airline][airline_link]: lightweight powerline clone written in pure VimL.
-14. [vim-bufkill][bufkill_link]: easier buffer unloading.
-15. [vim-characterize][vim-characterize_link]: improve information given by `ga`. (`h: ga`)
-16. [vim-closetag][closetag_link]: auto close for html tags.
-17. [vim-colors-solarized][vim-colors-solarized_link]: well designed vim colorscheme.
-18. [vim-commentary][vim-commentary_link]: automatic commentary wrapping.
-19. [vim-easy-align][vim-easy-align_link]: very good text alignment tool.
-20. [vim-endwise][vim-endwise_link]: automatic insert mode if/for/case completions for some languages.
-21. [vim-exchange][vim-exchange_link]: easily swap of two regions of text.
-22. [vim-fugitive][vim-fugitive_link]: very good git wrapper for vim.
-23. [vim-instant-markdown][vim-instant-markdown_link]: quick markdown visualization tool.
-24. [vim-json][vim-json_link]: better json syntax highlighting.
-25. [vim-numbertoggle][vim-numbertoggle_link]: eases the use of relative line numbers.
-26. [vim-polyglot][vim-polyglot_link]: syntax highlighting for a bunch of languages.
-27. [vim-repeat][vim-repeat_link]: expands usage opportunities for the '.' (dot) repeat command.
-28. [vim-rsi][vim-rsi_link]: readline style insertion.
-29. [vim-signature][vim-signature_link]: adds visual notation for vim marks.
-30. [vim-signify][vim-signify_link]: signs to indicate added, modified and removed lines of files under a VCS.
-31. [vim-snippets][vim-snippets_link]: snippets for various programming languages.
-32. [vim-surround][vim-surround_link]: easily add/change surrounding {},'',(), <htmltags>, etc...
-33. [vim-textobj-entire][vim-textobj-entire_link]: adds textobjs `ie` and `ae` for selecting the entire buffer.
-34. [vim-textobj-function][vim-textobj-function_link]: adds textobjs `if` and `af` for selecting a function body.
-35. [vim-textobj-function-javascript][vim-textobj-function-javascript_link]: expands [vim-textobj-function][vim-textobj-function_link] adding javascript functions.
-36. [vim-textobj-underscore][vim-textobj-underscore_link]: adds `a_` and `i_` text objects for manipulating words between underscores.
-37. [vim-textobj-user][vim-textobj-user_link]: base library for other text objects.
-38. [vim-textobj-xmlattr][vim-textobj-xmlattr_link]: adds `ax` and `ix` text objects for manipulating xml attributes of tags.
-39. [vim-unimpaired][vim-unimpaired_link]: adds various `[ + bind` and `] + bind` useful bindings.
-40. [vis][vis_link]: within visual selection search and replace. (block or linewise)
-41. [vitality][vitality_link]: better cursor display within iterm2.
-42. [ZoomWin][ZoomWin_link]: makes a vim window go temporarilly fullscreen.
+10. [targets.vim][targets_link]: creates various useful textobjects.
+11. [ultisnips][ultisnips_link]: snippet engine for vim (needs +python).
+12. [vim-airline][airline_link]: lightweight powerline clone written in pure VimL.
+13. [vim-bufkill][bufkill_link]: easier buffer unloading.
+14. [vim-characterize][vim-characterize_link]: improve information given by `ga`. (`h: ga`)
+15. [vim-closetag][closetag_link]: auto close for html tags.
+16. [vim-colors-solarized][vim-colors-solarized_link]: well designed vim colorscheme.
+17. [vim-commentary][vim-commentary_link]: automatic commentary wrapping.
+18. [vim-easy-align][vim-easy-align_link]: very good text alignment tool.
+19. [vim-endwise][vim-endwise_link]: automatic insert mode if/for/case completions for some languages.
+20. [vim-exchange][vim-exchange_link]: easily swap of two regions of text.
+21. [vim-fugitive][vim-fugitive_link]: very good git wrapper for vim.
+22. [vim-instant-markdown][vim-instant-markdown_link]: quick markdown visualization tool.
+23. [vim-json][vim-json_link]: better json syntax highlighting.
+24. [vim-numbertoggle][vim-numbertoggle_link]: eases the use of relative line numbers.
+25. [vim-polyglot][vim-polyglot_link]: syntax highlighting for a bunch of languages.
+26. [vim-repeat][vim-repeat_link]: expands usage opportunities for the '.' (dot) repeat command.
+27. [vim-rsi][vim-rsi_link]: readline style insertion.
+28. [vim-signature][vim-signature_link]: adds visual notation for vim marks.
+29. [vim-signify][vim-signify_link]: signs to indicate added, modified and removed lines of files under a VCS.
+30. [vim-snippets][vim-snippets_link]: snippets for various programming languages.
+31. [vim-surround][vim-surround_link]: easily add/change surrounding {},'',(), <htmltags>, etc...
+32. [vim-textobj-entire][vim-textobj-entire_link]: adds textobjs `ie` and `ae` for selecting the entire buffer.
+33. [vim-textobj-function][vim-textobj-function_link]: adds textobjs `if` and `af` for selecting a function body.
+34. [vim-textobj-function-javascript][vim-textobj-function-javascript_link]: expands [vim-textobj-function][vim-textobj-function_link] adding javascript functions.
+35. [vim-textobj-underscore][vim-textobj-underscore_link]: adds `a_` and `i_` text objects for manipulating words between underscores.
+36. [vim-textobj-user][vim-textobj-user_link]: base library for other text objects.
+37. [vim-textobj-xmlattr][vim-textobj-xmlattr_link]: adds `ax` and `ix` text objects for manipulating xml attributes of tags.
+38. [vim-unimpaired][vim-unimpaired_link]: adds various `[ + bind` and `] + bind` useful bindings.
+39. [vis][vis_link]: within visual selection search and replace. (block or linewise)
+40. [vitality][vitality_link]: better cursor display within iterm2.
+41. [ZoomWin][ZoomWin_link]: makes a vim window go temporarilly fullscreen.
 
 #### VIM: note about the `<leader>` key
 
@@ -242,5 +241,4 @@ bind                           | action
 [vim-json_link]: <https://github.com/elzr/vim-json.git>
 [vim-polyglot_link]: <https://github.com/sheerun/vim-polyglot.git>
 [vim-rsi_link]: <https://github.com/tpope/vim-rsi.git>
-[startify_link]: <https://github.com/mhinz/vim-startify.git>
 [vitality_link]: <https://github.com/sjl/vitality.vim.git>
