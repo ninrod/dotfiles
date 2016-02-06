@@ -87,7 +87,7 @@ vim .gitconfig #change user info
 37. [vim-textobj-xmlattr][vim-textobj-xmlattr_link]: adds `ax` and `ix` text objects for manipulating xml attributes of tags.
 38. [vim-unimpaired][vim-unimpaired_link]: adds various `[ + bind` and `] + bind` useful bindings.
 39. [vis][vis_link]: within visual selection search and replace. (block or linewise)
-40. [vitality][vitality_link]: better cursor display within iterm2.
+40. [vitality][vitality_link]: better cursor display within iterm2 on OSx.
 41. [ZoomWin][ZoomWin_link]: makes a vim window go temporarilly fullscreen.
 
 #### VIM: note about the `<leader>` key
