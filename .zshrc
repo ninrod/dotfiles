@@ -17,13 +17,10 @@ export TERM=xterm-256color
 export EDITOR=vim
 
 # config do path
-export RACER_PATH=~/code/lib/rust/racer/target/release
-export RUST_SRC_PATH=~/code/lib/rust/src/src
 export GNUBIN_PATH=/usr/local/opt/coreutils/libexec/gnubin
 export TEXBIN=/Library/TeX/texbin
 export PACKER_BIN=~/bin/packer_0.8.6_darwin_amd64
 PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-PATH="$RACER_PATH:$PATH"
 PATH="$GNUBIN_PATH:$PATH"
 PATH="$TEXBIN:$PATH"
 PATH="$PACKER_BIN:$PATH"

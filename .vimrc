@@ -142,9 +142,6 @@ let g:rainbow_conf = {'separately': {'html': 0}}
 " no default mappings for bufExplorer
 let g:bufExplorerDisableDefaultKeyMapping=1
 
-"Path to the Rust Racer autocomplete tool"
-let g:racer_cmd ="/Users/ninrod/code/lib/rust/racer/target/release/racer"
-
 " Solarized Dark Theme
 set background=dark
 let g:solarized_bold=1
