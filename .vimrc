@@ -143,7 +143,7 @@ let g:rainbow_conf = {'separately': {'html': 0}}
 let g:bufExplorerDisableDefaultKeyMapping=1
 
 " Solarized Dark Theme
-set background=dark
+set background=light
 let g:solarized_bold=1
 let g:solarized_underline=0
 let g:solarized_visibility="high"
