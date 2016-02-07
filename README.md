@@ -1,4 +1,4 @@
-# Config files for __tmux, zsh, vim, git__
+# Config files for __tmux, zsh, vim, git__ (lightly OSx focused)
 
 ### Screenshot
 ![screenshot-vi-tmux](https://raw.githubusercontent.com/ninrod/mac-shell-config/misc/images/papercolor-screenshot.png)
