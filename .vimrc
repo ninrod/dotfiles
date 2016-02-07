@@ -222,6 +222,16 @@ highlight clear SignColumn
 
 " Binds {{{
 
+nnoremap <leader>b :<C-u>call search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!\)\<Bar>\%^','bW')<CR>
+" nnoremap <leader>w :<C-u>call search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!\)\<Bar>\%$','W')<CR>
+
+" nnoremap <leader>w :<C-u>call search('\< \| \U\@<=\u \| \u\ze\%(\U\&\>\@!\) \| \%$','W')<CR>
+
+nnoremap <leader>w :<C-u>call search('\<\|\U\@<=\u\|\u\ze\%(\U\&\>\@!\)\|\%$','W')<CR>
+
+
+"FuckingShitOhYeahMotherFucker
+
 " quick map for signify hunk refresh
 nmap <leader>- :SignifyRefresh<CR>
 
@@ -309,7 +319,6 @@ nmap <leader>h <C-W>h
 nmap <leader>j <C-W>j
 nmap <leader>k <C-W>k
 nmap <leader>l <C-W>l
-nmap <leader>w <C-W>w
 
 " moving windows
 nmap <leader>H <C-W>H
@@ -380,4 +389,11 @@ autocmd BufReadPre,FileReadPre *.md,*.jsp MatchDebug
 " quick fix for <CR> in command-line-window
 autocmd CmdwinEnter * nunmap <CR>
 
+" trailing whitespace hack
+highlight ExtraWhitespace ctermbg=218 guibg=218
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
 " }}}
