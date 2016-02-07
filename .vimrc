@@ -106,6 +106,22 @@ set showbreak=←←
 " Plugins {{{
 execute pathogen#infect()
 
+" enabling rainbow plugin at start
+let g:rainbow_active = 1
+
+" rainbow sucks on html
+let g:rainbow_conf = {'separately': {'html': 0}}
+
+let darkcolors = ['DarkBlue', 'Magenta', 'Black', 'Red', 'DarkGray', 'DarkGreen', 'DarkYellow']
+let g:rainbow_conf = {
+\   'ctermfgs': darkcolors
+\}
+
+" let darkcolors = ['darkblue', 'darkyellow', 'darkcyan', 'darkmagenta']
+" let g:rainbow_conf = {
+" \   'ctermfgs': (darkcolors)
+" \}
+
 " don't let bufkill clutter <leader> binds
 let g:BufKillCreateMappings = 0
 
@@ -133,11 +149,7 @@ endif
 " as we only use git, we tell this to signify for a little performance gain. Every bit counts.
 let g:signify_vcs_list = ['git']
 
-" enabling rainbow plugin at start
-let g:rainbow_active = 1
 
-" rainbow sucks on html
-let g:rainbow_conf = {'separately': {'html': 0}}
 
 " no default mappings for bufExplorer
 let g:bufExplorerDisableDefaultKeyMapping=1
