@@ -16,12 +16,13 @@
   I recommend [Source code Pro][saucecode_link], 14pt, for a 13" display.
 * I strongly recommend using [iTerm2][iterm2_link] on OSx.
 * git clone this repo.
+* by the way, don't even think of installing this on windows. You will fail.
 
 ```sh
 git clone https://github.com/ninrod/unix-shell-config.git ~/.unix-shell-config
 ```
 
-* if you are not on OSx (e.g. GNU/Linux), you need to edit .tmux.conf like so:
+* if you are not on OSx, you need to edit .tmux.conf like so:
 
 ```sh
 cd ~/.unix-shell-config
