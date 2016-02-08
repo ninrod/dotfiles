@@ -106,6 +106,9 @@ set showbreak=←←
 " Plugins {{{
 execute pathogen#infect()
 
+" CamelCaseMotion test
+call camelcasemotion#CreateMotionMappings('<leader>')
+
 " enabling rainbow plugin at start
 let g:rainbow_active = 1
 
@@ -221,16 +224,6 @@ highlight clear SignColumn
 " }}}
 
 " Binds {{{
-
-nnoremap <leader>b :<C-u>call search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!\)\<Bar>\%^','bW')<CR>
-" nnoremap <leader>w :<C-u>call search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!\)\<Bar>\%$','W')<CR>
-
-" nnoremap <leader>w :<C-u>call search('\< \| \U\@<=\u \| \u\ze\%(\U\&\>\@!\) \| \%$','W')<CR>
-
-nnoremap <leader>w :<C-u>call search('\<\|\U\@<=\u\|\u\ze\%(\U\&\>\@!\)\|\%$','W')<CR>
-
-
-"FuckingShitOhYeahMotherFucker
 
 " quick map for signify hunk refresh
 nmap <leader>- :SignifyRefresh<CR>
