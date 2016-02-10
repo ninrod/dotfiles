@@ -177,8 +177,8 @@ bind                          | action
 ----------------------------- | ----------------------------------------------------------------------------------------
 `<prefix> + v`                | creates a new shell panel vertically splitting the viewport.
 `<prefix> + x`                | creates a new shell panel horizontally splitting the viewport.
-`<prefix> + <space>`          | cycles through different panel layouts.
-`<prefix> + <arrowkey>` | navigates to the panel indicated by the arrow key.
+`<prefix> + r`                | cycles through different panel layouts.
+`<prefix> + <arrowkey>`       | navigates to the panel indicated by the arrow key.
 `<prefix> + s`                | shows a prompt where you can type the name of the window you want to send the panel to.
 
 #### exiting panels and windows in TMUX
