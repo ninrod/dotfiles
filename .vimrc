@@ -101,6 +101,9 @@ set showmatch
 
 set showbreak=←←
 
+" redraw only when we need to (i.e. don't redraw when executing a macro)
+set lazyredraw
+
 " }}}
 
 " Plugins {{{
@@ -383,7 +386,7 @@ autocmd BufReadPre,FileReadPre *.md,*.jsp MatchDebug
 autocmd CmdwinEnter * nunmap <CR>
 
 " trailing whitespace hack
-highlight ExtraWhitespace ctermbg=218 guibg=218
+highlight ExtraWhitespace ctermfg=black guifg=black ctermbg=218 guibg=218
 match ExtraWhitespace /\s\+$/
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
