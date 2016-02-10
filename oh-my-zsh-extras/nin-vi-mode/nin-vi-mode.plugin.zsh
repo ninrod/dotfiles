@@ -20,6 +20,7 @@ bindkey -v
 autoload -Uz edit-command-line
 bindkey -M vicmd 'K' edit-command-line
 
+
 # since zsh 5.0.8, text objects were introduced. Let's use some of them.
 # see here for more info: http://www.zsh.org/mla/workers/2015/msg01017.html
 # and here: https://github.com/zsh-users/zsh/commit/d257f0143e69c3724466c4c92f59538d2f3fffd1
@@ -52,12 +53,16 @@ bindkey "^[[1~" beginning-of-line
 # end key
 bindkey "^[[4~" end-of-line
 
-#delete key
+# delete key
 bindkey "^[[3~" delete-char
 
 # backspace key
 bindkey "^H" backward-delete-char
 bindkey "^?" backward-delete-char
 
-#numeric keypad return (enter)
+# numeric keypad return (enter)
 bindkey "${terminfo[kent]}" accept-line
+
+# pressing <ESC> in normal mode is bogus: you need to press 'i' twice to enter insert mode again.
+# rebinding <ESC> in normal mode to something harmless solves the problem.
+bindkey -M vicmd '\e' what-cursor-position
