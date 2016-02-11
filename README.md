@@ -87,6 +87,7 @@ vim .gitconfig #change user info
 36. [vim-textobj-user][vim-textobj-user_link]: base library for other text objects.
 37. [vim-textobj-xmlattr][vim-textobj-xmlattr_link]: adds `ax` and `ix` text objects for manipulating xml attributes of tags.
 38. [vim-unimpaired][vim-unimpaired_link]: adds various `[ + bind` and `] + bind` useful bindings.
+39. [vim-visual-star-search][vim-visual-start-search_link]: expands `*` and `#` operators to work on visual mode.
 39. [vis][vis_link]: within visual selection search and replace. (block or linewise)
 40. [vitality][vitality_link]: better cursor display within iterm2.
 41. [ZoomWin][ZoomWin_link]: makes a vim window go temporarilly fullscreen.
@@ -248,3 +249,4 @@ bind                           | action
 [papercolor_link]: <https://github.com/NLKNguyen/papercolor-theme.git>
 [ag_link]: <https://github.com/ggreer/the_silver_searcher.git>
 [iterm2_link]: <https://github.com/gnachman/iTerm2.git>
+[vim-visual-start-search_link]: <https://github.com/bronson/vim-visual-star-search.git>
