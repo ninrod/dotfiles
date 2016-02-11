@@ -1,4 +1,4 @@
-# no delays when leaving to normal mode (in milliseconds)
+# no delays for mode switching.
 export KEYTIMEOUT=1
 
 # Updates editor information when the keymap changes.
@@ -65,3 +65,43 @@ bindkey "${terminfo[kent]}" accept-line
 # pressing <ESC> in normal mode is bogus: you need to press 'i' twice to enter insert mode again.
 # rebinding <ESC> in normal mode to something harmless solves the problem.
 bindkey -M vicmd '\e' what-cursor-position
+
+########### vi-like copy and paste on OSx ##########
+
+if [ `uname` = "Darwin" ] && (($+commands[pbcopy])); then
+  function cutbuffer() {
+    zle .$WIDGET
+    echo $CUTBUFFER | pbcopy
+  }
+
+  zle_cut_widgets=(
+    vi-backward-delete-char
+    vi-change
+    vi-change-eol
+    vi-change-whole-line
+    vi-delete
+    vi-delete-char
+    vi-kill-eol
+    vi-substitute
+    vi-yank
+    vi-yank-eol
+  )
+  for widget in $zle_cut_widgets
+  do
+    zle -N $widget cutbuffer
+  done
+
+  function putbuffer() {
+    zle copy-region-as-kill "$(pbpaste)"
+    zle .$WIDGET
+  }
+
+  zle_put_widgets=(
+    vi-put-after
+    vi-put-before
+  )
+  for widget in $zle_put_widgets
+  do
+    zle -N $widget putbuffer
+  done
+fi
