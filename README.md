@@ -19,13 +19,13 @@
 * Don't even think of installing this on windows.
 
 ```sh
-git clone https://github.com/ninrod/unix-shell-config.git ~/.unix-shell-config
+git clone https://github.com/ninrod/dotfiles.git ~/.dotfiles
 ```
 
 * if you are not on OSx, you need to edit .tmux.conf like so:
 
 ```sh
-cd ~/.unix-shell-config
+cd ~/.dotfiles
 vim .tmux.conf
 
 #comment this line
@@ -39,7 +39,7 @@ bind -t vi-copy y copy-pipe 'pbcopy'
 * change the git user info inside the .gitconfig file within the repo and run the zsh script `.links.zsh` like so:
 
 ```sh
-cd ~/.unix-shell-config
+cd ~/.dotfiles
 vim .gitconfig #change user info
 ./.links.zsh
 ```
