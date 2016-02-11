@@ -16,7 +16,7 @@
   I recommend [Source code Pro][saucecode_link], 14pt, for a 13" display.
 * I strongly recommend using [iTerm2][iterm2_link] on OSx.
 * git clone this repo.
-* by the way, don't even think of installing this on windows. You will fail.
+* Don't even think of installing this on windows.
 
 ```sh
 git clone https://github.com/ninrod/unix-shell-config.git ~/.unix-shell-config
