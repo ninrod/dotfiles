@@ -18,7 +18,7 @@ bindkey -v
 
 # edit line with vim
 autoload -Uz edit-command-line
-bindkey -M vicmd 'K' edit-command-line
+bindkey -M vicmd 'gs' edit-command-line
 
 # since zsh 5.0.8, text objects were introduced. Let's use some of them.
 # see here for more info: http://www.zsh.org/mla/workers/2015/msg01017.html
