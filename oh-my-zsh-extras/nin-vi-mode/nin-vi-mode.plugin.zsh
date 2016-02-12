@@ -20,6 +20,8 @@ bindkey -v
 autoload -Uz edit-command-line
 bindkey -M vicmd 'gs' edit-command-line
 
+bindkey -M vicmd '?' history-incremental-search-backward
+
 # since zsh 5.0.8, text objects were introduced. Let's use some of them.
 # see here for more info: http://www.zsh.org/mla/workers/2015/msg01017.html
 # and here: https://github.com/zsh-users/zsh/commit/d257f0143e69c3724466c4c92f59538d2f3fffd1
