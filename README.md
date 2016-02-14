@@ -144,18 +144,18 @@ bind    |action
 `<F12>` |open ~/.vimrc
 
 #### VIM: text objects (expanded set with plugins)
-textobject | action
------------|---------
-`iw`       | expanded behaviour to work with camelcase words.
-`a`        | function arguments
-`f`        | functions
-`_`        | underscore surrounded words
-`e`        | entire file
-`x`        | html tag attribute
-`r`        | square brackets `[]`
-`b`        | brackers `()`
-`B`        | Block `{}`
-`t`        | xml tag
+textobject   | action
+-----------  | ---------
+`<leader>iw` | inside section of camelcase word
+`a`          | function arguments
+`f`          | functions
+`_`          | underscore surrounded words
+`e`          | entire file
+`x`          | html tag attribute
+`r`          | square brackets `[]`
+`b`          | brackers `()`
+`B`          | Block `{}`
+`t`          | xml tag
 
 #### VIM: potentially useful binds (not currentelly in use)
 bind        | action
