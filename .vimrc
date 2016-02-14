@@ -235,8 +235,8 @@ sunmap w
 sunmap b
 sunmap e
 sunmap ge
-omap <silent> iw <Plug>CamelCaseMotion_ie
-xmap <silent> iw <Plug>CamelCaseMotion_ie
+omap <silent> <leader>iw <Plug>CamelCaseMotion_ie
+xmap <silent> <leader>iw <Plug>CamelCaseMotion_ie
 
 " quick map for signify hunk refresh
 nmap <leader>- :SignifyRefresh<CR>
