@@ -109,8 +109,6 @@ set lazyredraw
 " Plugins {{{
 execute pathogen#infect()
 
-" CamelCaseMotion test
-call camelcasemotion#CreateMotionMappings('<leader>')
 
 " enabling rainbow plugin at start
 let g:rainbow_active = 1
@@ -227,6 +225,18 @@ highlight clear SignColumn
 " }}}
 
 " Binds {{{
+
+" CamelCaseMotion test
+map <silent> w <Plug>CamelCaseMotion_w
+map <silent> b <Plug>CamelCaseMotion_b
+map <silent> e <Plug>CamelCaseMotion_e
+map <silent> ge <Plug>CamelCaseMotion_ge
+sunmap w
+sunmap b
+sunmap e
+sunmap ge
+omap <silent> iw <Plug>CamelCaseMotion_ie
+xmap <silent> iw <Plug>CamelCaseMotion_ie
 
 " quick map for signify hunk refresh
 nmap <leader>- :SignifyRefresh<CR>
