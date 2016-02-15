@@ -153,8 +153,6 @@ endif
 " as we only use git, we tell this to signify for a little performance gain. Every bit counts.
 let g:signify_vcs_list = ['git']
 
-
-
 " no default mappings for bufExplorer
 let g:bufExplorerDisableDefaultKeyMapping=1
 
@@ -402,4 +400,5 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
+
 " }}}
