@@ -206,7 +206,7 @@ bind                           | action
 LICENSE
 -----------
 
-Same as Vim.
+Same as [Vim][vim-license_link]. 
 
 
 [vim_clipboard_link]: <http://vimcasts.org/blog/2013/11/getting-vim-with-clipboard-support>
@@ -271,3 +271,4 @@ Same as Vim.
 [iterm2_link]: <https://github.com/gnachman/iTerm2.git>
 [vim-visual-start-search_link]: <https://github.com/bronson/vim-visual-star-search.git>
 [camel_link]: <https://github.com/bkad/CamelCaseMotion.git>
+[vim-license_link]: <http://vimdoc.sourceforge.net/htmldoc/uganda.html#license>
