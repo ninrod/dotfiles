@@ -11,12 +11,12 @@
 * get [fasd][fasd_link].
 * get [ag][ag_link] (you can `brew install ag` on OSx).
 * make sure you have `vim` 7.4+ with [+clipboard][vim_clipboard_link] and +python.
+* this is for unix systems: `GNU/Linux`, `OSx`, etc... It should work on theory on windows, but I've faced a lot of configuration issues and ended up abandoning windows support.
 * if you're on OSX, you need to `brew install` [reattach-to-user-namespace][reattach_link].
 * install a [powerline patched font][powerline_fonts] on your OS and configure your terminal to use said font.
   I recommend [Source code Pro][saucecode_link], 14pt, for a 13" display.
 * I strongly recommend using [iTerm2][iterm2_link] on OSx.
 * git clone this repo.
-* friendly advice: don't even think of installing this on windows if you care for your time.
 
 ```sh
 git clone https://github.com/ninrod/dotfiles.git ~/.dotfiles
