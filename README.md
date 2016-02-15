@@ -203,6 +203,11 @@ bind                           | action
 ------------------------------ | -----------------------------------------------------------------------------------------
 `exit`                         | closes a panel. When the last panel of the window is closed, the window is also closed.
 
+LICENSE
+-----------
+
+Same as Vim.
+
 
 [vim_clipboard_link]: <http://vimcasts.org/blog/2013/11/getting-vim-with-clipboard-support>
 [papercolor_link]: <https://github.com/NLKNguyen/papercolor-theme.git>
