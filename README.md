@@ -53,7 +53,7 @@ vim .gitconfig #change user info
 0. [auto-pairs][auto-pairs_link]: plugin to complete pairs of brackets and similar stuff.
 0. [bufexplorer][bufexplorer_link]: easier vim buffer navigation.
 0. [CamelCaseMotion][camel_link]: motion through camelcase style words.
-0. [ctrlp.vim][ctlrp_link]: easier vim buffer navigation.
+0. [ctrlp.vim][ctlrp_link]: Full path fuzzy file, buffer, mru, tag finder.
 0. [gitv][gitv_link]: gitk for vim.
 0. [indentLine][indentLine_link]: visual cues for indentation.
 0. [nerdtree][nerdtree_link]: tree like file navigation.
