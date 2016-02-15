@@ -77,6 +77,7 @@ vim .gitconfig #change user info
 0. [vim-polyglot][vim-polyglot_link]: syntax highlighting for a bunch of languages.
 0. [vim-repeat][vim-repeat_link]: expands usage opportunities for the '.' (dot) repeat command.
 0. [vim-rsi][vim-rsi_link]: readline style insertion.
+0. [vim-sleuth][vim-sleuth_link]: Heuristically set buffer options.
 0. [vim-signature][vim-signature_link]: adds visual notation for vim marks.
 0. [vim-signify][vim-signify_link]: signs to indicate added, modified and removed lines of files under a VCS.
 0. [vim-snippets][vim-snippets_link]: snippets for various programming languages.
@@ -268,3 +269,4 @@ Same as [Vim][vim-license_link].
 [vim-visual-start-search_link]: <https://github.com/bronson/vim-visual-star-search.git>
 [camel_link]: <https://github.com/bkad/CamelCaseMotion.git>
 [vim-license_link]: <http://vimdoc.sourceforge.net/htmldoc/uganda.html#license>
+[vim-sleuth_link]: <https://github.com/tpope/vim-sleuth.git>
