@@ -35,7 +35,7 @@ set -g default-command "reattach-to-user-namespace -l /usr/local/bin/zsh
 bind -t vi-copy y copy-pipe 'pbcopy'
 ```
 
-* configure your terminal to use the [papercolor theme][papercolor_link].
+* configure your terminal to use the [papercolor theme][papercolor_link]. There's a `theme-extras` folder within this repo that can help you with that on [iTerm2][iterm2_link].
 * change the git user info inside the .gitconfig file within the repo and run the zsh script `.links.zsh` like so:
 
 ```sh
