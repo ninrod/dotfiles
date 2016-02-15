@@ -31,7 +31,7 @@ vim .tmux.conf
 #comment this line
 set -g default-command "reattach-to-user-namespace -l /usr/local/bin/zsh"
 
-#change OSx pbcopy for xclip or an equivalent linux command
+#change OSx pbcopy for xclip or an equivalent GNU/Linux command
 bind -t vi-copy y copy-pipe 'pbcopy'
 ```
 
