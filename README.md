@@ -56,6 +56,7 @@ vim .gitconfig #change user info
 0. [ctrlp.vim][ctlrp_link]: Full path fuzzy file, buffer, mru, tag finder.
 0. [gitv][gitv_link]: gitk for vim.
 0. [indentLine][indentLine_link]: visual cues for indentation.
+0. [neoman][neoman_link]: readman pages faster than superman.
 0. [nerdtree][nerdtree_link]: tree like file navigation.
 0. [nerdtree-tabs][nerdtree-tabs_link]: 'toggle' behaviour for nerdtree.
 0. [supertab][supertab_link]: insert mode completions triggered by <TAB>.
@@ -270,3 +271,4 @@ Same as [Vim][vim-license_link].
 [camel_link]: <https://github.com/bkad/CamelCaseMotion.git>
 [vim-license_link]: <http://vimdoc.sourceforge.net/htmldoc/uganda.html#license>
 [vim-sleuth_link]: <https://github.com/tpope/vim-sleuth.git>
+[neoman_link]: <https://github.com/nhooyr/neoman.vim.git>

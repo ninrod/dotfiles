@@ -44,14 +44,15 @@ eval "$(fasd --init auto)"
 export ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-# alguns alias uteis
+# frequent commands
 alias c='clear'
 alias e='exit'
+alias m='nman'
 alias n='node'
-alias v='vim'
 alias o='open'
 alias t='tree -d'
 alias vi='vim -u NONE'
+alias v='vim'
 alias tarc='tar -zcvf file.tar.gz'
 alias tarx='tar -zxvf'
 
@@ -73,22 +74,16 @@ alias gf='git fetch'
 alias gm='git merge'
 alias gb='git branch '
 
-# configs de 'open with'
-alias -s txt=vim
-alias -s js=vim
-alias -s log=vim
-alias -s html=vim
-alias -s conf=vim
-
-#configs do Ag (the silver searcher)
+# Ag (the silver searcher)
 alias ag='ag --path-to-agignore=~/.agignore'
 
-# o .oh-my-zsh cria um alias d que colide com o alias do fasd
+# fixing oh-my-zsh `d` alias (collides with fasd)
 unalias d
 alias d='fasd -d'
 alias di='dirs -v | head -n 10'
 alias dic='dirs -c'
 
+# misc alias
 alias dot='l `find ~ -maxdepth 1 -type l`'
 
 # easier to use than rm -r | rm -rf alias
@@ -100,3 +95,24 @@ alias rdf='rm -rf'
 # configs do zsh
 alias print='print -l'
 setopt extended_glob
+
+function nman {
+    if [[ -z $* ]]; then
+        echo "What manual page do you want?"
+        return
+    fi
+    local tmp=$IFS
+    IFS=$'\n' out=($(command man -w $* 2>&1))
+    local code=$?
+    IFS=$tmp
+    if [[ ${#out[@]} > 1 ]]; then
+        echo "Too many manpages"
+        return
+    elif [[ $code != 0 ]]; then
+        echo "No manual entry for $*"
+        return
+    fi
+    vim -c "Nman $*"
+}
+
+compdef nman="man"
