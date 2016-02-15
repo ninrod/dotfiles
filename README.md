@@ -1,7 +1,7 @@
 # Dotfiles for __tmux, zsh, vim, git__
 
 ### Screenshot
-![screenshot-vi-tmux](https://raw.githubusercontent.com/ninrod/mac-shell-config/misc/images/papercolor-screenshot.png)
+![screenshot-vi-tmux](https://raw.githubusercontent.com/ninrod/mac-shell-config/misc/images/screen.png)
 
 ## Install Instructions
 
