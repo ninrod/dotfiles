@@ -16,7 +16,7 @@
   I recommend [Source code Pro][saucecode_link], 14pt, for a 13" display.
 * I strongly recommend using [iTerm2][iterm2_link] on OSx.
 * git clone this repo.
-* Don't even think of installing this on windows.
+* friendly advice: don't even think of installing this on windows if you care for your time.
 
 ```sh
 git clone https://github.com/ninrod/dotfiles.git ~/.dotfiles
