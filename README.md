@@ -204,8 +204,7 @@ bind                           | action
 LICENSE
 -----------
 
-Same as [Vim][vim-license_link]. 
-
+Same as [Vim][vim-license_link].
 
 [vim_clipboard_link]: <http://vimcasts.org/blog/2013/11/getting-vim-with-clipboard-support>
 [papercolor_link]: <https://github.com/NLKNguyen/papercolor-theme.git>
@@ -220,8 +219,6 @@ Same as [Vim][vim-license_link].
 [python_link]: <http://python.org>
 [sheerun_tip_link]: <https://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/>
 [sheerun_link]: <https://github.com/sheerun>
-
-
 [ack.vim_link]: <https://github.com/mileszs/ack.vim>
 [auto-pairs_link]: <https://github.com/jiangmiao/auto-pairs.git>
 [bufexplorer_link]: <https://github.com/jlanzarotta/bufexplorer.git>
