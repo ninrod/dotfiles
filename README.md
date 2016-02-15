@@ -97,7 +97,7 @@ vim .gitconfig #change user info
 
 * I've remapped `<space>` to be an alias to the `<leader>` key ([tip I][sheerun_tip_link] from [sheerun][sheerun_link])
 
-#### VIM: `<leader>` binds
+#### VIM: custom `<leader>` binds
 
 bind                    | action
 ------------------------| ------------------------------------------
@@ -114,7 +114,7 @@ bind                    | action
 `<leader> + [H,J,K,L]`  | moves the window to the right, left, etc...
 `<leader> + [arrowkey]` | resizes the window
 
-#### VIM: misc keys
+#### VIM: custom misc binds
 
 bind                           | action
 -----------------------        | ------------------------------------------
@@ -133,7 +133,7 @@ bind                           | action
 `(`, `)` (visual and normal)   | alias for `"0p`,`"0P`. Easier access to the 'yank' register
 `Y` (visual and normal)        | alias for `"0d`. cut and fill yank register. (register `"0`)
 
-#### VIM: function keys
+#### VIM: custom function keys
 bind    |action
 --------|-------------------------------------------
 `<F2>`  |toggle nerdtree file explorer
@@ -153,9 +153,6 @@ textobject   | action
 `e`          | entire file
 `x`          | html tag attribute
 `r`          | square brackets `[]`
-`b`          | brackers `()`
-`B`          | Block `{}`
-`t`          | xml tag
 
 #### VIM: potentially useful binds (not currentelly in use)
 bind        | action
