@@ -154,7 +154,7 @@ textobject   | action
 `x`          | html tag attribute
 `r`          | square brackets `[]`
 
-#### VIM: potentially useful binds (not currentelly in use)
+#### VIM: potentially useful binds (not currently in use)
 bind        | action
 ------------|-------------------------
 `s`         | equivalent to `cl`.
