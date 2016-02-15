@@ -103,7 +103,6 @@ bind                    | action
 ------------------------| ------------------------------------------
 `<leader> + v`          | creates a new window in a vertical split
 `<leader> + x`          | creates a new window in a horizontal split
-`<leader> + w`          | cycle through windows
 `<leader> + -`          | `:noh` turns off highlighted search terms.
 `<leader> + d`          | custom pagedown. alias for `LztM`.
 `<leader> + u`          | custom pageup. alias for `HzbM`.
