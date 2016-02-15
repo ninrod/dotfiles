@@ -6,7 +6,7 @@
 ## Install Instructions
 
 * get [tmux][tmux_link] 1.8+
-* get [zsh][zsh_link] 5.0.8+
+* get [zsh][zsh_link] 5.1+
 * get [python][python_link] 2.7+
 * get [fasd][fasd_link].
 * get [ag][ag_link] (you can `brew install ag` on OSx).
