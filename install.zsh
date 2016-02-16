@@ -16,24 +16,24 @@ updatelinks() {
 }
 
 # vim
-updatelinks ~/.vim .vim
-updatelinks ~/.vimrc .vimrc
+updatelinks ~/.vim symlinks/.vim
+updatelinks ~/.vimrc symlinks/.vimrc
 
 # tmux
-updatelinks ~/.tmux.conf .tmux.conf
+updatelinks ~/.tmux.conf symlinks/.tmux.conf
 
 # git
-updatelinks ~/.gitconfig .gitconfig
+updatelinks ~/.gitconfig symlinks/.gitconfig
 
 # ag (Ag - the silver searcher)
-updatelinks ~/.agignore .agignore
+updatelinks ~/.agignore symlinks/.agignore
 
 # comando ls
-updatelinks ~/.lscolors .dircolors/dircolors.256dark
+updatelinks ~/.lscolors symlinks/.dircolors/dircolors.256dark
 
 # zsh
-updatelinks ~/.zshrc .zshrc
+updatelinks ~/.zshrc symlinks/.zshrc
 
 # zplug
-updatelinks ~/.zplug .zplug
+updatelinks ~/.zplug symlinks/.zplug
 updatelinks ~/.zsh-plugins zsh-plugins

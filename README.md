@@ -36,12 +36,12 @@ bind -t vi-copy y copy-pipe 'pbcopy'
 ```
 
 * configure your terminal to use the [papercolor theme][papercolor_link]. There's a `theme-extras` folder within this repo that can help you with that on [iTerm2][iterm2_link]. Just click the `fixed-papercolor-light.itermcolors` file.
-* change the git user info inside the .gitconfig file within the repo and run the zsh script `links.zsh` like so:
+* change the git user info inside the .gitconfig file within the repo and run the zsh script `install.zsh` like so:
 
 ```sh
 cd ~/.dotfiles
 vim .gitconfig #change user info
-./links.zsh
+./install.zsh
 ```
 
 * That's it, your're all set.
