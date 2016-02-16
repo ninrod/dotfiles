@@ -59,6 +59,7 @@ alias dot='l `find ~ -maxdepth 1 -type l`'
 alias rd='rm -r'
 alias rdf='rm -rf'
 alias print='print -l'
+alias ..='cd ..'
 
 # git alias
 alias gs='git status'
