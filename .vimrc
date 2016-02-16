@@ -116,6 +116,7 @@ let g:rainbow_active = 1
 " rainbow sucks on html
 let g:rainbow_conf = {'separately': {'html': 0}}
 
+let lightcolors =  ['lightblue', 'lightyellow', 'red', 'darkgreen', 'darkyellow', 'lightred', 'yellow', 'cyan', 'magenta', 'white']
 let darkcolors = ['DarkBlue', 'Magenta', 'Black', 'Red', 'DarkGray', 'DarkGreen', 'DarkYellow']
 let g:rainbow_conf = {
 \   'ctermfgs': darkcolors
@@ -358,6 +359,7 @@ autocmd BufReadPost *
 " specify syntax highlighting for specific files
 autocmd Bufread,BufNewFile *.spv set filetype=php
 autocmd Bufread,BufNewFile *.md set filetype=markdown " Vim interprets .md as 'modula2' otherwise, see :set filetype?
+autocmd Bufread,BufNewFile *.bowerrc set filetype=json
 
 " http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
 autocmd Filetype markdown setlocal wrap linebreak nolist textwidth=0 wrapmargin=0 conceallevel=0
