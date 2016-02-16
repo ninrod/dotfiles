@@ -1,14 +1,4 @@
-#!/bin/zsh
-
-update_theme_dir() {
-  # -d testa se o parâmetro existe e se é um diretório
-  if [[ ! -d $1 ]]; then
-    print 'o diretório "'$1'" não existe. criando...'
-    mkdir $1
-  else
-    print 'o diretório "'$1'" já existe.'
-  fi
-}
+#!/usr/local/bin/zsh
 
 updatelinks() {
   #$1 : é o link simbólico
@@ -45,15 +35,6 @@ updatelinks ~/.zshrc .zshrc
 
 # oh-my-zsh
 updatelinks ~/.oh-my-zsh .oh-my-zsh
-
-# omz plugins
-updatelinks ~/.oh-my-zsh/custom/plugins/nin-vi-mode oh-my-zsh-extras/nin-vi-mode
-updatelinks ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting oh-my-zsh-extras/zsh-syntax-highlighting
-updatelinks ~/.oh-my-zsh/custom/plugins/zsh-bd oh-my-zsh-extras/zsh-bd
-
-# omz themes
-update_theme_dir ~/.oh-my-zsh/custom/themes
-updatelinks ~/.oh-my-zsh/custom/themes/powerlevel9k oh-my-zsh-extras/powerlevel9k
 
 # zplug
 updatelinks ~/.zplug .zplug
