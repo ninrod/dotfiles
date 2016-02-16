@@ -60,6 +60,7 @@ alias rd='rm -r'
 alias rdf='rm -rf'
 alias print='print -l'
 alias ..='cd ..'
+alias md='mkdir -p'
 
 # git alias
 alias gs='git status'
