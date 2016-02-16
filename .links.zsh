@@ -54,3 +54,6 @@ updatelinks ~/.oh-my-zsh/custom/plugins/zsh-bd oh-my-zsh-extras/zsh-bd
 # omz themes
 update_theme_dir ~/.oh-my-zsh/custom/themes
 updatelinks ~/.oh-my-zsh/custom/themes/powerlevel9k oh-my-zsh-extras/powerlevel9k
+
+# zplug
+updatelinks ~/.zplug .zplug

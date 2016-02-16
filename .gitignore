@@ -1,3 +1,5 @@
 custom
 tags
 *.pyc
+.cache
+zcompdump

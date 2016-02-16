@@ -1,30 +1,53 @@
-# tema do oh-my-zsh
-ZSH_THEME="powerlevel9k/powerlevel9k"
+# zsh options
+setopt extended_glob
 
-# plugins do oh-my-zsh
-plugins=(zsh-syntax-highlighting nin-vi-mode zsh-bd)
-
-# configs para o powerlevel9k theme
+# powerlevel9k theme config
 POWERLEVEL9K_DISABLE_RPROMPT=false
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status vi_mode)
 POWERLEVEL9K_STATUS_VERBOSE=false
 
+# make powerlevel9k compatible with papercolor theme
 POWERLEVEL9K_COLOR_SCHEME='light'
-
 POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND='253' #green
-POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND='238'
-
+POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND='238' #almost black
 POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='253' #grey
 POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='160' #red
 
-# Config do user
+source ~/.zplug/zplug
+
+zplug "~/.dotfiles/.mac-shell-config/oh-my-zsh-extras/powerlevel9k", from:local, of:powerlevel9k.zsh-theme
+zplug "~/.dotfiles/.mac-shell-config/oh-my-zsh-extras/nin-vi-mode", from:local
+zplug "~/.dotfiles/.mac-shell-config/oh-my-zsh-extras/zsh-bd", from:local
+zplug "~/.dotfiles/.mac-shell-config/oh-my-zsh-extras/zsh-syntax-highlighting", from:local
+
+# Install plugins that have not been installed yet
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    else
+        echo
+    fi
+fi
+
+zplug load
+
+
+# tema do oh-my-zsh
+# ZSH_THEME="powerlevel9k/powerlevel9k"
+
+# plugins do oh-my-zsh
+# plugins=(zsh-syntax-highlighting nin-vi-mode zsh-bd)
+
+
+# user configs
 export LANG=en_US.UTF-8
 export TERM=xterm-256color
 export EDITOR=vim
 
-# config do path
+# PATH configs
 export GNUBIN_PATH=/usr/local/opt/coreutils/libexec/gnubin
 export TEXBIN=/Library/TeX/texbin
 export PACKER_BIN=~/bin/packer_0.8.6_darwin_amd64
@@ -34,17 +57,16 @@ PATH="$TEXBIN:$PATH"
 PATH="$PACKER_BIN:$PATH"
 export PATH
 
-# cores para o ls
-eval `dircolors ~/.lscolors`
 
-# inicialização do fasd
+# fasd bootstrap
 eval "$(fasd --init auto)"
 
-# bootstrap do oh-my-zsh
-export ZSH=$HOME/.oh-my-zsh
-source $ZSH/oh-my-zsh.sh
+# oh-my-zsh bootstrap
+# export ZSH=$HOME/.oh-my-zsh
+# source $ZSH/oh-my-zsh.sh
 
-# frequent commands
+# alias for frequent commands
+alias l='ls -lah --color'
 alias c='clear'
 alias e='exit'
 alias m='nman'
@@ -55,8 +77,12 @@ alias vi='vim -u NONE'
 alias v='vim'
 alias tarc='tar -zcvf file.tar.gz'
 alias tarx='tar -zxvf'
+alias dot='l `find ~ -maxdepth 1 -type l`'
+alias rd='rm -r'
+alias rdf='rm -rf'
+alias print='print -l'
 
-# alias para o git
+# git alias
 alias gs='git status'
 alias g='git status --short'
 alias gd='git diff'
@@ -83,18 +109,6 @@ alias d='fasd -d'
 alias di='dirs -v | head -n 10'
 alias dic='dirs -c'
 
-# misc alias
-alias dot='l `find ~ -maxdepth 1 -type l`'
-
-# easier to use than rm -r | rm -rf alias
-# OMZ already binds rd for rmdir.
-unalias rd
-alias rd='rm -r'
-alias rdf='rm -rf'
-
-# configs do zsh
-alias print='print -l'
-setopt extended_glob
 
 function nman {
     if [[ -z $* ]]; then
@@ -116,3 +130,7 @@ function nman {
 }
 
 compdef nman="man"
+
+
+# colors for ls
+eval `dircolors ~/.lscolors`
