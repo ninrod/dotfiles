@@ -12,6 +12,23 @@ setopt prompt_subst
 setopt auto_cd
 setopt cdablevars
 
+# history configuration options
+HISTSIZE=10000
+SAVEHIST=10000
+setopt append_history
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups # ignore duplication command history list
+setopt hist_ignore_space
+setopt hist_verify
+setopt inc_append_history
+setopt share_history # share command history data
+
+# Changing/making/removing directory
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt pushdminus
+
 # powerlevel9k theme config
 POWERLEVEL9K_DISABLE_RPROMPT=false
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
@@ -56,7 +73,7 @@ eval "$(fasd --init auto)"
 
 # colors for ls
 if [[ "$(uname -s)" == "Darwin" ]]; then
-    export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
+    export LSCOLORS=exGxbEaEBxxEhEhBaDaCaD
     alias ls='ls -GF'
 elif [[ "$(uname -s)" == "Linux" ]]; then
     eval `dircolors ~/.lscolors`
