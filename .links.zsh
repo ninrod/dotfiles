@@ -1,16 +1,17 @@
 #!/usr/local/bin/zsh
 
+# helper function to manage symlinks.
 updatelinks() {
-  #$1 : é o link simbólico
-  #$2 : é a pasta local (target)
+  #$1 is the symlink
+  #$2 is the target
 
-  # o switch -h testa se o argumento existe e é um link.
+  # the `-h` switch tests if the argument exists and is a symlink.
   if [[ -h $1 ]]; then
-    print '"'$1'" symlink já existe. removendo...'
+    print '"'$1'" found existing symlink. removing.'
     rm $1
   fi
 
-  print 'montando link simbólico "'$1'" -> "'${2:a}'"'
+  print 'mounting symlink "'$1'" -> "'${2:a}'"'
   ln -s ${2:a} $1
 }
 
@@ -33,8 +34,6 @@ updatelinks ~/.lscolors .dircolors/dircolors.256dark
 # zsh
 updatelinks ~/.zshrc .zshrc
 
-# oh-my-zsh
-updatelinks ~/.oh-my-zsh .oh-my-zsh
-
 # zplug
 updatelinks ~/.zplug .zplug
+updatelinks ~/.zsh-plugins zsh-plugins

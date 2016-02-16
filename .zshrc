@@ -18,10 +18,10 @@ POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='160' #red
 source ~/.zplug/zplug
 
 # local plugins
-zplug "~/.dotfiles/.mac-shell-config/oh-my-zsh-extras/powerlevel9k", from:local, of:powerlevel9k.zsh-theme
-zplug "~/.dotfiles/.mac-shell-config/oh-my-zsh-extras/nin-vi-mode", from:local
-zplug "~/.dotfiles/.mac-shell-config/oh-my-zsh-extras/zsh-bd", from:local
-zplug "~/.dotfiles/.mac-shell-config/oh-my-zsh-extras/zsh-syntax-highlighting", from:local
+zplug "~/.zsh-plugins/powerlevel9k", from:local, of:powerlevel9k.zsh-theme
+zplug "~/.zsh-plugins/nin-vi-mode", from:local
+zplug "~/.zsh-plugins/zsh-bd", from:local
+zplug "~/.zsh-plugins/zsh-syntax-highlighting", from:local
 
 zplug load
 
