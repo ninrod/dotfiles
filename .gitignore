@@ -1,5 +1,7 @@
 custom
 tags
 *.pyc
-.cache
-zcompdump
+**/.zplug/.cache
+**/.zplug/zcompdump
+**/.zplug/repos
+**/.zplug/bin

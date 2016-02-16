@@ -1,6 +1,4 @@
-#############
-#zsh options
-#############
+# options {{{
 
 # allows us to use ^ to negate globs
 setopt extended_glob
@@ -8,31 +6,41 @@ setopt extended_glob
 # Setup the prompt with pretty colors
 setopt prompt_subst
 
-# cd helpers
+# change into a dir with just the directory name
 setopt auto_cd
-setopt cdablevars
 
-# history configuration options
+# history configuration options {{{
+
 if [ -z "$HISTFILE" ]; then
     HISTFILE=$HOME/.zsh_history
 fi
+
 HISTSIZE=10000
 SAVEHIST=10000
 setopt append_history
 setopt extended_history
 setopt hist_expire_dups_first
-setopt hist_ignore_dups # ignore duplication command history list
+
+# ignore duplication command history list
+setopt hist_ignore_dups
+
 setopt hist_ignore_space
 setopt hist_verify
 setopt inc_append_history
 setopt share_history # share command history data
+
+# }}}
 
 # Changing/making/removing directory
 setopt auto_pushd
 setopt pushd_ignore_dups
 setopt pushdminus
 
-# powerlevel9k theme config
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+
+# }}}
+
+# powerlevel9k {{{
 POWERLEVEL9K_DISABLE_RPROMPT=false
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
@@ -46,6 +54,31 @@ POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND='238' #almost black
 POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='253' #grey
 POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='160' #red
 
+# }}}
+
+# PATH and exports {{{
+
+export LANG=en_US.UTF-8
+export TERM=xterm-256color
+export EDITOR=vim
+export ENHANCD_COMMAND=ecd
+
+# path config
+export GNUBIN_PATH=/usr/local/opt/coreutils/libexec/gnubin
+export TEXBIN=/Library/TeX/texbin
+export PACKER_BIN=~/bin/packer_0.8.6_darwin_amd64
+export ZPLUG_BIN=~/.zplug/bin
+PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+# PATH="$GNUBIN_PATH:$PATH"
+PATH="$TEXBIN:$PATH"
+PATH="$PACKER_BIN:$PATH"
+PATH="$ZPLUG_BIN:$PATH"
+export PATH
+
+# }}}
+
+# zplug {{{
+
 source ~/.zplug/zplug
 
 # local plugins
@@ -54,26 +87,38 @@ zplug "~/.zsh-plugins/nin-vi-mode", from:local
 zplug "~/.zsh-plugins/zsh-bd", from:local
 zplug "~/.zsh-plugins/zsh-syntax-highlighting", from:local
 
+# from github
+zplug "felixr/docker-zsh-completion", from:github, if:"which docker", of:_docker
+zplug "rimraf/k"
+# zplug "zsh-users/zsh-completions"
+
+zplug "b4b4r07/enhancd", of:enhancd.sh
+
+# portable fzf install
+if [[ "$(uname -s)" == "Darwin" ]]; then
+    zplug "junegunn/fzf-bin", as:command, from:gh-r, file:fzf, of:"*darwin*amd64*"
+elif [[ "$(uname -s)" == "Linux" ]]; then
+    zplug "junegunn/fzf-bin", as:command, from:gh-r, file:fzf, of:"*linux*amd64*"
+fi
+
+# Install plugins that have not been installed yet
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    else
+        echo
+    fi
+fi
+
 zplug load
-
-# user configs
-export LANG=en_US.UTF-8
-export TERM=xterm-256color
-export EDITOR=vim
-
-# PATH configs
-export GNUBIN_PATH=/usr/local/opt/coreutils/libexec/gnubin
-export TEXBIN=/Library/TeX/texbin
-export PACKER_BIN=~/bin/packer_0.8.6_darwin_amd64
-PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-# PATH="$GNUBIN_PATH:$PATH"
-PATH="$TEXBIN:$PATH"
-PATH="$PACKER_BIN:$PATH"
-export PATH
 
 # fasd bootstrap
 eval "$(fasd --init auto)"
 
+# }}}
+
+# alias {{{
 # colors for ls
 if [[ "$(uname -s)" == "Darwin" ]]; then
     export LSCOLORS=exGxbEaEBxxEhEhBaDaCaD
@@ -87,12 +132,15 @@ fi
 alias l='ls -lah'
 alias c='clear'
 alias e='exit'
+alias b='ecd'
 alias m='nman'
 alias n='node'
 alias o='open'
 alias t='tree -d'
 alias vi='vim -u NONE'
 alias v='vim'
+alias vz='vim ~/.zshrc(:A)'
+alias vv='vim ~/.vimrc(:A)'
 alias tarc='tar -zcvf file.tar.gz'
 alias tarx='tar -zxvf'
 alias dot='l `find ~ -maxdepth 1 -type l`'
@@ -131,6 +179,19 @@ alias gb='git branch '
 # Ag (the silver searcher)
 alias ag='ag --path-to-agignore=~/.agignore'
 
+# }}}
+
+# compinit {{{
+
+autoload -Uz compinit && compinit
+zstyle ':completion:*' menu select
+zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
+# zstyle ':completion:*' menu select=20
+
+# }}}
+
+# functions {{{
+
 # neoman vim plugin
 function nman {
     if [[ -z $* ]]; then
@@ -151,3 +212,10 @@ function nman {
     vim -c "Nman $*"
 }
 compdef nman="man"
+
+# front for `bc` utility (credits for arzzen/calc.plugin.zsh)
+function = {
+    echo "$@" | bc -l
+}
+
+# }}}
