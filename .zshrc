@@ -34,14 +34,6 @@ fi
 
 zplug load
 
-
-# tema do oh-my-zsh
-# ZSH_THEME="powerlevel9k/powerlevel9k"
-
-# plugins do oh-my-zsh
-# plugins=(zsh-syntax-highlighting nin-vi-mode zsh-bd)
-
-
 # user configs
 export LANG=en_US.UTF-8
 export TERM=xterm-256color
@@ -57,13 +49,8 @@ PATH="$TEXBIN:$PATH"
 PATH="$PACKER_BIN:$PATH"
 export PATH
 
-
 # fasd bootstrap
 eval "$(fasd --init auto)"
-
-# oh-my-zsh bootstrap
-# export ZSH=$HOME/.oh-my-zsh
-# source $ZSH/oh-my-zsh.sh
 
 # alias for frequent commands
 alias l='ls -lah --color'
@@ -130,7 +117,6 @@ function nman {
 }
 
 compdef nman="man"
-
 
 # colors for ls
 eval `dircolors ~/.lscolors`
