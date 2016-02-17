@@ -110,10 +110,22 @@ set lazyredraw
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'ninrod/ninscratch-vim'
-Plug 'sjl/vitality.vim'
+" expanding core functionality
+Plug 'bkad/CamelCaseMotion', {'commit': '3ae9bf9'}
+
+" extra functionality
+Plug 'junegunn/vim-easy-align'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+" cosmetic
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'altercation/vim-colors-solarized'
+Plug 'sjl/vitality.vim'
 Plug 'bling/vim-airline'
+
+" my own pluggins
+Plug 'ninrod/ninscratch-vim'
 
 call plug#end()
 
