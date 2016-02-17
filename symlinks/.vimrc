@@ -106,9 +106,20 @@ set lazyredraw
 
 " }}}
 
-" Plugins {{{
-execute pathogen#infect()
+" vim-plug {{{
 
+call plug#begin('~/.vim/plugged')
+
+Plug 'ninrod/ninscratch-vim'
+Plug 'sjl/vitality.vim'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'bling/vim-airline'
+
+call plug#end()
+
+" }}}
+
+" plugin config {{{
 
 " enabling rainbow plugin at start
 let g:rainbow_active = 1

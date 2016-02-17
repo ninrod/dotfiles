@@ -5,3 +5,4 @@ tags
 **/.zplug/zcompdump
 **/.zplug/repos
 **/.zplug/bin
+**/.vim/plugged
