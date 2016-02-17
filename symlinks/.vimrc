@@ -370,7 +370,7 @@ autocmd Filetype gitcommit setlocal spell textwidth=80
 " foldmethod configurations
 autocmd BufRead * setlocal foldmethod=marker
 " open up all folds a start
-set foldlevelstart=20
+set foldlevelstart=0
 " autocmd BufRead * normal zM
 
 " disabling auto commenting on new line, e.g. 'o' and 'O'

@@ -69,7 +69,7 @@ export TEXBIN=/Library/TeX/texbin
 export PACKER_BIN=~/bin/packer_0.8.6_darwin_amd64
 export ZPLUG_BIN=~/.zplug/bin
 PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-# PATH="$GNUBIN_PATH:$PATH"
+PATH="$GNUBIN_PATH:$PATH"
 PATH="$TEXBIN:$PATH"
 PATH="$PACKER_BIN:$PATH"
 PATH="$ZPLUG_BIN:$PATH"
@@ -90,16 +90,8 @@ zplug "~/.zsh-plugins/zsh-syntax-highlighting", from:local
 # from github
 zplug "felixr/docker-zsh-completion", from:github, if:"which docker", of:_docker
 zplug "rimraf/k"
-# zplug "zsh-users/zsh-completions"
-
 zplug "b4b4r07/enhancd", of:enhancd.sh
-
-# portable fzf install
-if [[ "$(uname -s)" == "Darwin" ]]; then
-    zplug "junegunn/fzf-bin", as:command, from:gh-r, file:fzf, of:"*darwin*amd64*"
-elif [[ "$(uname -s)" == "Linux" ]]; then
-    zplug "junegunn/fzf-bin", as:command, from:gh-r, file:fzf, of:"*linux*amd64*"
-fi
+zplug "zsh-users/zsh-completions"
 
 # Install plugins that have not been installed yet
 if ! zplug check --verbose; then
@@ -113,22 +105,28 @@ fi
 
 zplug load
 
+
+# }}}
+
+# evals and sources {{{
+
 # fasd bootstrap
 eval "$(fasd --init auto)"
+
+# colors for GNU ls (from coreutils)
+eval `dircolors ~/.lscolors`
+
+# fzf bootstrap
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # }}}
 
 # alias {{{
+
 # colors for ls
-if [[ "$(uname -s)" == "Darwin" ]]; then
-    export LSCOLORS=exGxbEaEBxxEhEhBaDaCaD
-    alias ls='ls -GF'
-elif [[ "$(uname -s)" == "Linux" ]]; then
-    eval `dircolors ~/.lscolors`
-    alias ls='ls --color=auto'
-fi
 
 # alias for frequent commands
+alias ls='ls --color=auto --group-directories-first'
 alias l='ls -lah'
 alias c='clear'
 alias e='exit'

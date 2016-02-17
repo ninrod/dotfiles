@@ -5,17 +5,20 @@
 
 ## Install Instructions
 
+* get `vim` 7.4+ with [+clipboard][vim_clipboard_link] and +python.
 * get [tmux][tmux_link] 1.8+
 * get [zsh][zsh_link] 5.1+ and make sure that `/usr/local/bin/zsh points to it`.
 * get [python][python_link] 2.7+
 * get [fasd][fasd_link].
 * get [ag][ag_link] (you can `brew install ag` on OSx).
-* make sure you have `vim` 7.4+ with [+clipboard][vim_clipboard_link] and +python.
-* this is for unix systems: `GNU/Linux`, `OSx`, etc... It should work on theory on windows, but I've faced a lot of configuration issues and ended up abandoning windows support.
-* if you're on OSX, you need to `brew install` [reattach-to-user-namespace][reattach_link].
+* get [fzf][fzf_link].
+* if you're on OSx, brew install these:
+  * `brew install coreutils` (mainly because `BSD` `ls` `CLICOLOR` sucks).
+  * `brew install` [reattach-to-user-namespace][reattach_link].
 * install a [powerline patched font][powerline_fonts] on your OS and configure your terminal to use said font.
   I recommend [Source code Pro][saucecode_link], 14pt, for a 13" display.
 * I strongly recommend using [iTerm2][iterm2_link] on OSx.
+* this is for unix systems: `GNU/Linux`, `OSx`, etc... It should work on theory on windows, but I've faced a lot of configuration issues and ended up abandoning windows support.
 * git clone this repo.
 
 ```sh
@@ -29,19 +32,20 @@ cd ~/.dotfiles
 vim .tmux.conf
 
 #comment this line
-set -g default-command "reattach-to-user-namespace -l /usr/local/bin/zsh
+set -g default-command "reattach-to-user-namespace -l /usr/local/bin/zsh"
 
-#change OSx pbcopy for xclip or an equivalent GNU/Linux command
+# change this line
+# switch OSx pbcopy for xclip or an equivalent GNU/Linux command (xsel, etc...)
 bind -t vi-copy y copy-pipe 'pbcopy'
 ```
 
-* configure your terminal to use the [papercolor theme][papercolor_link]. There's a `theme-extras` folder within this repo that can help you with that on [iTerm2][iterm2_link]. Just click the `fixed-papercolor-light.itermcolors` file.
+* configure your terminal to use the [papercolor theme][papercolor_link]. There's a `conf/theme-extras/papercolor` folder within this repo that can help you with that on [iTerm2][iterm2_link]. Just click the `fixed-papercolor-light.itermcolors` file and setup a profile within iTerm2 using the papercolor-light scheme.
 * change the git user info inside the .gitconfig file within the repo and run the zsh script `install.zsh` like so:
 
 ```sh
-cd ~/.dotfiles
-vim .gitconfig #change user info
-./install.zsh
+vim ~/.dotfiles/symlinks/.gitconfig
+#change user info
+~/.dotfiles/install.zsh
 ```
 
 * That's it, your're all set.
@@ -269,3 +273,4 @@ Same as [Vim][vim-license_link].
 [vim-license_link]: <http://vimdoc.sourceforge.net/htmldoc/uganda.html#license>
 [vim-sleuth_link]: <https://github.com/tpope/vim-sleuth.git>
 [neoman_link]: <https://github.com/nhooyr/neoman.vim.git>
+
