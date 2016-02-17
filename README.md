@@ -43,9 +43,14 @@ bind -t vi-copy y copy-pipe 'pbcopy'
 * change the git user info inside the .gitconfig file within the repo and run the zsh script `install.zsh` like so:
 
 ```sh
-vim ~/.dotfiles/symlinks/.gitconfig
-#change user info
-~/.dotfiles/install.zsh
+# change user info
+$ vim ~/.dotfiles/symlinks/.gitconfig
+
+# run install script (basically just mounts symlinks on your home folder)
+$ ~/.dotfiles/install.zsh
+
+# reload zsh
+$ exec zsh
 ```
 
 * That's it, your're all set.
