@@ -110,19 +110,30 @@ set lazyredraw
 
 call plug#begin('~/.vim/plugged')
 
-" expanding core functionality
+" frozen github plugins
 Plug 'bkad/CamelCaseMotion', {'commit': '3ae9bf9'}
-
-" extra functionality
-Plug 'junegunn/vim-easy-align'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'bling/vim-airline', {'commit': '8af213d'}
+Plug 'jiangmiao/auto-pairs', {'tag': 'v1.3.1'}
+Plug 'junegunn/vim-easy-align', {'tag': '2.10.0'}
+Plug 'mileszs/ack.vim', {'tag': '1.0.9'}
+Plug 'jlanzarotta/bufexplorer', {'commit': 'ad2cff7'}
+Plug 'gregsexton/gitv', {'commit': 'e10a896'}
+Plug 'Yggdroot/indentLine', {'commit': '9cb94e1'}
+Plug 'nhooyr/neoman.vim', {'commit': '0fbdecd'}
+Plug 'scrooloose/nerdtree', {'commit': '4ebbb53'}
+Plug 'luochen1990/rainbow', {'commit': '18b7bc1'}
+Plug 'ervandew/supertab', {'commit': '9f7da6d'}
 
 " cosmetic
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'altercation/vim-colors-solarized'
 Plug 'sjl/vitality.vim'
-Plug 'bling/vim-airline'
+
+" snippet engine
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+
+" ctrlp substitution
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " my own pluggins
 Plug 'ninrod/ninscratch-vim'
