@@ -28,7 +28,7 @@ updatelinks ~/.gitconfig symlinks/.gitconfig
 # ag (Ag - the silver searcher)
 updatelinks ~/.agignore symlinks/.agignore
 
-# comando ls
+# colors for ls
 updatelinks ~/.lscolors symlinks/.dircolors/dircolors.256dark
 
 # zsh
