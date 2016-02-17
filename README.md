@@ -1,4 +1,4 @@
-# Dotfiles for __tmux, zsh, vim, git__
+# Ninrod's __vim, tmux, zsh__ dotfiles
 
 ### Screenshot
 ![screenshot-vi-tmux](https://raw.githubusercontent.com/ninrod/dotfiles/misc/images/screen.png)
