@@ -81,17 +81,21 @@ export PATH
 
 source ~/.zplug/zplug
 
-# local plugins
-zplug "~/.zsh-plugins/powerlevel9k", from:local, of:powerlevel9k.zsh-theme
-zplug "~/.zsh-plugins/nin-vi-mode", from:local
-zplug "~/.zsh-plugins/zsh-bd", from:local
-zplug "~/.zsh-plugins/zsh-syntax-highlighting", from:local
-
-# from github
-zplug "felixr/docker-zsh-completion", from:github, if:"which docker", of:_docker
-zplug "rimraf/k"
-zplug "b4b4r07/enhancd", of:enhancd.sh
+# completion
 zplug "zsh-users/zsh-completions"
+zplug "felixr/docker-zsh-completion", if:"which docker", of:_docker
+
+# theme
+zplug "bhilburn/powerlevel9k", of:powerlevel9k.zsh-theme
+zplug "zsh-users/zsh-syntax-highlighting"
+
+# better directory listings
+zplug "Tarrasch/zsh-bd"
+zplug "b4b4r07/enhancd", of:enhancd.sh
+zplug "rimraf/k"
+
+# vi mode
+zplug "ninrod/nin-vi-mode"
 
 # Install plugins that have not been installed yet
 if ! zplug check --verbose; then
@@ -104,7 +108,6 @@ if ! zplug check --verbose; then
 fi
 
 zplug load
-
 
 # }}}
 
