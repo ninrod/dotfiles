@@ -164,11 +164,10 @@ Plug 'tpope/vim-unimpaired', {'commit': '23f471a'}
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'Yggdroot/indentLine', {'commit': '9cb94e1'}
 Plug 'altercation/vim-colors-solarized'
-Plug 'bling/vim-airline', {'commit': '8af213d'}
 Plug 'kshenoy/vim-signature', {'commit': '7cabfb5'}
 Plug 'luochen1990/rainbow', {'commit': '18b7bc1'}
 Plug 'sjl/vitality.vim'
-
+Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 " }}}
 
 " plugins: syntax highlighting {{{
@@ -183,7 +182,6 @@ Plug 'sheerun/vim-polyglot', {'commit': 'b0823d2'}
 Plug 'kana/vim-textobj-user', {'commit': 'a305416'}
   \| Plug 'kana/vim-textobj-entire', {'commit': '41c12e1'}
   \| Plug 'kana/vim-textobj-function', {'commit': 'adb50f3'}
-  \| Plug 'lucapette/vim-textobj-underscore', {'commit': '1200f05'}
   \| Plug 'thinca/vim-textobj-function-javascript', {'commit': 'a543539'}
   \| Plug 'whatyouhide/vim-textobj-xmlattr', {'commit': '29a154d'}
 
@@ -286,7 +284,7 @@ let g:ctrlp_custom_ignore = '
 " Airline configs(status line)
 
 " airline theme
-let g:airline_theme='PaperColor'
+let g:airline_theme='papercolor'
 
 " airline: if you don't want to use a powerline patched font
 let g:airline_powerline_fonts = 1
