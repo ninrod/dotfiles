@@ -28,7 +28,7 @@ git clone https://github.com/ninrod/dotfiles.git ~/.dotfiles
 
 ```sh
 cd ~/.dotfiles
-vim .tmux.conf
+vim -u NONE .tmux.conf
 
 #comment this line
 set -g default-command "reattach-to-user-namespace -l /usr/local/bin/zsh"
@@ -43,7 +43,7 @@ bind -t vi-copy y copy-pipe 'pbcopy'
 
 ```sh
 # change user info
-$ vim ~/.dotfiles/symlinks/.gitconfig
+$ vim -u NONE ~/.dotfiles/symlinks/.gitconfig
 
 # run install script (basically just mounts symlinks on your home folder)
 $ ~/.dotfiles/install.zsh
@@ -52,6 +52,7 @@ $ ~/.dotfiles/install.zsh
 $ exec zsh
 ```
 
+* fire up vim and run `:PlugInstall`
 * That's it, your're all set.
 
 ## VIM: Powerful shell text editor. Tweaked with plugins.
