@@ -9,7 +9,6 @@
 * get [tmux][tmux_link] 1.8+
 * get [zsh][zsh_link] 5.1+ and make sure that `/usr/local/bin/zsh points to it`.
 * get [python][python_link] 2.7+
-* get [fasd][fasd_link].
 * get [ag][ag_link] (you can `brew install ag` on OSx).
 * get [fzf][fzf_link].
 * if you're on OSx, brew install these:

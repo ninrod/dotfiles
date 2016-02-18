@@ -1,5 +1,8 @@
 #!/usr/local/bin/zsh
 
+# Author: Filipe Silva (ninrod)
+# License: Same as VIM.
+
 # helper function to manage symlinks.
 updatelinks() {
   #$1 is the symlink
@@ -15,25 +18,11 @@ updatelinks() {
   ln -s ${2:a} $1
 }
 
-# vim
-updatelinks ~/.vim symlinks/.vim
-updatelinks ~/.vimrc symlinks/.vimrc
-
-# tmux
-updatelinks ~/.tmux.conf symlinks/.tmux.conf
-
-# git
-updatelinks ~/.gitconfig symlinks/.gitconfig
-
-# ag (Ag - the silver searcher)
-updatelinks ~/.agignore symlinks/.agignore
-
-# colors for ls
-updatelinks ~/.lscolors symlinks/.dircolors/dircolors.256dark
-
-# zsh
-updatelinks ~/.zshrc symlinks/.zshrc
-
-# zplug
-updatelinks ~/.zplug symlinks/.zplug
-updatelinks ~/.zsh-plugins zsh-plugins
+updatelinks ~/.zplug dot/.zplug
+updatelinks ~/.vim dot/.vim
+updatelinks ~/.vimrc dot/.vimrc
+updatelinks ~/.zshrc dot/.zshrc
+updatelinks ~/.tmux.conf dot/.tmux.conf
+updatelinks ~/.lscolors dot/.dircolors/dircolors.256dark
+updatelinks ~/.gitconfig dot/.gitconfig
+updatelinks ~/.agignore dot/.agignore

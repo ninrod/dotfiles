@@ -93,6 +93,7 @@ zplug "zsh-users/zsh-syntax-highlighting"
 zplug "Tarrasch/zsh-bd"
 zplug "b4b4r07/enhancd", of:enhancd.sh
 zplug "rimraf/k"
+zplug "rupa/z", of:z.sh
 
 # vi mode
 zplug "ninrod/nin-vi-mode"
@@ -112,9 +113,6 @@ zplug load
 # }}}
 
 # evals and sources {{{
-
-# fasd bootstrap
-eval "$(fasd --init auto)"
 
 # colors for GNU ls (from coreutils)
 eval `dircolors ~/.lscolors`
