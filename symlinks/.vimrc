@@ -104,71 +104,101 @@ set showbreak=←←
 " redraw only when we need to (i.e. don't redraw when executing a macro)
 set lazyredraw
 
+" enable language-dependent indenting.
+filetype plugin indent on
+
 " }}}
 
 " vim-plug {{{
 
 call plug#begin('~/.vim/plugged')
 
-" frozen github plugins
+" plugins: expand core functionality {{{
+
 Plug 'bkad/CamelCaseMotion', {'commit': '3ae9bf9'}
-Plug 'bling/vim-airline', {'commit': '8af213d'}
-Plug 'jiangmiao/auto-pairs', {'tag': 'v1.3.1'}
-Plug 'junegunn/vim-easy-align', {'tag': '2.10.0'}
-Plug 'mileszs/ack.vim', {'tag': '1.0.9'}
-Plug 'jlanzarotta/bufexplorer', {'commit': 'ad2cff7'}
-Plug 'gregsexton/gitv', {'commit': 'e10a896'}
-Plug 'Yggdroot/indentLine', {'commit': '9cb94e1'}
-Plug 'nhooyr/neoman.vim', {'commit': '0fbdecd'}
-Plug 'scrooloose/nerdtree', {'commit': '4ebbb53'}
-Plug 'luochen1990/rainbow', {'commit': '18b7bc1'}
-Plug 'ervandew/supertab', {'commit': '9f7da6d'}
-Plug 'jistr/vim-nerdtree-tabs', {'commit': '0decec1'}
-Plug 'wellle/targets.vim', {'commit': 'd111928'}
-Plug 'tpope/vim-surround', {'commit': '2d05440'}
-Plug 'tpope/vim-commentary', {'commit': 'e0f4850'}
-Plug 'qpkorr/vim-bufkill', {'commit': 'ba8b570'}
-Plug 'tpope/vim-characterize', {'commit': '871364d'}
-Plug 'regedarek/ZoomWin', {'commit': 'da618cb'}
-Plug 'alvan/vim-closetag', {'commit': '21a747e'}
-Plug 'tpope/vim-commentary', {'commit': 'e0f4850'}
-Plug 'tpope/vim-endwise', {'commit': 'f06abe3'}
-Plug 'tommcdo/vim-exchange', {'commit': '9373a84'}
-Plug 'tpope/vim-fugitive', {'commit': 'fd36aa9'}
-Plug 'suan/vim-instant-markdown', {'commit': '915c681'}
-Plug 'elzr/vim-json', {'commit': 'f5e3181'}
+Plug 'bronson/vim-visual-star-search', {'commit': 'fa55818'}
 Plug 'jeffkreeftmeijer/vim-numbertoggle', {'commit': 'c4d0aac'}
-Plug 'sheerun/vim-polyglot', {'commit': 'b0823d2'}
+Plug 'mileszs/ack.vim', {'tag': '1.0.9'}
+Plug 'sencer/vis', {'commit': '7d2bafb'}
+Plug 'tpope/vim-commentary', {'commit': 'e0f4850'}
 Plug 'tpope/vim-repeat', {'commit': '7a6675f'}
 Plug 'tpope/vim-rsi', {'commit': 'b689ee4'}
-Plug 'kshenoy/vim-signature', {'commit': '7cabfb5'}
+Plug 'tpope/vim-surround', {'commit': '2d05440'}
+Plug 'wellle/targets.vim', {'commit': 'd111928'}
+
+" }}}
+
+" plugins: completions {{{
+
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'alvan/vim-closetag', {'commit': '21a747e'}
+Plug 'ervandew/supertab', {'commit': '9f7da6d'}
+Plug 'jiangmiao/auto-pairs', {'tag': 'v1.3.1'}
+Plug 'tpope/vim-endwise', {'commit': 'f06abe3'}
+
+" }}}
+
+" plugins: git {{{
+
+Plug 'gregsexton/gitv', {'commit': 'e10a896'}
 Plug 'mhinz/vim-signify', {'commit': '2a3dafd'}
+Plug 'tpope/vim-fugitive', {'commit': 'fd36aa9'}
+
+" }}}
+
+" plugins: utils {{{
+
+Plug 'junegunn/vim-easy-align', {'tag': '2.10.0'}
+Plug 'nhooyr/neoman.vim', {'commit': '0fbdecd'}
+Plug 'regedarek/ZoomWin', {'commit': 'da618cb'}
+Plug 'suan/vim-instant-markdown', {'commit': '915c681'}
+Plug 'tommcdo/vim-exchange', {'commit': '9373a84'}
+Plug 'tpope/vim-characterize', {'commit': '871364d'}
 Plug 'tpope/vim-sleuth', {'commit': 'a174627'}
-Plug 'sencer/vis', {'commit': '7d2bafb'}
-Plug 'bronson/vim-visual-star-search', {'commit': 'fa55818'}
 Plug 'tpope/vim-unimpaired', {'commit': '23f471a'}
 
-" cosmetic
+" }}}
+
+" plugins: cosmetic {{{
+
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'Yggdroot/indentLine', {'commit': '9cb94e1'}
 Plug 'altercation/vim-colors-solarized'
+Plug 'bling/vim-airline', {'commit': '8af213d'}
+Plug 'kshenoy/vim-signature', {'commit': '7cabfb5'}
+Plug 'luochen1990/rainbow', {'commit': '18b7bc1'}
 Plug 'sjl/vitality.vim'
 
-" text objects
+" }}}
+
+" plugins: syntax highlighting {{{
+
+Plug 'elzr/vim-json', {'commit': 'f5e3181'}
+Plug 'sheerun/vim-polyglot', {'commit': 'b0823d2'}
+
+" }}}
+
+" plugins: text objects {{{
+
 Plug 'kana/vim-textobj-user', {'commit': 'a305416'}
-  \| Plug 'kana/vim-textobj-function', {'commit': 'adb50f3'}
-  \| Plug 'thinca/vim-textobj-function-javascript', {'commit': 'a543539'}
   \| Plug 'kana/vim-textobj-entire', {'commit': '41c12e1'}
-  \| Plug 'whatyouhide/vim-textobj-xmlattr', {'commit': '29a154d'}
+  \| Plug 'kana/vim-textobj-function', {'commit': 'adb50f3'}
   \| Plug 'lucapette/vim-textobj-underscore', {'commit': '1200f05'}
+  \| Plug 'thinca/vim-textobj-function-javascript', {'commit': 'a543539'}
+  \| Plug 'whatyouhide/vim-textobj-xmlattr', {'commit': '29a154d'}
 
-" snippet engine
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+" }}}
 
-" ctrlp substitution
+" plugins: buffer manipulation {{{
+
+Plug 'jistr/vim-nerdtree-tabs', {'commit': '0decec1'}
+Plug 'jlanzarotta/bufexplorer', {'commit': 'ad2cff7'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-
-" my own pluggins
 Plug 'ninrod/ninscratch-vim'
+Plug 'qpkorr/vim-bufkill', {'commit': 'ba8b570'}
+Plug 'scrooloose/nerdtree', {'commit': '4ebbb53'}
+
+" }}}
 
 call plug#end()
 
@@ -188,19 +218,12 @@ let g:rainbow_conf = {
 \   'ctermfgs': darkcolors
 \}
 
-" let darkcolors = ['darkblue', 'darkyellow', 'darkcyan', 'darkmagenta']
-" let g:rainbow_conf = {
-" \   'ctermfgs': (darkcolors)
-" \}
-
 " don't let bufkill clutter <leader> binds
 let g:BufKillCreateMappings = 0
 
 " if you want to disable polyglot for some specific language
 let g:polyglot_disabled = ['markdown']
 
-" required by Pathogen Plugin Manager
-filetype plugin indent on
 
 " conceal indent lines on cursor line
 let g:indentLine_concealcursor = 'vc'
@@ -289,7 +312,7 @@ highlight clear SignColumn
 
 " }}}
 
-" Binds {{{
+" Custom Binds {{{
 
 " CamelCaseMotion test
 map <silent> w <Plug>CamelCaseMotion_w
@@ -416,6 +439,7 @@ inoremap <C-p> <C-x><C-o>
 " }}}
 
 " Auto Commands {{{
+
 " jump to last cursor
 autocmd BufReadPost *
   \ if line("'\"") > 0 && line("'\"") <= line("$") |
