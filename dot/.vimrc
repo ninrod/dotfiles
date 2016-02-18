@@ -168,6 +168,7 @@ Plug 'kshenoy/vim-signature', {'commit': '7cabfb5'}
 Plug 'luochen1990/rainbow', {'commit': '18b7bc1'}
 Plug 'sjl/vitality.vim'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+
 " }}}
 
 " plugins: syntax highlighting {{{
@@ -192,6 +193,7 @@ Plug 'kana/vim-textobj-user', {'commit': 'a305416'}
 Plug 'jistr/vim-nerdtree-tabs', {'commit': '0decec1'}
 Plug 'jlanzarotta/bufexplorer', {'commit': 'ad2cff7'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'ninrod/ninscratch-vim'
 Plug 'qpkorr/vim-bufkill', {'commit': 'ba8b570'}
 Plug 'scrooloose/nerdtree', {'commit': '4ebbb53'}
