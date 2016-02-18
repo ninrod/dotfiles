@@ -61,7 +61,10 @@ POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='160' #red
 export LANG=en_US.UTF-8
 export TERM=xterm-256color
 export EDITOR=vim
-export ENHANCD_COMMAND=ecd
+export ENHANCD_COMMAND=b
+
+# export https_proxy=https://cachelb:8080
+# export http_proxy=http://cachelb:8080
 
 # path config
 export GNUBIN_PATH=/usr/local/opt/coreutils/libexec/gnubin
