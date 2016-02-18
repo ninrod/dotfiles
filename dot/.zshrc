@@ -61,7 +61,7 @@ POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='160' #red
 export LANG=en_US.UTF-8
 export TERM=xterm-256color
 export EDITOR=vim
-export ENHANCD_COMMAND=b
+export ENHANCD_COMMAND=d
 
 # export https_proxy=https://cachelb:8080
 # export http_proxy=http://cachelb:8080
@@ -134,7 +134,6 @@ alias ls='ls --color=auto --group-directories-first'
 alias l='ls -lah'
 alias c='clear'
 alias e='exit'
-alias b='ecd'
 alias m='nman'
 alias n='node'
 alias o='open'
