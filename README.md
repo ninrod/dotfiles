@@ -61,7 +61,7 @@ $ exec zsh
 0. [auto-pairs][auto-pairs_link]: plugin to complete pairs of brackets and similar stuff.
 0. [bufexplorer][bufexplorer_link]: easier vim buffer navigation.
 0. [CamelCaseMotion][camel_link]: motion through camelcase style words.
-0. [ctrlp.vim][ctlrp_link]: Full path fuzzy file, buffer, mru, tag finder.
+0. [fzf.vim][fzf-vim_link]: fuzzy file finder.
 0. [gitv][gitv_link]: gitk for vim.
 0. [indentLine][indentLine_link]: visual cues for indentation.
 0. [neoman][neoman_link]: readman pages faster than superman.
@@ -277,4 +277,4 @@ Same as [Vim][vim-license_link].
 [vim-license_link]: <http://vimdoc.sourceforge.net/htmldoc/uganda.html#license>
 [vim-sleuth_link]: <https://github.com/tpope/vim-sleuth.git>
 [neoman_link]: <https://github.com/nhooyr/neoman.vim.git>
-
+[fzf-vim_link]: <https://github.com/junegunn/fzf.vim.git>
