@@ -130,7 +130,7 @@ Plug 'wellle/targets.vim', {'commit': 'd111928'}
 
 " plugins: completions {{{
 
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips',{'commit': '25882e9'} | Plug 'honza/vim-snippets', {'commit': '122134f'}
 Plug 'alvan/vim-closetag', {'commit': '21a747e'}
 Plug 'ervandew/supertab', {'commit': '9f7da6d'}
 Plug 'jiangmiao/auto-pairs', {'tag': 'v1.3.1'}
@@ -140,9 +140,8 @@ Plug 'tpope/vim-endwise', {'commit': 'f06abe3'}
 
 " plugins: git {{{
 
-Plug 'gregsexton/gitv', {'commit': 'e10a896'}
+Plug 'tpope/vim-fugitive', {'commit': 'fd36aa9'} | Plug 'gregsexton/gitv', {'commit': 'e10a896'}
 Plug 'mhinz/vim-signify', {'commit': '2a3dafd'}
-Plug 'tpope/vim-fugitive', {'commit': 'fd36aa9'}
 
 " }}}
 
@@ -161,13 +160,13 @@ Plug 'tpope/vim-unimpaired', {'commit': '23f471a'}
 
 " plugins: cosmetic {{{
 
-Plug 'NLKNguyen/papercolor-theme'
+Plug 'altercation/vim-colors-solarized', {'commit': '528a59f'}
+Plug 'NLKNguyen/papercolor-theme', {'commit': 'd3c8c8f'}
+Plug 'vim-airline/vim-airline', {'commit': '8af213d'} | Plug 'vim-airline/vim-airline-themes', {'commit': 'cf5b990'}
+Plug 'sjl/vitality.vim', {'commit': '4bb8c07'}
 Plug 'Yggdroot/indentLine', {'commit': '9cb94e1'}
-Plug 'altercation/vim-colors-solarized'
 Plug 'kshenoy/vim-signature', {'commit': '7cabfb5'}
 Plug 'luochen1990/rainbow', {'commit': '18b7bc1'}
-Plug 'sjl/vitality.vim'
-Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 
 " }}}
 
@@ -190,13 +189,13 @@ Plug 'kana/vim-textobj-user', {'commit': 'a305416'}
 
 " plugins: buffer manipulation {{{
 
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim', {'commit': 'be01b64'}
+Plug 'scrooloose/nerdtree', {'commit': '4ebbb53'}
 Plug 'jistr/vim-nerdtree-tabs', {'commit': '0decec1'}
 Plug 'jlanzarotta/bufexplorer', {'commit': 'ad2cff7'}
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'ninrod/ninscratch-vim'
 Plug 'qpkorr/vim-bufkill', {'commit': 'ba8b570'}
-Plug 'scrooloose/nerdtree', {'commit': '4ebbb53'}
+Plug 'ninrod/ninscratch-vim'
 
 " }}}
 
@@ -286,7 +285,7 @@ let g:ctrlp_custom_ignore = '
 " Airline configs(status line)
 
 " airline theme
-let g:airline_theme='papercolor'
+let g:airline_theme='PaperColor'
 
 " airline: if you don't want to use a powerline patched font
 let g:airline_powerline_fonts = 1

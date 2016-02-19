@@ -178,7 +178,7 @@ alias gs='git status'
 alias gsd='git ls-files -d | sed "s/\/.*$//g" | sort | uniq'
 
 # Ag (the silver searcher)
-alias ag='ag --path-to-agignore=~/.agignore'
+alias ag='ag --hidden --path-to-agignore=~/.agignore'
 
 # }}}
 
