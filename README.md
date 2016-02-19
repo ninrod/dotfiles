@@ -13,7 +13,7 @@
 * get [fzf][fzf_link].
 * if you're on OSx, brew install these:
   * `brew install coreutils` (mainly because `BSD` `ls` `CLICOLOR` sucks).
-  * `brew install` [reattach-to-user-namespace][reattach_link].
+  * `brew install reattach-to-user-namespace` (Mainly because of the `open` utility. [more info here][reattach_link]).
 * install a [powerline patched font][powerline_fonts] on your OS and configure your terminal to use said font.
   I recommend [Source code Pro][saucecode_link], 14pt, for a 13" display.
 * I strongly recommend using [iTerm2][iterm2_link] on OSx.
