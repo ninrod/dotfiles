@@ -37,7 +37,7 @@ set -g default-command "reattach-to-user-namespace -l /usr/local/bin/zsh"
 bind -t vi-copy y copy-pipe 'pbcopy'
 ```
 
-* configure your terminal to use the [papercolor theme][papercolor_link]. There's a `conf/papercolor` folder within this repo that can help you with that on [iTerm2][iterm2_link]. Just click the `papercolor-fixed-light.itermcolors` file and setup a profile within iTerm2 using the papercolor-light scheme.
+* configure your terminal to use the [papercolor theme][papercolor_link]. There's a `conf/papercolor` folder within this repo that can help you with that on [iTerm2][iterm2_link]. Just click the `papercolor-light-fixed.itermcolors` file and setup a profile within iTerm2 using the papercolor-light scheme.
 * change the git user info inside the .gitconfig file within the repo and run the zsh script `install.zsh` like so:
 
 ```sh
