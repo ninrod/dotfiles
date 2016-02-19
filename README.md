@@ -21,13 +21,13 @@
 * git clone this repo.
 
 ```sh
-git clone https://github.com/ninrod/dotfiles.git ~/.dotfiles
+$ git clone https://github.com/ninrod/dotfiles.git ~/.dotfiles
 ```
 
 * if you are not on OSx, you need to edit .tmux.conf like so:
 
 ```sh
-vim -u NONE ~/.dotfiles/dot/.tmux.conf
+$ vim -u NONE ~/.dotfiles/dot/.tmux.conf
 
 #comment this line
 set -g default-command "reattach-to-user-namespace -l /usr/local/bin/zsh"
