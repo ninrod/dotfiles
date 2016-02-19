@@ -104,6 +104,9 @@ set showbreak=←←
 " redraw only when we need to (i.e. don't redraw when executing a macro)
 set lazyredraw
 
+" TODO verify the usefulness of this
+set wildignore+=*/.hg/*,*/.svn/*.,*/.DS_Store,*/.idea/*,*/.tmp/*,*/target/*
+
 " enable language-dependent indenting.
 filetype plugin indent on
 
@@ -259,28 +262,27 @@ let g:nerdtree_tabs_open_on_gui_startup=0
 " nerd tree needs to show hidden files for us
 let g:NERDTreeShowHidden=1
 
-" CtrlP configs
-let g:ctrlp_show_hidden=1
-let g:ctrlp_working_path_mode=0
-let g:ctrlp_max_height=10
-let g:ctrlp_reuse_window = 'Scratch'
-let g:ctrlp_arg_map = 1
-set wildignore+=*/.hg/*,*/.svn/*.,*/.DS_Store,*/.idea/*,*/.tmp/*,*/target/*
-let g:ctrlp_custom_ignore = '
-      \\.git$\|
-      \\.vagrant$\|
-      \\.pdf$\|
-      \\.log$\|
-      \\.out$\|
-      \\.box$\|
-      \\.aux$\|
-      \\.hg$\|
-      \\.grunt$\|
-      \\.sass-cache$\|
-      \bower_components$\|
-      \node_modules$\|
-      \\.svn$
-      \'
+" " CtrlP configs
+" let g:ctrlp_show_hidden=1
+" let g:ctrlp_working_path_mode=0
+" let g:ctrlp_max_height=10
+" let g:ctrlp_reuse_window = 'Scratch'
+" let g:ctrlp_arg_map = 1
+" let g:ctrlp_custom_ignore = '
+"       \\.git$\|
+"       \\.vagrant$\|
+"       \\.pdf$\|
+"       \\.log$\|
+"       \\.out$\|
+"       \\.box$\|
+"       \\.aux$\|
+"       \\.hg$\|
+"       \\.grunt$\|
+"       \\.sass-cache$\|
+"       \bower_components$\|
+"       \node_modules$\|
+"       \\.svn$
+"       \'
 
 " Airline configs(status line)
 
