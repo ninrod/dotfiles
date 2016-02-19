@@ -208,6 +208,19 @@ call plug#end()
 
 " plugin config {{{
 
+" FZF
+
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
 " enabling rainbow plugin at start
 let g:rainbow_active = 1
 
@@ -247,6 +260,22 @@ let g:signify_vcs_list = ['git']
 
 " no default mappings for bufExplorer
 let g:bufExplorerDisableDefaultKeyMapping=1
+
+" Solarized Dark Theme
+" set background=dark
+" let g:solarized_bold=1
+" let g:solarized_underline=0
+" let g:solarized_visibility="high"
+" let g:solarized_contrast="high"
+" let g:solarized_diffmode="high"
+" if !has("gui_running")
+"   " terminal vim...
+"   let g:solarized_termcolors=16
+" else
+"   " macVim | gVim
+"   set guifont=Sauce\ Code\ Powerline:h11
+" endif
+" colorscheme solarized
 
 " papercolor theme
 set background=light

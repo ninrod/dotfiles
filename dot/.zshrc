@@ -84,24 +84,30 @@ export PATH
 
 source ~/.zplug/zplug
 
-# completion
-zplug "zsh-users/zsh-completions"
-zplug "felixr/docker-zsh-completion", if:"which docker", of:_docker
+# completion {{{
 
-# theme
-zplug "bhilburn/powerlevel9k", of:powerlevel9k.zsh-theme
+# zplug "zsh-users/zsh-completions"
+# zplug "felixr/docker-zsh-completion", if:"which docker", of:_docker
+
+# }}}
+
+# theme and appearance {{{
+
+# zplug "bhilburn/powerlevel9k", of:powerlevel9k.zsh-theme
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
+zplug "ninrod/nin-vi-mode"
 
-# better directory listings
+# }}}
+
+# better directory listings {{{
+
 zplug "Tarrasch/zsh-bd"
 zplug "b4b4r07/enhancd", of:enhancd.sh
 zplug "rimraf/k"
 zplug "rupa/z", of:z.sh
 
-# vi mode
-zplug "ninrod/nin-vi-mode"
+# }}}
 
-# Install plugins that have not been installed yet
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
     if read -q; then
@@ -189,6 +195,8 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 # zstyle ':completion:*' menu select=20
 
+
+
 # }}}
 
 # functions {{{
@@ -218,5 +226,12 @@ compdef nman="man"
 function = {
     echo "$@" | bc -l
 }
+
+# }}}
+
+# prompt {{{
+
+autoload -U colors && colors
+PROMPT='%F{blue}%K{black}%1~%f%k %F{magenta}#%f '
 
 # }}}
