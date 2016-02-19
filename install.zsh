@@ -14,7 +14,7 @@ updatelinks() {
     rm $1
   fi
 
-  print 'mounting symlink "'$1'" -> "'${2:a}'"'
+  print -l 'mounting symlink "'$1'" -> "'${2:a}'"'
   ln -s ${2:a} $1
 }
 
