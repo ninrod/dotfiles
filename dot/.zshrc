@@ -227,6 +227,6 @@ function = {
 
 # minimal prompt {{{
 
-PROMPT='%F{blue}%K{black}%1~%f%k %F{magenta}#%f '
+PROMPT='%F{blue}%1~%f %F{magenta}#%f '
 
 # }}}
