@@ -526,7 +526,7 @@ autocmd CmdwinEnter * nunmap <CR>
 
 " }}}
 
-" Status Line Setup {{{
+" Custom status line {{{
 
 hi StatusLine ctermbg=10 ctermfg=8
 
