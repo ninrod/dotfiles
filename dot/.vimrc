@@ -171,10 +171,11 @@ Plug 'altercation/vim-colors-solarized', {'commit': '528a59f'}
 Plug 'sjl/vitality.vim', {'commit': '4bb8c07'}
 Plug 'kshenoy/vim-signature', {'commit': '7cabfb5'}
 
+" Plug 'vim-airline/vim-airline', {'commit': '8af213d'}
+"   \| Plug 'vim-airline/vim-airline-themes', {'commit': 'cf5b990'}
 " Plug 'luochen1990/rainbow', {'commit': '18b7bc1'}
 " Plug 'Yggdroot/indentLine', {'commit': '9cb94e1'}
 " Plug 'NLKNguyen/papercolor-theme', {'commit': 'd3c8c8f'}
-" Plug 'vim-airline/vim-airline', {'commit': '8af213d'} | Plug 'vim-airline/vim-airline-themes', {'commit': 'cf5b990'}
 
 " }}}
 
@@ -514,7 +515,6 @@ autocmd BufReadPre,FileReadPre *.md,*.jsp MatchDebug
 " quick fix for <CR> in command-line-window
 autocmd CmdwinEnter * nunmap <CR>
 
-hi StatusLine ctermbg=10 ctermfg=8
 
 " trailing whitespace hack
 " highlight ExtraWhitespace ctermfg=black guifg=black ctermbg=218 guibg=218
@@ -523,5 +523,35 @@ hi StatusLine ctermbg=10 ctermfg=8
 " autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 " autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 " autocmd BufWinLeave * call clearmatches()
+
+" }}}
+
+" Status Line Setup {{{
+
+hi StatusLine ctermbg=10 ctermfg=8
+
+set statusline=%#identifier#
+set statusline+=%f\     "tail of the filename
+
+set statusline+=%*
+
+set statusline+=%y      "filetype
+
+"read only flag
+set statusline+=%#identifier#
+set statusline+=%r
+set statusline+=%*
+
+"modified flag
+set statusline+=%#warningmsg#
+set statusline+=%m
+set statusline+=%*
+
+" left|right separator
+set statusline+=%=
+
+" set statusline+=%l\|
+set statusline+=%c\|
+set statusline+=%P    "percent through file
 
 " }}}
