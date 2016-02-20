@@ -1,7 +1,7 @@
 # Ninrod's __vim, tmux, zsh__ dotfiles
 
 ### Screenshot
-![screenshot-vi-tmux](https://raw.githubusercontent.com/ninrod/dotfiles/misc/images/screen.png)
+![screenshot-vi-tmux](https://raw.githubusercontent.com/ninrod/dotfiles/misc/images/shell.png)
 
 ## Install Instructions
 
