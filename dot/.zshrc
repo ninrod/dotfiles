@@ -74,6 +74,7 @@ zplug "felixr/docker-zsh-completion", if:"which docker", of:_docker
 
 # theme and appearance {{{
 
+# zplug "bhilburn/powerlevel9k", of:powerlevel9k.zsh-theme
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
 zplug "ninrod/nin-vi-mode"
 
