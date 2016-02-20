@@ -118,14 +118,13 @@ call plug#begin('~/.vim/plugged')
 
 " plugins: expand core functionality {{{
 
-Plug 'bkad/CamelCaseMotion', {'commit': '3ae9bf9'}
 Plug 'jeffkreeftmeijer/vim-numbertoggle', {'commit': 'c4d0aac'}
-Plug 'mileszs/ack.vim', {'tag': '1.0.9'}
+Plug 'bkad/CamelCaseMotion', {'commit': '3ae9bf9'}
+Plug 'tpope/vim-rsi', {'commit': 'b689ee4'}
 Plug 'tpope/vim-commentary', {'commit': 'e0f4850'}
 Plug 'tpope/vim-repeat', {'commit': '7a6675f'}
-Plug 'tpope/vim-rsi', {'commit': 'b689ee4'}
-Plug 'tpope/vim-surround', {'commit': '2d05440'}
 Plug 'wellle/targets.vim', {'commit': 'd111928'}
+Plug 'tpope/vim-surround', {'commit': '2d05440'}
 
 " Plug 'sencer/vis', {'commit': '7d2bafb'}
 " Plug 'bronson/vim-visual-star-search', {'commit': 'fa55818'}
@@ -145,7 +144,9 @@ Plug 'jiangmiao/auto-pairs', {'tag': 'v1.3.1'}
 
 " plugins: git {{{
 
-Plug 'tpope/vim-fugitive', {'commit': 'fd36aa9'} | Plug 'gregsexton/gitv', {'commit': 'e10a896'}
+Plug 'tpope/vim-fugitive', {'commit': 'fd36aa9'}
+  " \| Plug 'gregsexton/gitv', {'commit': 'e10a896'}
+
 Plug 'mhinz/vim-signify', {'commit': '2a3dafd'}
 
 " }}}
@@ -198,6 +199,7 @@ Plug 'kana/vim-textobj-user', {'commit': 'a305416'}
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim', {'commit': 'be01b64'}
+Plug 'mileszs/ack.vim', {'tag': '1.0.9'}
 Plug 'scrooloose/nerdtree', {'commit': '4ebbb53'}
 Plug 'jistr/vim-nerdtree-tabs', {'commit': '0decec1'}
 Plug 'jlanzarotta/bufexplorer', {'commit': 'ad2cff7'}
@@ -241,8 +243,7 @@ let g:rainbow_conf = {
 let g:BufKillCreateMappings = 0
 
 " if you want to disable polyglot for some specific language
-let g:polyglot_disabled = ['markdown']
-
+let g:polyglot_disabled = ['html', 'css', 'markdown']
 
 " conceal indent lines on cursor line
 let g:indentLine_concealcursor = 'vc'
