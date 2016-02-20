@@ -41,7 +41,7 @@ set -g default-command "reattach-to-user-namespace -l /usr/local/bin/zsh"
 bind -t vi-copy y copy-pipe 'pbcopy'
 ```
 
-* configure your terminal to use the [papercolor theme][papercolor_link] or [solarized dark theme][solarized_link]. There's a `conf` folder within this repo that can help you with that. 
+* configure your terminal to use the [papercolor theme][papercolor_link] or [solarized dark theme][solarized_link]. There's a `conf` folder within this repo that can help you with that. I've also provided a [solarized-theme][1] tag and a [papercolor-theme][2] as example setups.
 * change the git user info inside the .gitconfig file within the repo and run the zsh script `install.zsh` like so:
 
 ```sh
@@ -287,3 +287,6 @@ Same as [Vim][vim-license_link].
 [vim-sleuth_link]: <https://github.com/tpope/vim-sleuth.git>
 [neoman_link]: <https://github.com/nhooyr/neoman.vim.git>
 [fzf-vim_link]: <https://github.com/junegunn/fzf.vim.git>
+
+[1]: <https://github.com/ninrod/dotfiles/releases/tag/solarized-theme>
+[2]: <https://github.com/ninrod/dotfiles/releases/tag/papercolor-theme>
