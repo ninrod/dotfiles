@@ -262,24 +262,18 @@ let g:signify_vcs_list = ['git']
 let g:bufExplorerDisableDefaultKeyMapping=1
 
 " Solarized Dark Theme
-" set background=dark
-" let g:solarized_bold=1
-" let g:solarized_underline=0
-" let g:solarized_visibility="high"
-" let g:solarized_contrast="high"
-" let g:solarized_diffmode="high"
-" if !has("gui_running")
-"   " terminal vim...
-"   let g:solarized_termcolors=16
-" else
-"   " macVim | gVim
-"   set guifont=Sauce\ Code\ Powerline:h11
-" endif
-" colorscheme solarized
+set background=dark
+let g:solarized_bold=1
+let g:solarized_underline=0
+let g:solarized_visibility="high"
+let g:solarized_contrast="high"
+let g:solarized_diffmode="high"
+let g:solarized_termcolors=16
+colorscheme solarized
 
 " papercolor theme
-set background=light
-colorscheme PaperColor
+" set background=light
+" colorscheme PaperColor
 
 " vim-commentary: disabling double backslash
 let g:commentary_map_backslash=0
@@ -316,7 +310,7 @@ let g:NERDTreeShowHidden=1
 " Airline configs(status line)
 
 " airline theme
-let g:airline_theme='PaperColor'
+let g:airline_theme='base16'
 
 " airline: if you don't want to use a powerline patched font
 let g:airline_powerline_fonts = 1
@@ -516,11 +510,11 @@ autocmd BufReadPre,FileReadPre *.md,*.jsp MatchDebug
 autocmd CmdwinEnter * nunmap <CR>
 
 " trailing whitespace hack
-highlight ExtraWhitespace ctermfg=black guifg=black ctermbg=218 guibg=218
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
+" highlight ExtraWhitespace ctermfg=black guifg=black ctermbg=218 guibg=218
+" match ExtraWhitespace /\s\+$/
+" autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+" autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+" autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+" autocmd BufWinLeave * call clearmatches()
 
 " }}}

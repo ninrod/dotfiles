@@ -40,31 +40,12 @@ WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
 # }}}
 
-# powerlevel9k {{{
-POWERLEVEL9K_DISABLE_RPROMPT=false
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status vi_mode)
-POWERLEVEL9K_STATUS_VERBOSE=false
-
-# make powerlevel9k compatible with papercolor theme
-POWERLEVEL9K_COLOR_SCHEME='light'
-POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND='253' #green
-POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND='238' #almost black
-POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='253' #grey
-POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='160' #red
-
-# }}}
-
 # PATH and exports {{{
 
 export LANG=en_US.UTF-8
 export TERM=xterm-256color
 export EDITOR=vim
 export ENHANCD_COMMAND=d
-
-# export https_proxy=https://cachelb:8080
-# export http_proxy=http://cachelb:8080
 
 # path config
 export GNUBIN_PATH=/usr/local/opt/coreutils/libexec/gnubin
@@ -86,14 +67,13 @@ source ~/.zplug/zplug
 
 # completion {{{
 
-# zplug "zsh-users/zsh-completions"
-# zplug "felixr/docker-zsh-completion", if:"which docker", of:_docker
+zplug "zsh-users/zsh-completions"
+zplug "felixr/docker-zsh-completion", if:"which docker", of:_docker
 
 # }}}
 
 # theme and appearance {{{
 
-# zplug "bhilburn/powerlevel9k", of:powerlevel9k.zsh-theme
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
 zplug "ninrod/nin-vi-mode"
 
@@ -193,9 +173,6 @@ alias ag='ag --hidden --path-to-agignore=~/.agignore'
 autoload -Uz compinit && compinit
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
-# zstyle ':completion:*' menu select=20
-
-
 
 # }}}
 
@@ -222,7 +199,7 @@ function nman {
 }
 compdef nman="man"
 
-# front for `bc` utility (credits for arzzen/calc.plugin.zsh)
+# front for `bc` utility (credit goes to arzzen/calc.plugin.zsh)
 function = {
     echo "$@" | bc -l
 }
