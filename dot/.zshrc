@@ -225,9 +225,8 @@ function = {
 
 # }}}
 
-# prompt {{{
+# minimal prompt {{{
 
-autoload -U colors && colors
 PROMPT='%F{blue}%K{black}%1~%f%k %F{magenta}#%f '
 
 # }}}

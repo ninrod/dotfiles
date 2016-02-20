@@ -119,25 +119,27 @@ call plug#begin('~/.vim/plugged')
 " plugins: expand core functionality {{{
 
 Plug 'bkad/CamelCaseMotion', {'commit': '3ae9bf9'}
-Plug 'bronson/vim-visual-star-search', {'commit': 'fa55818'}
 Plug 'jeffkreeftmeijer/vim-numbertoggle', {'commit': 'c4d0aac'}
 Plug 'mileszs/ack.vim', {'tag': '1.0.9'}
-Plug 'sencer/vis', {'commit': '7d2bafb'}
 Plug 'tpope/vim-commentary', {'commit': 'e0f4850'}
 Plug 'tpope/vim-repeat', {'commit': '7a6675f'}
 Plug 'tpope/vim-rsi', {'commit': 'b689ee4'}
 Plug 'tpope/vim-surround', {'commit': '2d05440'}
 Plug 'wellle/targets.vim', {'commit': 'd111928'}
 
+" Plug 'sencer/vis', {'commit': '7d2bafb'}
+" Plug 'bronson/vim-visual-star-search', {'commit': 'fa55818'}
+
 " }}}
 
 " plugins: completions {{{
 
-Plug 'SirVer/ultisnips',{'commit': '25882e9'} | Plug 'honza/vim-snippets', {'commit': '122134f'}
 Plug 'alvan/vim-closetag', {'commit': '21a747e'}
 Plug 'ervandew/supertab', {'commit': '9f7da6d'}
 Plug 'jiangmiao/auto-pairs', {'tag': 'v1.3.1'}
-Plug 'tpope/vim-endwise', {'commit': 'f06abe3'}
+
+" Plug 'tpope/vim-endwise', {'commit': 'f06abe3'}
+" Plug 'SirVer/ultisnips',{'commit': '25882e9'} | Plug 'honza/vim-snippets', {'commit': '122134f'}
 
 " }}}
 
@@ -155,21 +157,23 @@ Plug 'nhooyr/neoman.vim', {'commit': '0fbdecd'}
 Plug 'regedarek/ZoomWin', {'commit': 'da618cb'}
 Plug 'suan/vim-instant-markdown', {'commit': '915c681'}
 Plug 'tommcdo/vim-exchange', {'commit': '9373a84'}
-Plug 'tpope/vim-characterize', {'commit': '871364d'}
-Plug 'tpope/vim-sleuth', {'commit': 'a174627'}
 Plug 'tpope/vim-unimpaired', {'commit': '23f471a'}
+
+" Plug 'tpope/vim-characterize', {'commit': '871364d'}
+" Plug 'tpope/vim-sleuth', {'commit': 'a174627'}
 
 " }}}
 
 " plugins: cosmetic {{{
 
 Plug 'altercation/vim-colors-solarized', {'commit': '528a59f'}
-Plug 'NLKNguyen/papercolor-theme', {'commit': 'd3c8c8f'}
-Plug 'vim-airline/vim-airline', {'commit': '8af213d'} | Plug 'vim-airline/vim-airline-themes', {'commit': 'cf5b990'}
 Plug 'sjl/vitality.vim', {'commit': '4bb8c07'}
-Plug 'Yggdroot/indentLine', {'commit': '9cb94e1'}
 Plug 'kshenoy/vim-signature', {'commit': '7cabfb5'}
-Plug 'luochen1990/rainbow', {'commit': '18b7bc1'}
+
+" Plug 'luochen1990/rainbow', {'commit': '18b7bc1'}
+" Plug 'Yggdroot/indentLine', {'commit': '9cb94e1'}
+" Plug 'NLKNguyen/papercolor-theme', {'commit': 'd3c8c8f'}
+" Plug 'vim-airline/vim-airline', {'commit': '8af213d'} | Plug 'vim-airline/vim-airline-themes', {'commit': 'cf5b990'}
 
 " }}}
 
@@ -508,6 +512,8 @@ autocmd BufReadPre,FileReadPre *.md,*.jsp MatchDebug
 
 " quick fix for <CR> in command-line-window
 autocmd CmdwinEnter * nunmap <CR>
+
+hi StatusLine ctermbg=10 ctermfg=8
 
 " trailing whitespace hack
 " highlight ExtraWhitespace ctermfg=black guifg=black ctermbg=218 guibg=218
