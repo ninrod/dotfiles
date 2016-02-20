@@ -40,6 +40,24 @@ WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
 # }}}
 
+# powerlevel9k {{{
+
+# main config
+# POWERLEVEL9K_DISABLE_RPROMPT=false
+# POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status vi_mode)
+# POWERLEVEL9K_STATUS_VERBOSE=false
+
+# make powerlevel9k compatible with papercolor theme
+# POWERLEVEL9K_COLOR_SCHEME='light'
+# POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND='253' #green
+# POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND='238' #almost black
+# POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='253' #grey
+# POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='160' #red
+
+# }}}
+
 # PATH and exports {{{
 
 export LANG=en_US.UTF-8
