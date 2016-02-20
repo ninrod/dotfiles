@@ -1,7 +1,11 @@
 # Ninrod's __vim, tmux, zsh__ dotfiles
 
-### Screenshot
-![screenshot-vi-tmux](https://raw.githubusercontent.com/ninrod/dotfiles/misc/images/shell.png)
+## Using PaperColor
+![papercolor-vi-tmux](https://raw.githubusercontent.com/ninrod/dotfiles/misc/images/screen.png)
+
+## Using Solarized Dark
+
+![solarized-dark-vi-tmux](https://raw.githubusercontent.com/ninrod/dotfiles/misc/images/shell.png)
 
 ## Install Instructions
 
@@ -37,7 +41,7 @@ set -g default-command "reattach-to-user-namespace -l /usr/local/bin/zsh"
 bind -t vi-copy y copy-pipe 'pbcopy'
 ```
 
-* configure your terminal to use the [solarized theme][solarized_link]. There's a `conf/solarized` folder within this repo that can help you with that on [iTerm2][iterm2_link]. 
+* configure your terminal to use the [papercolor theme][papercolor_link] or [solarized dark theme][solarized_link]. There's a `conf` folder within this repo that can help you with that. 
 * change the git user info inside the .gitconfig file within the repo and run the zsh script `install.zsh` like so:
 
 ```sh
@@ -53,6 +57,12 @@ $ exec zsh
 
 * fire up vim and run `:PlugInstall`
 * That's it, your're all set.
+
+
+## Bonus: Changing themes
+
+* To change Themes you have to alter `.tmux.conf`, `.vimrc`, `.zshrc` (for prompt theme) and your terminal theme.
+* there's a `conf` folder that can help you with that.
 
 ## VIM: Powerful shell text editor. Tweaked with plugins.
 
@@ -94,7 +104,6 @@ $ exec zsh
 0. [vim-textobj-entire][vim-textobj-entire_link]: adds textobjs `ie` and `ae` for selecting the entire buffer.
 0. [vim-textobj-function][vim-textobj-function_link]: adds textobjs `if` and `af` for selecting a function body.
 0. [vim-textobj-function-javascript][vim-textobj-function-javascript_link]: expands [vim-textobj-function][vim-textobj-function_link] adding javascript functions.
-0. [vim-textobj-underscore][vim-textobj-underscore_link]: adds `a_` and `i_` text objects for manipulating words between underscores.
 0. [vim-textobj-user][vim-textobj-user_link]: base library for other text objects.
 0. [vim-textobj-xmlattr][vim-textobj-xmlattr_link]: adds `ax` and `ix` text objects for manipulating xml attributes of tags.
 0. [vim-unimpaired][vim-unimpaired_link]: adds various `[ + bind` and `] + bind` useful bindings.
