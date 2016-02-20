@@ -167,13 +167,13 @@ Plug 'tpope/vim-unimpaired', {'commit': '23f471a'}
 
 " plugins: cosmetic {{{
 
-Plug 'altercation/vim-colors-solarized', {'commit': '528a59f'}
+" Plug 'altercation/vim-colors-solarized', {'commit': '528a59f'}
 Plug 'sjl/vitality.vim', {'commit': '4bb8c07'}
 Plug 'kshenoy/vim-signature', {'commit': '7cabfb5'}
 
 " Plug 'luochen1990/rainbow', {'commit': '18b7bc1'}
 " Plug 'Yggdroot/indentLine', {'commit': '9cb94e1'}
-" Plug 'NLKNguyen/papercolor-theme', {'commit': 'd3c8c8f'}
+Plug 'NLKNguyen/papercolor-theme', {'commit': 'd3c8c8f'}
 " Plug 'vim-airline/vim-airline', {'commit': '8af213d'} | Plug 'vim-airline/vim-airline-themes', {'commit': 'cf5b990'}
 
 " }}}
@@ -267,18 +267,18 @@ let g:signify_vcs_list = ['git']
 let g:bufExplorerDisableDefaultKeyMapping=1
 
 " Solarized Dark Theme
-set background=dark
-let g:solarized_bold=1
-let g:solarized_underline=0
-let g:solarized_visibility="high"
-let g:solarized_contrast="high"
-let g:solarized_diffmode="high"
-let g:solarized_termcolors=16
-colorscheme solarized
+" set background=dark
+" let g:solarized_bold=1
+" let g:solarized_underline=0
+" let g:solarized_visibility="high"
+" let g:solarized_contrast="high"
+" let g:solarized_diffmode="high"
+" let g:solarized_termcolors=16
+" colorscheme solarized
 
 " papercolor theme
-" set background=light
-" colorscheme PaperColor
+set background=light
+colorscheme PaperColor
 
 " vim-commentary: disabling double backslash
 let g:commentary_map_backslash=0

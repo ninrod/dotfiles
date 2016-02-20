@@ -43,18 +43,18 @@ WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 # powerlevel9k {{{
 
 # main config
-# POWERLEVEL9K_DISABLE_RPROMPT=false
-# POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
-# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
-# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status vi_mode)
-# POWERLEVEL9K_STATUS_VERBOSE=false
+POWERLEVEL9K_DISABLE_RPROMPT=false
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status vi_mode)
+POWERLEVEL9K_STATUS_VERBOSE=false
 
 # make powerlevel9k compatible with papercolor theme
-# POWERLEVEL9K_COLOR_SCHEME='light'
-# POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND='253' #green
-# POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND='238' #almost black
-# POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='253' #grey
-# POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='160' #red
+POWERLEVEL9K_COLOR_SCHEME='light'
+POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND='253' #green
+POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND='238' #almost black
+POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='253' #grey
+POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='160' #red
 
 # }}}
 
@@ -87,12 +87,13 @@ source ~/.zplug/zplug
 
 zplug "zsh-users/zsh-completions"
 zplug "felixr/docker-zsh-completion", if:"which docker", of:_docker
+zplug "plugins/git", from:oh-my-zsh, if:"which git"
 
 # }}}
 
 # theme and appearance {{{
 
-# zplug "bhilburn/powerlevel9k", of:powerlevel9k.zsh-theme
+zplug "bhilburn/powerlevel9k", of:powerlevel9k.zsh-theme
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
 zplug "ninrod/nin-vi-mode"
 
