@@ -1,4 +1,4 @@
-" Settings {{{
+" Vim Options {{{
 
 " Switch syntax highlighting on, when the terminal has colors
 syntax on
@@ -112,7 +112,7 @@ filetype plugin indent on
 
 " }}}
 
-" vim-plug {{{
+" Plugins {{{
 
 call plug#begin('~/.vim/plugged')
 
@@ -120,12 +120,12 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'jeffkreeftmeijer/vim-numbertoggle', {'commit': 'c4d0aac'}
 Plug 'bkad/CamelCaseMotion', {'commit': '3ae9bf9'}
-Plug 'tpope/vim-rsi', {'commit': 'b689ee4'}
 Plug 'tpope/vim-commentary', {'commit': 'e0f4850'}
 Plug 'tpope/vim-repeat', {'commit': '7a6675f'}
 Plug 'wellle/targets.vim', {'commit': 'd111928'}
 Plug 'tpope/vim-surround', {'commit': '2d05440'}
 
+" Plug 'tpope/vim-rsi', {'commit': 'b689ee4'}
 " Plug 'sencer/vis', {'commit': '7d2bafb'}
 " Plug 'bronson/vim-visual-star-search', {'commit': 'fa55818'}
 
@@ -133,8 +133,8 @@ Plug 'tpope/vim-surround', {'commit': '2d05440'}
 
 " plugins: completions {{{
 
-Plug 'alvan/vim-closetag', {'commit': '21a747e'}
 Plug 'ervandew/supertab', {'commit': '9f7da6d'}
+Plug 'alvan/vim-closetag', {'commit': '21a747e'}
 Plug 'jiangmiao/auto-pairs', {'tag': 'v1.3.1'}
 
 " Plug 'tpope/vim-endwise', {'commit': 'f06abe3'}
@@ -168,8 +168,8 @@ Plug 'tpope/vim-unimpaired', {'commit': '23f471a'}
 " plugins: cosmetic {{{
 
 Plug 'altercation/vim-colors-solarized', {'commit': '528a59f'}
-Plug 'sjl/vitality.vim', {'commit': '4bb8c07'}
 Plug 'kshenoy/vim-signature', {'commit': '7cabfb5'}
+Plug 'sjl/vitality.vim', {'commit': '4bb8c07'}
 
 " Plug 'vim-airline/vim-airline', {'commit': '8af213d'}
 "   \| Plug 'vim-airline/vim-airline-themes', {'commit': 'cf5b990'}
@@ -182,7 +182,7 @@ Plug 'kshenoy/vim-signature', {'commit': '7cabfb5'}
 " plugins: syntax highlighting {{{
 
 Plug 'elzr/vim-json', {'commit': 'f5e3181'}
-Plug 'sheerun/vim-polyglot', {'commit': 'b0823d2'}
+" Plug 'sheerun/vim-polyglot', {'commit': 'b0823d2'}
 
 " }}}
 
@@ -203,9 +203,10 @@ Plug 'junegunn/fzf.vim', {'commit': 'be01b64'}
 Plug 'mileszs/ack.vim', {'tag': '1.0.9'}
 Plug 'scrooloose/nerdtree', {'commit': '4ebbb53'}
 Plug 'jistr/vim-nerdtree-tabs', {'commit': '0decec1'}
-Plug 'jlanzarotta/bufexplorer', {'commit': 'ad2cff7'}
 Plug 'qpkorr/vim-bufkill', {'commit': 'ba8b570'}
 Plug 'ninrod/ninscratch-vim'
+
+" Plug 'jlanzarotta/bufexplorer', {'commit': 'ad2cff7'}
 
 " }}}
 
@@ -213,7 +214,7 @@ call plug#end()
 
 " }}}
 
-" plugin config {{{
+" Plugin Configuration {{{
 
 " FZF
 
