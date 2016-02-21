@@ -13,6 +13,7 @@ setopt share_history
 
 # dir change options
 setopt auto_cd
+setopt auto_pushd
 setopt pushd_ignore_dups
 
 # allows us to use ^ to negate globs
