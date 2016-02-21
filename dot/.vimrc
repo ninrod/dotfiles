@@ -52,13 +52,14 @@ set backspace=indent,eol,start
 set expandtab
 
 " Set tab size in spaces (this is for manual indenting)
-set tabstop=4
+set tabstop=2
 
 " The number of spaces inserted for a tab (used for auto indenting)
-set shiftwidth=4
+set shiftwidth=2
 
-" Turn on line numbers
-set number
+" Turn on line numbers and relative line numbers
+set nu
+set rnu
 
 " UTF encoding
 set encoding=utf-8
@@ -99,6 +100,7 @@ set wildmenu
 " highlight a matching [{()}] when cursor is placed on start/end character
 set showmatch
 
+" indicates a wrap line continuation
 set showbreak=←←
 
 " redraw only when we need to (i.e. don't redraw when executing a macro)
@@ -116,99 +118,54 @@ filetype plugin indent on
 
 call plug#begin('~/.vim/plugged')
 
-" plugins: expand core functionality {{{
+" cosmetic
+Plug 'altercation/vim-colors-solarized', {'commit': '528a59f'}
+Plug 'sjl/vitality.vim', {'commit': '4bb8c07'}
+Plug 'kshenoy/vim-signature', {'commit': '7cabfb5'}
 
-Plug 'jeffkreeftmeijer/vim-numbertoggle', {'commit': 'c4d0aac'}
+" expand core functionality
 Plug 'bkad/CamelCaseMotion', {'commit': '3ae9bf9'}
 Plug 'tpope/vim-commentary', {'commit': 'e0f4850'}
 Plug 'tpope/vim-repeat', {'commit': '7a6675f'}
 Plug 'wellle/targets.vim', {'commit': 'd111928'}
 Plug 'tpope/vim-surround', {'commit': '2d05440'}
 
-" Plug 'tpope/vim-rsi', {'commit': 'b689ee4'}
-" Plug 'sencer/vis', {'commit': '7d2bafb'}
-" Plug 'bronson/vim-visual-star-search', {'commit': 'fa55818'}
-
-" }}}
-
-" plugins: completions {{{
-
+" completions
 Plug 'ervandew/supertab', {'commit': '9f7da6d'}
 Plug 'alvan/vim-closetag', {'commit': '21a747e'}
 Plug 'jiangmiao/auto-pairs', {'tag': 'v1.3.1'}
-
-" Plug 'tpope/vim-endwise', {'commit': 'f06abe3'}
+Plug 'tpope/vim-endwise', {'commit': 'f06abe3'}
 " Plug 'SirVer/ultisnips',{'commit': '25882e9'} | Plug 'honza/vim-snippets', {'commit': '122134f'}
 
-" }}}
-
-" plugins: git {{{
-
+" git
 Plug 'tpope/vim-fugitive', {'commit': 'fd36aa9'}
-  \| Plug 'gregsexton/gitv', {'commit': 'e10a896'}
-
+"   \| Plug 'gregsexton/gitv', {'commit': 'e10a896'}
 Plug 'mhinz/vim-signify', {'commit': '2a3dafd'}
 
-" }}}
-
-" plugins: utils {{{
-
+" utils
 Plug 'junegunn/vim-easy-align', {'tag': '2.10.0'}
 Plug 'nhooyr/neoman.vim', {'commit': '0fbdecd'}
 Plug 'regedarek/ZoomWin', {'commit': 'da618cb'}
-Plug 'suan/vim-instant-markdown', {'commit': '915c681'}
-Plug 'tommcdo/vim-exchange', {'commit': '9373a84'}
-Plug 'tpope/vim-unimpaired', {'commit': '23f471a'}
+" Plug 'tpope/vim-unimpaired', {'commit': '23f471a'}
+" Plug 'tommcdo/vim-exchange', {'commit': '9373a84'}
+" Plug 'suan/vim-instant-markdown', {'commit': '915c681'}
 
-" Plug 'tpope/vim-characterize', {'commit': '871364d'}
-" Plug 'tpope/vim-sleuth', {'commit': 'a174627'}
-
-" }}}
-
-" plugins: cosmetic {{{
-
-Plug 'altercation/vim-colors-solarized', {'commit': '528a59f'}
-Plug 'kshenoy/vim-signature', {'commit': '7cabfb5'}
-Plug 'sjl/vitality.vim', {'commit': '4bb8c07'}
-
-" Plug 'vim-airline/vim-airline', {'commit': '8af213d'}
-"   \| Plug 'vim-airline/vim-airline-themes', {'commit': 'cf5b990'}
-" Plug 'luochen1990/rainbow', {'commit': '18b7bc1'}
-" Plug 'Yggdroot/indentLine', {'commit': '9cb94e1'}
-" Plug 'NLKNguyen/papercolor-theme', {'commit': 'd3c8c8f'}
-
-" }}}
-
-" plugins: syntax highlighting {{{
-
-Plug 'elzr/vim-json', {'commit': 'f5e3181', 'for': 'json'}
-" Plug 'sheerun/vim-polyglot', {'commit': 'b0823d2'}
-
-" }}}
-
-" plugins: text objects {{{
-
+" text objects
 Plug 'kana/vim-textobj-user', {'commit': 'a305416'}
   \| Plug 'kana/vim-textobj-entire', {'commit': '41c12e1'}
   \| Plug 'kana/vim-textobj-function', {'commit': 'adb50f3'}
   \| Plug 'thinca/vim-textobj-function-javascript', {'commit': 'a543539'}
   \| Plug 'whatyouhide/vim-textobj-xmlattr', {'commit': '29a154d'}
 
-" }}}
-
-" plugins: buffer manipulation {{{
-
+" buffer manipulation
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim', {'commit': 'be01b64'}
-Plug 'mileszs/ack.vim', {'tag': '1.0.9'}
 Plug 'scrooloose/nerdtree', {'commit': '4ebbb53', 'on': 'NERDTreeTabsToggle'}
 Plug 'jistr/vim-nerdtree-tabs', {'commit': '0decec1', 'on': 'NERDTreeTabsToggle'}
-Plug 'qpkorr/vim-bufkill', {'commit': 'ba8b570'}
 Plug 'ninrod/ninscratch-vim'
-
+Plug 'qpkorr/vim-bufkill', {'commit': 'ba8b570'}
+" Plug 'mileszs/ack.vim', {'tag': '1.0.9'}
 " Plug 'jlanzarotta/bufexplorer', {'commit': 'ad2cff7'}
-
-" }}}
 
 call plug#end()
 
@@ -216,51 +173,12 @@ call plug#end()
 
 " Plugin Configuration {{{
 
-" FZF
-
-" Mapping selecting mappings
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
-
-" Insert mode completion
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
-
-" enabling rainbow plugin at start
-let g:rainbow_active = 1
-
-" rainbow sucks on html
-let g:rainbow_conf = {'separately': {'html': 0}}
-
-let lightcolors =  ['lightblue', 'lightyellow', 'red', 'darkgreen', 'darkyellow', 'lightred', 'yellow', 'cyan', 'magenta', 'white']
-let darkcolors = ['DarkBlue', 'Magenta', 'Black', 'Red', 'DarkGray', 'DarkGreen', 'DarkYellow']
-let g:rainbow_conf = {
-\   'ctermfgs': darkcolors
-\}
 
 " don't let bufkill clutter <leader> binds
 let g:BufKillCreateMappings = 0
 
-" if you want to disable polyglot for some specific language
-let g:polyglot_disabled = ['html', 'css', 'markdown']
-
-" conceal indent lines on cursor line
-let g:indentLine_concealcursor = 'vc'
-let g:indentLine_char = '┆'
-let g:indentLine_fileTypeExclude = ['txt', 'jsp']
-
-" vim-rsi plugin
-let g:rsi_no_meta = 1
-
 " auto-pairs plugin maps 'â' in insert mode limiting our ability to type 'â'. So we fix it.
 let g:AutoPairsShortcutBackInsert=''
-
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
 
 " as we only use git, we tell this to signify for a little performance gain. Every bit counts.
 let g:signify_vcs_list = ['git']
@@ -278,10 +196,6 @@ let g:solarized_diffmode="high"
 let g:solarized_termcolors=16
 colorscheme solarized
 
-" papercolor theme
-" set background=light
-" colorscheme PaperColor
-
 " vim-commentary: disabling double backslash
 let g:commentary_map_backslash=0
 
@@ -292,51 +206,6 @@ let g:nerdtree_tabs_open_on_gui_startup=0
 " nerd tree needs to show hidden files for us
 let g:NERDTreeShowHidden=1
 
-" " CtrlP configs
-" let g:ctrlp_show_hidden=1
-" let g:ctrlp_working_path_mode=0
-" let g:ctrlp_max_height=10
-" let g:ctrlp_reuse_window = 'Scratch'
-" let g:ctrlp_arg_map = 1
-" let g:ctrlp_custom_ignore = '
-"       \\.git$\|
-"       \\.vagrant$\|
-"       \\.pdf$\|
-"       \\.log$\|
-"       \\.out$\|
-"       \\.box$\|
-"       \\.aux$\|
-"       \\.hg$\|
-"       \\.grunt$\|
-"       \\.sass-cache$\|
-"       \bower_components$\|
-"       \node_modules$\|
-"       \\.svn$
-"       \'
-
-" Airline configs(status line)
-
-" airline theme
-let g:airline_theme='base16'
-
-" airline: if you don't want to use a powerline patched font
-let g:airline_powerline_fonts = 1
-" let g:airline_left_sep=''
-" let g:airline_right_sep=''
-
-" airline: hunks, branch
-let g:airline_section_b = ''
-
-" airline: fileencoding, fileformat
-let g:airline_section_y = ''
-
-" airline: line, column number
-" let g:airline_section_z = ''
-
-" airline: extension configs
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline#extensions#hunks#enabled = 0
-
 " fix git-gutter|signify contrast issue with solarized dark.
 " https://github.com/airblade/vim-gitgutter/issues/164
 highlight clear SignColumn
@@ -344,6 +213,18 @@ highlight clear SignColumn
 " }}}
 
 " Custom Binds {{{
+
+" FZF
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " CamelCaseMotion test
 map <silent> w <Plug>CamelCaseMotion_w
@@ -371,9 +252,6 @@ xmap <cr> <Plug>(EasyAlign)
 
 " scratch mappings
 nnoremap gs :NinScratch<CR>
-
-" vim-numbertoggle binding
-let g:NumberToggleTrigger="<F9>"
 
 " bind to facilitate bracket selection
 omap ir i[
@@ -478,7 +356,6 @@ autocmd BufReadPost *
   \ endif
 
 " specify syntax highlighting for specific files
-autocmd Bufread,BufNewFile *.spv set filetype=php
 autocmd Bufread,BufNewFile *.md set filetype=markdown " Vim interprets .md as 'modula2' otherwise, see :set filetype?
 autocmd Bufread,BufNewFile *.bowerrc set filetype=json
 
@@ -486,13 +363,10 @@ autocmd Bufread,BufNewFile *.bowerrc set filetype=json
 autocmd Filetype markdown setlocal wrap linebreak nolist textwidth=0 wrapmargin=0 conceallevel=0
 autocmd FileType sh,ruby,yaml,zsh,vim setlocal shiftwidth=2 tabstop=2 expandtab
 autocmd Filetype gitcommit setlocal spell textwidth=80
-" autocmd BufReadPost fugitive://* set bufhidden=delete
 
 " foldmethod configurations
 autocmd BufRead * setlocal foldmethod=marker
-" open up all folds a start
 set foldlevelstart=0
-" autocmd BufRead * normal zM
 
 " disabling auto commenting on new line, e.g. 'o' and 'O'
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -515,15 +389,6 @@ autocmd BufReadPre,FileReadPre *.md,*.jsp MatchDebug
 
 " quick fix for <CR> in command-line-window
 autocmd CmdwinEnter * nunmap <CR>
-
-
-" trailing whitespace hack
-" highlight ExtraWhitespace ctermfg=black guifg=black ctermbg=218 guibg=218
-" match ExtraWhitespace /\s\+$/
-" autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-" autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-" autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-" autocmd BufWinLeave * call clearmatches()
 
 " }}}
 
