@@ -145,7 +145,7 @@ Plug 'jiangmiao/auto-pairs', {'tag': 'v1.3.1'}
 " plugins: git {{{
 
 Plug 'tpope/vim-fugitive', {'commit': 'fd36aa9'}
-  " \| Plug 'gregsexton/gitv', {'commit': 'e10a896'}
+  \| Plug 'gregsexton/gitv', {'commit': 'e10a896'}
 
 Plug 'mhinz/vim-signify', {'commit': '2a3dafd'}
 
@@ -181,7 +181,7 @@ Plug 'sjl/vitality.vim', {'commit': '4bb8c07'}
 
 " plugins: syntax highlighting {{{
 
-Plug 'elzr/vim-json', {'commit': 'f5e3181'}
+Plug 'elzr/vim-json', {'commit': 'f5e3181', 'for': 'json'}
 " Plug 'sheerun/vim-polyglot', {'commit': 'b0823d2'}
 
 " }}}
@@ -201,8 +201,8 @@ Plug 'kana/vim-textobj-user', {'commit': 'a305416'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim', {'commit': 'be01b64'}
 Plug 'mileszs/ack.vim', {'tag': '1.0.9'}
-Plug 'scrooloose/nerdtree', {'commit': '4ebbb53'}
-Plug 'jistr/vim-nerdtree-tabs', {'commit': '0decec1'}
+Plug 'scrooloose/nerdtree', {'commit': '4ebbb53', 'on': 'NERDTreeTabsToggle'}
+Plug 'jistr/vim-nerdtree-tabs', {'commit': '0decec1', 'on': 'NERDTreeTabsToggle'}
 Plug 'qpkorr/vim-bufkill', {'commit': 'ba8b570'}
 Plug 'ninrod/ninscratch-vim'
 
