@@ -411,7 +411,7 @@ nnoremap Z ZZ
 nnoremap Q ZQ
 
 " navigate buffers
-nnoremap <BS> :ToggleBufExplorer<cr>
+nnoremap <BS> :Buffers<cr>
 
 " enter saves file
 nnoremap <cr> :w<cr>
@@ -530,6 +530,7 @@ autocmd CmdwinEnter * nunmap <CR>
 " Custom status line {{{
 
 hi StatusLine ctermbg=10 ctermfg=8
+hi StatusLineNC ctermbg=10 ctermfg=0
 
 set statusline=%#identifier#
 set statusline+=%f\     "tail of the filename
