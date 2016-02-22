@@ -6,17 +6,10 @@
 set nocompatible
 set nobackup
 set nowritebackup
-
-
-set list listchars=tab:\ \ ,trail:·
-
-" No swap file
 set noswapfile
-
-" Command history
 set history=100
 
-" diff options. without this Gdiff was splitting horizontally on OSx.
+set list listchars=tab:\ \ ,trail:·
 set diffopt=filler,vertical
 
 " Show incomplete commands
