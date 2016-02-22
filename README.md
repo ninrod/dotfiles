@@ -41,7 +41,7 @@ set -g default-command "reattach-to-user-namespace -l /usr/local/bin/zsh"
 bind -t vi-copy y copy-pipe 'pbcopy'
 ```
 
-* configure your terminal to use the [papercolor theme][papercolor_link] or [solarized dark theme][solarized_link]. There's a `conf` folder within this repo that can help you with that. I've also provided a [solarized-theme][1] tag and a [papercolor-theme][2] as example setups.
+* configure your terminal to use the [papercolor theme][papercolor_link] or [solarized dark theme][solarized_link]. There's a `conf` folder within this repo that can help you with that. 
 * change the git user info inside the .gitconfig file within the repo and run the zsh script `install.zsh` like so:
 
 ```sh
@@ -63,6 +63,7 @@ $ exec zsh
 
 * To change Themes you have to alter `.tmux.conf`, `.vimrc`, `.zshrc` (for prompt theme) and your terminal theme.
 * there's a `conf` folder that can help you with that.
+* I've also provided a [solarized-theme][1] tag and a [papercolor-theme][2] as example setups.
 
 ## VIM: Powerful shell text editor. Tweaked with plugins.
 
