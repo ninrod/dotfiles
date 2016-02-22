@@ -68,22 +68,17 @@ $ exec zsh
 ## VIM: Powerful shell text editor. Tweaked with plugins.
 
 ### installed plugins
-0. [ack.vim][ack.vim_link]: front for ack/ag, search inside files.
 0. [auto-pairs][auto-pairs_link]: plugin to complete pairs of brackets and similar stuff.
-0. [bufexplorer][bufexplorer_link]: easier vim buffer navigation.
 0. [CamelCaseMotion][camel_link]: motion through camelcase style words.
 0. [fzf.vim][fzf-vim_link]: fuzzy file finder.
 0. [gitv][gitv_link]: gitk for vim.
-0. [indentLine][indentLine_link]: visual cues for indentation.
 0. [neoman][neoman_link]: readman pages faster than superman.
 0. [nerdtree][nerdtree_link]: tree like file navigation.
 0. [nerdtree-tabs][nerdtree-tabs_link]: 'toggle' behaviour for nerdtree.
 0. [supertab][supertab_link]: insert mode completions triggered by <TAB>.
 0. [targets.vim][targets_link]: creates various useful textobjects.
 0. [ultisnips][ultisnips_link]: snippet engine for vim (needs +python).
-0. [vim-airline][airline_link]: lightweight powerline clone written in pure VimL.
 0. [vim-bufkill][bufkill_link]: easier buffer unloading.
-0. [vim-characterize][vim-characterize_link]: improve information given by `ga`. (`h: ga`)
 0. [vim-closetag][closetag_link]: auto close for html tags.
 0. [vim-colors-solarized][vim-colors-solarized_link]: well designed vim colorscheme.
 0. [vim-commentary][vim-commentary_link]: automatic commentary wrapping.
@@ -92,12 +87,7 @@ $ exec zsh
 0. [vim-exchange][vim-exchange_link]: easily swap of two regions of text.
 0. [vim-fugitive][vim-fugitive_link]: very good git wrapper for vim.
 0. [vim-instant-markdown][vim-instant-markdown_link]: quick markdown visualization tool.
-0. [vim-json][vim-json_link]: better json syntax highlighting.
-0. [vim-numbertoggle][vim-numbertoggle_link]: eases the use of relative line numbers.
-0. [vim-polyglot][vim-polyglot_link]: syntax highlighting for a bunch of languages.
 0. [vim-repeat][vim-repeat_link]: expands usage opportunities for the '.' (dot) repeat command.
-0. [vim-rsi][vim-rsi_link]: readline style insertion.
-0. [vim-sleuth][vim-sleuth_link]: Heuristically set buffer options.
 0. [vim-signature][vim-signature_link]: adds visual notation for vim marks.
 0. [vim-signify][vim-signify_link]: signs to indicate added, modified and removed lines of files under a VCS.
 0. [vim-snippets][vim-snippets_link]: snippets for various programming languages.
@@ -108,8 +98,6 @@ $ exec zsh
 0. [vim-textobj-user][vim-textobj-user_link]: base library for other text objects.
 0. [vim-textobj-xmlattr][vim-textobj-xmlattr_link]: adds `ax` and `ix` text objects for manipulating xml attributes of tags.
 0. [vim-unimpaired][vim-unimpaired_link]: adds various `[ + bind` and `] + bind` useful bindings.
-0. [vim-visual-star-search][vim-visual-start-search_link]: expands `*` and `#` operators to work on visual mode.
-0. [vis][vis_link]: within visual selection search and replace. (block or linewise)
 0. [vitality][vitality_link]: better cursor display within iterm2.
 0. [ZoomWin][ZoomWin_link]: makes a vim window go temporarilly fullscreen.
 
