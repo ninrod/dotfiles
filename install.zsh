@@ -29,3 +29,6 @@ updatelinks ~/.agignore dot/.agignore
 
 # trying out emacs (evil mode)
 updatelinks ~/.emacs dot/.emacs
+
+# trying out nvim (neovim)
+updatelinks ~/.config dot/.config
