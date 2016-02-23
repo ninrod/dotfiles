@@ -1,5 +1,6 @@
 custom
 tags
+.netrwhist
 *.pyc
 **/.zplug/.cache
 **/.zplug/zcompdump

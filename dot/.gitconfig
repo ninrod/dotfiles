@@ -23,5 +23,3 @@
     interactive = auto
     ui = true
     pager = true
-[url "https://"]
-    insteadOf = git://
