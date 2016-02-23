@@ -7,6 +7,10 @@
 
 ![solarized-dark-vi-tmux](https://raw.githubusercontent.com/ninrod/dotfiles/misc/images/shell.png)
 
+## Important notice 
+
+* These are my personal configuration files, which are in a constant state of change as I develop my environment across several systems. I can't guarantee that these configurations will work for you, at all. So if you encounter problems with them, you're pretty much on your own. (this notice was based on [aaron bieber's dotfiles][3])
+
 ## Install Instructions
 
 * get `vim` 7.4+ with [+clipboard][vim_clipboard_link] and +python.
@@ -281,3 +285,4 @@ Same as [Vim][vim-license_link].
 
 [1]: <https://github.com/ninrod/dotfiles/releases/tag/solarized-theme>
 [2]: <https://github.com/ninrod/dotfiles/releases/tag/papercolor-theme>
+[3]: <https://github.com/aaronbieber/dotfiles>

@@ -148,7 +148,7 @@ Plug 'nhooyr/neoman.vim', {'commit': '0fbdecd'}
 Plug 'regedarek/ZoomWin', {'commit': 'da618cb'}
 " Plug 'tpope/vim-unimpaired', {'commit': '23f471a'}
 " Plug 'tommcdo/vim-exchange', {'commit': '9373a84'}
-" Plug 'suan/vim-instant-markdown', {'commit': '915c681'}
+Plug 'suan/vim-instant-markdown', {'commit': '915c681'}
 
 " text objects
 Plug 'kana/vim-textobj-user', {'commit': 'a305416'}
