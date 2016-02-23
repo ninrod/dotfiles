@@ -31,7 +31,7 @@ zstyle ':completion:*' menu select
 
 export LANG=en_US.UTF-8
 export TERM=xterm-256color
-export EDITOR=vim
+export EDITOR=nvim
 export ENHANCD_COMMAND=d
 export FZF_DEFAULT_COMMAND='ag --hidden --path-to-agignore=~/.agignore -g ""'
 

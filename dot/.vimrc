@@ -118,6 +118,9 @@ filetype plugin indent on
 
 call plug#begin('~/.vim/plugged')
 
+" test
+Plug 'terryma/vim-multiple-cursors', {'commit': '47c9e3f'}
+
 " cosmetic
 Plug 'altercation/vim-colors-solarized', {'commit': '528a59f'}
 Plug 'kshenoy/vim-signature', {'commit': '7cabfb5'}
@@ -222,6 +225,7 @@ highlight clear SignColumn
 " tip from https://youtu.be/aHm36-na4-4?t=598
 nnoremap ; :
 nnoremap : ;
+nnoremap s ;
 
 " FZF
 " Mapping selecting mappings

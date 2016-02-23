@@ -11,7 +11,7 @@
 [difftool]
     prompt = false
 [core]
-    editor = vim
+    editor = nvim
     autocrlf = input
 [credential]
     helper = osxkeychain
