@@ -125,6 +125,8 @@ bind                    | action
 
 bind                           | action
 -----------------------        | ------------------------------------------
+`;`                            | `:`
+`:`                            | `;`
 `gp`                           | `:Gpush`
 `gs`                           | open scratch buffer
 `Z`                            | alias for ZZ. exits saving file

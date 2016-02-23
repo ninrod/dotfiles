@@ -214,6 +214,10 @@ highlight clear SignColumn
 
 " Custom Binds {{{
 
+" tip from https://youtu.be/aHm36-na4-4?t=598
+nnoremap ; :
+nnoremap : ;
+
 " FZF
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
@@ -246,6 +250,8 @@ nnoremap gp :Gpush<CR>
 
 " trying out gl for `G`
 nnoremap gl G
+vnoremap gl G
+onoremap gl G
 
 " easyalign mappings
 xmap <cr> <Plug>(EasyAlign)
@@ -305,7 +311,7 @@ nmap <leader>d LztM
 nmap <leader>u HzbM
 
 " CtrlP bindings
-nnoremap <leader>f :CtrlP<cr>
+nnoremap <leader>f :Files<cr>
 nnoremap <leader>r :CtrlPMRU<cr>
 
 " resizing windows
