@@ -22,6 +22,9 @@ setopt extended_glob
 # defining word endings
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
+autoload -Uz compinit && compinit
+zstyle ':completion:*' menu select
+
 # }}}
 
 # Path {{{
@@ -30,6 +33,7 @@ export LANG=en_US.UTF-8
 export TERM=xterm-256color
 export EDITOR=vim
 export ENHANCD_COMMAND=d
+export FZF_DEFAULT_COMMAND='ag --hidden --path-to-agignore=~/.agignore -g ""'
 
 # path config
 export GNUBIN_PATH=/usr/local/opt/coreutils/libexec/gnubin
@@ -67,7 +71,7 @@ zplug load
 # colors for GNU ls (from coreutils)
 eval `dircolors ~/.lscolors`
 
-# fzf bootstrap
+# FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # }}}
@@ -111,8 +115,7 @@ alias ag='ag --hidden --path-to-agignore=~/.agignore'
 alias ls='ls --color=auto --group-directories-first'
 alias l='ls -lah'
 alias c='clear'
-alias e='emacs'
-alias q='exit'
+alias e='exit'
 alias m='nman'
 alias n='node'
 alias o='open'
@@ -160,9 +163,6 @@ alias gsd='git ls-files -d | sed "s/\/.*$//g" | sort | uniq'
 # }}}
 
 # Prompt {{{
-
-autoload -Uz compinit && compinit
-zstyle ':completion:*' menu select
 
 PROMPT='%F{blue}%1~%f %F{magenta}#%f '
 
