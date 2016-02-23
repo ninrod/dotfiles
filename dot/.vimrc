@@ -120,51 +120,54 @@ call plug#begin('~/.vim/plugged')
 
 " cosmetic
 Plug 'altercation/vim-colors-solarized', {'commit': '528a59f'}
-Plug 'sjl/vitality.vim', {'commit': '4bb8c07'}
 Plug 'kshenoy/vim-signature', {'commit': '7cabfb5'}
 
 " expand core functionality
 Plug 'bkad/CamelCaseMotion', {'commit': '3ae9bf9'}
 Plug 'tpope/vim-commentary', {'commit': 'e0f4850'}
+Plug 'tpope/vim-surround', {'commit': '2d05440'}
 Plug 'tpope/vim-repeat', {'commit': '7a6675f'}
 Plug 'wellle/targets.vim', {'commit': 'd111928'}
-Plug 'tpope/vim-surround', {'commit': '2d05440'}
 
 " completions
 Plug 'ervandew/supertab', {'commit': '9f7da6d'}
 Plug 'alvan/vim-closetag', {'commit': '21a747e'}
 Plug 'jiangmiao/auto-pairs', {'tag': 'v1.3.1'}
-Plug 'tpope/vim-endwise', {'commit': 'f06abe3'}
-" Plug 'SirVer/ultisnips',{'commit': '25882e9'} | Plug 'honza/vim-snippets', {'commit': '122134f'}
 
 " git
 Plug 'tpope/vim-fugitive', {'commit': 'fd36aa9'}
-"   \| Plug 'gregsexton/gitv', {'commit': 'e10a896'}
 Plug 'mhinz/vim-signify', {'commit': '2a3dafd'}
 
 " utils
 Plug 'junegunn/vim-easy-align', {'tag': '2.10.0'}
 Plug 'nhooyr/neoman.vim', {'commit': '0fbdecd'}
 Plug 'regedarek/ZoomWin', {'commit': 'da618cb'}
-" Plug 'tpope/vim-unimpaired', {'commit': '23f471a'}
-" Plug 'tommcdo/vim-exchange', {'commit': '9373a84'}
 
-" text objects
-Plug 'kana/vim-textobj-user', {'commit': 'a305416'}
-  \| Plug 'kana/vim-textobj-entire', {'commit': '41c12e1'}
-  \| Plug 'kana/vim-textobj-function', {'commit': 'adb50f3'}
-  \| Plug 'thinca/vim-textobj-function-javascript', {'commit': 'a543539'}
-  \| Plug 'whatyouhide/vim-textobj-xmlattr', {'commit': '29a154d'}
 
 " buffer manipulation
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim', {'commit': 'be01b64'}
-Plug 'scrooloose/nerdtree', {'commit': '4ebbb53', 'on': 'NERDTreeTabsToggle'}
-Plug 'jistr/vim-nerdtree-tabs', {'commit': '0decec1', 'on': 'NERDTreeTabsToggle'}
 Plug 'ninrod/ninscratch-vim'
 Plug 'qpkorr/vim-bufkill', {'commit': 'ba8b570'}
+
+" Plugin graveyard
+" Plug 'tpope/vim-endwise', {'commit': 'f06abe3'}
+" Plug 'scrooloose/nerdtree', {'commit': '4ebbb53', 'on': 'NERDTreeTabsToggle'}
+" Plug 'jistr/vim-nerdtree-tabs', {'commit': '0decec1', 'on': 'NERDTreeTabsToggle'}
+" Plug 'SirVer/ultisnips',{'commit': '25882e9'} | Plug 'honza/vim-snippets', {'commit': '122134f'}
 " Plug 'mileszs/ack.vim', {'tag': '1.0.9'}
 " Plug 'jlanzarotta/bufexplorer', {'commit': 'ad2cff7'}
+" Plug 'sjl/vitality.vim', {'commit': '4bb8c07'}
+" Plug 'tpope/vim-unimpaired', {'commit': '23f471a'}
+" Plug 'tommcdo/vim-exchange', {'commit': '9373a84'}
+"   \| Plug 'gregsexton/gitv', {'commit': 'e10a896'}
+
+" text objects (trying to live without it)
+" Plug 'kana/vim-textobj-user', {'commit': 'a305416'}
+"   \| Plug 'kana/vim-textobj-entire', {'commit': '41c12e1'}
+"   \| Plug 'kana/vim-textobj-function', {'commit': 'adb50f3'}
+"   \| Plug 'thinca/vim-textobj-function-javascript', {'commit': 'a543539'}
+"   \| Plug 'whatyouhide/vim-textobj-xmlattr', {'commit': '29a154d'}
 
 call plug#end()
 
@@ -172,6 +175,9 @@ call plug#end()
 
 " Plugin Configuration {{{
 
+" https://github.com/neovim/neovim/wiki/FAQ#how-can-i-change-the-cursor-shape-in-the-terminal
+" kills the need for the vitality.vim plugin
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " don't let bufkill clutter <leader> binds
 let g:BufKillCreateMappings = 0

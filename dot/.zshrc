@@ -117,9 +117,6 @@ alias l='ls -lah'
 alias c='clear'
 alias e='exit'
 alias m='nman'
-alias n='node'
-alias o='open'
-alias t='tree -d'
 alias vi='vim -u NONE'
 alias v='nvim'
 alias vz='vim ~/.zshrc(:A)'
@@ -127,7 +124,6 @@ alias vv='nvim ~/.vimrc(:A)'
 alias tarc='tar -zcvf file.tar.gz'
 alias tarx='tar -zxvf'
 alias dot='l `find ~ -maxdepth 1 -type l`'
-alias print='print -l'
 
 # working with pushd and popd
 alias di='dirs -v | head -n 10'
@@ -144,9 +140,9 @@ alias rdf='rm -rf'
 
 # git alias
 alias g='git status --short'
+alias gs='git status'
 alias ga='git add'
 alias gal='git add -A'
-alias gb='git branch'
 alias gc='git commit -v'
 alias gd='git diff'
 alias gf='git fetch'
@@ -157,8 +153,6 @@ alias glnc='git log --pretty=format:"%h %ad %an %s" --date=short --graph'
 alias gls='git log --graph --oneline'
 alias gm='git merge'
 alias gp='git push'
-alias gs='git status'
-alias gsd='git ls-files -d | sed "s/\/.*$//g" | sort | uniq'
 
 # }}}
 
