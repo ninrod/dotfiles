@@ -1,4 +1,4 @@
-" Vim Options {{{
+" vim options {{{
 
 " Switch syntax highlighting on, when the terminal has colors
 syntax on
@@ -117,16 +117,17 @@ filetype plugin indent on
 
 " }}}
 
-" Plugins {{{
+" plugins {{{
 
 call plug#begin('~/.vim/plugged')
 
+" core
 Plug 'altercation/vim-colors-solarized', {'commit': '528a59f'}
 Plug 'alvan/vim-closetag', {'commit': '21a747e'}
 Plug 'bkad/CamelCaseMotion', {'commit': '3ae9bf9'}
 Plug 'ervandew/supertab', {'commit': '9f7da6d'}
 Plug 'jiangmiao/auto-pairs', {'tag': 'v1.3.1'}
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf'}
 Plug 'junegunn/fzf.vim', {'commit': 'be01b64'}
 Plug 'junegunn/vim-easy-align', {'tag': '2.10.0'}
 Plug 'kshenoy/vim-signature', {'commit': '7cabfb5'}
@@ -137,11 +138,17 @@ Plug 'qpkorr/vim-bufkill', {'commit': 'ba8b570'}
 Plug 'tpope/vim-commentary', {'commit': 'e0f4850'}
 Plug 'tpope/vim-fugitive', {'commit': 'fd36aa9'}
 Plug 'tpope/vim-repeat', {'commit': '7a6675f'}
+Plug 'tpope/vim-rsi', {'commit': 'b689ee4'}
+
+" on test
+Plug 'sheerun/vim-polyglot', {'commit': 'b0823d2'}
+Plug 'terryma/vim-multiple-cursors', {'commit': '47c9e3f'}
 
 " quarentine
 Plug 'scrooloose/nerdtree', {'commit': '4ebbb53'} | Plug 'jistr/vim-nerdtree-tabs', {'commit': '0decec1'}
 
 " ----------Plugin graveyard-----------------
+" Plug 'tpope/vim-sleuth', {'commit': 'a174627'}
 " Plug 'SirVer/ultisnips',{'commit': '25882e9'} | Plug 'honza/vim-snippets', {'commit': '122134f'}
 " Plug 'jistr/vim-nerdtree-tabs', {'commit': '0decec1', 'on': 'NERDTreeTabsToggle'}
 " Plug 'jlanzarotta/bufexplorer', {'commit': 'ad2cff7'}
@@ -169,7 +176,7 @@ call plug#end()
 
 " }}}
 
-" Plugin Configuration {{{
+" plugin configuration {{{
 
 " -------- CONFIG GRAVEYARD -----------
 " neovim enable trucolors
@@ -179,6 +186,34 @@ call plug#end()
 " no default mappings for bufExplorer
 " let g:bufExplorerDisableDefaultKeyMapping=1
 " -------- CONFIG GRAVEYARD-------------
+
+" vim-signature is eating a lot of our binds. lets fix this.
+let g:SignatureMap = {
+        \ 'Leader'             :  "m",
+        \ 'PlaceNextMark'      :  "m,",
+        \ 'ToggleMarkAtLine'   :  "m.",
+        \ 'PurgeMarksAtLine'   :  "m-",
+        \ 'DeleteMark'         :  "dm",
+        \ 'PurgeMarks'         :  "m<Space>",
+        \ 'PurgeMarkers'       :  "m<BS>",
+        \ 'GotoNextLineAlpha'  :  "",
+        \ 'GotoPrevLineAlpha'  :  "",
+        \ 'GotoNextSpotAlpha'  :  "",
+        \ 'GotoPrevSpotAlpha'  :  "",
+        \ 'GotoNextLineByPos'  :  "",
+        \ 'GotoPrevLineByPos'  :  "",
+        \ 'GotoNextSpotByPos'  :  "",
+        \ 'GotoPrevSpotByPos'  :  "",
+        \ 'GotoNextMarker'     :  "",
+        \ 'GotoPrevMarker'     :  "",
+        \ 'GotoNextMarkerAny'  :  "",
+        \ 'GotoPrevMarkerAny'  :  "",
+        \ 'ListLocalMarks'     :  "m/",
+        \ 'ListLocalMarkers'   :  "m?"
+        \ }
+
+" vim-rsi config
+let g:rsi_no_meta = 1
 
 " don't let bufkill clutter <leader> binds
 let g:BufKillCreateMappings = 0
@@ -215,7 +250,7 @@ highlight clear SignColumn
 
 " }}}
 
-" Custom Binds {{{
+" custom binds {{{
 
 " tip from https://youtu.be/aHm36-na4-4?t=598
 nnoremap ; :
@@ -228,6 +263,9 @@ nnoremap ' "
 nnoremap " '
 xnoremap ' "
 xnoremap " '
+
+" same idea: easier access to the command window
+nnoremap q; q:
 
 " FZF
 " Mapping selecting mappings
@@ -321,9 +359,8 @@ nnoremap + :Gstatus<cr>
 nmap <leader>d LztM
 nmap <leader>u HzbM
 
-" CtrlP bindings
+" FZF bindings
 nnoremap <leader>f :Files<cr>
-nnoremap <leader>r :CtrlPMRU<cr>
 
 " resizing windows
 nmap <leader><right> <C-W>10>
@@ -361,7 +398,7 @@ inoremap <C-p> <C-x><C-o>
 
 " }}}
 
-" Auto Commands {{{
+" auto commands {{{
 
 " jump to last cursor
 autocmd BufReadPost *
@@ -401,16 +438,17 @@ runtime macros/matchit.vim
 " I suspect that other filetypes also need this.
 autocmd BufReadPre,FileReadPre *.md,*.jsp MatchDebug
 
-" quick fix for <CR> in command-line-window
-autocmd CmdwinEnter * nunmap <CR>
+" fix for <CR> in command-line-window
+silent! autocmd CmdwinEnter * nunmap <cr>
+silent! autocmd CmdwinLeave * nnoremap <cr> :w<cr>
 
 " }}}
 
-" Custom Functions {{{
+" custom functions {{{
 
 " }}}
 
-" Custom status line {{{
+" custom status line {{{
 
 hi StatusLine ctermbg=10 ctermfg=8
 hi StatusLineNC ctermbg=10 ctermfg=0

@@ -1,4 +1,4 @@
-# ZSH Options {{{
+# zsh options {{{
 
 # history config options
 HISTFILE=$HOME/.zsh_history
@@ -27,16 +27,22 @@ zstyle ':completion:*' menu select
 
 # }}}
 
-# Path {{{
+# exports {{{
 
 export LANG=en_US.UTF-8
 export TERM=xterm-256color
 export EDITOR=nvim
+
 export ENHANCD_COMMAND=d
+export ENHANCD_FILTER=fzf-tmux
+
 export FZF_DEFAULT_COMMAND='ag --hidden --path-to-agignore=~/.agignore -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-# path config
+# }}}
+
+# path {{{
+
 export GNUBIN_PATH=/usr/local/opt/coreutils/libexec/gnubin
 export TEXBIN=/Library/TeX/texbin
 export PACKER_BIN=~/bin/packer_0.8.6_darwin_amd64
@@ -50,7 +56,7 @@ export PATH
 
 # }}}
 
-# Plugins {{{
+# plugins {{{
 
 # Zplug
 source ~/.zplug/zplug
@@ -78,37 +84,7 @@ eval `dircolors ~/.lscolors`
 
 # }}}
 
-# Functions {{{
-
-# neoman vim plugin
-function nman {
-    if [[ -z $* ]]; then
-        echo "What manual page do you want?"
-        return
-    fi
-    local tmp=$IFS
-    IFS=$'\n' out=($(command man -w $* 2>&1))
-    local code=$?
-    IFS=$tmp
-    if [[ ${#out[@]} > 1 ]]; then
-        echo "Too many manpages"
-        return
-    elif [[ $code != 0 ]]; then
-        echo "No manual entry for $*"
-        return
-    fi
-    vim -c "Nman $*"
-}
-compdef nman="man"
-
-# front for `bc` utility (credit goes to arzzen/calc.plugin.zsh)
-function = {
-    echo "$@" | bc -l
-}
-
-# }}}
-
-# Alias {{{
+# alias {{{
 
 # Ag (the silver searcher)
 alias ag='ag --hidden --path-to-agignore=~/.agignore'
@@ -134,10 +110,9 @@ alias pu='pushd'
 alias po='popd'
 
 # directory manipulation
-alias ..='cd ..'
-alias md='mkdir -p'
 alias rd='rm -r'
 alias rdf='rm -rf'
+alias b='bd 1'
 
 # git alias
 alias g='git status --short'
@@ -157,7 +132,59 @@ alias gp='git push'
 
 # }}}
 
-# Prompt {{{
+# custom functions {{{
+
+####### dir manipulations
+md () {
+  mkdir -p $1
+  cd $1
+}
+
+f () {
+  d $1 && c && l
+}
+
+# enhancing enhancd
+cd () {
+  if [[ -z $1 ]]; then
+    d ~
+  elif [[ $1 == '-' ]]; then
+    builtin cd -
+  else
+    f $1
+  fi
+}
+
+
+# front for `bc` utility (credit goes to arzzen/calc.plugin.zsh)
+function = () {
+  echo "$@" | bc -l
+}
+
+# neoman vim plugin
+function nman () {
+    if [[ -z $* ]]; then
+        echo "What manual page do you want?"
+        return
+    fi
+    local tmp=$IFS
+    IFS=$'\n' out=($(command man -w $* 2>&1))
+    local code=$?
+    IFS=$tmp
+    if [[ ${#out[@]} > 1 ]]; then
+        echo "Too many manpages"
+        return
+    elif [[ $code != 0 ]]; then
+        echo "No manual entry for $*"
+        return
+    fi
+    vim -c "Nman $*"
+}
+compdef nman="man"
+
+# }}}
+
+# prompt {{{
 
 PROMPT='%F{blue}%1~%f %F{magenta}#%f '
 
