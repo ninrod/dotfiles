@@ -149,6 +149,7 @@ Plug 'junegunn/fzf.vim', {'commit': 'be01b64'}
 Plug 'ninrod/ninscratch-vim'
 
 " ----------Plugin graveyard-----------------
+" Plug 'ninrod/vis'
 " Plug 'tpope/vim-surround', {'commit': '2d05440'}
 " Plug 'wellle/targets.vim', {'commit': 'd111928'}
 " Plug 'regedarek/ZoomWin', {'commit': 'da618cb'}
@@ -410,8 +411,6 @@ autocmd BufReadPre,FileReadPre *.md,*.jsp MatchDebug
 " quick fix for <CR> in command-line-window
 autocmd CmdwinEnter * nunmap <CR>
 
-
-
 " }}}
 
 " Custom Functions {{{
@@ -446,5 +445,7 @@ set statusline+=%=
 " set statusline+=%l\|
 set statusline+=%c\|
 set statusline+=%P    "percent through file
+
+set statusline+=\ (%L\ LoC)
 
 " }}}
