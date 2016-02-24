@@ -1,20 +1,20 @@
 [user]
     name = ninrod
     email = filipe.silva@gmail.com
-[push]
-    default = simple
-[diff]
-    tool = vimdiff
-[merge]
-    tool = vimdiff
-    defaultToUpstream = true
-[difftool]
-    prompt = false
-[core]
-    editor = nvim
-    autocrlf = input
 [credential]
     helper = osxkeychain
+[push]
+  default = simple
+[diff]
+  tool = vimdiff
+[merge]
+  tool = vimdiff
+  defaultToUpstream = true
+[difftool]
+  prompt = false
+[core]
+  editor = nvim
+  autocrlf = input
 
 ; Color config
 [color]
@@ -37,7 +37,6 @@
   remote = green
 [color "status"]
   untracked = cyan
-
 [pager]
   diff = diff-so-fancy | less --tabs=4 -RFX
   show = diff-so-fancy | less --tabs=4 -RFX
