@@ -133,27 +133,31 @@ Plug 'kshenoy/vim-signature', {'commit': '7cabfb5'}
 Plug 'mhinz/vim-signify', {'commit': '2a3dafd'}
 Plug 'nhooyr/neoman.vim', {'commit': '0fbdecd'}
 Plug 'ninrod/ninscratch-vim'
+Plug 'qpkorr/vim-bufkill', {'commit': 'ba8b570'}
 Plug 'tpope/vim-commentary', {'commit': 'e0f4850'}
 Plug 'tpope/vim-fugitive', {'commit': 'fd36aa9'}
 Plug 'tpope/vim-repeat', {'commit': '7a6675f'}
 
+" quarentine
+Plug 'scrooloose/nerdtree', {'commit': '4ebbb53'} | Plug 'jistr/vim-nerdtree-tabs', {'commit': '0decec1'}
+
 " ----------Plugin graveyard-----------------
+" Plug 'SirVer/ultisnips',{'commit': '25882e9'} | Plug 'honza/vim-snippets', {'commit': '122134f'}
+" Plug 'jistr/vim-nerdtree-tabs', {'commit': '0decec1', 'on': 'NERDTreeTabsToggle'}
+" Plug 'jlanzarotta/bufexplorer', {'commit': 'ad2cff7'}
+" Plug 'mileszs/ack.vim', {'tag': '1.0.9'}
 " Plug 'ninrod/vis'
-" Plug 'tpope/vim-surround', {'commit': '2d05440'}
-" Plug 'wellle/targets.vim', {'commit': 'd111928'}
 " Plug 'regedarek/ZoomWin', {'commit': 'da618cb'}
-" Plug 'qpkorr/vim-bufkill', {'commit': 'ba8b570'}
+" Plug 'scrooloose/nerdtree', {'commit': '4ebbb53', 'on': 'NERDTreeTabsToggle'}
+" Plug 'sjl/vitality.vim', {'commit': '4bb8c07'}
 " Plug 'terryma/vim-multiple-cursors', {'commit': '47c9e3f'}
 " Plug 'tpope/vim-endwise', {'commit': 'f06abe3'}
-" Plug 'scrooloose/nerdtree', {'commit': '4ebbb53', 'on': 'NERDTreeTabsToggle'}
-" Plug 'jistr/vim-nerdtree-tabs', {'commit': '0decec1', 'on': 'NERDTreeTabsToggle'}
-" Plug 'SirVer/ultisnips',{'commit': '25882e9'} | Plug 'honza/vim-snippets', {'commit': '122134f'}
-" Plug 'mileszs/ack.vim', {'tag': '1.0.9'}
-" Plug 'jlanzarotta/bufexplorer', {'commit': 'ad2cff7'}
-" Plug 'sjl/vitality.vim', {'commit': '4bb8c07'}
+" Plug 'tpope/vim-surround', {'commit': '2d05440'}
 " Plug 'tpope/vim-unimpaired', {'commit': '23f471a'}
+" Plug 'wellle/targets.vim', {'commit': 'd111928'}
 " Plug 'tommcdo/vim-exchange', {'commit': '9373a84'}
 "   \| Plug 'gregsexton/gitv', {'commit': 'e10a896'}
+
 " text objects (trying to live without it)
 " Plug 'kana/vim-textobj-user', {'commit': 'a305416'}
 "   \| Plug 'kana/vim-textobj-entire', {'commit': '41c12e1'}
@@ -174,10 +178,10 @@ call plug#end()
 " let g:BufKillCreateMappings = 0
 " no default mappings for bufExplorer
 " let g:bufExplorerDisableDefaultKeyMapping=1
+" -------- CONFIG GRAVEYARD-------------
 
-" https://github.com/neovim/neovim/wiki/FAQ#how-can-i-change-the-cursor-shape-in-the-terminal
-" kills the need for the vitality.vim plugin
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+" don't let bufkill clutter <leader> binds
+let g:BufKillCreateMappings = 0
 
 " auto-pairs plugin maps 'â' in insert mode limiting our ability to type 'â'. So we fix it.
 let g:AutoPairsShortcutBackInsert=''
@@ -216,8 +220,8 @@ highlight clear SignColumn
 " tip from https://youtu.be/aHm36-na4-4?t=598
 nnoremap ; :
 xnoremap ; :
-" : is to cumbersome for `;`
 nnoremap s ;
+vnoremap s ;
 
 " same idea: bettter access to registers
 nnoremap ' "
