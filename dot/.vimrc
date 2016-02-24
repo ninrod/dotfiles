@@ -109,6 +109,9 @@ set lazyredraw
 " TODO verify the usefulness of this
 set wildignore+=*/.hg/*,*/.svn/*.,*/.DS_Store,*/.idea/*,*/.tmp/*,*/target/*
 
+" I sometimes accidentally place my thumb on the macbook trackpad
+set mouse=c
+
 " enable language-dependent indenting.
 filetype plugin indent on
 
