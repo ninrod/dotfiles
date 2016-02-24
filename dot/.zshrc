@@ -59,6 +59,7 @@ zplug "zsh-users/zsh-syntax-highlighting", nice:10
 zplug "zsh-users/zsh-completions"
 zplug "felixr/docker-zsh-completion", if:"which docker", of:_docker
 zplug "b4b4r07/enhancd", of:enhancd.sh
+zplug "Tarrasch/zsh-bd"
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
     if read -q; then
@@ -134,7 +135,6 @@ alias po='popd'
 
 # directory manipulation
 alias ..='cd ..'
-alias bd='d ..'
 alias md='mkdir -p'
 alias rd='rm -r'
 alias rdf='rm -rf'
