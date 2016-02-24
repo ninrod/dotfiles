@@ -121,32 +121,21 @@ filetype plugin indent on
 
 call plug#begin('~/.vim/plugged')
 
-" cosmetic
 Plug 'altercation/vim-colors-solarized', {'commit': '528a59f'}
-Plug 'kshenoy/vim-signature', {'commit': '7cabfb5'}
-Plug 'mhinz/vim-signify', {'commit': '2a3dafd'}
-
-" expand core functionality
-Plug 'bkad/CamelCaseMotion', {'commit': '3ae9bf9'}
-Plug 'tpope/vim-commentary', {'commit': 'e0f4850'}
-Plug 'tpope/vim-repeat', {'commit': '7a6675f'}
-
-" completions
-Plug 'ervandew/supertab', {'commit': '9f7da6d'}
 Plug 'alvan/vim-closetag', {'commit': '21a747e'}
+Plug 'bkad/CamelCaseMotion', {'commit': '3ae9bf9'}
+Plug 'ervandew/supertab', {'commit': '9f7da6d'}
 Plug 'jiangmiao/auto-pairs', {'tag': 'v1.3.1'}
-
-" git
-Plug 'tpope/vim-fugitive', {'commit': 'fd36aa9'}
-
-" utils
-Plug 'junegunn/vim-easy-align', {'tag': '2.10.0'}
-Plug 'nhooyr/neoman.vim', {'commit': '0fbdecd'}
-
-" buffer manipulation
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim', {'commit': 'be01b64'}
+Plug 'junegunn/vim-easy-align', {'tag': '2.10.0'}
+Plug 'kshenoy/vim-signature', {'commit': '7cabfb5'}
+Plug 'mhinz/vim-signify', {'commit': '2a3dafd'}
+Plug 'nhooyr/neoman.vim', {'commit': '0fbdecd'}
 Plug 'ninrod/ninscratch-vim'
+Plug 'tpope/vim-commentary', {'commit': 'e0f4850'}
+Plug 'tpope/vim-fugitive', {'commit': 'fd36aa9'}
+Plug 'tpope/vim-repeat', {'commit': '7a6675f'}
 
 " ----------Plugin graveyard-----------------
 " Plug 'ninrod/vis'

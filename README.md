@@ -72,38 +72,19 @@ $ exec zsh
 ## VIM: Powerful shell text editor. Tweaked with plugins.
 
 ### installed plugins
-0. [auto-pairs][auto-pairs_link]: plugin to complete pairs of brackets and similar stuff.
-0. [CamelCaseMotion][camel_link]: motion through camelcase style words.
-0. [fzf.vim][fzf-vim_link]: fuzzy file finder.
-0. [gitv][gitv_link]: gitk for vim.
-0. [neoman][neoman_link]: readman pages faster than superman.
-0. [nerdtree][nerdtree_link]: tree like file navigation.
-0. [nerdtree-tabs][nerdtree-tabs_link]: 'toggle' behaviour for nerdtree.
-0. [supertab][supertab_link]: insert mode completions triggered by <TAB>.
-0. [targets.vim][targets_link]: creates various useful textobjects.
-0. [ultisnips][ultisnips_link]: snippet engine for vim (needs +python).
-0. [vim-bufkill][bufkill_link]: easier buffer unloading.
-0. [vim-closetag][closetag_link]: auto close for html tags.
-0. [vim-colors-solarized][vim-colors-solarized_link]: well designed vim colorscheme.
-0. [vim-commentary][vim-commentary_link]: automatic commentary wrapping.
-0. [vim-easy-align][vim-easy-align_link]: very good text alignment tool.
-0. [vim-endwise][vim-endwise_link]: automatic insert mode if/for/case completions for some languages.
-0. [vim-exchange][vim-exchange_link]: easily swap of two regions of text.
-0. [vim-fugitive][vim-fugitive_link]: very good git wrapper for vim.
-0. [vim-instant-markdown][vim-instant-markdown_link]: quick markdown visualization tool.
-0. [vim-repeat][vim-repeat_link]: expands usage opportunities for the '.' (dot) repeat command.
-0. [vim-signature][vim-signature_link]: adds visual notation for vim marks.
-0. [vim-signify][vim-signify_link]: signs to indicate added, modified and removed lines of files under a VCS.
-0. [vim-snippets][vim-snippets_link]: snippets for various programming languages.
-0. [vim-surround][vim-surround_link]: easily add/change surrounding {},'',(), <htmltags>, etc...
-0. [vim-textobj-entire][vim-textobj-entire_link]: adds textobjs `ie` and `ae` for selecting the entire buffer.
-0. [vim-textobj-function][vim-textobj-function_link]: adds textobjs `if` and `af` for selecting a function body.
-0. [vim-textobj-function-javascript][vim-textobj-function-javascript_link]: expands [vim-textobj-function][vim-textobj-function_link] adding javascript functions.
-0. [vim-textobj-user][vim-textobj-user_link]: base library for other text objects.
-0. [vim-textobj-xmlattr][vim-textobj-xmlattr_link]: adds `ax` and `ix` text objects for manipulating xml attributes of tags.
-0. [vim-unimpaired][vim-unimpaired_link]: adds various `[ + bind` and `] + bind` useful bindings.
-0. [vitality][vitality_link]: better cursor display within iterm2.
-0. [ZoomWin][ZoomWin_link]: makes a vim window go temporarilly fullscreen.
+0. [altercation/vim-colors-solarized][vim-colors-solarized_link]: well designed vim colorscheme.
+0. [alvan/vim-closetag][closetag_link]: auto close for html tags.
+0. [bkad/CamelCaseMotion][camel_link]: motion through camelcase style words.
+0. [ervandew/supertab][supertab_link]: insert mode completions triggered by <TAB>.
+0. [jiangmiao/auto-pairs][auto-pairs_link]: plugin to complete pairs of brackets and similar stuff.
+0. [junegunn/fzf.vim][fzf-vim_link]: fuzzy file finder.
+0. [junegunn/vim-easy-align][vim-easy-align_link]: very good text alignment tool.
+0. [kshenoy/vim-signature][vim-signature_link]: adds visual notation for vim marks.
+0. [mhinz/vim-signify][vim-signify_link]: signs to indicate added, modified and removed lines of files under a VCS.
+0. [nhooyr/neoman.vim][neoman_link]: readman pages faster than superman.
+0. [tpope/vim-commentary][vim-commentary_link]: automatic commentary wrapping.
+0. [tpope/vim-fugitive][vim-fugitive_link]: very good git wrapper for vim.
+0. [tpope/vim-repeat][vim-repeat_link]: expands usage opportunities for the '.' (dot) repeat command.
 
 #### VIM: note about the `<leader>` key
 
