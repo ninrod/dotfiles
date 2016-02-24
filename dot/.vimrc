@@ -120,6 +120,7 @@ call plug#begin('~/.vim/plugged')
 
 " test
 Plug 'terryma/vim-multiple-cursors', {'commit': '47c9e3f'}
+" Plug 'ninrod/solarized/vim-colors-solarized'
 
 " cosmetic
 Plug 'altercation/vim-colors-solarized', {'commit': '528a59f'}
@@ -182,6 +183,9 @@ call plug#end()
 " kills the need for the vitality.vim plugin
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
+" neovim enable trucolors
+" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
 " don't let bufkill clutter <leader> binds
 let g:BufKillCreateMappings = 0
 
@@ -201,7 +205,7 @@ let g:solarized_underline=0
 let g:solarized_visibility="high"
 let g:solarized_contrast="high"
 let g:solarized_diffmode="high"
-let g:solarized_termcolors=16
+" let g:solarized_termcolors=16
 colorscheme solarized
 
 " vim-commentary: disabling double backslash
@@ -224,7 +228,8 @@ highlight clear SignColumn
 
 " tip from https://youtu.be/aHm36-na4-4?t=598
 nnoremap ; :
-nnoremap : ;
+xnoremap ; :
+" : is to cumbersome for `;`
 nnoremap s ;
 
 " FZF
@@ -404,6 +409,12 @@ autocmd BufReadPre,FileReadPre *.md,*.jsp MatchDebug
 
 " quick fix for <CR> in command-line-window
 autocmd CmdwinEnter * nunmap <CR>
+
+
+
+" }}}
+
+" Custom Functions {{{
 
 " }}}
 

@@ -23,6 +23,7 @@
   * `brew install coreutils` (mainly because `BSD` `ls` `CLICOLOR` sucks).
   * `brew install reattach-to-user-namespace` (Mainly because of the `open` utility. [more info here][reattach_link]).
   * `brew install nvim`
+  * `brew install diff-so-fancy`
 * install a [powerline patched font][powerline_fonts] on your OS and configure your terminal to use said font.
   I recommend [Source code Pro][saucecode_link], 14pt, for a 13" display.
 * I strongly recommend using [iTerm2][iterm2_link] on OSx.
@@ -130,8 +131,8 @@ bind                    | action
 
 bind                           | action
 -----------------------        | ------------------------------------------
-`;`                            | `:`
-`:`                            | `;`
+`;`                            | `:` (normal and visual)
+`s`                            | `;`
 `gp`                           | `:Gpush`
 `gs`                           | open scratch buffer
 `Z`                            | alias for ZZ. exits saving file

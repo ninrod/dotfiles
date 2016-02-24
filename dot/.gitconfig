@@ -15,11 +15,29 @@
     autocrlf = input
 [credential]
     helper = osxkeychain
+
+; Color config
 [color]
-    diff = auto
-    status = auto
-    branch = auto
-    log = auto
-    interactive = auto
-    ui = true
-    pager = true
+  ui = always
+[color "diff"]
+  meta = yellow
+  commit = green
+  frag = magenta
+  old = red
+  new = green
+  whitespace = red reverse
+[color "diff-highlight"]
+  oldNormal = red
+  oldHighlight = "red 52"
+  newNormal = "green"
+  newHighlight = "green 22"
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "status"]
+  untracked = cyan
+
+[pager]
+  diff = diff-so-fancy | less --tabs=4 -RFX
+  show = diff-so-fancy | less --tabs=4 -RFX
