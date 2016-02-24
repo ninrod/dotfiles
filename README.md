@@ -132,12 +132,12 @@ bind                    | action
 bind                           | action
 -----------------------        | ------------------------------------------
 `;`                            | `:` (normal and visual)
+`'`                            | `"` (normal and visual)
 `s`                            | `;`
 `gp`                           | `:Gpush`
 `gs`                           | open scratch buffer
 `Z`                            | alias for ZZ. exits saving file
 `Q`                            | alias for ZQ. exits without saving file
-`U`                            | toggle zoom in and zoom out of a window
 `+`                            | `:Gstatus`
 `w, b, e, ge`                  | these normal movement keys had their motion behaviour expanded to work with [camel words][camel_link].
 `<ENTER>`                      | `:w` (writes buffer)
@@ -174,6 +174,7 @@ bind        | action
 ------------|-------------------------
 `s`         | equivalent to `cl`.
 `S`         | equivalent to `cc`.
+`U`         | A special kind of undo. very confusing, never really used that. (`:h U`)
 `-`         | equivalent to `k0`.
 `g + char`  | top free binds: `gh`,`gf`,`gl`,`gp`,`gr`,`gs`,`gx`,`gy`,`gz`.
 `K`         | word lookup does not seem to be of much use.

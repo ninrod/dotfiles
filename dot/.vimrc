@@ -121,20 +121,15 @@ filetype plugin indent on
 
 call plug#begin('~/.vim/plugged')
 
-" test
-Plug 'terryma/vim-multiple-cursors', {'commit': '47c9e3f'}
-" Plug 'ninrod/solarized/vim-colors-solarized'
-
 " cosmetic
 Plug 'altercation/vim-colors-solarized', {'commit': '528a59f'}
 Plug 'kshenoy/vim-signature', {'commit': '7cabfb5'}
+Plug 'mhinz/vim-signify', {'commit': '2a3dafd'}
 
 " expand core functionality
 Plug 'bkad/CamelCaseMotion', {'commit': '3ae9bf9'}
 Plug 'tpope/vim-commentary', {'commit': 'e0f4850'}
-Plug 'tpope/vim-surround', {'commit': '2d05440'}
 Plug 'tpope/vim-repeat', {'commit': '7a6675f'}
-Plug 'wellle/targets.vim', {'commit': 'd111928'}
 
 " completions
 Plug 'ervandew/supertab', {'commit': '9f7da6d'}
@@ -143,21 +138,22 @@ Plug 'jiangmiao/auto-pairs', {'tag': 'v1.3.1'}
 
 " git
 Plug 'tpope/vim-fugitive', {'commit': 'fd36aa9'}
-Plug 'mhinz/vim-signify', {'commit': '2a3dafd'}
 
 " utils
 Plug 'junegunn/vim-easy-align', {'tag': '2.10.0'}
 Plug 'nhooyr/neoman.vim', {'commit': '0fbdecd'}
-Plug 'regedarek/ZoomWin', {'commit': 'da618cb'}
-
 
 " buffer manipulation
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim', {'commit': 'be01b64'}
 Plug 'ninrod/ninscratch-vim'
-Plug 'qpkorr/vim-bufkill', {'commit': 'ba8b570'}
 
-" Plugin graveyard
+" ----------Plugin graveyard-----------------
+" Plug 'tpope/vim-surround', {'commit': '2d05440'}
+" Plug 'wellle/targets.vim', {'commit': 'd111928'}
+" Plug 'regedarek/ZoomWin', {'commit': 'da618cb'}
+" Plug 'qpkorr/vim-bufkill', {'commit': 'ba8b570'}
+" Plug 'terryma/vim-multiple-cursors', {'commit': '47c9e3f'}
 " Plug 'tpope/vim-endwise', {'commit': 'f06abe3'}
 " Plug 'scrooloose/nerdtree', {'commit': '4ebbb53', 'on': 'NERDTreeTabsToggle'}
 " Plug 'jistr/vim-nerdtree-tabs', {'commit': '0decec1', 'on': 'NERDTreeTabsToggle'}
@@ -168,7 +164,6 @@ Plug 'qpkorr/vim-bufkill', {'commit': 'ba8b570'}
 " Plug 'tpope/vim-unimpaired', {'commit': '23f471a'}
 " Plug 'tommcdo/vim-exchange', {'commit': '9373a84'}
 "   \| Plug 'gregsexton/gitv', {'commit': 'e10a896'}
-
 " text objects (trying to live without it)
 " Plug 'kana/vim-textobj-user', {'commit': 'a305416'}
 "   \| Plug 'kana/vim-textobj-entire', {'commit': '41c12e1'}
@@ -182,24 +177,23 @@ call plug#end()
 
 " Plugin Configuration {{{
 
+" -------- CONFIG GRAVEYARD -----------
+" neovim enable trucolors
+" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+" don't let bufkill clutter <leader> binds
+" let g:BufKillCreateMappings = 0
+" no default mappings for bufExplorer
+" let g:bufExplorerDisableDefaultKeyMapping=1
+
 " https://github.com/neovim/neovim/wiki/FAQ#how-can-i-change-the-cursor-shape-in-the-terminal
 " kills the need for the vitality.vim plugin
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-
-" neovim enable trucolors
-" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-
-" don't let bufkill clutter <leader> binds
-let g:BufKillCreateMappings = 0
 
 " auto-pairs plugin maps 'â' in insert mode limiting our ability to type 'â'. So we fix it.
 let g:AutoPairsShortcutBackInsert=''
 
 " as we only use git, we tell this to signify for a little performance gain. Every bit counts.
 let g:signify_vcs_list = ['git']
-
-" no default mappings for bufExplorer
-let g:bufExplorerDisableDefaultKeyMapping=1
 
 " Solarized Dark Theme
 set background=dark
@@ -208,7 +202,7 @@ let g:solarized_underline=0
 let g:solarized_visibility="high"
 let g:solarized_contrast="high"
 let g:solarized_diffmode="high"
-" let g:solarized_termcolors=16
+let g:solarized_termcolors=16
 colorscheme solarized
 
 " vim-commentary: disabling double backslash
@@ -235,6 +229,12 @@ xnoremap ; :
 " : is to cumbersome for `;`
 nnoremap s ;
 
+" same idea: bettter access to registers
+nnoremap ' "
+nnoremap " '
+xnoremap ' "
+xnoremap " '
+
 " FZF
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
@@ -247,7 +247,7 @@ imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
-" CamelCaseMotion test
+" CamelCaseMotion
 map <silent> w <Plug>CamelCaseMotion_w
 map <silent> b <Plug>CamelCaseMotion_b
 map <silent> e <Plug>CamelCaseMotion_e
@@ -351,9 +351,6 @@ nmap <leader>H <C-W>H
 nmap <leader>J <C-W>J
 nmap <leader>K <C-W>K
 nmap <leader>L <C-W>L
-
-" toggle zooming in a window
-nnoremap U :ZoomWin<CR>
 
 " open a vertical window
 nmap <leader>v <C-W>v
