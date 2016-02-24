@@ -24,8 +24,6 @@
   * `brew install reattach-to-user-namespace` (Mainly because of the `open` utility. [more info here][reattach_link]).
   * `brew install nvim`
   * `brew install diff-so-fancy`
-* install a [powerline patched font][powerline_fonts] on your OS and configure your terminal to use said font.
-  I recommend [Source code Pro][saucecode_link], 14pt, for a 13" display.
 * I strongly recommend using [iTerm2][iterm2_link] on OSx.
 * this is for unix systems: `GNU/Linux`, `OSx`, etc... It should work on theory on windows, but I've faced a lot of configuration issues and ended up abandoning windows support.
 * git clone this repo.
