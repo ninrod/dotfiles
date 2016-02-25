@@ -189,6 +189,10 @@ compdef nman="man"
 
 # prompt {{{
 
-PROMPT='%F{blue}%1~%f %F{magenta}#%f '
+# light
+PROMPT='%F{cyan}%1~%f %F{red}#%f '
+
+# dark
+# PROMPT='%F{blue}%1~%f %F{magenta}#%f '
 
 # }}}

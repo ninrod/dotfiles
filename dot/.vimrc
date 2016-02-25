@@ -228,7 +228,7 @@ let g:AutoPairsShortcutBackInsert=''
 let g:signify_vcs_list = ['git']
 
 " Solarized Dark Theme
-set background=dark
+set background=light
 let g:solarized_bold=1
 let g:solarized_underline=0
 let g:solarized_visibility="high"
