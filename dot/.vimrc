@@ -139,16 +139,19 @@ Plug 'tpope/vim-commentary', {'commit': 'e0f4850'}
 Plug 'tpope/vim-fugitive', {'commit': 'fd36aa9'}
 Plug 'tpope/vim-repeat', {'commit': '7a6675f'}
 Plug 'tpope/vim-rsi', {'commit': 'b689ee4'}
+Plug 'itchyny/lightline.vim', {'commit': 'e6a43f9'}
 
 " on test
 Plug 'sheerun/vim-polyglot', {'commit': 'b0823d2'}
 Plug 'terryma/vim-multiple-cursors', {'commit': '47c9e3f'}
 
 " quarentine
-Plug 'scrooloose/nerdtree', {'commit': '4ebbb53'} | Plug 'jistr/vim-nerdtree-tabs', {'commit': '0decec1'}
+Plug 'scrooloose/nerdtree', {'commit': '4ebbb53', 'on': 'NERDTreeTabsToggle'} | Plug 'jistr/vim-nerdtree-tabs', {'commit': '0decec1', 'on': 'NERDTreeTabsToggle'}
 
 " ----------Plugin graveyard-----------------
 " Plug 'tpope/vim-sleuth', {'commit': 'a174627'}
+" Plug 'tpope/vim-surround', {'commit': '2d05440'}
+" Plug 'wellle/targets.vim', {'commit': 'd111928'}
 " Plug 'SirVer/ultisnips',{'commit': '25882e9'} | Plug 'honza/vim-snippets', {'commit': '122134f'}
 " Plug 'jistr/vim-nerdtree-tabs', {'commit': '0decec1', 'on': 'NERDTreeTabsToggle'}
 " Plug 'jlanzarotta/bufexplorer', {'commit': 'ad2cff7'}
@@ -159,9 +162,7 @@ Plug 'scrooloose/nerdtree', {'commit': '4ebbb53'} | Plug 'jistr/vim-nerdtree-tab
 " Plug 'sjl/vitality.vim', {'commit': '4bb8c07'}
 " Plug 'terryma/vim-multiple-cursors', {'commit': '47c9e3f'}
 " Plug 'tpope/vim-endwise', {'commit': 'f06abe3'}
-" Plug 'tpope/vim-surround', {'commit': '2d05440'}
 " Plug 'tpope/vim-unimpaired', {'commit': '23f471a'}
-" Plug 'wellle/targets.vim', {'commit': 'd111928'}
 " Plug 'tommcdo/vim-exchange', {'commit': '9373a84'}
 "   \| Plug 'gregsexton/gitv', {'commit': 'e10a896'}
 
@@ -186,6 +187,8 @@ call plug#end()
 " no default mappings for bufExplorer
 " let g:bufExplorerDisableDefaultKeyMapping=1
 " -------- CONFIG GRAVEYARD-------------
+
+let g:lightline = {'colorscheme': 'solarized'}
 
 " vim-signature is eating a lot of our binds. lets fix this.
 let g:SignatureMap = {
@@ -263,9 +266,6 @@ nnoremap ' "
 nnoremap " '
 xnoremap ' "
 xnoremap " '
-
-" same idea: easier access to the command window
-nnoremap q; q:
 
 " FZF
 " Mapping selecting mappings
@@ -445,38 +445,5 @@ silent! autocmd CmdwinLeave * nnoremap <cr> :w<cr>
 " }}}
 
 " custom functions {{{
-
-" }}}
-
-" custom status line {{{
-
-hi StatusLine ctermbg=10 ctermfg=8
-hi StatusLineNC ctermbg=10 ctermfg=0
-
-set statusline=%#identifier#
-set statusline+=%f\     "tail of the filename
-
-set statusline+=%*
-
-set statusline+=%y      "filetype
-
-"read only flag
-set statusline+=%#identifier#
-set statusline+=%r
-set statusline+=%*
-
-"modified flag
-set statusline+=%#warningmsg#
-set statusline+=%m
-set statusline+=%*
-
-" left|right separator
-set statusline+=%=
-
-" set statusline+=%l\|
-set statusline+=%c\|
-set statusline+=%P    "percent through file
-
-set statusline+=\ (%L\ LoC)
 
 " }}}
