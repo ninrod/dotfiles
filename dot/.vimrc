@@ -126,29 +126,30 @@ Plug 'altercation/vim-colors-solarized', {'commit': '528a59f'}
 Plug 'alvan/vim-closetag', {'commit': '21a747e'}
 Plug 'bkad/CamelCaseMotion', {'commit': '3ae9bf9'}
 Plug 'ervandew/supertab', {'commit': '9f7da6d'}
+Plug 'itchyny/lightline.vim', {'commit': 'e6a43f9'}
 Plug 'jiangmiao/auto-pairs', {'tag': 'v1.3.1'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf'}
 Plug 'junegunn/fzf.vim', {'commit': 'be01b64'}
 Plug 'junegunn/vim-easy-align', {'tag': '2.10.0'}
 Plug 'kshenoy/vim-signature', {'commit': '7cabfb5'}
-Plug 'mhinz/vim-signify', {'commit': '2a3dafd'}
 Plug 'nhooyr/neoman.vim', {'commit': '0fbdecd'}
 Plug 'ninrod/ninscratch-vim'
 Plug 'qpkorr/vim-bufkill', {'commit': 'ba8b570'}
 Plug 'tpope/vim-commentary', {'commit': 'e0f4850'}
 Plug 'tpope/vim-fugitive', {'commit': 'fd36aa9'}
 Plug 'tpope/vim-repeat', {'commit': '7a6675f'}
-Plug 'tpope/vim-rsi', {'commit': 'b689ee4'}
-Plug 'itchyny/lightline.vim', {'commit': 'e6a43f9'}
 
 " on test
-Plug 'sheerun/vim-polyglot', {'commit': 'b0823d2'}
 Plug 'terryma/vim-multiple-cursors', {'commit': '47c9e3f'}
 
-" quarentine
-Plug 'scrooloose/nerdtree', {'commit': '4ebbb53', 'on': 'NERDTreeTabsToggle'} | Plug 'jistr/vim-nerdtree-tabs', {'commit': '0decec1', 'on': 'NERDTreeTabsToggle'}
+" phasing out
+" Plug 'sheerun/vim-polyglot', {'commit': 'b0823d2'}
+" Plug 'scrooloose/nerdtree', {'commit': '4ebbb53', 'on': 'NERDTreeTabsToggle'} | Plug 'jistr/vim-nerdtree-tabs', {'commit': '0decec1', 'on': 'NERDTreeTabsToggle'}
+" Plug 'mhinz/vim-signify', {'commit': '2a3dafd'}
 
 " ----------Plugin graveyard-----------------
+" Plug 'tpope/vim-endwise', {'commit': 'f06abe3'}
+" Plug 'tpope/vim-rsi', {'commit': 'b689ee4'}
 " Plug 'tpope/vim-sleuth', {'commit': 'a174627'}
 " Plug 'tpope/vim-surround', {'commit': '2d05440'}
 " Plug 'wellle/targets.vim', {'commit': 'd111928'}
@@ -161,7 +162,6 @@ Plug 'scrooloose/nerdtree', {'commit': '4ebbb53', 'on': 'NERDTreeTabsToggle'} | 
 " Plug 'scrooloose/nerdtree', {'commit': '4ebbb53', 'on': 'NERDTreeTabsToggle'}
 " Plug 'sjl/vitality.vim', {'commit': '4bb8c07'}
 " Plug 'terryma/vim-multiple-cursors', {'commit': '47c9e3f'}
-" Plug 'tpope/vim-endwise', {'commit': 'f06abe3'}
 " Plug 'tpope/vim-unimpaired', {'commit': '23f471a'}
 " Plug 'tommcdo/vim-exchange', {'commit': '9373a84'}
 "   \| Plug 'gregsexton/gitv', {'commit': 'e10a896'}
@@ -228,7 +228,7 @@ let g:AutoPairsShortcutBackInsert=''
 let g:signify_vcs_list = ['git']
 
 " Solarized Dark Theme
-set background=light
+set background=dark
 let g:solarized_bold=1
 let g:solarized_underline=0
 let g:solarized_visibility="high"
@@ -350,7 +350,7 @@ nnoremap <BS> :Buffers<cr>
 nnoremap <cr> :w<cr>
 
 " turn off search highlighting
-nnoremap <leader>/ :noh<cr>
+nnoremap - :noh<cr>
 
 " fugitive Gstatus command
 nnoremap + :Gstatus<cr>
@@ -361,6 +361,10 @@ nmap <leader>u HzbM
 
 " FZF bindings
 nnoremap <leader>f :Files<cr>
+nnoremap <leader>r :History<cr>
+nnoremap <leader>g :GitFiles<cr>
+nnoremap <leader>/ :History/<cr>
+nnoremap <leader>; :History:<cr>
 
 " resizing windows
 nmap <leader><right> <C-W>10>

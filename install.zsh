@@ -23,11 +23,7 @@ updatelinks ~/.vim dot/.vim
 updatelinks ~/.vimrc dot/.vimrc
 updatelinks ~/.zshrc dot/.zshrc
 updatelinks ~/.tmux.conf dot/.tmux.conf
-
-# test
-# updatelinks ~/.lscolors dot/.dircolors/dircolors.256dark
-updatelinks ~/.lscolors dot/.dircolors/dircolors.ansi-light
-
+updatelinks ~/.lscolors dot/.dircolors/dircolors.256dark
 updatelinks ~/.gitconfig dot/.gitconfig
 updatelinks ~/.agignore dot/.agignore
 
