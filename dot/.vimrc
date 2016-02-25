@@ -267,17 +267,6 @@ nnoremap " '
 xnoremap ' "
 xnoremap " '
 
-" FZF
-" Mapping selecting mappings
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
-
-" Insert mode completion
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " CamelCaseMotion
 map <silent> w <Plug>CamelCaseMotion_w
@@ -313,17 +302,6 @@ omap ir i[
 omap ar a[
 xmap ir i[
 xmap ar a[
-
-" better cut/paste
-xnoremap ( "0P
-xnoremap ) "0p
-nnoremap ( "0P
-nnoremap ) "0p
-
-" backspace is really not needed
-" 'Y' can easily be replaced by 'yy', so I make 'Y' a better 'cut'
-nnoremap Y "0d
-xnoremap Y "0d
 
 " space is my leader key, but '\' remains as leader.
 nmap <Space> <Leader>
@@ -365,6 +343,17 @@ nnoremap <leader>r :History<cr>
 nnoremap <leader>g :GitFiles<cr>
 nnoremap <leader>/ :History/<cr>
 nnoremap <leader>; :History:<cr>
+
+" FZF Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" FZF Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " resizing windows
 nmap <leader><right> <C-W>10>
