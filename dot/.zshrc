@@ -33,6 +33,9 @@ export LANG=en_US.UTF-8
 export TERM=xterm-256color
 export EDITOR=nvim
 
+# Enable a different cursor in NVIM in insert mode
+export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
 export ENHANCD_COMMAND=d
 export ENHANCD_FILTER=fzf-tmux
 
