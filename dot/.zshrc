@@ -12,7 +12,6 @@ setopt hist_verify
 setopt share_history
 
 # dir change options
-setopt auto_cd
 setopt auto_pushd
 setopt pushd_ignore_dups
 
@@ -119,6 +118,7 @@ alias po='popd'
 alias rd='rm -r'
 alias rdf='rm -rf'
 alias b='bd 1'
+alias ..='print \`..\` is not supported. please use \`b\` instead'
 
 # git alias
 alias g='git status --short'
