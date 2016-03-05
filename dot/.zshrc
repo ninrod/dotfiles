@@ -103,8 +103,8 @@ alias e='exit'
 alias m='nman'
 alias vi='vim -u NONE'
 alias v='nvim'
-alias vz='vim ~/.zshrc(:A)'
-alias vv='nvim ~/.vimrc(:A)'
+alias vz='v ~/.zshrc(:A)'
+alias vv='v ~/.vimrc(:A)'
 alias tarc='tar -zcvf file.tar.gz'
 alias tarx='tar -zxvf'
 alias dot='l `find ~ -maxdepth 1 -type l`'
@@ -140,24 +140,26 @@ alias gp='git push'
 
 # custom functions {{{
 
-####### dir manipulations
+# faster dir creation
 md () {
   mkdir -p $1
   cd $1
 }
 
-f () {
-  d $1 && c && l
-}
-
 # enhancing enhancd
 cd () {
   if [[ -z $1 ]]; then
+    # $1 is empty. go home
     d ~
   elif [[ $1 == '-' ]]; then
+    # $1 == '-': switch to last visited dir
     builtin cd -
+  elif [[ $1 =~ '\+[0-9]{1,2}' ]]; then
+    # $1: `cd +8`, `cd +10`, cherry pick auto_pushd stack
+    builtin cd $1
   else
-    f $1
+    # populate enhancd cache, clear screen, and list dir.
+    d $1 && c && l
   fi
 }
 
