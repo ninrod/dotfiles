@@ -27,8 +27,5 @@ updatelinks ~/.lscolors dot/.dircolors/dircolors.256dark
 updatelinks ~/.gitconfig dot/.gitconfig
 updatelinks ~/.agignore dot/.agignore
 
-# trying out emacs (evil mode)
-updatelinks ~/.emacs dot/.emacs
-
 # trying out nvim (neovim)
 updatelinks ~/.config dot/.config

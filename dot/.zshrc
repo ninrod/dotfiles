@@ -14,6 +14,7 @@ setopt share_history
 # dir change options
 setopt auto_pushd
 setopt pushd_ignore_dups
+setopt pushd_silent
 
 # allows us to use ^ to negate globs
 setopt extended_glob
@@ -111,7 +112,6 @@ alias dot='l `find ~ -maxdepth 1 -type l`'
 # working with pushd and popd
 alias di='dirs -v | head -n 10'
 alias dic='dirs -c'
-alias pu='pushd'
 alias po='popd'
 
 # directory manipulation
