@@ -77,7 +77,7 @@ $ exec zsh
 0. [bkad/CamelCaseMotion][camel_link]: motion through camelcase style words.
 0. [ervandew/supertab][supertab_link]: insert mode completions triggered by <TAB>.
 0. [jiangmiao/auto-pairs][auto-pairs_link]: plugin to complete pairs of brackets and similar stuff.
-0. [junegunn/fzf.vim][fzf-vim_link]: fuzzy file finder.
+0. [junegunn/fzf.vim][fzf-vim_link]: fuzzy finder.
 0. [junegunn/vim-easy-align][vim-easy-align_link]: very good text alignment tool.
 0. [kshenoy/vim-signature][vim-signature_link]: adds visual notation for vim marks.
 0. [mhinz/vim-signify][vim-signify_link]: signs to indicate added, modified and removed lines of files under a VCS.
