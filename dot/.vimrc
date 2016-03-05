@@ -1,5 +1,9 @@
 " vim options {{{
 
+" UTF encoding
+" nvim complains if I set this
+" set encoding=utf-8
+
 " Switch syntax highlighting on, when the terminal has colors
 syntax on
 
@@ -61,8 +65,6 @@ set shiftwidth=2
 set nu
 set rnu
 
-" UTF encoding
-set encoding=utf-8
 
 " Highlight tailing whitespace
 set list listchars=tab:\ \ ,trail:·
@@ -136,23 +138,23 @@ Plug 'nhooyr/neoman.vim', {'commit': '0fbdecd'}
 Plug 'ninrod/ninscratch-vim'
 Plug 'qpkorr/vim-bufkill', {'commit': 'ba8b570'}
 Plug 'tpope/vim-commentary', {'commit': 'e0f4850'}
+Plug 'tpope/vim-endwise', {'commit': 'f06abe3'}
 Plug 'tpope/vim-fugitive', {'commit': 'fd36aa9'}
 Plug 'tpope/vim-repeat', {'commit': '7a6675f'}
+Plug 'wellle/targets.vim', {'commit': 'd111928'}
 
 " on test
 Plug 'terryma/vim-multiple-cursors', {'commit': '47c9e3f'}
 
 " phasing out
+" Plug 'tpope/vim-surround', {'commit': '2d05440'}
 " Plug 'sheerun/vim-polyglot', {'commit': 'b0823d2'}
 " Plug 'scrooloose/nerdtree', {'commit': '4ebbb53', 'on': 'NERDTreeTabsToggle'} | Plug 'jistr/vim-nerdtree-tabs', {'commit': '0decec1', 'on': 'NERDTreeTabsToggle'}
 " Plug 'mhinz/vim-signify', {'commit': '2a3dafd'}
 
 " ----------Plugin graveyard-----------------
-" Plug 'tpope/vim-endwise', {'commit': 'f06abe3'}
 " Plug 'tpope/vim-rsi', {'commit': 'b689ee4'}
 " Plug 'tpope/vim-sleuth', {'commit': 'a174627'}
-" Plug 'tpope/vim-surround', {'commit': '2d05440'}
-" Plug 'wellle/targets.vim', {'commit': 'd111928'}
 " Plug 'SirVer/ultisnips',{'commit': '25882e9'} | Plug 'honza/vim-snippets', {'commit': '122134f'}
 " Plug 'jistr/vim-nerdtree-tabs', {'commit': '0decec1', 'on': 'NERDTreeTabsToggle'}
 " Plug 'jlanzarotta/bufexplorer', {'commit': 'ad2cff7'}
