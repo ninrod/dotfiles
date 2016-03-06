@@ -37,9 +37,6 @@ $ git clone https://github.com/ninrod/dotfiles.git ~/.dotfiles
 ```sh
 $ vim -u NONE ~/.dotfiles/dot/.tmux.conf
 
-#comment this line
-set -g default-command "reattach-to-user-namespace -l /usr/local/bin/zsh"
-
 # change this line
 # switch OSx pbcopy for xclip or an equivalent GNU/Linux command (xsel, etc...)
 bind -t vi-copy y copy-pipe 'pbcopy'
