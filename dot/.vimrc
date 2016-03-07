@@ -237,7 +237,7 @@ let g:solarized_visibility="high"
 let g:solarized_contrast="high"
 let g:solarized_diffmode="high"
 let g:solarized_termcolors=16
-colorscheme solarized
+silent! colorscheme solarized
 
 " vim-commentary: disabling double backslash
 let g:commentary_map_backslash=0
