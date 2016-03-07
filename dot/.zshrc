@@ -43,7 +43,8 @@ export FZF_DEFAULT_COMMAND='ag --hidden --path-to-agignore=~/.agignore -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # TODO fix me
-# export FZF_ALT_C_COMMAND=""
+export FZF_ALT_C_COMMAND="find . -path '*/.git' -prune -o -type d -print"
+
 
 # }}}
 
@@ -199,5 +200,11 @@ compdef nman="man"
 
 # dark
 PROMPT='%F{blue}%1~%f %F{magenta}#%f '
+
+# }}}
+
+# ZLE test {{{
+
+bindkey '^E' fzf-cd-widget
 
 # }}}
