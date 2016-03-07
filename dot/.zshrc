@@ -199,7 +199,11 @@ compdef nman="man"
 # PROMPT='%F{cyan}%1~%f %F{red}#%f '
 
 # dark
-PROMPT='%F{blue}%1~%f %F{magenta}#%f '
+if [ `uname` = "Darwin" ]; then
+  PROMPT='%F{blue}%1~%f %F{magenta}#%f '
+elif [[ `uname` = "Linux" ]]; then
+  PROMPT='%F{blue}%1~%f %F{red}@%f%F{yellow}%m%f %F{magenta}#%f '
+fi
 
 # }}}
 
