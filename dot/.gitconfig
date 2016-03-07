@@ -1,8 +1,6 @@
 [user]
     name = ninrod
     email = filipe.silva@gmail.com
-[credential]
-    helper = osxkeychain
 [push]
   default = simple
 [diff]

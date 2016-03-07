@@ -73,6 +73,7 @@ zplug "zsh-users/zsh-completions"
 zplug "felixr/docker-zsh-completion", if:"which docker", of:_docker
 zplug "b4b4r07/enhancd", of:enhancd.sh
 zplug "Tarrasch/zsh-bd"
+zplug "supercrabtree/k"
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
     if read -q; then
