@@ -144,12 +144,12 @@ Plug 'tpope/vim-repeat', {'commit': '7a6675f'}
 Plug 'wellle/targets.vim', {'commit': 'd111928'}
 
 " on test
-Plug 'terryma/vim-multiple-cursors', {'commit': '47c9e3f'}
 
 " phasing out
+" Plug 'terryma/vim-multiple-cursors', {'commit': '47c9e3f'}
+" Plug 'scrooloose/nerdtree', {'commit': '4ebbb53', 'on': 'NERDTreeTabsToggle'} | Plug 'jistr/vim-nerdtree-tabs', {'commit': '0decec1', 'on': 'NERDTreeTabsToggle'}
 " Plug 'tpope/vim-surround', {'commit': '2d05440'}
 " Plug 'sheerun/vim-polyglot', {'commit': 'b0823d2'}
-" Plug 'scrooloose/nerdtree', {'commit': '4ebbb53', 'on': 'NERDTreeTabsToggle'} | Plug 'jistr/vim-nerdtree-tabs', {'commit': '0decec1', 'on': 'NERDTreeTabsToggle'}
 " Plug 'mhinz/vim-signify', {'commit': '2a3dafd'}
 
 " ----------Plugin graveyard-----------------
