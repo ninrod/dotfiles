@@ -143,52 +143,11 @@ Plug 'tpope/vim-fugitive', {'commit': 'fd36aa9'}
 Plug 'tpope/vim-repeat', {'commit': '7a6675f'}
 Plug 'wellle/targets.vim', {'commit': 'd111928'}
 
-" on test
-
-" phasing out
-" Plug 'terryma/vim-multiple-cursors', {'commit': '47c9e3f'}
-" Plug 'scrooloose/nerdtree', {'commit': '4ebbb53', 'on': 'NERDTreeTabsToggle'} | Plug 'jistr/vim-nerdtree-tabs', {'commit': '0decec1', 'on': 'NERDTreeTabsToggle'}
-" Plug 'tpope/vim-surround', {'commit': '2d05440'}
-" Plug 'sheerun/vim-polyglot', {'commit': 'b0823d2'}
-" Plug 'mhinz/vim-signify', {'commit': '2a3dafd'}
-
-" ----------Plugin graveyard-----------------
-" Plug 'tpope/vim-rsi', {'commit': 'b689ee4'}
-" Plug 'tpope/vim-sleuth', {'commit': 'a174627'}
-" Plug 'SirVer/ultisnips',{'commit': '25882e9'} | Plug 'honza/vim-snippets', {'commit': '122134f'}
-" Plug 'jistr/vim-nerdtree-tabs', {'commit': '0decec1', 'on': 'NERDTreeTabsToggle'}
-" Plug 'jlanzarotta/bufexplorer', {'commit': 'ad2cff7'}
-" Plug 'mileszs/ack.vim', {'tag': '1.0.9'}
-" Plug 'ninrod/vis'
-" Plug 'regedarek/ZoomWin', {'commit': 'da618cb'}
-" Plug 'scrooloose/nerdtree', {'commit': '4ebbb53', 'on': 'NERDTreeTabsToggle'}
-" Plug 'sjl/vitality.vim', {'commit': '4bb8c07'}
-" Plug 'terryma/vim-multiple-cursors', {'commit': '47c9e3f'}
-" Plug 'tpope/vim-unimpaired', {'commit': '23f471a'}
-" Plug 'tommcdo/vim-exchange', {'commit': '9373a84'}
-"   \| Plug 'gregsexton/gitv', {'commit': 'e10a896'}
-
-" text objects (trying to live without it)
-" Plug 'kana/vim-textobj-user', {'commit': 'a305416'}
-"   \| Plug 'kana/vim-textobj-entire', {'commit': '41c12e1'}
-"   \| Plug 'kana/vim-textobj-function', {'commit': 'adb50f3'}
-"   \| Plug 'thinca/vim-textobj-function-javascript', {'commit': 'a543539'}
-"   \| Plug 'whatyouhide/vim-textobj-xmlattr', {'commit': '29a154d'}
-
 call plug#end()
 
 " }}}
 
 " plugin configuration {{{
-
-" -------- CONFIG GRAVEYARD -----------
-" neovim enable trucolors
-" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-" don't let bufkill clutter <leader> binds
-" let g:BufKillCreateMappings = 0
-" no default mappings for bufExplorer
-" let g:bufExplorerDisableDefaultKeyMapping=1
-" -------- CONFIG GRAVEYARD-------------
 
 let g:lightline = {'colorscheme': 'solarized'}
 
@@ -217,9 +176,6 @@ let g:SignatureMap = {
         \ 'ListLocalMarkers'   :  "m?"
         \ }
 
-" vim-rsi config
-let g:rsi_no_meta = 1
-
 " don't let bufkill clutter <leader> binds
 let g:BufKillCreateMappings = 0
 
@@ -242,13 +198,6 @@ silent! colorscheme solarized
 " vim-commentary: disabling double backslash
 let g:commentary_map_backslash=0
 
-" nerdtree configs
-" we don't need nerdtree firing up on startup.
-let g:nerdtree_tabs_open_on_gui_startup=0
-
-" nerd tree needs to show hidden files for us
-let g:NERDTreeShowHidden=1
-
 " fix git-gutter|signify contrast issue with solarized dark.
 " https://github.com/airblade/vim-gitgutter/issues/164
 highlight clear SignColumn
@@ -258,17 +207,14 @@ highlight clear SignColumn
 " custom binds {{{
 
 " tip from https://youtu.be/aHm36-na4-4?t=598
-nnoremap ; :
-xnoremap ; :
-nnoremap s ;
-vnoremap s ;
+nnoremap s :
+xnoremap s :
 
 " same idea: bettter access to registers
 nnoremap ' "
 nnoremap " '
 xnoremap ' "
 xnoremap " '
-
 
 " CamelCaseMotion
 map <silent> w <Plug>CamelCaseMotion_w
