@@ -143,6 +143,9 @@ Plug 'tpope/vim-fugitive', {'commit': 'fd36aa9'}
 Plug 'tpope/vim-repeat', {'commit': '7a6675f'}
 Plug 'wellle/targets.vim', {'commit': 'd111928'}
 
+" on test
+Plug 'nelstrom/vim-markdown-folding'
+
 call plug#end()
 
 " }}}
@@ -341,6 +344,10 @@ inoremap <C-p> <C-x><C-o>
 
 " auto commands {{{
 
+" foldmethod configurations
+autocmd BufRead * setlocal foldmethod=marker
+set foldlevelstart=0
+
 " jump to last cursor
 autocmd BufReadPost *
   \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -352,13 +359,10 @@ autocmd Bufread,BufNewFile *.md set filetype=markdown " Vim interprets .md as 'm
 autocmd Bufread,BufNewFile *.bowerrc set filetype=json
 
 " http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
-autocmd Filetype markdown setlocal wrap linebreak nolist textwidth=0 wrapmargin=0 conceallevel=0
+autocmd Filetype markdown setlocal wrap linebreak nolist textwidth=0 wrapmargin=0 conceallevel=0 fdm=expr
 autocmd FileType sh,ruby,yaml,zsh,vim setlocal shiftwidth=2 tabstop=2 expandtab
 autocmd Filetype gitcommit setlocal spell textwidth=80
 
-" foldmethod configurations
-autocmd BufRead * setlocal foldmethod=marker
-set foldlevelstart=0
 
 " disabling auto commenting on new line, e.g. 'o' and 'O'
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
