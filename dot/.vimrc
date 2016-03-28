@@ -137,6 +137,7 @@ Plug 'kshenoy/vim-signature', {'commit': '7cabfb5'}
 Plug 'nhooyr/neoman.vim', {'commit': '0fbdecd'}
 Plug 'ninrod/ninscratch-vim'
 Plug 'qpkorr/vim-bufkill', {'commit': 'ba8b570'}
+Plug 'rust-lang/rust.vim', {'for': 'rust'}
 Plug 'tpope/vim-commentary', {'commit': 'e0f4850'}
 Plug 'tpope/vim-endwise', {'commit': 'f06abe3'}
 Plug 'tpope/vim-fugitive', {'commit': 'fd36aa9'}
