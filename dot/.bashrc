@@ -21,7 +21,15 @@ alias c='clear'
 alias ls='ls --color=auto --group-directories-first'
 alias l='ls -lah'
 alias e='exit'
+alias b='cd ..'
 alias vz='v ~/.bashrc'
+alias vv='v ~/.vimrc'
+
+# working with pushd and popd
+alias di='dirs -v | head -n 10'
+alias dic='dirs -c'
+alias po='popd'
+alias dic='dirs -c'
 
 # }}}
 
@@ -31,6 +39,22 @@ md () {
   mkdir -p $1
   cd $1
 }
+
+f () {
+  pushd $1 && c && l
+}
+
+cd () {
+  if [ $# -eq 0 ]; then
+    builtin cd ~
+  elif [ "$1" == "-" ]; then
+    builtin cd -
+  else
+    f $1
+  fi
+}
+
+
 
 # }}}
 
