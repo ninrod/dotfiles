@@ -5,7 +5,7 @@
 
 ## Using Solarized Dark
 
-![solarized-dark-vi-tmux](https://raw.githubusercontent.com/ninrod/dotfiles/misc/images/shell.png)
+![solarized-dark-vi-tmux](https://raw.githubusercontent.com/ninrod/dotfiles/misc/images/terminal.png)
 
 ## Important notice 
 
