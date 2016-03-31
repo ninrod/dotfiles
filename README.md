@@ -1,11 +1,12 @@
 # Ninrod's __vim, tmux, zsh__ dotfiles
 
-## Using PaperColor
-![papercolor-vi-tmux](https://raw.githubusercontent.com/ninrod/dotfiles/misc/images/screen.png)
-
 ## Using Solarized Dark
 
 ![solarized-dark-vi-tmux](https://raw.githubusercontent.com/ninrod/dotfiles/misc/images/terminal.png)
+
+## Using PaperColor
+
+![papercolor-vi-tmux](https://raw.githubusercontent.com/ninrod/dotfiles/misc/images/screen.png)
 
 ## Important notice 
 
