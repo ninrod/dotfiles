@@ -173,6 +173,8 @@ cd () {
   elif [[ $1 == '-' ]]; then
     # $1 == '-': switch to last visited dir
     builtin cd -
+  elif [[ $1 == '..' ]]; then
+    builtin cd ..
   elif [[ $1 =~ '\+[0-9]{1,2}' ]]; then
     # $1: `cd +8`, `cd +10`, cherry pick auto_pushd stack
     builtin cd $1
