@@ -212,8 +212,15 @@ highlight clear SignColumn
 " custom binds {{{
 
 " tip from https://youtu.be/aHm36-na4-4?t=598
-nnoremap s :
-xnoremap s :
+nnoremap ; :
+nnoremap : ;
+xnoremap ; :
+xnoremap : ;
+
+nnoremap , ;
+nnoremap : ,
+xnoremap , ;
+xnoremap : ,
 
 " same idea: bettter access to registers
 nnoremap ' "
