@@ -15,6 +15,8 @@ setopt share_history
 setopt auto_pushd
 setopt pushd_ignore_dups
 setopt pushd_silent
+setopt auto_cd
+setopt cdable_vars
 
 # allows us to use ^ to negate globs
 setopt extended_glob
@@ -28,6 +30,10 @@ zstyle ':completion:*' menu select
 # }}}
 
 # exports {{{
+
+if [ -z ${SHELL+x}  ]; then
+  export SHELL=$(which zsh)
+fi
 
 export LANG=en_US.UTF-8
 export TERM=xterm-256color
@@ -219,7 +225,8 @@ compdef nman="man"
 # PROMPT='%F{cyan}%1~%f %F{red}#%f '
 
 # dark
-PROMPT='%F{blue}%1~%f %F{magenta}#%f '
+# PROMPT='%F{blue}%1~%f %F{magenta}#%f '
+PROMPT='%F{blue}%1~%f %F{cyan}%n%f%F{red}@%f%F{yellow}%m%f %F{magenta}#%f '
 
 # }}}
 
