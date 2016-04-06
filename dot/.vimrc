@@ -146,7 +146,6 @@ Plug 'wellle/targets.vim', {'commit': 'd111928'}
 " on test
 Plug 'nelstrom/vim-markdown-folding'
 Plug 'sheerun/vim-polyglot'
-" Plug 'rust-lang/rust.vim', {'for': 'rust'}
 
 call plug#end()
 
