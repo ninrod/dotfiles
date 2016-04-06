@@ -299,6 +299,7 @@ nmap <leader>u HzbM
 
 " FZF bindings
 nnoremap <leader>f :Files<cr>
+nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>r :History<cr>
 nnoremap <leader>g :GitFiles<cr>
 nnoremap <leader>/ :History/<cr>
