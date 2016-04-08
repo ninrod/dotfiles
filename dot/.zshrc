@@ -16,7 +16,6 @@ setopt auto_pushd
 setopt pushd_ignore_dups
 setopt pushd_silent
 setopt auto_cd
-setopt cdable_vars
 
 # allows us to use ^ to negate globs
 setopt extended_glob
