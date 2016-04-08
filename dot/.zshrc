@@ -20,9 +20,6 @@ setopt auto_cd
 # allows us to use ^ to negate globs
 setopt extended_glob
 
-# prompt
-setopt prompt_subst
-
 # defining word endings
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
@@ -33,7 +30,7 @@ zstyle ':completion:*' menu select
 
 # exports {{{
 
-# need in some machines
+# needed in some machines
 if [ -z ${SHELL+x}  ]; then
   export SHELL=$(which zsh)
 fi
@@ -162,6 +159,7 @@ alias l='ls -lah'
 alias c='clear'
 alias e='exit'
 alias a='echo -e "${Cyan}$(whoami)${Red}@${Yellow}$(hostname)"'
+alias w='echo "$Blue $PWD"'
 alias m='nman'
 alias vi='vim -u NONE'
 alias v='nvim'
@@ -185,6 +183,7 @@ alias ..='print \`..\` is not supported. please use \`b\` instead'
 
 # git alias
 alias g='git status --short'
+alias gg='git branch -vv'
 alias gs='git status'
 alias ga='git add'
 alias gal='git add -A'
@@ -213,7 +212,7 @@ md () {
 cd () {
   if [[ -z $1 ]]; then
     # $1 is empty. go home
-    d ~
+    builtin cd ~
   elif [[ $1 == '-' ]]; then
     # $1 == '-': switch to last visited dir
     builtin cd -
