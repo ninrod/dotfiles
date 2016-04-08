@@ -275,7 +275,7 @@ PROMPT='%F{blue}%10<...<%1~%<<%f %F{magenta}#%f '
 
 # }}}
 
-# ZLE extra bindkeys {{{
+# FZF ZLE extra bindkeys {{{
 
 bindkey '^E' fzf-cd-widget
 
