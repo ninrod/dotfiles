@@ -33,10 +33,12 @@ zstyle ':completion:*' menu select
 
 # exports {{{
 
+# need in some machines
 if [ -z ${SHELL+x}  ]; then
   export SHELL=$(which zsh)
 fi
 
+# standard configs
 export LANG=en_US.UTF-8
 export TERM=xterm-256color
 export EDITOR=nvim
@@ -44,12 +46,13 @@ export EDITOR=nvim
 # Enable a different cursor in NVIM in insert mode
 export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
+# ENHANCD customizations
 export ENHANCD_COMMAND=d
 export ENHANCD_FILTER=fzf-tmux
 
+# FZF customizations
 export FZF_DEFAULT_COMMAND='ag --hidden --path-to-agignore=~/.agignore -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
 export FZF_ALT_C_COMMAND="find . -path '*/.git' -prune -o -type d -print"
 
 
