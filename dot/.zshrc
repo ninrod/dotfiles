@@ -21,6 +21,9 @@ setopt cdable_vars
 # allows us to use ^ to negate globs
 setopt extended_glob
 
+# prompt
+setopt prompt_subst
+
 # defining word endings
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
@@ -226,7 +229,8 @@ compdef nman="man"
 
 # dark
 # PROMPT='%F{blue}%1~%f %F{magenta}#%f '
-PROMPT='%F{blue}%1~%f %F{cyan}%n%f%F{red}@%f%F{yellow}%m%f %F{magenta}#%f '
+PROMPT="%F{blue}%10<...<%1~%<<%f %F{cyan}%n%f%F{red}@%f%F{yellow}%m%f %F{magenta}#%f "
+# "%8<...<%1~%<<"
 
 # }}}
 
