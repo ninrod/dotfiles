@@ -96,8 +96,12 @@ bind                    | action
 `<leader> + x`          | creates a new window in a horizontal split
 `<leader> + d`          | custom pagedown. alias for `LztM`.
 `<leader> + u`          | custom pageup. alias for `HzbM`.
-`<leader> + f`          | `:CtrlP`. fuzzy file finder
-`<leader> + r`          | `:CtrlPMRU`. Most recent used file finder.
+`<leader> + f`          | `:Files`. (fzf)
+`<leader> + r`          | `:History`. (fzf)
+`<leader> + b`          | `:Buffers`. (fzf)
+`<leader> + g`          | `:GitFiles`. (fzf)
+
+nnoremap <leader>g :GitFiles<cr>
 `<leader> + -`          | `:SignifyRefresh` syncs `signify` (useful after a `git push`)
 `<leader> + /`          | `:noh`
 `<leader> + [h,j,k,l]`  | navigates through open windows

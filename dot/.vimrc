@@ -207,6 +207,23 @@ highlight clear SignColumn
 
 " custom binds {{{
 
+" tip from https://youtu.be/aHm36-na4-4?t=598
+nnoremap ; :
+nnoremap : ;
+xnoremap ; :
+xnoremap : ;
+
+nnoremap , ;
+nnoremap : ,
+xnoremap , ;
+xnoremap : ,
+
+" same idea: bettter access to registers
+nnoremap ' "
+nnoremap " '
+xnoremap ' "
+xnoremap " '
+
 " :Gpush
 nnoremap gp :Gpush<CR>
 
@@ -262,8 +279,6 @@ nnoremap <leader>f :Files<cr>
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>r :History<cr>
 nnoremap <leader>g :GitFiles<cr>
-nnoremap <leader>/ :History/<cr>
-nnoremap <leader>; :History:<cr>
 
 " FZF Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
