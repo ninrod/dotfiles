@@ -178,8 +178,7 @@ alias po='popd'
 # directory manipulation
 alias rd='rm -r'
 alias rdf='rm -rf'
-alias b='bd 1'
-alias ..='print \`..\` is not supported. please use \`b\` instead'
+alias b='cd ..'
 
 # git alias
 alias g='git status --short'
