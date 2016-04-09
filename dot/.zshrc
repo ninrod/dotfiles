@@ -263,7 +263,7 @@ compdef nman="man"
 # dark
 
 # prompt super simples
-PROMPT='%F{blue}%10<...<%1~%<<%f %F{magenta}#%f '
+PROMPT='%F{blue}%12<...<%1~%<<%f %F{magenta}#%f '
 
 # um pouco mais elaborado
 # PROMPT='%F{blue}%1~%f %F{cyan}%n%f%F{red}@%f%F{yellow}%m%f %F{magenta}#%f '
