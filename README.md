@@ -110,20 +110,17 @@ bind                           | action
 -----------------------        | ------------------------------------------
 `;`                            | `:` (normal and visual)
 `'`                            | `"` (normal and visual)
-`s`                            | `;`
+`,`                            | `;`
 `gp`                           | `:Gpush`
 `gs`                           | open scratch buffer
 `Z`                            | alias for ZZ. exits saving file
 `Q`                            | alias for ZQ. exits without saving file
-`+`                            | `:Gstatus`
+`<BS>`                         | `:Gstatus`
 `w, b, e, ge`                  | these normal movement keys had their motion behaviour expanded to work with [camel words][camel_link].
 `<ENTER>`                      | `:w` (writes buffer)
 `<ENTER>` (visual)             | `:EasyAlign`
-`<BACKSPACE>`                  | buffer explorer
 `{`, `}`                       | navigate vim help files. `}` jumps to term. `{` jumps back.
 `ir`, `ar` (visual and normal) | alias for `i[` and `a[`
-`(`, `)` (visual and normal)   | alias for `"0p`,`"0P`. Easier access to the 'yank' register
-`Y` (visual and normal)        | alias for `"0d`. cut and fill yank register. (register `"0`)
 
 #### VIM: custom function keys
 bind    |action

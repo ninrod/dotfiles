@@ -186,9 +186,6 @@ let g:BufKillCreateMappings = 0
 " auto-pairs plugin maps 'â' in insert mode limiting our ability to type 'â'. So we fix it.
 let g:AutoPairsShortcutBackInsert=''
 
-" as we only use git, we tell this to signify for a little performance gain. Every bit counts.
-let g:signify_vcs_list = ['git']
-
 " Solarized Dark Theme
 set background=dark
 let g:solarized_bold=1
@@ -202,7 +199,7 @@ silent! colorscheme solarized
 " vim-commentary: disabling double backslash
 let g:commentary_map_backslash=0
 
-" fix git-gutter|signify contrast issue with solarized dark.
+" fix contrast issue with solarized dark.
 " https://github.com/airblade/vim-gitgutter/issues/164
 highlight clear SignColumn
 
@@ -210,42 +207,10 @@ highlight clear SignColumn
 
 " custom binds {{{
 
-" tip from https://youtu.be/aHm36-na4-4?t=598
-nnoremap ; :
-nnoremap : ;
-xnoremap ; :
-xnoremap : ;
-
-nnoremap , ;
-nnoremap : ,
-xnoremap , ;
-xnoremap : ,
-
-" same idea: bettter access to registers
-nnoremap ' "
-nnoremap " '
-xnoremap ' "
-xnoremap " '
-
-" CamelCaseMotion
-map <silent> w <Plug>CamelCaseMotion_w
-map <silent> b <Plug>CamelCaseMotion_b
-map <silent> e <Plug>CamelCaseMotion_e
-map <silent> ge <Plug>CamelCaseMotion_ge
-sunmap w
-sunmap b
-sunmap e
-sunmap ge
-omap <silent> <leader>iw <Plug>CamelCaseMotion_ie
-xmap <silent> <leader>iw <Plug>CamelCaseMotion_ie
-
-" quick map for signify hunk refresh
-nmap <leader>- :SignifyRefresh<CR>
-
 " :Gpush
 nnoremap gp :Gpush<CR>
 
-" trying out gl for `G`
+" trying out gl for `G` (shift sucks)
 nnoremap gl G
 vnoremap gl G
 onoremap gl G
@@ -268,7 +233,6 @@ omap <Space> <Leader>
 xmap <Space> <Leader>
 
 " function keys
-nnoremap <f2> :NERDTreeTabsToggle<cr>
 nnoremap <f4> :BD<cr>
 nnoremap <f5> :windo diffthis<cr>
 nnoremap <f11> :so $MYVIMRC<cr>
@@ -280,9 +244,6 @@ nnoremap Z ZZ
 " exits without saving file
 nnoremap Q ZQ
 
-" navigate buffers
-nnoremap <BS> :Buffers<cr>
-
 " enter saves file
 nnoremap <cr> :w<cr>
 
@@ -290,7 +251,7 @@ nnoremap <cr> :w<cr>
 nnoremap - :noh<cr>
 
 " fugitive Gstatus command
-nnoremap + :Gstatus<cr>
+nnoremap <bs> :Gstatus<cr>
 
 " my custom pageups and pagedowns
 nmap <leader>d LztM
