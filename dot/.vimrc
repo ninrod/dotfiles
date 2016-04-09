@@ -212,7 +212,7 @@ highlight clear SignColumn
 
 " nvim :terminal config
 if has('nvim')
-  tnoremap <Esc> <C-\><C-n>
+  tnoremap <c-n> <C-\><C-n>
 endif
 
 " tip from https://youtu.be/aHm36-na4-4?t=598
