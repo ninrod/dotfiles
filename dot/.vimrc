@@ -127,28 +127,38 @@ filetype plugin indent on
 call plug#begin('~/.vim/plugged')
 
 " core
-Plug 'altercation/vim-colors-solarized', {'commit': '528a59f'}
-Plug 'alvan/vim-closetag', {'commit': '21a747e'}
-Plug 'bkad/CamelCaseMotion', {'commit': '3ae9bf9'}
-Plug 'ervandew/supertab', {'commit': '9f7da6d'}
-Plug 'itchyny/lightline.vim', {'commit': 'e6a43f9'}
-Plug 'jiangmiao/auto-pairs', {'tag': 'v1.3.1'}
+Plug 'altercation/vim-colors-solarized'
+Plug 'alvan/vim-closetag'
+Plug 'bkad/CamelCaseMotion'
+Plug 'ervandew/supertab'
+Plug 'itchyny/lightline.vim'
+Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf'}
-Plug 'junegunn/fzf.vim', {'commit': 'be01b64'}
-Plug 'junegunn/vim-easy-align', {'tag': '2.10.0'}
-Plug 'kshenoy/vim-signature', {'commit': '7cabfb5'}
-Plug 'nhooyr/neoman.vim', {'commit': '0fbdecd'}
-Plug 'ninrod/ninscratch-vim'
-Plug 'qpkorr/vim-bufkill', {'commit': 'ba8b570'}
-Plug 'tpope/vim-commentary', {'commit': 'e0f4850'}
-Plug 'tpope/vim-endwise', {'commit': 'f06abe3'}
-Plug 'tpope/vim-fugitive', {'commit': 'fd36aa9'}
-Plug 'tpope/vim-repeat', {'commit': '7a6675f'}
-Plug 'wellle/targets.vim', {'commit': 'd111928'}
-
-" on test
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'kshenoy/vim-signature'
 Plug 'nelstrom/vim-markdown-folding'
+Plug 'nhooyr/neoman.vim'
+Plug 'ninrod/ninscratch-vim'
+Plug 'ninrod/vis'
+Plug 'qpkorr/vim-bufkill'
 Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'wellle/targets.vim'
+
+Plug 'SirVer/ultisnips'
+      \| Plug 'honza/vim-snippets'
+
+Plug 'kana/vim-textobj-user'
+  \| Plug 'kana/vim-textobj-entire',
+  \| Plug 'kana/vim-textobj-function', {'for': 'javascript'}
+  \| Plug 'thinca/vim-textobj-function-javascript', {'for': 'javascript'}
+  \| Plug 'whatyouhide/vim-textobj-xmlattr', {'for': ['html', 'xml']}
 
 call plug#end()
 
