@@ -156,19 +156,23 @@ alias ag='ag --hidden --path-to-agignore=~/.agignore'
 # alias for frequent commands
 alias ls='ls --color=auto --group-directories-first'
 alias l='ls -lah'
+alias b='cd ..'
 alias c='clear'
 alias e='exit'
+alias v='nvim'
+alias m='nman'
 alias a='echo -e "${Cyan}$(whoami)${Red}@${Yellow}$(hostname -s)"'
 alias w='echo "$Blue $PWD"'
-alias m='nman'
-alias vi='vim -u NONE'
-alias v='nvim'
 alias k='k -h'
+alias vi='vim -u NONE'
 alias vz='v ~/.zshrc(:A)'
 alias vv='v ~/.vimrc(:A)'
 alias tarc='tar -zcvf file.tar.gz'
 alias tarx='tar -zxvf'
 alias dot='l `find ~ -maxdepth 1 -type l`'
+
+# rust alias
+alias rd='open /usr/local/share/doc/rust/html/index.html'
 
 # working with pushd and popd
 alias di='dirs -v | head -n 10'
@@ -176,9 +180,6 @@ alias dic='dirs -c'
 alias po='popd'
 
 # directory manipulation
-alias rd='rm -r'
-alias rdf='rm -rf'
-alias b='cd ..'
 
 # git alias
 alias g='git status --short'
