@@ -111,6 +111,7 @@ bind                           | action
 `;`                            | `:` (normal and visual)
 `'`                            | `"` (normal and visual)
 `,`                            | `;`
+`:`                            | `,`
 `gp`                           | `:Gpush`
 `gs`                           | open scratch buffer
 `Z`                            | alias for ZZ. exits saving file
