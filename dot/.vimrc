@@ -1,8 +1,11 @@
 " vim options {{{
 
 " UTF encoding
+
 " nvim complains if I set this
-" set encoding=utf-8
+if !has('nvim')
+  set encoding=utf-8
+endif
 
 " Switch syntax highlighting on, when the terminal has colors
 syntax on
