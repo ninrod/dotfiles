@@ -152,7 +152,7 @@ Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
 
 Plug 'SirVer/ultisnips'
-      \| Plug 'honza/vim-snippets'
+      \| Plug 'ninrod/vim-snippets'
 
 Plug 'kana/vim-textobj-user'
   \| Plug 'kana/vim-textobj-entire',
