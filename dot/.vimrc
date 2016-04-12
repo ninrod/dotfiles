@@ -131,6 +131,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'alvan/vim-closetag'
 Plug 'bkad/CamelCaseMotion'
 Plug 'ervandew/supertab'
+Plug 'github-mirror/vim-multiple-cursors'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf'}
@@ -138,12 +139,10 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'kshenoy/vim-signature'
 Plug 'nelstrom/vim-markdown-folding'
-Plug 'nhooyr/neoman.vim'
 Plug 'ninrod/ninscratch-vim'
 Plug 'ninrod/vis'
-Plug 'qpkorr/vim-bufkill'
-Plug 'sheerun/vim-polyglot'
-Plug 'sheerun/vim-polyglot'
+Plug 'rust-lang/rust.vim', {'for': 'rust'}
+Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
@@ -151,8 +150,17 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
 
-Plug 'SirVer/ultisnips'
-      \| Plug 'ninrod/vim-snippets'
+if !has('nvim')
+  Plug 'nhooyr/neoman.vim'
+endif
+
+" unused plugins
+" Plug 'qpkorr/vim-bufkill'
+
+" resource hog plugins
+" Plug 'sheerun/vim-polyglot'
+" Plug 'SirVer/ultisnips'
+"   \| Plug 'ninrod/vim-snippets'
 
 Plug 'kana/vim-textobj-user'
   \| Plug 'kana/vim-textobj-entire',
@@ -242,6 +250,18 @@ nnoremap " '
 xnoremap ' "
 xnoremap " '
 
+" CamelCaseMotion
+map <silent> w <Plug>CamelCaseMotion_w
+map <silent> b <Plug>CamelCaseMotion_b
+map <silent> e <Plug>CamelCaseMotion_e
+map <silent> ge <Plug>CamelCaseMotion_ge
+sunmap w
+sunmap b
+sunmap e
+sunmap ge
+omap <silent> <leader>iw <Plug>CamelCaseMotion_ie
+xmap <silent> <leader>iw <Plug>CamelCaseMotion_ie
+
 " :Gpush
 nnoremap gp :Gpush<CR>
 
@@ -268,10 +288,9 @@ omap <Space> <Leader>
 xmap <Space> <Leader>
 
 " function keys
-nnoremap <f4> :BD<cr>
 nnoremap <f5> :windo diffthis<cr>
-nnoremap <f11> :so $MYVIMRC<cr>
-nnoremap <f12> :e $MYVIMRC<cr>
+nnoremap <f11> :so ~/.vimrc<cr>
+nnoremap <f12> :e ~/.vimrc<cr>
 
 " exits saving file
 nnoremap Z ZZ
