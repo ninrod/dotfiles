@@ -2,8 +2,11 @@
 
 " UTF encoding
 
-" nvim complains if I set this
-if !has('nvim')
+" nvim/vim differences
+if has('nvim')
+  " I sometimes accidentally place my thumb on the macbook trackpad
+  set mouse=c
+else
   set encoding=utf-8
 endif
 
@@ -114,9 +117,6 @@ set lazyredraw
 " TODO verify the usefulness of this
 set wildignore+=*/.hg/*,*/.svn/*.,*/.DS_Store,*/.idea/*,*/.tmp/*,*/target/*
 
-" I sometimes accidentally place my thumb on the macbook trackpad
-set mouse=c
-
 " enable language-dependent indenting.
 filetype plugin indent on
 
@@ -131,7 +131,6 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'alvan/vim-closetag'
 Plug 'bkad/CamelCaseMotion'
 Plug 'ervandew/supertab'
-Plug 'github-mirror/vim-multiple-cursors'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf'}
@@ -175,6 +174,9 @@ call plug#end()
 " plugin configuration {{{
 
 let g:lightline = {'colorscheme': 'solarized'}
+
+
+let g:UltiSnipsListSnippets = '<c-k>'
 
 " vim-signature is eating a lot of our binds. lets fix this.
 let g:SignatureMap = {
@@ -412,5 +414,15 @@ silent! autocmd CmdwinLeave * nnoremap <cr> :w<cr>
 " }}}
 
 " custom functions {{{
+
+function! s:ag_with_opts(arg, bang)
+  let tokens  = split(a:arg)
+  let ag_opts = join(filter(copy(tokens + ['--hidden']), 'v:val =~ "^-"'))
+  let query   = join(filter(copy(tokens), 'v:val !~ "^-"'))
+
+  call fzf#vim#ag(query, ag_opts, a:bang ? {} : {'down': '40%'})
+endfunction
+
+autocmd VimEnter * command! -nargs=* -bang Nag call s:ag_with_opts(<q-args>, <bang>0)
 
 " }}}
