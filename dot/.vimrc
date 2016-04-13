@@ -243,18 +243,16 @@ if has('nvim')
   tnoremap <c-n> <C-\><C-n>
 endif
 
-" tip from https://youtu.be/aHm36-na4-4?t=598
+" more convenient access to the command prompt (shift sucks)
+" based on tip from Damian Conway https://youtu.be/aHm36-na4-4?t=598
 nnoremap ; :
-nnoremap : ;
 xnoremap ; :
-xnoremap : ;
 
-nnoremap , ;
-nnoremap : ,
-xnoremap , ;
-xnoremap : ,
+" `s` is equivalent to `cl`. As we lost `;`, we use `s` as our new `;` (shift sucks)
+nnoremap s ;
+xnoremap s ;
 
-" same idea: bettter access to registers
+" same idea as above: better access to register stuff. We use more `"` than `'` and shift sucks.
 nnoremap ' "
 nnoremap " '
 xnoremap ' "
