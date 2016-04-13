@@ -117,7 +117,8 @@ bind                           | action
 `gs`                           | open scratch buffer
 `Z`                            | alias for ZZ. exits saving file
 `Q`                            | alias for ZQ. exits without saving file
-`<BS>`                         | `:Gstatus`
+`S`                            | `:Gstatus`
+`<BS>`                         | `:ToggleBufExplorer`
 `w, b, e, ge`                  | these normal movement keys had their motion behaviour expanded to work with [camel words][camel_link].
 `<ENTER>`                      | `:w` (writes buffer)
 `<ENTER>` (visual)             | `:EasyAlign`
@@ -147,9 +148,7 @@ textobject   | action
 bind        | action
 ------------|-------------------------
 `s`         | equivalent to `cl`.
-`S`         | equivalent to `cc`.
-`U`         | A special kind of undo. very confusing, never really used that. (`:h U`)
-`g + char`  | top free binds: `gh`,`gf`,`gl`,`gp`,`gr`,`gs`,`gx`,`gy`,`gz`.
+`g + char`  | top free binds that are not so useful: `gh`,`gf`,`gl`,`gp`,`gr`,`gs`,`gx`,`gy`,`gz`.
 `K`         | word lookup does not seem to be of much use.
 `&`         | repeat last substitute. rarely useful.
 

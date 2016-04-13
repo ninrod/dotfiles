@@ -148,6 +148,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
+Plug 'jlanzarotta/bufexplorer'
 
 if !has('nvim')
   Plug 'nhooyr/neoman.vim'
@@ -173,9 +174,13 @@ call plug#end()
 
 " plugin configuration {{{
 
+" bufexplorer configuration
+let g:bufExplorerDisableDefaultKeyMapping=1
+
+"lightline config
 let g:lightline = {'colorscheme': 'solarized'}
 
-
+"Ultisnips configuration
 let g:UltiSnipsListSnippets = '<c-k>'
 
 " vim-signature is eating a lot of our binds. lets fix this.
@@ -229,6 +234,9 @@ highlight clear SignColumn
 " }}}
 
 " custom binds {{{
+
+" bufexplorer
+nnoremap <BS> :ToggleBufExplorer<CR>
 
 " nvim :terminal config
 if has('nvim')
@@ -307,7 +315,7 @@ nnoremap <cr> :w<cr>
 nnoremap - :noh<cr>
 
 " fugitive Gstatus command
-nnoremap <bs> :Gstatus<cr>
+nnoremap S :Gstatus<cr>
 
 " my custom pageups and pagedowns
 nmap <leader>d LztM
