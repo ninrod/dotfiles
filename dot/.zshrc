@@ -259,15 +259,15 @@ compdef nman="man"
 # light
 # PROMPT='%F{cyan}%1~%f %F{red}#%f '
 
-# dark
+######## dark
 
-# prompt super simples
+# very simple with directory truncation
 PROMPT='%F{blue}%12<...<%1~%<<%f %F{magenta}#%f '
 
-# um pouco mais elaborado
+# showing whoami@hostname
 # PROMPT='%F{blue}%1~%f %F{cyan}%n%f%F{red}@%f%F{yellow}%m%f %F{magenta}#%f '
 
-# usando o lance de truncation
+# showing whaami@hostname and with truncation
 # PROMPT="%F{blue}%10<...<%1~%<<%f %F{cyan}%n%f%F{red}@%f%F{yellow}%m%f %F{magenta}#%f "
 
 # }}}
