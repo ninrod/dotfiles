@@ -1,9 +1,8 @@
-custom
-tags
-.netrwhist
 *.pyc
-**/.zplug/.cache
-**/.zplug/zcompdump
-**/.zplug/repos
-**/.zplug/bin
-**/.vim/plugged
+.cache
+.netrwhist
+zcompdump
+tags
+repos/
+plugged/
+custom/
