@@ -100,10 +100,6 @@ bind                    | action
 `<leader> + r`          | `:History`. (fzf)
 `<leader> + b`          | `:Buffers`. (fzf)
 `<leader> + g`          | `:GitFiles`. (fzf)
-
-nnoremap <leader>g :GitFiles<cr>
-`<leader> + -`          | `:SignifyRefresh` syncs `signify` (useful after a `git push`)
-`<leader> + /`          | `:noh`
 `<leader> + [h,j,k,l]`  | navigates through open windows
 `<leader> + [H,J,K,L]`  | moves the window to the right, left, etc...
 `<leader> + [arrowkey]` | resizes the window
@@ -116,6 +112,7 @@ bind                           | action
 `'`                            | `"` (normal and visual)
 `,`                            | `;`
 `:`                            | `,`
+`-`                            | `:noh`
 `gp`                           | `:Gpush`
 `gs`                           | open scratch buffer
 `Z`                            | alias for ZZ. exits saving file
