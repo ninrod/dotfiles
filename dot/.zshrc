@@ -179,8 +179,6 @@ alias di='dirs -v | head -n 10'
 alias dic='dirs -c'
 alias po='popd'
 
-# directory manipulation
-
 # git alias
 alias g='git status --short'
 alias gg='git branch -vv'
