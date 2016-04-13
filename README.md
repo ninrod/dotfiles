@@ -137,10 +137,8 @@ bind    |action
 #### VIM: text objects (expanded set with plugins)
 textobject   | action
 -----------  | ---------
-`<leader>iw` | inside section of camelcase word
 `a`          | function arguments
 `f`          | functions
-`_`          | underscore surrounded words
 `e`          | entire file
 `x`          | html tag attribute
 `r`          | square brackets `[]`
@@ -151,7 +149,6 @@ bind        | action
 `s`         | equivalent to `cl`.
 `S`         | equivalent to `cc`.
 `U`         | A special kind of undo. very confusing, never really used that. (`:h U`)
-`-`         | equivalent to `k0`.
 `g + char`  | top free binds: `gh`,`gf`,`gl`,`gp`,`gr`,`gs`,`gx`,`gy`,`gz`.
 `K`         | word lookup does not seem to be of much use.
 `&`         | repeat last substitute. rarely useful.
