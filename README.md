@@ -110,8 +110,8 @@ bind                           | action
 -----------------------        | ------------------------------------------
 `;`                            | `:` (normal and visual)
 `'`                            | `"` (normal and visual)
-`,`                            | `;`
-`:`                            | `,`
+`"`                            | `'` (normal and visual)
+`s`                            | `;`
 `-`                            | `:noh`
 `gp`                           | `:Gpush`
 `gs`                           | open scratch buffer
@@ -147,7 +147,6 @@ textobject   | action
 #### VIM: potentially useful binds (not currently in use)
 bind        | action
 ------------|-------------------------
-`s`         | equivalent to `cl`.
 `g + char`  | top free binds that are not so useful: `gh`,`gf`,`gl`,`gp`,`gr`,`gs`,`gx`,`gy`,`gz`.
 `K`         | word lookup does not seem to be of much use.
 `&`         | repeat last substitute. rarely useful.
