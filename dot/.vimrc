@@ -209,9 +209,6 @@ let g:SignatureMap = {
         \ 'ListLocalMarkers'   :  "m?"
         \ }
 
-" don't let bufkill clutter <leader> binds
-let g:BufKillCreateMappings = 0
-
 " auto-pairs plugin maps 'â' in insert mode limiting our ability to type 'â'. So we fix it.
 let g:AutoPairsShortcutBackInsert=''
 
@@ -241,6 +238,7 @@ nnoremap <BS> :ToggleBufExplorer<CR>
 
 " nvim :terminal config
 if has('nvim')
+  ":terminal config
   tnoremap <c-n> <C-\><C-n>
 endif
 

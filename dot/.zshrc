@@ -159,12 +159,12 @@ alias l='ls -lah'
 alias b='cd ..'
 alias c='clear'
 alias e='exit'
-alias v='nvim'
-alias m='nman'
 alias a='echo -e "${Cyan}$(whoami)${Red}@${Yellow}$(hostname -s)"'
 alias w='echo "$Blue $PWD"'
-alias k='k -h'
+alias m='nman'
 alias vi='vim -u NONE'
+alias v='nvim'
+alias k='k -h'
 alias vz='v ~/.zshrc(:A)'
 alias vv='v ~/.vimrc(:A)'
 alias tarc='tar -zcvf file.tar.gz'
@@ -199,6 +199,30 @@ alias gp='git push'
 # }}}
 
 # custom functions {{{
+
+# custom find
+
+f () {
+  local pattern=''
+  local filetype='-type f'
+  local execstm=''
+
+  if [[ ! -z $1 ]]; then
+    pattern="-name '$1'"
+  fi
+
+  if [[ ! -z $2 ]]; then
+    filetype="-type $2"
+  fi
+
+  if [[ ! -z $3 ]]; then
+    execstm="-exec $3"
+  fi
+
+  local custcmd="find . -name .git -prune -o ${pattern} ${filetype} -print ${execstm}"
+
+  eval ${custcmd}
+}
 
 # faster dir creation
 md () {
