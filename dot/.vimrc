@@ -149,6 +149,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
 Plug 'jlanzarotta/bufexplorer'
+Plug 'jszakmeister/vim-togglecursor'
 
 if !has('nvim')
   Plug 'nhooyr/neoman.vim'
