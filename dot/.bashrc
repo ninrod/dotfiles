@@ -13,12 +13,19 @@ export LANG=en_US.UTF-8
 export TERM=xterm-256color
 export EDITOR=vim
 
+# Enable a different cursor in NVIM in insert mode
+export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
 # }}}
 
 # path {{{
 
-export FZF_BIN=~/.fzf/bin
 PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+
+export GNUBIN_PATH=/usr/local/opt/coreutils/libexec/gnubin
+PATH="$GNUBIN_PATH:$PATH"
+
+export FZF_BIN=~/.fzf/bin
 PATH="$FZF_BIN:$PATH"
 export PATH
 
