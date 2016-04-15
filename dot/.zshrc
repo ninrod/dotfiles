@@ -150,7 +150,8 @@ White="${TC}37m";  IWhite="${TC}97m";  OnWhite="${TC}47m";  OnIWhite="${TC}107m"
 
 # }}}
 
-# alias {{{
+# alias | binds {{{
+
 
 # Ag (the silver searcher)
 alias ag='ag --hidden --path-to-agignore=~/.agignore'
@@ -163,6 +164,7 @@ alias c='clear'
 alias e='exit'
 alias a='echo -e "${Cyan}$(whoami)${Red}@${Yellow}$(hostname -s)"'
 alias w='echo "$Blue $PWD"'
+alias r='echo "$Blue $(realpath .)"'
 alias m='nman'
 alias vi='vim -u NONE'
 alias v='nvim'
