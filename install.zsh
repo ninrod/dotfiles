@@ -27,5 +27,5 @@ updatelinks ~/.lscolors dot/.dircolors/dircolors.256dark
 updatelinks ~/.gitconfig dot/.gitconfig
 updatelinks ~/.agignore dot/.agignore
 
-# trying out nvim (neovim)
+# for neovim
 updatelinks ~/.config dot/.config
