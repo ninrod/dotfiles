@@ -2,6 +2,9 @@
 
 # TODO
 
+set -o vi
+shopt -s autocd
+
 # }}}
 
 # exports {{{
@@ -127,6 +130,26 @@ cd () {
   else
     f $1
   fi
+}
+
+# neoman vim plugin
+function nman () {
+    if [[ -z $* ]]; then
+        echo "What manual page do you want?"
+        return
+    fi
+    local tmp=$IFS
+    IFS=$'\n' out=($(command man -w $* 2>&1))
+    local code=$?
+    IFS=$tmp
+    if [[ ${#out[@]} > 1 ]]; then
+        echo "Too many manpages"
+        return
+    elif [[ $code != 0 ]]; then
+        echo "No manual entry for $*"
+        return
+    fi
+    vim -c "Nman $*"
 }
 
 # }}}
