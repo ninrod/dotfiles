@@ -22,10 +22,10 @@ updatelinks ~/.zplug dot/.zplug
 updatelinks ~/.vim dot/.vim
 updatelinks ~/.vimrc dot/.vimrc
 updatelinks ~/.zshrc dot/.zshrc
+updatelinks ~/.bashrc dot/.bashrc
+updatelinks ~/.bash_profile dot/.bash_profile
 updatelinks ~/.tmux.conf dot/.tmux.conf
 updatelinks ~/.lscolors dot/.dircolors/dircolors.256dark
 updatelinks ~/.gitconfig dot/.gitconfig
 updatelinks ~/.agignore dot/.agignore
-
-# for neovim
-updatelinks ~/.config dot/.config
+updatelinks ~/.fzf deps/fzf
