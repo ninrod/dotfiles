@@ -73,13 +73,15 @@ export PATH
 
 # Zplug
 source ~/.zplug/zplug
-zplug "ninrod/nin-vi-mode"
-zplug "zsh-users/zsh-syntax-highlighting", nice:10
-zplug "zsh-users/zsh-completions"
-zplug "felixr/docker-zsh-completion", if:"which docker", of:_docker
-zplug "b4b4r07/enhancd", of:enhancd.sh
+
 zplug "Tarrasch/zsh-bd"
+zplug "b4b4r07/enhancd", of:enhancd.sh
+zplug "felixr/docker-zsh-completion", if:"which docker", of:_docker
+zplug "ninrod/nin-vi-mode"
 zplug "supercrabtree/k"
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-syntax-highlighting", nice:10
+
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
     if read -q; then
@@ -180,21 +182,20 @@ alias dic='dirs -c'
 alias po='popd'
 
 # git alias
-alias g='git status --short'
-alias gg='git branch -vv'
+alias g='git status --short && git branch -vv'
 alias gs='git status'
 alias ga='git add'
 alias gal='git add -A'
 alias gc='git commit -v'
 alias gd='git diff'
 alias gf='git fetch'
+alias gm='git merge'
+alias gp='git push'
 alias gl='git log --pretty=format:"%C(yellow)%h%Creset %C(cyan)%ad%Creset %C(magenta)%an%Creset %s" --date=relative --graph'
 alias gld='git log --pretty=format:"%C(yellow)%h%Creset %C(cyan)%ad%Creset %C(magenta)%an%Creset %s" --graph'
 alias glf='git log --follow -p -- '
 alias glnc='git log --pretty=format:"%h %ad %an %s" --date=short --graph'
 alias gls='git log --graph --oneline'
-alias gm='git merge'
-alias gp='git push'
 
 # }}}
 
@@ -228,6 +229,10 @@ f () {
 md () {
   mkdir -p $1
   cd $1
+}
+
+fd () {
+  builtin cd $1
 }
 
 # enhancing enhancd

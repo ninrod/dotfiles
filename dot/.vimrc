@@ -162,6 +162,8 @@ Plug 'kana/vim-textobj-user'
   \| Plug 'thinca/vim-textobj-function-javascript', {'for': 'javascript'}
   \| Plug 'whatyouhide/vim-textobj-xmlattr', {'for': ['html', 'xml']}
 
+Plug 'bronson/vim-visual-star-search'
+
 call plug#end()
 
 " }}}
@@ -212,7 +214,7 @@ let g:solarized_underline=0
 let g:solarized_visibility="high"
 let g:solarized_contrast="high"
 let g:solarized_diffmode="high"
-let g:solarized_termcolors=16
+" let g:solarized_termcolors=16
 silent! colorscheme solarized
 
 " vim-commentary: disabling double backslash
