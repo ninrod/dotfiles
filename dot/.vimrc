@@ -128,16 +128,18 @@ call plug#begin('~/.vim/plugged')
 
 " core
 Plug 'altercation/vim-colors-solarized'
-Plug 'alvan/vim-closetag'
+Plug 'alvan/vim-closetag', {'for': ['html', 'xml']}
 Plug 'bkad/CamelCaseMotion'
 Plug 'ervandew/supertab'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'jlanzarotta/bufexplorer'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf'}
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'kshenoy/vim-signature'
 Plug 'nelstrom/vim-markdown-folding'
+Plug 'nhooyr/neoman.vim'
 Plug 'ninrod/ninscratch-vim'
 Plug 'ninrod/vis'
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
@@ -148,26 +150,19 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
-Plug 'jlanzarotta/bufexplorer'
-Plug 'jszakmeister/vim-togglecursor'
 
-if !has('nvim')
-  Plug 'nhooyr/neoman.vim'
-endif
-
-" unused plugins
-" Plug 'qpkorr/vim-bufkill'
+" rarely used plugins
 
 " resource hog plugins
 " Plug 'sheerun/vim-polyglot'
 " Plug 'SirVer/ultisnips'
 "   \| Plug 'ninrod/vim-snippets'
 
-Plug 'kana/vim-textobj-user'
-  \| Plug 'kana/vim-textobj-entire',
-  \| Plug 'kana/vim-textobj-function', {'for': 'javascript'}
-  \| Plug 'thinca/vim-textobj-function-javascript', {'for': 'javascript'}
-  \| Plug 'whatyouhide/vim-textobj-xmlattr', {'for': ['html', 'xml']}
+" Plug 'kana/vim-textobj-user'
+"   \| Plug 'kana/vim-textobj-entire',
+"   \| Plug 'kana/vim-textobj-function', {'for': 'javascript'}
+"   \| Plug 'thinca/vim-textobj-function-javascript', {'for': 'javascript'}
+"   \| Plug 'whatyouhide/vim-textobj-xmlattr', {'for': ['html', 'xml']}
 
 call plug#end()
 
