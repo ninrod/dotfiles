@@ -151,18 +151,16 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
 
-" rarely used plugins
-
 " resource hog plugins
 " Plug 'sheerun/vim-polyglot'
 " Plug 'SirVer/ultisnips'
 "   \| Plug 'ninrod/vim-snippets'
 
-" Plug 'kana/vim-textobj-user'
-"   \| Plug 'kana/vim-textobj-entire',
-"   \| Plug 'kana/vim-textobj-function', {'for': 'javascript'}
-"   \| Plug 'thinca/vim-textobj-function-javascript', {'for': 'javascript'}
-"   \| Plug 'whatyouhide/vim-textobj-xmlattr', {'for': ['html', 'xml']}
+Plug 'kana/vim-textobj-user'
+  \| Plug 'kana/vim-textobj-entire',
+  \| Plug 'kana/vim-textobj-function', {'for': 'javascript'}
+  \| Plug 'thinca/vim-textobj-function-javascript', {'for': 'javascript'}
+  \| Plug 'whatyouhide/vim-textobj-xmlattr', {'for': ['html', 'xml']}
 
 call plug#end()
 
