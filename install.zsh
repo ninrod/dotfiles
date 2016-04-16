@@ -1,4 +1,4 @@
-#!/usr/local/bin/zsh
+#! /bin/zsh
 
 # Author: Filipe Silva (ninrod)
 # License: Same as VIM.
