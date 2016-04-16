@@ -152,7 +152,6 @@ White="${TC}37m";  IWhite="${TC}97m";  OnWhite="${TC}47m";  OnIWhite="${TC}107m"
 
 # alias | binds {{{
 
-
 # Ag (the silver searcher)
 alias ag='ag --hidden --path-to-agignore=~/.agignore'
 
@@ -184,7 +183,8 @@ alias dic='dirs -c'
 alias po='popd'
 
 # git alias
-alias g='git status --short && git branch -vv'
+alias g='git status --short'
+alias gg='git branch -vv'
 alias gs='git status'
 alias ga='git add'
 alias gal='git add -A'
