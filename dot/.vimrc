@@ -153,8 +153,8 @@ Plug 'wellle/targets.vim'
 
 " resource hog plugins
 " Plug 'sheerun/vim-polyglot'
-" Plug 'SirVer/ultisnips'
-"   \| Plug 'ninrod/vim-snippets'
+Plug 'SirVer/ultisnips'
+  \| Plug 'ninrod/vim-snippets'
 
 Plug 'kana/vim-textobj-user'
   \| Plug 'kana/vim-textobj-entire',
