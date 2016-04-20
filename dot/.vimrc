@@ -415,6 +415,7 @@ silent! autocmd CmdwinLeave * nnoremap <cr> :w<cr>
 
 " custom functions {{{
 
+" credits go to junegunn who personally helped me with this function
 function! s:ag_with_opts(arg, bang)
   let tokens  = split(a:arg)
   let ag_opts = join(filter(copy(tokens + ['--hidden']), 'v:val =~ "^-"'))

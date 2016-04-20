@@ -28,4 +28,3 @@ updatelinks ~/.tmux.conf dot/.tmux.conf
 updatelinks ~/.lscolors dot/.dircolors/dircolors.256dark
 updatelinks ~/.gitconfig dot/.gitconfig
 updatelinks ~/.agignore dot/.agignore
-updatelinks ~/.fzf deps/fzf
