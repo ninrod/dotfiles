@@ -84,6 +84,7 @@ alias c='clear'
 alias e='exit'
 alias a='echo -e "${Cyan}$(whoami)${Red}@${Yellow}$(hostname -s)"'
 alias w='echo -e "$Blue $PWD"'
+alias p='echo -e "$Yellow$0$Purple \$"'
 alias r='echo -e "$Blue $(realpath .)"'
 alias m='nman'
 alias vi='vim -u NONE'
@@ -101,7 +102,8 @@ alias dic='dirs -c'
 alias po='popd'
 
 # git alias
-alias g='git status --short && git branch -vv'
+alias g='git status --short'
+alias gg='git branch -vv'
 alias gs='git status'
 alias ga='git add'
 alias gal='git add -A'
@@ -163,6 +165,8 @@ function nman () {
 
 # prompt {{{
 
-export PS1="${Blue}\w ${Red}\u${Cyan}@${Yellow}\h ${Purple}#${Rst} "
+export PS1="${Blue}\w ${Red}\u${Cyan}@${Yellow}\h ${Green}$0${Black}\$ ${Purple}#${Rst} "
+
+
 
 # }}}
