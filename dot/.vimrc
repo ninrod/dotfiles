@@ -150,6 +150,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
+Plug 'tommcdo/vim-exchange'
 
 " resource hog plugins
 " Plug 'sheerun/vim-polyglot'
