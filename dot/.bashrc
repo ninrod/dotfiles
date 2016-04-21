@@ -162,7 +162,7 @@ function nman () {
 
 # prompt {{{
 
-export PS1="${Blue}\w ${Red}\u${Cyan}@${Yellow}\h ${Green}$0${Black}\$ ${Purple}#${Rst} "
+export PS1="${Blue}\w ${Red}\u${Cyan}@${Yellow}\h ${Purple}#${Rst} "
 
 
 
