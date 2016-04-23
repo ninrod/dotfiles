@@ -31,6 +31,3 @@ updatelinks ~/.agignore dot/.agignore
 
 # neovim
 updatelinks ~/.config dot/.config
-
-# spacemacs
-updatelinks ~/.spacemacs dot/.spacemacs
