@@ -67,6 +67,8 @@ PATH="$PACKER_BIN:$PATH"
 PATH="$ZPLUG_BIN:$PATH"
 export PATH
 
+MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+
 # }}}
 
 # plugins {{{
