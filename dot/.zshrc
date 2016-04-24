@@ -56,18 +56,22 @@ export FZF_ALT_C_COMMAND="find . -path '*/.git' -prune -o -type d -print"
 
 # path {{{
 
-export GNUBIN_PATH=/usr/local/opt/coreutils/libexec/gnubin
-export TEXBIN=/Library/TeX/texbin
-export PACKER_BIN=~/bin/packer_0.8.6_darwin_amd64
-export ZPLUG_BIN=~/.zplug/bin
+
 PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+
+GNUBIN_PATH=/usr/local/opt/coreutils/libexec/gnubin
+PACKER_BIN=~/bin/packer_0.8.6_darwin_amd64
+TEXBIN=/Library/TeX/texbin
+ZPLUG_BIN=~/.zplug/bin
+
+PATH="$ZPLUG_BIN:$PATH"
 PATH="$GNUBIN_PATH:$PATH"
 PATH="$TEXBIN:$PATH"
 PATH="$PACKER_BIN:$PATH"
-PATH="$ZPLUG_BIN:$PATH"
-export PATH
 
 MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+
+export PATH
 
 # }}}
 
