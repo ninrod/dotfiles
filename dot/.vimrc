@@ -133,7 +133,6 @@ Plug 'bkad/CamelCaseMotion'
 Plug 'ervandew/supertab'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'jlanzarotta/bufexplorer'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf'}
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
@@ -156,6 +155,9 @@ Plug 'tommcdo/vim-exchange'
 " Plug 'sheerun/vim-polyglot'
 " Plug 'SirVer/ultisnips'
 "   \| Plug 'ninrod/vim-snippets'
+
+" trying to live without bufexplorer
+" Plug 'jlanzarotta/bufexplorer'
 
 Plug 'kana/vim-textobj-user'
   \| Plug 'kana/vim-textobj-entire',
