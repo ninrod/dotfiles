@@ -156,9 +156,6 @@ Plug 'tommcdo/vim-exchange'
 " Plug 'SirVer/ultisnips'
 "   \| Plug 'ninrod/vim-snippets'
 
-" trying to live without bufexplorer
-" Plug 'jlanzarotta/bufexplorer'
-
 Plug 'kana/vim-textobj-user'
   \| Plug 'kana/vim-textobj-entire',
   \| Plug 'kana/vim-textobj-function', {'for': 'javascript'}
@@ -172,9 +169,6 @@ call plug#end()
 " }}}
 
 " plugin configuration {{{
-
-" bufexplorer configuration
-let g:bufExplorerDisableDefaultKeyMapping=1
 
 "lightline config
 let g:lightline = {'colorscheme': 'solarized'}
@@ -230,9 +224,6 @@ highlight clear SignColumn
 " }}}
 
 " custom binds {{{
-
-" bufexplorer
-nnoremap <BS> :ToggleBufExplorer<CR>
 
 " nvim :terminal config
 if has('nvim')
