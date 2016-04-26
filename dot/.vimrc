@@ -133,6 +133,7 @@ Plug 'bkad/CamelCaseMotion'
 Plug 'ervandew/supertab'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'jlanzarotta/bufexplorer'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf'}
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
@@ -169,6 +170,9 @@ call plug#end()
 " }}}
 
 " plugin configuration {{{
+
+" bufexplorer configuration
+let g:bufExplorerDisableDefaultKeyMapping=1
 
 "lightline config
 let g:lightline = {'colorscheme': 'solarized'}
@@ -224,6 +228,9 @@ highlight clear SignColumn
 " }}}
 
 " custom binds {{{
+
+" bufexplorer
+nnoremap <BS> :ToggleBufExplorer<CR>
 
 " nvim :terminal config
 if has('nvim')
