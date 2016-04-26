@@ -118,7 +118,6 @@ bind                           | action
 `Z`                            | alias for ZZ. exits saving file
 `Q`                            | alias for ZQ. exits without saving file
 `S`                            | `:Gstatus`
-`<BS>`                         | `:ToggleBufExplorer`
 `w, b, e, ge`                  | these normal movement keys had their motion behaviour expanded to work with [camel words][camel_link].
 `<ENTER>`                      | `:w` (writes buffer)
 `<ENTER>` (visual)             | `:EasyAlign`
@@ -147,6 +146,7 @@ textobject   | action
 #### VIM: potentially useful binds (not currently in use)
 bind        | action
 ------------|-------------------------
+`<BS>`      | equivalent to `h`. the very definition of useless.
 `g + char`  | top free binds that are not so useful: `gh`,`gf`,`gl`,`gp`,`gr`,`gs`,`gx`,`gy`,`gz`.
 `K`         | word lookup does not seem to be of much use.
 `&`         | repeat last substitute. rarely useful.
@@ -207,7 +207,6 @@ Same as [Vim][vim-license_link].
 [sheerun_link]: <https://github.com/sheerun>
 [ack.vim_link]: <https://github.com/mileszs/ack.vim>
 [auto-pairs_link]: <https://github.com/jiangmiao/auto-pairs.git>
-[bufexplorer_link]: <https://github.com/jlanzarotta/bufexplorer.git>
 [ctlrp_link]: <https://github.com/ctrlpvim/ctrlp.vim.git>
 [gitv_link]: <https://github.com/ctrlpvim/ctrlp.vim.git>
 [indentLine_link]: <https://github.com/Yggdroot/indentLine.git>
