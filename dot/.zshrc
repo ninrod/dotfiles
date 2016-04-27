@@ -162,8 +162,9 @@ White="${TC}37m";  IWhite="${TC}97m";  OnWhite="${TC}47m";  OnIWhite="${TC}107m"
 alias ag='ag --hidden --path-to-agignore=~/.agignore'
 
 # alias for frequent commands
-alias ls='ls --color=auto --group-directories-first'
-alias l='ls -lah'
+alias ls='ls --color=auto --group-directories-first -X'
+alias l='ls -lh'
+alias la='l -A'
 alias b='cd ..'
 alias c='clear'
 alias e='exit'
