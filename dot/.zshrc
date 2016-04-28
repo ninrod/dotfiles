@@ -188,7 +188,7 @@ alias dic='dirs -c'
 alias po='popd'
 
 # git alias
-alias g='git status --short'
+alias g='git status -sb'
 alias gg='git branch -vv'
 alias gs='git status'
 alias ga='git add'
