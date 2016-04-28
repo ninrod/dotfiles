@@ -17,8 +17,8 @@ setopt pushd_ignore_dups
 setopt pushd_silent
 setopt auto_cd
 
-# allows us to use ^ to negate globs
-setopt extended_glob
+setopt extended_glob # allows us to use ^ to negate globs
+unsetopt nomatch # but when pattern matching fails, simply use the command as is. See robbyrussell/oh-my-zsh#449
 
 # defining word endings
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
