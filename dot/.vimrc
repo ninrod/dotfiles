@@ -130,6 +130,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'
 Plug 'alvan/vim-closetag', {'for': ['html', 'xml']}
 Plug 'bkad/CamelCaseMotion'
+Plug 'bronson/vim-visual-star-search'
 Plug 'ervandew/supertab'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
@@ -144,13 +145,13 @@ Plug 'ninrod/ninscratch-vim'
 Plug 'ninrod/vis'
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
 Plug 'terryma/vim-multiple-cursors'
+Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
-Plug 'tommcdo/vim-exchange'
 
 " resource hog plugins
 " Plug 'sheerun/vim-polyglot'
@@ -163,7 +164,6 @@ Plug 'kana/vim-textobj-user'
   \| Plug 'thinca/vim-textobj-function-javascript', {'for': 'javascript'}
   \| Plug 'whatyouhide/vim-textobj-xmlattr', {'for': ['html', 'xml']}
 
-Plug 'bronson/vim-visual-star-search'
 
 call plug#end()
 
