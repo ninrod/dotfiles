@@ -31,3 +31,6 @@ updatelinks ~/.agignore dot/.agignore
 
 # neovim
 updatelinks ~/.config dot/.config
+
+# emacs
+updatelinks ~/.emacs.d dot/.emacs.d
