@@ -171,6 +171,8 @@ call plug#end()
 
 " plugin configuration {{{
 
+let g:closetag_filenames = "*.html,*.xml"
+
 " bufexplorer configuration
 let g:bufExplorerDisableDefaultKeyMapping=1
 
