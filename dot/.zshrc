@@ -165,7 +165,7 @@ alias ag='ag --hidden --path-to-agignore=~/.agignore'
 alias em='emacs'
 alias ls='ls --color=auto --group-directories-first -X'
 alias l='ls -lh'
-alias la='l -A'
+alias la='ls -lhA'
 alias b='cd ..'
 alias c='clear'
 alias e='exit'
@@ -236,7 +236,7 @@ f () {
 # faster dir creation
 md () {
   mkdir -p $1
-  cd $1
+  builtin cd $1
 }
 
 fd () {
