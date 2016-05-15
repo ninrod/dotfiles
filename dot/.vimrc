@@ -142,7 +142,7 @@ Plug 'nelstrom/vim-markdown-folding'
 Plug 'nhooyr/neoman.vim'
 Plug 'ninrod/ninscratch-vim'
 Plug 'ninrod/vis'
-Plug 'sheerun/vim-polyglot', {'for': ['rust', 'js', 'xml', 'html']}
+Plug 'sheerun/vim-polyglot', {'for': ['rust', 'javascript', 'xml', 'html']}
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-commentary'
@@ -173,6 +173,10 @@ call plug#end()
 " }}}
 
 " plugin configuration {{{
+
+" multiple cursors config
+let g:multi_cursor_exit_from_visual_mode = 0
+let g:multi_cursor_exit_from_insert_mode = 0
 
 let g:closetag_filenames = "*.html,*.xml"
 
