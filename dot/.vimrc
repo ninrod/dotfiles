@@ -134,7 +134,6 @@ Plug 'bronson/vim-visual-star-search'
 Plug 'ervandew/supertab'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'jlanzarotta/bufexplorer'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf'}
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
@@ -143,7 +142,7 @@ Plug 'nelstrom/vim-markdown-folding'
 Plug 'nhooyr/neoman.vim'
 Plug 'ninrod/ninscratch-vim'
 Plug 'ninrod/vis'
-Plug 'rust-lang/rust.vim', {'for': 'rust'}
+Plug 'sheerun/vim-polyglot', {'for': ['rust', 'js', 'xml', 'html']}
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-commentary'
@@ -154,9 +153,13 @@ Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
 
 " resource hog plugins
-" Plug 'sheerun/vim-polyglot'
 " Plug 'SirVer/ultisnips'
 "   \| Plug 'ninrod/vim-snippets'
+
+
+" unused plugins
+" Plug 'rust-lang/rust.vim', {'for': 'rust'}
+" Plug 'jlanzarotta/bufexplorer'
 
 Plug 'kana/vim-textobj-user'
   \| Plug 'kana/vim-textobj-entire',
@@ -397,8 +400,6 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " enabling <cr> to work properly on the quickfix window
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 
-" highlight cursor line line number
-highlight CursorLineNr cterm=bold ctermfg=124
 
 " quick bind for a 'wrap' command
 command! -nargs=* Wrap set wrap linebreak nolist
@@ -413,6 +414,17 @@ autocmd BufReadPre,FileReadPre *.md,*.jsp MatchDebug
 " fix for <CR> in command-line-window
 silent! autocmd CmdwinEnter * nunmap <cr>
 silent! autocmd CmdwinLeave * nnoremap <cr> :w<cr>
+
+" }}}
+
+" custom highlights {{{
+
+" highlight cursor line line number
+highlight CursorLineNr cterm=bold ctermfg=124
+
+" Multiple cursors Default highlighting (see help :highlight and help :highlight-link)
+highlight multiple_cursors_cursor term=reverse cterm=reverse ctermfg=125 ctermbg=254
+highlight link multiple_cursors_visual Visual
 
 " }}}
 
