@@ -204,6 +204,7 @@ alias gld='git log --pretty=format:"%C(yellow)%h%Creset %C(cyan)%ad%Creset %C(ma
 alias glf='git log --follow -p -- '
 alias glnc='git log --pretty=format:"%h %ad %an %s" --date=short --graph'
 alias gls='git log --graph --oneline'
+alias glsi='git ls-files -oiX .gitignore'
 
 # }}}
 

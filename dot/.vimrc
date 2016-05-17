@@ -142,7 +142,7 @@ Plug 'nelstrom/vim-markdown-folding'
 Plug 'nhooyr/neoman.vim'
 Plug 'ninrod/ninscratch-vim'
 Plug 'ninrod/vis'
-Plug 'sheerun/vim-polyglot', {'for': ['rust', 'javascript', 'xml', 'html']}
+Plug 'sheerun/vim-polyglot', {'for': ['rust', 'javascript', 'xml', 'html', 'markdown']}
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-commentary'
