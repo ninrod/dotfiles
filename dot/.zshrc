@@ -196,15 +196,16 @@ alias ga='git add'
 alias gal='git add -A'
 alias gc='git commit -v'
 alias gd='git diff'
+alias gds='git diff --stat'
 alias gf='git fetch'
 alias gm='git merge'
 alias gp='git push'
 alias gl='git log --pretty=format:"%C(yellow)%h%Creset %C(blue)%d%Creset %C(cyan)%ad%Creset %C(magenta)%an%Creset %s" --date=relative --graph'
-alias gld='git log --pretty=format:"%C(yellow)%h%Creset %C(cyan)%ad%Creset %C(magenta)%an%Creset %s" --graph'
+alias gld='git log --pretty=format:"%C(yellow)%h%Creset %C(blue)%d%Creset %C(cyan)%ad%Creset %C(magenta)%an%Creset %s" --graph'
 alias glf='git log --follow -p -- '
 alias glnc='git log --pretty=format:"%h %ad %an %s" --date=short --graph'
-alias gls='git log --graph --oneline'
 alias glsi='git ls-files -oiX .gitignore'
+alias gi='builtin cd $(git rev-parse --show-toplevel)'
 
 # }}}
 
