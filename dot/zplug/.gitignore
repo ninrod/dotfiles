@@ -1,0 +1,14 @@
+.DS_Store
+**/.DS_Store
+.ignore
+bin/*
+!bin/zplug-env
+zcompdump
+**/zcompdump
+**/zcompdump.zwc
+**/*~
+**/*.swp
+.cache
+repos
+*.xml
+**/*.xml

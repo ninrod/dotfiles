@@ -40,6 +40,9 @@ export LANG=en_US.UTF-8
 export TERM=xterm-256color
 export EDITOR=nvim
 
+# zplug config
+export ZPLUG_CLONE_DEPTH=1
+
 # Enable a different cursor in NVIM in insert mode
 export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
@@ -53,6 +56,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="find . -path '*/.git' -prune -o -type d -print"
 
 # }}}
+
 
 # path {{{
 
@@ -78,11 +82,11 @@ export PATH
 # plugins {{{
 
 # Zplug
-source ~/.zplug/zplug
+source ~/.zplug/init.zsh
 
 zplug "Tarrasch/zsh-bd"
-zplug "b4b4r07/enhancd", of:enhancd.sh
-zplug "felixr/docker-zsh-completion", if:"which docker", of:_docker
+zplug "b4b4r07/enhancd", use:enhancd.sh
+zplug "felixr/docker-zsh-completion", if:"which docker", use:_docker
 zplug "ninrod/nin-vi-mode"
 zplug "supercrabtree/k"
 zplug "zsh-users/zsh-completions"
@@ -92,8 +96,6 @@ if ! zplug check --verbose; then
     printf "Install? [y/N]: "
     if read -q; then
         echo; zplug install
-    else
-        echo
     fi
 fi
 zplug load
