@@ -34,6 +34,3 @@ updatelinks ~/.config dot/config
 
 # emacs
 updatelinks ~/.emacs.d dot/emacs.d
-
-# ideavim
-updatelinks ~/.ideavimrc dot/ideavimrc
