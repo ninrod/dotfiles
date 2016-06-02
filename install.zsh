@@ -26,7 +26,6 @@ updatelinks ~/.bashrc dot/bashrc
 updatelinks ~/.bash_profile dot/bash_profile
 updatelinks ~/.tmux.conf dot/tmux.conf
 updatelinks ~/.lscolors dot/dircolors/dircolors.256dark
-updatelinks ~/.gitconfig dot/gitconfig
 updatelinks ~/.agignore dot/agignore
 
 # neovim
@@ -34,3 +33,6 @@ updatelinks ~/.config dot/config
 
 # emacs
 updatelinks ~/.emacs.d dot/emacs.d
+
+# git
+cp dot/gitconfig ~/.gitconfig

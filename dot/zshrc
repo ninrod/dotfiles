@@ -55,6 +55,9 @@ export FZF_DEFAULT_COMMAND='ag --hidden --path-to-agignore=~/.agignore -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="find . -path '*/.git' -prune -o -type d -print"
 
+export GIT_NAME=ninrod
+export GIT_EMAIL=filipe.silva@gmail.com
+
 # }}}
 
 # path {{{
@@ -316,5 +319,12 @@ PROMPT='%F{blue}%12<...<%1~%<<%f %F{magenta}#%f '
 # FZF ZLE extra bindkeys {{{
 
 bindkey '^E' fzf-cd-widget
+
+# }}}
+
+# bootstrap commands {{{
+
+git config --global user.name $GIT_NAME
+git config --global user.email $GIT_EMAIL
 
 # }}}
