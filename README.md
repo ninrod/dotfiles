@@ -45,7 +45,7 @@ bind -t vi-copy y copy-pipe 'pbcopy'
 
 * configure your terminal to use the [papercolor theme][papercolor_link] or [solarized dark theme][solarized_link]. There's a `conf` folder within this repo that can help you with that. 
 
-* copyt the conf/options/shell-options.conf file to ~/.options/shell-options.conf (protip: you could make `~/.options` to be a git repo and mantain your custom config versioned)
+* copy the `conf/options/shell-options.conf` file to `~/.options/shell-options.conf` (protip: you could make `~/.options` to be a git repo and mantain your custom config versioned)
 
 ```sh
 # copy options file
