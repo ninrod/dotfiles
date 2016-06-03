@@ -16,6 +16,7 @@
 
 * First off, I strongly recommend using [iTerm2][iterm2_link] on OSx.
 * Secondly, this is for unix systems: `GNU/Linux`, `OSx`, etc... It should work on theory on windows, but I've faced a lot of configuration issues and ended up abandoning windows support.
+* configure your terminal to use the [papercolor theme][papercolor_link] or [solarized dark theme][solarized_link]. There's a `conf` folder within this repo that can help you with that. 
 * now get `vim` 7.4+ with [+clipboard][vim_clipboard_link] and +python.
 * get [tmux][tmux_link] 1.8+
 * get [zsh][zsh_link] 5.1+ and make sure that `/bin/zsh` points to it.
@@ -33,18 +34,6 @@
 ```sh
 $ git clone https://github.com/ninrod/dotfiles.git ~/.dotfiles
 ```
-
-* if you are not on OSx, you need to edit .tmux.conf like so:
-
-```sh
-$ vim -u NONE ~/.dotfiles/dot/tmux.conf
-
-# change this line
-# switch OSx pbcopy for xclip or an equivalent GNU/Linux command (xsel, etc...)
-bind -t vi-copy y copy-pipe 'pbcopy'
-```
-
-* configure your terminal to use the [papercolor theme][papercolor_link] or [solarized dark theme][solarized_link]. There's a `conf` folder within this repo that can help you with that. 
 
 * copy the `conf/options/shell-options.conf` file to `~/.options/shell-options.conf` (protip: you could make `~/.options` to be a git repo and mantain your custom config versioned)
 
