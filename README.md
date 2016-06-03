@@ -36,7 +36,7 @@ $ git clone https://github.com/ninrod/dotfiles.git ~/.dotfiles
 * if you are not on OSx, you need to edit .tmux.conf like so:
 
 ```sh
-$ vim -u NONE ~/.dotfiles/dot/.tmux.conf
+$ vim -u NONE ~/.dotfiles/dot/tmux.conf
 
 # change this line
 # switch OSx pbcopy for xclip or an equivalent GNU/Linux command (xsel, etc...)
@@ -48,7 +48,7 @@ bind -t vi-copy y copy-pipe 'pbcopy'
 
 ```sh
 # change user info
-$ vim -u NONE ~/.dotfiles/dot/.gitconfig
+$ vim -u NONE ~/.dotfiles/dot/gitconfig
 
 # run install script (basically just mounts symlinks on your home folder)
 $ ~/.dotfiles/install.zsh
