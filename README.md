@@ -45,13 +45,14 @@ bind -t vi-copy y copy-pipe 'pbcopy'
 
 * configure your terminal to use the [papercolor theme][papercolor_link] or [solarized dark theme][solarized_link]. There's a `conf` folder within this repo that can help you with that. 
 
-* change the git user info inside the shell-options.conf file from [this repo](https://github.com/ninrod/unix-shell-options.git):
+* copyt the conf/options/shell-options.conf file to ~/.options/shell-options.conf (protip: you could make `~/.options` to be a git repo and mantain your custom config versioned)
 
 ```sh
-# protip: you could fork this repo and mantain your custom config versioned
-$ git clone https://github.com/ninrod/unix-shell-options.git ~/.options
+# copy options file
+$ mkdir -p ~/.options
+$ cd ~/.dotfiles/conf/options && cp shell-options.conf ~/.options
 
-# change user info
+# change git user info
 $ vi ~/.options/shell-options.conf
 
 # run install script (basically just mounts symlinks on your home folder)
