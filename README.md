@@ -20,6 +20,8 @@
 * get [python2][python_link], python2-pip and `$ sudo pip2 install neovim`
 * get [ag][ag_link] (you can `brew install ag` on OSx).
 * get [fzf][fzf_link].
+* clone [zplug](https://github.com/zplug/zplug.git) to `~/.zplug`
+* clone [fzf](https://github.com/junegunn/fzf.git) to `~/.fzf`
 * if you're on OSx, brew install these:
   * `brew install coreutils` (mainly because `BSD` `ls` `CLICOLOR` sucks).
   * `brew install reattach-to-user-namespace` (Mainly because of the `open` utility. [more info here][reattach_link]).
