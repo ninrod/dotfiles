@@ -1,3 +1,33 @@
+# zsh options {{{
+
+# history config options
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt append_history
+setopt extended_history
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_verify
+setopt share_history
+
+# dir change options
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt pushd_silent
+setopt auto_cd
+
+setopt extended_glob # allows us to use ^ to negate globs
+unsetopt nomatch # but when pattern matching fails, simply use the command as is. See robbyrussell/oh-my-zsh#449
+
+# defining word endings
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+
+autoload -Uz compinit && compinit
+zstyle ':completion:*' menu select
+
+# }}}
+
 # terminal colors {{{
 
 TC='\e['
@@ -31,48 +61,12 @@ White="${TC}37m";  IWhite="${TC}97m";  OnWhite="${TC}47m";  OnIWhite="${TC}107m"
 
 # }}}
 
-# zsh options {{{
-
-# history config options
-HISTFILE=$HOME/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
-setopt append_history
-setopt extended_history
-setopt hist_ignore_all_dups
-setopt hist_ignore_space
-setopt hist_verify
-setopt share_history
-
-# dir change options
-setopt auto_pushd
-setopt pushd_ignore_dups
-setopt pushd_silent
-setopt auto_cd
-
-setopt extended_glob # allows us to use ^ to negate globs
-unsetopt nomatch # but when pattern matching fails, simply use the command as is. See robbyrussell/oh-my-zsh#449
-
-# defining word endings
-WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
-
-autoload -Uz compinit && compinit
-zstyle ':completion:*' menu select
-
-# }}}
-
 # path {{{
-
 
 PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 GNUBIN_PATH=/usr/local/opt/coreutils/libexec/gnubin
-TEXBIN=/Library/TeX/texbin
-# ZPLUG_BIN=~/.zplug/bin
-
 PATH="$GNUBIN_PATH:$PATH"
-PATH="$TEXBIN:$PATH"
-# PATH="$ZPLUG_BIN:$PATH"
 
 MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
@@ -107,9 +101,6 @@ export FZF_DEFAULT_COMMAND='ag --hidden --path-to-agignore=~/.agignore -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="find . -path '*/.git' -prune -o -type d -print"
 
-export GIT_NAME=ninrod
-export GIT_EMAIL=filipe.silva@gmail.com
-
 # }}}
 
 # FZF Setup {{{
@@ -117,7 +108,6 @@ export GIT_EMAIL=filipe.silva@gmail.com
 if [[ ! "$PATH" == *.fzf/bin* ]]; then
   export PATH="$PATH:$HOME/.fzf/bin"
 fi
-
 
 # Man path
 # --------
@@ -132,6 +122,15 @@ fi
 # Key bindings
 # ------------
 source "$HOME/.fzf/shell/key-bindings.zsh"
+
+# }}}
+
+# load user config {{{
+
+SHELL_USER_CONFIG_FILE="$(realpath ~)/.options/shell-options.conf"
+if [[ -e "$SHELL_USER_CONFIG_FILE" ]]; then
+  . "$SHELL_USER_CONFIG_FILE"
+fi
 
 # }}}
 
@@ -299,7 +298,12 @@ bindkey '^E' fzf-cd-widget
 
 # bootstrap commands {{{
 
-git config --global user.name $GIT_NAME
-git config --global user.email $GIT_EMAIL
+if [[ -n ${GIT_USER_NAME+x} ]]; then
+  git config --global user.name $GIT_USER_NAME
+fi
+
+if [[ -n ${GIT_USER_EMAIL+x} ]]; then
+  git config --global user.email $GIT_USER_EMAIL
+fi
 
 # }}}

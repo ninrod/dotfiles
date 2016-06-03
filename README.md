@@ -44,11 +44,14 @@ bind -t vi-copy y copy-pipe 'pbcopy'
 ```
 
 * configure your terminal to use the [papercolor theme][papercolor_link] or [solarized dark theme][solarized_link]. There's a `conf` folder within this repo that can help you with that. 
-* change the git user info inside the .gitconfig file within the repo and run the zsh script `install.zsh` like so:
+
+* change the git user info inside the shell-options.conf file from [this repo](https://github.com/ninrod/unix-shell-options.git):
 
 ```sh
+$ git clone https://github.com/ninrod/unix-shell-options.git ~/.options
+
 # change user info
-$ vim -u NONE ~/.dotfiles/dot/gitconfig
+$ vi ~/.options/shell-options.conf
 
 # run install script (basically just mounts symlinks on your home folder)
 $ ~/.dotfiles/install.zsh
