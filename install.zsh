@@ -18,7 +18,6 @@ updatelinks() {
   ln -s ${2:a} $1
 }
 
-updatelinks ~/.zplug dot/zplug
 updatelinks ~/.vim dot/vim
 updatelinks ~/.vimrc dot/vimrc
 updatelinks ~/.zshrc dot/zshrc

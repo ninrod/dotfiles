@@ -1,7 +1,0 @@
-#!/bin/zsh
-
-__import "print/print"
-
-__zplug::print::print::put "$_ZPLUG_VERSION\n"
-
-return 0
