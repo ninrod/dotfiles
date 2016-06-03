@@ -48,6 +48,7 @@ bind -t vi-copy y copy-pipe 'pbcopy'
 * change the git user info inside the shell-options.conf file from [this repo](https://github.com/ninrod/unix-shell-options.git):
 
 ```sh
+# protip: you could fork this repo and mantain your custom config versioned
 $ git clone https://github.com/ninrod/unix-shell-options.git ~/.options
 
 # change user info
