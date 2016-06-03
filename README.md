@@ -19,7 +19,6 @@
 * get [zsh][zsh_link] 5.1+ and make sure that `/bin/zsh` points to it.
 * get [python2][python_link], python2-pip and `$ sudo pip2 install neovim`
 * get [ag][ag_link] (you can `brew install ag` on OSx).
-* get [fzf][fzf_link].
 * clone [zplug](https://github.com/zplug/zplug.git) to `~/.zplug`
 * clone [fzf](https://github.com/junegunn/fzf.git) to `~/.fzf`
 * if you're on OSx, brew install these:
