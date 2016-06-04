@@ -140,12 +140,12 @@ fi
 source ~/.zplug/init.zsh
 
 zplug "Tarrasch/zsh-bd"
-zplug "felixr/docker-zsh-completion", if:"which docker", use:_docker
+zplug "b4b4r07/enhancd", use:init.sh
+zplug "felixr/docker-zsh-completion"
 zplug "ninrod/nin-vi-mode"
 zplug "supercrabtree/k"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
-zplug "b4b4r07/enhancd", use:init.sh
 
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
@@ -235,7 +235,7 @@ cd () {
   elif [[ $1 =~ '\+[0-9]{1,2}' ]]; then
     # $1: `cd +8`, `cd +10`, cherry pick auto_pushd stack
     builtin cd $1
-  elif type "$ENHANCD_COMMAND" > /dev/null; then
+  elif command -v "$ENHANCD_COMMAND" > /dev/null; then
     # populate dir enhancd dir cache, clear and list
     d $1 && c && l
   else

@@ -187,6 +187,11 @@ LICENSE
 
 Same as [Vim][vim-license_link].
 
+LINKS
+----------
+
+[first commit](https://github.com/ninrod/dotfiles/tree/212d09fb3859ca03d98aefbcd2c03c4e7d43b68e)
+
 [vim_clipboard_link]: <http://vimcasts.org/blog/2013/11/getting-vim-with-clipboard-support>
 [papercolor_link]: <https://github.com/NLKNguyen/papercolor-theme.git>
 [powerline_fonts]: <https://github.com/powerline/fonts.git>
@@ -255,3 +260,4 @@ Same as [Vim][vim-license_link].
 [1]: <https://github.com/ninrod/dotfiles/releases/tag/solarized-theme>
 [2]: <https://github.com/ninrod/dotfiles/releases/tag/papercolor-theme>
 [3]: <https://github.com/aaronbieber/dotfiles>
+
