@@ -123,12 +123,7 @@ bind                           | action
 #### VIM: custom function keys
 bind    |action
 --------|-------------------------------------------
-`<F2>`  |toggle nerdtree file explorer
-`<F4>`  |kill the current buffer
 `<F5>`  |:windo diffthis
-`<F9>`  | toggles showing relative line numbers.
-`<F11>` |source ~/.vimrc
-`<F12>` |open ~/.vimrc
 
 #### VIM: text objects (expanded set with plugins)
 textobject   | action
