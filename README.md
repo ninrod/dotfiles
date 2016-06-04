@@ -2,7 +2,7 @@
 
 ## Using Solarized Dark
 
-![solarized-dark-vi-tmux](https://raw.githubusercontent.com/ninrod/dotfiles/misc/images/terminal.png)
+![solarized-dark-vi-tmux](https://raw.githubusercontent.com/ninrod/dotfiles/misc/images/update-2016.06.03.png)
 
 ## Using PaperColor
 
