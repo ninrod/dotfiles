@@ -216,6 +216,38 @@ alias gi='builtin cd $(git rev-parse --show-toplevel)'
 
 # custom functions {{{
 
+# 1 month worth of commits $1 months ago with $2 command
+git_log_month () {
+  if [[ -z $1 ]]; then
+    gl
+    return 0
+  fi
+
+  if [[ ! $1 =~ '^[0-9]{1,2}$' ]]; then
+    print "must be a number"
+    return 0
+  fi
+
+  local after=$(date "+%Y-%m-%d" --date="$1 month ago")
+  print "after = $after"
+
+  local git_command=gl
+  if [[ -n "$2" ]]; then
+    git_command=$2
+  fi
+
+  if [[ "$1" == "1" ]]; then
+    eval "$git_command --after=$after"
+    return 0
+  fi
+
+  local before=$(date "+%Y-%m-%d" --date="$(((${1}-1))) month ago")
+
+  print "before = $before"
+
+  eval "$git_command --after=$after --before=$before"
+}
+
 # faster dir creation
 md () {
   mkdir -p $1
