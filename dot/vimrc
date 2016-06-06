@@ -126,7 +126,6 @@ filetype plugin indent on
 
 call plug#begin('~/.vim/plugged')
 
-" core
 Plug 'altercation/vim-colors-solarized'
 Plug 'alvan/vim-closetag', {'for': ['html', 'xml']}
 Plug 'bkad/CamelCaseMotion'
@@ -146,20 +145,10 @@ Plug 'sheerun/vim-polyglot', {'for': ['rust', 'javascript', 'xml', 'html', 'mark
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
-
-" resource hog plugins
-" Plug 'SirVer/ultisnips'
-"   \| Plug 'ninrod/vim-snippets'
-
-
-" unused plugins
-" Plug 'rust-lang/rust.vim', {'for': 'rust'}
-" Plug 'jlanzarotta/bufexplorer'
 
 Plug 'kana/vim-textobj-user'
   \| Plug 'kana/vim-textobj-entire',
@@ -167,6 +156,14 @@ Plug 'kana/vim-textobj-user'
   \| Plug 'thinca/vim-textobj-function-javascript', {'for': 'javascript'}
   \| Plug 'whatyouhide/vim-textobj-xmlattr', {'for': ['html', 'xml']}
 
+" resource hog plugins
+" Plug 'SirVer/ultisnips'
+"   \| Plug 'ninrod/vim-snippets'
+
+" unused plugins
+" Plug 'rust-lang/rust.vim', {'for': 'rust'}
+" Plug 'jlanzarotta/bufexplorer'
+" Plug 'tpope/vim-endwise'
 
 call plug#end()
 
