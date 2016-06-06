@@ -1,7 +1,5 @@
 # bash options {{{
 
-# TODO
-
 set -o vi
 shopt -s autocd
 
@@ -25,8 +23,6 @@ PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export GNUBIN_PATH=/usr/local/opt/coreutils/libexec/gnubin
 PATH="$GNUBIN_PATH:$PATH"
 
-export FZF_BIN=~/.fzf/bin
-PATH="$FZF_BIN:$PATH"
 export PATH
 
 # }}}
@@ -41,33 +37,15 @@ eval `dircolors ~/.lscolors`
 # terminal colors {{{
 
 TC='\e['
-
-CLR_LINE_START="${TC}1K"
-CLR_LINE_END="${TC}K"
-CLR_LINE="${TC}2K"
-
-# Hope no terminal is greater than 1k columns
-RESET_LINE="${CLR_LINE}${TC}1000D"
-
-# Colors and styles (based on https://github.com/demure/dotfiles/blob/master/subbash/prompt)
-
-Bold="${TC}1m"    # Bold text only, keep colors
-Undr="${TC}4m"    # Underline text only, keep colors
-Inv="${TC}7m"     # Inverse: swap background and foreground colors
-Reg="${TC}22;24m" # Regular text only, keep colors
-RegF="${TC}39m"   # Regular foreground coloring
-RegB="${TC}49m"   # Regular background coloring
 Rst="${TC}0m"     # Reset all coloring and style
-
-# Basic            High Intensity      Background           High Intensity Background
-Black="${TC}30m";  IBlack="${TC}90m";  OnBlack="${TC}40m";  OnIBlack="${TC}100m";
-Red="${TC}31m";    IRed="${TC}91m";    OnRed="${TC}41m";    OnIRed="${TC}101m";
-Green="${TC}32m";  IGreen="${TC}92m";  OnGreen="${TC}42m";  OnIGreen="${TC}102m";
-Yellow="${TC}33m"; IYellow="${TC}93m"; OnYellow="${TC}43m"; OnIYellow="${TC}103m";
-Blue="${TC}34m";   IBlue="${TC}94m";   OnBlue="${TC}44m";   OnIBlue="${TC}104m";
-Purple="${TC}35m"; IPurple="${TC}95m"; OnPurple="${TC}45m"; OnIPurple="${TC}105m";
-Cyan="${TC}36m";   ICyan="${TC}96m";   OnCyan="${TC}46m";   OnICyan="${TC}106m";
-White="${TC}37m";  IWhite="${TC}97m";  OnWhite="${TC}47m";  OnIWhite="${TC}107m";
+Black="${TC}30m";
+Red="${TC}31m";
+Green="${TC}32m";
+Yellow="${TC}33m";
+Blue="${TC}34m";
+Purple="${TC}35m";
+Cyan="${TC}36m";
+White="${TC}37m";
 
 # }}}
 
@@ -85,7 +63,6 @@ alias c='clear'
 alias e='exit'
 alias w='echo -e "$Blue $PWD ${Red}at ${Cyan}$(whoami)${Red}@${Yellow}$(hostname -s)$Red in $Yellow$0$Purple \$"'
 alias m='nman'
-[[ -z $(command -v vim) ]] && alias vim='vi'
 alias vi='vim -u NONE'
 alias v='vim'
 alias k='k -h'
@@ -101,21 +78,24 @@ alias dic='dirs -c'
 alias po='popd'
 
 # git alias
-alias g='git status --short'
+alias g='git status -sb'
 alias gg='git branch -vv'
 alias gs='git status'
 alias ga='git add'
 alias gal='git add -A'
 alias gc='git commit -v'
 alias gd='git diff'
+alias gds='git diff --stat'
 alias gf='git fetch'
 alias gm='git merge'
 alias gp='git push'
-alias gl='git log --pretty=format:"%C(yellow)%h%Creset %C(cyan)%ad%Creset %C(magenta)%an%Creset %s" --date=relative --graph'
-alias gld='git log --pretty=format:"%C(yellow)%h%Creset %C(cyan)%ad%Creset %C(magenta)%an%Creset %s" --graph'
+alias gl='git log --pretty=format:"%C(yellow)%h%Creset %C(blue)%d%Creset %C(cyan)%ad%Creset %C(magenta)%an%Creset %s" --date=relative --graph'
+alias glr='gl --reflog'
+alias gld='git log --pretty=format:"%C(yellow)%h%Creset %C(blue)%d%Creset %C(cyan)%ad%Creset %C(magenta)%an%Creset %s" --graph'
 alias glf='git log --follow -p -- '
 alias glnc='git log --pretty=format:"%h %ad %an %s" --date=short --graph'
-alias gls='git log --graph --oneline'
+alias glsi='git ls-files -oiX .gitignore'
+alias gi='builtin cd $(git rev-parse --show-toplevel)'
 
 # }}}
 
@@ -131,9 +111,9 @@ f () {
 }
 
 cd () {
-  if [ $# -eq 0 ]; then
+  if [[ $# -eq 0 ]]; then
     builtin cd ~
-  elif [ "$1" == "-" ]; then
+  elif [[ "$1" == "-" ]]; then
     builtin cd -
   else
     f $1
