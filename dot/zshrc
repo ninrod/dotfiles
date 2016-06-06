@@ -177,7 +177,6 @@ alias po='popd'
 # git alias
 alias g='git status -sb'
 alias gg='git branch -vv'
-alias gs='git status'
 alias ga='git add'
 alias gal='git add -A'
 alias gc='git commit -v'
