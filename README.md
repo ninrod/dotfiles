@@ -41,8 +41,8 @@ $ git clone https://github.com/ninrod/dotfiles.git ~/.dotfiles
 
 ```sh
 # copy options file
-$ mkdir -p ~/.options
-$ cd ~/.dotfiles/conf/options && cp shell-options.conf ~/.options
+$ mkdir ~/.options
+$ cp ~/.dotfiles/conf/options/shell-options.conf ~/.options
 
 # change git user info
 $ vi ~/.options/shell-options.conf
