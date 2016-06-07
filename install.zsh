@@ -3,6 +3,15 @@
 # Author: Filipe Silva (ninrod)
 # License: Same as VIM.
 
+# function to remove file, if applicable.
+removeifexists() {
+  # the `-f` switch tests if the argument exists and is a regular file
+  if [[ -f $1 ]]; then
+    print '"'$1'" found existing file. removing.'
+    rm $1
+  fi
+}
+
 # ensure options_file exists
 ensure_options_file() {
   if [[ ! -d ~/.options ]]; then
@@ -19,7 +28,7 @@ ensure_options_file() {
 }
 
 # ensure $DOTPATH is set on $options_file
-setdotpath() {
+ensure_dotpath() {
   ensure_options_file
 
   local options_file="$(realpath ~/.options/shell-options.conf)"
@@ -71,4 +80,4 @@ cp dot/gitconfig ~/.gitconfig
 updatelinks ~/.agignore dot/agignore
 
 # ensure $DOTPATH is set. $DOTPATH is the directory where the dotfiles repo was cloned.
-setdotpath
+ensure_dotpath
