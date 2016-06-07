@@ -72,6 +72,3 @@ updatelinks ~/.agignore dot/agignore
 
 # ensure $DOTPATH is set. $DOTPATH is the directory where the dotfiles repo was cloned.
 setdotpath
-
-# reload zsh
-exec zsh

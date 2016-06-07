@@ -40,15 +40,11 @@ $ git clone https://github.com/ninrod/dotfiles.git ~/.dotfiles
 * copy the `conf/options/shell-options.conf` file to `~/.options/shell-options.conf` (protip: you could make `~/.options` to be a git repo and mantain your custom config versioned)
 
 ```sh
-# copy options file
-$ mkdir ~/.options
-$ cp ~/.dotfiles/conf/options/shell-options.conf ~/.options
-
-# change git user info
-$ vi ~/.options/shell-options.conf
-
-# run install script (basically just mounts symlinks on your home folder)
+# run install script (basically just mounts symlinks on your home folder, and creates ~/.options/shell-options.conf file, if applicable)
 $ ~/.dotfiles/install.zsh
+
+# change git/github user info
+$ vi ~/.options/shell-options.conf
 
 # reload zsh
 $ exec zsh
