@@ -42,19 +42,22 @@ ensure_dotpath() {
   echo "DOTPATH=$dotpath" >> $options_file
 }
 
-# helper function to manage linkage.
 updatelinks() {
-  #$1 is the symlink
-  #$2 is the target
+  local symlink=${1:a}
+  local symlink_old_target=${1:A}
+  local symlink_new_target=${2:A}
 
-  # the `-h` switch tests if the argument exists and is a symlink.
-  if [[ -h $1 ]]; then
-    print '"'$1'" found existing symlink. removing.'
-    rm $1
+  if [[ ! -h $symlink ]]; then
+    echo -e "$symlink ${Green}->${Rst} $symlink_new_target"
+  elif [[ $symlink_old_target != $symlink_new_target ]]; then
+    rm $symlink
+    echo -e "$1 ${Red}-${Black}X${Rst}->${Rst} $symlink ${Green}->${Rst} $symlink_new_target"
+  else
+    echo -e "$1 ${Green}ok.${Rst}"
+    return 0
   fi
 
-  print -l 'mounting symlink "'$1'" -> "'${2:a}'"'
-  ln -s ${2:a} $1
+  ln -s $symlink_new_target $symlink
 }
 
 # vim, zsh and tmux
