@@ -11,8 +11,6 @@
 [core]
   editor = nvim
   autocrlf = input
-
-; Color config
 [color]
   ui = always
 [color "diff"]
