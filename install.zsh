@@ -66,6 +66,11 @@ updatelinks() {
   local symlink_old_target=${1:A}
   local symlink_new_target=${2:A}
 
+  if [[ -e $symlink ]] && [[ ! -h $symlink ]]; then
+    echo -e "$symlink is a ${Red}regular${Rst} file. backup the file and run the script again."
+    return 1
+  fi
+
   if [[ ! -h $symlink ]]; then
     echo -e "$symlink ${Green}->${Rst} $symlink_new_target"
   elif [[ $symlink_old_target != $symlink_new_target ]]; then
