@@ -3,17 +3,34 @@
 # Author: Filipe Silva (ninrod)
 # License: Same as VIM.
 
-# function to ensure that $DOTPATH is set on $options_file
-setdotpath() {
-  local option_file="$(realpath ~/.options/shell-options.conf)"
-  if grep -q '^DOTPATH=' $option_file; then
-    # dotpath is set. no need to do anything
-    return 0
+# ensure options_file exists
+ensure_options_file() {
+  if [[ ! -d ~/.options ]]; then
+    mkdir ~/.options
   fi
 
-  # dotpath is not set. appending $DOTPATH to $options_file
+  local options_file="$(realpath ~/.options/shell-options.conf)"
+
+  if [[ ! -e $options_file ]]; then
+    touch $options_file
+    echo "#GIT_USER_NAME=" >> $options_file
+    echo "#GIT_USER_EMAIL=" >> $options_file
+  fi
+}
+
+# ensure $DOTPATH is set on $options_file
+setdotpath() {
+  ensure_options_file
+
+  local options_file="$(realpath ~/.options/shell-options.conf)"
+  local temp_file="$(realpath ~/.options/temp.conf)"
+
+  # remove DOTPATH, if it exists
+  awk '!/^DOTPATH/' $options_file > $temp_file && mv $temp_file $options_file
+
+  # append $DOTPATH to $options_file
   local dotpath="$( cd "$(dirname "$0")" ; pwd -P  )"
-  echo "DOTPATH=$dotpath" >> $option_file
+  echo "DOTPATH=$dotpath" >> $options_file
 }
 
 # helper function to manage linkage.
@@ -53,6 +70,8 @@ cp dot/gitconfig ~/.gitconfig
 # ag (the silver searcher)
 updatelinks ~/.agignore dot/agignore
 
-# ensure $DOTPATH is set.
-# $DOTPATH is the directory where the dotfiles repo was cloned.
+# ensure $DOTPATH is set. $DOTPATH is the directory where the dotfiles repo was cloned.
 setdotpath
+
+# reload zsh
+exec zsh
