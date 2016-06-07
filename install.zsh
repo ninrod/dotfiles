@@ -3,7 +3,7 @@
 # Author: Filipe Silva (ninrod)
 # License: Same as VIM.
 
-# function to remove file, if applicable.
+# function to remove file, if applicable. {{{
 removeifexists() {
   # the `-f` switch tests if the argument exists and is a regular file
   if [[ -f $1 ]]; then
@@ -11,8 +11,9 @@ removeifexists() {
     rm $1
   fi
 }
+# }}}
 
-# ensure options_file exists
+# ensure options_file exists {{{
 ensure_options_file() {
   if [[ ! -d ~/.options ]]; then
     mkdir ~/.options
@@ -26,8 +27,9 @@ ensure_options_file() {
     echo "#GIT_USER_EMAIL=" >> $options_file
   fi
 }
+# }}}
 
-# ensure $DOTPATH is set on $options_file
+# ensure $DOTPATH is set on $options_file {{{
 ensure_dotpath() {
   ensure_options_file
 
@@ -41,7 +43,9 @@ ensure_dotpath() {
   local dotpath="$( cd "$(dirname "$0")" ; pwd -P  )"
   echo "DOTPATH=$dotpath" >> $options_file
 }
+# }}}
 
+# manages symlinks {{{
 updatelinks() {
   local symlink=${1:a}
   local symlink_old_target=${1:A}
@@ -59,6 +63,7 @@ updatelinks() {
 
   ln -s $symlink_new_target $symlink
 }
+# }}}
 
 # vim, zsh and tmux
 updatelinks ~/.vim dot/vim
