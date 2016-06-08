@@ -58,7 +58,7 @@ $ exec zsh
 
 ## Bonus: Changing themes
 
-* To change Themes you have to alter `.tmux.conf`, `.vimrc`, `.zshrc` (for prompt theme) and your terminal theme.
+* To change Themes you have to alter `dot/tmux.conf`, `dot/vimrc`, `dot/zshrc` (for prompt theme) and your terminal theme.
 * there's a `conf` folder that can help you with that.
 * I've also provided a [solarized-theme][1] tag and a [papercolor-theme][2] as example setups.
 
