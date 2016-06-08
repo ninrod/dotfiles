@@ -3,7 +3,6 @@
 # Author: Filipe Silva (ninrod)
 # License: Same as VIM.
 
-
 # terminal colors {{{
 
 TC='\e['
