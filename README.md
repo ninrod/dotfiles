@@ -51,7 +51,6 @@ $ vi ~/.options/shell-options.conf
 $ exec zsh
 ```
 
-* fire up vim and run `:PlugInstall`
 * That's it, your're all set.
 
 
