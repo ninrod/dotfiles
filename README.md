@@ -33,7 +33,9 @@
   * `brew install nvim`
   * `brew install diff-so-fancy`
 
-* write this on your shell
+* __IMPORTANT NOTICE__: for the time being, I'll overwrite your `~/.gitconfig` file, so if you have something important in it, now would be the perfect moment to back it up.
+
+* now open your shell and write this:
 
 ```sh
 # clone repo
