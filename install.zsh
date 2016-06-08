@@ -18,6 +18,11 @@ White="${TC}37m";
 
 # }}}
 
+# retrieves the path to the script itself {{{
+SCRIPTPATH="$(cd "$(dirname "$0")"; pwd -P)"
+cd $SCRIPTPATH
+# }}}
+
 # function to ensure options_file exists {{{
 ensure_options_file() {
   if [[ ! -d ~/.options ]]; then
@@ -43,12 +48,11 @@ ensure_dotpath() {
   awk '!/^DOTPATH/' $options_file > $temp_file && mv $temp_file $options_file
 
   # append $DOTPATH to $options_file
-  local dotpath="$( cd "$(dirname "$0")" ; pwd -P  )"
-  echo "DOTPATH=$dotpath" >> $options_file
+  echo "DOTPATH=$SCRIPTPATH" >> $options_file
 }
 # }}}
 
-# function to ensure no file will be overwritten {{{
+# function to ensure no regular user file will be overwritten {{{
 verifylink() {
   local symlink=${1:a}
 
@@ -80,9 +84,6 @@ updatelinks() {
 }
 # }}}
 
-scriptpath="$(cd "$(dirname "$0")"; pwd -P)"
-cd $scriptpath
-
 setopt extended_glob
 
 for file in dot/^*.cp; do
@@ -93,6 +94,7 @@ for file in dot/^*.cp; do
   updatelinks ~/.${file:t} $file
 done
 
+# TODO make this funciton backup user files to $SCRIPTPATH/tmp/bkp, if applicable
 for file in dot/*.cp; do
   cp $file ~/.${file:t:r}
 done
