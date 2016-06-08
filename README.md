@@ -22,6 +22,7 @@
 * now get `vim` 7.4+ with [+clipboard][vim_clipboard_link] and +python.
 * get [tmux][tmux_link] 1.8+
 * get [zsh][zsh_link] 5.1+ and make sure that `/bin/zsh` is valid. (if not: `$ cd /bin && sudo ln -s $(command -v zsh) zsh`)
+* `cat /etc/shells` and verify that zsh appears on the list. If not, `sudo vi /etc/shells` and append `/bin/zsh`
 * get [python2][python_link], python2-pip and `$ sudo pip2 install neovim`
 * get [ag][ag_link] (you can `brew install ag` on OSx).
 * clone [zplug](https://github.com/zplug/zplug.git) to `~/.zplug`
@@ -47,7 +48,7 @@ $ ~/.dotfiles/install.zsh
 $ vim +PlugInstall +qall
 
 # change git/github user info
-$ vi ~/.options/shell-options.conf
+$ vim ~/.options/shell-options.conf
 
 # reload zsh
 $ exec zsh
