@@ -33,7 +33,7 @@
   * `brew install nvim`
   * `brew install diff-so-fancy`
 
-* __IMPORTANT NOTICE__: for the moment (until I change the script to back it up for you), I'll overwrite your `~/.gitconfig` file, so if you have something important in it, now would be the perfect moment to back it up.
+* __Kind Remark__: for the moment (until I change the script to back it up for you), I'll overwrite your `~/.gitconfig` file, so if you have something important in it, now would be the perfect moment to back it up.
 
 * now open your shell and write this:
 
