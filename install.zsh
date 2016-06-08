@@ -28,7 +28,7 @@ removeifexists() {
 }
 # }}}
 
-# ensure options_file exists {{{
+# function to ensure options_file exists {{{
 ensure_options_file() {
   if [[ ! -d ~/.options ]]; then
     mkdir ~/.options
@@ -44,7 +44,7 @@ ensure_options_file() {
 }
 # }}}
 
-# ensure $DOTPATH is set on $options_file {{{
+# function to ensure $DOTPATH is set on $options_file {{{
 ensure_dotpath() {
   ensure_options_file
 
@@ -60,7 +60,7 @@ ensure_dotpath() {
 }
 # }}}
 
-# manages symlinks {{{
+# function to help with symlinkage {{{
 updatelinks() {
   local symlink=${1:a}
   local symlink_old_target=${1:A}
@@ -85,27 +85,31 @@ updatelinks() {
 }
 # }}}
 
+# setting up symlinks {{{
+
 # vim, zsh and tmux
 updatelinks ~/.vim dot/vim
 updatelinks ~/.vimrc dot/vimrc
 updatelinks ~/.zshrc dot/zshrc
 updatelinks ~/.tmux.conf dot/tmux.conf
 
-# neovim
-updatelinks ~/.config dot/config
-
-# colors for ls
-updatelinks ~/.lscolors dot/dircolors/dircolors.256dark
-
 # bash
 updatelinks ~/.bashrc dot/bashrc
 updatelinks ~/.bash_profile dot/bash_profile
 
+# neovim
+updatelinks ~/.config dot/config
+
 # git
 cp dot/gitconfig ~/.gitconfig
 
+# colors for ls
+updatelinks ~/.lscolors dot/dircolors/dircolors.256dark
+
 # ag (the silver searcher)
 updatelinks ~/.agignore dot/agignore
+
+# }}}
 
 # ensure $DOTPATH is set. $DOTPATH is the directory where the dotfiles repo was cloned.
 ensure_dotpath
