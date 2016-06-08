@@ -3,8 +3,6 @@
 # Author: Filipe Silva (ninrod)
 # License: Same as VIM.
 
-scriptpath="$( cd "$(dirname "$0")" ; pwd -P  )"
-cd $scriptpath
 
 # terminal colors {{{
 
@@ -19,16 +17,6 @@ Purple="${TC}35m";
 Cyan="${TC}36m";
 White="${TC}37m";
 
-# }}}
-
-# function to remove file, if applicable. {{{
-removeifexists() {
-  # the `-f` switch tests if the argument exists and is a regular file
-  if [[ -f $1 ]]; then
-    print '"'$1'" found existing file. removing.'
-    rm $1
-  fi
-}
 # }}}
 
 # function to ensure options_file exists {{{
@@ -63,16 +51,23 @@ ensure_dotpath() {
 }
 # }}}
 
+# function to ensure no file will be overwritten {{{
+verifylink() {
+  local symlink=${1:a}
+
+  if [[ -e $symlink ]] && [[ ! -h $symlink ]]; then
+    echo -e "${Yellow}$symlink${Rst} is a ${Red}regular${Rst} file on your system."
+    echo -e "rename/backup the file ${Yellow}$symlink${Rst}, and run the script again."
+    exit 1
+  fi
+}
+# }}}
+
 # function to help with symlinkage {{{
 updatelinks() {
   local symlink=${1:a}
   local symlink_old_target=${1:A}
   local symlink_new_target=${2:A}
-
-  if [[ -e $symlink ]] && [[ ! -h $symlink ]]; then
-    echo -e "$symlink is a ${Red}regular${Rst} file. backup the file and run the script again."
-    return 1
-  fi
 
   if [[ ! -h $symlink ]]; then
     echo -e "$symlink ${Green}->${Rst} $symlink_new_target"
@@ -88,39 +83,21 @@ updatelinks() {
 }
 # }}}
 
-for file in dot/**; do
-  link='~/.'${file:t}
-  echo -e "$file $link"
-  # updatelinks $link $file
+scriptpath="$(cd "$(dirname "$0")"; pwd -P)"
+cd $scriptpath
+
+setopt extended_glob
+
+for file in dot/^*.cp; do
+  verifylink ~/.${file:t}
 done
 
-return 0
+for file in dot/^*.cp; do
+  updatelinks ~/.${file:t} $file
+done
 
-# setting up symlinks {{{
+for file in dot/*.cp; do
+  cp $file ~/.${file:t:r}
+done
 
-# vim, zsh and tmux
-updatelinks ~/.vim dot/vim
-updatelinks ~/.vimrc dot/vimrc
-updatelinks ~/.zshrc dot/zshrc
-updatelinks ~/.tmux.conf dot/tmux.conf
-
-# bash
-updatelinks ~/.bashrc dot/bashrc
-updatelinks ~/.bash_profile dot/bash_profile
-
-# neovim
-updatelinks ~/.config dot/config
-
-# colors for ls
-updatelinks ~/.lscolors dot/dircolors/dircolors.256dark
-
-# ag (the silver searcher)
-updatelinks ~/.agignore dot/agignore
-
-# }}}
-
-# git
-cp dot/gitconfig ~/.gitconfig
-
-# ensure $DOTPATH is set. $DOTPATH is the directory where the dotfiles repo was cloned.
 ensure_dotpath
