@@ -3,6 +3,9 @@
 # Author: Filipe Silva (ninrod)
 # License: Same as VIM.
 
+scriptpath="$( cd "$(dirname "$0")" ; pwd -P  )"
+cd $scriptpath
+
 # terminal colors {{{
 
 TC='\e['
@@ -84,6 +87,14 @@ updatelinks() {
   ln -s $symlink_new_target $symlink
 }
 # }}}
+
+for file in dot/**; do
+  link='~/.'${file:t}
+  echo -e "$file $link"
+  # updatelinks $link $file
+done
+
+return 0
 
 # setting up symlinks {{{
 
