@@ -28,9 +28,7 @@ ensure_options_file() {
   local options_file="$(realpath ~/.options/shell-options.conf)"
 
   if [[ ! -e $options_file ]]; then
-    touch $options_file
-    echo "#GIT_USER_NAME=" >> $options_file
-    echo "#GIT_USER_EMAIL=" >> $options_file
+    cp conf/options/shell-options.conf ~/.options
   fi
 }
 # }}}
