@@ -31,15 +31,13 @@
   * `brew install reattach-to-user-namespace` (Mainly because of the `open` utility. [more info here][reattach_link]).
   * `brew install nvim`
   * `brew install diff-so-fancy`
-* git clone this repo.
+
+* write this on your shell
 
 ```sh
+# clone repo
 $ git clone https://github.com/ninrod/dotfiles.git ~/.dotfiles
-```
 
-* copy the `conf/options/shell-options.conf` file to `~/.options/shell-options.conf` (protip: you could make `~/.options` to be a git repo and mantain your custom config versioned)
-
-```sh
 # run install script (basically just mounts symlinks on your home folder, and creates ~/.options/shell-options.conf file, if applicable)
 $ ~/.dotfiles/install.zsh
 
