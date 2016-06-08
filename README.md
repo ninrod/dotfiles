@@ -42,12 +42,12 @@
 $ git clone https://github.com/ninrod/dotfiles.git ~/.dotfiles
 
 # run install script 
-# basically just mounts symlinks on your home folder, 
-# and creates ~/.options/shell-options.conf file, if applicable
+# basically the script does this:
+# - mounts symlinks on your home folder;
+# - creates ~/.options/shell-options.conf file, if not existent
+# - overwrites your .gitconfig (so back it up if you have something important)
+# - install/updates vim plugins
 $ ~/.dotfiles/install.zsh
-
-# install vim plugins
-$ vim +PlugInstall +qall
 
 # change git/github user info
 $ vim ~/.options/shell-options.conf

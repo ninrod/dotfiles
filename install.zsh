@@ -98,3 +98,6 @@ for file in dot/*.cp; do
 done
 
 ensure_dotpath
+
+# update vim plugins
+vim +PlugInstall +qall
