@@ -1,4 +1,4 @@
-#! /bin/zsh
+#! /usr/bin/env zsh
 
 # Author: Filipe Silva (ninrod)
 # License: Same as VIM.
@@ -100,9 +100,6 @@ updatelinks ~/.bash_profile dot/bash_profile
 # neovim
 updatelinks ~/.config dot/config
 
-# git
-cp dot/gitconfig ~/.gitconfig
-
 # colors for ls
 updatelinks ~/.lscolors dot/dircolors/dircolors.256dark
 
@@ -110,6 +107,9 @@ updatelinks ~/.lscolors dot/dircolors/dircolors.256dark
 updatelinks ~/.agignore dot/agignore
 
 # }}}
+
+# git
+cp dot/gitconfig ~/.gitconfig
 
 # ensure $DOTPATH is set. $DOTPATH is the directory where the dotfiles repo was cloned.
 ensure_dotpath
