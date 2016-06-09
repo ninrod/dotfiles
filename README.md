@@ -84,67 +84,16 @@ $ exec zsh
 0. [tpope/vim-fugitive][vim-fugitive_link]: very good git wrapper for vim.
 0. [tpope/vim-repeat][vim-repeat_link]: expands usage opportunities for the '.' (dot) repeat command.
 
-#### VIM: note about the `<leader>` key
+### VIM: note about the `<leader>` key
 
 * I've remapped `<space>` to be an alias to the `<leader>` key ([tip I][sheerun_tip_link] from [sheerun][sheerun_link])
 
-#### VIM: custom `<leader>` binds
+### VIM: custom binds and tips
 
-bind                    | action
-------------------------| ------------------------------------------
-`<leader> + v`          | creates a new window in a vertical split
-`<leader> + x`          | creates a new window in a horizontal split
-`<leader> + d`          | custom pagedown. alias for `LztM`.
-`<leader> + u`          | custom pageup. alias for `HzbM`.
-`<leader> + f`          | `:Files`. (fzf)
-`<leader> + r`          | `:History`. (fzf)
-`<leader> + b`          | `:Buffers`. (fzf)
-`<leader> + g`          | `:GitFiles`. (fzf)
-`<leader> + [h,j,k,l]`  | navigates through open windows
-`<leader> + [H,J,K,L]`  | moves the window to the right, left, etc...
-`<leader> + [arrowkey]` | resizes the window
-
-#### VIM: custom misc binds
-
-bind                           | action
------------------------        | ------------------------------------------
-`;`                            | `:` (normal and visual)
-`'`                            | `"` (normal and visual)
-`"`                            | `'` (normal and visual)
-`s`                            | `;`
-`-`                            | `:noh`
-`gp`                           | `:Gpush`
-`gs`                           | open scratch buffer
-`Z`                            | alias for ZZ. exits saving file
-`Q`                            | alias for ZQ. exits without saving file
-`S`                            | `:Gstatus`
-`<BS>`                         | `:ToggleBufExplorer`
-`w, b, e, ge`                  | these normal movement keys had their motion behaviour expanded to work with [camel words][camel_link].
-`<ENTER>`                      | `:w` (writes buffer)
-`<ENTER>` (visual)             | `:EasyAlign`
-`{`, `}`                       | navigate vim help files. `}` jumps to term. `{` jumps back.
-`ir`, `ar` (visual and normal) | alias for `i[` and `a[`
-
-#### VIM: custom function keys
-bind    |action
---------|-------------------------------------------
-`<F5>`  |:windo diffthis
-
-#### VIM: text objects (expanded set with plugins)
-textobject   | action
------------  | ---------
-`a`          | function arguments
-`f`          | functions
-`e`          | entire file
-`x`          | html tag attribute
-`r`          | square brackets `[]`
-
-#### VIM: potentially useful binds (not currently in use)
-bind        | action
-------------|-------------------------
-`g + char`  | top free binds that are not so useful: `gh`,`gf`,`gl`,`gp`,`gr`,`gs`,`gx`,`gy`,`gz`.
-`K`         | word lookup does not seem to be of much use.
-`&`         | repeat last substitute. rarely useful.
+* for binds, my vimrc file is authoritative.
+* top free `g + char` rebindable binds: `gh`,`gf`,`gl`,`gp`,`gr`,`gs`,`gx`,`gy`,`gz`.
+* `K`: word lookup does not seem to be of much use.
+* `&`: repeat last substitute. rarely useful.
 
 ## TMUX: the terminal multiplexer
 
