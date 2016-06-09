@@ -114,16 +114,14 @@ set showbreak=←←
 " redraw only when we need to (i.e. don't redraw when executing a macro)
 set lazyredraw
 
-" TODO verify the usefulness of this
+" TODO carefully verify the usefulness of this
 set wildignore+=*/.hg/*,*/.svn/*.,*/.DS_Store,*/.idea/*,*/.tmp/*,*/target/*
 
 " enable language-dependent indenting.
 filetype plugin indent on
 
 " }}}
-
 " plugins {{{
-
 call plug#begin('~/.vim/plugged')
 
 Plug 'altercation/vim-colors-solarized'
@@ -136,7 +134,6 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf'}
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'kshenoy/vim-signature'
 Plug 'nelstrom/vim-markdown-folding'
 Plug 'nhooyr/neoman.vim'
 Plug 'ninrod/ninscratch-vim'
@@ -160,60 +157,24 @@ Plug 'kana/vim-textobj-user'
 " Plug 'SirVer/ultisnips'
 "   \| Plug 'ninrod/vim-snippets'
 
-" unused plugins
-" Plug 'rust-lang/rust.vim', {'for': 'rust'}
-" Plug 'Julian/vim-textobj-variable-segment'
-
 call plug#end()
-
 " }}}
-
 " plugin configuration {{{
-
-" multiple cursors config
+" vim-multiple-cursors {{{
 let g:multi_cursor_exit_from_visual_mode = 0
 let g:multi_cursor_exit_from_insert_mode = 0
-
+" }}}
+" vim-closetag {{{
 let g:closetag_filenames = "*.html,*.xml"
-
-" bufexplorer configuration
-let g:bufExplorerDisableDefaultKeyMapping=1
-
-"lightline config
+" }}}
+" lightline.vim {{{
 let g:lightline = {'colorscheme': 'solarized'}
-
-"Ultisnips configuration
-let g:UltiSnipsListSnippets = '<c-k>'
-
-" vim-signature is eating a lot of our binds. lets fix this.
-let g:SignatureMap = {
-        \ 'Leader'             :  "m",
-        \ 'PlaceNextMark'      :  "m,",
-        \ 'ToggleMarkAtLine'   :  "m.",
-        \ 'PurgeMarksAtLine'   :  "m-",
-        \ 'DeleteMark'         :  "dm",
-        \ 'PurgeMarks'         :  "m<Space>",
-        \ 'PurgeMarkers'       :  "m<BS>",
-        \ 'GotoNextLineAlpha'  :  "",
-        \ 'GotoPrevLineAlpha'  :  "",
-        \ 'GotoNextSpotAlpha'  :  "",
-        \ 'GotoPrevSpotAlpha'  :  "",
-        \ 'GotoNextLineByPos'  :  "",
-        \ 'GotoPrevLineByPos'  :  "",
-        \ 'GotoNextSpotByPos'  :  "",
-        \ 'GotoPrevSpotByPos'  :  "",
-        \ 'GotoNextMarker'     :  "",
-        \ 'GotoPrevMarker'     :  "",
-        \ 'GotoNextMarkerAny'  :  "",
-        \ 'GotoPrevMarkerAny'  :  "",
-        \ 'ListLocalMarks'     :  "m/",
-        \ 'ListLocalMarkers'   :  "m?"
-        \ }
-
+" }}}
+" auto-pairs {{{
 " auto-pairs plugin maps 'â' in insert mode limiting our ability to type 'â'. So we fix it.
 let g:AutoPairsShortcutBackInsert=''
-
-" Solarized Dark Theme
+" }}}
+" vim-colors-solarized {{{
 set background=dark
 let g:solarized_bold=1
 let g:solarized_underline=0
@@ -222,32 +183,29 @@ let g:solarized_contrast="high"
 let g:solarized_diffmode="high"
 " let g:solarized_termcolors=16
 silent! colorscheme solarized
-
-" vim-commentary: disabling double backslash
-let g:commentary_map_backslash=0
-
-" fix contrast issue with solarized dark.
-" https://github.com/airblade/vim-gitgutter/issues/164
-highlight clear SignColumn
-
 " }}}
+" vim-commentary {{{
+" disable double backslash
+let g:commentary_map_backslash=0
+" }}}
+" }}}
+" binds {{{
 
-" custom binds {{{
+" standard bind changes {{{
 
-" nvim :terminal config
-if has('nvim')
-  ":terminal config
-  tnoremap <c-n> <C-\><C-n>
-endif
+" the default `q` macro bind always screws me.
+" so we changed it to a not ofensive one, like `;`.
+" it helps that I've already lost `;` for `:`.
+" let's pretended that S stands for `S`tore macro.
+" also, `cc` is a complete substitute for `S`
+nnoremap S q
+nnoremap q ;
+xnoremap q ;
 
 " more convenient access to the command prompt (shift sucks)
 " based on tip from Damian Conway https://youtu.be/aHm36-na4-4?t=598
 nnoremap ; :
 xnoremap ; :
-
-" `s` is equivalent to `cl`. As we lost `;`, we use `s` as our new `;` (shift sucks)
-nnoremap s ;
-xnoremap s ;
 
 " same idea as above: better access to register stuff. We use more `"` than `'` and shift sucks.
 nnoremap ' "
@@ -260,11 +218,24 @@ nnoremap gl G
 vnoremap gl G
 onoremap gl G
 
-" easyalign mappings
-xmap <cr> <Plug>(EasyAlign)
+" space is my leader key, but '\' remains as leader.
+nmap <Space> <Leader>
+omap <Space> <Leader>
+xmap <Space> <Leader>
 
-" scratch mappings
-nnoremap gs :NinScratch<CR>
+" enter saves file
+nnoremap <cr> :w<cr>
+
+" faster exit
+nnoremap Z ZZ
+nnoremap Q ZQ
+
+" turn off search highlighting
+nnoremap - :noh<cr>
+
+" navigate vim help files
+nnoremap  } <C-]>
+nnoremap {  <C-T>
 
 " bind to facilitate bracket selection
 omap ir i[
@@ -272,55 +243,25 @@ omap ar a[
 xmap ir i[
 xmap ar a[
 
-" space is my leader key, but '\' remains as leader.
-nmap <Space> <Leader>
-omap <Space> <Leader>
-xmap <Space> <Leader>
 
-" function keys
-nnoremap <f5> :windo diffthis<cr>
+" }}}
+" leader binds {{{
 
-" exits saving file
-nnoremap Z ZZ
-
-" exits without saving file
-nnoremap Q ZQ
-
-" enter saves file
-nnoremap <cr> :w<cr>
-
-" turn off search highlighting
-nnoremap - :noh<cr>
-
-" my custom pageups and pagedowns
+" custom pageups and pagedowns
 nmap <leader>d LztM
 nmap <leader>u HzbM
 
-" FZF bindings
-nnoremap <leader>f :Files<cr>
-nnoremap <leader>b :Buffers<cr>
-nnoremap <leader>r :History<cr>
-nnoremap <leader>g :GitFiles<cr>
+" faster access to diff
+nnoremap <f5> :windo diffthis<cr>
 
-" FZF Mapping selecting mappings
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
-
-" FZF Insert mode completion
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
+" equalizing windows
+nmap <leader>= <C-W>=
 
 " resizing windows
 nmap <leader><right> <C-W>10>
 nmap <leader><left>  <C-W>10<
 nmap <leader><up>    <C-W>10+
 nmap <leader><down>  <C-W>10-
-
-" equalizing windows
-nmap <leader>= <C-W>=
 
 " moving between windows
 nmap <leader>h <C-W>h
@@ -340,12 +281,34 @@ nmap <leader>v <C-W>v
 " open a horizontal window
 nmap <leader>x <C-W>s
 
-" navigate vim help files
-nnoremap  } <C-]>
-nnoremap {  <C-T>
+" }}}
+" plugin binds {{{
 
+" easyalign mappings
+xmap <cr> <Plug>(EasyAlign)
+
+" scratch mappings
+nnoremap gs :NinScratch<CR>
+
+" FZF bindings
+nnoremap <leader>f :Files<cr>
+nnoremap <leader>b :Buffers<cr>
+nnoremap <leader>r :History<cr>
+nnoremap <leader>g :GitFiles<cr>
+
+" FZF Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" FZF Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
 " }}}
 
+" }}}
 " auto commands {{{
 
 " foldmethod configurations
@@ -390,8 +353,7 @@ silent! autocmd CmdwinEnter * nunmap <cr>
 silent! autocmd CmdwinLeave * nnoremap <cr> :w<cr>
 
 " }}}
-
-" custom highlights {{{
+" highlights {{{
 
 " highlight cursor line line number
 highlight CursorLineNr cterm=bold ctermfg=124
@@ -400,9 +362,12 @@ highlight CursorLineNr cterm=bold ctermfg=124
 highlight multiple_cursors_cursor term=reverse cterm=reverse ctermfg=125 ctermbg=254
 highlight link multiple_cursors_visual Visual
 
-" }}}
+" fix contrast issue with solarized dark.
+" https://github.com/airblade/vim-gitgutter/issues/164
+highlight clear SignColumn
 
-" custom functions {{{
+" }}}
+"  functions {{{
 
 " credits go to junegunn who personally helped me with this function
 function! s:ag_with_opts(arg, bang)
@@ -414,5 +379,6 @@ function! s:ag_with_opts(arg, bang)
 endfunction
 
 autocmd VimEnter * command! -nargs=* -bang Nag call s:ag_with_opts(<q-args>, <bang>0)
+
 
 " }}}
