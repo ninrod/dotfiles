@@ -72,16 +72,13 @@ $ exec zsh
 ### Installed plugins
 0. [altercation/vim-colors-solarized][vim-colors-solarized_link]: well designed vim colorscheme.
 0. [alvan/vim-closetag][closetag_link]: auto close for html tags.
-0. [bkad/CamelCaseMotion][camel_link]: motion through camelcase style words.
 0. [ervandew/supertab][supertab_link]: insert mode completions triggered by <TAB>.
 0. [jiangmiao/auto-pairs][auto-pairs_link]: plugin to complete pairs of brackets and similar stuff.
 0. [junegunn/fzf.vim][fzf-vim_link]: fuzzy finder.
 0. [junegunn/vim-easy-align][vim-easy-align_link]: very good text alignment tool.
-0. [kshenoy/vim-signature][vim-signature_link]: adds visual notation for vim marks.
-0. [mhinz/vim-signify][vim-signify_link]: signs to indicate added, modified and removed lines of files under a VCS.
 0. [nhooyr/neoman.vim][neoman_link]: readman pages faster than superman.
 0. [tpope/vim-commentary][vim-commentary_link]: automatic commentary wrapping.
-0. [tpope/vim-fugitive][https://github.com/tpope/vim-fugitive.git]: very good git wrapper for vim.
+0. [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive.git): very good git wrapper for vim.
 0. [tpope/vim-repeat][vim-repeat_link]: expands usage opportunities for the '.' (dot) repeat command.
 
 ### Note about the `<leader>` key
