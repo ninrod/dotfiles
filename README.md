@@ -86,7 +86,7 @@ $ exec zsh
 
 ### Note about the `<leader>` key
 
-* I've remapped `<space>` to be an alias to the `<leader>` key ([tip I][sheerun_tip_link] from [sheerun][sheerun_link])
+* I've remapped `<space>` to be an alias to the `<leader>` key ([tip I][1] from [sheerun][2])
 
 ### Custom binds and tips
 
@@ -103,7 +103,7 @@ You interact with tmux escaping commands through a key combo called `prefix`. I'
 
 bind                 | action
 -------------------- | -----------------------------------------------------------
-`<prefix> + <space>` | enter copy-mode ([tip VIII][sheerun_tip_link] from [sheerun][sheerun_link]).
+`<prefix> + <space>` | enter copy-mode ([tip VIII][1] from [sheerun][2]).
 
 ### Window binds
 
@@ -141,8 +141,6 @@ LINKS
 
 [first commit](https://github.com/ninrod/dotfiles/tree/212d09fb3859ca03d98aefbcd2c03c4e7d43b68e)
 
-[sheerun_tip_link]: <https://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/>
-[sheerun_link]: <https://github.com/sheerun>
 [auto-pairs_link]: <https://github.com/jiangmiao/auto-pairs.git>
 [supertab_link]: <https://github.com/ervandew/supertab.git>
 [targets_link]: <https://github.com/wellle/targets.vim.git>
@@ -152,32 +150,22 @@ LINKS
 [vim-easy-align_link]: <https://github.com/junegunn/vim-easy-align.git>
 [fzf_link]: <https://github.com/junegunn/fzf.git>
 [vim-fugitive_link]: <https://github.com/tpope/vim-fugitive.git>
-[nerdtree-tabs_link]: <https://github.com/jistr/vim-nerdtree-tabs.git>
-[vim-numbertoggle_link]: <https://github.com/jeffkreeftmeijer/vim-numbertoggle.git>
 [vim-repeat_link]: <https://github.com/tpope/vim-repeat.git>
-[vim-signature_link]: <https://github.com/kshenoy/vim-signature.git>
-[vim-signify_link]: <https://github.com/mhinz/vim-signify.git>
-[vim-snippets_link]: <https://github.com/honza/vim-snippets.git>
 [vim-surround_link]: <https://github.com/tpope/vim-surround.git>
 [vim-textobj-entire_link]: <https://github.com/kana/vim-textobj-entire.git>
 [vim-textobj-function_link]: <https://github.com/kana/vim-textobj-function.git>
 [vim-textobj-function-javascript_link]: <https://github.com/thinca/vim-textobj-function-javascript.git>
-[vim-textobj-underscore_link]: <https://github.com/lucapette/vim-textobj-underscore.git>
 [vim-textobj-user_link]: <https://github.com/kana/vim-textobj-user.git>
 [vim-textobj-xmlattr_link]: <https://github.com/whatyouhide/vim-textobj-xmlattr.git>
-[vim-unimpaired_link]: <https://github.com/tpope/vim-unimpaired.git>
 [vis_link]: <https://github.com/sencer/vis.git>
-[ZoomWin_link]: <https://github.com/regedarek/ZoomWin.git>
 [vim-instant-markdown_link]: <https://github.com/suan/vim-instant-markdown.git>
-[vim-json_link]: <https://github.com/elzr/vim-json.git>
 [vim-polyglot_link]: <https://github.com/sheerun/vim-polyglot.git>
-[vim-rsi_link]: <https://github.com/tpope/vim-rsi.git>
-[vitality_link]: <https://github.com/sjl/vitality.vim.git>
 [ag_link]: <https://github.com/ggreer/the_silver_searcher.git>
 [iterm2_link]: <https://github.com/gnachman/iTerm2.git>
 [vim-visual-start-search_link]: <https://github.com/bronson/vim-visual-star-search.git>
-[camel_link]: <https://github.com/bkad/CamelCaseMotion.git>
 [vim-license_link]: <http://vimdoc.sourceforge.net/htmldoc/uganda.html#license>
-[vim-sleuth_link]: <https://github.com/tpope/vim-sleuth.git>
 [neoman_link]: <https://github.com/nhooyr/neoman.vim.git>
 [fzf-vim_link]: <https://github.com/junegunn/fzf.vim.git>
+
+[1]: <https://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/>
+[2]: <https://github.com/sheerun>
