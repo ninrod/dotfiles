@@ -101,15 +101,9 @@ $ exec zsh
 
 * I've remapped `<space>` to be an alias to the `<leader>` key.
 
-### Custom binds and tips
+### Custom binds
 
 * for binds, my vimrc file is authoritative.
-
-### Tips: top rebindable binds
-
-* `g + char`: `gh`,`gf`,`gl`,`gp`,`gr`,`gs`,`gx`,`gy`,`gz`.
-* `K`: word lookup does not seem to be of much use.
-* `&`: repeat last substitute. rarely useful.
 
 ## TMUX: the terminal multiplexer
 
