@@ -16,7 +16,7 @@
 
 ## Install Instructions
 
-* First off, I strongly recommend using [iTerm2][iterm2_link] on OSx.
+* First off, I strongly recommend using [iTerm2](https://github.com/gnachman/iTerm2.git) on OSx.
 * Secondly, this is for unix systems: `GNU/Linux`, `OSx`, etc... It should work on theory on windows, but I've faced a lot of configuration issues and ended up abandoning windows support.
 * configure your terminal to use the [papercolor theme](https://github.com/NLKNguyen/papercolor-theme.git) or [solarized dark theme](https://github.com/altercation/solarized.git). There's a `conf` folder within this repo that can help you with that. 
 * now get `vim` 7.4+ with [+clipboard](http://vimcasts.org/blog/2013/11/getting-vim-with-clipboard-support) and +python.
@@ -24,7 +24,7 @@
 * get [zsh](https://github.com/zsh-users/zsh.git) 5.1+ and make sure that `/bin/zsh` is valid. (if not: `$ cd /bin && sudo ln -s $(command -v zsh) zsh`)
 * `cat /etc/shells` and verify that zsh appears on the list. If not, `sudo vi /etc/shells` and append `/bin/zsh`
 * get [python2](http://python.org), python2-pip and `$ sudo pip2 install neovim`
-* get [ag][ag_link] (you can `brew install ag` on OSx).
+* get [ag](https://github.com/ggreer/the_silver_searcher.git) (you can `brew install ag` on OSx).
 * clone [zplug](https://github.com/zplug/zplug.git) to `~/.zplug`
 * clone [fzf](https://github.com/junegunn/fzf.git) to `~/.fzf`
 * if you're on OSx, brew install these:
@@ -70,20 +70,29 @@ $ exec zsh
 ## VIM: Powerful shell text editor. Tweaked with plugins.
 
 ### Installed plugins
-0. [altercation/vim-colors-solarized][vim-colors-solarized_link]: well designed vim colorscheme.
-0. [alvan/vim-closetag][closetag_link]: auto close for html tags.
-0. [ervandew/supertab][supertab_link]: insert mode completions triggered by <TAB>.
-0. [jiangmiao/auto-pairs][auto-pairs_link]: plugin to complete pairs of brackets and similar stuff.
-0. [junegunn/fzf.vim][fzf-vim_link]: fuzzy finder.
-0. [junegunn/vim-easy-align][vim-easy-align_link]: very good text alignment tool.
-0. [nhooyr/neoman.vim][neoman_link]: readman pages faster than superman.
-0. [tpope/vim-commentary][vim-commentary_link]: automatic commentary wrapping.
+0. [altercation/vim-colors-solarized](https://github.com/altercation/vim-colors-solarized.git): well designed vim colorscheme.
+0. [alvan/vim-closetag](https://github.com/alvan/vim-closetag.git): auto close for html tags.
+0. [ervandew/supertab](https://github.com/ervandew/supertab.git): insert mode completions triggered by <TAB>.
+0. [jiangmiao/auto-pairs](https://github.com/jiangmiao/auto-pairs.git): plugin to complete pairs of brackets and similar stuff.
+0. [junegunn/fzf.vim](https://github.com/junegunn/fzf.vim.git): fuzzy finder.
+0. [junegunn/vim-easy-align](https://github.com/junegunn/vim-easy-align.git): very good text alignment tool.
+0. [nhooyr/neoman.vim](https://github.com/nhooyr/neoman.vim.git): readman pages faster than superman.
+0. [tpope/vim-commentary](https://github.com/tpope/vim-commentary.git): automatic commentary wrapping.
 0. [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive.git): very good git wrapper for vim.
-0. [tpope/vim-repeat][vim-repeat_link]: expands usage opportunities for the '.' (dot) repeat command.
+0. [tpope/vim-repeat](https://github.com/tpope/vim-repeat.git): expands usage opportunities for the '.' (dot) repeat command.
+0. [wellle/targets.vim](https://github.com/wellle/targets.vim.git): more targets for you to vimmify.
+0. [vim-textobj-entire_link](https://github.com/kana/vim-textobj-entire.git): `e` obj. for selecting the entire file.
+0. [vim-textobj-function_link](https://github.com/kana/vim-textobj-function.git): `f` obj. for selectiong functions.
+0. [vim-textobj-function-javascript_link](https://github.com/thinca/vim-textobj-function-javascript.git): expands `f` obj. to include javascript functions.
+0. [vim-textobj-user_link](https://github.com/kana/vim-textobj-user.git): base text-obj library.
+0. [vim-textobj-xmlattr_link](https://github.com/whatyouhide/vim-textobj-xmlattr.git): `x` obj. to work with xml/html tags.
+0. [vis_link](https://github.com/sencer/vis.git): my mirror of dr. chipps `vis` plugin.
+0. [vim-polyglot_link](https://github.com/sheerun/vim-polyglot.git): syntax highlight for more files.
+0. [vim-visual-start-search_link](https://github.com/bronson/vim-visual-star-search.git): use `*` in visual selections too.
 
 ### Note about the `<leader>` key
 
-* I've remapped `<space>` to be an alias to the `<leader>` key ([tip I][1] from [sheerun][2])
+* I've remapped `<space>` to be an alias to the `<leader>` key.
 
 ### Custom binds and tips
 
@@ -100,7 +109,7 @@ You interact with tmux escaping commands through a key combo called `prefix`. I'
 
 bind                 | action
 -------------------- | -----------------------------------------------------------
-`<prefix> + <space>` | enter copy-mode ([tip VIII][1] from [sheerun][2]).
+`<prefix> + <space>` | enter copy-mode
 
 ### Window binds
 
@@ -131,38 +140,9 @@ bind                           | action
 LICENSE
 -----------
 
-Same as [Vim][vim-license_link].
+Same as [Vim](http://vimdoc.sourceforge.net/htmldoc/uganda.html#license).
 
 LINKS
 ----------
 
 [first commit](https://github.com/ninrod/dotfiles/tree/212d09fb3859ca03d98aefbcd2c03c4e7d43b68e)
-
-[auto-pairs_link]: <https://github.com/jiangmiao/auto-pairs.git>
-[supertab_link]: <https://github.com/ervandew/supertab.git>
-[targets_link]: <https://github.com/wellle/targets.vim.git>
-[closetag_link]: <https://github.com/alvan/vim-closetag.git>
-[vim-colors-solarized_link]: <https://github.com/altercation/vim-colors-solarized.git>
-[vim-commentary_link]: <https://github.com/tpope/vim-commentary.git>
-[vim-easy-align_link]: <https://github.com/junegunn/vim-easy-align.git>
-[fzf_link]: <https://github.com/junegunn/fzf.git>
-[vim-fugitive_link]: <https://github.com/tpope/vim-fugitive.git>
-[vim-repeat_link]: <https://github.com/tpope/vim-repeat.git>
-[vim-surround_link]: <https://github.com/tpope/vim-surround.git>
-[vim-textobj-entire_link]: <https://github.com/kana/vim-textobj-entire.git>
-[vim-textobj-function_link]: <https://github.com/kana/vim-textobj-function.git>
-[vim-textobj-function-javascript_link]: <https://github.com/thinca/vim-textobj-function-javascript.git>
-[vim-textobj-user_link]: <https://github.com/kana/vim-textobj-user.git>
-[vim-textobj-xmlattr_link]: <https://github.com/whatyouhide/vim-textobj-xmlattr.git>
-[vis_link]: <https://github.com/sencer/vis.git>
-[vim-instant-markdown_link]: <https://github.com/suan/vim-instant-markdown.git>
-[vim-polyglot_link]: <https://github.com/sheerun/vim-polyglot.git>
-[ag_link]: <https://github.com/ggreer/the_silver_searcher.git>
-[iterm2_link]: <https://github.com/gnachman/iTerm2.git>
-[vim-visual-start-search_link]: <https://github.com/bronson/vim-visual-star-search.git>
-[vim-license_link]: <http://vimdoc.sourceforge.net/htmldoc/uganda.html#license>
-[neoman_link]: <https://github.com/nhooyr/neoman.vim.git>
-[fzf-vim_link]: <https://github.com/junegunn/fzf.vim.git>
-
-[1]: <https://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/>
-[2]: <https://github.com/sheerun>
