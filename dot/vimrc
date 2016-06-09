@@ -116,6 +116,9 @@ set lazyredraw
 " TODO carefully verify the usefulness of this
 set wildignore+=*/.hg/*,*/.svn/*.,*/.DS_Store,*/.idea/*,*/.tmp/*,*/target/*
 
+" syntax/sh.vim adds `.` to iskeyword(verify with :verbose set iskeyword?). so `w` jumps past it. see :h g:sh_isk
+let g:sh_noisk=1
+
 " enable language-dependent indenting.
 filetype plugin indent on
 
@@ -330,6 +333,9 @@ autocmd Bufread,BufNewFile *.bowerrc set filetype=json
 " http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
 autocmd Filetype markdown setlocal wrap linebreak nolist textwidth=0 wrapmargin=0 conceallevel=0 fdm=expr
 autocmd FileType sh,ruby,yaml,zsh,vim setlocal shiftwidth=2 tabstop=2 expandtab
+
+autocmd FileType java setlocal shiftwidth=4 tabstop=4 expandtab
+
 autocmd Filetype gitcommit setlocal spell textwidth=80
 
 
@@ -338,7 +344,6 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " enabling <cr> to work properly on the quickfix window
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
-
 
 " quick bind for a 'wrap' command
 command! -nargs=* Wrap set wrap linebreak nolist
