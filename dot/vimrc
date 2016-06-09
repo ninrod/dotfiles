@@ -197,6 +197,9 @@ let g:commentary_map_backslash=0
 
 " standard bind changes {{{
 
+" faster folding (current fold toggle)
+nnoremap s za
+
 " the default `q` macro bind always screws me.
 " so we changed it to a not ofensive one, like `;`.
 " it helps that I've already lost `;` for `:`.

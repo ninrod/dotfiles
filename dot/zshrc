@@ -27,7 +27,6 @@ autoload -Uz compinit && compinit
 zstyle ':completion:*' menu select
 
 # }}}
-
 # terminal colors {{{
 
 TC='\e['
@@ -42,7 +41,6 @@ Cyan="${TC}36m";
 White="${TC}37m";
 
 # }}}
-
 # path {{{
 
 PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
@@ -55,7 +53,6 @@ MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 export PATH
 
 # }}}
-
 # exports {{{
 
 # needed in some machines
@@ -84,7 +81,6 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="find . -path '*/.git' -prune -o -type d -print"
 
 # }}}
-
 # FZF Setup {{{
 # -------------
 if [[ ! "$PATH" == *.fzf/bin* ]]; then
@@ -106,7 +102,6 @@ fi
 source "$HOME/.fzf/shell/key-bindings.zsh"
 
 # }}}
-
 # load user config {{{
 
 SHELL_USER_CONFIG_FILE="$(realpath ~)/.options/shell-options.conf"
@@ -115,7 +110,6 @@ if [[ -e "$SHELL_USER_CONFIG_FILE" ]]; then
 fi
 
 # }}}
-
 # plugins {{{
 
 # Zplug
@@ -141,7 +135,6 @@ zplug load
 eval `dircolors ~/.lscolors`
 
 # }}}
-
 # alias | binds {{{
 
 # Ag (the silver searcher)
@@ -194,7 +187,6 @@ alias glsi='git ls-files -oiX .gitignore'
 alias gi='builtin cd $(git rev-parse --show-toplevel)'
 
 # }}}
-
 # custom functions {{{
 
 # 1 month worth of commits $1 months ago with $2 command
@@ -284,7 +276,6 @@ function nman () {
 compdef nman="man"
 
 # }}}
-
 # prompt {{{
 
 # light
@@ -302,21 +293,21 @@ PROMPT='%F{blue}%12<...<%1~%<<%f %F{magenta}#%f '
 # PROMPT="%F{blue}%10<...<%1~%<<%f %F{cyan}%n%f%F{red}@%f%F{yellow}%m%f %F{magenta}#%f "
 
 # }}}
-
 # FZF ZLE extra bindkeys {{{
 
 bindkey '^E' fzf-cd-widget
 
 # }}}
-
 # bootstrap commands {{{
 
+# user git information set up
 if [[ -n ${GIT_USER_NAME+x} ]]; then
   git config --global user.name $GIT_USER_NAME
+  export GIT_USER_NAME
 fi
-
 if [[ -n ${GIT_USER_EMAIL+x} ]]; then
   git config --global user.email $GIT_USER_EMAIL
+  export GIT_USER_EMAIL
 fi
 
 # }}}
