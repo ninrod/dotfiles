@@ -56,7 +56,7 @@ $ vim ~/.options/shell-options.conf
 $ exec zsh
 ```
 
-* note: the alias `v` is mapped to `nvim`. ([neovim](https://neovim.io/) is a fork of vim. It's main main editor.)
+* note: the alias `v` is mapped to `nvim`. ([neovim](https://neovim.io/) is a fork of vim. It's my main editor.)
 
 * That's it, your're all set.
 
@@ -69,7 +69,7 @@ $ exec zsh
 
 ## VIM: Powerful shell text editor. Tweaked with plugins.
 
-### installed plugins
+### Installed plugins
 0. [altercation/vim-colors-solarized][vim-colors-solarized_link]: well designed vim colorscheme.
 0. [alvan/vim-closetag][closetag_link]: auto close for html tags.
 0. [bkad/CamelCaseMotion][camel_link]: motion through camelcase style words.
@@ -84,11 +84,11 @@ $ exec zsh
 0. [tpope/vim-fugitive][vim-fugitive_link]: very good git wrapper for vim.
 0. [tpope/vim-repeat][vim-repeat_link]: expands usage opportunities for the '.' (dot) repeat command.
 
-### VIM: note about the `<leader>` key
+### Note about the `<leader>` key
 
 * I've remapped `<space>` to be an alias to the `<leader>` key ([tip I][sheerun_tip_link] from [sheerun][sheerun_link])
 
-### VIM: custom binds and tips
+### Custom binds and tips
 
 * for binds, my vimrc file is authoritative.
 * top free `g + char` rebindable binds: `gh`,`gf`,`gl`,`gp`,`gr`,`gs`,`gx`,`gy`,`gz`.
@@ -99,13 +99,13 @@ $ exec zsh
 
 You interact with tmux escaping commands through a key combo called `prefix`. I've remapped `prefix` to `<control>+<spacebar>`.
 
-#### TMUX copy-mode | history | scroll mode
+### copy-mode | history | scroll mode
 
 bind                 | action
 -------------------- | -----------------------------------------------------------
 `<prefix> + <space>` | enter copy-mode ([tip VIII][sheerun_tip_link] from [sheerun][sheerun_link]).
 
-#### TMUX Window binds
+### Window binds
 
 bind           | action
 -------------- | ------------------------------------------------------------
@@ -115,7 +115,7 @@ bind           | action
 `<prefix> + p` | cycles through the last two visited windows
 `<prefix> + ,` | to rename a window
 
-#### TMUX Panel binds
+### Panel binds
 
 bind                          | action
 ----------------------------- | ----------------------------------------------------------------------------------------
@@ -125,7 +125,7 @@ bind                          | action
 `<prefix> + <arrowkey>`       | navigates to the panel indicated by the arrow key.
 `<prefix> + s`                | shows a prompt where you can type the name of the window you want to send the panel to.
 
-#### exiting panels and windows in TMUX
+### exiting panels and windows
 
 bind                           | action
 ------------------------------ | -----------------------------------------------------------------------------------------
