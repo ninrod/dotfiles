@@ -129,6 +129,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'
 Plug 'alvan/vim-closetag', {'for': ['html', 'xml']}
 Plug 'bronson/vim-visual-star-search'
+Plug 'chaoren/vim-wordmotion'
 Plug 'ervandew/supertab'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
@@ -155,18 +156,12 @@ Plug 'kana/vim-textobj-user'
   \| Plug 'thinca/vim-textobj-function-javascript', {'for': 'javascript'}
   \| Plug 'whatyouhide/vim-textobj-xmlattr', {'for': ['html', 'xml']}
 
-" on test
-Plug 'chaoren/vim-wordmotion'
-
 " resource hog plugins
 " Plug 'SirVer/ultisnips'
 "   \| Plug 'ninrod/vim-snippets'
 
 " unused plugins
 " Plug 'rust-lang/rust.vim', {'for': 'rust'}
-" Plug 'jlanzarotta/bufexplorer'
-" Plug 'tpope/vim-endwise'
-" Plug 'bkad/CamelCaseMotion'
 " Plug 'Julian/vim-textobj-variable-segment'
 
 call plug#end()
@@ -238,18 +233,6 @@ highlight clear SignColumn
 " }}}
 
 " custom binds {{{
-
-" CamelCaseMotion
-" map <silent> w <Plug>CamelCaseMotion_w
-" map <silent> b <Plug>CamelCaseMotion_b
-" map <silent> e <Plug>CamelCaseMotion_e
-" map <silent> ge <Plug>CamelCaseMotion_ge
-" sunmap w
-" sunmap b
-" sunmap e
-" sunmap ge
-" omap <silent> <leader>iw <Plug>CamelCaseMotion_ie
-" xmap <silent> <leader>iw <Plug>CamelCaseMotion_ie
 
 " nvim :terminal config
 if has('nvim')
