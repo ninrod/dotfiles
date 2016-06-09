@@ -104,7 +104,10 @@ $ exec zsh
 ### Custom binds and tips
 
 * for binds, my vimrc file is authoritative.
-* top free `g + char` rebindable binds: `gh`,`gf`,`gl`,`gp`,`gr`,`gs`,`gx`,`gy`,`gz`.
+
+### Tips: top rebindable binds
+
+* `g + char`: `gh`,`gf`,`gl`,`gp`,`gr`,`gs`,`gx`,`gy`,`gz`.
 * `K`: word lookup does not seem to be of much use.
 * `&`: repeat last substitute. rarely useful.
 
