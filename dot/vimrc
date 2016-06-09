@@ -128,7 +128,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'altercation/vim-colors-solarized'
 Plug 'alvan/vim-closetag', {'for': ['html', 'xml']}
-Plug 'bkad/CamelCaseMotion'
 Plug 'bronson/vim-visual-star-search'
 Plug 'ervandew/supertab'
 Plug 'itchyny/lightline.vim'
@@ -156,6 +155,9 @@ Plug 'kana/vim-textobj-user'
   \| Plug 'thinca/vim-textobj-function-javascript', {'for': 'javascript'}
   \| Plug 'whatyouhide/vim-textobj-xmlattr', {'for': ['html', 'xml']}
 
+" on test
+Plug 'chaoren/vim-wordmotion'
+
 " resource hog plugins
 " Plug 'SirVer/ultisnips'
 "   \| Plug 'ninrod/vim-snippets'
@@ -164,6 +166,8 @@ Plug 'kana/vim-textobj-user'
 " Plug 'rust-lang/rust.vim', {'for': 'rust'}
 " Plug 'jlanzarotta/bufexplorer'
 " Plug 'tpope/vim-endwise'
+" Plug 'bkad/CamelCaseMotion'
+" Plug 'Julian/vim-textobj-variable-segment'
 
 call plug#end()
 
@@ -235,8 +239,17 @@ highlight clear SignColumn
 
 " custom binds {{{
 
-" bufexplorer
-nnoremap <BS> :ToggleBufExplorer<CR>
+" CamelCaseMotion
+" map <silent> w <Plug>CamelCaseMotion_w
+" map <silent> b <Plug>CamelCaseMotion_b
+" map <silent> e <Plug>CamelCaseMotion_e
+" map <silent> ge <Plug>CamelCaseMotion_ge
+" sunmap w
+" sunmap b
+" sunmap e
+" sunmap ge
+" omap <silent> <leader>iw <Plug>CamelCaseMotion_ie
+" xmap <silent> <leader>iw <Plug>CamelCaseMotion_ie
 
 " nvim :terminal config
 if has('nvim')
@@ -258,21 +271,6 @@ nnoremap ' "
 nnoremap " '
 xnoremap ' "
 xnoremap " '
-
-" CamelCaseMotion
-map <silent> w <Plug>CamelCaseMotion_w
-map <silent> b <Plug>CamelCaseMotion_b
-map <silent> e <Plug>CamelCaseMotion_e
-map <silent> ge <Plug>CamelCaseMotion_ge
-sunmap w
-sunmap b
-sunmap e
-sunmap ge
-omap <silent> <leader>iw <Plug>CamelCaseMotion_ie
-xmap <silent> <leader>iw <Plug>CamelCaseMotion_ie
-
-" :Gpush
-nnoremap gp :Gpush<CR>
 
 " trying out gl for `G` (shift sucks)
 nnoremap gl G
@@ -298,8 +296,6 @@ xmap <Space> <Leader>
 
 " function keys
 nnoremap <f5> :windo diffthis<cr>
-nnoremap <f11> :so ~/.vimrc<cr>
-nnoremap <f12> :e ~/.vimrc<cr>
 
 " exits saving file
 nnoremap Z ZZ
@@ -312,9 +308,6 @@ nnoremap <cr> :w<cr>
 
 " turn off search highlighting
 nnoremap - :noh<cr>
-
-" fugitive Gstatus command
-nnoremap S :Gstatus<cr>
 
 " my custom pageups and pagedowns
 nmap <leader>d LztM
@@ -367,9 +360,6 @@ nmap <leader>x <C-W>s
 " navigate vim help files
 nnoremap  } <C-]>
 nnoremap {  <C-T>
-
-" omni completion alternative binding. see :h omnifunc
-inoremap <C-p> <C-x><C-o>
 
 " }}}
 
