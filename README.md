@@ -103,7 +103,7 @@ $ exec zsh
 
 ### Custom binds
 
-* for binds, my vimrc file is authoritative.
+* To check out what binds I use in this config, my vimrc file is authoritative.
 
 ## TMUX: the terminal multiplexer
 
