@@ -135,7 +135,7 @@ zplug load
 eval `dircolors ~/.lscolors`
 
 # }}}
-# alias | binds {{{
+# alias {{{
 
 # Ag (the silver searcher)
 alias ag='ag --hidden --path-to-agignore=~/.agignore'
@@ -187,9 +187,10 @@ alias glsi='git ls-files -oiX .gitignore'
 alias gi='builtin cd $(git rev-parse --show-toplevel)'
 
 # }}}
-# custom functions {{{
+# functions {{{
 
-# 1 month worth of commits $1 months ago with $2 command
+# git_log_month: custom git log: 1 month worth of commits $1 months ago with $2 command {{{
+
 git_log_month () {
   if [[ -z $1 ]]; then
     gl
@@ -221,13 +222,17 @@ git_log_month () {
   eval "$git_command --after=$after --before=$before"
 }
 
-# faster dir creation
+# }}}
+# md: faster dir creation {{{
+
 md () {
   mkdir -p $1
   builtin cd $1
 }
 
-# enhancing enhancd
+# }}}
+# cd: enhancing enhancd {{{
+
 cd () {
   if [[ -z $1 ]]; then
     # $1 is empty. go home
@@ -242,19 +247,23 @@ cd () {
     builtin cd $1
   elif command -v "$ENHANCD_COMMAND" > /dev/null; then
     # populate dir enhancd dir cache, clear and list
-    d $1 && c && l
+    d $1
   else
     # enhancd did not load, use normal cd, clear and list
-    builtin cd $1 && c && l
+    builtin cd $1
   fi
 }
 
-# front for `bc` utility (credit goes to arzzen/calc.plugin.zsh)
+# }}}
+# =: front for `bc` utility (credit goes to arzzen/calc.plugin.zsh) {{{
+
 function = () {
   echo "$@" | bc -l
 }
 
-# neoman vim plugin
+# }}}
+# nman: neoman vim plugin {{{
+
 function nman () {
     if [[ -z $* ]]; then
         echo "What manual page do you want?"
@@ -274,6 +283,8 @@ function nman () {
     vim -c "Nman $*"
 }
 compdef nman="man"
+
+# }}}
 
 # }}}
 # prompt {{{
