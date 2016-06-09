@@ -70,7 +70,6 @@ set shiftwidth=2
 set nu
 set rnu
 
-
 " Highlight tailing whitespace
 set list listchars=tab:\ \ ,trail:·
 
