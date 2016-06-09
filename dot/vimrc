@@ -163,21 +163,31 @@ call plug#end()
 
 " }}}
 " plugin configuration {{{
+
 " vim-multiple-cursors {{{
+
 let g:multi_cursor_exit_from_visual_mode = 0
 let g:multi_cursor_exit_from_insert_mode = 0
+
 " }}}
 " vim-closetag {{{
+
 let g:closetag_filenames = "*.html,*.xml"
+
 " }}}
 " lightline.vim {{{
+
 let g:lightline = {'colorscheme': 'solarized'}
+
 " }}}
 " auto-pairs {{{
+
 " auto-pairs plugin maps 'â' in insert mode limiting our ability to type 'â'. So we fix it.
 let g:AutoPairsShortcutBackInsert=''
+
 " }}}
 " vim-colors-solarized {{{
+
 set background=dark
 let g:solarized_bold=1
 let g:solarized_underline=0
@@ -186,11 +196,15 @@ let g:solarized_contrast="high"
 let g:solarized_diffmode="high"
 " let g:solarized_termcolors=16
 silent! colorscheme solarized
+
 " }}}
 " vim-commentary {{{
+
 " disable double backslash
 let g:commentary_map_backslash=0
+
 " }}}
+
 " }}}
 " binds {{{
 
