@@ -71,7 +71,6 @@ $ exec zsh
 
 ### Used plugins
 0. [altercation/vim-colors-solarized](https://github.com/altercation/vim-colors-solarized.git): well designed vim colorscheme.
-0. [alvan/vim-closetag](https://github.com/alvan/vim-closetag.git): auto close for html tags.
 0. [bronson/vim-visual-start-search_link](https://github.com/bronson/vim-visual-star-search.git): use `*` in visual selections too.
 0. [chaoren/vim-wordmotion](https://github.com/chaoren/vim-wordmotion.git): move easily between camel words an whatnot.
 0. [ervandew/supertab](https://github.com/ervandew/supertab.git): insert mode completions triggered by `<TAB>`.
@@ -86,6 +85,7 @@ $ exec zsh
 0. [nhooyr/neoman.vim](https://github.com/nhooyr/neoman.vim.git): read man pages faster than superman.
 0. [ninrod/ninscratch-vim](https://github.com/ninrod/ninscratch-vim.git): my very simple scratch plugin
 0. [ninrod/vis](https://github.com/ninrod/vis.git): my mirror of dr. chipps `vis` plugin.
+0. [othree/xml.vim](https://github.com/othree/xml.vim.git): auto close tags for xml (and html) files
 0. [sheerun/vim-polyglot](https://github.com/sheerun/vim-polyglot.git): syntax highlight for various filetypes.
 0. [terryma/vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors.git): sublime text like multiple cursors.
 0. [tommcdo/vim-exchange](https://github.com/tommcdo/vim-exchange.git): easily swap regions of text.

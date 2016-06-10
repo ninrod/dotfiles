@@ -127,7 +127,6 @@ filetype plugin indent on
 call plug#begin('~/.vim/plugged')
 
 Plug 'altercation/vim-colors-solarized'
-Plug 'alvan/vim-closetag', {'for': ['html', 'xml']}
 Plug 'bronson/vim-visual-star-search'
 Plug 'chaoren/vim-wordmotion'
 Plug 'ervandew/supertab'
@@ -140,6 +139,7 @@ Plug 'nelstrom/vim-markdown-folding'
 Plug 'nhooyr/neoman.vim'
 Plug 'ninrod/ninscratch-vim'
 Plug 'ninrod/vis'
+Plug 'othree/xml.vim'
 Plug 'sheerun/vim-polyglot', {'for': ['rust', 'javascript', 'xml', 'html', 'markdown']}
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tommcdo/vim-exchange'
@@ -154,6 +154,7 @@ Plug 'kana/vim-textobj-user'
   \| Plug 'kana/vim-textobj-function', {'for': 'javascript'}
   \| Plug 'thinca/vim-textobj-function-javascript', {'for': 'javascript'}
   \| Plug 'whatyouhide/vim-textobj-xmlattr', {'for': ['html', 'xml']}
+
 
 " resource hog plugins
 " Plug 'SirVer/ultisnips'
