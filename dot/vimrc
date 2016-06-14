@@ -174,12 +174,12 @@ let g:AutoPairsShortcutBackInsert=''
 " }}}
 " lightline.vim {{{
 
-let g:lightline = {'colorscheme': 'solarized_light'}
+let g:lightline = {'colorscheme': 'solarized_dark'}
 
 " }}}
 " vim-colors-solarized {{{
 
-set background=light
+set background=dark
 let g:solarized_bold=1
 let g:solarized_underline=0
 let g:solarized_visibility="high"
@@ -397,10 +397,10 @@ highlight link multiple_cursors_visual Visual
 " vim-lengthmatters {{{
 
 " for solarized dark: magenta, light background
-" call lengthmatters#highlight('ctermbg=0 ctermfg=5')
+call lengthmatters#highlight('ctermbg=0 ctermfg=5')
 
 " for solarized light
-call lengthmatters#highlight('ctermbg=7 ctermfg=1')
+" call lengthmatters#highlight('ctermbg=7 ctermfg=1')
 
 " very long, a very very very very long line to test really for lengthmatters coloring capabilities
 
