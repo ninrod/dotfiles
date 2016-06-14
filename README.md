@@ -77,6 +77,7 @@ $ exec zsh
 0. [othree/xml.vim](https://github.com/othree/xml.vim.git): auto close tags for xml (and html) files
 0. [sheerun/vim-polyglot](https://github.com/sheerun/vim-polyglot.git): syntax highlight for various filetypes.
 0. [terryma/vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors.git): sublime text like multiple cursors.
+0. [timakro/vim-searchant](https://github.com/timakro/vim-searchant.git): Vim plugin for improved search highlighting.
 0. [tommcdo/vim-exchange](https://github.com/tommcdo/vim-exchange.git): easily swap regions of text.
 0. [thinca/vim-textobj-function-javascript](https://github.com/thinca/vim-textobj-function-javascript.git): expands `f` obj. to include javascript functions.
 0. [tpope/vim-commentary](https://github.com/tpope/vim-commentary.git): automatic commentary wrapping.

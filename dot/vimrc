@@ -149,6 +149,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
 Plug 'whatyouhide/vim-lengthmatters'
+Plug 'timakro/vim-searchant'
 
 Plug 'kana/vim-textobj-user'
   \| Plug 'kana/vim-textobj-entire',
@@ -204,6 +205,12 @@ let g:multi_cursor_exit_from_visual_mode = 0
 let g:multi_cursor_exit_from_insert_mode = 0
 
 " }}}
+" vim-searchant {{{
+
+let g:searchant_map_stop = 0
+nmap - <Plug>SearchantStop
+
+" }}}
 
 " }}}
 " binds {{{
@@ -251,9 +258,6 @@ nnoremap <cr> :w<cr>
 " faster exit
 nnoremap Z ZZ
 nnoremap Q ZQ
-
-" turn off search highlighting
-nnoremap - :noh<cr>
 
 " navigate vim help files
 nnoremap  } <C-]>
