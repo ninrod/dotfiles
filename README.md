@@ -96,6 +96,7 @@ $ exec zsh
 0. [tpope/vim-surround](https://github.com/tpope/vim-surround.git): easily add surroundings to words. 
 0. [wellle/targets.vim](https://github.com/wellle/targets.vim.git): more targets for you to work with.
 0. [whatyouhide/vim-textobj-xmlattr](https://github.com/whatyouhide/vim-textobj-xmlattr.git): `x` obj. to work with xml/html tags.
+0. [whatyouhide/vim-lengthmatters](https://github.com/whatyouhide/vim-lengthmatters.git): colour the part of the line that exceeds 80 chars.
 
 ### Note about the `<leader>` key
 

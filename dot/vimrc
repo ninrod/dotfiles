@@ -148,6 +148,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
+Plug 'whatyouhide/vim-lengthmatters'
 
 Plug 'kana/vim-textobj-user'
   \| Plug 'kana/vim-textobj-entire',
@@ -205,11 +206,20 @@ silent! colorscheme solarized
 let g:commentary_map_backslash=0
 
 " }}}
+" vim-lengthmatters {{{
+
+" magenta, light background
+call lengthmatters#highlight('ctermbg=0 ctermfg=5')
+" very long, a very very very very long line to test really for lengthmatters coloring capabilities
+
+" }}}
 
 " }}}
 " binds {{{
 
 " standard bind changes {{{
+
+nnoremap <F11> :so $MYVIMRC<CR>
 
 " faster folding (current fold toggle)
 nnoremap s za
@@ -401,5 +411,12 @@ function! s:ag_with_opts(arg, bang)
   call fzf#vim#ag(query, ag_opts, a:bang ? {} : {'down': '40%'})
 endfunction
 autocmd VimEnter * command! -nargs=* -bang Nag call s:ag_with_opts(<q-args>, <bang>0)
+
+function! s:blankDown()
+  execute "normal mzo\<esc>`z"
+  silent! call repeat#set("\<Plug>(blankDown)", 1)
+endfunction
+nnoremap <Plug>(blankDown) :<C-u>call <SID>blankDown()<CR>
+nmap K <Plug>(blankDown)
 
 " }}}
