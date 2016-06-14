@@ -2,13 +2,9 @@
 
 * Simplicity, speed and power while working inside the shell.
 
-## Using Solarized Dark
+## Screenshot
 
 ![solarized-dark-vi-tmux](https://raw.githubusercontent.com/ninrod/dotfiles/misc/images/update-2016.06.03.png)
-
-## Using PaperColor
-
-![papercolor-vi-tmux](https://raw.githubusercontent.com/ninrod/dotfiles/misc/images/screen.png)
 
 ## Important notice 
 
@@ -18,7 +14,7 @@
 
 * First off, I strongly recommend using [iTerm2](https://github.com/gnachman/iTerm2.git) on OSx.
 * Secondly, this is for unix systems: `GNU/Linux`, `OSx`, etc... It should work on theory on windows, but I've faced a lot of configuration issues and ended up abandoning windows support.
-* configure your terminal to use the [papercolor theme](https://github.com/NLKNguyen/papercolor-theme.git) or [solarized dark theme](https://github.com/altercation/solarized.git). There's a `conf` folder within this repo that can help you with that. 
+* configure your terminal to use the [solarized dark theme](https://github.com/altercation/solarized.git). There's a `conf` folder within this repo that can help you with that. 
 * now get `vim` 7.4+ with [+clipboard](http://vimcasts.org/blog/2013/11/getting-vim-with-clipboard-support) and +python.
 * get [tmux](https://github.com/tmux/tmux.git) 1.8+
 * get [zsh](https://github.com/zsh-users/zsh.git) 5.1+ and make sure that `/bin/zsh` is valid. (if not: `$ cd /bin && sudo ln -s $(command -v zsh) zsh`)
@@ -59,13 +55,6 @@ $ exec zsh
 * note: the alias `v` is mapped to `nvim`. ([neovim](https://neovim.io/) is a fork of vim. It's my main editor.)
 
 * That's it, your're all set.
-
-
-## Bonus: Changing themes
-
-* To change Themes you have to alter `dot/tmux.conf`, `dot/vimrc`, `dot/zshrc` (for prompt theme) and your terminal theme.
-* there's a `conf` folder that can help you with that.
-* I've also provided a [solarized-theme](https://github.com/ninrod/dotfiles/releases/tag/solarized-theme) tag and a [papercolor-theme](https://github.com/ninrod/dotfiles/releases/tag/papercolor-theme) as example setups.
 
 ## VIM: Powerful shell text editor. Tweaked with plugins.
 
