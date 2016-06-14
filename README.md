@@ -71,7 +71,7 @@ $ exec zsh
 
 ### Used plugins
 0. [altercation/vim-colors-solarized](https://github.com/altercation/vim-colors-solarized.git): well designed vim colorscheme.
-0. [bronson/vim-visual-start-search_link](https://github.com/bronson/vim-visual-star-search.git): use `*` in visual selections too.
+0. [bronson/vim-visual-star-search](https://github.com/bronson/vim-visual-star-search.git): use `*` in visual selections too.
 0. [chaoren/vim-wordmotion](https://github.com/chaoren/vim-wordmotion.git): move easily between camel words an whatnot.
 0. [ervandew/supertab](https://github.com/ervandew/supertab.git): insert mode completions triggered by `<TAB>`.
 0. [itchyny/lightline.vim](https://github.com/itchyny/lightline.vim.git): very clean vim status bar.
