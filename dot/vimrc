@@ -206,13 +206,6 @@ silent! colorscheme solarized
 let g:commentary_map_backslash=0
 
 " }}}
-" vim-lengthmatters {{{
-
-" magenta, light background
-call lengthmatters#highlight('ctermbg=0 ctermfg=5')
-" very long, a very very very very long line to test really for lengthmatters coloring capabilities
-
-" }}}
 
 " }}}
 " binds {{{
@@ -389,16 +382,27 @@ silent! autocmd CmdwinLeave * nnoremap <cr> :w<cr>
 " }}}
 " highlights {{{
 
+" fix contrast issue with solarized dark.
+" https://github.com/airblade/vim-gitgutter/issues/164
+highlight clear SignColumn
+
 " highlight cursor line line number
 highlight CursorLineNr cterm=bold ctermfg=124
+
+" vim-multiple-cursors {{{
 
 " Multiple cursors Default highlighting (see help :highlight and help :highlight-link)
 highlight multiple_cursors_cursor term=reverse cterm=reverse ctermfg=125 ctermbg=254
 highlight link multiple_cursors_visual Visual
 
-" fix contrast issue with solarized dark.
-" https://github.com/airblade/vim-gitgutter/issues/164
-highlight clear SignColumn
+" }}}
+" vim-lengthmatters {{{
+
+" magenta, light background
+call lengthmatters#highlight('ctermbg=0 ctermfg=5')
+" very long, a very very very very long line to test really for lengthmatters coloring capabilities
+
+" }}}
 
 " }}}
 "  functions {{{
