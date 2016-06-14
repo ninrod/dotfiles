@@ -166,31 +166,20 @@ call plug#end()
 " }}}
 " plugin configuration {{{
 
-" vim-multiple-cursors {{{
-
-let g:multi_cursor_exit_from_visual_mode = 0
-let g:multi_cursor_exit_from_insert_mode = 0
-
-" }}}
-" vim-closetag {{{
-
-let g:closetag_filenames = "*.html,*.xml"
-
-" }}}
-" lightline.vim {{{
-
-let g:lightline = {'colorscheme': 'solarized'}
-
-" }}}
 " auto-pairs {{{
 
 " auto-pairs plugin maps 'â' in insert mode limiting our ability to type 'â'. So we fix it.
 let g:AutoPairsShortcutBackInsert=''
 
 " }}}
+" lightline.vim {{{
+
+let g:lightline = {'colorscheme': 'solarized_light'}
+
+" }}}
 " vim-colors-solarized {{{
 
-set background=dark
+set background=light
 let g:solarized_bold=1
 let g:solarized_underline=0
 let g:solarized_visibility="high"
@@ -208,6 +197,12 @@ let g:commentary_map_backslash=0
 " }}}
 " vim-lengthmatters {{{
 let g:lengthmatters_excluded = ['markdown']
+" }}}
+" vim-multiple-cursors {{{
+
+let g:multi_cursor_exit_from_visual_mode = 0
+let g:multi_cursor_exit_from_insert_mode = 0
+
 " }}}
 
 " }}}
@@ -401,8 +396,12 @@ highlight link multiple_cursors_visual Visual
 " }}}
 " vim-lengthmatters {{{
 
-" magenta, light background
-call lengthmatters#highlight('ctermbg=0 ctermfg=5')
+" for solarized dark: magenta, light background
+" call lengthmatters#highlight('ctermbg=0 ctermfg=5')
+
+" for solarized light
+call lengthmatters#highlight('ctermbg=7 ctermfg=1')
+
 " very long, a very very very very long line to test really for lengthmatters coloring capabilities
 
 " }}}
