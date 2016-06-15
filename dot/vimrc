@@ -217,6 +217,14 @@ nmap - <Plug>SearchantStop
 
 " standard bind changes {{{
 
+" I do not usually navigate sentences
+" I've already rebound { for helpfile navigation
+" ( is more convenient than {
+nnoremap ( {
+xnoremap ( {
+nnoremap ) }
+xnoremap ) }
+
 nmap g<space> <Plug>(blankUp)
 nmap g<cr> <Plug>(blankDown)
 
