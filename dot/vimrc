@@ -155,6 +155,8 @@ Plug 'morhetz/gruvbox'
 Plug 'altercation/vim-colors-solarized'
 Plug 'nanotech/jellybeans.vim'
 
+Plug 'edkolev/tmuxline.vim'
+
 Plug 'kana/vim-textobj-user'
   \| Plug 'kana/vim-textobj-entire',
   \| Plug 'kana/vim-textobj-function', {'for': 'javascript'}
@@ -227,10 +229,15 @@ let g:solarized_diffmode="high"
 " silent! colorscheme gruvbox
 
 " }}}
-
 " jellybeans {{{
 
 silent! colorscheme jellybeans
+
+" }}}
+
+" tmuxline.vim {{{
+
+let g:tmuxline_powerline_separators = 0
 
 " }}}
 
