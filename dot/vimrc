@@ -434,8 +434,8 @@ highlight CursorLineNr cterm=bold ctermfg=124
 " vim-multiple-cursors {{{
 
 " Multiple cursors Default highlighting (see help :highlight and help :highlight-link)
-highlight multiple_cursors_cursor term=reverse cterm=reverse ctermfg=125 ctermbg=254
-highlight link multiple_cursors_visual Visual
+" highlight multiple_cursors_cursor term=reverse cterm=reverse ctermfg=125 ctermbg=254
+" highlight link multiple_cursors_visual Visual
 
 " }}}
 " vim-lengthmatters {{{
