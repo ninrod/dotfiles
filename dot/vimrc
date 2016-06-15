@@ -139,7 +139,7 @@ Plug 'nhooyr/neoman.vim'
 Plug 'ninrod/ninscratch-vim'
 Plug 'ninrod/vis'
 Plug 'othree/xml.vim'
-Plug 'sheerun/vim-polyglot', {'for': ['rust', 'javascript', 'xml', 'html', 'markdown']}
+Plug 'sheerun/vim-polyglot', {'for': ['rust', 'javascript', 'xml', 'html', 'markdown', 'tmux']}
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-commentary'
