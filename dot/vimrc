@@ -153,6 +153,7 @@ Plug 'timakro/vim-searchant'
 Plug 'justinmk/molokai'
 Plug 'morhetz/gruvbox'
 Plug 'altercation/vim-colors-solarized'
+Plug 'nanotech/jellybeans.vim'
 
 Plug 'kana/vim-textobj-user'
   \| Plug 'kana/vim-textobj-entire',
@@ -223,7 +224,13 @@ let g:solarized_diffmode="high"
 " }}}
 " gruvbox {{{
 
-silent! colorscheme gruvbox
+" silent! colorscheme gruvbox
+
+" }}}
+
+" jellybeans {{{
+
+silent! colorscheme jellybeans
 
 " }}}
 
