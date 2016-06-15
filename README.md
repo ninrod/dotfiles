@@ -4,7 +4,7 @@
 
 ## Screenshot
 
-![solarized-dark-vi-tmux](https://raw.githubusercontent.com/ninrod/dotfiles/misc/images/update-2016.06.03.png)
+![solarized-dark-vi-tmux](https://github.com/ninrod/dotfiles/raw/misc/images/shot-2016-06-15-jellybeans.png)
 
 ## Important notice 
 
