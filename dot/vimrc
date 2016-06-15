@@ -217,6 +217,9 @@ nmap - <Plug>SearchantStop
 
 " standard bind changes {{{
 
+nmap g<space> <Plug>(blankUp)
+nmap g<cr> <Plug>(blankDown)
+
 nnoremap <F11> :so $MYVIMRC<CR>
 
 " faster folding (current fold toggle)
@@ -422,11 +425,16 @@ function! s:ag_with_opts(arg, bang)
 endfunction
 autocmd VimEnter * command! -nargs=* -bang Nag call s:ag_with_opts(<q-args>, <bang>0)
 
+function! s:blankUp()
+  execute "normal mzO\<esc>`z"
+  silent! call repeat#set("\<Plug>(blankUp)", 1)
+endfunction
+nnoremap <Plug>(blankUp) :<C-u>call <SID>blankUp()<CR>
+
 function! s:blankDown()
   execute "normal mzo\<esc>`z"
   silent! call repeat#set("\<Plug>(blankDown)", 1)
 endfunction
 nnoremap <Plug>(blankDown) :<C-u>call <SID>blankDown()<CR>
-nmap K <Plug>(blankDown)
 
 " }}}
