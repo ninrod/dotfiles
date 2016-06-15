@@ -178,11 +178,6 @@ call plug#end()
 let g:AutoPairsShortcutBackInsert=''
 
 " }}}
-" lightline.vim {{{
-
-let g:lightline = {'colorscheme': 'solarized_dark'}
-
-" }}}
 " vim-commentary {{{
 
 " disable double backslash
@@ -226,15 +221,20 @@ let g:solarized_diffmode="high"
 " }}}
 " gruvbox {{{
 
-" silent! colorscheme gruvbox
+silent! colorscheme gruvbox
 
 " }}}
 " jellybeans {{{
 
-silent! colorscheme jellybeans
+" silent! colorscheme jellybeans
 
 " }}}
 
+" lightline.vim {{{
+
+let g:lightline = {'colorscheme': 'jellybeans'}
+
+" }}}
 " tmuxline.vim {{{
 
 let g:tmuxline_powerline_separators = 0
