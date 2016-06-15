@@ -70,6 +70,7 @@ export ZPLUG_CLONE_DEPTH=1
 
 # Enable a different cursor in NVIM in insert mode
 export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+export NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 # ENHANCD customizations
 export ENHANCD_COMMAND=d

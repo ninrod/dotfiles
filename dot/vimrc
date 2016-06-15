@@ -126,7 +126,6 @@ filetype plugin indent on
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'altercation/vim-colors-solarized'
 Plug 'bronson/vim-visual-star-search'
 Plug 'chaoren/vim-wordmotion'
 Plug 'ervandew/supertab'
@@ -151,14 +150,17 @@ Plug 'wellle/targets.vim'
 Plug 'whatyouhide/vim-lengthmatters'
 Plug 'timakro/vim-searchant'
 
+Plug 'justinmk/molokai'
+Plug 'morhetz/gruvbox'
+Plug 'altercation/vim-colors-solarized'
+
 Plug 'kana/vim-textobj-user'
   \| Plug 'kana/vim-textobj-entire',
   \| Plug 'kana/vim-textobj-function', {'for': 'javascript'}
   \| Plug 'thinca/vim-textobj-function-javascript', {'for': 'javascript'}
   \| Plug 'whatyouhide/vim-textobj-xmlattr', {'for': ['html', 'xml']}
 
-
-" resource hog plugins
+" resource hog
 " Plug 'SirVer/ultisnips'
 "   \| Plug 'ninrod/vim-snippets'
 
@@ -176,18 +178,6 @@ let g:AutoPairsShortcutBackInsert=''
 " lightline.vim {{{
 
 let g:lightline = {'colorscheme': 'solarized_dark'}
-
-" }}}
-" vim-colors-solarized {{{
-
-set background=dark
-let g:solarized_bold=1
-let g:solarized_underline=0
-let g:solarized_visibility="high"
-let g:solarized_contrast="high"
-let g:solarized_diffmode="high"
-" let g:solarized_termcolors=16
-silent! colorscheme solarized
 
 " }}}
 " vim-commentary {{{
@@ -209,6 +199,31 @@ let g:multi_cursor_exit_from_insert_mode = 0
 
 let g:searchant_map_stop = 0
 nmap - <Plug>SearchantStop
+
+" }}}
+
+" vim-colors-solarized {{{
+
+set background=dark
+let g:solarized_bold=1
+let g:solarized_underline=0
+let g:solarized_visibility="high"
+let g:solarized_contrast="high"
+let g:solarized_diffmode="high"
+" let g:solarized_termcolors=16
+" silent! colorscheme solarized
+
+" }}}
+" molokai {{{
+
+" let g:rehash256 = 1
+" let g:molokai_original = 1
+" silent! colorscheme molokai
+
+" }}}
+" gruvbox {{{
+
+silent! colorscheme gruvbox
 
 " }}}
 
