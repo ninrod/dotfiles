@@ -1,3 +1,4 @@
+" ascii art {{{
 "                ╔══════════════════════════════════════════╗
 "                ║           ⎋ NINROD'S VIMRC   ⎋           ║
 "                ╚══════════════════════════════════════════╝
@@ -25,14 +26,17 @@
 "   YOU ARE ABOUT TO WITNESS A SERIOUS DOSAGE OF VIM TWEAKING. YOU'VE BEEN WARNED!
 "
 "           (credits: ascii art lifted from github.com/mhinz)
-"
-
+" }}}
 " vim options {{{
 
 " nvim/vim differences
 if has('nvim')
   " I sometimes accidentally place my thumb on the macbook trackpad
   set mouse=c
+
+  " neovim cursor and truecolor configs
+  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 else
   " UTF encoding
   set encoding=utf-8
