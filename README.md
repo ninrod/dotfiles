@@ -14,7 +14,7 @@
 
 * First off, I strongly recommend using [iTerm2](https://github.com/gnachman/iTerm2.git) on OSx.
 * Secondly, this is for unix systems: `GNU/Linux`, `OSx`, etc... It should work on theory on windows, but I've faced a lot of configuration issues and ended up abandoning windows support.
-* configure your terminal to use the [solarized dark theme](https://github.com/altercation/solarized.git). There's a `conf` folder within this repo that can help you with that. 
+* configure your terminal to use the [gruvbox theme](https://github.com/morhetz/gruvbox). There's a `conf` folder within this repo that can help you with that. 
 * now get `vim` 7.4+ with [+clipboard](http://vimcasts.org/blog/2013/11/getting-vim-with-clipboard-support) and +python.
 * get [tmux](https://github.com/tmux/tmux.git) 1.8+
 * get [zsh](https://github.com/zsh-users/zsh.git) 5.1+ and make sure that `/bin/zsh` is valid. (if not: `$ cd /bin && sudo ln -s $(command -v zsh) zsh`)
