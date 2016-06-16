@@ -220,12 +220,12 @@ set background=dark
 " }}}
 " jellybeans {{{
 
-silent! colorscheme jellybeans
+" silent! colorscheme jellybeans
 
 " }}}
 " gruvbox {{{
 
-" silent! colorscheme gruvbox
+silent! colorscheme gruvbox
 
 " }}}
 " molokai {{{
@@ -244,7 +244,7 @@ silent! colorscheme jellybeans
 " lightline.vim {{{
 
 let g:lightline = {
-      \'colorscheme': 'jellybeans',
+      \'colorscheme': 'Tomorrow_Night',
       \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
       \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
       \}
