@@ -187,7 +187,9 @@ let g:commentary_map_backslash=0
 
 " }}}
 " vim-lengthmatters {{{
+
 let g:lengthmatters_excluded = ['markdown']
+
 " }}}
 " vim-multiple-cursors {{{
 
