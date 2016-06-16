@@ -150,13 +150,7 @@ Plug 'wellle/targets.vim'
 Plug 'whatyouhide/vim-lengthmatters'
 Plug 'timakro/vim-searchant'
 
-Plug 'justinmk/molokai'
 Plug 'morhetz/gruvbox'
-Plug 'altercation/vim-colors-solarized'
-Plug 'nanotech/jellybeans.vim'
-Plug 'NLKNguyen/papercolor-theme'
-
-Plug 'edkolev/tmuxline.vim'
 
 Plug 'kana/vim-textobj-user'
   \| Plug 'kana/vim-textobj-entire',
@@ -164,7 +158,14 @@ Plug 'kana/vim-textobj-user'
   \| Plug 'thinca/vim-textobj-function-javascript', {'for': 'javascript'}
   \| Plug 'whatyouhide/vim-textobj-xmlattr', {'for': ['html', 'xml']}
 
-" resource hog
+" unused theme plugins
+" Plug 'justinmk/molokai'
+" Plug 'altercation/vim-colors-solarized'
+" Plug 'nanotech/jellybeans.vim'
+" Plug 'NLKNguyen/papercolor-theme'
+" Plug 'edkolev/tmuxline.vim'
+
+" resource hog plugins
 " Plug 'SirVer/ultisnips'
 "   \| Plug 'ninrod/vim-snippets'
 
@@ -201,12 +202,16 @@ nmap - <Plug>SearchantStop
 
 " }}}
 
-
 " }}}
 " theme configuration {{{
 
 set background=dark
 
+" gruvbox {{{
+
+silent! colorscheme gruvbox
+
+" }}}
 " vim-colors-solarized {{{
 
 " let g:solarized_bold=1
@@ -221,11 +226,6 @@ set background=dark
 " jellybeans {{{
 
 " silent! colorscheme jellybeans
-
-" }}}
-" gruvbox {{{
-
-silent! colorscheme gruvbox
 
 " }}}
 " molokai {{{
@@ -252,7 +252,7 @@ let g:lightline = {
 " }}}
 " tmuxline.vim {{{
 
-let g:tmuxline_powerline_separators = 1
+" let g:tmuxline_powerline_separators = 1
 
 " }}}
 
