@@ -368,12 +368,17 @@ nmap <leader>x <C-W>s
 " plugin binds {{{
 
 " easyalign {{{
+
 xmap <cr> <Plug>(EasyAlign)
+
 " }}}
 " nin-scratch {{{
+
 nnoremap gs :NinScratch<CR>
+
 " }}}
 " fzf.vim {{{
+
 nnoremap <leader>f :Files<cr>
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>r :History<cr>
@@ -389,6 +394,7 @@ imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
+
 " }}}
 
 " }}}
@@ -417,7 +423,6 @@ autocmd FileType sh,ruby,yaml,zsh,vim setlocal shiftwidth=2 tabstop=2 expandtab
 autocmd FileType java setlocal shiftwidth=4 tabstop=4 expandtab
 
 autocmd Filetype gitcommit setlocal spell textwidth=80
-
 
 " disabling auto commenting on new line, e.g. 'o' and 'O'
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
