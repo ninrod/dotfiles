@@ -200,7 +200,6 @@ let g:multi_cursor_exit_from_insert_mode = 0
 " vim-searchant {{{
 
 let g:searchant_map_stop = 0
-nmap - <Plug>SearchantStop
 
 " }}}
 
@@ -262,6 +261,8 @@ let g:lightline = {
 " binds {{{
 
 " standard bind changes {{{
+
+nmap - <Plug>SearchantStop
 
 " I do not usually navigate sentences
 " I've already rebound { for helpfile navigation
