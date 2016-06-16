@@ -216,12 +216,12 @@ let g:solarized_diffmode="high"
 
 " let g:rehash256 = 1
 " let g:molokai_original = 1
-" silent! colorscheme molokai
+silent! colorscheme molokai
 
 " }}}
 " gruvbox {{{
 
-silent! colorscheme gruvbox
+" silent! colorscheme gruvbox
 
 " }}}
 " jellybeans {{{
@@ -232,7 +232,7 @@ silent! colorscheme gruvbox
 
 " lightline.vim {{{
 
-let g:lightline = {'colorscheme': 'jellybeans'}
+let g:lightline = {'colorscheme': 'powerline'}
 
 " }}}
 " tmuxline.vim {{{
