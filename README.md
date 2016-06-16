@@ -4,11 +4,11 @@
 
 ## Screenshots
 
-### with [gruvbox](https://github.com/morhetz/gruvbox) (default)
+### With [gruvbox](https://github.com/morhetz/gruvbox) (default)
 
 ![gruvbox-config](https://github.com/ninrod/dotfiles/raw/misc/images/shot-2016-06-15-gruvbox.png)
 
-### with [jellybeans](https://github.com/nanotech/jellybeans.vim)
+### With [jellybeans](https://github.com/nanotech/jellybeans.vim)
 
 ![jellybeans-config](https://github.com/ninrod/dotfiles/raw/misc/images/shot-2016-06-15-jellybeans.png)
 
