@@ -2,9 +2,15 @@
 
 * Simplicity, speed and power while working inside the shell.
 
-## Screenshot
+## Screenshots
 
-![solarized-dark-vi-tmux](https://github.com/ninrod/dotfiles/raw/misc/images/shot-2016-06-15-jellybeans.png)
+### with gruvbox (default)
+
+![gruvbox-config](https://github.com/ninrod/dotfiles/raw/misc/images/shot-2016-06-15-gruvbox.png)
+
+### with jellybeans
+
+![jellybeans-config](https://github.com/ninrod/dotfiles/raw/misc/images/shot-2016-06-15-jellybeans.png)
 
 ## Important notice 
 
