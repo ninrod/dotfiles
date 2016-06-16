@@ -203,7 +203,7 @@ nmap - <Plug>SearchantStop
 
 " vim-colors-solarized {{{
 
-set background=dark
+set background=light
 let g:solarized_bold=1
 let g:solarized_underline=0
 let g:solarized_visibility="high"
@@ -238,7 +238,7 @@ silent! colorscheme PaperColor
 
 " lightline.vim {{{
 
-let g:lightline = {'colorscheme': 'powerline'}
+let g:lightline = {'colorscheme': 'PaperColor_light'}
 
 " }}}
 " tmuxline.vim {{{
