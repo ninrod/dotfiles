@@ -64,43 +64,13 @@ $ exec zsh
 
 ## VIM: Powerful shell text editor. Tweaked with plugins.
 
-### Used plugins
-0. [altercation/vim-colors-solarized](https://github.com/altercation/vim-colors-solarized.git): well designed vim colorscheme.
-0. [bronson/vim-visual-star-search](https://github.com/bronson/vim-visual-star-search.git): use `*` in visual selections too.
-0. [chaoren/vim-wordmotion](https://github.com/chaoren/vim-wordmotion.git): move easily between camel words an whatnot.
-0. [ervandew/supertab](https://github.com/ervandew/supertab.git): insert mode completions triggered by `<TAB>`.
-0. [itchyny/lightline.vim](https://github.com/itchyny/lightline.vim.git): very clean vim status bar.
-0. [jiangmiao/auto-pairs](https://github.com/jiangmiao/auto-pairs.git): plugin to complete pairs of brackets and similar stuff.
-0. [junegunn/fzf.vim](https://github.com/junegunn/fzf.vim.git): fuzzy finder.
-0. [junegunn/vim-easy-align](https://github.com/junegunn/vim-easy-align.git): very good text alignment tool.
-0. [kana/vim-textobj-entire](https://github.com/kana/vim-textobj-entire.git): `e` obj. for selecting the entire file.
-0. [kana/vim-textobj-function](https://github.com/kana/vim-textobj-function.git): `f` obj. for selecting functions.
-0. [kana/vim-textobj-user](https://github.com/kana/vim-textobj-user.git): base text-obj library.
-0. [nelstrom/vim-markdown-folding](https://github.com/nelstrom/vim-markdown-folding.git): adds folding syntax for markdown.
-0. [nhooyr/neoman.vim](https://github.com/nhooyr/neoman.vim.git): read man pages faster than superman.
-0. [ninrod/ninscratch-vim](https://github.com/ninrod/ninscratch-vim.git): my very simple scratch plugin
-0. [ninrod/vis](https://github.com/ninrod/vis.git): my mirror of dr. chipps `vis` plugin.
-0. [othree/xml.vim](https://github.com/othree/xml.vim.git): auto close tags for xml (and html) files
-0. [sheerun/vim-polyglot](https://github.com/sheerun/vim-polyglot.git): syntax highlight for various filetypes.
-0. [terryma/vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors.git): sublime text like multiple cursors.
-0. [timakro/vim-searchant](https://github.com/timakro/vim-searchant.git): Vim plugin for improved search highlighting.
-0. [tommcdo/vim-exchange](https://github.com/tommcdo/vim-exchange.git): easily swap regions of text.
-0. [thinca/vim-textobj-function-javascript](https://github.com/thinca/vim-textobj-function-javascript.git): expands `f` obj. to include javascript functions.
-0. [tpope/vim-commentary](https://github.com/tpope/vim-commentary.git): automatic commentary wrapping.
-0. [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive.git): useful git wrapper for vim.
-0. [tpope/vim-repeat](https://github.com/tpope/vim-repeat.git): expands usage opportunities for the `.` command.
-0. [tpope/vim-surround](https://github.com/tpope/vim-surround.git): easily add surroundings to words. 
-0. [wellle/targets.vim](https://github.com/wellle/targets.vim.git): more targets for you to work with.
-0. [whatyouhide/vim-textobj-xmlattr](https://github.com/whatyouhide/vim-textobj-xmlattr.git): `x` obj. to work with xml/html tags.
-0. [whatyouhide/vim-lengthmatters](https://github.com/whatyouhide/vim-lengthmatters.git): colour the part of the line that exceeds 80 chars.
 
-### Note about the `<leader>` key
 
-* I've remapped `<space>` to be an alias to the `<leader>` key.
+### Custom binds and plugins
 
-### Custom binds
+* To check out what binds and plugins I use in this config, my [vimrc](https://github.com/ninrod/dotfiles/blob/master/dot/vimrc) file is authoritative.
 
-* To check out what binds I use in this config, my [vimrc](https://github.com/ninrod/dotfiles/blob/master/dot/vimrc) file is authoritative.
+* That said, it is worth noting that I've remapped `<space>` to be an alias to the `<leader>` key.
 
 ## TMUX: the terminal multiplexer
 
