@@ -238,7 +238,7 @@ silent! colorscheme PaperColor
 
 " lightline.vim {{{
 
-let g:lightline = {'colorscheme': 'PaperColor_light'}
+let g:lightline = {'colorscheme': 'PaperColor'}
 
 " }}}
 " tmuxline.vim {{{
