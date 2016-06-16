@@ -205,16 +205,27 @@ nmap - <Plug>SearchantStop
 " }}}
 " theme configuration {{{
 
+set background=dark
+
 " vim-colors-solarized {{{
 
-set background=dark
-let g:solarized_bold=1
-let g:solarized_underline=0
-let g:solarized_visibility="high"
-let g:solarized_contrast="high"
-let g:solarized_diffmode="high"
+" let g:solarized_bold=1
+" let g:solarized_underline=0
+" let g:solarized_visibility="high"
+" let g:solarized_contrast="high"
+" let g:solarized_diffmode="high"
 " let g:solarized_termcolors=16
 " silent! colorscheme solarized
+
+" }}}
+" jellybeans {{{
+
+silent! colorscheme jellybeans
+
+" }}}
+" gruvbox {{{
+
+" silent! colorscheme gruvbox
 
 " }}}
 " molokai {{{
@@ -222,16 +233,6 @@ let g:solarized_diffmode="high"
 " let g:rehash256 = 1
 " let g:molokai_original = 1
 " silent! colorscheme molokai
-
-" }}}
-" gruvbox {{{
-
-silent! colorscheme gruvbox
-
-" }}}
-" jellybeans {{{
-
-" silent! colorscheme jellybeans
 
 " }}}
 " papercolor-theme {{{
@@ -243,7 +244,7 @@ silent! colorscheme gruvbox
 " lightline.vim {{{
 
 let g:lightline = {
-      \'colorscheme': 'Tomorrow_Night',
+      \'colorscheme': 'jellybeans',
       \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
       \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
       \}
@@ -443,7 +444,7 @@ silent! autocmd CmdwinLeave * nnoremap <cr> :w<cr>
 highlight clear SignColumn
 
 " highlight cursor line line number
-highlight CursorLineNr cterm=bold ctermfg=124
+" highlight CursorLineNr cterm=bold ctermfg=124
 
 " vim-multiple-cursors {{{
 
