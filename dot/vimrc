@@ -154,6 +154,7 @@ Plug 'justinmk/molokai'
 Plug 'morhetz/gruvbox'
 Plug 'altercation/vim-colors-solarized'
 Plug 'nanotech/jellybeans.vim'
+Plug 'NLKNguyen/papercolor-theme'
 
 Plug 'edkolev/tmuxline.vim'
 
@@ -216,7 +217,7 @@ let g:solarized_diffmode="high"
 
 " let g:rehash256 = 1
 " let g:molokai_original = 1
-silent! colorscheme molokai
+" silent! colorscheme molokai
 
 " }}}
 " gruvbox {{{
@@ -227,6 +228,11 @@ silent! colorscheme molokai
 " jellybeans {{{
 
 " silent! colorscheme jellybeans
+
+" }}}
+" papercolor-theme {{{
+
+silent! colorscheme PaperColor
 
 " }}}
 

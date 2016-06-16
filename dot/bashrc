@@ -4,7 +4,6 @@ set -o vi
 shopt -s autocd
 
 # }}}
-
 # exports {{{
 
 export LANG=en_US.UTF-8
@@ -15,7 +14,6 @@ export EDITOR=vim
 export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 # }}}
-
 # path {{{
 
 PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
@@ -26,14 +24,12 @@ PATH="$GNUBIN_PATH:$PATH"
 export PATH
 
 # }}}
-
 # plugins {{{
 
 # colors for GNU ls (from coreutils)
 eval `dircolors ~/.lscolors`
 
 # }}}
-
 # terminal colors {{{
 
 TC='\e['
@@ -48,7 +44,6 @@ Cyan="${TC}36m";
 White="${TC}37m";
 
 # }}}
-
 # alias | binds {{{
 
 # Ag (the silver searcher)
@@ -98,7 +93,6 @@ alias glsi='git ls-files -oiX .gitignore'
 alias gi='builtin cd $(git rev-parse --show-toplevel)'
 
 # }}}
-
 # custom functions {{{
 
 md () {
@@ -141,7 +135,6 @@ function nman () {
 }
 
 # }}}
-
 # prompt {{{
 
 export PS1="${Blue}\w ${Red}\u${Cyan}@${Yellow}\h ${Purple}#${Rst} "
