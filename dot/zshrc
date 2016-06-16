@@ -297,7 +297,7 @@ compdef nman="man"
 ######## dark
 
 # very simple with directory truncation
-PROMPT='%F{blue}%12<...<%1~%<<%f %F{magenta}#%f '
+PROMPT='%F{blue}%12<...<%1~%<<%f %F{magenta}$%f '
 
 # showing whoami@hostname
 # PROMPT='%F{blue}%1~%f %F{cyan}%n%f%F{red}@%f%F{yellow}%m%f %F{magenta}#%f '

@@ -201,6 +201,10 @@ nmap - <Plug>SearchantStop
 
 " }}}
 
+
+" }}}
+" theme configuration {{{
+
 " vim-colors-solarized {{{
 
 set background=dark
@@ -222,7 +226,7 @@ let g:solarized_diffmode="high"
 " }}}
 " gruvbox {{{
 
-" silent! colorscheme gruvbox
+silent! colorscheme gruvbox
 
 " }}}
 " jellybeans {{{
@@ -232,14 +236,14 @@ let g:solarized_diffmode="high"
 " }}}
 " papercolor-theme {{{
 
-silent! colorscheme PaperColor
+" silent! colorscheme PaperColor
 
 " }}}
 
 " lightline.vim {{{
 
 let g:lightline = {
-      \'colorscheme': 'Tomorrow_Night_Eighties',
+      \'colorscheme': 'Tomorrow_Night',
       \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
       \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
       \}
