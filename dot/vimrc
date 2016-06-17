@@ -48,7 +48,7 @@ set incsearch
 set hlsearch
 
 " set smartcase
-set ic
+set ignorecase
 
 " A buffer is marked as ‘hidden’ if it has unsaved changes, and it is not currently loaded in a window.
 " If you try and quit Vim while there are hidden buffers, you will raise an error:
@@ -71,8 +71,8 @@ set tabstop=2
 set shiftwidth=2
 
 " Turn on line numbers and relative line numbers
-set nu
-set rnu
+set number
+set relativenumber
 
 " Highlight tailing whitespace
 set list listchars=tab:\ \ ,trail:·
