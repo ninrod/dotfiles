@@ -6,7 +6,7 @@
 
 ### With [gruvbox](https://github.com/morhetz/gruvbox) (default)
 
-![gruvbox-config](https://github.com/ninrod/dotfiles/raw/misc/images/shot-2016-06-15-gruvbox.png)
+![gruvbox-config](https://github.com/ninrod/dotfiles/raw/misc/images/shot-2016-06-16-gruvbox.png)
 
 ### With [jellybeans](https://github.com/nanotech/jellybeans.vim)
 
