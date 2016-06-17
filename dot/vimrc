@@ -259,7 +259,14 @@ let g:lightline = {
 
 " standard bind changes {{{
 
-nmap - :noh<cr>
+" just use `cl` instead
+nnoremap q :noh<cr>
+
+" shift sucks
+nnoremap - $
+
+" faster folding (current fold toggle)
+nnoremap s za
 
 " I do not usually navigate sentences
 " I've already rebound { for helpfile navigation
@@ -274,22 +281,20 @@ nmap g<cr> <Plug>(blankDown)
 
 nnoremap <F11> :so $MYVIMRC<CR>
 
-" faster folding (current fold toggle)
-nnoremap s za
-
 " the default `q` macro bind always screws me.
 " so we changed it to a not ofensive one, like `;`.
 " it helps that I've already lost `;` for `:`.
-" let's pretended that S stands for `S`tore macro.
 " also, `cc` is a complete substitute for `S`
-nnoremap S q
-nnoremap q ;
-xnoremap q ;
+nnoremap & q
 
 " more convenient access to the command prompt (shift sucks)
 " based on tip from Damian Conway https://youtu.be/aHm36-na4-4?t=598
 nnoremap ; :
 xnoremap ; :
+nnoremap : ,
+xnoremap : ,
+nnoremap , ;
+xnoremap , ;
 
 " same idea as above: better access to register stuff. We use more `"` than `'` and shift sucks.
 nnoremap ' "
