@@ -260,7 +260,6 @@ xnoremap ) }
 nmap g<space> <Plug>(blankUp)
 nmap g<cr> <Plug>(blankDown)
 
-nnoremap <F11> :so $MYVIMRC<CR>
 
 " the default `q` macro bind always screws me.
 " so we changed it to a not ofensive one, like `;`.
@@ -461,7 +460,8 @@ nnoremap <Plug>(blankDown) :<C-u>call <SID>blankDown()<CR>
 " }}}
 " hacks {{{
 
-" sunaku's hack. more info here: http://sunaku.github.io/vim-256color-bce.html#solution
+" sunaku's hack. more info here:
+" https://github.com/ninrod/tricks/blob/master/shell/tmux.md#sunakus-hack-for-fixing-256-colors-colorschemes-for-vim-inside-tmux
 if &term =~ '256color'
   " disable Background Color Erase (BCE) so that color schemes
   " render properly when inside 256-color tmux and GNU screen.
