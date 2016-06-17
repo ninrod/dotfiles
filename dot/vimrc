@@ -1,110 +1,58 @@
 " vim options {{{
 
-" nvim/vim differences
-if has('nvim')
-  " I sometimes accidentally place my thumb on the macbook trackpad
-  set mouse=c
+set nocompatible
 
-  " neovim cursor and truecolor configs
+if has('nvim')
+  set mouse=c
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 else
-  " UTF encoding
   set encoding=utf-8
 endif
 
-" Switch syntax highlighting on, when the terminal has colors
 syntax on
-
-" Use vim, not vi api
-set nocompatible
-
-" No backup files
 set nobackup
-
-" No write backup
 set nowritebackup
-
-" No swap file
 set noswapfile
-
-" Command history
 set history=100
 
-" diff options. without this Gdiff was splitting horizontally on OSx.
-set diffopt=filler,vertical
-
-" Always show cursor
-set ruler
-
-" Show incomplete commands
-set showcmd
-
-" search configurations
-" Incremental searching (search as you type)
 set incsearch
-
-" Highlight search matches
 set hlsearch
-
-" set smartcase
 set ignorecase
-
-" A buffer is marked as ‘hidden’ if it has unsaved changes, and it is not currently loaded in a window.
-" If you try and quit Vim while there are hidden buffers, you will raise an error:
-" E162: No write since last change for buffer “a.txt”
-set hidden
-
-" Turn word wrap off
-set nowrap
-
-" Allow backspace to delete end of line, indent and start of line characters
-set backspace=indent,eol,start
-
-" Convert tabs to spaces
-set expandtab
-
-" Set tab size in spaces (this is for manual indenting)
-set tabstop=2
-
-" The number of spaces inserted for a tab (used for auto indenting)
-set shiftwidth=2
+set diffopt=filler,vertical
 
 " Turn on line numbers and relative line numbers
 set number
 set relativenumber
+set ruler
 
-" Highlight tailing whitespace
+set expandtab
+set tabstop=2
+set shiftwidth=2
+
+set showcmd
+
+set hidden
+
+set backspace=indent,eol,start
+
 set list listchars=tab:\ \ ,trail:·
 
-" Get rid of the delay when pressing O (for example)
-" http://stackoverflow.com/questions/2158516/vim-delay-before-o-opens-a-new-line
 set timeout timeoutlen=1000 ttimeoutlen=100
 
-" Always show status bar
 set laststatus=2
-
-" Hide the toolbar
 set guioptions-=T
 
-" Autoload files that have changed outside of vim
 set autoread
 
-" http://stackoverflow.com/questions/8134647/copy-and-paste-in-vim-via-keyboard-between-different-mac-terminals
-" Use system clipboard
 set clipboard+=unnamed
 
-" Don't show intro
 set shortmess+=I
 
-" Better splits (new windows appear below and to the right)
 set splitbelow
 set splitright
 
-" Highlight the current line
 set cursorline
-
-" Visual autocomplete for command menu (e.g. :e ~/path/to/file)
 set wildmenu
 
 " highlight a matching [{()}] when cursor is placed on start/end character
@@ -112,6 +60,7 @@ set showmatch
 
 " indicates a wrap line continuation
 set showbreak=←←
+set nowrap
 
 " redraw only when we need to (i.e. don't redraw when executing a macro)
 set lazyredraw
@@ -122,7 +71,6 @@ set wildignore+=*/.hg/*,*/.svn/*.,*/.DS_Store,*/.idea/*,*/.tmp/*,*/target/*
 " syntax/sh.vim adds `.` to iskeyword(verify with :verbose set iskeyword?). so `w` jumps past it. see :h g:sh_isk
 let g:sh_noisk=1
 
-" enable language-dependent indenting.
 filetype plugin indent on
 
 " }}}
