@@ -11,56 +11,86 @@ else
 endif
 
 syntax on
+
+" backups
 set nobackup
 set nowritebackup
 set noswapfile
-set history=100
 
+" better '/'
 set incsearch
 set hlsearch
 set ignorecase
-set diffopt=filler,vertical
 
-" Turn on line numbers and relative line numbers
+" line numbers
 set number
 set relativenumber
-set ruler
 
+" convert tabs to spaces
 set expandtab
 set tabstop=2
 set shiftwidth=2
 
+set history=100
+
+" diff options. without this Gdiff was splitting horizontally on OSx.
+set diffopt=filler,vertical
+
+" show partial commands from operator pending mode
 set showcmd
 
+" show line numbers on status line
+set ruler
+
+" A buffer is marked as ‘hidden’ if it has unsaved changes, and it is not currently loaded in a window.
+" If you try and quit Vim while there are hidden buffers, you will raise an error:
+" E162: No write since last change for buffer “a.txt”
 set hidden
 
+" fix backspace behaviour
 set backspace=indent,eol,start
 
+" show trailing spaces
 set list listchars=tab:\ \ ,trail:·
 
+" Get rid of the delay when pressing O (for example)
+" http://stackoverflow.com/questions/2158516/vim-delay-before-o-opens-a-new-line
 set timeout timeoutlen=1000 ttimeoutlen=100
 
+" Always show status bar
 set laststatus=2
+
+" Hide the toolbar
 set guioptions-=T
 
+" Autoload files that have changed outside of vim
 set autoread
 
+" http://stackoverflow.com/questions/8134647/copy-and-paste-in-vim-via-keyboard-between-different-mac-terminals
+" better gui clipboard integration
 set clipboard+=unnamed
 
+" Don't show intro
 set shortmess+=I
 
+" better splits
 set splitbelow
 set splitright
 
+" Highlight the current line
 set cursorline
+
+" Visual autocomplete for command menu (e.g. :e ~/path/to/file)
 set wildmenu
 
 " highlight a matching [{()}] when cursor is placed on start/end character
 set showmatch
 
+" do not wrap long lines
+set nowrap
+
 " indicates a wrap line continuation
 set showbreak=←←
-set nowrap
 
 " redraw only when we need to (i.e. don't redraw when executing a macro)
 set lazyredraw
@@ -101,17 +131,16 @@ Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
 
 Plug 'itchyny/lightline.vim'
-Plug 'edkolev/tmuxline.vim'
 
 Plug 'kana/vim-textobj-user'
   \| Plug 'kana/vim-textobj-entire',
   \| Plug 'kana/vim-textobj-function', {'for': 'javascript'}
+  \| Plug 'kana/vim-textobj-indent'
   \| Plug 'thinca/vim-textobj-function-javascript', {'for': 'javascript'}
   \| Plug 'whatyouhide/vim-textobj-xmlattr', {'for': ['html', 'xml']}
 
-" unused plugins
-" Plug 'timakro/vim-searchant'
-" Plug 'whatyouhide/vim-lengthmatters'
+" tmux configuration. used less often
+" Plug 'edkolev/tmuxline.vim'
 
 " theme plugins
 " Plug 'justinmk/molokai'
@@ -122,6 +151,11 @@ Plug 'kana/vim-textobj-user'
 " resource hog plugins
 " Plug 'SirVer/ultisnips'
 "   \| Plug 'ninrod/vim-snippets'
+
+" plugin cemetery
+" Plug 'timakro/vim-searchant'
+" Plug 'whatyouhide/vim-lengthmatters'
+
 
 call plug#end()
 
