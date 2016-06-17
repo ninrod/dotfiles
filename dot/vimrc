@@ -108,10 +108,26 @@ filetype plugin indent on
 
 call plug#begin('~/.vim/plugged')
 
+" babyseat plugins
+" auto-pairs {{{
+
+Plug 'jiangmiao/auto-pairs'
+
+" auto-pairs plugin maps 'â' in insert mode limiting our ability to type 'â'.
+let g:AutoPairsShortcutBackInsert=''
+
+" }}}
+" vim-multiple-cursors {{{
+
+Plug 'terryma/vim-multiple-cursors'
+let g:multi_cursor_exit_from_visual_mode = 0
+let g:multi_cursor_exit_from_insert_mode = 0
+
+" }}}
+
 Plug 'bronson/vim-visual-star-search'
 Plug 'chaoren/vim-wordmotion'
 Plug 'ervandew/supertab'
-Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf'}
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
@@ -122,7 +138,6 @@ Plug 'ninrod/ninscratch-vim'
 Plug 'ninrod/vis'
 Plug 'othree/xml.vim'
 Plug 'sheerun/vim-polyglot'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -156,30 +171,7 @@ Plug 'kana/vim-textobj-user'
 " Plug 'timakro/vim-searchant'
 " Plug 'whatyouhide/vim-lengthmatters'
 
-
 call plug#end()
-
-" }}}
-" plugin configuration {{{
-
-" auto-pairs {{{
-
-" auto-pairs plugin maps 'â' in insert mode limiting our ability to type 'â'. So we fix it.
-let g:AutoPairsShortcutBackInsert=''
-
-" }}}
-" vim-commentary {{{
-
-" disable double backslash
-let g:commentary_map_backslash=0
-
-" }}}
-" vim-multiple-cursors {{{
-
-let g:multi_cursor_exit_from_visual_mode = 0
-let g:multi_cursor_exit_from_insert_mode = 0
-
-" }}}
 
 " }}}
 " theme configuration {{{
