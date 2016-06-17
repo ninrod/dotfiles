@@ -180,7 +180,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
+
 Plug 'itchyny/lightline.vim'
+Plug 'edkolev/tmuxline.vim'
+
 
 Plug 'kana/vim-textobj-user'
   \| Plug 'kana/vim-textobj-entire',
@@ -196,7 +199,6 @@ Plug 'kana/vim-textobj-user'
 " Plug 'justinmk/molokai'
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'NLKNguyen/papercolor-theme'
-" Plug 'edkolev/tmuxline.vim'
 " Plug 'nanotech/jellybeans.vim'
 
 " resource hog plugins
@@ -266,18 +268,18 @@ silent! colorscheme gruvbox
 
 " }}}
 
+" tmuxline.vim {{{
+
+let g:tmuxline_powerline_separators = 1
+
+" }}}
 " lightline.vim {{{
 
 let g:lightline = {
-      \'colorscheme': 'Tomorrow_Night',
+      \'colorscheme': 'gruvbox',
       \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
       \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
       \}
-
-" }}}
-" tmuxline.vim {{{
-
-" let g:tmuxline_powerline_separators = 1
 
 " }}}
 
@@ -493,10 +495,10 @@ function! s:blankUp()
 endfunction
 nnoremap <Plug>(blankUp) :<C-u>call <SID>blankUp()<CR>
 
-function! s:asdfadsf()
+function! s:blankDown()
   execute "normal mzo\<esc>`z"
-  silent! call repeat#set("\<Plug>(asdfadsf)", 1)
+  silent! call repeat#set("\<Plug>(blankDown)", 1)
 endfunction
-nnoremap <Plug>(asdfadsf) :<C-u>call <SID>asdfadsf()<CR>
+nnoremap <Plug>(blankDown) :<C-u>call <SID>blankDown()<CR>
 
 " }}}
