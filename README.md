@@ -1,4 +1,4 @@
-# Ninrod's __vim, tmux, zsh__ dotfiles
+# Ninrod's __zsh, vim, tmux and git__ dotfiles
 
 * Simplicity, speed and power while working inside the shell.
 
