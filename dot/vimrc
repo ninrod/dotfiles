@@ -166,6 +166,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf'}
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
+Plug 'morhetz/gruvbox'
 Plug 'nelstrom/vim-markdown-folding'
 Plug 'nhooyr/neoman.vim'
 Plug 'ninrod/ninscratch-vim'
@@ -179,11 +180,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
-
-Plug 'edkolev/tmuxline.vim'
 Plug 'itchyny/lightline.vim'
-Plug 'morhetz/gruvbox'
-Plug 'nanotech/jellybeans.vim'
 
 Plug 'kana/vim-textobj-user'
   \| Plug 'kana/vim-textobj-entire',
@@ -192,11 +189,15 @@ Plug 'kana/vim-textobj-user'
   \| Plug 'whatyouhide/vim-textobj-xmlattr', {'for': ['html', 'xml']}
 
 " unused plugins
+" Plug 'timakro/vim-searchant'
+" Plug 'whatyouhide/vim-lengthmatters'
+
+" theme plugins
 " Plug 'justinmk/molokai'
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'NLKNguyen/papercolor-theme'
-" Plug 'timakro/vim-searchant'
-" Plug 'whatyouhide/vim-lengthmatters'
+" Plug 'edkolev/tmuxline.vim'
+" Plug 'nanotech/jellybeans.vim'
 
 " resource hog plugins
 " Plug 'SirVer/ultisnips'
@@ -233,12 +234,12 @@ set background=dark
 
 " gruvbox {{{
 
-" silent! colorscheme gruvbox
+silent! colorscheme gruvbox
 
 " }}}
 " jellybeans {{{
 
-silent! colorscheme jellybeans
+" silent! colorscheme jellybeans
 
 " }}}
 " vim-colors-solarized {{{
@@ -259,7 +260,7 @@ silent! colorscheme jellybeans
 " silent! colorscheme molokai
 
 " }}}
-" papercolor-theme {{{
+" papercolor {{{
 
 " silent! colorscheme PaperColor
 
