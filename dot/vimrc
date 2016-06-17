@@ -162,7 +162,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'bronson/vim-visual-star-search'
 Plug 'chaoren/vim-wordmotion'
 Plug 'ervandew/supertab'
-Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf'}
 Plug 'junegunn/fzf.vim'
@@ -180,10 +179,11 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
-Plug 'whatyouhide/vim-lengthmatters'
-Plug 'timakro/vim-searchant'
 
+Plug 'edkolev/tmuxline.vim'
+Plug 'itchyny/lightline.vim'
 Plug 'morhetz/gruvbox'
+Plug 'nanotech/jellybeans.vim'
 
 Plug 'kana/vim-textobj-user'
   \| Plug 'kana/vim-textobj-entire',
@@ -191,12 +191,12 @@ Plug 'kana/vim-textobj-user'
   \| Plug 'thinca/vim-textobj-function-javascript', {'for': 'javascript'}
   \| Plug 'whatyouhide/vim-textobj-xmlattr', {'for': ['html', 'xml']}
 
-" unused theme plugins
+" unused plugins
 " Plug 'justinmk/molokai'
 " Plug 'altercation/vim-colors-solarized'
-" Plug 'nanotech/jellybeans.vim'
 " Plug 'NLKNguyen/papercolor-theme'
-" Plug 'edkolev/tmuxline.vim'
+" Plug 'timakro/vim-searchant'
+" Plug 'whatyouhide/vim-lengthmatters'
 
 " resource hog plugins
 " Plug 'SirVer/ultisnips'
@@ -219,20 +219,10 @@ let g:AutoPairsShortcutBackInsert=''
 let g:commentary_map_backslash=0
 
 " }}}
-" vim-lengthmatters {{{
-
-let g:lengthmatters_excluded = ['markdown']
-
-" }}}
 " vim-multiple-cursors {{{
 
 let g:multi_cursor_exit_from_visual_mode = 0
 let g:multi_cursor_exit_from_insert_mode = 0
-
-" }}}
-" vim-searchant {{{
-
-let g:searchant_map_stop = 0
 
 " }}}
 
@@ -243,7 +233,12 @@ set background=dark
 
 " gruvbox {{{
 
-silent! colorscheme gruvbox
+" silent! colorscheme gruvbox
+
+" }}}
+" jellybeans {{{
+
+silent! colorscheme jellybeans
 
 " }}}
 " vim-colors-solarized {{{
@@ -255,11 +250,6 @@ silent! colorscheme gruvbox
 " let g:solarized_diffmode="high"
 " let g:solarized_termcolors=16
 " silent! colorscheme solarized
-
-" }}}
-" jellybeans {{{
-
-" silent! colorscheme jellybeans
 
 " }}}
 " molokai {{{
@@ -295,7 +285,7 @@ let g:lightline = {
 
 " standard bind changes {{{
 
-nmap - <Plug>SearchantStop
+nmap - :noh<cr>
 
 " I do not usually navigate sentences
 " I've already rebound { for helpfile navigation
@@ -484,28 +474,6 @@ silent! autocmd CmdwinLeave * nnoremap <cr> :w<cr>
 " https://github.com/airblade/vim-gitgutter/issues/164
 highlight clear SignColumn
 
-" highlight cursor line line number
-" highlight CursorLineNr cterm=bold ctermfg=124
-
-" vim-multiple-cursors {{{
-
-" Multiple cursors Default highlighting (see help :highlight and help :highlight-link)
-" highlight multiple_cursors_cursor term=reverse cterm=reverse ctermfg=125 ctermbg=254
-" highlight link multiple_cursors_visual Visual
-
-" }}}
-" vim-lengthmatters {{{
-
-" for solarized dark: magenta, light background
-call lengthmatters#highlight('ctermbg=0 ctermfg=5')
-
-" for solarized light
-" call lengthmatters#highlight('ctermbg=7 ctermfg=1')
-
-" very long, a very very very very long line to test really for lengthmatters coloring capabilities
-
-" }}}
-
 " }}}
 "  functions {{{
 
@@ -524,10 +492,10 @@ function! s:blankUp()
 endfunction
 nnoremap <Plug>(blankUp) :<C-u>call <SID>blankUp()<CR>
 
-function! s:blankDown()
+function! s:asdfadsf()
   execute "normal mzo\<esc>`z"
-  silent! call repeat#set("\<Plug>(blankDown)", 1)
+  silent! call repeat#set("\<Plug>(asdfadsf)", 1)
 endfunction
-nnoremap <Plug>(blankDown) :<C-u>call <SID>blankDown()<CR>
+nnoremap <Plug>(asdfadsf) :<C-u>call <SID>asdfadsf()<CR>
 
 " }}}
