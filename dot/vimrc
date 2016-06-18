@@ -233,49 +233,49 @@ let g:lightline = {
 
 " standard bind changes {{{
 
-" shift sucks and `cl` is a complete substitute for `s`
-" just use `k^` instead of `-`. adslkfasdfjadksfj asdjfadkfjkdjf 
-nnoremap - :noh<cr>
-nnoremap s :silent! normal za<cr>
-
-" the default `q` macro bind always screws me.
-" so we changed it to a not ofensive one, like `za`.
-" faster folding (current fold toggle)
-nnoremap & q
-nnoremap q $
-xnoremap q $
-onoremap q $
-
-nmap g<space> <Plug>(blankUp)
-nmap g<cr> <Plug>(blankDown)
-
-" more convenient access to the command prompt (shift sucks)
+" more convenient access to the command prompt is nice because shift sucks.
 " based on tip from Damian Conway https://youtu.be/aHm36-na4-4?t=598
+" `cl` is a complete substitute for `s` (also note that `cc` substitues `S`)
+" just use `k^` instead of `-`. (if you even ever used `-` in the first place, which i did not)
+" We use more `"` than `'` and again, shift sucks
 nnoremap ; :
 xnoremap ; :
 nnoremap : ,
 xnoremap : ,
-nnoremap , ;
-xnoremap , ;
+nnoremap q ;
+xnoremap q ;
 
-" I do not usually navigate sentences
-" I've already rebound { for helpfile navigation
-" ( is more convenient than {
-nnoremap ( {
-xnoremap ( {
-nnoremap ) }
-xnoremap ) }
-
-" same idea as above: better access to register stuff. We use more `"` than `'` and shift sucks.
 nnoremap ' "
 nnoremap " '
 xnoremap ' "
 xnoremap " '
 
+nnoremap , $
+xnoremap , $
+onoremap , $
+
+nnoremap - :noh<cr>
+nnoremap s :silent! normal za<cr>
+
+" the default `q` macro bind always screws me.
+nnoremap & q
+
+" I do not usually navigate sentences when programming
+" ( is more convenient than {
+" I've already rebound { for vim helpfile navigation
+nnoremap ( {
+xnoremap ( {
+nnoremap ) }
+xnoremap ) }
+
 " trying out gl for `G` (shift sucks)
 nnoremap gl G
 vnoremap gl G
 onoremap gl G
+
+nmap g<space> <Plug>(blankUp)
+nmap g<cr> <Plug>(blankDown)
+
 
 " space is my leader key, but '\' remains as leader.
 nmap <Space> <Leader>
