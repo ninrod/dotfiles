@@ -239,7 +239,7 @@ nnoremap - :noh<cr>
 nnoremap s $
 
 " faster folding (current fold toggle)
-nnoremap q za
+nnoremap q :silent! normal za<cr>
 
 " I do not usually navigate sentences
 " I've already rebound { for helpfile navigation
