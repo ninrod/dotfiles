@@ -137,7 +137,7 @@ Plug 'nelstrom/vim-markdown-folding'
 Plug 'nhooyr/neoman.vim'
 Plug 'ninrod/ninscratch-vim'
 Plug 'ninrod/vis'
-Plug 'othree/xml.vim'
+Plug 'othree/xml.vim', {'for': ['xml', 'html']}
 Plug 'sheerun/vim-polyglot'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-commentary'
