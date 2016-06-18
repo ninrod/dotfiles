@@ -125,10 +125,11 @@ let g:multi_cursor_exit_from_insert_mode = 0
 
 " }}}
 
+Plug '~/.fzf'
+
 Plug 'bronson/vim-visual-star-search'
 Plug 'chaoren/vim-wordmotion'
 Plug 'ervandew/supertab'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf'}
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'morhetz/gruvbox'
@@ -232,32 +233,20 @@ let g:lightline = {
 
 " standard bind changes {{{
 
-" just use `cl` instead
+      " just use `cl` instead
 nnoremap - :noh<cr>
 
-" shift sucks
+" shift sucks and `cl` is a complete substitute for `s`
 nnoremap s $
-
-" faster folding (current fold toggle)
-nnoremap q :silent! normal za<cr>
-
-" I do not usually navigate sentences
-" I've already rebound { for helpfile navigation
-" ( is more convenient than {
-nnoremap ( {
-xnoremap ( {
-nnoremap ) }
-xnoremap ) }
 
 nmap g<space> <Plug>(blankUp)
 nmap g<cr> <Plug>(blankDown)
 
-
 " the default `q` macro bind always screws me.
-" so we changed it to a not ofensive one, like `;`.
-" it helps that I've already lost `;` for `:`.
-" also, `cc` is a complete substitute for `S`
+" so we changed it to a not ofensive one, like `za`.
+" faster folding (current fold toggle)
 nnoremap & q
+nnoremap q :silent! normal za<cr>
 
 " more convenient access to the command prompt (shift sucks)
 " based on tip from Damian Conway https://youtu.be/aHm36-na4-4?t=598
@@ -267,6 +256,14 @@ nnoremap : ,
 xnoremap : ,
 nnoremap , ;
 xnoremap , ;
+
+" I do not usually navigate sentences
+" I've already rebound { for helpfile navigation
+" ( is more convenient than {
+nnoremap ( {
+xnoremap ( {
+nnoremap ) }
+xnoremap ) }
 
 " same idea as above: better access to register stuff. We use more `"` than `'` and shift sucks.
 nnoremap ' "
