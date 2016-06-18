@@ -233,11 +233,11 @@ let g:lightline = {
 
 " standard bind changes {{{
 
-      " just use `cl` instead
-nnoremap - :noh<cr>
+" just use `k^` instead of `-`.
+nnoremap s :noh<cr>
 
 " shift sucks and `cl` is a complete substitute for `s`
-nnoremap s $
+nnoremap - $
 
 nmap g<space> <Plug>(blankUp)
 nmap g<cr> <Plug>(blankDown)
