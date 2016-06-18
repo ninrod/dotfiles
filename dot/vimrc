@@ -233,13 +233,13 @@ let g:lightline = {
 " standard bind changes {{{
 
 " just use `cl` instead
-nnoremap q :noh<cr>
+nnoremap - :noh<cr>
 
 " shift sucks
-nnoremap - $
+nnoremap s $
 
 " faster folding (current fold toggle)
-nnoremap s za
+nnoremap q za
 
 " I do not usually navigate sentences
 " I've already rebound { for helpfile navigation
