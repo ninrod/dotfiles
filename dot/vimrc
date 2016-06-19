@@ -347,16 +347,6 @@ nmap <leader>x <C-W>s
 " }}}
 " plugin binds {{{
 
-" easyalign {{{
-
-xmap <cr> <Plug>(EasyAlign)
-
-" }}}
-" nin-scratch {{{
-
-nnoremap gs :NinScratch<CR>
-
-" }}}
 " fzf.vim {{{
 
 nnoremap <leader>f :Files<cr>
@@ -373,6 +363,16 @@ imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
+
+" }}}
+" easyalign {{{
+
+xmap <cr> <Plug>(EasyAlign)
+
+" }}}
+" nin-scratch {{{
+
+nnoremap gs :NinScratch<CR>
 
 " }}}
 
