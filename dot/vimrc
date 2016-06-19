@@ -109,14 +109,6 @@ filetype plugin indent on
 call plug#begin('~/.vim/plugged')
 
 " babyseat plugins
-" auto-pairs {{{
-
-Plug 'jiangmiao/auto-pairs'
-
-" auto-pairs plugin maps 'â' in insert mode limiting our ability to type 'â'.
-let g:AutoPairsShortcutBackInsert=''
-
-" }}}
 " vim-multiple-cursors {{{
 
 Plug 'terryma/vim-multiple-cursors'
@@ -124,22 +116,12 @@ let g:multi_cursor_exit_from_visual_mode = 0
 let g:multi_cursor_exit_from_insert_mode = 0
 
 " }}}
-" vim-wordmotion {{{
-
-Plug 'chaoren/vim-wordmotion'
-
-" just run `$ man cmd` on the terminal.
-" it's the same as hitting `K` over a word.
-
-" let us try to leave with :normal!
-" eg: `:norm! ciw`
-" let g:wordmotion_prefix = 'K'
-
-" }}}
 
 Plug '~/.fzf'
 
 Plug 'bronson/vim-visual-star-search'
+Plug 'chaoren/vim-wordmotion'
+Plug 'jiangmiao/auto-pairs'
 Plug 'ervandew/supertab'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
