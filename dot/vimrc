@@ -239,6 +239,15 @@ let g:lightline = {
 
 " standard bind changes {{{
 
+" as vim-wordmotion sequestered our `w` binds, we must provide an alternative
+" se https://github.com/chaoren/vim-wordmotion/issues/6
+nnoremap io iw
+nnoremap ao aw
+xnoremap io iw
+xnoremap ao aw
+onoremap io iw
+onoremap ao aw
+
 " these were inspired from the famous Damian Conway talk at OSCON 2013 https://youtu.be/aHm36-na4-4?t=598
 " basically, shift sucks. So we improve our bindings accordingly
 
