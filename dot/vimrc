@@ -114,7 +114,6 @@ Plug 'ervandew/supertab'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'morhetz/gruvbox'
 Plug 'nelstrom/vim-markdown-folding'
 Plug 'nhooyr/neoman.vim'
 Plug 'ninrod/ninscratch-vim'
@@ -130,6 +129,8 @@ Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
 
 Plug 'itchyny/lightline.vim'
+Plug 'morhetz/gruvbox'
+Plug 'edkolev/tmuxline.vim'
 
 Plug 'kana/vim-textobj-user'
   \| Plug 'kana/vim-textobj-entire',
@@ -142,7 +143,6 @@ Plug 'kana/vim-textobj-user'
 Plug '~/.fzf'
 
 " tmux configuration. used less often
-" Plug 'edkolev/tmuxline.vim'
 
 " theme plugins
 " Plug 'justinmk/molokai'
@@ -207,16 +207,20 @@ silent! colorscheme gruvbox
 
 " tmuxline.vim {{{
 
-let g:tmuxline_powerline_separators = 1
+let g:tmuxline_powerline_separators = 0
 
 " }}}
 " lightline.vim {{{
 
 let g:lightline = {
-      \'colorscheme': 'gruvbox',
-      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+      \'colorscheme': 'gruvbox'
       \}
+
+" let g:lightline = {
+"       \'colorscheme': 'gruvbox',
+"       \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+"       \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+"       \}
 
 " }}}
 
