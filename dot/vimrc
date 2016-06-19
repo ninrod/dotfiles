@@ -108,21 +108,10 @@ filetype plugin indent on
 
 call plug#begin('~/.vim/plugged')
 
-" babyseat plugins
-" vim-multiple-cursors {{{
-
-Plug 'terryma/vim-multiple-cursors'
-let g:multi_cursor_exit_from_visual_mode = 0
-let g:multi_cursor_exit_from_insert_mode = 0
-
-" }}}
-
-Plug '~/.fzf'
-
 Plug 'bronson/vim-visual-star-search'
 Plug 'chaoren/vim-wordmotion'
-Plug 'jiangmiao/auto-pairs'
 Plug 'ervandew/supertab'
+Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'morhetz/gruvbox'
@@ -132,6 +121,7 @@ Plug 'ninrod/ninscratch-vim'
 Plug 'ninrod/vis'
 Plug 'othree/xml.vim', {'for': ['xml', 'html']}
 Plug 'sheerun/vim-polyglot'
+Plug 'terryma/vim-multiple-cursors'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -147,6 +137,9 @@ Plug 'kana/vim-textobj-user'
   \| Plug 'kana/vim-textobj-indent'
   \| Plug 'thinca/vim-textobj-function-javascript', {'for': 'javascript'}
   \| Plug 'whatyouhide/vim-textobj-xmlattr', {'for': ['html', 'xml']}
+
+" local
+Plug '~/.fzf'
 
 " tmux configuration. used less often
 " Plug 'edkolev/tmuxline.vim'
@@ -421,6 +414,10 @@ silent! autocmd CmdwinLeave * nnoremap <cr> :w<cr>
 " fix contrast issue with solarized dark.
 " https://github.com/airblade/vim-gitgutter/issues/164
 highlight clear SignColumn
+
+" Multiple cursors Default highlighting (see help :highlight and help :highlight-link)
+" highlight multiple_cursors_cursor ctermbg=3 ctermfg=7
+" highlight link multiple_cursors_visual Visual
 
 " }}}
 "  functions {{{
