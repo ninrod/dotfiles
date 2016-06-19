@@ -108,6 +108,7 @@ filetype plugin indent on
 
 call plug#begin('~/.vim/plugged')
 
+"core
 Plug 'bronson/vim-visual-star-search'
 Plug 'chaoren/vim-wordmotion'
 Plug 'ervandew/supertab'
@@ -128,10 +129,12 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
 
+"theme
 Plug 'itchyny/lightline.vim'
 Plug 'morhetz/gruvbox'
 Plug 'edkolev/tmuxline.vim'
 
+" new text objs
 Plug 'kana/vim-textobj-user'
   \| Plug 'kana/vim-textobj-entire',
   \| Plug 'kana/vim-textobj-function', {'for': 'javascript'}
@@ -142,21 +145,15 @@ Plug 'kana/vim-textobj-user'
 " local
 Plug '~/.fzf'
 
-" tmux configuration. used less often
-
-" theme plugins
+" plugin cemetery
+" Plug 'timakro/vim-searchant'
+" Plug 'whatyouhide/vim-lengthmatters'
 " Plug 'justinmk/molokai'
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'NLKNguyen/papercolor-theme'
 " Plug 'nanotech/jellybeans.vim'
-
-" resource hog plugins
 " Plug 'SirVer/ultisnips'
 "   \| Plug 'ninrod/vim-snippets'
-
-" plugin cemetery
-" Plug 'timakro/vim-searchant'
-" Plug 'whatyouhide/vim-lengthmatters'
 
 call plug#end()
 
