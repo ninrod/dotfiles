@@ -130,7 +130,10 @@ Plug 'chaoren/vim-wordmotion'
 
 " just run `$ man cmd` on the terminal.
 " it's the same as hitting `K` over a word.
-let g:wordmotion_prefix = 'K'
+
+" let us try to leave with :normal!
+" eg: `:norm! ciw`
+" let g:wordmotion_prefix = 'K'
 
 " }}}
 
