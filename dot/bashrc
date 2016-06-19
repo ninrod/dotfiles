@@ -8,10 +8,7 @@ shopt -s autocd
 
 export LANG=en_US.UTF-8
 export TERM=xterm-256color
-export EDITOR=vim
-
-# Enable a different cursor in NVIM in insert mode
-export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+export EDITOR=nvim
 
 # }}}
 # path {{{
@@ -33,7 +30,7 @@ eval `dircolors ~/.lscolors`
 # terminal colors {{{
 
 TC='\e['
-Rst="${TC}0m"     # Reset all coloring and style
+Rst="${TC}0m"
 Black="${TC}30m";
 Red="${TC}31m";
 Green="${TC}32m";
@@ -58,8 +55,8 @@ alias c='clear'
 alias e='exit'
 alias w='echo -e "$Blue $PWD ${Red}at ${Cyan}$(whoami)${Red}@${Yellow}$(hostname -s)$Red in $Yellow$0$Purple \$"'
 alias m='nman'
-alias vi='vim -u NONE'
-alias v='vim'
+alias vi='nvim -u NONE'
+alias v='nvim'
 alias k='k -h'
 alias vz='v ~/.bashrc'
 alias vv='v ~/.vimrc'
@@ -100,17 +97,13 @@ md () {
   cd $1
 }
 
-f () {
-  pushd $1 && c && l
-}
-
 cd () {
   if [[ $# -eq 0 ]]; then
     builtin cd ~
   elif [[ "$1" == "-" ]]; then
     builtin cd -
   else
-    f $1
+    pushd $1 && c && l
   fi
 }
 
