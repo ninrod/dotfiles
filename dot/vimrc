@@ -306,6 +306,7 @@ xmap ac a{
 
 " faster exit
 nnoremap Q ZQ
+nnoremap Z ZZ
 
 " enter saves file
 nnoremap <cr> :w<cr>
