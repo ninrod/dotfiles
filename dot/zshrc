@@ -140,7 +140,8 @@ alias ag='ag --hidden --path-to-agignore=~/.agignore'
 # alias for frequent commands
 alias em='emacs'
 alias ls='ls --color=auto --group-directories-first -X'
-alias l='ls -lh'
+alias l='ls -h'
+alias ll='ls -Ah'
 alias la='ls -lhA'
 alias b='cd ..'
 alias c='clear'
@@ -155,7 +156,7 @@ alias vz='v ~/.zshrc(:A)'
 alias vv='v ~/.vimrc(:A)'
 alias tarc='tar -zcvf file.tar.gz'
 alias tarx='tar -zxvf'
-alias dot='l `find ~ -maxdepth 1 -type l`'
+alias dot='la `find ~ -maxdepth 1 -type l`'
 
 # rust alias
 alias rd='open /usr/local/share/doc/rust/html/index.html'
@@ -245,10 +246,10 @@ cd () {
     builtin cd $1
   elif command -v "$ENHANCD_COMMAND" > /dev/null; then
     # populate dir enhancd dir cache, clear and list
-    d $1
+    d $1 && l
   else
     # enhancd did not load, use normal cd, clear and list
-    builtin cd $1
+    builtin cd $1 && l
   fi
 }
 
