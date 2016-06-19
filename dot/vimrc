@@ -204,20 +204,20 @@ silent! colorscheme gruvbox
 
 " tmuxline.vim {{{
 
-let g:tmuxline_powerline_separators = 0
+let g:tmuxline_powerline_separators = 1
 
 " }}}
 " lightline.vim {{{
 
-let g:lightline = {
-      \'colorscheme': 'gruvbox'
-      \}
-
 " let g:lightline = {
-"       \'colorscheme': 'gruvbox',
-"       \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-"       \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+"       \'colorscheme': 'gruvbox'
 "       \}
+
+let g:lightline = {
+      \'colorscheme': 'gruvbox',
+      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+      \}
 
 " }}}
 
