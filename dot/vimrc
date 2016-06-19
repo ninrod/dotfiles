@@ -416,7 +416,7 @@ silent! autocmd CmdwinLeave * nnoremap <cr> :w<cr>
 highlight clear SignColumn
 
 " Multiple cursors Default highlighting (see help :highlight and help :highlight-link)
-" highlight multiple_cursors_cursor ctermbg=3 ctermfg=7
+" highlight multiple_cursors_cursor gui=reverse cterm=reverse
 " highlight link multiple_cursors_visual Visual
 
 " }}}
