@@ -113,6 +113,12 @@ filetype plugin indent on
 
 call plug#begin('~/.vim/plugged')
 
+" luochen1990/rainbow {{{
+
+Plug 'luochen1990/rainbow'
+let g:rainbow_active = 1
+
+" }}}
 
 "core
 Plug 'Yggdroot/indentLine'
