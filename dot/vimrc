@@ -124,11 +124,16 @@ let g:multi_cursor_exit_from_visual_mode = 0
 let g:multi_cursor_exit_from_insert_mode = 0
 
 " }}}
+" vim-wordmotion {{{
+
+Plug 'chaoren/vim-wordmotion'
+let g:wordmotion_prefix = 'S'
+
+" }}}
 
 Plug '~/.fzf'
 
 Plug 'bronson/vim-visual-star-search'
-Plug 'chaoren/vim-wordmotion'
 Plug 'ervandew/supertab'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
@@ -285,10 +290,6 @@ xmap <Space> <Leader>
 " enter saves file
 nnoremap <cr> :w<cr>
 
-" faster exit
-nnoremap Z ZZ
-nnoremap Q ZQ
-
 " navigate vim help files
 nnoremap  } <C-]>
 nnoremap {  <C-T>
@@ -299,6 +300,16 @@ omap ar a[
 xmap ir i[
 xmap ar a[
 
+" bind to facilitate bracket selection
+omap ic i{
+omap ac a{
+xmap ic i{
+xmap ac a{
+
+" faster exit
+nnoremap Z ZZ
+nnoremap Q ZQ
+
 " faster access to diff
 nnoremap <f5> :windo diffthis<cr>
 
@@ -308,9 +319,6 @@ nnoremap <f5> :windo diffthis<cr>
 " custom pageups and pagedowns
 nmap <leader>d LztM
 nmap <leader>u HzbM
-
-" equalizing windows
-nmap <leader>= <C-W>=
 
 " resizing windows
 nmap <leader><right> <C-W>10>
@@ -352,7 +360,6 @@ nnoremap gs :NinScratch<CR>
 " fzf.vim {{{
 
 nnoremap <leader>f :Files<cr>
-nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>r :History<cr>
 nnoremap <leader>g :GitFiles<cr>
 
