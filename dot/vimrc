@@ -113,7 +113,9 @@ filetype plugin indent on
 
 call plug#begin('~/.vim/plugged')
 
+
 "core
+Plug 'Yggdroot/indentLine'
 Plug 'bronson/vim-visual-star-search'
 Plug 'chaoren/vim-wordmotion'
 Plug 'ervandew/supertab'
