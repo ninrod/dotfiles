@@ -101,6 +101,11 @@ set wildignore+=*/.hg/*,*/.svn/*.,*/.DS_Store,*/.idea/*,*/.tmp/*,*/target/*
 " syntax/sh.vim adds `.` to iskeyword(verify with :verbose set iskeyword?). so `w` jumps past it. see :h g:sh_isk
 let g:sh_noisk=1
 
+let g:netrw_banner      = 0
+let g:netrw_bufsettings = 'relativenumber, number'
+let g:netrw_liststyle   = 1
+" let g:netrw_keepdir   = 0
+
 filetype plugin indent on
 
 " }}}
