@@ -163,9 +163,15 @@ call plug#end()
 " }}}
 " theme configuration {{{
 
+" less eye strain
 set background=dark
 
 " gruvbox {{{
+
+" must be set before invoking colorscheme
+" gruvbox inverted selection is too much information to me
+" plus, the inverted select does not play nicely with vim-multiple-cursors
+let g:gruvbox_invert_selection=0
 
 silent! colorscheme gruvbox
 
