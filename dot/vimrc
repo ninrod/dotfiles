@@ -127,7 +127,10 @@ let g:multi_cursor_exit_from_insert_mode = 0
 " vim-wordmotion {{{
 
 Plug 'chaoren/vim-wordmotion'
-let g:wordmotion_prefix = 'S'
+
+" just run `$ man cmd` on the terminal.
+" it's the same as hitting `K` over a word.
+let g:wordmotion_prefix = 'K'
 
 " }}}
 
@@ -238,32 +241,42 @@ let g:lightline = {
 
 " standard bind changes {{{
 
-" more convenient access to the command prompt is nice because shift sucks.
-" based on tip from Damian Conway https://youtu.be/aHm36-na4-4?t=598
-" `cl` is a complete substitute for `s` (also note that `cc` substitues `S`)
-" just use `k^` instead of `-`. (if you even ever used `-` in the first place, which i did not)
-" We use more `"` than `'` and again, shift sucks
+" these were inspired from the famous Damian Conway talk at OSCON 2013 https://youtu.be/aHm36-na4-4?t=598
+" basically, shift sucks. So we improve our bindings accordingly
+
+" : is more used than ;
 nnoremap ; :
 xnoremap ; :
+
+" `:` is the new `,`
 nnoremap : ,
 xnoremap : ,
+
+" `,` is the new `$`
+nnoremap , $
+xnoremap , $
+onoremap , $
+
+" `q` is almost never used and screws me a lot 
+" plus I do need `;` sometimes
+" just use `:s` instead of &. 
+" that's if you ever had to use it in your whole life.
 nnoremap q ;
 xnoremap q ;
+nnoremap & q
 
+" `'` more used than `"`
 nnoremap ' "
 nnoremap " '
 xnoremap ' "
 xnoremap " '
 
-nnoremap , $
-xnoremap , $
-onoremap , $
-
+" just use `k^` instead of `-`. 
+" that's if you even ever used `-` in the first place which i did not
 nnoremap - :noh<cr>
-nnoremap s :silent! normal za<cr>
 
-" the default `q` macro bind always screws me.
-nnoremap & q
+" `cl` is a complete substitute for `s` (also note that `cc` substitues `S`)
+nnoremap s :silent! normal za<cr>
 
 " I do not usually navigate sentences when programming
 " ( is more convenient than {
@@ -281,11 +294,18 @@ onoremap gl G
 nmap g<space> <Plug>(blankUp)
 nmap g<cr> <Plug>(blankDown)
 
+" better bracket selection
+omap ir i[
+omap ar a[
+xmap ir i[
+xmap ar a[
+omap ic i{
+omap ac a{
+xmap ic i{
+xmap ac a{
 
-" space is my leader key, but '\' remains as leader.
-nmap <Space> <Leader>
-omap <Space> <Leader>
-xmap <Space> <Leader>
+" faster exit
+nnoremap Q ZQ
 
 " enter saves file
 nnoremap <cr> :w<cr>
@@ -294,24 +314,10 @@ nnoremap <cr> :w<cr>
 nnoremap  } <C-]>
 nnoremap {  <C-T>
 
-" bind to facilitate bracket selection
-omap ir i[
-omap ar a[
-xmap ir i[
-xmap ar a[
-
-" bind to facilitate bracket selection
-omap ic i{
-omap ac a{
-xmap ic i{
-xmap ac a{
-
-" faster exit
-nnoremap Z ZZ
-nnoremap Q ZQ
-
-" faster access to diff
-nnoremap <f5> :windo diffthis<cr>
+" space is my leader key, but '\' remains as leader.
+nmap <Space> <Leader>
+omap <Space> <Leader>
+xmap <Space> <Leader>
 
 " }}}
 " leader binds {{{
