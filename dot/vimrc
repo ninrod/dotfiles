@@ -241,8 +241,6 @@ let g:lightline = {
 
 " as vim-wordmotion sequestered our `w` binds, we must provide an alternative
 " se https://github.com/chaoren/vim-wordmotion/issues/6
-nnoremap io iw
-nnoremap ao aw
 xnoremap io iw
 xnoremap ao aw
 onoremap io iw
