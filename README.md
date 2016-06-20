@@ -111,7 +111,7 @@ bind                           | action
 LICENSE
 -----------
 
-Same as [Vim](http://vimdoc.sourceforge.net/htmldoc/uganda.html#license).
+[GNU General Public License v3](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 LINKS
 ----------
