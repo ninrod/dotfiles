@@ -132,7 +132,7 @@ zplug load
 eval `dircolors ~/.lscolors`
 
 # }}}
-# alias {{{
+# binds and alias {{{
 
 # Ag (the silver searcher)
 alias ag='ag --hidden --path-to-agignore=~/.agignore'
@@ -149,7 +149,7 @@ alias e='exit'
 alias w='echo -e "$Blue $PWD ${Red}at ${Cyan}$(whoami)${Red}@${Yellow}$(hostname -s)$Red in $Yellow$0$Purple \$"'
 alias s='du -sm * | sort -nr | head -n 20'
 alias m='nman'
-alias vi='vim -u NONE'
+alias vi='vim -u NONE -N'
 alias v='nvim'
 alias k='k -h'
 alias vz='v ~/.zshrc(:A)'
