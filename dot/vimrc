@@ -196,6 +196,14 @@ let g:gruvbox_invert_selection=0
 
 silent! colorscheme gruvbox
 
+" 166 = gruvbox neutral_orange
+highlight ExtraWhitespace ctermfg=166 guifg=166
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
 " }}}
 " jellybeans {{{
 
