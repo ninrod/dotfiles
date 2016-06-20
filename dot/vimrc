@@ -457,10 +457,6 @@ silent! autocmd CmdwinLeave * nnoremap <cr> :w<cr>
 " https://github.com/airblade/vim-gitgutter/issues/164
 highlight clear SignColumn
 
-" Multiple cursors Default highlighting (see help :highlight and help :highlight-link)
-" highlight multiple_cursors_cursor gui=reverse cterm=reverse
-" highlight link multiple_cursors_visual Visual
-
 " }}}
 "  functions {{{
 
