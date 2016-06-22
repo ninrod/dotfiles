@@ -134,10 +134,7 @@ eval `dircolors ~/.lscolors`
 # }}}
 # binds and alias {{{
 
-# Ag (the silver searcher)
 alias ag='ag --hidden --path-to-agignore=~/.agignore'
-
-# alias for frequent commands
 alias em='emacs'
 alias ls='ls --color=auto --group-directories-first -X'
 alias l='ls -h'
@@ -146,7 +143,6 @@ alias la='ls -lhA'
 alias b='cd ..'
 alias c='clear'
 alias e='exit'
-alias w='echo -e "$Blue $PWD ${Red}at ${Cyan}$(whoami)${Red}@${Yellow}$(hostname -s)$Red in $Yellow$0$Purple \$"'
 alias s='du -sm * | sort -nr | head -n 20'
 alias m='nman'
 alias vi='vim -u NONE -N'
@@ -157,14 +153,10 @@ alias vv='v ~/.vimrc(:A)'
 alias tarc='tar -zcvf file.tar.gz'
 alias tarx='tar -zxvf'
 alias dot='la `find ~ -maxdepth 1 -type l`'
-
-# rust alias
-alias rd='open /usr/local/share/doc/rust/html/index.html'
-
-# working with pushd and popd
 alias di='dirs -v | head -n 10'
 alias dic='dirs -c'
 alias po='popd'
+alias rd='open /usr/local/share/doc/rust/html/index.html'
 
 # git alias
 alias g='git status -sb'
@@ -189,40 +181,6 @@ alias gi='builtin cd $(git rev-parse --show-toplevel)'
 # }}}
 # functions {{{
 
-# git_log_month: custom git log: 1 month worth of commits $1 months ago with $2 command {{{
-
-git_log_month () {
-  if [[ -z $1 ]]; then
-    gl
-    return 0
-  fi
-
-  if [[ ! $1 =~ '^[0-9]{1,2}$' ]]; then
-    print "must be a number"
-    return 0
-  fi
-
-  local after=$(date "+%Y-%m-%d" --date="$1 month ago")
-  print "after = $after"
-
-  local git_command=gl
-  if [[ -n "$2" ]]; then
-    git_command=$2
-  fi
-
-  if [[ "$1" == "1" ]]; then
-    eval "$git_command --after=$after"
-    return 0
-  fi
-
-  local before=$(date "+%Y-%m-%d" --date="$(((${1}-1))) month ago")
-
-  print "before = $before"
-
-  eval "$git_command --after=$after --before=$before"
-}
-
-# }}}
 # md: faster dir creation {{{
 
 md () {
@@ -255,6 +213,13 @@ cd () {
 }
 
 # }}}
+# w: a better pwd {{{
+
+w () {
+  echo -e "$Blue ${"$(pwd)"/$HOME/~} ${Red}at ${Cyan}$(whoami)${Red}@${Yellow}$(hostname -s)$Red in $Yellow$0$Purple \$"
+}
+
+# }}}
 # =: front for `bc` utility (credit goes to arzzen/calc.plugin.zsh) {{{
 
 function = () {
@@ -283,6 +248,40 @@ function nman () {
   vim -c "Nman $*"
 }
 compdef nman="man"
+
+# }}}
+# git_log_month: custom git log: 1 month worth of commits $1 months ago with $2 command {{{
+
+git_log_month () {
+  if [[ -z $1 ]]; then
+    gl
+    return 0
+  fi
+
+  if [[ ! $1 =~ '^[0-9]{1,2}$' ]]; then
+    print "must be a number"
+    return 0
+  fi
+
+  local after=$(date "+%Y-%m-%d" --date="$1 month ago")
+  print "after = $after"
+
+  local git_command=gl
+  if [[ -n "$2" ]]; then
+    git_command=$2
+  fi
+
+  if [[ "$1" == "1" ]]; then
+    eval "$git_command --after=$after"
+    return 0
+  fi
+
+  local before=$(date "+%Y-%m-%d" --date="$(((${1}-1))) month ago")
+
+  print "before = $before"
+
+  eval "$git_command --after=$after --before=$before"
+}
 
 # }}}
 
