@@ -64,8 +64,6 @@ $ exec zsh
 
 ## VIM: Powerful shell text editor. Tweaked with plugins.
 
-
-
 ### Custom binds and plugins
 
 * To check out what binds and plugins I use in this config, my [vimrc](https://github.com/ninrod/dotfiles/blob/master/dot/vimrc) file is authoritative.

@@ -139,6 +139,7 @@ Plug 'chaoren/vim-wordmotion'
 Plug 'ervandew/supertab'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'nelstrom/vim-markdown-folding'
 Plug 'nhooyr/neoman.vim'
@@ -207,6 +208,9 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
+let g:goyo_width = '80%'
+let g:goyo_height = '80%'
+let g:goyo_linenr = 1
 
 " }}}
 " jellybeans {{{
