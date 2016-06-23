@@ -203,6 +203,14 @@ let g:gruvbox_invert_selection=0
 
 silent! colorscheme gruvbox
 
+" 166 = gruvbox neutral_orange
+
+highlight ExtraWhitespace ctermfg=166 guifg=#d65d0e 
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
 
 let g:goyo_width = '80%'
 let g:goyo_height = '80%'
@@ -504,17 +512,5 @@ if &term =~ '256color'
   " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
   set t_ut=
 endif
-
-" }}}
-
-" tests {{{
-" 166 = gruvbox neutral_orange
-
-highlight ExtraWhitespace ctermfg=166 guifg=#d65d0e 
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
 
 " }}}
