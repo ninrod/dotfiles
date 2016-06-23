@@ -430,7 +430,14 @@ autocmd InsertEnter,WinLeave * set nocursorline
 
 " foldmethod configurations
 autocmd BufRead * setlocal foldmethod=marker
-set foldlevelstart=0
+  set foldlevelstart=0
+
+" let shell_option_fold_start=$SHELL_VIM_FOLD_START
+" if (shell_option_fold_start ==# "true")
+"   set foldlevelstart=0
+" else
+"   set foldlevelstart=3
+" endif
 
 " jump to last cursor
 autocmd BufReadPost *
