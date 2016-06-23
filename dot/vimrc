@@ -201,7 +201,7 @@ let g:gruvbox_invert_selection=0
 silent! colorscheme gruvbox
 
 " 166 = gruvbox neutral_orange
-highlight ExtraWhitespace ctermfg=166 guifg=#d65d0e
+highlight ExtraWhitespace ctermfg=166 guifg=#d65d0e 
 match ExtraWhitespace /\s\+$/
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
