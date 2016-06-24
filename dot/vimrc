@@ -157,6 +157,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'wellle/targets.vim'
+Plug 'keith/tmux.vim'
 
 "theme
 Plug 'itchyny/lightline.vim'
