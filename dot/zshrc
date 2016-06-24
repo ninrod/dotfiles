@@ -138,7 +138,7 @@ zplug load
 eval `dircolors ~/.lscolors`
 
 # }}}
-# binds and alias {{{
+# alias {{{
 
 # general binds
 alias ag='ag --hidden --path-to-agignore=~/.agignore'
@@ -188,9 +188,6 @@ alias glsi='git ls-files -oiX .gitignore'
 alias gm='git merge'
 alias gp='git push'
 
-# }}}
-# functions {{{
-
 # gc: simple git commit front {{{
 improved_gc () {
   if [[ ! -n ${1+x} ]]; then
@@ -202,7 +199,6 @@ improved_gc () {
 alias gc='noglob improved_gc'
 
 # }}}
-
 # md: faster dir creation {{{
 
 md () {
@@ -299,6 +295,7 @@ git_log_month () {
 }
 
 # }}}
+
 
 # }}}
 # prompt {{{
