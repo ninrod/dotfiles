@@ -134,6 +134,7 @@ eval `dircolors ~/.lscolors`
 # }}}
 # binds and alias {{{
 
+# general binds
 alias ag='ag --hidden --path-to-agignore=~/.agignore'
 alias em='emacs'
 alias ls='ls --color=auto --group-directories-first -X'
@@ -218,7 +219,7 @@ cd () {
 # w: a better pwd {{{
 
 w () {
-  echo -e "$Blue ${"$(pwd)"/$HOME/~} ${Red}at ${Cyan}$(whoami)${Red}@${Yellow}$(hostname -s)$Red in $Yellow$0$Purple \$"
+  echo -e "$Blue ${"$(pwd)"/$HOME/~} ${Red}at ${Cyan}$(whoami)${Red}@${Yellow}$(hostname -s)$Red using $Yellow${SHELL:t}$Purple \$"
 }
 
 # }}}
