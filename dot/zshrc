@@ -140,54 +140,6 @@ eval `dircolors ~/.lscolors`
 # }}}
 # alias {{{
 
-# general binds
-alias ag='ag --hidden --path-to-agignore=~/.agignore'
-alias b='cd ..'
-alias c='clear'
-alias di='dirs -v | head -n 10'
-alias dic='dirs -c'
-alias dot='la `find ~ -maxdepth 1 -type l`'
-alias e='exit'
-alias k='k -h'
-alias l='ls -lh'
-alias la='ls -lhA'
-alias ll='ls -h'
-alias lla='ls -hA'
-alias ls='ls --color=auto --group-directories-first -X'
-alias m='nman'
-alias nv='~/code/neovim/build/bin/nvim'
-alias r='exec zsh'
-alias rd='open /usr/local/share/doc/rust/html/index.html'
-alias s='du -sm * | sort -nr | head -n 20'
-alias t='tmux'
-alias tarc='tar -zcvf file.tar.gz'
-alias tarx='tar -zxvf'
-alias v='nvim'
-alias vi='vim -u NONE -N'
-alias vt='v ~/.tmux.conf(:A)'
-alias vv='v ~/.vimrc(:A)'
-alias vz='v ~/.zshrc(:A)'
-alias w='echo -e "$Blue ${"$(pwd)"/$HOME/~} ${Red}at ${Cyan}$(whoami)${Red}@${Yellow}$(hostname -s)$Red using $Yellow${0}$Purple \$"'
-
-# git alias
-alias g='git status -sb'
-alias ga='git add'
-alias gal='git add -A'
-alias gd='git diff'
-alias gdh='git diff --cached'
-alias gds='git diff --stat'
-alias gf='git fetch'
-alias gg='git branch -vv'
-alias gi='builtin cd $(git rev-parse --show-toplevel)'
-alias gl='git log --pretty=format:"%C(yellow)%h%Creset %C(blue)%d%Creset %C(cyan)%ad%Creset %C(magenta)%an%Creset %C(white)%s%Creset " --date=relative --graph'
-alias gld='git log --pretty=format:"%C(yellow)%h%Creset %C(blue)%d%Creset %C(cyan)%ad%Creset %C(magenta)%an%Creset %s" --graph'
-alias glf='git log --follow -p -- '
-alias glnc='git log --pretty=format:"%h %ad %an %s" --date=short --graph'
-alias glr='gl --reflog'
-alias glsi='git ls-files -oiX .gitignore'
-alias gm='git merge'
-alias gp='git push'
-
 # gc: simple git commit front {{{
 improved_gc () {
   if [[ ! -n ${1+x} ]]; then
@@ -296,6 +248,53 @@ git_log_month () {
 
 # }}}
 
+# general binds
+alias ag='ag --hidden --path-to-agignore=~/.agignore'
+alias b='cd ..'
+alias c='clear'
+alias di='dirs -v | head -n 10'
+alias dic='dirs -c'
+alias dot='la `find ~ -maxdepth 1 -type l`'
+alias e='exit'
+alias k='k -h'
+alias l='ls -lh'
+alias la='ls -lhA'
+alias ll='ls -h'
+alias lla='ls -hA'
+alias ls='ls --color=auto --group-directories-first -X'
+alias m='nman'
+alias nv='~/code/neovim/build/bin/nvim'
+alias r='exec zsh'
+alias rd='open /usr/local/share/doc/rust/html/index.html'
+alias s='du -sm * | sort -nr | head -n 20'
+alias t='tmux'
+alias tarc='tar -zcvf file.tar.gz'
+alias tarx='tar -zxvf'
+alias v='nvim'
+alias vi='vim -u NONE -N'
+alias vt='v ~/.tmux.conf(:A)'
+alias vv='v ~/.vimrc(:A)'
+alias vz='v ~/.zshrc(:A)'
+alias w='echo -e "$Blue ${"$(pwd)"/$HOME/~} ${Red}at ${Cyan}$(whoami)${Red}@${Yellow}$(hostname -s)$Red using $Yellow${0}$Purple \$"'
+
+# git alias
+alias g='git status -sb'
+alias ga='git add'
+alias gal='git add -A'
+alias gd='git diff'
+alias gdh='git diff --cached'
+alias gds='git diff --stat'
+alias gf='git fetch'
+alias gg='git branch -vv'
+alias gi='builtin cd $(git rev-parse --show-toplevel)'
+alias gl='git log --pretty=format:"%C(yellow)%h%Creset %C(blue)%d%Creset %C(cyan)%ad%Creset %C(magenta)%an%Creset %C(white)%s%Creset " --date=relative --graph'
+alias gld='git log --pretty=format:"%C(yellow)%h%Creset %C(blue)%d%Creset %C(cyan)%ad%Creset %C(magenta)%an%Creset %s" --graph'
+alias glf='git log --follow -p -- '
+alias glnc='git log --pretty=format:"%h %ad %an %s" --date=short --graph'
+alias glr='gl --reflog'
+alias glsi='git ls-files -oiX .gitignore'
+alias gm='git merge'
+alias gp='git push'
 
 # }}}
 # prompt {{{
