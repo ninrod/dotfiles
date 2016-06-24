@@ -142,50 +142,50 @@ eval `dircolors ~/.lscolors`
 
 # general binds
 alias ag='ag --hidden --path-to-agignore=~/.agignore'
-alias em='emacs'
-alias ls='ls --color=auto --group-directories-first -X'
-alias l='ls -h'
-alias ll='ls -Ah'
-alias la='ls -lhA'
 alias b='cd ..'
 alias c='clear'
-alias e='exit'
-alias s='du -sm * | sort -nr | head -n 20'
-alias m='nman'
-alias vi='vim -u NONE -N'
-alias v='nvim'
-alias nv='~/code/neovim/build/bin/nvim'
-alias k='k -h'
-alias vz='v ~/.zshrc(:A)'
-alias vv='v ~/.vimrc(:A)'
-alias vt='v ~/.tmux.conf(:A)'
-alias tarc='tar -zcvf file.tar.gz'
-alias tarx='tar -zxvf'
-alias dot='la `find ~ -maxdepth 1 -type l`'
 alias di='dirs -v | head -n 10'
 alias dic='dirs -c'
+alias dot='la `find ~ -maxdepth 1 -type l`'
+alias e='exit'
+alias k='k -h'
+alias l='ls -h'
+alias la='ls -lhA'
+alias ll='ls -Ah'
+alias ls='ls --color=auto --group-directories-first -X'
+alias m='nman'
+alias nv='~/code/neovim/build/bin/nvim'
 alias po='popd'
 alias rd='open /usr/local/share/doc/rust/html/index.html'
+alias s='du -sm * | sort -nr | head -n 20'
+alias tarc='tar -zcvf file.tar.gz'
+alias tarx='tar -zxvf'
+alias v='nvim'
+alias vi='vim -u NONE -N'
+alias vt='v ~/.tmux.conf(:A)'
+alias vv='v ~/.vimrc(:A)'
+alias vz='v ~/.zshrc(:A)'
+alias w='echo -e "$Blue ${"$(pwd)"/$HOME/~} ${Red}at ${Cyan}$(whoami)${Red}@${Yellow}$(hostname -s)$Red using $Yellow${0}$Purple \$"'
 
 # git alias
 alias g='git status -sb'
-alias gg='git branch -vv'
 alias ga='git add'
 alias gal='git add -A'
 alias gc='git commit -v'
 alias gd='git diff'
-alias gds='git diff --stat'
 alias gdh='git diff --cached'
+alias gds='git diff --stat'
 alias gf='git fetch'
-alias gm='git merge'
-alias gp='git push'
+alias gg='git branch -vv'
+alias gi='builtin cd $(git rev-parse --show-toplevel)'
 alias gl='git log --pretty=format:"%C(yellow)%h%Creset %C(blue)%d%Creset %C(cyan)%ad%Creset %C(magenta)%an%Creset %C(white)%s%Creset " --date=relative --graph'
-alias glr='gl --reflog'
 alias gld='git log --pretty=format:"%C(yellow)%h%Creset %C(blue)%d%Creset %C(cyan)%ad%Creset %C(magenta)%an%Creset %s" --graph'
 alias glf='git log --follow -p -- '
 alias glnc='git log --pretty=format:"%h %ad %an %s" --date=short --graph'
+alias glr='gl --reflog'
 alias glsi='git ls-files -oiX .gitignore'
-alias gi='builtin cd $(git rev-parse --show-toplevel)'
+alias gm='git merge'
+alias gp='git push'
 
 # }}}
 # functions {{{
@@ -219,13 +219,6 @@ cd () {
     # enhancd did not load, use normal cd, clear and list
     builtin cd $1 && l
   fi
-}
-
-# }}}
-# w: a better pwd {{{
-
-w () {
-  echo -e "$Blue ${"$(pwd)"/$HOME/~} ${Red}at ${Cyan}$(whoami)${Red}@${Yellow}$(hostname -s)$Red using $Yellow${SHELL:t}$Purple \$"
 }
 
 # }}}
