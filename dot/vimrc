@@ -220,6 +220,9 @@ let g:goyo_width = '80%'
 let g:goyo_height = '80%'
 " let g:goyo_linenr = 1
 
+" Default: 0.5
+let g:limelight_default_coefficient = 0.8
+
 " }}}
 " jellybeans {{{
 
