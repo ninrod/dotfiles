@@ -152,12 +152,14 @@ alias k='k -h'
 alias l='ls -lh'
 alias la='ls -lhA'
 alias ll='ls -h'
+alias lla='ls -hA'
 alias ls='ls --color=auto --group-directories-first -X'
 alias m='nman'
 alias nv='~/code/neovim/build/bin/nvim'
-alias po='popd'
+alias r='exec zsh'
 alias rd='open /usr/local/share/doc/rust/html/index.html'
 alias s='du -sm * | sort -nr | head -n 20'
+alias t='tmux'
 alias tarc='tar -zcvf file.tar.gz'
 alias tarx='tar -zxvf'
 alias v='nvim'
@@ -171,7 +173,6 @@ alias w='echo -e "$Blue ${"$(pwd)"/$HOME/~} ${Red}at ${Cyan}$(whoami)${Red}@${Ye
 alias g='git status -sb'
 alias ga='git add'
 alias gal='git add -A'
-alias gc='git commit -v'
 alias gd='git diff'
 alias gdh='git diff --cached'
 alias gds='git diff --stat'
@@ -189,6 +190,17 @@ alias gp='git push'
 
 # }}}
 # functions {{{
+
+# gc: simple git commit front {{{
+gc () {
+  if [[ ! -n ${1+x} ]]; then
+    git commit -v
+    return 0
+  fi
+  eval "git commit -m '$*'"
+}
+
+# }}}
 
 # md: faster dir creation {{{
 

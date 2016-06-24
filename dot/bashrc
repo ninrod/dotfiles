@@ -43,31 +43,27 @@ White="${TC}37m";
 # }}}
 # alias | binds {{{
 
-# Ag (the silver searcher)
 alias ag='ag --hidden --path-to-agignore=~/.agignore'
-
-# alias for frequent commands
-alias ls='ls --color=auto --group-directories-first -X'
-alias l='ls -lh'
-alias la='l -A'
 alias b='cd ..'
 alias c='clear'
-alias e='exit'
-alias w='echo -e "$Blue $PWD ${Red}at ${Cyan}$(whoami)${Red}@${Yellow}$(hostname -s)$Red in $Yellow$0$Purple \$"'
-alias m='nman'
-alias vi='nvim -u NONE'
-alias v='nvim'
-alias k='k -h'
-alias vz='v ~/.bashrc'
-alias vv='v ~/.vimrc'
-alias tarc='tar -zcvf file.tar.gz'
-alias tarx='tar -zxvf'
-alias dot='la `find ~ -maxdepth 1 -type l`'
-
-# working with pushd and popd
 alias di='dirs -v | head -n 10'
 alias dic='dirs -c'
+alias dot='la `find ~ -maxdepth 1 -type l`'
+alias e='exit'
+alias k='k -h'
+alias l='ls -lh'
+alias la='l -A'
+alias ls='ls --color=auto --group-directories-first -X'
+alias m='nman'
 alias po='popd'
+alias t='tmux'
+alias tarc='tar -zcvf file.tar.gz'
+alias tarx='tar -zxvf'
+alias v='nvim'
+alias vi='nvim -u NONE'
+alias vv='v ~/.vimrc'
+alias vz='v ~/.bashrc'
+alias w='echo -e "$Blue $PWD ${Red}at ${Cyan}$(whoami)${Red}@${Yellow}$(hostname -s)$Red in $Yellow${0}$Purple \$"'
 
 # git alias
 alias g='git status -sb'
