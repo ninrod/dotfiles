@@ -145,7 +145,9 @@ Plug 'ervandew/supertab'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-easy-align'
+Plug 'keith/tmux.vim'
 Plug 'nelstrom/vim-markdown-folding'
 Plug 'nhooyr/neoman.vim'
 Plug 'ninrod/ninscratch-vim'
@@ -159,7 +161,6 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'wellle/targets.vim'
-Plug 'keith/tmux.vim'
 
 "theme
 Plug 'itchyny/lightline.vim'
@@ -217,7 +218,7 @@ autocmd BufWinLeave * call clearmatches()
 
 let g:goyo_width = '80%'
 let g:goyo_height = '80%'
-let g:goyo_linenr = 1
+" let g:goyo_linenr = 1
 
 " }}}
 " jellybeans {{{
@@ -426,6 +427,9 @@ nnoremap gs :NinScratch<CR>
 
 " }}}
 " auto commands {{{
+
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
 
 " use cursor line only when in current window and out of insert mode
 autocmd InsertLeave,WinEnter * set cursorline

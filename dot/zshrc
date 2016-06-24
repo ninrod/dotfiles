@@ -192,13 +192,14 @@ alias gp='git push'
 # functions {{{
 
 # gc: simple git commit front {{{
-gc () {
+improved_gc () {
   if [[ ! -n ${1+x} ]]; then
     git commit -v
     return 0
   fi
-  eval "git commit -m '$*'"
+  eval "noglob git commit -m '$*'"
 }
+alias gc='noglob improved_gc'
 
 # }}}
 
