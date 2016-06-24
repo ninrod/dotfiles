@@ -23,8 +23,14 @@ unsetopt nomatch # but when pattern matching fails, simply use the command as is
 # defining word endings
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
+# completions
+
 autoload -Uz compinit && compinit
 zstyle ':completion:*' menu select
+
+# better dir completion (case insensitive)
+setopt menu_complete
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
 # }}}
 # terminal colors {{{
