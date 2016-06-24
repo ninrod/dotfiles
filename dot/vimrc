@@ -223,6 +223,9 @@ let g:goyo_height = '80%'
 " Default: 0.5
 let g:limelight_default_coefficient = 0.8
 
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+
 " }}}
 " jellybeans {{{
 
@@ -430,9 +433,6 @@ nnoremap gs :NinScratch<CR>
 
 " }}}
 " auto commands {{{
-
-autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
 
 " use cursor line only when in current window and out of insert mode
 autocmd InsertLeave,WinEnter * set cursorline
