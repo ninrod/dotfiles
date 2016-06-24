@@ -313,7 +313,7 @@ xnoremap " '
 nnoremap - :noh<cr>
 
 " `cl` is a complete substitute for `s` (also note that `cc` substitues `S`)
-nnoremap s :silent! normal za<cr>
+nnoremap <silent> s :silent! normal za<cr>
 
 " I do not usually navigate sentences when programming
 " ( is more convenient than {
