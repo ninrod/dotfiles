@@ -276,6 +276,7 @@ alias vt='v ~/.tmux.conf(:A)'
 alias vv='v ~/.vimrc(:A)'
 alias vz='v ~/.zshrc(:A)'
 alias w='echo -e "$Blue ${"$(pwd)"/$HOME/~} ${Red}at ${Cyan}$(whoami)${Red}@${Yellow}$(hostname -s)$Red using $Yellow${0}$Purple \$"'
+alias zshcru='zsh -f'
 
 # git alias
 alias g='git status -sb'
