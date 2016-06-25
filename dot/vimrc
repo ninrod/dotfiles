@@ -153,6 +153,7 @@ Plug 'nhooyr/neoman.vim'
 Plug 'ninrod/ninscratch-vim'
 Plug 'ninrod/vis'
 Plug 'othree/xml.vim', {'for': ['xml', 'html']}
+Plug 'pangloss/vim-javascript'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-commentary'
@@ -215,15 +216,27 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
-let g:goyo_width = '80%'
+let g:goyo_width = '95%'
 let g:goyo_height = '80%'
 " let g:goyo_linenr = 1
 
 " Default: 0.5
-let g:limelight_default_coefficient = 0.8
+let g:limelight_default_coefficient = 0.85
 
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
+
+
+let g:javascript_conceal_function       = "ƒ"
+let g:javascript_conceal_null           = "ø"
+let g:javascript_conceal_this           = "@"
+let g:javascript_conceal_return         = "⇚"
+let g:javascript_conceal_undefined      = "¿"
+let g:javascript_conceal_NaN            = "ℕ"
+let g:javascript_conceal_prototype      = "¶"
+let g:javascript_conceal_static         = "•"
+let g:javascript_conceal_super          = "Ω"
+let g:javascript_conceal_arrow_function = "⇒"
 
 " }}}
 " jellybeans {{{
