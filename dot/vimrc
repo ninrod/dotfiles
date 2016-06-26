@@ -197,7 +197,7 @@ call plug#end()
 " theme configuration {{{
 
 " less eye strain
-set background=light
+set background=dark
 
 " gruvbox {{{
 
@@ -207,7 +207,7 @@ set background=light
 " play nicely with vim-multiple-cursors
 let g:gruvbox_invert_selection=0
 
-silent! colorscheme gruvbox
+" silent! colorscheme gruvbox
 
 " see https://github.com/neovim/neovim/issues/4946
 highlight SpecialKey ctermfg=166 guifg=#d65d0e                            	
@@ -255,24 +255,19 @@ let g:javascript_conceal_arrow_function = "⇒"
 
 " let g:rehash256 = 1
 " let g:molokai_original = 1
-" silent! colorscheme molokai
+silent! colorscheme molokai
 
 " }}}
 " papercolor {{{
 
-silent! colorscheme PaperColor
+" silent! colorscheme PaperColor
 
 " }}}
 
-" tmuxline.vim {{{
-
-let g:tmuxline_powerline_separators = 1
-
-" }}}
 " lightline.vim {{{
 
 let g:lightline = {
-      \'colorscheme': 'PaperColor'
+      \'colorscheme': 'jellybeans'
       \}
 
 " let g:lightline = {
@@ -280,6 +275,11 @@ let g:lightline = {
 "       \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
 "       \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
 "       \}
+
+" }}}
+" tmuxline.vim {{{
+
+let g:tmuxline_powerline_separators = 0
 
 " }}}
 
