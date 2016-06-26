@@ -164,25 +164,26 @@ Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'wellle/targets.vim'
 
 "theme
-Plug 'itchyny/lightline.vim'
 Plug 'morhetz/gruvbox'
-Plug 'edkolev/tmuxline.vim'
-
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'nanotech/jellybeans.vim'
-Plug 'lifepillar/vim-solarized8'
-Plug 'justinmk/molokai'
+Plug 'itchyny/lightline.vim'
 
 " new text objs
 Plug 'kana/vim-textobj-user'
   \| Plug 'kana/vim-textobj-entire',
-  \| Plug 'kana/vim-textobj-function', {'for': 'javascript'}
   \| Plug 'kana/vim-textobj-indent'
-  \| Plug 'thinca/vim-textobj-function-javascript', {'for': 'javascript'}
   \| Plug 'whatyouhide/vim-textobj-xmlattr', {'for': ['html', 'xml']}
+  \| Plug 'kana/vim-textobj-function', {'for': 'javascript'}
+  \| Plug 'thinca/vim-textobj-function-javascript', {'for': 'javascript'}
 
 " local
 Plug '~/.fzf'
+
+" unused themes
+" Plug 'edkolev/tmuxline.vim'
+" Plug 'NLKNguyen/papercolor-theme'
+" Plug 'nanotech/jellybeans.vim'
+" Plug 'lifepillar/vim-solarized8'
+" Plug 'justinmk/molokai'
 
 " plugin cemetery
 " Plug 'timakro/vim-searchant'
