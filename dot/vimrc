@@ -168,6 +168,11 @@ Plug 'itchyny/lightline.vim'
 Plug 'morhetz/gruvbox'
 Plug 'edkolev/tmuxline.vim'
 
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'nanotech/jellybeans.vim'
+Plug 'lifepillar/vim-solarized8'
+Plug 'justinmk/molokai'
+
 " new text objs
 Plug 'kana/vim-textobj-user'
   \| Plug 'kana/vim-textobj-entire',
@@ -182,10 +187,6 @@ Plug '~/.fzf'
 " plugin cemetery
 " Plug 'timakro/vim-searchant'
 " Plug 'whatyouhide/vim-lengthmatters'
-" Plug 'justinmk/molokai'
-" Plug 'altercation/vim-colors-solarized'
-" Plug 'NLKNguyen/papercolor-theme'
-" Plug 'nanotech/jellybeans.vim'
 " Plug 'sheerun/vim-polyglot'
 " Plug 'SirVer/ultisnips'
 "   \| Plug 'ninrod/vim-snippets'
@@ -196,7 +197,7 @@ call plug#end()
 " theme configuration {{{
 
 " less eye strain
-set background=dark
+set background=light
 
 " gruvbox {{{
 
@@ -241,13 +242,13 @@ let g:javascript_conceal_arrow_function = "⇒"
 " }}}
 " vim-colors-solarized {{{
 
-" let g:solarized_bold=1
-" let g:solarized_underline=0
-" let g:solarized_visibility="high"
-" let g:solarized_contrast="high"
-" let g:solarized_diffmode="high"
-" let g:solarized_termcolors=16
-" silent! colorscheme solarized
+" solarized 8 colorschemes:
+" solarized8_dark and solarized8_light: the default Solarized theme;
+" solarized8_dark_low and solarized8_light_low: low-contrast variant;
+" solarized8_dark_high and solarized8_light_high: high-contrast variant;
+" solarized8_dark_flat and solarized8_light_flat: “flat” variant (not present in the original Solarized).
+
+" silent! colorscheme solarized8_dark
 
 " }}}
 " molokai {{{
@@ -259,7 +260,7 @@ let g:javascript_conceal_arrow_function = "⇒"
 " }}}
 " papercolor {{{
 
-" silent! colorscheme PaperColor
+silent! colorscheme PaperColor
 
 " }}}
 
@@ -271,7 +272,7 @@ let g:tmuxline_powerline_separators = 1
 " lightline.vim {{{
 
 let g:lightline = {
-      \'colorscheme': 'gruvbox'
+      \'colorscheme': 'PaperColor'
       \}
 
 " let g:lightline = {
