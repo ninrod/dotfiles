@@ -140,8 +140,11 @@ eval `dircolors ~/.lscolors`
 # }}}
 # alias {{{
 
-# general binds
+# precendence alias
+alias ls='ls --color=auto --group-directories-first -X'
 alias ag='ag --hidden --path-to-agignore=~/.agignore'
+
+# general binds
 alias b='cd ..'
 alias c='clear'
 alias di='dirs -v | head -n 10'
@@ -153,9 +156,7 @@ alias l='ls -lh'
 alias la='ls -lhA'
 alias ll='ls -h'
 alias lla='ls -hA'
-alias ls='ls --color=auto --group-directories-first -X'
 alias m='nman'
-alias nv='~/code/apps/neovim/build/bin/nvim'
 alias r='exec zsh'
 alias rd='open /usr/local/share/doc/rust/html/index.html'
 alias s='du -sm * | sort -nr | head -n 20'
