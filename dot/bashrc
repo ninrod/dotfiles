@@ -3,6 +3,9 @@
 set -o vi
 shopt -s autocd
 
+# dot not print meta chars, e.g. `ˆC` when <C-c> is pressed to escape a command
+stty -echoctl
+
 # }}}
 # exports {{{
 
