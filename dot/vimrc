@@ -295,60 +295,30 @@ xnoremap ao aw
 onoremap io iw
 onoremap ao aw
 
-" these were inspired from the famous Damian Conway talk at OSCON 2013 https://youtu.be/aHm36-na4-4?t=598
+" these were inspired from the famous Damian Conway talk at OSCON 2023 https://youtu.be/aHm36-na4-4?t=598
 " basically, shift sucks. So we improve our bindings accordingly
 
-" : is more used than ;
 nnoremap ; :
 xnoremap ; :
+nnoremap - ,
+xnoremap - ,
+onoremap - ,
+nnoremap , ;
+xnoremap , ;
+onoremap , ;
 
-" `:` is the new `,`
-nnoremap : ,
-xnoremap : ,
-
-" `,` is the new `$`
-nnoremap , $
-xnoremap , $
-onoremap , $
-
-" `q` is almost never used and screws me a lot 
-" plus I do need `;` sometimes
-" just use `:s` instead of &. 
-" that's if you ever had to use it in your whole life.
-nnoremap q ;
-xnoremap q ;
-nnoremap & q
-
-" `'` more used than `"`
 nnoremap ' "
 nnoremap " '
 xnoremap ' "
 xnoremap " '
 
-" just use `k^` instead of `-`. 
-" that's if you even ever used `-` in the first place which i did not
-nnoremap - :noh<cr>
-
 " `cl` is a complete substitute for `s` (also note that `cc` substitues `S`)
 nnoremap <silent> s :silent! normal za<cr>
 
-" I do not usually navigate sentences when programming
-" ( is more convenient than {
-" I've already rebound { for vim helpfile navigation
-nnoremap ( {
-xnoremap ( {
-nnoremap ) }
-xnoremap ) }
+nnoremap <silent>q :noh<cr>
+xnoremap <silent>q :noh<cr>
+nnoremap & q
 
-" trying out gl for `G` (shift sucks)
-nnoremap gl G
-vnoremap gl G
-onoremap gl G
-
-nmap g<space> <Plug>(blankUp)
-nmap g<cr> <Plug>(blankDown)
-
-" better bracket selection
 omap ir i[
 omap ar a[
 xmap ir i[
@@ -358,16 +328,26 @@ omap ac a{
 xmap ic i{
 xmap ac a{
 
-" faster exit
-nnoremap Q ZQ
-nnoremap Z ZZ
-
-" enter saves file
-nnoremap <cr> :w<cr>
+nnoremap ( {
+xnoremap ( {
+nnoremap ) }
+xnoremap ) }
 
 " navigate vim help files
 nnoremap  } <C-]>
 nnoremap {  <C-T>
+
+" trying out gl for `G` (shift sucks)
+nnoremap gl G
+vnoremap gl G
+onoremap gl G
+
+nmap g<space> <Plug>(blankUp)
+nmap g<cr> <Plug>(blankDown)
+
+nnoremap Q ZQ
+nnoremap Z ZZ
+nnoremap <cr> :w<cr>
 
 " space is my leader key, but '\' remains as leader.
 nmap <Space> <Leader>
@@ -381,11 +361,9 @@ xmap <Space> <Leader>
 nmap <leader>d LztM
 nmap <leader>u HzbM
 
-" resizing windows
-nmap <leader><right> <C-W>10>
-nmap <leader><left>  <C-W>10<
-nmap <leader><up>    <C-W>10+
-nmap <leader><down>  <C-W>10-
+" open up window splits
+nmap <leader>v <C-W>v
+nmap <leader>x <C-W>s
 
 " moving between windows
 nmap <leader>h <C-W>h
@@ -393,17 +371,11 @@ nmap <leader>j <C-W>j
 nmap <leader>k <C-W>k
 nmap <leader>l <C-W>l
 
-" moving windows
-nmap <leader>H <C-W>H
-nmap <leader>J <C-W>J
-nmap <leader>K <C-W>K
-nmap <leader>L <C-W>L
-
-" open a vertical window
-nmap <leader>v <C-W>v
-
-" open a horizontal window
-nmap <leader>x <C-W>s
+" resizing windows
+nmap <leader><right> <C-W>20>
+nmap <leader><left>  <C-W>20<
+nmap <leader><up>    <C-W>20+
+nmap <leader><down>  <C-W>20-
 
 " }}}
 " plugin binds {{{
