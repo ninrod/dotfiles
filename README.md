@@ -16,6 +16,10 @@
 
 ![papercolor-config](https://github.com/ninrod/dotfiles/raw/misc/images/papercolor-light.png)
 
+### With [molokai](https://github.com/tomasr/molokai)
+
+![molokai-config](https://github.com/ninrod/dotfiles/raw/misc/images/molokai.png)
+
 
 ## Important notice 
 
