@@ -238,7 +238,7 @@ let g:javascript_conceal_arrow_function = "⇒"
 " lightline.vim {{{
 
 let g:lightline = {
-      \'colorscheme': 'jellybeans'
+      \'colorscheme': 'gruvbox'
       \}
 
 " let g:lightline = {
