@@ -12,10 +12,6 @@
 
 ![jellybeans-config](https://github.com/ninrod/dotfiles/raw/misc/images/shot-2016-06-15-jellybeans.png)
 
-### With [papercolor](https://github.com/NLKNguyen/papercolor-theme)
-
-![papercolor-config](https://github.com/ninrod/dotfiles/raw/misc/images/papercolor-light.png)
-
 ### With [molokai](https://github.com/tomasr/molokai)
 
 ![molokai-config](https://github.com/ninrod/dotfiles/raw/misc/images/molokai.png)
@@ -23,6 +19,10 @@
 ### With [solarized dark](https://github.com/lifepillar/vim-solarized8)
 
 ![solarized-dark-config](https://github.com/ninrod/dotfiles/raw/misc/images/solarized_dark.png)
+
+### With [papercolor light](https://github.com/NLKNguyen/papercolor-theme)
+
+![papercolor-config](https://github.com/ninrod/dotfiles/raw/misc/images/papercolor-light.png)
 
 ### With [solarized light](https://github.com/lifepillar/vim-solarized8)
 
