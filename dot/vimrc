@@ -240,7 +240,7 @@ let g:javascript_conceal_arrow_function = "⇒"
 " silent! colorscheme jellybeans
 
 " }}}
-" vim-colors-solarized {{{
+" solarized-8 {{{
 
 " solarized 8 colorschemes:
 " solarized8_dark and solarized8_light: the default Solarized theme;
@@ -248,14 +248,14 @@ let g:javascript_conceal_arrow_function = "⇒"
 " solarized8_dark_high and solarized8_light_high: high-contrast variant;
 " solarized8_dark_flat and solarized8_light_flat: “flat” variant (not present in the original Solarized).
 
-" silent! colorscheme solarized8_dark
+silent! colorscheme solarized8_dark_high
 
 " }}}
 " molokai {{{
 
 " let g:rehash256 = 1
 " let g:molokai_original = 1
-silent! colorscheme molokai
+" silent! colorscheme molokai
 
 " }}}
 " papercolor {{{
@@ -267,7 +267,7 @@ silent! colorscheme molokai
 " lightline.vim {{{
 
 let g:lightline = {
-      \'colorscheme': 'jellybeans'
+      \'colorscheme': 'solarized_dark'
       \}
 
 " let g:lightline = {

@@ -96,16 +96,6 @@ md () {
   cd $1
 }
 
-cd () {
-  if [[ $# -eq 0 ]]; then
-    builtin cd ~
-  elif [[ "$1" == "-" ]]; then
-    builtin cd -
-  else
-    pushd $1 && c && l
-  fi
-}
-
 # neoman vim plugin
 function nman () {
     if [[ -z $* ]]; then
