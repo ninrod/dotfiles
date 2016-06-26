@@ -197,7 +197,7 @@ call plug#end()
 " theme configuration {{{
 
 " less eye strain
-set background=dark
+set background=light
 
 " gruvbox {{{
 
@@ -248,7 +248,7 @@ let g:javascript_conceal_arrow_function = "⇒"
 " solarized8_dark_high and solarized8_light_high: high-contrast variant;
 " solarized8_dark_flat and solarized8_light_flat: “flat” variant (not present in the original Solarized).
 
-silent! colorscheme solarized8_dark_high
+silent! colorscheme solarized8_light_high
 
 " }}}
 " molokai {{{
@@ -267,7 +267,7 @@ silent! colorscheme solarized8_dark_high
 " lightline.vim {{{
 
 let g:lightline = {
-      \'colorscheme': 'solarized_dark'
+      \'colorscheme': 'solarized'
       \}
 
 " let g:lightline = {
