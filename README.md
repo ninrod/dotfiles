@@ -24,6 +24,10 @@
 
 ![solarized-dark-config](https://github.com/ninrod/dotfiles/raw/misc/images/solarized_dark.png)
 
+### With [solarized light](https://github.com/lifepillar/vim-solarized8)
+
+![solarized-light-config](https://github.com/ninrod/dotfiles/raw/misc/images/solarized_light.png)
+
 ## Important notice 
 
 * These are my personal configuration files, which are in a constant state of change as I develop my environment across several systems. I can't guarantee that these configurations will work for you, at all. So if you encounter problems with them, you're pretty much on your own. (this notice was based on [aaron bieber's dotfiles](https://github.com/aaronbieber/dotfiles))
