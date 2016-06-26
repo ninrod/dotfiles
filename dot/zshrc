@@ -121,10 +121,11 @@ source ~/.zplug/init.zsh
 zplug "Tarrasch/zsh-bd"
 zplug "b4b4r07/enhancd", use:init.sh
 zplug "felixr/docker-zsh-completion"
-zplug "ninrod/nin-vi-mode"
 zplug "supercrabtree/k"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
+
+zplug "~/code/nin-vi-mode", from:local
 
 if ! zplug check --verbose; then
   printf "Install? [y/N]: "

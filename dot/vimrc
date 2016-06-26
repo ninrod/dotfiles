@@ -298,9 +298,9 @@ onoremap ao aw
 
 nnoremap ; :
 xnoremap ; :
-nnoremap - ,
-xnoremap - ,
-onoremap - ,
+nnoremap q ,
+xnoremap q ,
+onoremap q ,
 nnoremap , ;
 xnoremap , ;
 onoremap , ;
@@ -313,8 +313,8 @@ xnoremap " '
 " `cl` is a complete substitute for `s` (also note that `cc` substitues `S`)
 nnoremap <silent> s :silent! normal za<cr>
 
-nnoremap <silent>q :noh<cr>
-xnoremap <silent>q :noh<cr>
+nnoremap <silent>- :noh<cr>
+xnoremap <silent>- :noh<cr>
 nnoremap & q
 
 omap ir i[
