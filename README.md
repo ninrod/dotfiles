@@ -20,6 +20,9 @@
 
 ![molokai-config](https://github.com/ninrod/dotfiles/raw/misc/images/molokai.png)
 
+### With [solarized dark](https://github.com/lifepillar/vim-solarized8)
+
+![solarized-dark-config](https://github.com/ninrod/dotfiles/raw/misc/images/solarized_dark.png)
 
 ## Important notice 
 
