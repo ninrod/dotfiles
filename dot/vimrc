@@ -197,7 +197,7 @@ call plug#end()
 " theme configuration {{{
 
 " less eye strain
-set background=light
+set background=dark
 
 " gruvbox {{{
 
@@ -207,7 +207,7 @@ set background=light
 " play nicely with vim-multiple-cursors
 let g:gruvbox_invert_selection=0
 
-" silent! colorscheme gruvbox
+silent! colorscheme gruvbox
 
 " see https://github.com/neovim/neovim/issues/4946
 highlight SpecialKey ctermfg=166 guifg=#d65d0e                            	
@@ -235,6 +235,25 @@ let g:javascript_conceal_super          = "Ω"
 let g:javascript_conceal_arrow_function = "⇒"
 
 " }}}
+" lightline.vim {{{
+
+let g:lightline = {
+      \'colorscheme': 'jellybeans'
+      \}
+
+" let g:lightline = {
+"       \'colorscheme': 'gruvbox',
+"       \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+"       \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+"       \}
+
+" }}}
+" tmuxline.vim {{{
+
+let g:tmuxline_powerline_separators = 0
+
+" }}}
+
 " jellybeans {{{
 
 " silent! colorscheme jellybeans
@@ -248,7 +267,7 @@ let g:javascript_conceal_arrow_function = "⇒"
 " solarized8_dark_high and solarized8_light_high: high-contrast variant;
 " solarized8_dark_flat and solarized8_light_flat: “flat” variant (not present in the original Solarized).
 
-silent! colorscheme solarized8_light_high
+" silent! colorscheme solarized8_light_high
 
 " }}}
 " molokai {{{
@@ -261,25 +280,6 @@ silent! colorscheme solarized8_light_high
 " papercolor {{{
 
 " silent! colorscheme PaperColor
-
-" }}}
-
-" lightline.vim {{{
-
-let g:lightline = {
-      \'colorscheme': 'solarized'
-      \}
-
-" let g:lightline = {
-"       \'colorscheme': 'gruvbox',
-"       \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-"       \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
-"       \}
-
-" }}}
-" tmuxline.vim {{{
-
-let g:tmuxline_powerline_separators = 0
 
 " }}}
 
