@@ -208,9 +208,12 @@ let g:gruvbox_invert_selection=0
 silent! colorscheme gruvbox
 
 " see https://github.com/neovim/neovim/issues/4946
-highlight SpecialKey ctermfg=166 guifg=#d65d0e                            	
+highlight SpecialKey ctermfg=124 guifg=#cc241d                            	
 
-let g:goyo_width = '95%'
+" see https://github.com/neovim/neovim/issues/4946
+highlight Conceal ctermfg=166 guifg=#d65d0e                            	
+
+let g:goyo_width = '80%'
 let g:goyo_height = '80%'
 " let g:goyo_linenr = 1
 
@@ -219,7 +222,6 @@ let g:limelight_default_coefficient = 0.85
 
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
-
 
 let g:javascript_conceal_function       = "ƒ"
 let g:javascript_conceal_null           = "ø"
