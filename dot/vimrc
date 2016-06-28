@@ -297,14 +297,24 @@ xnoremap ao aw
 onoremap io iw
 onoremap ao aw
 
-" these were inspired from the famous Damian Conway talk at OSCON 2023 https://youtu.be/aHm36-na4-4?t=598
-" basically, shift sucks. So we improve our bindings accordingly
-
+" these bind switches were inspired on the famous Damian Conway talk at 
+" OSCON 2013 https://youtu.be/aHm36-na4-4?t=598
+" the idea basically is that shift sucks.
+" If you can access a bind without having to press shift,
+" that's a significant speed and comfort improvement.
+" So we configure our binds based on this idea.
 nnoremap ; :
 xnoremap ; :
+
+" I use `Q` for exiting vim. `q:` is famous for screwing people up.
+" sometimes I just don't press shift correctly. 
+" So just use `&:` and `&[reg]` for macros and stuff. not a big deal.
+" plus: with lost `,` for `;`. so we need a replacement.
 nnoremap q ,
 xnoremap q ,
 onoremap q ,
+nnoremap & q
+
 nnoremap , ;
 xnoremap , ;
 onoremap , ;
@@ -319,7 +329,6 @@ nnoremap <silent> s :silent! normal za<cr>
 
 nnoremap <silent>- :noh<cr>
 xnoremap <silent>- :noh<cr>
-nnoremap & q
 
 omap ir i[
 omap ar a[
