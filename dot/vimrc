@@ -502,6 +502,7 @@ autocmd VimEnter * command! -nargs=* -bang Nag call s:ag_with_opts(<q-args>, <ba
 
 " my custom function for opening up new lines without leaving normal mode
 " as a bonus, the cursor point is unchanged
+" TODO: I sequester the `z` mark. Maybe there's a better way to do this?
 function! s:blankUp()
   execute "normal mzO\<esc>`z"
   silent! call repeat#set("\<Plug>(blankUp)", 1)
