@@ -353,6 +353,8 @@ nnoremap gl G
 vnoremap gl G
 onoremap gl G
 
+" These <Plug> are not from a plugin
+" They come from functions I wrote below. See the `functions section`
 nmap g<space> <Plug>(blankUp)
 nmap g<cr> <Plug>(blankDown)
 
@@ -368,7 +370,8 @@ xmap <Space> <Leader>
 " }}}
 " leader binds {{{
 
-" custom pageups and pagedowns
+" my custom pageups and pagedowns. really, pagedown on macbook sucks.
+" You have to reach all the way for `fn + arrow`. No thank you.
 nmap <leader>d LztM
 nmap <leader>u HzbM
 
@@ -497,12 +500,13 @@ function! s:ag_with_opts(arg, bang)
 endfunction
 autocmd VimEnter * command! -nargs=* -bang Nag call s:ag_with_opts(<q-args>, <bang>0)
 
+" my custom function for opening up new lines without leaving normal mode
+" as a bonus, the cursor point is unchanged
 function! s:blankUp()
   execute "normal mzO\<esc>`z"
   silent! call repeat#set("\<Plug>(blankUp)", 1)
 endfunction
 nnoremap <Plug>(blankUp) :<C-u>call <SID>blankUp()<CR>
-
 function! s:blankDown()
   execute "normal mzo\<esc>`z"
   silent! call repeat#set("\<Plug>(blankDown)", 1)
