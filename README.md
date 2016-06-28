@@ -59,7 +59,7 @@
 # install fzf
 $ cd ~/.fzf && ./install --all && cd
 
-# clone repo
+# clone dotfiles repo
 $ git clone https://github.com/ninrod/dotfiles.git ~/.dotfiles
 
 # run install script 
