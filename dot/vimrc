@@ -291,7 +291,7 @@ let g:tmuxline_powerline_separators = 0
 " standard bind changes {{{
 
 " as vim-wordmotion sequestered our `w` binds, we must provide an alternative
-" se https://github.com/chaoren/vim-wordmotion/issues/6
+" more info here: https://github.com/chaoren/vim-wordmotion/issues/6
 xnoremap io iw
 xnoremap ao aw
 onoremap io iw
