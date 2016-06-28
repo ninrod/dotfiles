@@ -1,9 +1,13 @@
 *.pyc
+tags
+zcompdump
+
 .cache
 .netrwhist
-zcompdump
-tags
+
+.config/
+
 repos/
 plugged/
 custom/
-.config/
+undodir/
