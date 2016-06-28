@@ -56,6 +56,9 @@
 * now open your shell and write this:
 
 ```sh
+# install fzf
+$ cd ~/.fzf && ./install --all && cd
+
 # clone repo
 $ git clone https://github.com/ninrod/dotfiles.git ~/.dotfiles
 
