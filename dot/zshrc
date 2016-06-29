@@ -187,17 +187,11 @@ alias gld='git log --pretty=format:"%C(yellow)%h%Creset %C(blue)%d%Creset %C(cya
 alias glf='git log --follow -p -- '
 alias glnc='git log --pretty=format:"%h %ad %an %s" --date=short --graph'
 alias glr='gl --reflog'
+alias gls='gl $(git show-ref --heads -s | tr "\n" " ") | head -n 20'
 alias glsi='git ls-files -oiX .gitignore'
 alias gm='git merge'
 alias gp='git push'
 
-# gls a cleaner glr {{{
-
-gls () {
-  gl $(git show-ref --heads -s | tr '\n' ' ') | head -n 20
-}
-
-# }}}
 # gc: simple git commit front {{{
 improved_gc () {
   if [[ ! -n ${1+x} ]]; then
