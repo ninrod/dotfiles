@@ -183,7 +183,6 @@ alias gf='git fetch'
 alias gg='git branch -vv'
 alias gi='builtin cd $(git rev-parse --show-toplevel)'
 alias gl='git log --pretty=format:"%C(yellow)%h%Creset %C(blue)%d%Creset %C(cyan)%ad%Creset %C(magenta)%an%Creset %C(white)%s%Creset " --date=relative --graph'
-alias gls='gl HEAD~5..HEAD'
 alias gld='git log --pretty=format:"%C(yellow)%h%Creset %C(blue)%d%Creset %C(cyan)%ad%Creset %C(magenta)%an%Creset %s" --graph'
 alias glf='git log --follow -p -- '
 alias glnc='git log --pretty=format:"%h %ad %an %s" --date=short --graph'
@@ -192,6 +191,13 @@ alias glsi='git ls-files -oiX .gitignore'
 alias gm='git merge'
 alias gp='git push'
 
+# gls a cleaner glr {{{
+
+gls () {
+  gl $(git show-ref --heads -s | tr '\n' ' ') | head -n 20
+}
+
+# }}}
 # gc: simple git commit front {{{
 improved_gc () {
   if [[ ! -n ${1+x} ]]; then
