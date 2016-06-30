@@ -124,7 +124,17 @@ zplug "felixr/docker-zsh-completion"
 zplug "supercrabtree/k"
 zplug "zsh-users/zsh-completions"
 zplug "~/code/nin-vi-mode", from:local
+
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
+  typeset -A ZSH_HIGHLIGHT_STYLES
+  # To differentiate aliases from other command types
+  ZSH_HIGHLIGHT_STYLES[alias]='fg=yellow,bold'
+  # To have paths colored instead of underlined
+  ZSH_HIGHLIGHT_STYLES[path]='fg=blue'
+  # To have paths colored instead of underlined
+  ZSH_HIGHLIGHT_STYLES[command]='fg=green,bold'
+  # To have paths colored instead of underlined
+  ZSH_HIGHLIGHT_STYLES[function]='fg=cyan,bold'
 
 if ! zplug check --verbose; then
   printf "Install? [y/N]: "
