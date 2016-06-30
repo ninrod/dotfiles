@@ -1,5 +1,8 @@
 # zsh options {{{
 
+# defining word endings
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+
 # history config options
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=10000
@@ -11,27 +14,29 @@ setopt hist_ignore_space
 setopt hist_verify
 setopt share_history
 
-# dir change options
+# dir navigation options
 setopt auto_pushd
 setopt pushd_ignore_dups
 setopt pushd_silent
 setopt auto_cd
 
+# glob options
 setopt extended_glob # allows us to use ^ to negate globs
 unsetopt nomatch # but when pattern matching fails, simply use the command as is. See robbyrussell/oh-my-zsh#449
 
-# defining word endings
-WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+##### completions
 
-# completions
-
+# comp bootstrap
 autoload -Uz compinit && compinit
 zstyle ':completion:*' menu select
 
 # better completion
 setopt menu_complete
+
+# case insensitive completion
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
+### fuzzy completion
 # lifted from http://superuser.com/a/815317/555734
 # 0 -- vanilla completion (abc => abc)
 # 1 -- smart case completion (abc => Abc)
