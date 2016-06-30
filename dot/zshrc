@@ -76,11 +76,6 @@ export PATH
 # }}}
 # exports {{{
 
-# needed in some machines
-if [ -z ${SHELL+x}  ]; then
-  export SHELL=$(which zsh)
-fi
-
 # standard configs
 export LANG=en_US.UTF-8
 export TERM=xterm-256color
