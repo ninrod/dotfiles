@@ -115,9 +115,10 @@ set splitright
 set cursorline
 
 " Visual autocomplete for command menu (e.g. :e ~/path/to/file)
-" set wildmenu
-" in test. lifted from http://stackoverflow.com/a/15583861/4921402
+" partially lifted from http://stackoverflow.com/a/15583861/4921402
+set wildmenu
 set wildmode=list:longest,list:full
+set wildignore+=*/.hg/*,*/.svn/*.,*/.DS_Store,*/.idea/*,*/.tmp/*,*/target/*
 
 " highlight a matching [{()}] when cursor is placed on start/end character
 set showmatch
@@ -130,9 +131,6 @@ set showbreak=←←
 
 " redraw only when we need to (i.e. don't redraw when executing a macro)
 set lazyredraw
-
-" TODO carefully verify the usefulness of this
-set wildignore+=*/.hg/*,*/.svn/*.,*/.DS_Store,*/.idea/*,*/.tmp/*,*/target/*
 
 " syntax/sh.vim adds `.` to iskeyword(verify with :verbose set iskeyword?). so `w` jumps past it. see :h g:sh_isk
 let g:sh_noisk=1
