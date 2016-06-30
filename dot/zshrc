@@ -148,8 +148,6 @@ zplug "zsh-users/zsh-syntax-highlighting", nice:10
   ZSH_HIGHLIGHT_STYLES[command]='fg=green,bold'
   # To have paths colored instead of underlined
   ZSH_HIGHLIGHT_STYLES[function]='fg=cyan,bold'
-  # cursor
-  ZSH_HIGHLIGHT_STYLES[cursor]='fg=black,bg=white'
 
 # local
 zplug "~/code/nin-vi-mode", from:local
