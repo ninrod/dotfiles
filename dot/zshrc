@@ -335,4 +335,9 @@ if [[ -n ${GIT_USER_EMAIL+x} ]]; then
   export GIT_USER_EMAIL
 fi
 
+# export relevant user options
+if [[ -n ${DOT_TERMINAL+x} ]]; then
+  export DOT_TERMINAL_EMULATOR
+fi
+
 # }}}
