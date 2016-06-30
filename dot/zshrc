@@ -123,9 +123,10 @@ zplug "b4b4r07/enhancd", use:init.sh
 zplug "felixr/docker-zsh-completion"
 zplug "supercrabtree/k"
 zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-syntax-highlighting", nice:10
-
 zplug "~/code/nin-vi-mode", from:local
+
+zplug "zsh-users/zsh-syntax-highlighting", nice:10
+  ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 
 if ! zplug check --verbose; then
   printf "Install? [y/N]: "
