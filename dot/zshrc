@@ -128,13 +128,14 @@ fi
 # Zplug
 source ~/.zplug/init.zsh
 
+# github
 zplug "Tarrasch/zsh-bd"
-zplug "b4b4r07/enhancd", use:init.sh
 zplug "felixr/docker-zsh-completion"
 zplug "supercrabtree/k"
 zplug "zsh-users/zsh-completions"
-zplug "~/code/nin-vi-mode", from:local
+zplug "b4b4r07/enhancd", use:init.sh
 
+# github configured plugins
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
   # ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor)
   ZSH_HIGHLIGHT_HIGHLIGHTERS=(main)
@@ -149,6 +150,9 @@ zplug "zsh-users/zsh-syntax-highlighting", nice:10
   ZSH_HIGHLIGHT_STYLES[function]='fg=cyan,bold'
   # cursor
   ZSH_HIGHLIGHT_STYLES[cursor]='fg=black,bg=white'
+
+# local
+zplug "~/code/nin-vi-mode", from:local
 
 if ! zplug check --verbose; then
   printf "Install? [y/N]: "
