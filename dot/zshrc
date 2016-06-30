@@ -28,9 +28,19 @@ WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 autoload -Uz compinit && compinit
 zstyle ':completion:*' menu select
 
-# better dir completion (case insensitive)
+# better completion
 setopt menu_complete
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+# lifted from http://superuser.com/a/815317/555734
+# 0 -- vanilla completion (abc => abc)
+# 1 -- smart case completion (abc => Abc)
+# 2 -- word flex completion (abc => A-big-Car)
+# 3 -- full flex completion (abc => ABraCadabra)
+zstyle ':completion:*' matcher-list '' \
+  'm:{a-z\-}={A-Z\_}' \
+  'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
+  'r:[[:ascii:]]||[[:ascii:]]=** r:|=* m:{a-z\-}={A-Z\_}'
 
 # }}}
 # terminal colors {{{
@@ -126,6 +136,8 @@ zplug "zsh-users/zsh-completions"
 zplug "~/code/nin-vi-mode", from:local
 
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
+  # ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor)
+  ZSH_HIGHLIGHT_HIGHLIGHTERS=(main)
   typeset -A ZSH_HIGHLIGHT_STYLES
   # To differentiate aliases from other command types
   ZSH_HIGHLIGHT_STYLES[alias]='fg=yellow,bold'
@@ -135,6 +147,8 @@ zplug "zsh-users/zsh-syntax-highlighting", nice:10
   ZSH_HIGHLIGHT_STYLES[command]='fg=green,bold'
   # To have paths colored instead of underlined
   ZSH_HIGHLIGHT_STYLES[function]='fg=cyan,bold'
+  # cursor
+  ZSH_HIGHLIGHT_STYLES[cursor]='fg=black,bg=white'
 
 if ! zplug check --verbose; then
   printf "Install? [y/N]: "
