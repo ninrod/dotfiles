@@ -115,7 +115,9 @@ set splitright
 set cursorline
 
 " Visual autocomplete for command menu (e.g. :e ~/path/to/file)
-set wildmenu
+" set wildmenu
+" in test. lifted from http://stackoverflow.com/a/15583861/4921402
+set wildmode=list:longest,list:full
 
 " highlight a matching [{()}] when cursor is placed on start/end character
 set showmatch
