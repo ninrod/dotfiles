@@ -162,6 +162,7 @@ Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'keith/tmux.vim'
 Plug 'luochen1990/rainbow'
+Plug 'machakann/vim-operator-jerk'
 Plug 'mbbill/undotree'
 Plug 'nelstrom/vim-markdown-folding'
 Plug 'nhooyr/neoman.vim'
@@ -206,6 +207,12 @@ Plug '~/.fzf'
 " Plug 'sheerun/vim-polyglot'
 " Plug 'SirVer/ultisnips'
 "   \| Plug 'ninrod/vim-snippets'
+" Plug 'machakann/vim-highlightedyank'
+"   map y <Plug>(highlightedyank)
+" Plug 'machakann/vim-columnmove'
+"   let g:columnmove_no_default_key_mappings = 1
+"   nmap gf <Plug>(columnmove-f)
+"   nmap g, <Plug>(columnmove-;)
 
 call plug#end()
 

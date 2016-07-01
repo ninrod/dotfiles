@@ -137,20 +137,15 @@ zplug "b4b4r07/enhancd", use:init.sh
 
 # github configured plugins
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
-  # ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor)
   ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor)
   typeset -A ZSH_HIGHLIGHT_STYLES
-  # To differentiate aliases from other command types
-  ZSH_HIGHLIGHT_STYLES[alias]='fg=yellow,bold'
-  # To have paths colored instead of underlined
+  ZSH_HIGHLIGHT_STYLES[alias]='fg=cyan,bold'
+  ZSH_HIGHLIGHT_STYLES[command]='fg=green,bold'
+  ZSH_HIGHLIGHT_STYLES[function]='fg=yellow,bold'
   ZSH_HIGHLIGHT_STYLES[path]='fg=blue'
   ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=yellow'
   ZSH_HIGHLIGHT_STYLES[path_prefix]='fg=cyan'
   ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]='fg=red'
-  # To have paths colored instead of underlined
-  ZSH_HIGHLIGHT_STYLES[command]='fg=green,bold'
-  # To have paths colored instead of underlined
-  ZSH_HIGHLIGHT_STYLES[function]='fg=cyan,bold'
 
 # local
 zplug "~/code/nin-vi-mode", from:local
@@ -215,12 +210,12 @@ alias gds='git diff --stat'
 alias gf='git fetch'
 alias gg='git branch -vv'
 alias gi='builtin cd $(git rev-parse --show-toplevel)'
-alias gl='git log --pretty=format:"%C(yellow)%h%Creset %C(blue)%d%Creset %C(cyan)%ad%Creset %C(magenta)%an%Creset %C(white)%s%Creset " --date=relative --graph'
+alias gls='git log --pretty=format:"%C(yellow)%h%Creset %C(blue)%d%Creset %C(cyan)%ad%Creset %C(magenta)%an%Creset %C(white)%s%Creset " --date=relative --graph'
+alias gl='gls $(git show-ref --heads -s | tr "\n" " ") | head -n 20'
 alias gld='git log --pretty=format:"%C(yellow)%h%Creset %C(blue)%d%Creset %C(cyan)%ad%Creset %C(magenta)%an%Creset %s" --graph'
 alias glf='git log --follow -p -- '
 alias glnc='git log --pretty=format:"%h %ad %an %s" --date=short --graph'
-alias glr='gl --reflog'
-alias gls='gl $(git show-ref --heads -s | tr "\n" " ") | head -n 20'
+alias glr='gls --reflog'
 alias glsi='git ls-files -oiX .gitignore'
 alias gm='git merge'
 alias gp='git push'
