@@ -144,6 +144,9 @@ zplug "zsh-users/zsh-syntax-highlighting", nice:10
   ZSH_HIGHLIGHT_STYLES[alias]='fg=yellow,bold'
   # To have paths colored instead of underlined
   ZSH_HIGHLIGHT_STYLES[path]='fg=blue'
+  ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=yellow'
+  ZSH_HIGHLIGHT_STYLES[path_prefix]='fg=cyan'
+  ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]='fg=red'
   # To have paths colored instead of underlined
   ZSH_HIGHLIGHT_STYLES[command]='fg=green,bold'
   # To have paths colored instead of underlined
@@ -151,6 +154,11 @@ zplug "zsh-users/zsh-syntax-highlighting", nice:10
 
 # local
 zplug "~/code/nin-vi-mode", from:local
+
+# enhancd config
+# if [[ "${SHELL_ENHANCD_ENABLED}" == "true"  ]]; then
+#   zplug "${DOTPATH}/zplug-deps/enhancd", use:enhancd.sh, from:local
+# fi
 
 if ! zplug check --verbose; then
   printf "Install? [y/N]: "
@@ -170,7 +178,7 @@ eval `dircolors ~/.lscolors`
 alias ls='ls --color=auto --group-directories-first -X'
 alias ag='ag --hidden --path-to-agignore=~/.agignore'
 
-# general binds
+# general alias
 alias b='cd ..'
 alias c='clear'
 alias di='dirs -v | head -n 10'
@@ -179,10 +187,10 @@ alias dot='la `find ~ -maxdepth 1 -type l`'
 alias e='exit'
 alias k='k -h'
 alias l='ls -lh'
-alias la='ls -lhA'
-alias ll='ls -h'
-alias lla='ls -hA'
+alias la='l -A'
+alias ll='l'
 alias m='nman'
+alias po='popd'
 alias r='exec zsh'
 alias rd='open /usr/local/share/doc/rust/html/index.html'
 alias s='du -sm * | sort -nr | head -n 20'
@@ -202,7 +210,7 @@ alias g='git status -sb'
 alias ga='git add'
 alias gal='git add -A'
 alias gd='git diff'
-alias gdh='git diff --cached'
+alias gdh='gd --cached'
 alias gds='git diff --stat'
 alias gf='git fetch'
 alias gg='git branch -vv'
@@ -216,6 +224,7 @@ alias gls='gl $(git show-ref --heads -s | tr "\n" " ") | head -n 20'
 alias glsi='git ls-files -oiX .gitignore'
 alias gm='git merge'
 alias gp='git push'
+alias gs='git status'
 
 # gc: simple git commit front {{{
 improved_gc () {
@@ -331,21 +340,27 @@ git_log_month () {
 # light
 # PROMPT='%F{cyan}%1~%f %F{red}#%f '
 
-######## dark
+build_prompt_char() {
+  local prompt_char="%(?.%F{magenta}.%F{red})${DOT_PROMPT_CHAR:-$}%f"
+  echo -n "$prompt_char"
+}
 
-# very simple with directory truncation
-PROMPT='%F{blue}%12<...<%1~%<<%f %F{magenta}$%f '
+# default: showing whoami@hostname without truncation
+PROMPT='%F{blue}%1~%f %F{cyan}%n%f%F{red}@%f%F{yellow}%m%f %F{magenta}#%f '
 
-# showing whoami@hostname
-# PROMPT='%F{blue}%1~%f %F{cyan}%n%f%F{red}@%f%F{yellow}%m%f %F{magenta}#%f '
+if [[ "${SHELL_PROMPT_INFO_LEVEL}" == "1"  ]]; then
+  # simplest with directory truncation
+  # PROMPT='%F{blue}%12<...<%1~%<<%f %F{magenta}$%f '
+  # test › unicode char
+  # test ❯ unicode char
+  # PROMPT="%F{blue}%12<...<%1~%<<%f %F{magenta}${DOT_PROMPT_CHAR:-›}%f "
+  # PROMPT="%F{blue}%12<...<%1~%<<%f %(?.%F{magenta}.%F{red})${DOT_PROMPT_CHAR:-›}%f "
+  PROMPT="%F{blue}%12<...<%1~%<<%f $(build_prompt_char) "
 
-# showing whaami@hostname and with truncation
-# PROMPT="%F{blue}%10<...<%1~%<<%f %F{cyan}%n%f%F{red}@%f%F{yellow}%m%f %F{magenta}#%f "
-
-# }}}
-# FZF ZLE extra bindkeys {{{
-
-bindkey '^E' fzf-cd-widget
+elif [[ "${SHELL_PROMPT_INFO_LEVEL}" == "2"  ]]; then
+  # showing whaami@hostname and with truncation
+  PROMPT="%F{blue}%10<...<%1~%<<%f %F{cyan}%n%f%F{red}@%f%F{yellow}%m%f %F{magenta}#%f "
+fi
 
 # }}}
 # bootstrap commands {{{
