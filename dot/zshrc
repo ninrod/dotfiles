@@ -138,7 +138,7 @@ zplug "b4b4r07/enhancd", use:init.sh
 # github configured plugins
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
   # ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor)
-  ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+  ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor)
   typeset -A ZSH_HIGHLIGHT_STYLES
   # To differentiate aliases from other command types
   ZSH_HIGHLIGHT_STYLES[alias]='fg=yellow,bold'
