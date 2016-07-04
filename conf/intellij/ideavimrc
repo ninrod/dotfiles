@@ -69,5 +69,5 @@ nnoremap <leader>re :action RenameElement<cr>
 nnoremap <leader>rf :action RenameFile<cr>
 
 " reloading vimrc
-nnoremap <leader>s :so C:\Users\deinf.filipe\_ideavimrc<cr>
-nnoremap <leader>e :e C:\Users\deinf.filipe\_ideavimrc<cr>
+nnoremap <leader>s :so ~/.ideavimrc<cr>
+nnoremap <leader>e :e ~/.ideavimrc<cr>
