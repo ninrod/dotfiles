@@ -72,6 +72,10 @@ PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 GNUBIN_PATH=/usr/local/opt/coreutils/libexec/gnubin
 PATH="$GNUBIN_PATH:$PATH"
 
+GOPATH=~/code/go
+export GOPATH
+PATH="$GOPATH/bin:$PATH"
+
 MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 export PATH
@@ -203,7 +207,7 @@ alias vv='v ~/.vimrc(:A)'
 alias vz='v ~/.zshrc(:A)'
 alias w='echo -e "$Blue ${"$(pwd)"/$HOME/~} ${Red}at ${Cyan}$(whoami)${Red}@${Yellow}$(hostname -s)$Red using $Yellow${0}$Purple \$"'
 alias zshcru='zsh -f'
-
+alias ms='gfm-viewer'
 # git alias
 alias g='git status -sb'
 alias ga='git add'
