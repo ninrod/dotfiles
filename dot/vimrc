@@ -57,7 +57,7 @@ set hlsearch
 set ignorecase
 
 " line numbers
-" set number
+set number
 set relativenumber
 
 " convert tabs to spaces
@@ -147,12 +147,16 @@ filetype plugin indent on
 
 call plug#begin('~/.vim/plugged')
 
+" plugin configuration {{{
+
 " rainbow configs
 let g:rainbow_active = 1
 
-" test
-Plug 'machakann/vim-highlightedyank'
-  map y <Plug>(highlightedyank)
+" vim-highlightedyank configs
+map y <Plug>(highlightedyank)
+let g:highlightedyank_highlight_duration = 260
+
+" }}}
 
 "core
 Plug 'Yggdroot/indentLine'
@@ -166,6 +170,7 @@ Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'keith/tmux.vim'
 Plug 'luochen1990/rainbow'
+Plug 'machakann/vim-highlightedyank'
 Plug 'machakann/vim-operator-jerk'
 Plug 'mbbill/undotree'
 Plug 'nelstrom/vim-markdown-folding'
