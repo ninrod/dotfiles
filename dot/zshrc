@@ -253,7 +253,7 @@ improved_gc () {
     git commit -v
     return 0
   fi
-  eval "noglob git commit -m \"$*\""
+  git commit -m $1
 }
 alias gc='noglob improved_gc'
 
