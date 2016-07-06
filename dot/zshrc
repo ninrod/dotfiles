@@ -184,8 +184,8 @@ alias ag='ag --hidden --path-to-agignore=~/.agignore'
 # general alias
 alias b='cd ..'
 alias c='clear'
-alias di='dirs -v | head -n 10'
 alias dic='dirs -c'
+alias dis='dirs -v | head -n 10'
 alias dot='la `find ~ -maxdepth 1 -type l`'
 alias e='exit'
 alias k='k -h'
@@ -196,7 +196,7 @@ alias m='nman'
 alias po='popd'
 alias r='exec zsh'
 alias rd='open /usr/local/share/doc/rust/html/index.html'
-alias t='tmux'
+alias t=tmux
 alias tarc='tar -zcvf file.tar.gz'
 alias tarx='tar -zxvf'
 alias v='nvim'
@@ -227,15 +227,23 @@ alias gp='git push'
 
 # git log
 alias gld='git log --pretty=format:"%C(yellow)%h%Creset %C(blue)%d%Creset %C(cyan)%ad%Creset %C(magenta)%an%Creset %C(white)%s%Creset " --graph'
+  alias glda='gld $(git show-ref -s | tr "\n" " ")'
   alias gll='gld --date=relative'
     alias glr='gll --reflog'
-  alias gl='gld --date=relative -n 20'
+  alias gl='gld --date=relative -20'
     alias gla='gl $(git show-ref -s | tr "\n" " ")'
 alias glf='git log --follow -p -- '
 alias glnc='git log --pretty=format:"%h %ad %an %s" --date=short --graph'
 
 alias glsi='git ls-files -oiX .gitignore'
 
+# driv: remove imagens docker vazias {{{
+
+driv () {
+  docker images | ag '^<none' | awk '{print $3}' | xargs -I{} docker rmi {}
+}
+
+# }}}
 # s: get size measurements {{{
 
 s() {
@@ -373,7 +381,7 @@ if [[ "${SHELL_PROMPT_INFO_LEVEL}" == "1"  ]]; then
   # test ❯ unicode char
   # PROMPT="%F{blue}%12<...<%1~%<<%f %F{magenta}${DOT_PROMPT_CHAR:-›}%f "
   # PROMPT="%F{blue}%12<...<%1~%<<%f %(?.%F{magenta}.%F{red})${DOT_PROMPT_CHAR:-›}%f "
-  PROMPT="%F{blue}%12<...<%1~%<<%f $(build_prompt_char) "
+  PROMPT="%F{blue}%13<...<%1~%<<%f $(build_prompt_char) "
 elif [[ "${SHELL_PROMPT_INFO_LEVEL}" == "2"  ]]; then
   # showing whaami@hostname and with truncation
   PROMPT="%F{blue}%10<...<%1~%<<%f %F{cyan}%n%f%F{red}@%f%F{yellow}%m%f %F{magenta}#%f "
