@@ -196,7 +196,6 @@ alias m='nman'
 alias po='popd'
 alias r='exec zsh'
 alias rd='open /usr/local/share/doc/rust/html/index.html'
-alias s='du -sm * | sort -nr | head -n 20'
 alias t='tmux'
 alias tarc='tar -zcvf file.tar.gz'
 alias tarx='tar -zxvf'
@@ -237,6 +236,17 @@ alias glnc='git log --pretty=format:"%h %ad %an %s" --date=short --graph'
 
 alias glsi='git ls-files -oiX .gitignore'
 
+# s: get size measurements {{{
+
+s() {
+  if [[ -n ${1+x} ]]; then
+    du -sm $1 | sort -nr | head -n 20
+    return 0;
+  fi
+  du -sm * | sort -nr | head -n 20
+}
+
+# }}}
 # gc: simple git commit front {{{
 improved_gc () {
   if [[ ! -n ${1+x} ]]; then
