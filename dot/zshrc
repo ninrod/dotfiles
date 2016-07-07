@@ -200,6 +200,7 @@ alias t=tmux
 alias tarc='tar -zcvf file.tar.gz'
 alias tarx='tar -zxvf'
 alias v='nvim'
+alias vh='~/code/apps/neovim/build/bin/nvim'
 alias vi='vim -u NONE -N'
 alias vt='v ~/.tmux.conf(:A)'
 alias vv='v ~/.vimrc(:A)'
