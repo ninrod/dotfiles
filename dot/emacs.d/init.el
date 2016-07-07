@@ -17,14 +17,24 @@
 (add-to-list 'load-path "~/.emacs.d/layers/evil")
 (add-to-list 'load-path "~/.emacs.d/layers/evil-leader")
 (add-to-list 'load-path "~/.emacs.d/layers/evil-org-mode")
-(add-to-list 'load-path "~/.emacs.d/layers/vimish-fold")
+(add-to-list 'load-path "~/.emacs.d/layers/spacemacs-theme")
+(add-to-list 'load-path "~/.emacs.d/layers/emacs-theme-gruvbox")
+(add-to-list 'load-path "~/.emacs.d/layers/linum-relative")
+(add-to-list 'load-path "~/.emacs.d/layers/org-bullets")
 
 (require 'evil)
 (require 'evil-leader)
 (require 'evil-org)
-; (require 'vimish-fold)
+(require 'linum-relative)
 
+(require 'spacemacs-dark-theme)
+
+; (require 'org-bullets)
+; (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+
+(global-evil-leader-mode)
 (evil-mode 1)
+(linum-relative-global-mode)
 
 ;;; esc quits pretty much anything (like pending prompts in the minibuffer)
 (define-key evil-normal-state-map [escape] 'keyboard-quit)
@@ -37,5 +47,23 @@
 
 ;; rebinds
 (define-key evil-normal-state-map "s" 'evil-toggle-fold)
+
+(define-key evil-normal-state-map (kbd "RET") 'evil-write)
 (define-key evil-normal-state-map "Q" 'evil-quit)
 (define-key evil-normal-state-map "Z" 'evil-save-modified-and-close)
+
+(define-key evil-motion-state-map "go" 'evil-goto-first-line)
+(define-key evil-motion-state-map "gl" 'evil-goto-line)
+
+; leader binds
+(evil-leader/set-leader "<SPC>")
+(evil-leader/set-key
+  "v" 'evil-window-vsplit
+  "x" 'evil-window-split
+  "k" 'evil-window-up
+  "l" 'evil-window-right
+  "h" 'evil-window-left
+  "j" 'evil-window-down
+)
+
+(setq linum-relative-current-symbol "")
