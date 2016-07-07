@@ -15,11 +15,27 @@
 (setq vc-make-backup-files t)
 
 (add-to-list 'load-path "~/.emacs.d/layers/evil")
+(add-to-list 'load-path "~/.emacs.d/layers/evil-leader")
+(add-to-list 'load-path "~/.emacs.d/layers/evil-org-mode")
+(add-to-list 'load-path "~/.emacs.d/layers/vimish-fold")
+
 (require 'evil)
+(require 'evil-leader)
+(require 'evil-org)
+; (require 'vimish-fold)
+
 (evil-mode 1)
 
-(add-to-list 'load-path "~/.emacs.d/layers/evil-leader")
-(require 'evil-leader)
+;;; esc quits pretty much anything (like pending prompts in the minibuffer)
+(define-key evil-normal-state-map [escape] 'keyboard-quit)
+(define-key evil-visual-state-map [escape] 'keyboard-quit)
+(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 
-(add-to-list 'load-path "~/.emacs.d/layers/evil-org-mode")
-(require 'evil-org)
+;; rebinds
+(define-key evil-normal-state-map "s" 'evil-toggle-fold)
+(define-key evil-normal-state-map "Q" 'evil-quit)
+(define-key evil-normal-state-map "Z" 'evil-save-modified-and-close)
