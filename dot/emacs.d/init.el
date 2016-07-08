@@ -14,27 +14,25 @@
 ;; Make backups of files, even when they're in version control
 (setq vc-make-backup-files t)
 
-(add-to-list 'load-path "~/.emacs.d/layers/evil")
-(add-to-list 'load-path "~/.emacs.d/layers/evil-leader")
-(add-to-list 'load-path "~/.emacs.d/layers/evil-org-mode")
-(add-to-list 'load-path "~/.emacs.d/layers/spacemacs-theme")
-(add-to-list 'load-path "~/.emacs.d/layers/emacs-theme-gruvbox")
-(add-to-list 'load-path "~/.emacs.d/layers/linum-relative")
-(add-to-list 'load-path "~/.emacs.d/layers/org-bullets")
+(let ((default-directory  "~/.emacs.d/layers/"))
+  (normal-top-level-add-subdirs-to-load-path))
 
 (require 'evil)
+    (evil-mode 1)
 (require 'evil-leader)
+    (global-evil-leader-mode)
 (require 'evil-org)
 (require 'linum-relative)
-
+    (linum-relative-global-mode)
+    (setq linum-relative-current-symbol "")
 (require 'spacemacs-dark-theme)
+(require 'org-bullets)
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
-; (require 'org-bullets)
-; (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-
-(global-evil-leader-mode)
-(evil-mode 1)
-(linum-relative-global-mode)
+(require 'spaceline-config)
+    (spaceline-spacemacs-theme)
+    (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
+    (setq powerline-default-separator 'wave)
 
 ;;; esc quits pretty much anything (like pending prompts in the minibuffer)
 (define-key evil-normal-state-map [escape] 'keyboard-quit)
@@ -63,7 +61,4 @@
   "k" 'evil-window-up
   "l" 'evil-window-right
   "h" 'evil-window-left
-  "j" 'evil-window-down
-)
-
-(setq linum-relative-current-symbol "")
+  "j" 'evil-window-down)
