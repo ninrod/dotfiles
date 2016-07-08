@@ -1,5 +1,6 @@
 * emacs
-usar o custom emacs e ver se tem muito problema pra editar org files
+** TODO usar o custom emacs e ver se tem muito problema pra editar org files
+** TODO como restartar o emacs server?
 * TAREFAS feitas
 ** DONE start emacs as a server
 CLOSED: [2016-07-08 Fri 09:36]
