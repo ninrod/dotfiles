@@ -20,6 +20,7 @@
   (evil-mode 1)
 (require 'evil-leader)
   (global-evil-leader-mode)
+(require 'evil-org)
 (require 'linum-relative)
   (linum-relative-global-mode)
   (setq linum-relative-current-symbol "")
