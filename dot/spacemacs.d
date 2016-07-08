@@ -1,0 +1,1 @@
+../conf/emacs/spacemacs.d

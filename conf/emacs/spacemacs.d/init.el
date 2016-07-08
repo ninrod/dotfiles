@@ -1,0 +1,1 @@
+(setq dotspacemacs-leader-key '&)
