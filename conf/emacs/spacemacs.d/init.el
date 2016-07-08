@@ -248,23 +248,13 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq linum-relative-current-symbol "")
 
   ; port of my vim bindings
-  ; (define-key evil-normal-state-map "s" 'evil-toggle-fold)
-  ; (define-key evil-normal-state-map (kbd "RET") 'evil-write)
-  ; (define-key evil-normal-state-map "Z" 'evil-save-modified-and-close)
-  ; (define-key evil-motion-state-map "go" 'evil-goto-first-line)
-  ; (define-key evil-motion-state-map "gl" 'evil-goto-line)
+  (define-key evil-normal-state-map "s" 'evil-toggle-fold)
+  (define-key evil-normal-state-map (kbd "RET") 'evil-write)
+  (define-key evil-normal-state-map "Z" 'evil-save-modified-and-close)
+  (define-key evil-normal-state-map "Q" 'spacemacs/kill-emacs)
+  (define-key evil-normal-state-map ";" 'evil-ex)
+  (define-key evil-normal-state-map "q" 'evil-repeat-find-char)
 
-  ; (define-key evil-normal-state-map "Q" 'spacemacs/kill-emacs)
-  ; (define-key evil-normal-state-map (kbd "Z") (kbd "ZZ"))
-  ; (define-key evil-normal-state-map (kbd ";") (kbd ":"))
-
-  (defun simulate-key-press (key)
-    "Return a command that pretends KEY was presssed.  KEY must be given in `kbd' notation."
-  `(lambda () (interactive)
-     (setq prefix-arg current-prefix-arg)
-     (setq unread-command-events (listify-key-sequence (read-kbd-macro ,key)))))
-
-  (define-key evil-normal-state-map (kbd "Q") (simulate-key-press "ZQ"))
 
   (spacemacs/set-leader-keys "h" 'evil-window-left)
   (spacemacs/set-leader-keys "l" 'evil-window-right)
