@@ -28,7 +28,7 @@ values."
      emacs-lisp
      ;; git
      ;; markdown
-     ;; org
+     org
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
@@ -112,7 +112,7 @@ values."
                                :width normal
                                :powerline-scale 1)
    ;; The leader key
-   dotspacemacs-leader-key "&"
+   dotspacemacs-leader-key "<SPC>"
    ;; The leader key accessible in `emacs state' and `insert state'
    ;; (default "M-m")
    dotspacemacs-emacs-leader-key "M-m"
@@ -243,13 +243,36 @@ before packages are loaded. If you are unsure, you should try in setting them in
   )
 
 (defun dotspacemacs/user-config ()
-  "Configuration function for user code.
-This function is called at the very end of Spacemacs initialization after
-layers configuration.
-This is the place where most of your configurations should be done. Unless it is
-explicitly specified that a variable should be set before a package is loaded,
-you should place your code here."
-  )
+  ; set relative line numbers
+  (linum-relative-global-mode)
+  (setq linum-relative-current-symbol "")
+
+  ; port of my vim bindings
+  ; (define-key evil-normal-state-map "s" 'evil-toggle-fold)
+  ; (define-key evil-normal-state-map (kbd "RET") 'evil-write)
+  ; (define-key evil-normal-state-map "Z" 'evil-save-modified-and-close)
+  ; (define-key evil-motion-state-map "go" 'evil-goto-first-line)
+  ; (define-key evil-motion-state-map "gl" 'evil-goto-line)
+
+  ; (define-key evil-normal-state-map "Q" 'spacemacs/kill-emacs)
+  ; (define-key evil-normal-state-map (kbd "Z") (kbd "ZZ"))
+  ; (define-key evil-normal-state-map (kbd ";") (kbd ":"))
+
+  (defun simulate-key-press (key)
+    "Return a command that pretends KEY was presssed.  KEY must be given in `kbd' notation."
+  `(lambda () (interactive)
+     (setq prefix-arg current-prefix-arg)
+     (setq unread-command-events (listify-key-sequence (read-kbd-macro ,key)))))
+
+  (define-key evil-normal-state-map (kbd "Q") (simulate-key-press "ZQ"))
+
+  (spacemacs/set-leader-keys "h" 'evil-window-left)
+  (spacemacs/set-leader-keys "l" 'evil-window-right)
+  (spacemacs/set-leader-keys "k" 'evil-window-up)
+  (spacemacs/set-leader-keys "j" 'evil-window-down)
+  (spacemacs/set-leader-keys "x" 'split-window-below-and-focus)
+  (spacemacs/set-leader-keys "v" 'split-window-right-and-focus)
+)
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
