@@ -243,6 +243,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   )
 
 (defun dotspacemacs/user-config ()
+  ; scratch buffer is my initial buffer
+  (setq initial-buffer-choice t)
 
   ; set relative line numbers
   (linum-relative-global-mode)
@@ -252,7 +254,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (define-key evil-normal-state-map "s" 'evil-toggle-fold)
   (define-key evil-normal-state-map (kbd "RET") 'evil-write)
   (define-key evil-normal-state-map "Z" 'evil-save-modified-and-close)
-  (define-key evil-normal-state-map "Q" 'spacemacs/kill-emacs)
+  (define-key evil-normal-state-map "Q" 'evil-quit)
   (define-key evil-normal-state-map ";" 'evil-ex)
   (define-key evil-normal-state-map "q" 'evil-repeat-find-char)
   (define-key evil-motion-state-map "go" 'evil-goto-first-line)

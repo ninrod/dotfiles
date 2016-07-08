@@ -1,2 +1,7 @@
 * emacs
-blah
+usar o custom emacs e ver se tem muito problema pra editar org files
+* TAREFAS feitas
+** DONE start emacs as a server
+CLOSED: [2016-07-08 Fri 09:36]
+** DONE connect to emacs server
+CLOSED: [2016-07-08 Fri 09:36]
