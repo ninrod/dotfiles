@@ -246,6 +246,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
 (defun dotspacemacs/user-config ()
 
+  ; set relative line numbers
+  (linum-relative-global-mode)
+  (setq linum-relative-current-symbol "")
+
   ; partial port of my vim bindings
   (define-key evil-normal-state-map "s" 'evil-toggle-fold)
   (define-key evil-normal-state-map (kbd "RET") 'evil-write)
