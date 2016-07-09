@@ -252,7 +252,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ; partial port of my vim bindings
   (define-key evil-normal-state-map "s" 'evil-toggle-fold)
   (define-key evil-normal-state-map (kbd "RET") 'evil-write)
-  (define-key evil-normal-state-map "Q" 'save-buffers-kill-terminal)
+  ;; (define-key evil-normal-state-map "Q" 'save-buffers-kill-terminal)
+  (define-key evil-normal-state-map "Q" 'evil-quit)
   (define-key evil-normal-state-map "Z" 'evil-save-modified-and-close)
   (define-key evil-normal-state-map ":" 'evil-repeat-find-char-reverse)
   (define-key evil-normal-state-map "q" 'evil-repeat-find-char)
@@ -271,12 +272,12 @@ before packages are loaded. If you are unsure, you should try in setting them in
     (lisp-interaction-mode))
   (define-key evil-normal-state-map "gs" 'enter-scratch-buffer)
 
-  (spacemacs/set-leader-keys "h" 'evil-window-left)
-  (spacemacs/set-leader-keys "l" 'evil-window-right)
-  (spacemacs/set-leader-keys "k" 'evil-window-up)
-  (spacemacs/set-leader-keys "j" 'evil-window-down)
-  (spacemacs/set-leader-keys "x" 'split-window-below-and-focus)
-  (spacemacs/set-leader-keys "v" 'split-window-right-and-focus)
+  ;; (spacemacs/set-leader-keys "h" 'evil-window-left)
+  ;; (spacemacs/set-leader-keys "l" 'evil-window-right)
+  ;; (spacemacs/set-leader-keys "k" 'evil-window-up)
+  ;; (spacemacs/set-leader-keys "j" 'evil-window-down)
+  ;; (spacemacs/set-leader-keys "x" 'split-window-below-and-focus)
+  ;; (spacemacs/set-leader-keys "v" 'split-window-right-and-focus)
 
 )
 
