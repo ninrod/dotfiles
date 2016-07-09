@@ -181,43 +181,48 @@ eval `dircolors ~/.lscolors`
 alias ls='ls --color=auto --group-directories-first -X'
 alias ag='ag --hidden --path-to-agignore=~/.agignore'
 
-# general alias
+# quick alias
 alias b='cd ..'
 alias c='clear'
+alias q='exit'
+alias k='k -h'
+alias l='ls -lh'
+alias r='exec zsh'
+alias w='echo -e "$Blue ${"$(pwd)"/$HOME/~} ${Red}at ${Cyan}$(whoami)${Red}@${Yellow}$(hostname -s)$Red using $Yellow${0}$Purple ${DOT_PROMPT_CHAR:-$}"'
+alias m='nman'
+alias t=tmux
+
+alias dot='la `find ~ -maxdepth 1 -type l`'
+alias la='l -A'
+
 alias dic='dirs -c'
 alias dis='dirs -v | head -n 10'
-alias dot='la `find ~ -maxdepth 1 -type l`'
-alias em='emacsclient -t'
+alias ms='gfm-viewer'
+alias po='popd'
+alias rd='open /usr/local/share/doc/rust/html/index.html'
+alias tarc='tar -zcvf file.tar.gz'
+alias tarx='tar -zxvf'
+alias zshcru='zsh -f'
+
+# emacs
 alias e='em'
-alias q='exit'
 alias ed='emacs --daemon'
 alias ek='emacsclient -e "(kill-emacs)"'
-alias er='ek && ed'
+alias em='emacsclient -t'
 alias emi='em ~/.emacs.d/init.el'
 alias ems='em ~/.spacemacs.d/init.el'
 alias ep='em ~/code/orgmode/programming.org'
-alias k='k -h'
-alias l='ls -lh'
-alias la='l -A'
-alias ll='l'
-alias m='nman'
-alias po='popd'
-alias r='exec zsh'
-alias rd='open /usr/local/share/doc/rust/html/index.html'
-alias t=tmux
-alias tarc='tar -zcvf file.tar.gz'
-alias tarx='tar -zxvf'
+alias er='ek && ed'
+
+# vim
 alias v='nvim'
+alias ve='v ~/.emacs.d/init.el'
 alias vh='~/code/apps/neovim/build/bin/nvim'
 alias vi='vim -u NONE -N'
+alias vs='v ~/.spacemacs.d/init.el'
 alias vt='v ~/.tmux.conf(:A)'
 alias vv='v ~/.vimrc(:A)'
 alias vz='v ~/.zshrc(:A)'
-alias ve='v ~/.emacs.d/init.el'
-alias vs='v ~/.spacemacs.d/init.el'
-alias w='echo -e "$Blue ${"$(pwd)"/$HOME/~} ${Red}at ${Cyan}$(whoami)${Red}@${Yellow}$(hostname -s)$Red using $Yellow${0}$Purple ${DOT_PROMPT_CHAR:-$}"'
-alias zshcru='zsh -f'
-alias ms='gfm-viewer'
 
 # git
 alias g='git status -sb'
