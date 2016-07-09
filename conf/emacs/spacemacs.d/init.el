@@ -253,11 +253,15 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ; partial port of my vim bindings
   (define-key evil-normal-state-map "s" 'evil-toggle-fold)
   (define-key evil-normal-state-map (kbd "RET") 'evil-write)
-  (define-key evil-normal-state-map "Z" 'evil-save-modified-and-close)
   (define-key evil-normal-state-map "Q" 'evil-quit)
-  (define-key evil-normal-state-map ";" 'evil-ex)
+  (define-key evil-normal-state-map "Z" 'evil-save-modified-and-close)
+  (define-key evil-normal-state-map ":" 'evil-repeat-find-char-reverse)
   (define-key evil-normal-state-map "q" 'evil-repeat-find-char)
+  (define-key evil-normal-state-map ";" 'evil-ex)
   (define-key evil-motion-state-map "go" 'evil-goto-first-line)
+  (define-key evil-motion-state-map "gl" 'evil-goto-line)
+  (define-key evil-motion-state-map "(" 'evil-backward-paragraph)
+  (define-key evil-motion-state-map ")" 'evil-forward-paragraph)
 
   (spacemacs/set-leader-keys "h" 'evil-window-left)
   (spacemacs/set-leader-keys "l" 'evil-window-right)
