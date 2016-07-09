@@ -225,6 +225,8 @@ alias gf='git fetch'
 alias gg='git branch -vv'
 alias gi='builtin cd $(git rev-parse --show-toplevel)'
 
+alias gco='git checkout'
+
 alias gd='git diff'
 alias gdh='gd --cached'
 alias gds='git diff --stat'
