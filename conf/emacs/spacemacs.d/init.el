@@ -42,7 +42,9 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '()
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(org-bullets)
+
+   ;; (dotspacemacs-excluded-packages '(org-bullets))
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
@@ -73,7 +75,7 @@ values."
    ;; variable is `emacs' then the `holy-mode' is enabled at startup. `hybrid'
    ;; uses emacs key bindings for vim's insert mode, but otherwise leaves evil
    ;; unchanged. (default 'vim)
-   dotspacemacs-editing-style 'vim
+   dotspacemacs-editing-style 'hybrid
    ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
@@ -134,7 +136,7 @@ values."
    ;; Emacs commands (M-x).
    ;; By default the command key is `:' so ex-commands are executed like in Vim
    ;; with `:' and Emacs commands are executed with `<leader> :'.
-   dotspacemacs-command-key ":"
+   dotspacemacs-command-key ";"
    ;; If non nil `Y' is remapped to `y$'. (default t)
    dotspacemacs-remap-Y-to-y$ t
    ;; Name of the default layout (default "Default")
@@ -239,15 +241,13 @@ It is called immediately after `dotspacemacs/init', before layer configuration
 executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
-`dotspacemacs/user-config' first."
+`dotspacemacs/user-config` first."
   )
 
 (defun dotspacemacs/user-config ()
-  ; scratch buffer is my initial buffer
-  (setq initial-buffer-choice t)
-
   ; set relative line numbers
   (linum-relative-global-mode)
+
   (setq linum-relative-current-symbol "")
 
   ; partial port of my vim bindings
@@ -277,6 +277,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (spacemacs/set-leader-keys "j" 'evil-window-down)
   (spacemacs/set-leader-keys "x" 'split-window-below-and-focus)
   (spacemacs/set-leader-keys "v" 'split-window-right-and-focus)
+
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
