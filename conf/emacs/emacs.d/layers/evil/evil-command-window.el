@@ -2,7 +2,7 @@
 ;; Author: Emanuel Evans <emanuel.evans at gmail.com>
 ;; Maintainer: Vegard Øye <vegard_oye at hotmail.com>
 
-;; Version: 1.2.11
+;; Version: 1.2.12
 
 ;;
 ;; This file is NOT part of GNU Emacs.
@@ -52,12 +52,11 @@ the key whose history is being shown (one of \":\", \"/\", or
 execute on the result that the user selects."
   (when (eq major-mode 'evil-command-window-mode)
     (user-error "Cannot recursively open command line window"))
-  (mapc #'(lambda (win)
-            (when (equal (buffer-name (window-buffer win))
-                         "*Command Line*")
-              (kill-buffer (window-buffer win))
-              (delete-window win)))
-        (window-list))
+  (dolist (win (window-list))
+    (when (equal (buffer-name (window-buffer win))
+                 "*Command Line*")
+      (kill-buffer (window-buffer win))
+      (delete-window win)))
   (split-window nil
                 (unless (zerop evil-command-window-height)
                   evil-command-window-height)
@@ -99,10 +98,10 @@ function to execute."
 (defun evil-command-window-ex-execute (result)
   "Execute RESULT as an ex command in the appropriate buffer."
   (unless (string-match-p "^ *$" result)
-    (let ((evil-ex-current-buffer evil-command-window-current-buffer))
-      (evil-ex-execute result))
     (unless (equal result (car evil-ex-history))
-      (setq evil-ex-history (cons result evil-ex-history)))))
+      (setq evil-ex-history (cons result evil-ex-history)))
+    (let ((evil-ex-current-buffer evil-command-window-current-buffer))
+      (evil-ex-execute result))))
 
 (defun evil-command-window-search-forward ()
   "Open a command line window for forward searches."

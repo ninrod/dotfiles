@@ -3,7 +3,7 @@
 ;; Author: Vegard Øye <vegard_oye at hotmail.com>
 ;; Maintainer: Vegard Øye <vegard_oye at hotmail.com>
 
-;; Version: 1.2.11
+;; Version: 1.2.12
 
 ;;
 ;; This file is NOT part of GNU Emacs.
@@ -6296,6 +6296,16 @@ Below some empty line."))
 <  if (cond) {
     do_something();
   }[\n]>}"))
+  (ert-info ("yank on blocks is turned linewise")
+    (evil-test-buffer
+      "{\n  [f]oo();\n}\n"
+      ("yiBp")
+      "{\n  foo();\n  [f]oo();\n}\n"))
+  (ert-info ("exclusive like if ending at bol")
+    (evil-test-buffer
+      "(defun foo ()\n[ ] (insert \"bar\")\n  )\n"
+      ("cibx" [escape])
+      "([x]\n  )\n"))
   (ert-info ("Operator on empty parentheses")
     (evil-test-buffer
       "a([(]))b"

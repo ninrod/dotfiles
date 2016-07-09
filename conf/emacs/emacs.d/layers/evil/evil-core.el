@@ -2,7 +2,7 @@
 ;; Author: Vegard Øye <vegard_oye at hotmail.com>
 ;; Maintainer: Vegard Øye <vegard_oye at hotmail.com>
 
-;; Version: 1.2.11
+;; Version: 1.2.12
 
 ;;
 ;; This file is NOT part of GNU Emacs.
@@ -829,14 +829,25 @@ If AUX is nil, create a new auxiliary keymap."
   aux)
 (put 'evil-set-auxiliary-keymap 'lisp-indent-function 'defun)
 
-(defun evil-get-auxiliary-keymap (map state &optional create)
+(defun evil-get-auxiliary-keymap (map state &optional create ignore-parent)
   "Get the auxiliary keymap for MAP in STATE.
 If CREATE is non-nil, create an auxiliary keymap
-if MAP does not have one."
+if MAP does not have one. If CREATE and
+IGNORE-PARENT are non-nil then a new auxiliary
+keymap is created even if the parent of MAP has
+one already."
   (when state
     (let* ((key (vconcat (list (intern (format "%s-state" state)))))
+           (parent-aux (when (and ignore-parent
+                                  (keymap-parent map)
+                                  state)
+                         (lookup-key (keymap-parent map) key)))
            (aux (if state (lookup-key map key) map)))
       (cond
+       ((and ignore-parent
+             (equal parent-aux aux)
+             create)
+        (evil-set-auxiliary-keymap map state))
        ((evil-auxiliary-keymap-p aux)
         aux)
        (create
@@ -933,8 +944,9 @@ A return value of t means all states."
 (defmacro evil-define-key (state keymap key def &rest bindings)
   "Create a STATE binding from KEY to DEF for KEYMAP.
 STATE is one of `normal', `insert', `visual', `replace',
-`operator', `motion' and `emacs'. The remaining arguments
-are like those of `define-key'. For example:
+`operator', `motion', `emacs', or a list of one or more of
+these. The remaining arguments are like those of
+`define-key'. For example:
 
     (evil-define-key 'normal foo-map \"a\" 'bar)
 
@@ -952,21 +964,42 @@ to `after-load-functions', delaying execution as necessary."
   `(evil-delay ',(if (symbolp keymap)
                      `(and (boundp ',keymap) (keymapp ,keymap))
                    `(keymapp ,keymap))
-       '(let* ((state ,state) (keymap ,keymap) (key ,key) (def ,def)
-               (bindings (list ,@bindings)) aux)
-          (if state
-              (setq aux (evil-get-auxiliary-keymap keymap state t))
-            (setq aux keymap))
-          (while key
-            (define-key aux key def)
-            (setq key (pop bindings)
-                  def (pop bindings)))
-          ;; ensure the prompt string comes first
-          (evil-set-keymap-prompt aux (keymap-prompt aux)))
+       '(evil-define-key* ,state ,keymap ,key ,def ,@bindings)
      'after-load-functions t nil
      (format "evil-define-key-in-%s"
              ',(if (symbolp keymap) keymap 'keymap))))
 (defalias 'evil-declare-key 'evil-define-key)
+
+(defun evil-define-key* (state keymap key def &rest bindings)
+  "Create a STATE binding from KEY to DEF for KEYMAP.
+STATE is one of `normal', `insert', `visual', `replace',
+`operator', `motion', `emacs', or a list of one or more of these.
+
+The use is identical to `evil-define-key' with the exception that
+this is a function and not a macro (and so will not be expanded
+when compiled which can have unintended
+consequences). `evil-define-key*' also does not defer any
+bindings like `evil-define-key' does using `evil-delay'. This
+allows errors in the bindings to be caught immediately, and makes
+its behavior more predictable."
+  (let ((aux-maps
+         (cond ((listp state)
+                (mapcar
+                 (lambda (st)
+                   (evil-get-auxiliary-keymap keymap st t))
+                 state))
+               (state
+                (list (evil-get-auxiliary-keymap keymap state t)))
+               (t
+                (list keymap)))))
+    (while key
+      (dolist (map aux-maps)
+        (define-key map key def))
+      (setq key (pop bindings)
+            def (pop bindings)))
+    ;; ensure the prompt string comes first
+    (dolist (map aux-maps)
+      (evil-set-keymap-prompt map (keymap-prompt map)))))
 
 (defun evil-define-minor-mode-key (state mode key def &rest bindings)
   "Similar to `evil-define-key' but the bindings are associated

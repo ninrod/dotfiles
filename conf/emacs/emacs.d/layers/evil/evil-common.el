@@ -2,7 +2,7 @@
 ;; Author: Vegard Øye <vegard_oye at hotmail.com>
 ;; Maintainer: Vegard Øye <vegard_oye at hotmail.com>
 
-;; Version: 1.2.11
+;; Version: 1.2.12
 
 ;;
 ;; This file is NOT part of GNU Emacs.
@@ -36,6 +36,7 @@
 (declare-function evil-visual-restore "evil-states")
 (declare-function evil-motion-state "evil-states")
 (declare-function evil-ex-p "evil-ex")
+(declare-function evil-set-jump "evil-jumps")
 
 ;;; Compatibility for Emacs 23
 (unless (fboundp 'deactivate-input-method)
@@ -791,10 +792,10 @@ function for changing the cursor, or a list of the above."
 
 (defun evil-refresh-cursor (&optional state buffer)
   "Refresh the cursor for STATE in BUFFER.
-STATE defaults to the current state.
-BUFFER defaults to the current buffer."
+BUFFER defaults to the current buffer.  If STATE is nil the
+cursor type is either `evil-force-cursor' or the current state."
   (when (and (boundp 'evil-local-mode) evil-local-mode)
-    (let* ((state (or state evil-state 'normal))
+    (let* ((state (or state evil-force-cursor evil-state 'normal))
            (default (or evil-default-cursor t))
            (cursor (evil-state-property state :cursor t))
            (color (or (and (stringp cursor) cursor)
@@ -1918,25 +1919,29 @@ POS defaults to the current position of point.
 If ADVANCE is t, the marker advances when inserting text at it;
 otherwise, it stays behind."
   (interactive (list (read-char)))
-  (let ((marker (evil-get-marker char t)) alist)
-    (unless (markerp marker)
-      (cond
-       ((and marker (symbolp marker) (boundp marker))
-        (set marker (or (symbol-value marker) (make-marker)))
-        (setq marker (symbol-value marker)))
-       ((functionp marker)
-        (user-error "Cannot set special marker `%c'" char))
-       ((evil-global-marker-p char)
-        (setq alist (default-value 'evil-markers-alist)
-              marker (make-marker))
-        (evil-add-to-alist 'alist char marker)
-        (setq-default evil-markers-alist alist))
-       (t
-        (setq marker (make-marker))
-        (evil-add-to-alist 'evil-markers-alist char marker))))
-    (add-hook 'kill-buffer-hook #'evil-swap-out-markers nil t)
-    (set-marker-insertion-type marker advance)
-    (set-marker marker (or pos (point)))))
+  (catch 'done
+    (let ((marker (evil-get-marker char t)) alist)
+      (unless (markerp marker)
+        (cond
+         ((and marker (symbolp marker) (boundp marker))
+          (set marker (or (symbol-value marker) (make-marker)))
+          (setq marker (symbol-value marker)))
+         ((eq marker 'evil-jump-backward-swap)
+          (evil-set-jump)
+          (throw 'done nil))
+         ((functionp marker)
+          (user-error "Cannot set special marker `%c'" char))
+         ((evil-global-marker-p char)
+          (setq alist (default-value 'evil-markers-alist)
+                marker (make-marker))
+          (evil-add-to-alist 'alist char marker)
+          (setq-default evil-markers-alist alist))
+         (t
+          (setq marker (make-marker))
+          (evil-add-to-alist 'evil-markers-alist char marker))))
+      (add-hook 'kill-buffer-hook #'evil-swap-out-markers nil t)
+      (set-marker-insertion-type marker advance)
+      (set-marker marker (or pos (point))))))
 
 (defun evil-get-marker (char &optional raw)
   "Return the marker denoted by CHAR.
@@ -3073,7 +3078,10 @@ end of the line of OP and at the beginning of the line of CL."
         (goto-char end)
         (skip-chars-backward " \t")
         (when (bolp)
-          (setq end (point))))
+          (setq end (point))
+          (goto-char beg)
+          (when (and (not (bolp)) (< beg end))
+            (setq end (1- end)))))
       (cons beg end)))
    (t
     (user-error "Unknown selection-type %s" selection-type))))
@@ -3089,11 +3097,13 @@ delimited object must be given by THING-up function (see
 `evil-up-block').
 
 SELECTION-TYPE is symbol that determines which parts of the block
-are selected.  If it is 'inclusive or t OPEN and CLOSE are included in
-the range. If it is 'exclusive or nil the delimiters are not
-contained. If it is 'exclusive-line the delimiters are not
-included as well as adjacent whitespace until the beginning of
-the next line or the end of the previous line.
+are selected.  If it is 'inclusive or t OPEN and CLOSE are
+included in the range. If it is 'exclusive or nil the delimiters
+are not contained. If it is 'exclusive-line the delimiters are
+not included as well as adjacent whitespace until the beginning
+of the next line or the end of the previous line. If the
+resulting selection consists of complete lines only and visual
+state is not active, the returned selection is linewise.
 
 If COUNTCURRENT is non-nil an objected is counted if the current
 selection matches that object exactly.
@@ -3169,11 +3179,19 @@ are the delimiters of a string or comment."
         (let ((sel (evil--get-block-range op cl selection-type)))
           (setq op (car sel)
                 cl (cdr sel)))
-        (if (and (equal op orig-beg) (equal cl orig-end)
-                 (or (not countcurrent)
-                     (and countcurrent (/= count 1))))
-            (error "No surrounding delimiters found")
-          (evil-range op cl type :expanded t))))))
+        (cond
+         ((and (equal op orig-beg) (equal cl orig-end)
+               (or (not countcurrent)
+                   (and countcurrent (/= count 1))))
+          (error "No surrounding delimiters found"))
+         ((save-excursion
+            (and (not (evil-visual-state-p))
+                 (eq type 'inclusive)
+                 (progn (goto-char op) (bolp))
+                 (progn (goto-char cl) (bolp))))
+          (evil-range op cl 'line :expanded t))
+         (t
+          (evil-range op cl type :expanded t)))))))
 
 (defun evil-select-paren (open close beg end type count &optional inclusive)
   "Return a range (BEG END) of COUNT delimited text objects.
@@ -3354,7 +3372,7 @@ preceeding (or following) whitespace is added to the range. "
 
 (defun evil-select-xml-tag (beg end type &optional count inclusive)
   "Return a range (BEG END) of COUNT matching XML tags.
-If EXCLUSIVE is non-nil, the tags themselves are excluded
+If INCLUSIVE is non-nil, the tags themselves are included
 from the range."
   (cond
    ((and (not inclusive) (= (abs (or count 1)) 1))
@@ -3416,42 +3434,24 @@ are included. The step is terminated with `evil-end-undo-step'."
         (undo-boundary))
       (setq evil-undo-list-pointer (or buffer-undo-list t)))))
 
-(defun evil-end-undo-step (&optional continue first-only)
+(defun evil-end-undo-step (&optional continue)
   "End a undo step started with `evil-start-undo-step'.
-Adds an undo boundary unless CONTINUE is specified. If FIRST-ONLY
-is non-nil, only the first boundary is removed."
+Adds an undo boundary unless CONTINUE is specified."
   (when (and evil-undo-list-pointer
              (not evil-in-single-undo))
-    (evil-refresh-undo-step first-only)
-    (unless continue
+    (evil-refresh-undo-step)
+    (unless (or continue (null (car-safe buffer-undo-list)))
       (undo-boundary))
     (setq evil-undo-list-pointer nil)))
 
-(defun evil-refresh-undo-step (&optional first-only)
+(defun evil-refresh-undo-step ()
   "Refresh `buffer-undo-list' entries for current undo step.
 Undo boundaries until `evil-undo-list-pointer' are removed to
-make the entries undoable as a single action. If FIRST-ONLY is
-non-nil only the first boundary is removed.  See
+make the entries undoable as a single action. See
 `evil-start-undo-step'."
   (when evil-undo-list-pointer
-    (if first-only
-        (let ((cnt 0)
-              (cur buffer-undo-list)
-              (bnd nil))
-          ;; find last nil
-          (while (and cur (not (eq cur evil-undo-list-pointer)))
-            (when (null (car cur)) (setq bnd cur))
-            (pop cur))
-          ;; remove the last nil
-          (when bnd
-            (setq cur buffer-undo-list)
-            (if (eq cur bnd)
-                (pop buffer-undo-list)
-              (while (not (eq (cdr cur) bnd))
-                (pop cur))
-              (setcdr cur (cdr bnd)))))
-      (setq buffer-undo-list
-            (evil-filter-list #'null buffer-undo-list evil-undo-list-pointer)))
+    (setq buffer-undo-list
+          (evil-filter-list #'null buffer-undo-list evil-undo-list-pointer))
     (setq evil-undo-list-pointer (or buffer-undo-list t))))
 
 (defmacro evil-with-undo (&rest body)

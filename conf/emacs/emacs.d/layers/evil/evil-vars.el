@@ -3,7 +3,7 @@
 ;; Author: Vegard Øye <vegard_oye at hotmail.com>
 ;; Maintainer: Vegard Øye <vegard_oye at hotmail.com>
 
-;; Version: 1.2.11
+;; Version: 1.2.12
 
 ;;
 ;; This file is NOT part of GNU Emacs.
@@ -186,6 +186,9 @@ cursor, or a list of the above."
   :type '(set symbol (cons symbol symbol) string function)
   :group 'evil)
 
+(defvar evil-force-cursor nil
+  "Overwrite the current states default cursor.")
+
 (defcustom evil-repeat-move-cursor t
   "Whether \"\\<evil-normal-state-map>\\[evil-repeat]\" \
 moves the cursor."
@@ -275,18 +278,23 @@ This should be a regexp set without the enclosing []."
   :group 'evil)
 (make-variable-buffer-local 'evil-bigword)
 
-(defcustom evil-want-fine-undo 'fine
+(defcustom evil-want-fine-undo nil
   "Whether actions like \"cw\" are undone in several steps.
-There are three possible choices. \"No\" means all chances made
+There are three possible choices. \"No\" means all changes made
 during insert state including a possible delete after a change
-operation are collected in a single undo step. If \"Fine\" is
-selected, insertion commands create several undo steps as Emacs
-would do and the delete after a change operation is merged with
-the first undo step of the insertion. \"Very fine\" is the same
-but the delete operation is a separate undo step."
+operation are collected in a single undo step. If \"Yes\" is
+selected, undo steps are determined according to Emacs heuristics
+and no attempt is made to further aggregate changes.
+
+As of 1.2.13, the option \"fine\" is ignored and means the same
+thing as \"No\". It used to be the case that fine would only try
+to merge the first two changes in an insert operation. For
+example, merging the delete and first insert operation after
+\"cw\", but this option was removed because it did not work
+consistently."
   :type '(radio (const :tag "No" :value nil)
-                (const :tag "Fine" :value fine)
-                (const :tag "Very fine" :value t))
+                (const :tag "Fine (obsolete)" :value fine)
+                (const :tag "Yes" :value t))
   :group 'evil)
 
 (defcustom evil-regexp-search t
@@ -432,21 +440,32 @@ before point."
   :group 'evil
   :set #'(lambda (sym value)
            (set-default sym value)
-           (when (boundp 'evil-motion-state-map)
+           (when (boundp 'evil-insert-state-map)
              (cond
               ((and (not value)
-                    (eq (lookup-key evil-motion-state-map (kbd "C-w"))
+                    (eq (lookup-key evil-insert-state-map (kbd "C-w"))
                         'evil-delete-backward-word))
-               (define-key evil-motion-state-map (kbd "C-w") 'evil-window-map))
+               (define-key evil-insert-state-map (kbd "C-w") 'evil-window-map))
               ((and value
-                    (eq (lookup-key evil-motion-state-map (kbd "C-w"))
+                    (eq (lookup-key evil-insert-state-map (kbd "C-w"))
                         'evil-window-map))
-               (define-key evil-motion-state-map (kbd "C-w") 'evil-delete-backward-word))))))
+               (define-key evil-insert-state-map (kbd "C-w") 'evil-delete-backward-word))))))
 
 (defcustom evil-want-C-w-in-emacs-state nil
   "Whether \"C-w\" prefixes windows commands in Emacs state."
   :type 'boolean
-  :group 'evil)
+  :group 'evil
+  :set #'(lambda (sym value)
+           (set-default sym value)
+           (when (boundp 'evil-emacs-state-map)
+             (cond
+              ((and (not value)
+                    (eq (lookup-key evil-emacs-state-map (kbd "C-w"))
+                        'evil-window-map))
+               (define-key evil-emacs-state-map (kbd "C-w") nil))
+              ((and value
+                    (not (lookup-key evil-emacs-state-map (kbd "C-w"))))
+               (define-key evil-emacs-state-map (kbd "C-w") 'evil-window-map))))))
 
 (defcustom evil-want-change-word-to-end t
   "Whether \"cw\" behaves like \"ce\"."
@@ -580,6 +599,7 @@ If STATE is nil, Evil is disabled in the buffer."
 (defcustom evil-emacs-state-modes
   '(archive-mode
     bbdb-mode
+    biblio-selection-mode
     bookmark-bmenu-mode
     bookmark-edit-annotation-mode
     browse-kill-ring-mode
@@ -609,6 +629,7 @@ If STATE is nil, Evil is disabled in the buffer."
     emms-mark-mode
     emms-metaplaylist-mode
     emms-playlist-mode
+    ess-help-mode
     etags-select-mode
     fj-mode
     gc-issues-mode
@@ -662,6 +683,8 @@ If STATE is nil, Evil is disabled in the buffer."
     occur-mode
     org-agenda-mode
     package-menu-mode
+    pdf-outline-buffer-mode
+    pdf-view-mode
     proced-mode
     rcirc-mode
     rebase-mode
@@ -1170,11 +1193,17 @@ SYMBOL is made permanent buffer local."
      (make-variable-buffer-local ',symbol)
      (put ',symbol 'permanent-local t)))
 
-(evil-define-local-var evil-ud-scroll-count 0
+(evil-define-local-var evil-scroll-count 0
   "Holds last used prefix for `evil-scroll-up'
 and `evil-scroll-down'.
 Determines how many lines should be scrolled.
 Default value is 0 - scroll half the screen.")
+
+(evil-define-local-var evil-scroll-line-count 1
+  "Holds last used prefix for `evil-scroll-line-up'
+and `evil-scroll-line-down'.
+Determines how many lines should be scrolled.
+Default value is 1 line.")
 
 (evil-define-local-var evil-state nil
   "The current Evil state.
@@ -1386,6 +1415,10 @@ has been repeated.")
 (defvar evil-repeat-count nil
   "The explicit count when repeating a command.")
 
+(defvar evil-maybe-remove-spaces nil
+  "Flag to determine if newly inserted spaces should be removed.
+See the function `evil-maybe-remove-spaces'.")
+
 (evil-define-local-var evil-insert-count nil
   "The explicit count passed to an command starting Insert state.")
 
@@ -1551,6 +1584,13 @@ Elements have the form (NAME . FUNCTION).")
 (defvar evil-visual-x-select-timeout 0.1
   "Time in seconds for the update of the X selection.")
 
+(declare-function origami-open-all-nodes "origami.el")
+(declare-function origami-close-all-nodes "origami.el")
+(declare-function origami-toggle-node "origami.el")
+(declare-function origami-open-node "origami.el")
+(declare-function origami-open-node-recursively "origami.el")
+(declare-function origami-close-node "origami.el")
+
 (defvar evil-fold-list
   `(((hs-minor-mode)
      :open-all   hs-show-all
@@ -1579,7 +1619,14 @@ Elements have the form (NAME . FUNCTION).")
                       (show-entry)
                       (show-children)))
      :open-rec   show-subtree
-     :close      hide-subtree))
+     :close      hide-subtree)
+    ((origami-mode)
+     :open-all   ,(lambda () (origami-open-all-nodes (current-buffer)))
+     :close-all  ,(lambda () (origami-close-all-nodes (current-buffer)))
+     :toggle     ,(lambda () (origami-toggle-node (current-buffer) (point)))
+     :open       ,(lambda () (origami-open-node (current-buffer) (point)))
+     :open-rec   ,(lambda () (origami-open-node-recursively (current-buffer) (point)))
+     :close      ,(lambda () (origami-close-node (current-buffer) (point)))))
   "Actions to be performed for various folding operations.
 
 The value should be a list of fold handlers, were a fold handler has
@@ -1782,7 +1829,7 @@ Otherwise the previous command is assumed as substitute.")
           (goto-char (point-min))
           (buffer-substring (point-min) (line-end-position)))
          ;; no repo, use plain version
-         (t "1.2.11")))))
+         (t "1.2.12")))))
   "The current version of Evil")
 
 (defun evil-version ()
