@@ -26,8 +26,8 @@ values."
      ;; auto-completion
      ;; better-defaults
      emacs-lisp
-     ;; git
-     ;; markdown
+     git
+     markdown
      org
      ;; (shell :variables
      ;;        shell-default-height 30
@@ -208,7 +208,7 @@ values."
    ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
    ;; derivatives. If set to `relative', also turns on relative line numbers.
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers relative
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
@@ -245,15 +245,12 @@ before packages are loaded. If you are unsure, you should try in setting them in
   )
 
 (defun dotspacemacs/user-config ()
-  ; set relative line numbers
-  (linum-relative-global-mode)
-
-  (setq linum-relative-current-symbol "")
 
   ; partial port of my vim bindings
   (define-key evil-normal-state-map "s" 'evil-toggle-fold)
   (define-key evil-normal-state-map (kbd "RET") 'evil-write)
-  (define-key evil-normal-state-map "Q" 'evil-quit)
+  ;; (define-key evil-normal-state-map "Q" 'evil-quit)
+  (define-key evil-normal-state-map "Q" 'save-buffers-kill-terminal)
   (define-key evil-normal-state-map "Z" 'evil-save-modified-and-close)
   (define-key evil-normal-state-map ":" 'evil-repeat-find-char-reverse)
   (define-key evil-normal-state-map "q" 'evil-repeat-find-char)
@@ -263,6 +260,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (define-key evil-motion-state-map "(" 'evil-backward-paragraph)
   (define-key evil-motion-state-map ")" 'evil-forward-paragraph)
   (define-key evil-normal-state-map "-" 'evil-search-highlight-persist-remove-all)
+  evil-ex-nohighlight
 
   (defun enter-scratch-buffer nil
     "switch to the scratch buffer"
