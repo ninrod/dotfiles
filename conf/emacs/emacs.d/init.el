@@ -93,15 +93,15 @@
 (define-key evil-normal-state-map "zl" 'outline-next-visible-heading)
 (define-key evil-normal-state-map "zo" 'org-insert-heading)
 (define-key evil-normal-state-map "t" 'org-todo)
-(define-key evil-normal-state-map "z<" 'org-metaleft)
-(define-key evil-normal-state-map "z>" 'org-metaright)
+(define-key evil-normal-state-map "g<" 'org-metaleft)
+(define-key evil-normal-state-map "g>" 'org-metaright)
 (define-key evil-normal-state-map "-" 'org-cycle-list-bullet)
 
 (defun enter-scratch-buffer nil
    "switch to the scratch buffer"
    (interactive)
    (switch-to-buffer "*scratch*")
-   (lisp-interaction-mode))    
+   (lisp-interaction-mode))
 
 (define-key evil-normal-state-map "gs" 'enter-scratch-buffer)
 

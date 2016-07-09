@@ -262,6 +262,14 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (define-key evil-motion-state-map "gl" 'evil-goto-line)
   (define-key evil-motion-state-map "(" 'evil-backward-paragraph)
   (define-key evil-motion-state-map ")" 'evil-forward-paragraph)
+  (define-key evil-normal-state-map "-" 'evil-search-highlight-persist-remove-all)
+
+  (defun enter-scratch-buffer nil
+    "switch to the scratch buffer"
+    (interactive)
+    (switch-to-buffer "*scratch*")
+    (lisp-interaction-mode))
+  (define-key evil-normal-state-map "gs" 'enter-scratch-buffer)
 
   (spacemacs/set-leader-keys "h" 'evil-window-left)
   (spacemacs/set-leader-keys "l" 'evil-window-right)
