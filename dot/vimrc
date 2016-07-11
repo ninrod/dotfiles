@@ -37,12 +37,12 @@ if !has('nvim')
 endif
 
 " Keep undo history across sessions by storing it in a file
-if has('persistent_undo')
-    let myUndodir = expand('$HOME/.vim/undodir')
-    let &undodir = myUndodir
-    set undofile
-    silent call system('mkdir -p ' . &undodir)
-endif
+" if has('persistent_undo')
+"   let myUndodir = expand('$HOME/.vim/undodir')
+"   let &undodir = myUndodir
+"   set undofile
+"   silent call system('mkdir -p ' . &undodir)
+" endif
 
 syntax on
 
