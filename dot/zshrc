@@ -157,6 +157,7 @@ zplug "zsh-users/zsh-syntax-highlighting", nice:10
 
 # local
 zplug "~/code/nin-vi-mode", from:local
+# zplug "~/code/nin-z", from:local, use:z.sh
 
 # enhancd config
 # if [[ "${SHELL_ENHANCD_ENABLED}" == "true"  ]]; then
@@ -231,9 +232,6 @@ alias gf='git fetch'
 alias gg='git branch -vv'
 alias gi='builtin cd $(git rev-parse --show-toplevel)'
 
-alias gco='git checkout'
-alias gcom='gco master'
-
 alias gd='git diff'
 alias gdh='gd --cached'
 alias gds='git diff --stat'
@@ -241,7 +239,11 @@ alias gds='git diff --stat'
 alias ga='git add'
 alias gal='git add -A'
 
+alias gco='git checkout'
+alias gcom='gco master'
+alias gb='git branch'
 alias gm='git merge'
+alias gr='git rebase'
 alias gp='git push'
 
 # git log
