@@ -207,6 +207,7 @@ alias zshcru='zsh -f'
 
 # emacs
 alias e='em'
+alias ec='emacs -Q'
 alias ed='emacs --daemon'
 alias ek='emacsclient -e "(kill-emacs)"'
 alias em='emacsclient -t'
