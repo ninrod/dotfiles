@@ -24,21 +24,30 @@
 
 (let ((default-directory  "~/.emacs.d/layers/"))
   (normal-top-level-add-subdirs-to-load-path))
+
 (require 'evil)
   (evil-mode 1)
+
 (require 'evil-leader)
   (global-evil-leader-mode)
+
 (require 'spacemacs-dark-theme)
+
 (require 'spaceline-config)
   (spaceline-spacemacs-theme)
   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
   (setq powerline-default-separator 'wave)
+
 (require 'evil-commentary)
   (evil-commentary-mode)
+
 (require 'evil-surround)
   (global-evil-surround-mode 1)
+
 (require 'evil-matchit)
-(global-evil-matchit-mode 1)
+  (global-evil-matchit-mode 1)
+
+(require 'avy)
 
 ;;; esc quits pretty much anything (like pending prompts in the minibuffer)
 (define-key evil-normal-state-map [escape] 'keyboard-quit)
@@ -61,8 +70,6 @@
 			 (evil-select-paren ,start-regex ,end-regex beg end type count t))
 		 (define-key evil-inner-text-objects-map ,key (quote ,inner-name))
 		 (define-key evil-outer-text-objects-map ,key (quote ,outer-name)))))
-;; create "il"/"al" (inside/around) line text objects:
-(define-and-bind-text-object "l" "^\\s-*" "\\s-*$")
 ;; create "ie"/"ae" (inside/around) entire buffer text objects:
 (define-and-bind-text-object "e" "\\`\\s-*" "\\s-*\\'")
 
@@ -73,13 +80,17 @@
 (define-key evil-normal-state-map (kbd "RET") 'evil-write)
 (define-key evil-normal-state-map "Q" 'evil-quit)
 (define-key evil-normal-state-map "Z" 'evil-save-modified-and-close)
-(define-key evil-normal-state-map "q" 'evil-repeat-find-char-reverse)
 (define-key evil-normal-state-map "," 'evil-repeat-find-char)
 (define-key evil-normal-state-map ";" 'evil-ex)
 (define-key evil-motion-state-map "go" 'evil-goto-first-line)
 (define-key evil-motion-state-map "gl" 'evil-goto-line)
 (define-key evil-motion-state-map "(" 'evil-backward-paragraph)
 (define-key evil-motion-state-map ")" 'evil-forward-paragraph)
+; (define-key evil-normal-state-map "q" 'evil-repeat-find-char-reverse)
+
+; experimental
+(define-key evil-normal-state-map "q" 'avy-goto-line)
+; (global-set-key (kbd "M-g f") 'avy-goto-line)
 
 ; org custom binds
 
