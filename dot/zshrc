@@ -125,7 +125,7 @@ source "$HOME/.fzf/shell/key-bindings.zsh"
 # }}}
 # load user config {{{
 
-SHELL_USER_CONFIG_FILE="$(realpath ~)/.options/shell-options.conf"
+SHELL_USER_CONFIG_FILE="$(readlink -f ~)/.options/shell-options.conf"
 if [[ -e "$SHELL_USER_CONFIG_FILE" ]]; then
   . "$SHELL_USER_CONFIG_FILE"
 fi
