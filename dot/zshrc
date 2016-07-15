@@ -93,7 +93,7 @@ export EDITOR=nvim
 export ZPLUG_CLONE_DEPTH=1
 
 # ENHANCD customizations
-export ENHANCD_COMMAND=d
+export ENHANCD_COMMAND=ecd
 export ENHANCD_FILTER=fzf-tmux
 
 # FZF customizations
@@ -337,7 +337,7 @@ cd () {
     builtin cd $1
   elif command -v "$ENHANCD_COMMAND" > /dev/null; then
     # populate dir enhancd dir cache, clear and list
-    d $1 && l
+    eval "$ENHANCD_COMMAND $1 && l"
   else
     # enhancd did not load, use normal cd, clear and list
     builtin cd $1 && l
