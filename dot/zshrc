@@ -224,7 +224,7 @@ alias vs='v ~/.spacemacs.d/init.el'
 alias vt='v ~/.tmux.conf(:A)'
 alias vv='v ~/.vimrc(:A)'
 alias vz='v ~/.zshrc(:A)'
-
+alias vo='v ~/.options/shell-options.conf'
 # git
 alias g='git status -sb'
 alias gs='git status'
@@ -413,25 +413,24 @@ git_log_month () {
 # }}}
 # prompt {{{
 
+# char options: ❯, λ, ➜, ∴
 build_prompt_char() {
-  local prompt_char="%(?.%F{magenta}.%F{red})${DOT_PROMPT_CHAR:-$}%f"
+  local pc=${DOT_PROMPT_CHAR:-$}
+  if [[ -n ${2+x} ]]; then
+    pc="$2"
+  fi
+  local prompt_char="%(?.%F{$1}.%F{red})${pc}%f"
   echo -n "$prompt_char"
 }
 
 # default: showing whoami@hostname without truncation
-PROMPT='%F{blue}%1~%f %F{cyan}%n%f%F{red}@%f%F{yellow}%m%f %F{magenta}#%f '
-
-if [[ "${SHELL_PROMPT_INFO_LEVEL}" == "1"  ]]; then
-  # simplest with directory truncation
-  # PROMPT='%F{blue}%12<...<%1~%<<%f %F{magenta}$%f '
-  # test › unicode char
-  # test ❯ unicode char
-  # PROMPT="%F{blue}%12<...<%1~%<<%f %F{magenta}${DOT_PROMPT_CHAR:-›}%f "
-  # PROMPT="%F{blue}%12<...<%1~%<<%f %(?.%F{magenta}.%F{red})${DOT_PROMPT_CHAR:-›}%f "
-  PROMPT="%F{blue}%13<...<%1~%<<%f $(build_prompt_char) "
-elif [[ "${SHELL_PROMPT_INFO_LEVEL}" == "2"  ]]; then
-  # showing whaami@hostname and with truncation
-  PROMPT="%F{blue}%10<...<%1~%<<%f %F{cyan}%n%f%F{red}@%f%F{yellow}%m%f %F{magenta}#%f "
+# 1: simplest with directory truncation
+# 2: showing whaami@hostname and with truncation
+PROMPT='%F{blue}%1~%f %F{cyan}%n%f%F{red}@%f%F{yellow}%m%f %F{magenta}#%f  '
+if [[ "${SHELL_PROMPT_INFO_LEVEL}" == "1" ]]; then
+  PROMPT="$(build_prompt_char magenta)  %F{blue}%13<...<%1~%<<%f "
+elif [[ "${SHELL_PROMPT_INFO_LEVEL}" == "2" ]]; then
+  PROMPT="%F{blue}%10<...<%1~%<<%f %F{cyan}%n%f%F{red}@%f%F{yellow}%m%f %F{magenta}#%f  "
 fi
 
 # }}}
