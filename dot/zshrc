@@ -72,7 +72,7 @@ PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 GNUBIN_PATH=/usr/local/opt/coreutils/libexec/gnubin
 PATH="$GNUBIN_PATH:$PATH"
 
-GOPATH=~/code/go
+GOPATH=~/code/apps/go
 export GOPATH
 PATH="$GOPATH/bin:$PATH"
 
@@ -156,8 +156,7 @@ zplug "zsh-users/zsh-syntax-highlighting", nice:10
   ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]='fg=red'
 
 # local
-zplug "~/code/nin-vi-mode", from:local
-# zplug "~/code/nin-z", from:local, use:z.sh
+zplug "~/code/sources/nin-vi-mode", from:local
 
 # enhancd config
 # if [[ "${SHELL_ENHANCD_ENABLED}" == "true"  ]]; then
