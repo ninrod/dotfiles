@@ -250,7 +250,7 @@ alias gp='git push'
 
 # old gld
 # alias gld='git log --pretty=format:"%C(yellow)%h%Creset %C(blue)%d%Creset %C(cyan)%ad%Creset %C(magenta)%an%Creset %C(white)%s%Creset " --graph'
-# new gld. with padding
+# new gld. with padding. lifted from here: http://stackoverflow.com/a/9463536/4921402
 alias gld='git log --pretty=format:"%C(yellow)%h%Creset %C(cyan)%>(14)%ad%Creset %C(magenta)%<(7)%an%Creset %C(blue)%d%Creset %C(white)%s%Creset " --graph'
 
   alias glda='gld $(git show-ref -s | tr "\n" " ")'
