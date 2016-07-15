@@ -30,7 +30,7 @@ ensure_options_file() {
     mkdir ~/.options
   fi
 
-  local options_file="$(realpath ~/.options/shell-options.conf)"
+  local options_file="$(readlink -f ~/.options/shell-options.conf)"
 
   if [[ ! -e $options_file ]]; then
     cp conf/options/shell-options.conf ~/.options
@@ -43,8 +43,8 @@ ensure_options_file() {
 ensure_dotpath() {
   ensure_options_file
 
-  local options_file="$(realpath ~/.options/shell-options.conf)"
-  local temp_file="$(realpath ~/.options/temp.conf)"
+  local options_file="$(readlink -f ~/.options/shell-options.conf)"
+  local temp_file="$(readlink -f ~/.options/temp.conf)"
 
   # remove DOTPATH, if it exists
   awk '!/^DOTPATH/' $options_file > $temp_file && mv $temp_file $options_file
@@ -91,7 +91,7 @@ updatelinks() {
 # function to ensure vim plugins are installed {{{
 
 ensure_vim_plugins() {
-  local plug_dir=$(realpath -m ~/.vim/plugged)
+  local plug_dir=$(readlink -m ~/.vim/plugged)
   if [[ ! -d $plug_dir ]]; then
     echo -e "installing ${Yellow}vim${Rst} plugins..."
     vim +PlugInstall +qall
