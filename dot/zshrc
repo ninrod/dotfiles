@@ -8,14 +8,20 @@ WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
 # history config options
 HISTFILE=$HOME/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=20000
+SAVEHIST=20000
+
 setopt append_history
 setopt extended_history
-setopt hist_ignore_all_dups
-setopt hist_ignore_space
-setopt hist_verify
 setopt share_history
+setopt hist_verify
+
+# I actually want to profile my command usage
+# setopt hist_ignore_all_dups
+
+# I do not care if I entered a command with a leading space
+# I want it to be stored
+# setopt hist_ignore_space
 
 # dir navigation options
 setopt auto_pushd
@@ -29,8 +35,16 @@ unsetopt nomatch # but when pattern matching fails, simply use the command as is
 
 ##### completions
 
+# explaining the compinit -u hack:
+  # the compinit -u hack is called for because I run the shell as a docker image
+  # and mount the dotfiles repo as a volume. Compinit gets angry at me because
+  # when docker mounts the volume, the permissions are wrong.
+  # So when you run `exec zsh`, for exemple, compinit gets angry at you by saying:
+  # "zsh compinit: insecure directories and files, run compaudit for list."
+  # The -u flag tells compinit to be silent about that.
+  # more info here: http://stackoverflow.com/a/19601821/4921402
 # comp bootstrap
-autoload -Uz compinit && compinit
+autoload -Uz compinit && compinit -u
 zstyle ':completion:*' menu select
 
 # better completion
@@ -203,10 +217,9 @@ alias tarx='tar -zxvf'
 alias zshcru='zsh -f'
 
 # directory navigation
-alias d='dirs -v | head -n 10'
+alias d='dirs -v | head -n 20 | sort -k 2'
 alias dic='dirs -c'
-alias -- -='cd -'
-alias 1='cd -'
+alias 1='cd +1'
 alias 2='cd +2'
 alias 3='cd +3'
 alias 4='cd +4'
@@ -215,6 +228,16 @@ alias 6='cd +6'
 alias 7='cd +7'
 alias 8='cd +8'
 alias 9='cd +9'
+alias 10='cd +10'
+alias 11='cd +11'
+alias 12='cd +12'
+alias 13='cd +13'
+alias 14='cd +14'
+alias 15='cd +15'
+alias 16='cd +16'
+alias 17='cd +17'
+alias 18='cd +18'
+alias 19='cd +19'
 
 # emacs
 alias e='em'
@@ -244,6 +267,11 @@ alias gf='git fetch'
 alias gg='git branch -vv'
 alias gi='builtin cd $(git rev-parse --show-toplevel)'
 
+alias gb='git branch'
+alias gco='git checkout'
+alias gcom='gco master'
+alias gr='git rebase'
+
 alias gd='git diff'
 alias gdh='gd --cached'
 alias gds='git diff --stat'
@@ -251,25 +279,22 @@ alias gds='git diff --stat'
 alias ga='git add'
 alias gal='git add -A'
 
-alias gco='git checkout'
-alias gcom='gco master'
-alias gb='git branch'
 alias gm='git merge'
-alias gr='git rebase'
 alias gp='git push'
+
+alias glsu='git ls-files --others --exclude-standard'
 
 # git log
 
 # old gld
 # alias gld='git log --pretty=format:"%C(yellow)%h%Creset %C(blue)%d%Creset %C(cyan)%ad%Creset %C(magenta)%an%Creset %C(white)%s%Creset " --graph'
 # new gld. with padding. lifted from here: http://stackoverflow.com/a/9463536/4921402
-alias gld='git log --pretty=format:"%C(yellow)%h%Creset %C(cyan)%>(14)%ad%Creset %C(magenta)%<(7)%an%Creset %C(blue)%d%Creset %C(white)%s%Creset " --graph'
-
+alias gld='git log --pretty=format:"%C(yellow)%h%Creset %C(cyan)%>(14)%ad%Creset %C(magenta)%<(7)%an%Creset %C(blue)%d%Creset %C(white)%s%Creset" --graph'
   alias glda='gld $(git show-ref -s | tr "\n" " ")'
-  alias gll='gld --date=relative'
     alias glr='gll --reflog'
-  alias gl='gld --date=relative -20'
-    alias gla='gl $(git show-ref -s | tr "\n" " ")'
+  alias gl='gld --date=relative --first-parent -20'
+    alias gll='gl --all'
+    alias gla='gld --date=relative --all'
 alias glf='git log --follow -p -- '
 
 # git log no color options
@@ -277,8 +302,6 @@ alias gldnc='git log --no-color --pretty=format:"%h %d %ad %an %s" --graph'
 alias glnc='gldnc --date=relative'
 
 alias glsi='git ls-files -oiX .gitignore'
-
-alias gt='git log --pretty=format:"%C(yellow)%h%Creset %C(cyan)%>(14)%ad%Creset %C(magenta)%<(7)%aN%Creset %C(blue)%d%Creset %C(white)%s%Creset " --graph --date=relative'
 
 # driv: remove imagens docker vazias {{{
 
@@ -341,18 +364,18 @@ cd () {
     builtin cd ~
   elif [[ $1 == '-' ]]; then
     # $1 == '-': switch to last visited dir
-    builtin cd -
+    builtin cd - > /dev/null
   elif [[ $1 == '..' ]]; then
     builtin cd ..
   elif [[ $1 =~ '\+[0-9]{1,2}' ]]; then
     # $1: `cd +8`, `cd +10`, cherry pick auto_pushd stack
-    builtin cd $1
+    builtin cd $1 > /dev/null
   elif command -v "$ENHANCD_COMMAND" > /dev/null; then
     # populate dir enhancd dir cache, clear and list
-    eval "$ENHANCD_COMMAND $1 && l"
+    eval "$ENHANCD_COMMAND $1"
   else
     # enhancd did not load, use normal cd, clear and list
-    builtin cd $1 && l
+    builtin cd $1
   fi
 }
 
