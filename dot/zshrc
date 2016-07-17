@@ -463,7 +463,7 @@ build_prompt_char() {
 # 2: showing whaami@hostname and with truncation
 PROMPT='%F{blue}%1~%f %F{cyan}%n%f%F{red}@%f%F{yellow}%m%f %F{magenta}#%f  '
 if [[ "${SHELL_PROMPT_INFO_LEVEL}" == "1" ]]; then
-  PROMPT="%F{blue}%13<...<%1~%<<%f $(build_prompt_char magenta)  "
+  PROMPT="%F{blue}%15<...<%1~%<<%f $(build_prompt_char magenta)  "
 elif [[ "${SHELL_PROMPT_INFO_LEVEL}" == "2" ]]; then
   PROMPT="%F{blue}%10<...<%1~%<<%f %F{cyan}%n%f%F{red}@%f%F{yellow}%m%f %F{magenta}#%f  "
 fi
