@@ -267,6 +267,7 @@ md () {
 # }}}
 # =: front for `bc` utility (credit goes to arzzen/calc.plugin.zsh) {{{
 
+# usage: = '1+1'
 function = () {
   echo "$@" | bc -l
 }
@@ -399,7 +400,7 @@ alias git_log_custom='git log --pretty=format:"%C(yellow)%h%Creset %C(cyan)%>(14
 alias gld='git_log_custom --graph'
 alias gl='gld --date=relative --first-parent --abbrev=8 -20'
 alias gll='gl --all'
-alias gla='gld --data=relative --abbrev=8 --all'
+alias gla='gld --date=relative --abbrev=8 --all'
 alias glf='git log --follow -p -- '
 # log no color
 alias git_log_nocolor_custom='git log --no-color --pretty=format:"%h %d %ad %an %s" '
