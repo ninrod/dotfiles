@@ -155,6 +155,7 @@ zplug "Tarrasch/zsh-bd"
 zplug "felixr/docker-zsh-completion"
 zplug "supercrabtree/k"
 zplug "zsh-users/zsh-completions"
+zplug "tcnksm/docker-alias", use:zshrc
 zplug "b4b4r07/enhancd", use:init.sh
 
 # github configured plugins
@@ -308,7 +309,7 @@ alias la='l -A'
 alias c='clear'
 alias q='exit'
 alias b='builtin cd ..'
-alias w='echo -e "$Blue ${"$(pwd)"/$HOME/~} ${Red}at ${Cyan}$(whoami)${Red}@${Yellow}$(hostname -s)$Red using $Yellow${0}$Purple ${DOT_PROMPT_CHAR:-$}"'
+alias w='echo -e "$Blue ${"$(pwd)"/$HOME/~} ${Red}at ${Cyan}$(whoami)${Red}@${Yellow}$(hostname -s)$Red using $Yellow${0}$Purple ${DOT_PROMPT_CHAR:-$}${Rst}"'
 alias m='nman'
 alias t='tmux'
 
@@ -320,6 +321,7 @@ alias tarx='tar -zxvf'
 
 # zsh config
 alias re='exec zsh'
+alias r='echo -e "${Red}you have pressed \`r\`. careful. this repeats last command."'
 alias dot="la $(find ~ -maxdepth 1 -type l)"
 
 # git {{{

@@ -328,6 +328,12 @@ let g:tmuxline_powerline_separators = 0
 
 " standard bind changes {{{
 
+" in test: scroll horizontally in wrap off mode
+nnoremap z> g$zs
+nnoremap z< zeg0
+nmap z<RIGHT> z>
+nmap z<LEFT> z<
+
 " as vim-wordmotion sequestered our `w` binds, we must provide an alternative
 " more info here: https://github.com/chaoren/vim-wordmotion/issues/6
 xnoremap io iw
@@ -335,7 +341,7 @@ xnoremap ao aw
 onoremap io iw
 onoremap ao aw
 
-" these bind switches were inspired on the famous Damian Conway talk at 
+" these bind switches were inspired on the famous Damian Conway talk at
 " OSCON 2013 https://youtu.be/aHm36-na4-4?t=598
 " the idea basically is that shift sucks.
 " If you can access a bind without having to press shift,
