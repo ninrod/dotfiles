@@ -191,171 +191,8 @@ eval `dircolors ~/.lscolors`
 # }}}
 # alias {{{
 
-# precendence alias
-alias ls='ls --color=auto --group-directories-first -X'
-alias ag='ag --hidden --path-to-agignore=~/.agignore'
+# function alias {{{
 
-# quick alias
-alias b='cd ..'
-alias c='clear'
-alias q='exit'
-alias k='k -h'
-alias l='ls -lh'
-alias r='exec zsh'
-alias w='echo -e "$Blue ${"$(pwd)"/$HOME/~} ${Red}at ${Cyan}$(whoami)${Red}@${Yellow}$(hostname -s)$Red using $Yellow${0}$Purple ${DOT_PROMPT_CHAR:-$}"'
-alias m='nman'
-alias t=tmux
-
-alias dot='la `find ~ -maxdepth 1 -type l`'
-alias la='l -A'
-
-alias ms='gfm-viewer'
-alias po='popd'
-alias rd='open /usr/local/share/doc/rust/html/index.html'
-alias tarc='tar -zcvf file.tar.gz'
-alias tarx='tar -zxvf'
-alias zshcru='zsh -f'
-
-# directory navigation
-alias d='dirs -v | head -n 20 | sort -k 2'
-alias dic='dirs -c'
-alias 1='cd +1'
-alias 2='cd +2'
-alias 3='cd +3'
-alias 4='cd +4'
-alias 5='cd +5'
-alias 6='cd +6'
-alias 7='cd +7'
-alias 8='cd +8'
-alias 9='cd +9'
-alias 10='cd +10'
-alias 11='cd +11'
-alias 12='cd +12'
-alias 13='cd +13'
-alias 14='cd +14'
-alias 15='cd +15'
-alias 16='cd +16'
-alias 17='cd +17'
-alias 18='cd +18'
-alias 19='cd +19'
-
-# emacs
-alias e='em'
-alias ec='emacs -Q'
-alias ed='emacs --daemon'
-alias ek='emacsclient -e "(kill-emacs)"'
-alias em='emacsclient -t'
-alias emi='em ~/.emacs.d/init.el'
-alias ems='em ~/.spacemacs.d/init.el'
-alias ep='em ~/code/orgmode/programming.org'
-alias er='ek && ed'
-
-# vim
-alias v='nvim'
-alias ve='v ~/.emacs.d/init.el'
-alias vh='~/code/apps/neovim/build/bin/nvim'
-alias vi='vim -u NONE -N'
-alias vs='v ~/.spacemacs.d/init.el'
-alias vt='v ~/.tmux.conf(:A)'
-alias vv='v ~/.vimrc(:A)'
-alias vz='v ~/.zshrc(:A)'
-alias vo='v ~/.options/shell-options.conf'
-# git
-alias g='git status -sb'
-alias gs='git status'
-alias gf='git fetch'
-alias gg='git branch -vv'
-alias gi='builtin cd $(git rev-parse --show-toplevel)'
-
-alias gb='git branch'
-alias gco='git checkout'
-alias gcom='gco master'
-alias gr='git rebase'
-
-alias gd='git diff'
-alias gdh='gd --cached'
-alias gds='git diff --stat'
-
-alias ga='git add'
-alias gal='git add -A'
-
-alias gm='git merge'
-alias gp='git push'
-
-alias glsu='git ls-files --others --exclude-standard'
-
-# git log
-
-# old gld
-# alias gld='git log --pretty=format:"%C(yellow)%h%Creset %C(blue)%d%Creset %C(cyan)%ad%Creset %C(magenta)%an%Creset %C(white)%s%Creset " --graph'
-# new gld. with padding. lifted from here: http://stackoverflow.com/a/9463536/4921402
-alias gld='git log --pretty=format:"%C(yellow)%h%Creset %C(cyan)%>(14)%ad%Creset %C(magenta)%<(7)%an%Creset %C(blue)%d%Creset %C(white)%s%Creset" --graph'
-  alias glda='gld $(git show-ref -s | tr "\n" " ")'
-    alias glr='gll --reflog'
-  alias gl='gld --date=relative --first-parent --abbrev=8 -20'
-    alias gll='gl --all'
-    alias gla='gld --date=relative --all'
-alias glf='git log --follow -p -- '
-
-# git log no color options
-alias gldnc='git log --no-color --pretty=format:"%h %d %ad %an %s" --graph'
-alias glnc='gldnc --date=relative'
-
-alias glsi='git ls-files -oiX .gitignore'
-
-# driv: remove imagens docker vazias {{{
-
-driv () {
-  docker images | ag '^<none' | awk '{print $3}' | xargs -I{} docker rmi {}
-}
-
-# }}}
-# s and sk: get recursive dir size measurements {{{
-
-s() {
-  if [[ -n ${1+x} ]]; then
-    if [[ $1 = '-h' ]]; then
-      if [[ -n ${2+x} ]]; then
-        du -sh $2
-        return 0;
-      else
-        du -sh *(D)
-      fi
-    else
-      du -sm $1 | sort -nr | head -n 20
-    fi
-    return 0;
-  fi
-  du -sm *(D) | sort -nr | head -n 20
-}
-sk() {
-  if [[ -n ${1+x} ]]; then
-    du -sk $1 | sort -nr | head -n 20
-    return 0;
-  fi
-  du -sk *(D) | sort -nr | head -n 20
-}
-
-# }}}
-# gc: simple git commit front {{{
-improved_gc () {
-  if [[ ! -n ${1+x} ]]; then
-    git commit -v
-    return 0
-  fi
-  git commit -m $1
-}
-alias gc='noglob improved_gc'
-
-# }}}
-# md: faster dir creation {{{
-
-md () {
-  mkdir -p $1
-  builtin cd $1
-}
-
-# }}}
 # cd: enhancing enhancd {{{
 
 cd () {
@@ -377,6 +214,54 @@ cd () {
     # enhancd did not load, use normal cd, clear and list
     builtin cd $1
   fi
+}
+
+# }}}
+# s and sk: get recursive dir size measurements {{{
+
+# s: get megabytes measurement
+# usage: s [-h] [path]
+s() {
+  if [[ -z ${1+x} ]]; then
+    # no argument passed. measure current dir including hidden files.
+    du -sm *(D) | sort -nr | head -n 20
+    return 0
+  fi
+  # an argument was passed.
+  if [[ $1 = '-h' ]]; then
+    # -h switch: human readable size output, but it is not suitable for ordering with, e.g., command sort.
+    if [[ -n ${2+x} ]]; then
+      # if a path was passed, apply -h switch to the path
+      du -sh $2
+      return 0;
+    else
+      # if a path was not passed, apply -h switch to all files, including hidden files
+      du -sh *(D)
+    fi
+  else
+    # bogus argument. print error
+    print -l 'bogus argument. check function documentation'
+  fi
+}
+
+# sk: get kilobytes measurement. for human readable output check the s function
+# usage: s [path]
+sk() {
+  if [[ -z ${1+x} ]]; then
+    # no argument passed. measure current dir including hidden files.
+    du -sk *(D) | sort -nr | head -n 20
+    return 0;
+  fi
+  # argument passed.
+  du -sk $1 | sort -nr | head -n 20
+}
+
+# }}}
+# md: faster dir creation {{{
+
+md () {
+  mkdir -p $1
+  builtin cd $1
 }
 
 # }}}
@@ -408,6 +293,48 @@ function nman () {
   vim -c "Nman $*"
 }
 compdef nman="man"
+
+# }}}
+
+# }}}
+
+# ls
+alias ls='ls --color=auto --group-directories-first -X'
+alias l='ls -lh'
+alias la='l -A'
+
+# quick alias
+alias c='clear'
+alias q='exit'
+alias b='builtin cd ..'
+alias w='echo -e "$Blue ${"$(pwd)"/$HOME/~} ${Red}at ${Cyan}$(whoami)${Red}@${Yellow}$(hostname -s)$Red using $Yellow${0}$Purple ${DOT_PROMPT_CHAR:-$}"'
+alias m='nman'
+alias t='tmux'
+
+# apps
+alias ag='ag --hidden --path-to-agignore=~/.agignore'
+alias ms='gfm-viewer'
+alias tarc='tar -zcvf file.tar.gz'
+alias tarx='tar -zxvf'
+
+# zsh config
+alias re='exec zsh'
+alias dot="la $(find ~ -maxdepth 1 -type l)"
+
+# git {{{
+
+# git functions {{{
+
+# gc: simple git commit front {{{
+
+improved_gc () {
+  if [[ ! -n ${1+x} ]]; then
+    git commit -v
+    return 0
+  fi
+  git commit -m $1
+}
+alias gc='noglob improved_gc'
 
 # }}}
 # git_log_month: custom git log: 1 month worth of commits $1 months ago with $2 command {{{
@@ -442,6 +369,118 @@ git_log_month () {
 
   eval "$git_command --after=$after --before=$before"
 }
+
+# }}}
+
+# }}}
+
+# check
+alias g='git status -sb'
+alias gg='git branch -vv'
+alias gi='builtin cd $(git rev-parse --show-toplevel)'
+# add
+alias ga='git add'
+alias gal='git add -A'
+# diff
+alias gd='git diff'
+alias gdh='gd --cached'
+alias gds='gd --stat'
+# sync
+alias gf='git fetch'
+alias gp='git push'
+# branch
+alias gco='git checkout'
+alias gcom='gco master'
+alias gb='git branch'
+alias gm='git merge'
+alias gr='git rebase'
+# log
+alias git_log_custom='git log --pretty=format:"%C(yellow)%h%Creset %C(cyan)%>(14)%ad%Creset %C(magenta)%<(7)%an%Creset %C(blue)%d%Creset %C(white)%s%Creset" '
+alias gld='git_log_custom --graph'
+alias gl='gld --date=relative --first-parent --abbrev=8 -20'
+alias gll='gl --all'
+alias gla='gld --data=relative --abbrev=8 --all'
+alias glf='git log --follow -p -- '
+# log no color
+alias git_log_nocolor_custom='git log --no-color --pretty=format:"%h %d %ad %an %s" '
+alias gldnc='git_log_nocolor_custom --graph'
+alias glnc='gldnc --date=relative'
+# exotic
+alias glsu='git ls-files --others --exclude-standard'
+alias glsi='git ls-files -oiX .gitignore'
+
+
+# }}}
+# pushd directory navigation {{{
+
+alias d='dirs -v | head -n 20 | sort -k 2'
+alias dic='dirs -c'
+alias 1='cd +1'
+alias 2='cd +2'
+alias 3='cd +3'
+alias 4='cd +4'
+alias 5='cd +5'
+alias 6='cd +6'
+alias 7='cd +7'
+alias 8='cd +8'
+alias 9='cd +9'
+alias 10='cd +10'
+alias 11='cd +11'
+alias 12='cd +12'
+alias 13='cd +13'
+alias 14='cd +14'
+alias 15='cd +15'
+alias 16='cd +16'
+alias 17='cd +17'
+alias 18='cd +18'
+alias 19='cd +19'
+
+# }}}
+# docker {{{
+
+# driv: remove imagens docker vazias {{{
+
+driv () {
+  docker images | ag '^<none' | awk '{print $3}' | xargs -I{} docker rmi {}
+}
+
+# }}}
+
+# }}}
+# emacs {{{
+
+# starting
+alias e='emacsclient -t'
+alias ec='emacs -Q'
+alias ed='emacs --daemon'
+
+# killing and restarting
+alias ek='emacsclient -e "(kill-emacs)"'
+alias er='ek && ed'
+
+# edit init files
+alias ei='em $(readlink -f ~/.emacs.d/init.el)'
+alias es='em $(readlink -f ~/.spacemacs.d/init.el)'
+alias eo='em $(readlink -f ~/code/orgmode/programming.org)'
+
+# }}}
+# vim {{{
+
+alias v="nvim"
+alias vi='vim -u NONE -N'
+
+# neovim tests
+alias vh='~/code/apps/neovim/build/bin/nvim'
+
+# fast edit frequent files
+alias vt='v $(readlink -f ~/.tmux.conf)'
+alias vv='v $(readlink -f ~/.vimrc)'
+alias vz='v $(readlink -f ~/.zshrc)'
+alias vo='v $(readlink -f ~/.options/shell-options.conf)'
+
+# vim helping in emacs setup
+alias ve='v $(readlink -f ~/.emacs.d/init.el)'
+alias vs='v $(readlink -f ~/.spacemacs.d/init.el)'
 
 # }}}
 

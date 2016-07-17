@@ -149,12 +149,11 @@ call plug#begin('~/.vim/plugged')
 
 " plugin configuration {{{
 
-" rainbow configs
+" rainbow configs {{{
+
 let g:rainbow_active = 1
 
-" vim-highlightedyank configs
-map y <Plug>(highlightedyank)
-let g:highlightedyank_highlight_duration = 260
+" }}}
 
 " }}}
 
@@ -170,7 +169,6 @@ Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'keith/tmux.vim'
 Plug 'luochen1990/rainbow'
-Plug 'machakann/vim-highlightedyank'
 Plug 'machakann/vim-operator-jerk'
 Plug 'mbbill/undotree'
 Plug 'nelstrom/vim-markdown-folding'
@@ -211,6 +209,15 @@ Plug '~/.fzf'
 " Plug 'justinmk/molokai'
 
 " plugin cemetery
+
+" vim-highlightedyank {{{
+
+" Plug 'machakann/vim-highlightedyank'
+" map y <Plug>(highlightedyank)
+" let g:highlightedyank_highlight_duration = 260
+
+" }}}
+
 " Plug 'timakro/vim-searchant'
 " Plug 'whatyouhide/vim-lengthmatters'
 " Plug 'sheerun/vim-polyglot'
