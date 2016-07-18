@@ -464,12 +464,19 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 " }}}
 " easyalign {{{
 
+nmap ga <Plug>(EasyAlign)
 xmap <cr> <Plug>(EasyAlign)
 
 " }}}
 " nin-scratch {{{
 
 nnoremap gs :NinScratch<CR>
+
+" }}}
+" vim-multiple-cursors {{{
+
+nnoremap <silent> K :MultipleCursorsFind <C-R>/<CR>
+vnoremap <silent> K :MultipleCursorsFind <C-R>/<CR>
 
 " }}}
 

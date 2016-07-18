@@ -120,8 +120,8 @@ apply_git_info() {
 # clonedep: smarter clones {{{
 
 clonedep() {
-  local url="$1"
-  local name="$2"
+  local name="$1"
+  local url="$2"
   if [[ ! -d $name ]]; then
     echo -e "dependency ${Red}${name}${Rst} was not cloned. cloning now."
     git clone --depth 1 $url $name
@@ -145,14 +145,15 @@ cd $DEPS_DIR
 clonedep http://github.com/zplug/zplug zplug/zplug
 
 # zplug deps
-clonedep http://github.com/Tarrasch/zsh-bd Tarrasch/zsh-bd
-clonedep http://github.com/b4b4r07/enhancd b4b4r07/enhancd
-clonedep http://github.com/felixr/docker-zsh-completion felixr/docker-zsh-completion
-clonedep http://github.com/ninrod/docker-alias.git ninrod/docker-alias
-clonedep http://github.com/ninrod/nin-vi-mode.git ninrod/nin-vi-mode
-clonedep http://github.com/supercrabtree/k supercrabtree/k
-clonedep http://github.com/zsh-users/zsh-completions zsh-users/zsh-completions
-clonedep http://github.com/zsh-users/zsh-syntax-highlighting zsh-users/zsh-syntax-highlighting
+
+clonedep Tarrasch/zsh-bd                    http://github.com/Tarrasch/zsh-bd
+clonedep b4b4r07/enhancd                    http://github.com/b4b4r07/enhancd
+clonedep felixr/docker-zsh-completion       http://github.com/felixr/docker-zsh-completion
+clonedep ninrod/docker-alias                http://github.com/ninrod/docker-alias.git
+clonedep ninrod/nin-vi-mode                 http://github.com/ninrod/nin-vi-mode.git
+clonedep supercrabtree/k                    http://github.com/supercrabtree/k
+clonedep zsh-users/zsh-completions          http://github.com/zsh-users/zsh-completions
+clonedep kzsh-users/zsh-syntax-highlighting http://github.com/zsh-users/zsh-syntax-highlighting
 
 # fuzzy filter
 clonedep http://github.com/junegunn/fzf junegunn/fzf
