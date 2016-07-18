@@ -8,6 +8,7 @@ zcompdump
 .config/
 
 repos/
+deps/
 plugged/
 custom/
 undodir/

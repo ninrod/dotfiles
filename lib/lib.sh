@@ -35,14 +35,21 @@ Cyan="${TC}36m";
 White="${TC}37m";
 
 # }}}
-# path fix {{{
+# CONSTANTS {{{
 
-SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P   )"
-cd $SCRIPTPATH
+GIT_ROOT=$(git rev-parse --show-toplevel)
 
 # }}}
 
 #  functions -------------------------------
+# fix_script_path {{{
+
+fix_script_path() {
+  local script_path="$( cd "$(dirname "$0")" ; pwd -P )"
+  cd $script_path
+}
+
+# }}}
 # ensure_container_running {{{
 
 # use: ensure_container_running [container] [script_that_runs_the_container]

@@ -21,7 +21,7 @@
 
 lib_bootstrap() {
   local gitrootdir=$(git rev-parse --show-toplevel)
-  local libfile=${gitrootdir}/scripts/lib/lib.sh
+  local libfile=${gitrootdir}/lib/lib.sh
   if [[ -f $libfile ]]; then
     . $libfile
   else
@@ -30,3 +30,4 @@ lib_bootstrap() {
   fi
 }
 lib_bootstrap
+fix_script_path

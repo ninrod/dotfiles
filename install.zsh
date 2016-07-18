@@ -20,27 +20,14 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # }}}
+# lib import {{{
 
-# terminal colors {{{
-
-TC='\e['
-Rst="${TC}0m"
-Black="${TC}30m";
-Red="${TC}31m";
-Green="${TC}32m";
-Yellow="${TC}33m";
-Blue="${TC}34m";
-Purple="${TC}35m";
-Cyan="${TC}36m";
-White="${TC}37m";
+GIT_ROOT=$(git rev-parse --show-toplevel)
+. $GIT_ROOT/lib/import.sh
 
 # }}}
-# retrieves the path to the script itself {{{
 
-SCRIPTPATH="$(cd "$(dirname "$0")"; pwd -P)"
-cd $SCRIPTPATH
-
-# }}}
+# functions ------------
 # ensure_options_file: ensure options_file exists {{{
 
 ensure_options_file() {
@@ -68,7 +55,7 @@ ensure_dotpath() {
   awk '!/^DOTPATH/' $options_file > $temp_file && mv $temp_file $options_file
 
   # append $DOTPATH to $options_file
-  echo "DOTPATH=$SCRIPTPATH" >> $options_file
+  echo "DOTPATH=$GIT_ROOT" >> $options_file
 }
 
 # }}}
@@ -130,6 +117,32 @@ apply_git_info() {
 }
 
 # }}}
+# clonedep: smarter clones {{{
+clonedep() {
+  local name="$1"
+  local url="$2"
+  if [[ ! -d $name ]]; then
+    echo -e "dependency ${Yellow}${name}${Rst} was not cloned. cloning now."
+    git clone $url $name
+    echo -e "dependency ${Yellow}${name}${Rst} cloned."
+  fi
+}
+# }}}
+
+# cloning deps {{{
+
+DEPS_DIR=$GIT_ROOT/deps
+if [[ ! -d $DEPS_DIR ]]; then
+  mkdir $DEPS_DIR
+fi
+cd $DEPS_DIR
+
+clonedep nin-vi-mode http://github.com/ninrod/nin-vi-mode.git
+clonedep docker-alias http://github.com/ninrod/docker-alias.git
+
+# }}}
+
+cd $GIT_ROOT
 
 setopt extended_glob
 
