@@ -155,7 +155,6 @@ zplug "Tarrasch/zsh-bd"
 zplug "felixr/docker-zsh-completion"
 zplug "supercrabtree/k"
 zplug "zsh-users/zsh-completions"
-zplug "tcnksm/docker-alias", use:zshrc
 zplug "b4b4r07/enhancd", use:init.sh
 
 # github configured plugins
@@ -172,6 +171,7 @@ zplug "zsh-users/zsh-syntax-highlighting", nice:10
 
 # local
 zplug "~/code/sources/nin-vi-mode", from:local
+zplug "~/code/sources/docker-alias", from:local, use:zshrc
 
 # enhancd config
 # if [[ "${SHELL_ENHANCD_ENABLED}" == "true"  ]]; then

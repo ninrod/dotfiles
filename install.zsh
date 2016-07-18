@@ -1,7 +1,25 @@
 #! /usr/bin/env zsh
 
-# Author: Filipe Silva (ninrod)
-# License: Same as VIM.
+# author: Filipe Silva (ninrod)
+# LICENSE and COPYRIGHT notice {{{
+
+# dockerfiles - a port of http://github.com/ninrod/dotfiles to a docker container
+# Copyright (C) 2016 Filipe Silva (ninrod)
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# }}}
 
 # terminal colors {{{
 
@@ -23,7 +41,7 @@ SCRIPTPATH="$(cd "$(dirname "$0")"; pwd -P)"
 cd $SCRIPTPATH
 
 # }}}
-# function to ensure options_file exists {{{
+# ensure_options_file: ensure options_file exists {{{
 
 ensure_options_file() {
   if [[ ! -d ~/.options ]]; then
@@ -38,7 +56,7 @@ ensure_options_file() {
 }
 
 # }}}
-# function to ensure $DOTPATH is set on $options_file {{{
+# ensure_dotpath: ensure $DOTPATH is set on $options_file {{{
 
 ensure_dotpath() {
   ensure_options_file
@@ -54,7 +72,7 @@ ensure_dotpath() {
 }
 
 # }}}
-# function to ensure no regular user file will be overwritten {{{
+# verifylink: ensure no regular user file will be overwritten {{{
 
 verifylink() {
   local symlink=${1:a}
@@ -67,7 +85,7 @@ verifylink() {
 }
 
 # }}}
-# function to help with symlinkage {{{
+# updatelinks: help with symlinkage {{{
 
 updatelinks() {
   local symlink=${1:a}
@@ -88,7 +106,7 @@ updatelinks() {
 }
 
 # }}}
-# function to ensure vim plugins are installed {{{
+# ensure_vim_plugins: ensure vim plugins are installed {{{
 
 ensure_vim_plugins() {
   local plug_dir=$(readlink -m ~/.vim/plugged)
@@ -99,7 +117,7 @@ ensure_vim_plugins() {
 }
 
 # }}}
-# function to apply git information  {{{
+# apply_git_info: apply git information  {{{
 
 # if available through environment variables
 apply_git_info() {
