@@ -170,8 +170,8 @@ zplug "zsh-users/zsh-syntax-highlighting", nice:10
   ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]='fg=red'
 
 # local
-zplug "${DOTPATH}/deps/nin-vi-mode", from:local
-zplug "${DOTPATH}/deps/docker-alias", from:local, use:zshrc
+zplug "${DOTPATH}/deps/ninrod/nin-vi-mode", from:local
+zplug "${DOTPATH}/deps/ninrod/docker-alias", from:local, use:zshrc
 
 # enhancd config
 # if [[ "${SHELL_ENHANCD_ENABLED}" == "true"  ]]; then

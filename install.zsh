@@ -117,15 +117,16 @@ apply_git_info() {
 }
 
 # }}}
+
 # clonedep: smarter clones {{{
 
 clonedep() {
-  local name="$1"
-  local url="$2"
+  local url="$1"
+  local name="$2"
   if [[ ! -d $name ]]; then
     echo -e "dependency ${Red}${name}${Rst} was not cloned. cloning now."
-    git clone $url $name
-    echo -e "dependency ${Yellow}${name}${Rst} cloned."
+    git clone --depth 1 $url $name
+    echo -e "[${Green}Ok${Rst}]: dependency ${Green}${name}${Rst} sucessfully cloned."
   else
     echo -e "dependency ${Green}${name}${Rst} already cloned."
   fi
@@ -140,8 +141,14 @@ if [[ ! -d $DEPS_DIR ]]; then
 fi
 cd $DEPS_DIR
 
-clonedep nin-vi-mode http://github.com/ninrod/nin-vi-mode.git
-clonedep docker-alias http://github.com/ninrod/docker-alias.git
+clonedep http://github.com/Tarrasch/zsh-bd Tarrasch/zsh-bd
+clonedep http://github.com/b4b4r07/enhancd b4b4r07/enhancd
+clonedep http://github.com/felixr/docker-zsh-completion felixr/docker-zsh-completion
+clonedep http://github.com/ninrod/docker-alias.git ninrod/docker-alias
+clonedep http://github.com/ninrod/nin-vi-mode.git ninrod/nin-vi-mode
+clonedep http://github.com/supercrabtree/k supercrabtree/k
+clonedep http://github.com/zsh-users/zsh-completions zsh-users/zsh-completions
+clonedep http://github.com/zsh-users/zsh-syntax-highlighting zsh-users/zsh-syntax-highlighting
 
 # }}}
 
