@@ -141,6 +141,10 @@ if [[ ! -d $DEPS_DIR ]]; then
 fi
 cd $DEPS_DIR
 
+# zplug itself
+clonedep http://github.com/zplug/zplug zplug/zplug
+
+# zplug deps
 clonedep http://github.com/Tarrasch/zsh-bd Tarrasch/zsh-bd
 clonedep http://github.com/b4b4r07/enhancd b4b4r07/enhancd
 clonedep http://github.com/felixr/docker-zsh-completion felixr/docker-zsh-completion
@@ -149,6 +153,9 @@ clonedep http://github.com/ninrod/nin-vi-mode.git ninrod/nin-vi-mode
 clonedep http://github.com/supercrabtree/k supercrabtree/k
 clonedep http://github.com/zsh-users/zsh-completions zsh-users/zsh-completions
 clonedep http://github.com/zsh-users/zsh-syntax-highlighting zsh-users/zsh-syntax-highlighting
+
+# fuzzy filter
+clonedep http://github.com/junegunn/fzf junegunn/fzf
 
 # }}}
 # extra adjustments for .fzf and .zplug {{{
@@ -181,4 +188,5 @@ ensure_vim_plugins
 apply_git_info
 
 # extra install step for fzf
-~/.fzf/install --no-update-rc --completion --key-bindings
+cd ~/.fzf
+./install --no-update-rc --completion --key-bindings
