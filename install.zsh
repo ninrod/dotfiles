@@ -122,9 +122,11 @@ clonedep() {
   local name="$1"
   local url="$2"
   if [[ ! -d $name ]]; then
-    echo -e "dependency ${Yellow}${name}${Rst} was not cloned. cloning now."
+    echo -e "dependency ${Red}${name}${Rst} was not cloned. cloning now."
     git clone $url $name
     echo -e "dependency ${Yellow}${name}${Rst} cloned."
+  else
+    echo -e "dependency ${Green}${name}${Rst} already cloned."
   fi
 }
 # }}}
