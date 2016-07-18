@@ -170,6 +170,7 @@ updatelinks ~/.zplug zplug/zplug
 
 cd $GIT_ROOT
 
+# FIXME: is there a bash way to do this?
 setopt extended_glob
 for file in dot/^*.cp; do
   verifylink ~/.${file:t}
