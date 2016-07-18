@@ -117,7 +117,6 @@ apply_git_info() {
 }
 
 # }}}
-
 # clonedep: smarter clones {{{
 
 clonedep() {
@@ -133,6 +132,7 @@ clonedep() {
 }
 
 # }}}
+
 # cloning deps {{{
 
 DEPS_DIR=$GIT_ROOT/deps
@@ -163,15 +163,12 @@ updatelinks ~/.zplug zplug/zplug
 
 # }}}
 
-
-setopt extended_glob
-
 cd $GIT_ROOT
 
+setopt extended_glob
 for file in dot/^*.cp; do
   verifylink ~/.${file:t}
 done
-
 for file in dot/^*.cp; do
   updatelinks ~/.${file:t} $file
 done
