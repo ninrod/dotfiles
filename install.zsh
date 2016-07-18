@@ -132,7 +132,6 @@ clonedep() {
 }
 
 # }}}
-
 # cloning deps {{{
 
 DEPS_DIR=$GIT_ROOT/deps
@@ -146,9 +145,9 @@ clonedep docker-alias http://github.com/ninrod/docker-alias.git
 
 # }}}
 
-cd $GIT_ROOT
-
 setopt extended_glob
+
+cd $GIT_ROOT
 
 for file in dot/^*.cp; do
   verifylink ~/.${file:t}
