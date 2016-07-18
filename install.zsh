@@ -1,4 +1,4 @@
-#! /usr/bin/env zsh -f
+#!/usr/bin/env zsh
 
 # author: Filipe Silva (ninrod)
 # LICENSE and COPYRIGHT notice {{{
