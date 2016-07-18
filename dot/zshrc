@@ -150,15 +150,14 @@ fi
 # Zplug
 source ~/.zplug/init.zsh
 
-# github
-zplug "Tarrasch/zsh-bd"
-zplug "felixr/docker-zsh-completion"
-zplug "supercrabtree/k"
-zplug "zsh-users/zsh-completions"
-zplug "b4b4r07/enhancd", use:init.sh
-
-# github configured plugins
-zplug "zsh-users/zsh-syntax-highlighting", nice:10
+zplug "${DOTPATH}/deps/ninrod/nin-vi-mode", from:local
+zplug "${DOTPATH}/deps/ninrod/docker-alias", from:local, use:zshrc
+zplug "${DOTPATH}/deps/Tarrasch/zsh-bd", from:local
+zplug "${DOTPATH}/deps/felixr/docker-zsh-completion", from:local
+zplug "${DOTPATH}/deps/supercrabtree/k", from:local
+zplug "${DOTPATH}/deps/zsh-users/zsh-completions", from:local
+zplug "${DOTPATH}/deps/b4b4r07/enhancd", from:local, use:init.sh
+zplug "${DOTPATH}/deps/zsh-users/zsh-syntax-highlighting", from:local, nice:10
   ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
   typeset -A ZSH_HIGHLIGHT_STYLES
   ZSH_HIGHLIGHT_STYLES[alias]='fg=cyan,bold'
@@ -168,10 +167,6 @@ zplug "zsh-users/zsh-syntax-highlighting", nice:10
   ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=yellow'
   ZSH_HIGHLIGHT_STYLES[path_prefix]='fg=cyan'
   ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]='fg=red'
-
-# local
-zplug "${DOTPATH}/deps/ninrod/nin-vi-mode", from:local
-zplug "${DOTPATH}/deps/ninrod/docker-alias", from:local, use:zshrc
 
 # enhancd config
 # if [[ "${SHELL_ENHANCD_ENABLED}" == "true"  ]]; then
