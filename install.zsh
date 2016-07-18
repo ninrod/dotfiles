@@ -118,6 +118,7 @@ apply_git_info() {
 
 # }}}
 # clonedep: smarter clones {{{
+
 clonedep() {
   local name="$1"
   local url="$2"
@@ -129,6 +130,7 @@ clonedep() {
     echo -e "dependency ${Green}${name}${Rst} already cloned."
   fi
 }
+
 # }}}
 
 # cloning deps {{{
