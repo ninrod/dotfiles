@@ -151,6 +151,18 @@ clonedep http://github.com/zsh-users/zsh-completions zsh-users/zsh-completions
 clonedep http://github.com/zsh-users/zsh-syntax-highlighting zsh-users/zsh-syntax-highlighting
 
 # }}}
+# extra adjustments for .fzf and .zplug {{{
+
+verifylink ~/.fzf
+verifylink ~/.zplug
+
+updatelinks ~/.fzf junegunn/fzf
+updatelinks ~/.zplug zplug/zplug
+
+~/.fzf/install --no-update-rc --completion --key-bindings
+
+# }}}
+
 
 setopt extended_glob
 
