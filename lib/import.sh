@@ -1,7 +1,7 @@
 # author: Filipe Silva (ninrod)
 # LICENSE and COPYRIGHT notice {{{
 
-# dockerfiles - a port of http://github.com/ninrod/dotfiles to a docker container
+# ninrod's dotfiles - sharpened dotfiles for zsh, vim, tmux and friends.
 # Copyright (C) 2016 Filipe Silva (ninrod)
 
 # This program is free software: you can redistribute it and/or modify
