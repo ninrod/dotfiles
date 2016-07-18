@@ -159,8 +159,6 @@ verifylink ~/.zplug
 updatelinks ~/.fzf junegunn/fzf
 updatelinks ~/.zplug zplug/zplug
 
-~/.fzf/install --no-update-rc --completion --key-bindings
-
 # }}}
 
 cd $GIT_ROOT
@@ -181,3 +179,6 @@ done
 ensure_dotpath
 ensure_vim_plugins
 apply_git_info
+
+# extra install step for fzf
+~/.fzf/install --no-update-rc --completion --key-bindings
