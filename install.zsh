@@ -56,7 +56,7 @@ ensure_dotpath() {
   awk '!/^DOTPATH/' $options_file > $temp_file && mv $temp_file $options_file
 
   # append $DOTPATH to $options_file
-  echo "DOTPATH=$GIT_ROOT" >> $options_file
+  echo "DOTPATH=${GIT_ROOT/$HOME/~}" >> $options_file
 }
 
 # }}}
