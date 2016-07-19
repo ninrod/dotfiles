@@ -153,7 +153,7 @@ source ~/.zplug/init.zsh
 zplug "${DOTPATH}/deps/ninrod/nin-vi-mode", from:local
 zplug "${DOTPATH}/deps/ninrod/docker-alias", from:local, use:zshrc
 zplug "${DOTPATH}/deps/Tarrasch/zsh-bd", from:local
-zplug "${DOTPATH}/deps/felixr/docker-zsh-completion", from:local
+zplug "${DOTPATH}/deps/ninrod/docker-zsh-completion", from:local
 zplug "${DOTPATH}/deps/supercrabtree/k", from:local
 zplug "${DOTPATH}/deps/zsh-users/zsh-completions", from:local
 zplug "${DOTPATH}/deps/b4b4r07/enhancd", from:local, use:init.sh
