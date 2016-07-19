@@ -22,9 +22,9 @@
 # }}}
 # lib import {{{
 
-GIT_ROOT=$(git rev-parse --show-toplevel)
-echo "return code of GIT_ROOT call: $?"
-. $GIT_ROOT/lib/import.sh
+SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P  )"
+cd $SCRIPTPATH
+. $SCRIPTPATH/lib/import.sh
 
 # }}}
 
