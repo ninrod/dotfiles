@@ -143,7 +143,7 @@ fi
 cd $DEPS_DIR
 
 # zplug itself
-clonedep http://github.com/zplug/zplug zplug/zplug
+clonedep zplug/zplug http://github.com/zplug/zplug.git
 
 # zplug deps
 
@@ -157,7 +157,7 @@ clonedep zsh-users/zsh-completions          http://github.com/zsh-users/zsh-comp
 clonedep kzsh-users/zsh-syntax-highlighting http://github.com/zsh-users/zsh-syntax-highlighting
 
 # fuzzy filter
-clonedep http://github.com/junegunn/fzf junegunn/fzf
+clonedep junegunn/fzf http://github.com/junegunn/fzf
 
 # }}}
 # extra adjustments for .fzf and .zplug {{{
