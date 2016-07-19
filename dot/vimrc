@@ -171,7 +171,7 @@ let g:multi_cursor_exit_from_insert_mode=0
 
 
 " Plug 'terryma/vim-multiple-cursors'
-Plug 'ninrod/vim-multiple-cursors'
+" Plug 'ninrod/vim-multiple-cursors'
 
 "core
 Plug 'Yggdroot/indentLine'
@@ -216,6 +216,7 @@ Plug 'kana/vim-textobj-user'
 
 " local
 Plug '~/.fzf'
+Plug '~/code/sources/ninrod-multiple-cursors'
 
 " unused themes
 " Plug 'edkolev/tmuxline.vim'
