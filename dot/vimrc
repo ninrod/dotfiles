@@ -169,6 +169,10 @@ let g:multi_cursor_exit_from_insert_mode=0
 
 " }}}
 
+
+" Plug 'terryma/vim-multiple-cursors'
+Plug 'ninrod/vim-multiple-cursors'
+
 "core
 Plug 'Yggdroot/indentLine'
 Plug 'bronson/vim-visual-star-search'
@@ -190,7 +194,6 @@ Plug 'ninrod/ninscratch-vim'
 Plug 'ninrod/vis'
 Plug 'othree/xml.vim', {'for': ['xml', 'html']}
 Plug 'pangloss/vim-javascript'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
