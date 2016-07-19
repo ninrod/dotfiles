@@ -147,17 +147,17 @@ clonedep zplug/zplug http://github.com/zplug/zplug.git
 
 # zplug deps
 
-clonedep Tarrasch/zsh-bd                    http://github.com/Tarrasch/zsh-bd
-clonedep b4b4r07/enhancd                    http://github.com/b4b4r07/enhancd
-clonedep felixr/docker-zsh-completion       http://github.com/felixr/docker-zsh-completion
-clonedep ninrod/docker-alias                http://github.com/ninrod/docker-alias.git
-clonedep ninrod/nin-vi-mode                 http://github.com/ninrod/nin-vi-mode.git
-clonedep supercrabtree/k                    http://github.com/supercrabtree/k
-clonedep zsh-users/zsh-completions          http://github.com/zsh-users/zsh-completions
-clonedep kzsh-users/zsh-syntax-highlighting http://github.com/zsh-users/zsh-syntax-highlighting
+clonedep Tarrasch/zsh-bd                   http://github.com/Tarrasch/zsh-bd.git
+clonedep b4b4r07/enhancd                   http://github.com/b4b4r07/enhancd.git
+clonedep ninrod/docker-zsh-completion      http://github.com/ninrod/docker-zsh-completion.git
+clonedep ninrod/docker-alias               http://github.com/ninrod/docker-alias.git
+clonedep ninrod/nin-vi-mode                http://github.com/ninrod/nin-vi-mode.git
+clonedep supercrabtree/k                   http://github.com/supercrabtree/k.git
+clonedep zsh-users/zsh-completions         http://github.com/zsh-users/zsh-completions.git
+clonedep zsh-users/zsh-syntax-highlighting http://github.com/zsh-users/zsh-syntax-highlighting.git
 
 # fuzzy filter
-clonedep junegunn/fzf http://github.com/junegunn/fzf
+clonedep junegunn/fzf http://github.com/junegunn/fzf.git
 
 # }}}
 # extra adjustments for .fzf and .zplug {{{
