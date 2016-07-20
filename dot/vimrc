@@ -160,44 +160,63 @@ let g:multi_cursor_exit_from_visual_mode=0
 let g:multi_cursor_exit_from_insert_mode=0
 
 " }}}
+" goyo and limelight {{{
+
+let g:goyo_width = '80%'
+let g:goyo_height = '80%'
+let g:limelight_default_coefficient = 0.85
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+
+" }}}
+" vim-javascript {{{
+
+let g:javascript_conceal_function       = "ƒ"
+let g:javascript_conceal_null           = "ø"
+let g:javascript_conceal_this           = "@"
+let g:javascript_conceal_return         = "⇚"
+let g:javascript_conceal_undefined      = "¿"
+let g:javascript_conceal_NaN            = "ℕ"
+let g:javascript_conceal_prototype      = "¶"
+let g:javascript_conceal_static         = "•"
+let g:javascript_conceal_super          = "Ω"
+let g:javascript_conceal_arrow_function = "⇒"
 
 " }}}
 
+" }}}
 
-" Plug 'terryma/vim-multiple-cursors'
-" Plug 'ninrod/vim-multiple-cursors'
-
-"core
+" theme plugins
+Plug 'morhetz/gruvbox'
+Plug 'itchyny/lightline.vim'
 Plug 'Yggdroot/indentLine'
+Plug 'junegunn/limelight.vim'
+Plug 'junegunn/goyo.vim'
+
+" core
 Plug 'bronson/vim-visual-star-search'
 Plug 'chaoren/vim-wordmotion'
 Plug 'ervandew/supertab'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'keith/tmux.vim'
 Plug 'luochen1990/rainbow'
-Plug 'machakann/vim-operator-jerk'
 Plug 'mbbill/undotree'
 Plug 'nelstrom/vim-markdown-folding'
 Plug 'nhooyr/neoman.vim'
 Plug 'ninrod/ninscratch-vim'
 Plug 'ninrod/vis'
-Plug 'othree/xml.vim', {'for': ['xml', 'html']}
-Plug 'pangloss/vim-javascript'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'wellle/targets.vim'
 
-"theme
-Plug 'morhetz/gruvbox'
-Plug 'itchyny/lightline.vim'
+" syntax highlight extension plugins
+Plug 'keith/tmux.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'othree/xml.vim', {'for': ['xml', 'html']}
 
 " new text objs
 Plug 'kana/vim-textobj-user'
@@ -209,7 +228,15 @@ Plug 'kana/vim-textobj-user'
 
 " local
 Plug '~/.fzf'
+
+" temporarily, while I fix bug #152
 Plug '~/code/sources/ninrod-multiple-cursors'
+" Plug 'terryma/vim-multiple-cursors'
+" Plug 'ninrod/vim-multiple-cursors'
+
+" heavy plugins
+" Plug 'SirVer/ultisnips'
+"   \| Plug 'ninrod/vim-snippets'
 
 " unused themes
 " Plug 'edkolev/tmuxline.vim'
@@ -219,26 +246,9 @@ Plug '~/code/sources/ninrod-multiple-cursors'
 " Plug 'justinmk/molokai'
 
 " plugin cemetery
-
-" vim-highlightedyank {{{
-
-" Plug 'machakann/vim-highlightedyank'
-" map y <Plug>(highlightedyank)
-" let g:highlightedyank_highlight_duration = 400
-
-" }}}
-
-" Plug 'timakro/vim-searchant'
+" Plug 'vim-scripts/ReplaceWithRegister'
 " Plug 'whatyouhide/vim-lengthmatters'
 " Plug 'sheerun/vim-polyglot'
-" Plug 'SirVer/ultisnips'
-"   \| Plug 'ninrod/vim-snippets'
-" Plug 'machakann/vim-highlightedyank'
-"   map y <Plug>(highlightedyank)
-" Plug 'machakann/vim-columnmove'
-"   let g:columnmove_no_default_key_mappings = 1
-"   nmap gf <Plug>(columnmove-f)
-"   nmap g, <Plug>(columnmove-;)
 
 call plug#end()
 
@@ -266,24 +276,6 @@ highlight Conceal ctermfg=166 guifg=#d65d0e
 " 124 = gruvbox red
 highlight SpecialKey ctermfg=124 guifg=#cc241d                            	
 
-let g:goyo_width = '80%'
-let g:goyo_height = '80%'
-let g:limelight_default_coefficient = 0.85
-
-autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
-
-let g:javascript_conceal_function       = "ƒ"
-let g:javascript_conceal_null           = "ø"
-let g:javascript_conceal_this           = "@"
-let g:javascript_conceal_return         = "⇚"
-let g:javascript_conceal_undefined      = "¿"
-let g:javascript_conceal_NaN            = "ℕ"
-let g:javascript_conceal_prototype      = "¶"
-let g:javascript_conceal_static         = "•"
-let g:javascript_conceal_super          = "Ω"
-let g:javascript_conceal_arrow_function = "⇒"
-
 " }}}
 " lightline.vim {{{
 
@@ -309,27 +301,11 @@ let g:tmuxline_powerline_separators = 0
 " silent! colorscheme jellybeans
 
 " }}}
-" solarized-8 {{{
-
-" solarized 8 colorschemes:
-" solarized8_dark and solarized8_light: the default Solarized theme;
-" solarized8_dark_low and solarized8_light_low: low-contrast variant;
-" solarized8_dark_high and solarized8_light_high: high-contrast variant;
-" solarized8_dark_flat and solarized8_light_flat: “flat” variant (not present in the original Solarized).
-
-" silent! colorscheme solarized8_light_high
-
-" }}}
 " molokai {{{
 
 " let g:rehash256 = 1
 " let g:molokai_original = 1
 " silent! colorscheme molokai
-
-" }}}
-" papercolor {{{
-
-" silent! colorscheme PaperColor
 
 " }}}
 
@@ -381,8 +357,8 @@ xnoremap " '
 " `cl` is a complete substitute for `s` (also note that `cc` substitues `S`)
 nnoremap <silent> s :silent! normal za<cr>
 
-nnoremap <silent>- :noh<cr>
-xnoremap <silent>- :noh<cr>
+" nnoremap <silent>- :noh<cr>
+" xnoremap <silent>- :noh<cr>
 
 omap ir i[
 omap ar a[
