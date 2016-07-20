@@ -169,20 +169,6 @@ autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
 
 " }}}
-" vim-javascript {{{
-
-let g:javascript_conceal_function       = "ƒ"
-let g:javascript_conceal_null           = "ø"
-let g:javascript_conceal_this           = "@"
-let g:javascript_conceal_return         = "⇚"
-let g:javascript_conceal_undefined      = "¿"
-let g:javascript_conceal_NaN            = "ℕ"
-let g:javascript_conceal_prototype      = "¶"
-let g:javascript_conceal_static         = "•"
-let g:javascript_conceal_super          = "Ω"
-let g:javascript_conceal_arrow_function = "⇒"
-
-" }}}
 
 " }}}
 
@@ -190,13 +176,13 @@ let g:javascript_conceal_arrow_function = "⇒"
 Plug 'morhetz/gruvbox'
 Plug 'itchyny/lightline.vim'
 Plug 'Yggdroot/indentLine'
-Plug 'junegunn/limelight.vim'
 Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 
 " syntax highlight extension plugins
-Plug 'keith/tmux.vim'
 Plug 'pangloss/vim-javascript', {'for': ['javascript']}
 Plug 'othree/xml.vim', {'for': ['xml', 'html']}
+Plug 'keith/tmux.vim'
 
 " core
 Plug 'bronson/vim-visual-star-search'
@@ -267,10 +253,6 @@ set background=dark
 let g:gruvbox_invert_selection=0
 
 silent! colorscheme gruvbox
-
-" improve gruvbox Conceal highlighting
-" 166 = grubox orange
-highlight Conceal ctermfg=166 guifg=#d65d0e
 
 " see https://github.com/neovim/neovim/issues/4946
 " 124 = gruvbox red
@@ -489,7 +471,6 @@ autocmd BufReadPost *
 " specify syntax highlighting for specific files
 autocmd Bufread,BufNewFile *.md set filetype=markdown " Vim interprets .md as 'modula2' otherwise, see :set filetype?
 autocmd Bufread,BufNewFile *.bowerrc set filetype=json
-autocmd Bufread,BufNewFile *.js set filetype=javascript
 
 " http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
 autocmd Filetype markdown setlocal wrap linebreak nolist textwidth=0 wrapmargin=0 conceallevel=0 fdm=expr
