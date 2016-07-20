@@ -154,12 +154,6 @@ call plug#begin('~/.vim/plugged')
 let g:rainbow_active = 1
 
 " }}}
-" vim-highlightedyank {{{
-
-map y <Plug>(highlightedyank)
-let g:highlightedyank_highlight_duration = 400
-
-" }}}
 " vim-multiple-cursors {{{
 
 let g:multi_cursor_exit_from_visual_mode=0
@@ -185,7 +179,6 @@ Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'keith/tmux.vim'
 Plug 'luochen1990/rainbow'
-Plug 'machakann/vim-highlightedyank'
 Plug 'machakann/vim-operator-jerk'
 Plug 'mbbill/undotree'
 Plug 'nelstrom/vim-markdown-folding'
@@ -227,6 +220,13 @@ Plug '~/code/sources/ninrod-multiple-cursors'
 
 " plugin cemetery
 
+" vim-highlightedyank {{{
+
+" Plug 'machakann/vim-highlightedyank'
+" map y <Plug>(highlightedyank)
+" let g:highlightedyank_highlight_duration = 400
+
+" }}}
 
 " Plug 'timakro/vim-searchant'
 " Plug 'whatyouhide/vim-lengthmatters'
