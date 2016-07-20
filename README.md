@@ -27,12 +27,10 @@
 * configure your terminal to use the [gruvbox theme](https://github.com/morhetz/gruvbox). There's a `conf` folder within this repo that can help you with that. 
 * now get `vim` 7.4+ with [+clipboard](http://vimcasts.org/blog/2013/11/getting-vim-with-clipboard-support) and +python.
 * get [tmux](https://github.com/tmux/tmux.git) 2.2+
-* get [zsh](https://github.com/zsh-users/zsh.git) 5.1+ and make sure that `/bin/zsh` is valid. (if not: `$ cd /bin && sudo ln -s $(command -v zsh) zsh`)
+* get [zsh](https://github.com/zsh-users/zsh.git) 5.2+ and make sure that `/bin/zsh` is valid. (if not: `$ cd /bin && sudo ln -s $(command -v zsh) zsh`)
 * `cat /etc/shells` and verify that zsh appears on the list. If not, `sudo vi /etc/shells` and append `/bin/zsh`
-* get [python2](http://python.org), python2-pip and `$ sudo pip2 install neovim`
+* get [python2](http://python.org), python2-pip and `$ sudo pip install neovim`
 * get [ag](https://github.com/ggreer/the_silver_searcher.git) (you can `brew install ag` on OSx).
-* clone [zplug](https://github.com/zplug/zplug.git) to `~/.zplug`
-* clone [fzf](https://github.com/junegunn/fzf.git) to `~/.fzf`
 * if you're on OSx, brew install these:
   * `brew install coreutils` (mainly because `BSD` `ls` `CLICOLOR` sucks).
   * `brew install reattach-to-user-namespace` (Mainly because of the `open` utility. [more info here](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard.git)).
@@ -44,9 +42,6 @@
 * now open your shell and write this:
 
 ```sh
-# install fzf
-$ cd ~/.fzf && ./install --all && cd
-
 # clone dotfiles repo
 $ git clone https://github.com/ninrod/dotfiles.git ~/.dotfiles
 
@@ -56,6 +51,7 @@ $ git clone https://github.com/ninrod/dotfiles.git ~/.dotfiles
 # - creates ~/.options/shell-options.conf file, if not existent
 # - overwrites your .gitconfig (so back it up if you have something important)
 # - install/updates vim plugins
+# - install fzf and zplug
 $ ~/.dotfiles/install.zsh
 
 # change git/github user info
