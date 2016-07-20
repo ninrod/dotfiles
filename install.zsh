@@ -123,13 +123,29 @@ apply_git_info() {
 clonedep() {
   local name="$1"
   local url="$2"
+  local tag="$3"
+  echo ""
+  echo -e "-------------------"
   if [[ ! -d $name ]]; then
-    echo -e "dependency ${Red}${name}${Rst} was not cloned. cloning now."
-    git clone --depth 1 $url $name
-    echo -e "[${Green}Ok${Rst}]: dependency ${Green}${name}${Rst} sucessfully cloned."
+    echo -e "[${Red}${name}${Rst}] not cloned. cloning now."
+    if [[ -n ${3+x} ]]; then
+      local clone_depth=${4:-400}
+      echo -e "tag: ${Blue}${tag}${Rst} was passed. cloning deeper (depth=$clone_depth)"
+      git clone --depth $clone_depth $url $name
+      local cwd=$(readlink -f .)
+      cd $name
+      git checkout --quiet $tag
+      git branch --no-color --quiet --column=dense
+      cd $cwd
+    else
+      echo -e "no tag to checkout. ${Yellow}shallow${Rst} cloning."
+      git clone --depth 1 $url $name
+    fi
+    echo -e "[${Green}${name}${Rst}] sucessfully cloned."
   else
-    echo -e "dependency ${Green}${name}${Rst} already cloned."
+    echo -e "[${Green}${name}${Rst}] already cloned."
   fi
+  echo -e "-------------------"
 }
 
 # }}}
@@ -143,7 +159,7 @@ fi
 cd $DEPS_DIR
 
 # zplug itself
-clonedep zplug/zplug http://github.com/zplug/zplug.git
+clonedep zplug/zplug http://github.com/zplug/zplug.git 2.1.0 100
 
 # zplug deps
 
@@ -157,7 +173,11 @@ clonedep zsh-users/zsh-completions         http://github.com/zsh-users/zsh-compl
 clonedep zsh-users/zsh-syntax-highlighting http://github.com/zsh-users/zsh-syntax-highlighting.git
 
 # fuzzy filter
-clonedep junegunn/fzf http://github.com/junegunn/fzf.git
+clonedep junegunn/fzf http://github.com/junegunn/fzf.git 0.13.3 100
+
+echo ""
+
+cd $DEPS_DIR
 
 # }}}
 # extra adjustments for .fzf and .zplug {{{
@@ -169,6 +189,8 @@ updatelinks ~/.fzf junegunn/fzf
 updatelinks ~/.zplug zplug/zplug
 
 # }}}
+
+setopt extended_glob
 
 cd $GIT_ROOT
 
@@ -190,6 +212,10 @@ ensure_dotpath
 ensure_vim_plugins
 apply_git_info
 
+cd $GIT_ROOT
+
 # extra install step for fzf
+echo ""
+echo "------------------"
 cd ~/.fzf
 ./install --no-update-rc --completion --key-bindings
