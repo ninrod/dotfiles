@@ -150,7 +150,12 @@ fi
 # Zplug
 source ~/.zplug/init.zsh
 
-zplug "${DOTPATH}/deps/ninrod/nin-vi-mode", from:local
+# zplug "${DOTPATH}/deps/ninrod/nin-vi-mode", from:local
+# temp, while I fix ninrod/nin-vi-mode#3
+zplug "$~/code/sources/nin-vi-mode", from:local
+
+
+
 zplug "${DOTPATH}/deps/ninrod/docker-alias", from:local, use:zshrc
 zplug "${DOTPATH}/deps/Tarrasch/zsh-bd", from:local
 zplug "${DOTPATH}/deps/ninrod/docker-zsh-completion", from:local
