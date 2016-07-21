@@ -265,7 +265,7 @@ md() {
 
 # credits: original idea by github.com/arzzen/calc.plugin.zsh
 # usage: = '1+1'
-=() {
+= () {
   bc -l <<< "$@"
 }
 
