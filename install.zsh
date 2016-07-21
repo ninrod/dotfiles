@@ -123,22 +123,27 @@ apply_git_info() {
 clonedep() {
   local name="$1"
   local url="$2"
-  local tag="$3"
+  local ref="$3"
   echo ""
   echo -e "-------------------"
   if [[ ! -d $name ]]; then
     echo -e "[${Red}${name}${Rst}] not cloned. cloning now."
     if [[ -n ${3+x} ]]; then
       local clone_depth=${4:-400}
-      echo -e "tag: ${Blue}${tag}${Rst} was passed. cloning deeper (depth=$clone_depth)"
-      git clone --depth $clone_depth $url $name
+      if [[ -n ${4+x} ]]; then
+        echo -e "a clone depth ${Blue}${4}${Rst} was passed. cloning deeper"
+        git clone --depth $clone_depth $url $name
+      else
+        echo -e "No depth arg passed. Performing ${Blue}full${Rst} clone."
+        git clone $url $name
+      fi
       local cwd=$(readlink -f .)
       cd $name
-      git checkout --quiet $tag
+      git checkout --quiet $ref
       git branch --no-color --quiet --column=dense
       cd $cwd
     else
-      echo -e "no tag to checkout. ${Yellow}shallow${Rst} cloning."
+      echo -e "no ref to checkout. ${Yellow}shallow${Rst} cloning."
       git clone --depth 1 $url $name
     fi
     echo -e "[${Green}${name}${Rst}] sucessfully cloned."
@@ -150,7 +155,7 @@ clonedep() {
 
 # }}}
 
-# cloning deps {{{
+# dependency fetch {{{
 
 DEPS_DIR=$GIT_ROOT/deps
 if [[ ! -d $DEPS_DIR ]]; then
@@ -159,21 +164,24 @@ fi
 cd $DEPS_DIR
 
 # zplug itself
-clonedep zplug/zplug http://github.com/zplug/zplug.git 2.1.0 100
-
-# zplug deps
-
-clonedep Tarrasch/zsh-bd                   http://github.com/Tarrasch/zsh-bd.git
-clonedep b4b4r07/enhancd                   http://github.com/b4b4r07/enhancd.git
-clonedep ninrod/docker-zsh-completion      http://github.com/ninrod/docker-zsh-completion.git
-clonedep ninrod/docker-alias               http://github.com/ninrod/docker-alias.git
-clonedep ninrod/nin-vi-mode                http://github.com/ninrod/nin-vi-mode.git
-clonedep supercrabtree/k                   http://github.com/supercrabtree/k.git
-clonedep zsh-users/zsh-completions         http://github.com/zsh-users/zsh-completions.git
-clonedep zsh-users/zsh-syntax-highlighting http://github.com/zsh-users/zsh-syntax-highlighting.git
+clonedep zplug/zplug https://github.com/zplug/zplug.git 2.1.0 100
 
 # fuzzy filter
-clonedep junegunn/fzf http://github.com/junegunn/fzf.git 0.13.3 100
+clonedep junegunn/fzf https://github.com/junegunn/fzf.git 0.13.3 100
+
+# in test: rupa/z async branch
+# clonedep rupa/z https://github.com/rupa/z.git
+clonedep rupa/z https://github.com/rupa/z.git async
+
+# zplug deps
+clonedep Tarrasch/zsh-bd                   https://github.com/Tarrasch/zsh-bd.git
+clonedep b4b4r07/enhancd                   https://github.com/b4b4r07/enhancd.git
+clonedep ninrod/docker-zsh-completion      https://github.com/ninrod/docker-zsh-completion.git
+clonedep ninrod/docker-alias               https://github.com/ninrod/docker-alias.git
+clonedep ninrod/nin-vi-mode                https://github.com/ninrod/nin-vi-mode.git
+clonedep supercrabtree/k                   https://github.com/supercrabtree/k.git
+clonedep zsh-users/zsh-completions         https://github.com/zsh-users/zsh-completions.git
+clonedep zsh-users/zsh-syntax-highlighting https://github.com/zsh-users/zsh-syntax-highlighting.git
 
 echo ""
 
