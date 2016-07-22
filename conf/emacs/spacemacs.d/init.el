@@ -18,13 +18,14 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     javascript
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ;; auto-completion
-     ;; better-defaults
+     auto-completion
+     better-defaults
      emacs-lisp
      git
      markdown
@@ -34,7 +35,7 @@ values."
      ;;        shell-default-position 'bottom)
      ;; spell-checking
      ;; syntax-checking
-     ;; version-control
+     version-control
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -42,7 +43,7 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '()
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '(org-bullets)
+   dotspacemacs-excluded-packages '()
 
    ;; (dotspacemacs-excluded-packages '(org-bullets))
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -208,7 +209,7 @@ values."
    ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
    ;; derivatives. If set to `relative', also turns on relative line numbers.
    ;; (default nil)
-   dotspacemacs-line-numbers 'relative
+   dotspacemacs-line-numbers nil
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
@@ -255,29 +256,23 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; (define-key evil-normal-state-map "Q" 'save-buffers-kill-terminal)
   (define-key evil-normal-state-map "Q" 'evil-quit)
   (define-key evil-normal-state-map "Z" 'evil-save-modified-and-close)
-  (define-key evil-normal-state-map ":" 'evil-repeat-find-char-reverse)
-  (define-key evil-normal-state-map "q" 'evil-repeat-find-char)
+  (define-key evil-normal-state-map ":" 'evil-repeat-find-char)
   (define-key evil-normal-state-map ";" 'evil-ex)
   (define-key evil-motion-state-map "go" 'evil-goto-first-line)
   (define-key evil-motion-state-map "gl" 'evil-goto-line)
   (define-key evil-motion-state-map "(" 'evil-backward-paragraph)
   (define-key evil-motion-state-map ")" 'evil-forward-paragraph)
   (define-key evil-normal-state-map "-" 'evil-ex-nohighlight)
-  
+  (define-key evil-normal-state-map "q" 'evil-avy-goto-char-2)
+
 
   (defun enter-scratch-buffer nil
     "switch to the scratch buffer"
     (interactive)
     (switch-to-buffer "*scratch*")
     (lisp-interaction-mode))
-  (define-key evil-normal-state-map "gs" 'enter-scratch-buffer)
 
-  ;; (spacemacs/set-leader-keys "h" 'evil-window-left)
-  ;; (spacemacs/set-leader-keys "l" 'evil-window-right)
-  ;; (spacemacs/set-leader-keys "k" 'evil-window-up)
-  ;; (spacemacs/set-leader-keys "j" 'evil-window-down)
-  ;; (spacemacs/set-leader-keys "x" 'split-window-below-and-focus)
-  ;; (spacemacs/set-leader-keys "v" 'split-window-right-and-focus)
+  (define-key evil-normal-state-map "gs" 'enter-scratch-buffer)
 
 )
 
