@@ -259,12 +259,15 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (define-key evil-normal-state-map ":" 'evil-repeat-find-char)
   (define-key evil-normal-state-map ";" 'evil-ex)
   (define-key evil-motion-state-map "go" 'evil-goto-first-line)
-  (define-key evil-motion-state-map "gl" 'evil-goto-line)
   (define-key evil-motion-state-map "(" 'evil-backward-paragraph)
   (define-key evil-motion-state-map ")" 'evil-forward-paragraph)
   (define-key evil-normal-state-map "-" 'evil-ex-nohighlight)
-  (define-key evil-normal-state-map "q" 'evil-avy-goto-char-2)
+  (define-key evil-normal-state-map "q" 'evil-avy-goto-char)
 
+  ; org bindgs
+  (define-key evil-normal-state-map "gp" 'outline-up-heading)
+  (define-key evil-normal-state-map "gk" 'org-backward-heading-same-level)
+  (define-key evil-normal-state-map "gj" 'org-forward-heading-same-level)
   (define-key evil-visual-state-map "<" 'org-do-promote)
   (define-key evil-visual-state-map ">" 'org-do-demote)
 
