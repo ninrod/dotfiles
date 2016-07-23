@@ -463,9 +463,9 @@ alias ek='emacsclient -e "(kill-emacs)"'
 alias er='ek && ed'
 
 # edit init files
-alias ei='em $(readlink -f ~/.emacs.d/init.el)'
-alias es='em $(readlink -f ~/.spacemacs.d/init.el)'
-alias eo='em $(readlink -f ~/code/orgmode/programming.org)'
+alias ei='e $(readlink -f ~/.emacs.d/init.el)'
+alias es='e $(readlink -f ~/.spacemacs.d/init.el)'
+alias eo='e $(readlink -f ~/code/orgmode/programming.org)'
 
 # }}}
 # vim {{{

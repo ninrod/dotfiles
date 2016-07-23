@@ -265,6 +265,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (define-key evil-normal-state-map "-" 'evil-ex-nohighlight)
   (define-key evil-normal-state-map "q" 'evil-avy-goto-char-2)
 
+  (define-key evil-visual-state-map "<" 'org-do-promote)
+  (define-key evil-visual-state-map ">" 'org-do-demote)
+
 
   (defun enter-scratch-buffer nil
     "switch to the scratch buffer"
