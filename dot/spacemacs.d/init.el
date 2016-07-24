@@ -259,6 +259,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (define-key evil-normal-state-map ":" 'evil-repeat-find-char)
   (define-key evil-normal-state-map ";" 'evil-ex)
   (define-key evil-motion-state-map "go" 'evil-goto-first-line)
+  (define-key evil-motion-state-map "gl" 'evil-goto-line)
   (define-key evil-motion-state-map "(" 'evil-backward-paragraph)
   (define-key evil-motion-state-map ")" 'evil-forward-paragraph)
   (define-key evil-normal-state-map "-" 'evil-ex-nohighlight)

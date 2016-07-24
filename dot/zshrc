@@ -152,7 +152,7 @@ source ~/.zplug/init.zsh
 
 # zplug "${DOTPATH}/deps/ninrod/nin-vi-mode", from:local
 # temp, while I fix ninrod/nin-vi-mode#3
-zplug "$~/code/sources/nin-vi-mode", from:local
+zplug "~/code/sources/nin-vi-mode", from:local
 
 
 
