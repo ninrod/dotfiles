@@ -332,7 +332,14 @@ alias gi='builtin cd $(git rev-parse --show-toplevel)'
 alias gd='git diff'
 alias gds='git diff --staged'
 alias gal='git add -A'
-alias gc='git commit -v'
+git_commit() {
+  if [[ -n "$1" ]]; then
+    git commit -m "$1"
+    return 0
+  fi
+  git commit -v
+}
+alias gc='git_commit'
 # sync
 alias gf='git fetch'
 alias gp='git push'
