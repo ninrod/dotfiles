@@ -266,7 +266,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (define-key evil-normal-state-map "q" 'evil-avy-goto-char)
 
   ; org bindgs
-  (define-key evil-normal-state-map "gp" 'outline-up-heading)
+  (define-key evil-normal-state-map "gh" 'outline-up-heading)
   (define-key evil-normal-state-map "gk" 'org-backward-heading-same-level)
   (define-key evil-normal-state-map "gj" 'org-forward-heading-same-level)
   (define-key evil-visual-state-map "<" 'org-do-promote)

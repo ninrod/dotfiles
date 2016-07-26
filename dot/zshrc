@@ -154,8 +154,6 @@ source ~/.zplug/init.zsh
 # temp, while I fix ninrod/nin-vi-mode#3
 zplug "~/code/sources/nin-vi-mode", from:local
 
-
-
 zplug "${DOTPATH}/deps/ninrod/docker-alias", from:local, use:zshrc
 zplug "${DOTPATH}/deps/Tarrasch/zsh-bd", from:local
 zplug "${DOTPATH}/deps/ninrod/docker-zsh-completion", from:local
@@ -327,92 +325,33 @@ alias dot='la $(find ~ -maxdepth 1 -type l)'
 
 # git {{{
 
-# git functions {{{
-
-# gc: simple git commit front {{{
-
-improved_gc () {
-  if [[ ! -n ${1+x} ]]; then
-    git commit -v
-    return 0
-  fi
-  git commit -m $1
-}
-alias gc='noglob improved_gc'
-
-# }}}
-# git_log_month: custom git log: 1 month worth of commits $1 months ago with $2 command {{{
-
-git_log_month () {
-  if [[ -z $1 ]]; then
-    gl
-    return 0
-  fi
-
-  if [[ ! $1 =~ '^[0-9]{1,2}$' ]]; then
-    print "must be a number"
-    return 0
-  fi
-
-  local after=$(date "+%Y-%m-%d" --date="$1 month ago")
-  print "after = $after"
-
-  local git_command=gl
-  if [[ -n "$2" ]]; then
-    git_command=$2
-  fi
-
-  if [[ "$1" == "1" ]]; then
-    eval "$git_command --after=$after"
-    return 0
-  fi
-
-  local before=$(date "+%Y-%m-%d" --date="$(((${1}-1))) month ago")
-
-  print "before = $before"
-
-  eval "$git_command --after=$after --before=$before"
-}
-
-# }}}
-
-# }}}
-
 # check
 alias g='git status -sb'
-alias gg='git branch -vv'
 alias gi='builtin cd $(git rev-parse --show-toplevel)'
 # add
-alias ga='git add'
-alias gal='git add -A'
-# diff
 alias gd='git diff'
-alias gdh='gd --cached'
-alias gds='gd --stat'
+alias gds='git diff --staged'
+alias gal='git add -A'
+alias gc='git commit -v'
 # sync
 alias gf='git fetch'
 alias gp='git push'
-# branch
-alias gco='git checkout'
-alias gcom='gco master'
-alias gb='git branch'
 alias gm='git merge'
 alias gr='git rebase'
+# branch
+alias gg='git branch -vv'
+alias gb='git branch'
+alias gco='git checkout'
 # log
-alias git_log_custom='git log --pretty=format:"%C(yellow)%h%Creset %C(cyan)%>(14)%ad%Creset %C(magenta)%<(7)%an%Creset %C(blue)%d%Creset %C(white)%s%Creset" '
+alias git_log_custom='git log --pretty=format:"%C(yellow)%h%Creset %C(cyan)%>(14)%ad%Creset %C(magenta)%<(7)%an%Creset %C(blue)%d%Creset %C(white)%s%Creset" --abbrev=7 '
 alias gld='git_log_custom --graph --date=format:"%Y-%m-%d %H:%M:%S"'
-alias gl='gld --date=relative --first-parent --abbrev=8 -20'
-alias gll='gl --all'
-alias gla='gld --date=relative --abbrev=8 --all'
-alias glf='git log --follow -p -- '
-# log no color
+alias gl='gld --date=relative '
 alias git_log_nocolor_custom='git log --no-color --pretty=format:"%h %d %ad %an %s" '
 alias gldnc='git_log_nocolor_custom --graph'
 alias glnc='gldnc --date=relative'
-# exotic
+# ls-files
 alias glsu='git ls-files --others --exclude-standard'
 alias glsi='git ls-files -oiX .gitignore'
-
 
 # }}}
 # pushd directory navigation {{{
