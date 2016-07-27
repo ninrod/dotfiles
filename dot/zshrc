@@ -98,7 +98,7 @@ export PATH
 GNUMANPATH="/usr/local/opt/coreutils/libexec/gnuman"
 MANPATH="$GNUMANPATH:$MANPATH"
 
-FZFMAN="~/.fzf/man"
+FZFMAN=~/.fzf/man
 MANPATH="$FZFMAN:$MANPATH"
 
 export MANPATH
@@ -124,24 +124,6 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="find . -path '*/.git' -prune -o -type d -print"
 
 # }}}
-# FZF Setup {{{
-# -------------
-
-# Man path
-# --------
-if [[ ! "$MANPATH" == */Users/ninrod/.fzf/man* && -d "$HOME/.fzf/man" ]]; then
-  export MANPATH="$MANPATH:$HOME/.fzf/man"
-fi
-
-# Auto-completion
-# ---------------
-[[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.zsh" 2> /dev/null
-
-# Key bindings
-# ------------
-source "$HOME/.fzf/shell/key-bindings.zsh"
-
-# }}}
 # load user config {{{
 
 SHELL_USER_CONFIG_FILE="$(readlink -f ~)/.options/shell-options.conf"
@@ -151,6 +133,10 @@ fi
 
 # }}}
 # plugins {{{
+
+# fzf setup
+[[ $- == *i* ]] && source ~/.fzf/shell/completion.zsh 2> /dev/null
+source ~/.fzf/shell/key-bindings.zsh
 
 # Zplug
 source ~/.zplug/init.zsh
@@ -190,7 +176,7 @@ fi
 zplug load
 
 # colors for GNU ls (from coreutils)
-eval `dircolors ~/.lscolors`
+eval $(dircolors ~/.lscolors)
 
 # }}}
 # alias {{{
