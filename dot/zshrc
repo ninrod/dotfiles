@@ -90,10 +90,18 @@ GOPATH=~/code/apps/go
 export GOPATH
 PATH="$GOPATH/bin:$PATH"
 
-MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+FZFBIN=~/.fzf/bin
+PATH="$FZFBIN:$PATH"
 
 export PATH
 
+GNUMANPATH="/usr/local/opt/coreutils/libexec/gnuman"
+MANPATH="$GNUMANPATH:$MANPATH"
+
+FZFMAN="~/.fzf/man"
+MANPATH="$FZFMAN:$MANPATH"
+
+export MANPATH
 
 # }}}
 # exports {{{
@@ -118,9 +126,6 @@ export FZF_ALT_C_COMMAND="find . -path '*/.git' -prune -o -type d -print"
 # }}}
 # FZF Setup {{{
 # -------------
-if [[ ! "$PATH" == *.fzf/bin* ]]; then
-  export PATH="$PATH:$HOME/.fzf/bin"
-fi
 
 # Man path
 # --------
@@ -352,14 +357,7 @@ alias gco='git checkout'
 # log
 alias git_log_custom='git log --pretty=format:"%C(yellow)%h%Creset %C(cyan)%>(14)%ad%Creset %C(magenta)%<(7)%an%Creset %C(blue)%d%Creset %C(white)%s%Creset" --abbrev=7 '
 alias gld='git_log_custom --graph --date=format:"%Y-%m-%d %H:%M:%S"'
-gl_func () {
-  if [[ -n "$1" ]]; then
-    eval "gld $*"
-    return $?
-  fi
-  gld --date=relative -9
-}
-alias gl='gl_func'
+alias gl='gld --date=relative'
 alias git_log_nocolor_custom='git log --no-color --pretty=format:"%h %d %ad %an %s" '
 alias gldnc='git_log_nocolor_custom --graph'
 alias glnc='gldnc --date=relative'
