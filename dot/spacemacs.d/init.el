@@ -1,4 +1,5 @@
 ;; -*- mode: emacs-lisp -*-
+
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
@@ -127,11 +128,11 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Monaco for Powerline"
+   dotspacemacs-default-font '("Source Code Pro for Powerline"
                                :size 14
                                :weight normal
                                :width normal
-                               :powerline-scale 1)
+                               :powerline-scale 1.1)
    ;; The leader key
    dotspacemacs-leader-key "<SPC>"
    ;; The leader key accessible in `emacs state' and `insert state'
@@ -298,6 +299,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
     (lisp-interaction-mode))
   (define-key evil-normal-state-map "gs" 'enter-scratch-buffer)
 
+  ;; more options here: https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11
+  ;; example: 
+  ;; (setq powerline-default-separator 'alternate)
+  (setq powerline-default-separator nil)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
