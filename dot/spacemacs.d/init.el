@@ -18,24 +18,42 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
-     javascript
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+
+     emacs-lisp
+     vimscript
+
      auto-completion
      better-defaults
-     emacs-lisp
-     git
-     markdown
+     colors
+     dash
+     evil-commentary
      org
+     shell
+
+     git
+     version-control
+     markdown
+
+     sql
+     latex
+
+     elixir
+     ruby
+     rust
+
+     html
+     javascript
+
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      ;; spell-checking
      ;; syntax-checking
-     version-control
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -110,7 +128,7 @@ values."
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font '("Monaco for Powerline"
-                               :size 12
+                               :size 14
                                :weight normal
                                :width normal
                                :powerline-scale 1)
@@ -184,7 +202,7 @@ values."
    dotspacemacs-loading-progress-bar t
    ;; If non nil the frame is fullscreen when Emacs starts up. (default nil)
    ;; (Emacs 24.4+ only)
-   dotspacemacs-fullscreen-at-startup nil
+   dotspacemacs-fullscreen-at-startup t
    ;; If non nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
    ;; Use to disable fullscreen animations in OSX. (default nil)
    dotspacemacs-fullscreen-use-non-native nil
@@ -246,18 +264,19 @@ before packages are loaded. If you are unsure, you should try in setting them in
   )
 
 (defun dotspacemacs/user-config ()
-  ; set relative line numbers
-  ; (linum-relative-global-mode)
-  ; (setq linum-relative-current-symbol "")
 
-  ; partial port of my vim bindings
+  ;; magit config
+  (setq-default git-magit-status-fullscreen t)
+  (setq magit-repository-directories '("~/code/sources"))
+
+  ;; partial port of my vim bindings
   (define-key evil-normal-state-map "s" 'evil-toggle-fold)
   (define-key evil-normal-state-map (kbd "RET") 'evil-write)
-  ;; (define-key evil-normal-state-map "Q" 'save-buffers-kill-terminal)
   (define-key evil-normal-state-map "Q" 'evil-quit)
   (define-key evil-normal-state-map "Z" 'evil-save-modified-and-close)
   (define-key evil-normal-state-map ":" 'evil-repeat-find-char)
   (define-key evil-normal-state-map ";" 'evil-ex)
+  (define-key evil-visual-state-map ";" 'evil-ex)
   (define-key evil-motion-state-map "go" 'evil-goto-first-line)
   (define-key evil-motion-state-map "gl" 'evil-goto-line)
   (define-key evil-motion-state-map "(" 'evil-backward-paragraph)
@@ -272,13 +291,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (define-key evil-visual-state-map "<" 'org-do-promote)
   (define-key evil-visual-state-map ">" 'org-do-demote)
 
-
   (defun enter-scratch-buffer nil
     "switch to the scratch buffer"
     (interactive)
     (switch-to-buffer "*scratch*")
     (lisp-interaction-mode))
-
   (define-key evil-normal-state-map "gs" 'enter-scratch-buffer)
 
 )

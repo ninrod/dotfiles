@@ -12,7 +12,7 @@
   editor = nvim
   autocrlf = input
 [color]
-  ui = always
+  ui = auto
 [color "diff"]
   meta = yellow
   commit = green
