@@ -380,13 +380,8 @@ alias 19='cd +19'
 # }}}
 # docker {{{
 
-# driv: remove imagens docker vazias {{{
-
-driv () {
-  docker images | ag '^<none' | awk '{print $3}' | xargs -I{} docker rmi {}
-}
-
-# }}}
+alias dp='docker ps --format="table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Command}}\t{{.Status}}"'
+alias dclean='drmf && drei'
 
 # }}}
 # emacs {{{
