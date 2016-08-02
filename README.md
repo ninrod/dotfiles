@@ -1,5 +1,7 @@
 # Ninrod's __zsh, vim, tmux and git__ dotfiles
 
+[![License GPL 3](https://img.shields.io/badge/license-GPL_3-green.svg)](http://www.gnu.org/licenses/gpl-3.0.txt)
+
 * Simplicity, speed and power while working inside the shell.
 
 ## Screenshots
