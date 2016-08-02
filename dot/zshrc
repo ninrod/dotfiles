@@ -323,6 +323,7 @@ alias gi='builtin cd $(git rev-parse --show-toplevel)'
 alias gd='git diff'
 alias gds='git diff --staged'
 alias gal='git add -A'
+alias ga='git add'
 git_commit() {
   if [[ -n "$1" ]]; then
     git commit -m "$1"
