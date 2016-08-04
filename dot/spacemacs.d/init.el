@@ -7,7 +7,7 @@
   "Configuration Layers declaration.
 You should not put any user code in this function besides modifying the variable
 values."
-  (setq-default 
+  (setq-default
    ;; Base distribution to use. This is a layer contained in the directory
    ;; `+distribution'. For now available distributions are `spacemacs-base'
    ;; or `spacemacs'. (default 'spacemacs)
@@ -289,8 +289,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   ; org bindgs
   (define-key evil-normal-state-map "gh" 'outline-up-heading)
-  ;; (define-key evil-normal-state-map "gk" 'org-backward-heading-same-level)
-  ;; (define-key evil-normal-state-map "gj" 'org-forward-heading-same-level)
+  (evil-define-key 'normal org-mode-map "gk" 'org-backward-heading-same-level)
+  (evil-define-key 'normal org-mode-map "gj" 'org-forward-heading-same-level)
   (define-key evil-visual-state-map "<" 'org-do-promote)
   (define-key evil-visual-state-map ">" 'org-do-demote)
 
