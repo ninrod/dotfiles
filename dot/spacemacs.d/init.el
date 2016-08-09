@@ -225,7 +225,7 @@ values."
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
    dotspacemacs-inactive-transparency 90
    ;; If non nil unicode symbols are displayed in the mode line. (default t)
-   dotspacemacs-mode-line-unicode-symbols t
+   dotspacemacs-mode-line-unicode-symbols nil
    ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
    ;; scrolling overrides the default behavior of Emacs which recenters the
    ;; point when it reaches the top or bottom of the screen. (default t)
@@ -272,7 +272,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
 (defun dotspacemacs/user-config ()
 
   ;; magit config
-  (setq-default git-magit-status-fullscreen t)
+  (setq-default
+   evil-shift-round nil
+   git-magit-status-fullscreen t)
+
   (setq magit-repository-directories '("~/code/sources"))
 
   ;; partial port of my vim bindings
@@ -290,12 +293,13 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (define-key evil-normal-state-map "-" 'evil-ex-nohighlight)
   (define-key evil-normal-state-map "q" 'evil-avy-goto-char)
 
-  ; org bindgs
-  (define-key evil-normal-state-map "gh" 'outline-up-heading)
+  ; org-mode binds
+  (evil-define-key 'normal org-mode-map "gh" 'outline-up-heading)
   (evil-define-key 'normal org-mode-map "gk" 'org-backward-heading-same-level)
   (evil-define-key 'normal org-mode-map "gj" 'org-forward-heading-same-level)
-  (define-key evil-visual-state-map "<" 'org-do-promote)
-  (define-key evil-visual-state-map ">" 'org-do-demote)
+  (evil-define-key 'normal org-mode-map "<" 'org-do-promote)
+  (evil-define-key 'normal org-mode-map ">" 'org-do-demote)
+  (evil-define-key 'normal org-mode-map (kbd "RET") 'evil-write)
 
   (defun enter-scratch-buffer nil
     "switch to the scratch buffer"
