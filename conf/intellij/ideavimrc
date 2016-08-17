@@ -38,6 +38,10 @@ map gl G
 nnoremap Q ZQ
 nnoremap Z ZZ
 
+" faster paragraph navigation
+nnoremap ( {
+nnoremap ) }
+
 " enter writes current buffer
 nnoremap <cr> :w<cr>
 
@@ -59,15 +63,17 @@ nmap <leader>d LztM
 nmap <leader>u HzbM
 
 nnoremap gcc :action CommentByLineComment<cr>
-nnoremap <leader>fu :action FindUsages<cr>
-nnoremap <leader>im :action GotoImplementation<cr>
-nnoremap <leader>cv :action ChangeView<cr>
-nnoremap <leader>br :action ViewBreakpoints<cr>
-nnoremap <leader>ic :action InspectCode<cr>
-nnoremap <leader>oi :action OptimizeImports<cr>
-nnoremap <leader>re :action RenameElement<cr>
-nnoremap <leader>rf :action RenameFile<cr>
 
-" reloading vimrc
-nnoremap <leader>s :so ~/.ideavimrc<cr>
-nnoremap <leader>e :e ~/.ideavimrc<cr>
+nnoremap <leader>b :action ViewBreakpoints<cr>
+nnoremap <leader>f :action FindUsages<cr>
+nnoremap <leader>i :action GotoImplementation<cr>
+nnoremap <leader>k :action FileStructurePopup<cr>
+nnoremap <leader>o :action OptimizeImports<cr>
+nnoremap <leader>r :action RenameElement<cr>
+nnoremap <leader>t :action ActivateTerminalToolWindow<cr>
+nnoremap <leader>u :action RecentFiles<cr>
+
+" interesting actions
+" :action InspectCode<cr>
+" :action ChangeView<cr>
+" :action RenameFile<cr>
