@@ -1,1 +1,79 @@
-../conf/intellij/ideavimrc
+" plugins
+set surround
+
+" better search
+set hlsearch
+set ignorecase
+set smartcase
+set incsearch
+set showmode
+
+" line numbers on
+set nu
+set rnu
+
+" clipboard integration
+set clipboard+=unnamed
+
+nnoremap ; :
+xnoremap ; :
+nnoremap , ;
+xnoremap , ;
+nnoremap q ,
+xnoremap q ,
+
+nnoremap & q
+
+nnoremap ' "
+vnoremap ' "
+
+" turn off search highlighting
+nnoremap - :noh<cr>
+
+" adding backspace
+nnoremap X hx
+
+map gl G
+" easier quiting
+nnoremap Q ZQ
+nnoremap Z ZZ
+
+" faster paragraph navigation
+nnoremap ( {
+nnoremap ) }
+
+" enter writes current buffer
+nnoremap <cr> :w<cr>
+
+" space is a better leader key
+nmap <Space> <Leader>
+
+" windows splits
+map <leader>v <C-W>v
+map <leader>x <C-W>s
+
+" window movement
+map <leader>h <C-W>h
+map <leader>j <C-W>j
+map <leader>k <C-W>k
+map <leader>l <C-W>l
+
+" custom pagedown, pageup
+nmap <leader>d LztM
+nmap <leader>u HzbM
+
+nnoremap gcc :action CommentByLineComment<cr>
+
+nnoremap <leader>b :action ViewBreakpoints<cr>
+nnoremap <leader>f :action FindUsages<cr>
+nnoremap <leader>i :action GotoImplementation<cr>
+nnoremap <leader>k :action FileStructurePopup<cr>
+nnoremap <leader>o :action OptimizeImports<cr>
+nnoremap <leader>r :action RenameElement<cr>
+nnoremap <leader>t :action ActivateTerminalToolWindow<cr>
+nnoremap <leader>u :action RecentFiles<cr>
+
+" interesting actions
+" :action InspectCode<cr>
+" :action ChangeView<cr>
+" :action RenameFile<cr>
