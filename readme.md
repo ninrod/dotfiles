@@ -75,12 +75,7 @@ $ exec zsh
 
 * That said, it is worth noting that I've remapped `<space>` to be an alias to the `<leader>` key.
 
-## TMUX: the terminal multiplexer
-
-You interact with tmux escaping commands through a key combo called `prefix`. I've remapped `prefix` to `<control>+<spacebar>`.
-
-
-### Custom tmux binds
+## TMUX custom binds
 
 bind                          | action
 ----------------------------- | ----------------------------------------------------------------------------------------
