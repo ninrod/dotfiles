@@ -79,37 +79,21 @@ $ exec zsh
 
 You interact with tmux escaping commands through a key combo called `prefix`. I've remapped `prefix` to `<control>+<spacebar>`.
 
-### copy-mode | history | scroll mode
 
-bind                 | action
--------------------- | -----------------------------------------------------------
-`<prefix> + <space>` | enter copy-mode
-
-### Window binds
-
-bind           | action
--------------- | ------------------------------------------------------------
-`<prefix> + c` | creates a new window
-`<prefix> + 1` | navigates to window 1 (or 2 to navigate to window 2, etc...)
-`<prefix> + n` | navigates to the next window
-`<prefix> + p` | cycles through the last two visited windows
-`<prefix> + ,` | to rename a window
-
-### Panel binds
+### Custom tmux binds
 
 bind                          | action
 ----------------------------- | ----------------------------------------------------------------------------------------
-`<prefix> + v`                | creates a new shell panel vertically splitting the viewport.
-`<prefix> + x`                | creates a new shell panel horizontally splitting the viewport.
-`<prefix> + r`                | cycles through different panel layouts.
-`<prefix> + <arrowkey>`       | navigates to the panel indicated by the arrow key.
-`<prefix> + s`                | shows a prompt where you can type the name of the window you want to send the panel to.
-
-### exiting panels and windows
-
-bind                           | action
------------------------------- | -----------------------------------------------------------------------------------------
-`exit`                         | closes a panel. When the last panel of the window is closed, the window is also closed.
+`ctrl + arrow`                | creates a new panel
+`alt + arrow`                 | navigates to a panel
+`F1...F5`                     | navigates to window `n`
+`F6`                          | creates a new window
+`F7`                          | renames current window
+`F9`                          | alternates between preset layouts
+`F10`                         | enter copy mode
+`F11`                         | toggle mouse mode
+`F12`                         | toggle tmux bar
+`$ exit` or `$ q`             | closes the current panel. If the current panel is the last panel, the window is also closed.
 
 LICENSE
 -----------
@@ -119,4 +103,4 @@ LICENSE
 LINKS
 ----------
 
-[first commit](https://github.com/ninrod/dotfiles/tree/212d09fb3859ca03d98aefbcd2c03c4e7d43b68e)
+[mantained since '15](https://github.com/ninrod/dotfiles/tree/212d09fb3859ca03d98aefbcd2c03c4e7d43b68e)
