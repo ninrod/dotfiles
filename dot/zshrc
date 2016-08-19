@@ -387,6 +387,9 @@ alias dclean='drmf && drei'
 # emacs {{{
 
 # starting
+alias emacsclient="$DOTPATH/scripts/emacs-terminal-client-or-fallback.sh"
+alias emacs="$DOTPATH/scripts/emacs-terminal.sh"
+
 alias e='emacsclient -t'
 alias ec='emacs -Q'
 alias ed='emacs --daemon'
