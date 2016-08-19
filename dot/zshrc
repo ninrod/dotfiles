@@ -386,8 +386,11 @@ alias dclean='drmf && drei'
 # }}}
 # emacs {{{
 
-# starting
+# compatibility
+alias emacs="$DOTPATH/scripts/emacs.sh"
+alias emacsclient="$DOTPATH/scripts/emacsclient.sh"
 
+# starting
 alias e="$DOTPATH/scripts/connect-emacs-terminal.sh"
 alias eg="$DOTPATH/scripts/connect-emacs-gui.sh"
 
