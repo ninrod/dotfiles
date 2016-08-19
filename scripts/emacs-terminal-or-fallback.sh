@@ -2,4 +2,4 @@
 
 set -e
 EMACSCLIENT=~/Applications/Emacs.app/Contents/MacOS/bin/emacsclient
-exec $EMACSCLIENT -c -a ~/.dotfiles/scripts/emacs-gui.sh "$@"
+exec $EMACSCLIENT -t -a ~/.dotfiles/scripts/emacs-terminal.sh "$@"
