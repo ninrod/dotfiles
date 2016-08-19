@@ -392,6 +392,7 @@ alias emacsclient="$DOTPATH/scripts/emacsclient.sh"
 
 
 alias e="$DOTPATH/scripts/emacs-terminal-client-or-fallback.sh"
+alias eg="$DOTPATH/scripts/emacs-gui-client-or-fallback.sh"
 alias ec='emacs -Q'
 alias ed='emacs --daemon'
 
