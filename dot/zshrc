@@ -387,17 +387,13 @@ alias dclean='drmf && drei'
 # emacs {{{
 
 # starting
-alias emacs="$DOTPATH/scripts/emacs-terminal.sh"
-alias emacsclient="$DOTPATH/scripts/emacsclient.sh"
 
+alias e="$DOTPATH/scripts/connect-emacs-terminal.sh"
+alias eg="$DOTPATH/scripts/connect-emacs-gui.sh"
 
-alias e="$DOTPATH/scripts/emacs-terminal-client-or-fallback.sh"
-alias eg="$DOTPATH/scripts/emacs-gui-client-or-fallback.sh"
-alias ec='emacs -Q'
-alias ed='emacs --daemon'
-
-# killing and restarting
-alias ek='emacsclient -e "(kill-emacs)"'
+# emacs server management
+alias ed="$DOTPATH/scripts/up-emacs-server.sh"
+alias ek="$DOTPATH/scripts/kill-emacs-server.sh"
 alias er='ek && ed'
 
 # edit init files
