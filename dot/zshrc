@@ -395,8 +395,7 @@ alias emacs="$DOTPATH/scripts/emacs.sh"
 alias emacsclient="$DOTPATH/scripts/emacsclient.sh"
 
 # starting
-alias e="$DOTPATH/scripts/connect-emacs-terminal.sh"
-alias eg="$DOTPATH/scripts/connect-emacs-gui.sh"
+alias e="$DOTPATH/scripts/connect-emacs-gui.sh"
 
 # emacs server management
 alias ed="$DOTPATH/scripts/up-emacs-server.sh"
