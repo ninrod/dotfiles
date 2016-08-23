@@ -109,7 +109,12 @@ export MANPATH
 # standard configs
 export LANG=en_US.UTF-8
 export TERM=xterm-256color
-export EDITOR=nvim
+
+if [[ -z ${EMACS+x} ]]; then
+  export EDITOR="nvim"
+else
+  export EDITOR="emacsclient"
+fi
 
 # zplug config
 export ZPLUG_CLONE_DEPTH=1
@@ -142,7 +147,7 @@ source ~/.fzf/shell/key-bindings.zsh
 source ~/.zplug/init.zsh
 
 # own plugins
-zplug "~/code/sources/nin-vi-mode", from:local
+zplug "~/code/sources/nin-vi-mode-static-cursor", from:local
 
 zplug "${DOTPATH}/deps/ninrod/docker-alias", from:local, use:zshrc
 zplug "${DOTPATH}/deps/ninrod/docker-zsh-completion", from:local
