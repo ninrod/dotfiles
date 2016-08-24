@@ -394,8 +394,9 @@ alias dclean='drmf && drei'
 alias emacs="$DOTPATH/scripts/emacs.sh"
 alias emacsclient="$DOTPATH/scripts/emacsclient.sh"
 
-# starting
-alias e="$DOTPATH/scripts/connect-emacs-gui.sh"
+# often used
+alias e="emacsclient"
+alias en="$DOTPATH/scripts/connect-emacs-gui-new-frame.sh"
 
 # emacs server management
 alias ed="$DOTPATH/scripts/up-emacs-server.sh"
