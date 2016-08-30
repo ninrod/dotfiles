@@ -470,3 +470,8 @@ if [[ -n ${DOT_TERMINAL_EMULATOR+x} ]]; then
 fi
 
 # }}}
+
+# Emacs
+# Local Variables:
+# mode: sh
+# End:
