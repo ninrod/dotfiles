@@ -15,15 +15,6 @@ set rnu
 " clipboard integration
 set clipboard+=unnamed
 
-nnoremap ; :
-xnoremap ; :
-nnoremap , ;
-xnoremap , ;
-nnoremap q ,
-xnoremap q ,
-
-nnoremap & q
-
 nnoremap ' "
 vnoremap ' "
 
@@ -49,20 +40,18 @@ nnoremap <cr> :w<cr>
 nmap <Space> <Leader>
 
 " windows splits
-map <leader>v <C-W>v
-map <leader>x <C-W>s
+" map <leader>v <C-W>v
+" map <leader>x <C-W>s
 
 " window movement
-map <leader>h <C-W>h
-map <leader>j <C-W>j
-map <leader>k <C-W>k
-map <leader>l <C-W>l
+" map <leader>h <C-W>h
+" map <leader>j <C-W>j
+" map <leader>k <C-W>k
+" map <leader>l <C-W>l
 
 " custom pagedown, pageup
-nmap <leader>d LztM
-nmap <leader>u HzbM
-
-nnoremap gcc :action CommentByLineComment<cr>
+" nmap <leader>d LztM
+" nmap <leader>u HzbM
 
 nnoremap <leader>b :action ViewBreakpoints<cr>
 nnoremap <leader>f :action FindUsages<cr>
