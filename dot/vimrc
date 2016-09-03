@@ -315,22 +315,6 @@ onoremap ao aw
 " If you can access a bind without having to press shift,
 " that's a significant speed and comfort improvement.
 " So we configure our binds based on this idea.
-nnoremap ; :
-xnoremap ; :
-
-" I use `Q` for exiting vim. `q:` is famous for screwing people up.
-" sometimes I just don't press shift correctly. 
-" So just use `&:` and `&[reg]` for macros and stuff. not a big deal.
-" plus: with lost `,` for `;`. so we need a replacement.
-nnoremap q ,
-xnoremap q ,
-onoremap q ,
-nnoremap & q
-
-nnoremap , ;
-xnoremap , ;
-onoremap , ;
-
 nnoremap ' "
 nnoremap " '
 xnoremap ' "
@@ -338,7 +322,6 @@ xnoremap " '
 
 " `cl` is a complete substitute for `s` (also note that `cc` substitues `S`)
 nnoremap <silent> s :silent! normal za<cr>
-
 nnoremap <silent>- :noh<cr>
 xnoremap <silent>- :noh<cr>
 
@@ -346,6 +329,7 @@ omap ir i[
 omap ar a[
 xmap ir i[
 xmap ar a[
+
 omap ic i{
 omap ac a{
 xmap ic i{
@@ -382,26 +366,15 @@ xmap <Space> <Leader>
 " }}}
 " leader binds {{{
 
-" my custom pageups and pagedowns. really, pagedown on macbook sucks.
-" You have to reach all the way for `fn + arrow`. No thank you.
-nmap <leader>d LztM
-nmap <leader>u HzbM
-
 " open up window splits
-nmap <leader>v <C-W>v
-nmap <leader>x <C-W>s
+" nmap <leader>v <C-W>v
+" nmap <leader>x <C-W>s
 
 " moving between windows
-nmap <leader>h <C-W>h
-nmap <leader>j <C-W>j
-nmap <leader>k <C-W>k
-nmap <leader>l <C-W>l
-
-" resizing windows
-nmap <leader><right> <C-W>20>
-nmap <leader><left>  <C-W>20<
-nmap <leader><up>    <C-W>20+
-nmap <leader><down>  <C-W>20-
+" nmap <leader>h <C-W>h
+" nmap <leader>j <C-W>j
+" nmap <leader>k <C-W>k
+" nmap <leader>l <C-W>l
 
 " }}}
 " plugin binds {{{
