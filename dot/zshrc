@@ -146,12 +146,12 @@ source ~/.fzf/shell/key-bindings.zsh
 # Zplug
 source ~/.zplug/init.zsh
 
-# in development plugins
+# personal plugins
 # zplug "~/code/sources/nin-vi-mode", from:local
-
 zplug "${DOTPATH}/deps/ninrod/nin-vi-mode", from:local
-zplug "${DOTPATH}/deps/ninrod/docker-alias", from:local, use:zshrc
+zplug "${DOTPATH}/deps/ninrod/docker-alias", from:local
 zplug "${DOTPATH}/deps/ninrod/docker-zsh-completion", from:local
+
 zplug "${DOTPATH}/deps/Tarrasch/zsh-bd", from:local
 zplug "${DOTPATH}/deps/supercrabtree/k", from:local
 zplug "${DOTPATH}/deps/b4b4r07/enhancd", from:local, use:init.sh
