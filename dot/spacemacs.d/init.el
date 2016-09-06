@@ -40,6 +40,7 @@ values."
      emacs-lisp
      helm
      org
+     shell
 
      ;; (shell :variables
      ;;        shell-default-height 30
