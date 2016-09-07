@@ -315,10 +315,16 @@ onoremap ao aw
 " If you can access a bind without having to press shift,
 " that's a significant speed and comfort improvement.
 " So we configure our binds based on this idea.
+
 nnoremap ' "
 nnoremap " '
 xnoremap ' "
 xnoremap " '
+
+nnoremap ; :
+nnoremap : ;
+xnoremap ; :
+xnoremap : ;
 
 " `cl` is a complete substitute for `s` (also note that `cc` substitues `S`)
 nnoremap <silent> s :silent! normal za<cr>
