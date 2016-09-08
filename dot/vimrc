@@ -171,6 +171,15 @@ autocmd! User GoyoLeave Limelight!
 " }}}
 
 " }}}
+" nvim specific {{{
+
+if has('nvim')
+  Plug 'bfredl/nvim-miniyank'
+  map p <Plug>(miniyank-autoput)
+  map P <Plug>(miniyank-autoPut)
+endif
+
+" }}}
 
 " theme plugins
 Plug 'morhetz/gruvbox'
@@ -321,10 +330,10 @@ nnoremap " '
 xnoremap ' "
 xnoremap " '
 
-nnoremap ; :
 nnoremap : ;
-xnoremap ; :
+nnoremap ; :
 xnoremap : ;
+xnoremap ; :
 
 " `cl` is a complete substitute for `s` (also note that `cc` substitues `S`)
 nnoremap <silent> s :silent! normal za<cr>
