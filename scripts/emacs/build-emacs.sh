@@ -1,5 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 
-cd $EMACS_SRC_DIR
-./configure --with-ns
-make install
+print $EMACS_SRC_DIR
+builtin cd "$EMACS_SRC_DIR" && make distclean && make clean && ./configure --with-ns && make install
