@@ -7,7 +7,7 @@ else
   echo 'emacs is not running. bringing it up.'
 fi
 
-~/Applications/Emacs.app/Contents/MacOS/Emacs -nw --daemon; rc=$?
+~/Applications/Emacs.app/Contents/MacOS/Emacs --daemon; rc=$?
 
 if [[ $rc = 0 ]]; then
   echo 'emacs daemon started. success.'

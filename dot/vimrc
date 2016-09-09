@@ -382,14 +382,14 @@ xmap <Space> <Leader>
 " leader binds {{{
 
 " open up window splits
-" nmap <leader>v <C-W>v
-" nmap <leader>x <C-W>s
+nmap <leader>v <C-W>v
+nmap <leader>x <C-W>s
 
 " moving between windows
-" nmap <leader>h <C-W>h
-" nmap <leader>j <C-W>j
-" nmap <leader>k <C-W>k
-" nmap <leader>l <C-W>l
+nmap <leader>h <C-W>h
+nmap <leader>j <C-W>j
+nmap <leader>k <C-W>k
+nmap <leader>l <C-W>l
 
 " }}}
 " plugin binds {{{
