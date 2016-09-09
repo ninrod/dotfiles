@@ -12,10 +12,35 @@ evilfying emacs binds
 
 * evil binds
   here goes my evil binding
+** normal binds
   #+BEGIN_SRC emacs-lisp
+  (define-key evil-normal-state-map "s" 'evil-toggle-fold)
+  (define-key evil-normal-state-map (kbd "RET") 'evil-write)
+  (define-key evil-normal-state-map "Q" 'evil-quit)
+  (define-key evil-normal-state-map "Z" 'evil-save-modified-and-close)
+  (define-key evil-normal-state-map ":" 'evil-repeat-find-char)
+  (define-key evil-normal-state-map ";" 'evil-ex)
+  (define-key evil-visual-state-map ";" 'evil-ex)
+  (define-key evil-motion-state-map "go" 'evil-goto-first-line)
+  (define-key evil-motion-state-map "gl" 'evil-goto-line)
+  (define-key evil-motion-state-map "(" 'evil-backward-paragraph)
+  (define-key evil-motion-state-map ")" 'evil-forward-paragraph)
+  (define-key evil-normal-state-map "-" 'evil-ex-nohighlight)
+  (define-key evil-normal-state-map "q" 'evil-avy-goto-char)
   #+END_SRC
-* interface tweaks
+** org-mode binds
+   normal org mode binds
+  #+BEGIN_SRC emacs-lisp
+  ; org-mode binds
+  (evil-define-key 'normal org-mode-map "gh" 'outline-up-heading)
+  (evil-define-key 'normal org-mode-map "gk" 'org-backward-heading-same-level)
+  (evil-define-key 'normal org-mode-map "gj" 'org-forward-heading-same-level)
+  (evil-define-key 'normal org-mode-map "<" 'org-do-promote)
+  (evil-define-key 'normal org-mode-map ">" 'org-do-demote)
+  (evil-define-key 'normal org-mode-map (kbd "RET") 'evil-write)
+  #+END_SRC
 
+* interface tweaks
 #+BEGIN_SRC emacs-lisp
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
@@ -23,13 +48,16 @@ evilfying emacs binds
 (fset 'yes-or-no-p 'y-or-n-p)
 (global-set-key (kbd "<f5>") 'revert-buffer)
 #+END_SRC
-
+* font configuration
+  #+BEGIN_SRC emacs-lisp
+  (add-to-list 'default-frame-alist
+             '(font . "Monoisome-14"))
+  #+END_SRC
 * try
 #+BEGIN_SRC emacs-lisp
 (use-package try
 	:ensure t)
 #+END_SRC
-
 * which key
   Brings up some help
   #+BEGIN_SRC emacs-lisp
@@ -38,8 +66,6 @@ evilfying emacs binds
 	:config
 	(which-key-mode))
   #+END_SRC
-
-
 * Org mode
   Org bullets makes things look pretty
   #+BEGIN_SRC emacs-lisp
@@ -56,7 +82,6 @@ evilfying emacs binds
   :ensure t
   :bind ("M-s" . avy-goto-word-1)) ;; changed from char as per jcs
   #+END_SRC
-
 * Autocomplete
   #+BEGIN_SRC emacs-lisp
   (use-package auto-complete
@@ -67,10 +92,43 @@ evilfying emacs binds
     (global-auto-complete-mode t)
     ))
   #+END_SRC
-
 * Themes
+** spacemacs theme setup
   #+BEGIN_SRC emacs-lisp
-  ;(load-theme 'leuven t)
+  (use-package spacemacs-theme :ensure t)
+  (load-theme 'spacemacs-dark)
+
+  (use-package spaceline :ensure t)
+  (require 'spaceline-config)
+  (spaceline-spacemacs-theme)
+
+  (defun enter-scratch-buffer nil
+    "switch to the scratch buffer"
+    (interactive)
+    (switch-to-buffer "*scratch*")
+    (lisp-interaction-mode))
+  (define-key evil-normal-state-map "gs" 'enter-scratch-buffer)
+
+  (setq spaceline-minor-modes-separator nil)
+  (setq powerline-default-separator nil)
+
+  ;; more options here: https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11
+  ;; example:
+  ;; (setq powerline-default-separator 'alternate)
+  #+END_SRC
+** an alternative grubox setup
+  #+BEGIN_SRC emacs-lisp
+  ; ALTERNATIVE GRUVBOX setup!
+  ;(use-package gruvbox-theme
+  ;   :ensure t)
+  ;(load-theme 'gruvbox t)
+  ;(use-package smart-mode-line
+  ;   :ensure t)
+  ;(setq sml/theme 'dark)
+  ;(setq sml/theme 'light)
+  ;(setq sml/theme 'respectful)
+  ;(setq sml/no-confirm-load-theme t)
+  ;(sml/setup)
   #+END_SRC
 * Reveal.js
   #+BEGIN_SRC emacs-lisp
