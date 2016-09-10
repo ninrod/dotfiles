@@ -37,17 +37,14 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
 
-     emacs-lisp
      org
-     shell
+     emacs-lisp
      version-control
      git
-
-     helm
      vim-empty-lines
-
-     ;ivy commented while I wait for a solution for syl20bnr/spacemacs/#7079
-     ;ivy
+     shell
+     helm
+     ivy
 
      ;; (shell :variables
      ;;        shell-default-height 30
@@ -106,7 +103,13 @@ values."
    ;; with `:variables' keyword (similar to layers). Check the editing styles
    ;; section of the documentation for details on available variables.
    ;; (default 'vim)
-   dotspacemacs-editing-style 'hybrid
+
+   ;; dotspacemacs-editing-style 'vim
+   ;; activating hjkl-bindings because of syl20bnr/spacemacs#7079
+   dotspacemacs-editing-style '(hybrid :variables
+                                       hybrid-mode-enable-evilified-state t
+                                       hybrid-mode-enable-hjkl-bindings t
+                                       hybrid-mode-default-state 'normal)
 
    ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
