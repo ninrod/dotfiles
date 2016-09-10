@@ -1,5 +1,3 @@
-#+STARTUP: overview
-
 * evil mode
 evilfying emacs binds
 
@@ -161,3 +159,7 @@ evilfying emacs binds
         (yas-global-mode 1))
 
   #+END_SRC
+
+* local org options
+#+STARTUP: overview
+#+STARTUP: indent
