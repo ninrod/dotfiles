@@ -314,6 +314,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (define-key evil-normal-state-map "-" 'evil-ex-nohighlight)
   (define-key evil-normal-state-map "q" 'evil-avy-goto-char)
 
+  ;; SPC rebinds
+  (spacemacs/set-leader-keys "ff" 'find-file)
+
   ; org-mode binds
   (evil-define-key 'normal org-mode-map "gh" 'outline-up-heading)
   (evil-define-key 'normal org-mode-map "gk" 'org-backward-heading-same-level)
