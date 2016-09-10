@@ -18,3 +18,4 @@ undodir/
 backups/
 auto-save-list/
 *.dat
+/conf/emacs.d/recentf

@@ -328,6 +328,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (evil-define-key 'normal org-mode-map "gj" 'org-forward-heading-same-level)
   (evil-define-key 'normal org-mode-map "<" 'org-do-promote)
   (evil-define-key 'normal org-mode-map ">" 'org-do-demote)
+  (evil-define-key 'visual org-mode-map "<" 'org-do-promote)
+  (evil-define-key 'visual org-mode-map ">" 'org-do-demote)
   (evil-define-key 'normal org-mode-map (kbd "RET") 'evil-write)
 
   ; helm binds
