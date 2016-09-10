@@ -45,7 +45,9 @@ values."
 
      helm
      vim-empty-lines
-     ivy
+
+     ;ivy commented while I wait for a solution for syl20bnr/spacemacs/#7079
+     ;ivy
 
      ;; (shell :variables
      ;;        shell-default-height 30
