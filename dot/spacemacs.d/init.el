@@ -351,4 +351,5 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; example:
   ;; (setq powerline-default-separator 'alternate)
   (setq powerline-default-separator nil)
+  ;; (org-babel-load-file (expand-file-name "~/.spacemacs.d/spaceinit.org"))
 )
