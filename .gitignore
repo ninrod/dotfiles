@@ -22,3 +22,4 @@ auto-save-list/
 /conf/emacs.d/recentf
 /dot/spacemacs.d/settings.el
 /dot/spacemacs.d/userconfig.el
+/dot/spacemacs.d/layers.el
