@@ -20,3 +20,5 @@ backups/
 auto-save-list/
 *.dat
 /conf/emacs.d/recentf
+/dot/spacemacs.d/settings.el
+/dot/spacemacs.d/userconfig.el
