@@ -3,6 +3,7 @@ tags
 zcompdump
 
 ninit.el
+spaceinit.el
 
 .cache
 .netrwhist
