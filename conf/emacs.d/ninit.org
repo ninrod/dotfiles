@@ -45,7 +45,6 @@ evilfying emacs binds
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (fset 'yes-or-no-p 'y-or-n-p)
-(global-set-key (kbd "<f5>") 'revert-buffer)
 #+END_SRC
 * font configuration
   #+BEGIN_SRC emacs-lisp

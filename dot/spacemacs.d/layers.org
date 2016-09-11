@@ -2,6 +2,7 @@
 
 Configuration Layers declaration. 
 You should not put any user code in this function besides modifying the variable values.
+
 * base distribution
 
 Base distribution to use. This is a layer contained in the directory `+distribution'. 
@@ -14,6 +15,7 @@ For now available distributions are `spacemacs-base' or `spacemacs'.
 
 * layer lazy installation
 ** doc
+
 Lazy installation of layers. layers are installed only when a file with a supported type is opened. 
 *** Possible values are: `all', `unused' and `nil': 
 **** 'unused (default)
@@ -22,8 +24,10 @@ will lazy install only unused layers layers not listed in variable `dotspacemacs
 will lazy install any layer that support lazy installation even the layers
 listed in `dotspacemacs-configuration-layers'. 
 **** nil 
+
 disable the lazy installation feature and you have to explicitly list a layer in the
 variable `dotspacemacs-configuration-layers' to install it.
+
 ** code
 #+BEGIN_SRC emacs-lisp
    dotspacemacs-enable-lazy-installation 'unused
