@@ -10,6 +10,8 @@ spaceinit.el
 
 .config/
 
+conf/emacs.d/recentf*
+
 elpa/
 repos/
 deps/
@@ -19,7 +21,6 @@ undodir/
 backups/
 auto-save-list/
 *.dat
-/conf/emacs.d/recentf
 /dot/spacemacs.d/settings.el
 /dot/spacemacs.d/userconfig.el
 /dot/spacemacs.d/layers.el

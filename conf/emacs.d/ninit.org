@@ -82,13 +82,17 @@ evilfying emacs binds
   #+END_SRC
 * Ivy
 #+BEGIN_SRC emacs-lisp
-  (use-package ivy
-    :ensure t
-    :config
-    (ivy-mode 1)
-    (setq ivy-use-virtual-buffers t)
-    (setq ivy-count-format "(%d/%d) ")
-  )
+    (use-package ivy
+      :ensure t
+      :config
+
+      (ivy-mode 1)
+      (setq ivy-use-virtual-buffers t)
+      (setq ivy-count-format "(%d/%d) ")
+
+      (require 'recentf)
+      (recentf-mode 1)
+    )
 #+END_SRC
 
 * Autocomplete
