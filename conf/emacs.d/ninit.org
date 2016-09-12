@@ -37,8 +37,19 @@ evilfying emacs binds
   (define-key evil-motion-state-map "(" 'evil-backward-paragraph)
   (define-key evil-motion-state-map ")" 'evil-forward-paragraph)
   (define-key evil-normal-state-map "-" 'evil-ex-nohighlight)
-  (define-key evil-normal-state-map "S" 'evil-avy-goto-char)
+  (define-key evil-normal-state-map "S" 'evil-avy-goto-word-1)
   #+END_SRC
+** window movements
+#+BEGIN_SRC emacs-lisp
+    (evil-leader/set-key
+      "j" 'evil-window-down
+      "k" 'evil-window-up
+      "h" 'evil-window-left
+      "l" 'evil-window-right
+      "v" 'evil-window-vsplit
+      "x" 'evil-window-split
+    )
+#+END_SRC
 ** esc key special treatment
 
 esc quits pretty much anything (like pending prompts in the minibuffer)
