@@ -1,22 +1,25 @@
 * evil mode
-
 evilfying emacs binds
-
 ** evil bootstrap
-
 #+BEGIN_SRC emacs-lisp
 (use-package evil
   :ensure t
   :config
   (evil-mode))
 #+END_SRC
-
 ** evil leader
-
 #+BEGIN_SRC emacs-lisp
-
+(use-package evil-leader
+  :ensure t
+  :config
+    (evil-leader/set-leader "<SPC>")
+    (evil-leader/set-key
+      "r" 'counsel-recentf
+      "f" 'counsel-find-file
+      "b" 'ivy-switch-buffer
+      "<SPC>" 'counsel-M-x)
+    (global-evil-leader-mode))
 #+END_SRC
-
 * evil binds
   here goes my evil binding
 ** normal binds
