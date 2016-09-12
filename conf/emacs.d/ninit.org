@@ -142,12 +142,7 @@ ivy is a helm lightweight replacement
       (setq ivy-use-virtual-buffers t)
       (setq ivy-count-format "(%d/%d) ")
 
-      ; remove this maybe
-      ;(require 'recentf)
-      ;(recentf-mode 1)
-
       (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)
-      ;(define-key ivy-minibuffer-map [escape] 'minibuffer-keyboard-quit)
     )
 
     (use-package counsel
