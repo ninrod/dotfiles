@@ -37,7 +37,22 @@ evilfying emacs binds
   (define-key evil-motion-state-map ")" 'evil-forward-paragraph)
   (define-key evil-normal-state-map "-" 'evil-ex-nohighlight)
   (define-key evil-normal-state-map "q" 'evil-avy-goto-char)
+
+
   #+END_SRC
+** esc key special treatment
+esc quits pretty much anything (like pending prompts in the minibuffer)
+#+BEGIN_SRC emacs-lisp
+  (define-key evil-normal-state-map [escape] 'keyboard-quit)
+  (define-key evil-visual-state-map [escape] 'keyboard-quit)
+  (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+
+
+#+END_SRC
 ** org-mode binds
    normal org mode binds
   #+BEGIN_SRC emacs-lisp
@@ -104,6 +119,9 @@ evilfying emacs binds
 
       (require 'recentf)
       (recentf-mode 1)
+
+      (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)
+      ;(define-key ivy-minibuffer-map [escape] 'minibuffer-keyboard-quit)
     )
 #+END_SRC
 
@@ -134,9 +152,10 @@ evilfying emacs binds
     (lisp-interaction-mode))
   (define-key evil-normal-state-map "gs" 'enter-scratch-buffer)
 
-  ;;(setq powerline-default-separator nil)
+  (setq powerline-default-separator nil)
   (setq spaceline-minor-modes-separator nil)
   (setq powerline-default-separator nil)
+  (spaceline-compile)
   
 
   ;; more options here: https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11
