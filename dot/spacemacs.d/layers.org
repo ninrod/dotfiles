@@ -62,6 +62,10 @@ variable `dotspacemacs-configuration-layers' to install it.
      vim-empty-lines
      evil-commentary
 
+     auto-completion
+     spell-checking
+     syntax-checking
+
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)

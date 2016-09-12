@@ -1,11 +1,20 @@
 * evil mode
+
 evilfying emacs binds
+
+** evil bootstrap
 
 #+BEGIN_SRC emacs-lisp
 (use-package evil
   :ensure t
   :config
   (evil-mode))
+#+END_SRC
+
+** evil leader
+
+#+BEGIN_SRC emacs-lisp
+
 #+END_SRC
 
 * evil binds
@@ -49,7 +58,7 @@ evilfying emacs binds
 * font configuration
   #+BEGIN_SRC emacs-lisp
   (add-to-list 'default-frame-alist
-             '(font . "Monoisome-14"))
+               '(font . "Monoisome-14"))
   #+END_SRC
 * try
 #+BEGIN_SRC emacs-lisp
