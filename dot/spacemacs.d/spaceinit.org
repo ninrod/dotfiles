@@ -54,6 +54,7 @@
   ;; example:
   ;; (setq powerline-default-separator 'alternate)
   (setq powerline-default-separator nil)
+  
 #+END_SRC
 * local org options
 #+STARTUP: indent
