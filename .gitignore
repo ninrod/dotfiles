@@ -2,25 +2,14 @@
 tags
 zcompdump
 
-ninit.el
-spaceinit.el
-
 .cache
 .netrwhist
 
 .config/
 
-conf/emacs.d/recentf*
-
-elpa/
 repos/
 deps/
 plugged/
 custom/
 undodir/
 backups/
-auto-save-list/
-*.dat
-/dot/spacemacs.d/settings.el
-/dot/spacemacs.d/userconfig.el
-/dot/spacemacs.d/layers.el

@@ -1,1 +1,4 @@
 recentf*
+*.dat
+elpa/
+ninit.el
