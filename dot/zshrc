@@ -79,9 +79,20 @@ Cyan="${TC}36m";
 White="${TC}37m";
 
 # }}}
+# load user config {{{
+
+SHELL_USER_CONFIG_FILE="$(readlink -f ~)/.options/shell-options.conf"
+if [[ -e "$SHELL_USER_CONFIG_FILE" ]]; then
+  . "$SHELL_USER_CONFIG_FILE"
+fi
+
+# }}}
 # path {{{
 
 PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+
+CUSTOM_SCRIPTS=$DOTPATH/scripts/emacs
+PATH="$CUSTOM_SCRIPTS:$PATH"
 
 GNUBIN_PATH=/usr/local/opt/coreutils/libexec/gnubin
 PATH="$GNUBIN_PATH:$PATH"
@@ -130,14 +141,6 @@ export FZF_ALT_C_COMMAND="find . -path '*/.git' -prune -o -type d -print"
 
 # emacs
 export EMACS_SRC_DIR="${HOME}/code/apps/emacs"
-
-# }}}
-# load user config {{{
-
-SHELL_USER_CONFIG_FILE="$(readlink -f ~)/.options/shell-options.conf"
-if [[ -e "$SHELL_USER_CONFIG_FILE" ]]; then
-  . "$SHELL_USER_CONFIG_FILE"
-fi
 
 # }}}
 # plugins {{{

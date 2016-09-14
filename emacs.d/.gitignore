@@ -1,5 +1,5 @@
 recentf*
 *.dat
 elpa/
-ninit.el
+boot.el
 auto-save-list/
