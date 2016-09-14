@@ -1,15 +1,1 @@
-*.pyc
-tags
-zcompdump
-
-.cache
-.netrwhist
-
-.config/
-
-repos/
 deps/
-plugged/
-custom/
-undodir/
-backups/
