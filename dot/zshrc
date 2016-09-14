@@ -392,8 +392,7 @@ alias emacs="$DOTPATH/scripts/emacs/emacs.sh"
 alias emacsclient="$DOTPATH/scripts/emacs/emacsclient.sh"
 
 # often used
-alias e="emacsclient -c"
-alias en="$DOTPATH/scripts/emacs/connect-emacs-gui-new-frame.sh"
+alias e="emacs -nw"
 
 # emacs server management
 alias ed="$DOTPATH/scripts/emacs/up-emacs-server.sh"
