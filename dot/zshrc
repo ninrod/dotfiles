@@ -81,7 +81,7 @@ White="${TC}37m";
 # }}}
 # load user config {{{
 
-SHELL_USER_CONFIG_FILE="$(readlink -f ~)/.options/shell-options.conf"
+SHELL_USER_CONFIG_FILE="${HOME}/.options/shell-options.conf"
 if [[ -e "$SHELL_USER_CONFIG_FILE" ]]; then
   . "$SHELL_USER_CONFIG_FILE"
 fi
