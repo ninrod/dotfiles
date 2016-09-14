@@ -13,14 +13,160 @@ evilfying emacs binds
   :ensure t
   :config
     (evil-leader/set-leader "<SPC>")
-    (evil-leader/set-key
-      "f" 'counsel-find-file
-      "b" 'ivy-switch-buffer
-      "r" 'ivy-recentf
-      "<SPC>" 'counsel-M-x)
     (global-evil-leader-mode))
 #+END_SRC
-* evil binds
+* interface tweaks
+#+BEGIN_SRC emacs-lisp
+(setq inhibit-startup-message t)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+(fset 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
+* font configuration
+  #+BEGIN_SRC emacs-lisp
+  (add-to-list 'default-frame-alist
+               '(font . "Monoisome-14"))
+  #+END_SRC
+* try
+#+BEGIN_SRC emacs-lisp
+(use-package try
+	:ensure t)
+#+END_SRC
+* which key
+  Brings up some help
+  #+BEGIN_SRC emacs-lisp
+  (use-package which-key
+	:ensure t 
+	:config
+	(which-key-mode))
+  #+END_SRC
+* Org mode
+  Org bullets makes things look pretty
+  #+BEGIN_SRC emacs-lisp
+  (use-package org-bullets
+  :ensure t
+  :config
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+  )
+  #+END_SRC
+* Avy 
+  See https://github.com/abo-abo/avy for more info
+  navigate by searching for a letter on the screen and jumping to it
+  #+BEGIN_SRC emacs-lisp
+  (use-package avy
+  :ensure t
+  :bind ("M-s" . avy-goto-word-1)) ;; changed from char as per jcs
+  #+END_SRC
+* Ivy
+
+ivy is a helm lightweight replacement
+
+#+BEGIN_SRC emacs-lisp
+    (use-package ivy
+      :ensure t
+      :config
+
+      (ivy-mode 1)
+      (setq ivy-use-virtual-buffers t)
+      (setq ivy-count-format "(%d/%d) ")
+
+      (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)
+    )
+
+    (use-package counsel
+      :ensure t
+      :config
+#+END_SRC
+
+* Autocomplete
+  #+BEGIN_SRC emacs-lisp
+  (use-package auto-complete
+  :ensure t
+  :init
+  (progn
+    (ac-config-default)
+    (global-auto-complete-mode t)
+    ))
+  #+END_SRC
+* Themes
+** spacemacs theme setup
+  #+BEGIN_SRC emacs-lisp
+    ;(use-package spacemacs-theme :ensure t)
+    ;(load-theme 'spacemacs-dark)
+
+    ;(use-package spaceline :ensure t)
+    ;(require 'spaceline-config)
+    ;(spaceline-spacemacs-theme)
+
+    ;(setq powerline-default-separator nil)
+    ;(setq spaceline-minor-modes-separator nil)
+    ;(setq powerline-default-separator nil)
+    ;(spaceline-compile)
+
+    ;; more options here: https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11
+    ;; example:
+    ;; (setq powerline-default-separator 'alternate)
+  #+END_SRC
+** an alternative grubox setup
+  #+BEGIN_SRC emacs-lisp
+  ; ALTERNATIVE GRUVBOX setup!
+  (use-package gruvbox-theme
+     :ensure t)
+  (load-theme 'gruvbox t)
+  (use-package smart-mode-line
+     :ensure t)
+  ;(setq sml/theme 'dark)
+  ;(setq sml/theme 'light)
+  (setq sml/theme 'respectful)
+  (setq sml/no-confirm-load-theme t)
+  (sml/setup)
+  #+END_SRC
+* Reveal.js
+  #+BEGIN_SRC emacs-lisp
+    (use-package ox-reveal
+    :ensure ox-reveal)
+
+    (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
+    (setq org-reveal-mathjax t)
+
+    (use-package htmlize
+    :ensure t)
+  #+END_SRC
+
+  #+RESULTS:
+  : t
+  
+* Flycheck
+  #+BEGIN_SRC emacs-lisp
+    (use-package flycheck
+      :ensure t
+      :init
+      (global-flycheck-mode t))
+
+  #+END_SRC
+* Yasnippet
+  #+BEGIN_SRC emacs-lisp
+    (use-package yasnippet
+      :ensure t
+      :init
+        (yas-global-mode 1))
+
+  #+END_SRC
+
+* Magit 
+#+BEGIN_SRC emacs-lisp
+(use-package magit
+  :ensure t
+  :config
+)
+
+(use-package evil-magit
+  :ensure t
+  :config
+)
+#+END_SRC
+* Binds
 
   here goes my evil binding
 
@@ -38,6 +184,14 @@ evilfying emacs binds
   (define-key evil-motion-state-map ")" 'evil-forward-paragraph)
   (define-key evil-normal-state-map "-" 'evil-ex-nohighlight)
   (define-key evil-normal-state-map "S" 'evil-avy-goto-word-1)
+  
+  (defun enter-scratch-buffer nil
+    "switch to the scratch buffer"
+    (interactive)
+    (switch-to-buffer "*scratch*")
+    (lisp-interaction-mode))
+  (define-key evil-normal-state-map "gs" 'enter-scratch-buffer)
+
   #+END_SRC
 ** window movements
 #+BEGIN_SRC emacs-lisp
@@ -87,154 +241,16 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
   (evil-define-key 'normal org-mode-map (kbd "RET") 'evil-write)
 #+END_SRC
 
-* interface tweaks
+** leader binds
 #+BEGIN_SRC emacs-lisp
-(setq inhibit-startup-message t)
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
-(fset 'yes-or-no-p 'y-or-n-p)
-#+END_SRC
-* font configuration
-  #+BEGIN_SRC emacs-lisp
-  (add-to-list 'default-frame-alist
-               '(font . "Monoisome-14"))
-  #+END_SRC
-* try
-#+BEGIN_SRC emacs-lisp
-(use-package try
-	:ensure t)
-#+END_SRC
-* which key
-  Brings up some help
-  #+BEGIN_SRC emacs-lisp
-  (use-package which-key
-	:ensure t 
-	:config
-	(which-key-mode))
-  #+END_SRC
-* Org mode
-  Org bullets makes things look pretty
-  #+BEGIN_SRC emacs-lisp
-  (use-package org-bullets
-  :ensure t
-  :config
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
-  #+END_SRC
-* Avy 
-  See https://github.com/abo-abo/avy for more info
-  navigate by searching for a letter on the screen and jumping to it
-  #+BEGIN_SRC emacs-lisp
-  (use-package avy
-  :ensure t
-  :bind ("M-s" . avy-goto-word-1)) ;; changed from char as per jcs
-  #+END_SRC
-* Ivy
-
-ivy is a helm lightweight replacement
-
-#+BEGIN_SRC emacs-lisp
-    (use-package ivy
-      :ensure t
-      :config
-
-      (ivy-mode 1)
-      (setq ivy-use-virtual-buffers t)
-      (setq ivy-count-format "(%d/%d) ")
-
-      (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)
-    )
-
-    (use-package counsel
-      :ensure t
-      :config
-      (evil-leader/set-key "r" 'counsel-recentf)
+    (evil-leader/set-key
+      "f" 'counsel-find-file
+      "b" 'ivy-switch-buffer
+      "r" 'counsel-recentf
+      "g" 'magit-status
+      "<SPC>" 'counsel-M-x)
     )
 #+END_SRC
-
-* Autocomplete
-  #+BEGIN_SRC emacs-lisp
-  (use-package auto-complete
-  :ensure t
-  :init
-  (progn
-    (ac-config-default)
-    (global-auto-complete-mode t)
-    ))
-  #+END_SRC
-* Themes
-** spacemacs theme setup
-  #+BEGIN_SRC emacs-lisp
-  (use-package spacemacs-theme :ensure t)
-  (load-theme 'spacemacs-dark)
-
-  (use-package spaceline :ensure t)
-  (require 'spaceline-config)
-  (spaceline-spacemacs-theme)
-
-  (defun enter-scratch-buffer nil
-    "switch to the scratch buffer"
-    (interactive)
-    (switch-to-buffer "*scratch*")
-    (lisp-interaction-mode))
-  (define-key evil-normal-state-map "gs" 'enter-scratch-buffer)
-
-  (setq powerline-default-separator nil)
-  (setq spaceline-minor-modes-separator nil)
-  (setq powerline-default-separator nil)
-  (spaceline-compile)
-  
-
-  ;; more options here: https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11
-  ;; example:
-  ;; (setq powerline-default-separator 'alternate)
-  #+END_SRC
-** an alternative grubox setup
-  #+BEGIN_SRC emacs-lisp
-  ; ALTERNATIVE GRUVBOX setup!
-  ;(use-package gruvbox-theme
-  ;   :ensure t)
-  ;(load-theme 'gruvbox t)
-  ;(use-package smart-mode-line
-  ;   :ensure t)
-  ;(setq sml/theme 'dark)
-  ;(setq sml/theme 'light)
-  ;(setq sml/theme 'respectful)
-  ;(setq sml/no-confirm-load-theme t)
-  ;(sml/setup)
-  #+END_SRC
-* Reveal.js
-  #+BEGIN_SRC emacs-lisp
-    (use-package ox-reveal
-    :ensure ox-reveal)
-
-    (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
-    (setq org-reveal-mathjax t)
-
-    (use-package htmlize
-    :ensure t)
-  #+END_SRC
-
-  #+RESULTS:
-  : t
-  
-* Flycheck
-  #+BEGIN_SRC emacs-lisp
-    (use-package flycheck
-      :ensure t
-      :init
-      (global-flycheck-mode t))
-
-  #+END_SRC
-* Yasnippet
-  #+BEGIN_SRC emacs-lisp
-    (use-package yasnippet
-      :ensure t
-      :init
-        (yas-global-mode 1))
-
-  #+END_SRC
-
 * local org options
 #+STARTUP: overview
 #+STARTUP: indent
