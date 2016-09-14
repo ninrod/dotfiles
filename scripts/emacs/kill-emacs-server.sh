@@ -8,7 +8,7 @@ else
 fi
 
 echo 'killing emacs server...'
-$DOTPATH/scripts/emacsclient.sh -e "(kill-emacs)"; rc=$?
+$DOTPATH/scripts/emacs/emacsclient.sh -e "(kill-emacs)"; rc=$?
 
 if [[ $rc = 0 ]]; then
   echo 'emacs killed.'
