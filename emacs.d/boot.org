@@ -116,9 +116,9 @@ ivy is a helm lightweight replacement
   (load-theme 'gruvbox t)
   (use-package smart-mode-line
      :ensure t)
-  ;(setq sml/theme 'dark)
+  (setq sml/theme 'dark)
   ;(setq sml/theme 'light)
-  (setq sml/theme 'respectful)
+  ;(setq sml/theme 'respectful)
   (setq sml/no-confirm-load-theme t)
   (sml/setup)
   #+END_SRC

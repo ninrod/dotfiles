@@ -22,7 +22,7 @@
   :ensure org-plus-contrib
   :defer 7)
 
-(org-babel-load-file (expand-file-name "~/.emacs.d/ninit.org"))
+(org-babel-load-file (expand-file-name "~/.emacs.d/boot.org"))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
