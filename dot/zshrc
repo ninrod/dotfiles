@@ -390,23 +390,18 @@ alias dclean='drmf && drei'
 # }}}
 # emacs {{{
 
-# compatibility
-alias emacs="$DOTPATH/scripts/emacs/emacs.sh"
-alias emacsclient="$DOTPATH/scripts/emacs/emacsclient.sh"
-
-# often used
-alias e="emacs -nw"
+alias e="emacs.sh -nw"
 
 # emacs server management
-alias ed="$DOTPATH/scripts/emacs/up-emacs-server.sh"
-alias ek="$DOTPATH/scripts/emacs/kill-emacs-server.sh"
+alias ed="up-emacs-server.sh"
+alias ek="kill-emacs-server.sh"
 alias er='ek && ed'
-alias eu='pgrep -i emacs'
+alias ep='pgrep -i emacs'
 
 # edit init files
-alias ei='e $(readlink -f ~/.emacs.d/init.el)'
+alias ei='e $(readlink -f ~/.emacs.d/boot.org)'
 alias es='e $(readlink -f ~/.spacemacs.d/init.el)'
-alias eo='e $(readlink -f ~/code/orgmode/programming.org)'
+alias eo='e $(readlink -f ~/code/orgmode/oficina.org)'
 
 # }}}
 # vim {{{
