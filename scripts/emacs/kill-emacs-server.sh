@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if pgrep Emacs > /dev/null; then
+if pgrep -i emacs > /dev/null; then
   echo 'emacs is up. proceeding to the kill...'
 else
   echo 'emacs is not running. Nothing to do.'
@@ -8,7 +8,7 @@ else
 fi
 
 echo 'killing emacs server...'
-$DOTPATH/scripts/emacs/emacsclient.sh -e "(kill-emacs)"; rc=$?
+emacsclient.sh -e "(kill-emacs)"; rc=$?
 
 if [[ $rc = 0 ]]; then
   echo 'emacs killed.'
