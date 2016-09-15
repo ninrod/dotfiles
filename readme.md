@@ -1,4 +1,4 @@
-# Ninrod's emacs, vim, zsh, tmux and git dotfiles
+# Ninrod's emacs, vim, zsh and tmux dotfiles
 
 [![License GPL 3](https://img.shields.io/badge/license-GPL_3-green.svg)](http://www.gnu.org/licenses/gpl-3.0.txt)
 
