@@ -18,9 +18,14 @@ evilfying emacs binds
 * interface tweaks
 #+BEGIN_SRC emacs-lisp
 (setq inhibit-startup-message t)
+
 (tool-bar-mode -1)
 (menu-bar-mode -1)
-(scroll-bar-mode -1)
+
+;; emacs without X does not have scrollbars
+(when (display-graphic-p)
+  (scroll-bar-mode -1))
+
 (fset 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
 * font configuration
