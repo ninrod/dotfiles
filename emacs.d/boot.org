@@ -56,19 +56,15 @@
     ;;    :config
     ;;    (load-theme 'gruvbox t))
   #+END_SRC
-** spaceline
+** doom
 #+BEGIN_SRC emacs-lisp
-  (use-package spaceline 
-    :ensure t
-    :config
-      (require 'spaceline-config)
-      (spaceline-spacemacs-theme)
-
-      ;; more options here: https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11
-      ;; (setq powerline-default-separator nil)
-      ;; (setq spaceline-minor-modes-separator nil)
-      (setq powerline-default-separator 'alternate)
-      (spaceline-compile))
+  ;; (use-package doom-themes
+  ;;   :ensure t
+  ;;   :config
+  ;;     (load-theme 'doom-one t)
+  ;;     (add-hook 'find-file-hook 'doom-buffer-mode)
+  ;;     (add-hook 'minibuffer-setup-hook 'doom-brighten-minibuffer)
+  ;; )
 #+END_SRC
 * Try
 #+BEGIN_SRC emacs-lisp
@@ -89,7 +85,7 @@
   (use-package org-bullets
   :ensure t
   :config
-    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+    ;(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
   )
   #+END_SRC
 * Avy 
