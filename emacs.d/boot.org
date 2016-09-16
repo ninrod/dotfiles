@@ -170,9 +170,7 @@ ivy is a helm lightweight replacement
 )
 #+END_SRC
 * Binds
-
   here goes my evil binding
-
 ** normal binds
 
   #+BEGIN_SRC emacs-lisp
