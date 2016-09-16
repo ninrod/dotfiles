@@ -97,17 +97,19 @@ ivy is a helm lightweight replacement
 * Themes
 ** spacemacs theme setup
   #+BEGIN_SRC emacs-lisp
-    ;(use-package spacemacs-theme :ensure t)
-    ;(load-theme 'spacemacs-dark)
+    (use-package spacemacs-theme 
+      :ensure t)
+    (load-theme 'spacemacs-dark t)
 
-    ;(use-package spaceline :ensure t)
-    ;(require 'spaceline-config)
-    ;(spaceline-spacemacs-theme)
+    (use-package spaceline 
+      :ensure t)
+    (require 'spaceline-config)
+    (spaceline-spacemacs-theme)
 
+    (setq powerline-default-separator 'alternate)
     ;(setq powerline-default-separator nil)
     ;(setq spaceline-minor-modes-separator nil)
-    ;(setq powerline-default-separator nil)
-    ;(spaceline-compile)
+    (spaceline-compile)
 
     ;; more options here: https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11
     ;; example:
@@ -116,16 +118,20 @@ ivy is a helm lightweight replacement
 ** an alternative grubox setup
   #+BEGIN_SRC emacs-lisp
   ; ALTERNATIVE GRUVBOX setup!
-  (use-package gruvbox-theme
-     :ensure t)
-  (load-theme 'gruvbox t)
-  (use-package smart-mode-line
-     :ensure t)
-  (setq sml/theme 'dark)
+  ;(use-package gruvbox-theme
+     ;:ensure t)
+  ;(load-theme 'gruvbox t)
+
+  #+END_SRC
+** modeline: artur malabarba's smart-modeline
+  #+BEGIN_SRC emacs-lisp
+  ;(use-package smart-mode-line
+  ;   :ensure t)
+  ;(setq sml/theme 'dark)
   ;(setq sml/theme 'light)
   ;(setq sml/theme 'respectful)
-  (setq sml/no-confirm-load-theme t)
-  (sml/setup)
+  ;(setq sml/no-confirm-load-theme t)
+  ;(sml/setup)
   #+END_SRC
 * Reveal.js
   #+BEGIN_SRC emacs-lisp
