@@ -15,6 +15,13 @@ evilfying emacs binds
     (evil-leader/set-leader "<SPC>")
     (global-evil-leader-mode))
 #+END_SRC
+** evil commentary
+#+BEGIN_SRC emacs-lisp
+(use-package evil-commentary
+  :ensure t
+  :config
+    (evil-commentary-mode))
+#+END_SRC
 * interface tweaks
 #+BEGIN_SRC emacs-lisp
 (setq inhibit-startup-message t)
