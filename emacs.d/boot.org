@@ -1,11 +1,13 @@
-* evil mode
-evilfying emacs binds
+#+STARTUP: overview
+#+STARTUP: indent
+
+* Evil mode
 ** evil bootstrap
 #+BEGIN_SRC emacs-lisp
 (use-package evil
   :ensure t
   :config
-  (evil-mode))
+    (evil-mode))
 #+END_SRC
 ** evil leader
 #+BEGIN_SRC emacs-lisp
@@ -22,7 +24,7 @@ evilfying emacs binds
   :config
     (evil-commentary-mode))
 #+END_SRC
-* interface tweaks
+* Interface tweaks
 #+BEGIN_SRC emacs-lisp
 (setq inhibit-startup-message t)
 
@@ -35,17 +37,45 @@ evilfying emacs binds
 
 (fset 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
-* font configuration
+* Font configuration
   #+BEGIN_SRC emacs-lisp
   (add-to-list 'default-frame-alist
                '(font . "Monoisome-14"))
   #+END_SRC
-* try
+* Themes
+** spacemacs
+  #+BEGIN_SRC emacs-lisp
+    (use-package spacemacs-theme 
+      :ensure t)
+    (load-theme 'spacemacs-dark t)
+  #+END_SRC
+** gruvbox
+  #+BEGIN_SRC emacs-lisp
+    ;; (use-package gruvbox-theme
+    ;;    :ensure t
+    ;;    :config
+    ;;    (load-theme 'gruvbox t))
+  #+END_SRC
+** spaceline
+#+BEGIN_SRC emacs-lisp
+  (use-package spaceline 
+    :ensure t
+    :config
+      (require 'spaceline-config)
+      (spaceline-spacemacs-theme)
+
+      ;; more options here: https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11
+      ;; (setq powerline-default-separator nil)
+      ;; (setq spaceline-minor-modes-separator nil)
+      (setq powerline-default-separator 'alternate)
+      (spaceline-compile))
+#+END_SRC
+* Try
 #+BEGIN_SRC emacs-lisp
 (use-package try
 	:ensure t)
 #+END_SRC
-* which key
+* Which key
   Brings up some help
   #+BEGIN_SRC emacs-lisp
   (use-package which-key
@@ -67,8 +97,7 @@ evilfying emacs binds
   navigate by searching for a letter on the screen and jumping to it
   #+BEGIN_SRC emacs-lisp
   (use-package avy
-  :ensure t
-  :bind ("M-s" . avy-goto-word-1)) ;; changed from char as per jcs
+    :ensure t)
   #+END_SRC
 * Ivy
 
@@ -83,12 +112,10 @@ ivy is a helm lightweight replacement
       (setq ivy-use-virtual-buffers t)
       (setq ivy-count-format "(%d/%d) ")
 
-      (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)
-    )
+      (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit))
 
     (use-package counsel
-      :ensure t
-      :config
+      :ensure t)
 #+END_SRC
 
 * Autocomplete
@@ -101,49 +128,10 @@ ivy is a helm lightweight replacement
     (global-auto-complete-mode t)
     ))
   #+END_SRC
-* Themes
-** spacemacs theme setup
-  #+BEGIN_SRC emacs-lisp
-    (use-package spacemacs-theme 
-      :ensure t)
-    (load-theme 'spacemacs-dark t)
-
-    (use-package spaceline 
-      :ensure t)
-    (require 'spaceline-config)
-    (spaceline-spacemacs-theme)
-
-    (setq powerline-default-separator 'alternate)
-    ;(setq powerline-default-separator nil)
-    ;(setq spaceline-minor-modes-separator nil)
-    (spaceline-compile)
-
-    ;; more options here: https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11
-    ;; example:
-    ;; (setq powerline-default-separator 'alternate)
-  #+END_SRC
-** an alternative grubox setup
-  #+BEGIN_SRC emacs-lisp
-  ; ALTERNATIVE GRUVBOX setup!
-  ;(use-package gruvbox-theme
-     ;:ensure t)
-  ;(load-theme 'gruvbox t)
-
-  #+END_SRC
-** modeline: artur malabarba's smart-modeline
-  #+BEGIN_SRC emacs-lisp
-  ;(use-package smart-mode-line
-  ;   :ensure t)
-  ;(setq sml/theme 'dark)
-  ;(setq sml/theme 'light)
-  ;(setq sml/theme 'respectful)
-  ;(setq sml/no-confirm-load-theme t)
-  ;(sml/setup)
-  #+END_SRC
 * Reveal.js
   #+BEGIN_SRC emacs-lisp
     (use-package ox-reveal
-    :ensure ox-reveal)
+    :ensure t)
 
     (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
     (setq org-reveal-mathjax t)
@@ -175,13 +163,10 @@ ivy is a helm lightweight replacement
 * Magit 
 #+BEGIN_SRC emacs-lisp
 (use-package magit
-  :ensure t
-  :config
-)
+  :ensure t)
 
 (use-package evil-magit
   :ensure t
-  :config
 )
 #+END_SRC
 * Binds
@@ -268,8 +253,4 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
       "r" 'counsel-recentf
       "g" 'magit-status
       "<SPC>" 'counsel-M-x)
-    )
 #+END_SRC
-* local org options
-#+STARTUP: overview
-#+STARTUP: indent
