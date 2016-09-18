@@ -56,20 +56,15 @@
     ;;    :config
     ;;    (load-theme 'gruvbox t))
   #+END_SRC
-** doom
-#+BEGIN_SRC emacs-lisp
-  ;; (use-package doom-themes
-  ;;   :ensure t
-  ;;   :config
-  ;;     (load-theme 'doom-one t)
-  ;;     (add-hook 'find-file-hook 'doom-buffer-mode)
-  ;;     (add-hook 'minibuffer-setup-hook 'doom-brighten-minibuffer)
-  ;; )
-#+END_SRC
 * Try
 #+BEGIN_SRC emacs-lisp
 (use-package try
 	:ensure t)
+#+END_SRC
+* Utils
+#+BEGIN_SRC emacs-lisp
+(use-package restart-emacs
+  :ensure t)
 #+END_SRC
 * Which key
   Brings up some help
