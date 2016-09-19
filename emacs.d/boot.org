@@ -81,7 +81,7 @@
 (spaceline-spacemacs-theme)
 
 ;; more options here: https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11
-(setq powerline-default-separator 'alternate)
+(setq powerline-default-separator nil)
 (spaceline-compile)
 #+END_SRC
 * Try
