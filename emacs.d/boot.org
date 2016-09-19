@@ -246,25 +246,26 @@ If the universal prefix argument is used then kill also the window."
 * Binds
 ** normal binds
   #+BEGIN_SRC emacs-lisp
-  (define-key evil-normal-state-map "s" 'evil-toggle-fold)
-  (define-key evil-normal-state-map (kbd "RET") 'evil-write)
-  (define-key evil-normal-state-map "Q" 'evil-quit)
-  (define-key evil-normal-state-map "Z" 'evil-save-modified-and-close)
-  (define-key evil-normal-state-map ":" 'evil-repeat-find-char)
-  (define-key evil-normal-state-map ";" 'evil-ex)
-  (define-key evil-motion-state-map "go" 'evil-goto-first-line)
-  (define-key evil-motion-state-map "gl" 'evil-goto-line)
-  (define-key evil-motion-state-map "(" 'evil-backward-paragraph)
-  (define-key evil-motion-state-map ")" 'evil-forward-paragraph)
-  (define-key evil-normal-state-map "-" 'evil-ex-nohighlight)
-  (define-key evil-normal-state-map "S" 'evil-avy-goto-word-1)
-  
-  (defun enter-scratch-buffer nil
-    "switch to the scratch buffer"
-    (interactive)
-    (switch-to-buffer "*scratch*")
-    (lisp-interaction-mode))
-  (define-key evil-normal-state-map "gs" 'enter-scratch-buffer)
+    (define-key evil-normal-state-map "s" 'evil-toggle-fold)
+    (define-key evil-normal-state-map (kbd "RET") 'evil-write)
+    (define-key evil-normal-state-map "Q" 'evil-quit)
+    (define-key evil-normal-state-map "Z" 'evil-save-modified-and-close)
+    (define-key evil-motion-state-map "go" 'evil-goto-first-line)
+    (define-key evil-motion-state-map "gl" 'evil-goto-line)
+    (define-key evil-motion-state-map "(" 'evil-backward-paragraph)
+    (define-key evil-motion-state-map ")" 'evil-forward-paragraph)
+    (define-key evil-normal-state-map "-" 'evil-ex-nohighlight)
+
+    ;; (define-key evil-normal-state-map "S" 'evil-avy-goto-word-1)
+    ;; (define-key evil-normal-state-map ":" 'evil-repeat-find-char)
+    ;; (define-key evil-normal-state-map ";" 'evil-ex)
+
+    (defun enter-scratch-buffer nil
+      "switch to the scratch buffer"
+      (interactive)
+      (switch-to-buffer "*scratch*")
+      (lisp-interaction-mode))
+    (define-key evil-normal-state-map "gs" 'enter-scratch-buffer)
 
   #+END_SRC
 ** esc key special treatment
@@ -282,26 +283,29 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
 #+END_SRC
 
 ** org-mode binds
-*** normal org mode binds
+**** normal org mode binds
   #+BEGIN_SRC emacs-lisp
   (evil-define-key 'normal org-mode-map "gh" 'outline-up-heading)
   (evil-define-key 'normal org-mode-map "gk" 'org-backward-heading-same-level)
   (evil-define-key 'normal org-mode-map "gj" 'org-forward-heading-same-level)
   (evil-define-key 'normal org-mode-map "gn" 'outline-next-visible-heading)
 
+  (evil-define-key 'normal org-mode-map (kbd "DEL") 'widen)
+  (evil-define-key 'normal org-mode-map "g-" 'org-narrow-to-subtree)
+
   (evil-define-key 'normal org-mode-map "<" 'org-do-promote)
   (evil-define-key 'normal org-mode-map ">" 'org-do-demote)
   (evil-define-key 'visual org-mode-map "<" 'org-do-promote)
   (evil-define-key 'visual org-mode-map ">" 'org-do-demote)
   #+END_SRC
-*** leader org binds 
+**** leader org binds 
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
   "*" 'org-ctrl-c-star
 )
 #+END_SRC
 
-*** local org mode bind fixes
+**** local org mode bind fixes
 #+BEGIN_SRC emacs-lisp
   (evil-define-key 'normal org-mode-map (kbd "RET") 'evil-write)
 #+END_SRC
