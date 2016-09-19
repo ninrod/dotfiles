@@ -65,12 +65,16 @@
 * Try
 #+BEGIN_SRC emacs-lisp
 (use-package try
-	:ensure t)
+  :ensure t
+  :defer t
+)
 #+END_SRC
 * Utils
 #+BEGIN_SRC emacs-lisp
 (use-package restart-emacs
-  :ensure t)
+  :ensure t
+  :defer t
+)
 #+END_SRC
 * Which key
   Brings up some help
@@ -86,7 +90,9 @@
   (use-package org-bullets
   :ensure t
   :config
-    ;(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+    (when (display-graphic-p)
+     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+    )
     (setq org-ellipsis "…")
     ;Other interesting characters are ▼, ↴, ⬎, ⤷,…, and ⋱.
     ;(setq org-ellipsis "⤵")
@@ -97,15 +103,16 @@
   navigate by searching for a letter on the screen and jumping to it
   #+BEGIN_SRC emacs-lisp
   (use-package avy
-    :ensure t)
+    :ensure t
+    :defer t
+  )
   #+END_SRC
 * Ivy
-
 ivy is a helm lightweight replacement
-
 #+BEGIN_SRC emacs-lisp
     (use-package ivy
       :ensure t
+      :defer t
       :config
 
       (ivy-mode 1)
@@ -115,13 +122,16 @@ ivy is a helm lightweight replacement
       (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit))
 
     (use-package counsel
-      :ensure t)
+      :ensure t
+      :defer t
+    )
 #+END_SRC
 
 * Autocomplete
   #+BEGIN_SRC emacs-lisp
   (use-package auto-complete
   :ensure t
+  :defer t
   :init
   (progn
     (ac-config-default)
@@ -131,13 +141,17 @@ ivy is a helm lightweight replacement
 * Reveal.js
   #+BEGIN_SRC emacs-lisp
     (use-package ox-reveal
-    :ensure t)
+      :ensure t
+      :defer t
+    )
 
     (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
     (setq org-reveal-mathjax t)
 
     (use-package htmlize
-    :ensure t)
+      :ensure t
+      :defer t
+    )
   #+END_SRC
 
   #+RESULTS:
@@ -147,6 +161,7 @@ ivy is a helm lightweight replacement
   #+BEGIN_SRC emacs-lisp
     (use-package flycheck
       :ensure t
+      :defer t
       :init
       (global-flycheck-mode t))
 
@@ -155,6 +170,7 @@ ivy is a helm lightweight replacement
   #+BEGIN_SRC emacs-lisp
     (use-package yasnippet
       :ensure t
+      :defer t
       :init
         (yas-global-mode 1))
 
@@ -163,7 +179,8 @@ ivy is a helm lightweight replacement
 * Magit
 #+BEGIN_SRC emacs-lisp
 (use-package magit
-  :ensure t)
+  :ensure t
+)
 
 (use-package evil-magit
   :ensure t
