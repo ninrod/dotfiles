@@ -47,10 +47,10 @@
 ** make zsh with bindkey -v and ansi-term be friendly to each other [[https://github.com/syl20bnr/spacemacs/issues/7140][syl20bnr/spacemacs#7140]]
 - shamelessly lifted from github.com/TheBB's config
 #+BEGIN_SRC emacs-lisp
-;(evil-set-initial-state 'term-mode 'emacs)
-;(evil-set-initial-state 'calculator-mode 'emacs)
-;(push 'term-mode evil-escape-excluded-major-modes)
-;(evil-define-key 'emacs term-raw-map (kbd "C-c") 'term-send-raw)
+  ;(evil-set-initial-state 'term-mode 'emacs)
+  ;(evil-set-initial-state 'calculator-mode 'emacs)
+  (evil-define-key 'emacs term-raw-map (kbd "C-c") 'term-send-raw)
+  ;(push 'term-mode evil-escape-excluded-major-modes)
 #+END_SRC
 * Font configuration
   #+BEGIN_SRC emacs-lisp
