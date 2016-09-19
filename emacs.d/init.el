@@ -28,6 +28,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
  '(package-selected-packages
    (quote
     (restart-emacs forest-blue-theme yasnippet which-key use-package try spacemacs-theme spaceline smart-mode-line ox-reveal org-plus-contrib org-bullets htmlize gruvbox-theme flycheck evil-magit evil-leader evil-commentary doom-themes counsel avy auto-complete))))

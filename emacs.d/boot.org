@@ -38,10 +38,19 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
 * Fixes
+** Yasnippet hijacks TAB key in term mode
 #+BEGIN_SRC emacs-lisp
 (add-hook 'term-mode-hook 'my-term-mode-hook)
 (defun my-term-mode-hook ()
   (yas-minor-mode -1))
+#+END_SRC
+** make zsh with bindkey -v and ansi-term be friendly to each other [[https://github.com/syl20bnr/spacemacs/issues/7140][syl20bnr/spacemacs#7140]]
+- shamelessly lifted from github.com/TheBB's config
+#+BEGIN_SRC emacs-lisp
+;(evil-set-initial-state 'term-mode 'emacs)
+;(evil-set-initial-state 'calculator-mode 'emacs)
+;(push 'term-mode evil-escape-excluded-major-modes)
+;(evil-define-key 'emacs term-raw-map (kbd "C-c") 'term-send-raw)
 #+END_SRC
 * Font configuration
   #+BEGIN_SRC emacs-lisp
@@ -62,18 +71,36 @@
     ;;    :config
     ;;    (load-theme 'gruvbox t))
   #+END_SRC
+* Modeline
+** smartmodeline
+#+BEGIN_SRC emacs-lisp
+  ;; (use-package smart-mode-line
+  ;;   :ensure t
+  ;;   :config
+  ;;     (sml/setup)
+  ;; )
+#+END_SRC
+** spaceline
+#+BEGIN_SRC emacs-lisp
+(use-package spaceline
+  :ensure t)
+(require 'spaceline-config)
+(spaceline-spacemacs-theme)
+
+;; more options here: https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11
+(setq powerline-default-separator 'alternate)
+(spaceline-compile)
+#+END_SRC
 * Try
 #+BEGIN_SRC emacs-lisp
 (use-package try
   :ensure t
-  :defer t
 )
 #+END_SRC
 * Utils
 #+BEGIN_SRC emacs-lisp
 (use-package restart-emacs
   :ensure t
-  :defer t
 )
 #+END_SRC
 * Which key
@@ -104,7 +131,6 @@
   #+BEGIN_SRC emacs-lisp
   (use-package avy
     :ensure t
-    :defer t
   )
   #+END_SRC
 * Ivy
@@ -112,7 +138,6 @@ ivy is a helm lightweight replacement
 #+BEGIN_SRC emacs-lisp
     (use-package ivy
       :ensure t
-      :defer t
       :config
 
       (ivy-mode 1)
@@ -123,7 +148,6 @@ ivy is a helm lightweight replacement
 
     (use-package counsel
       :ensure t
-      :defer t
     )
 #+END_SRC
 
@@ -131,7 +155,6 @@ ivy is a helm lightweight replacement
   #+BEGIN_SRC emacs-lisp
   (use-package auto-complete
   :ensure t
-  :defer t
   :init
   (progn
     (ac-config-default)
@@ -142,7 +165,6 @@ ivy is a helm lightweight replacement
   #+BEGIN_SRC emacs-lisp
     (use-package ox-reveal
       :ensure t
-      :defer t
     )
 
     (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
@@ -150,7 +172,6 @@ ivy is a helm lightweight replacement
 
     (use-package htmlize
       :ensure t
-      :defer t
     )
   #+END_SRC
 
@@ -161,7 +182,6 @@ ivy is a helm lightweight replacement
   #+BEGIN_SRC emacs-lisp
     (use-package flycheck
       :ensure t
-      :defer t
       :init
       (global-flycheck-mode t))
 
@@ -170,10 +190,8 @@ ivy is a helm lightweight replacement
   #+BEGIN_SRC emacs-lisp
     (use-package yasnippet
       :ensure t
-      :defer t
       :init
         (yas-global-mode 1))
-
   #+END_SRC
 
 * Magit
