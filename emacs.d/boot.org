@@ -37,6 +37,12 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
+* Fixes
+#+BEGIN_SRC emacs-lisp
+(add-hook 'term-mode-hook 'my-term-mode-hook)
+(defun my-term-mode-hook ()
+  (yas-minor-mode -1))
+#+END_SRC
 * Font configuration
   #+BEGIN_SRC emacs-lisp
   (add-to-list 'default-frame-alist
