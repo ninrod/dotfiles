@@ -87,9 +87,12 @@
   :ensure t
   :config
     ;(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+    (setq org-ellipsis "…")
+    ;Other interesting characters are ▼, ↴, ⬎, ⤷,…, and ⋱.
+    ;(setq org-ellipsis "⤵")
   )
   #+END_SRC
-* Avy 
+* Avy
   See https://github.com/abo-abo/avy for more info
   navigate by searching for a letter on the screen and jumping to it
   #+BEGIN_SRC emacs-lisp
@@ -157,7 +160,7 @@ ivy is a helm lightweight replacement
 
   #+END_SRC
 
-* Magit 
+* Magit
 #+BEGIN_SRC emacs-lisp
 (use-package magit
   :ensure t)
