@@ -3,20 +3,25 @@
 
 * Evil mode
 ** evil bootstrap
+
 #+BEGIN_SRC emacs-lisp
 (use-package evil
   :ensure t
   :config
     (evil-mode))
 #+END_SRC
+
 ** evil commentary
+
 #+BEGIN_SRC emacs-lisp
 (use-package evil-commentary
   :ensure t
   :config
     (evil-commentary-mode))
 #+END_SRC
+
 * Interface tweaks
+
 #+BEGIN_SRC emacs-lisp
 (setq inhibit-startup-message t)
 
@@ -29,43 +34,55 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
+
 * Fixes
 ** Yasnippet hijacks TAB key in term mode
+
 #+BEGIN_SRC emacs-lisp
 (add-hook 'term-mode-hook 'my-term-mode-hook)
 (defun my-term-mode-hook ()
   (yas-minor-mode -1))
 #+END_SRC
+
 ** make zsh with bindkey -v and ansi-term be friendly to each other [[https://github.com/syl20bnr/spacemacs/issues/7140][syl20bnr/spacemacs#7140]]
 - shamelessly lifted from github.com/TheBB's config
 - not working though.
+
 #+BEGIN_SRC emacs-lisp
   ;(evil-set-initial-state 'term-mode 'emacs)
   ;(evil-set-initial-state 'calculator-mode 'emacs)
   ;(evil-define-key 'emacs term-raw-map (kbd "C-c") 'term-send-raw)
   ;(push 'term-mode evil-escape-excluded-major-modes)
 #+END_SRC
+
 * Font configuration
+
   #+BEGIN_SRC emacs-lisp
   (add-to-list 'default-frame-alist
                '(font . "Monoisome-14"))
   #+END_SRC
+
 * Themes
 ** spacemacs
+
   #+BEGIN_SRC emacs-lisp
     (use-package spacemacs-theme 
       :ensure t)
     (load-theme 'spacemacs-dark t)
   #+END_SRC
+
 ** gruvbox
+
   #+BEGIN_SRC emacs-lisp
     ;; (use-package gruvbox-theme
     ;;    :ensure t
     ;;    :config
     ;;    (load-theme 'gruvbox t))
   #+END_SRC
+
 * Modeline
 ** smartmodeline
+
 #+BEGIN_SRC emacs-lisp
   ;; (use-package smart-mode-line
   ;;   :ensure t
@@ -73,7 +90,9 @@
   ;;     (sml/setup)
   ;; )
 #+END_SRC
+
 ** spaceline
+
 #+BEGIN_SRC emacs-lisp
 (use-package spaceline
   :ensure t)
@@ -84,28 +103,36 @@
 (setq powerline-default-separator nil)
 (spaceline-compile)
 #+END_SRC
+
 * Try
+
 #+BEGIN_SRC emacs-lisp
 (use-package try
   :ensure t
 )
 #+END_SRC
+
 * Utils
+
 #+BEGIN_SRC emacs-lisp
 (use-package restart-emacs
   :ensure t
 )
 #+END_SRC
+
 * Which key
   Brings up some help
+
   #+BEGIN_SRC emacs-lisp
   (use-package which-key
 	:ensure t 
 	:config
 	(which-key-mode))
   #+END_SRC
+
 * Org mode
   Org bullets makes things look pretty
+
   #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
   :ensure t
@@ -118,14 +145,17 @@
     ;(setq org-ellipsis "⤵")
   )
   #+END_SRC
+
 * Avy
   See https://github.com/abo-abo/avy for more info
   navigate by searching for a letter on the screen and jumping to it
+
   #+BEGIN_SRC emacs-lisp
   (use-package avy
     :ensure t
   )
   #+END_SRC
+  
 * Ivy
 ivy is a helm lightweight replacement
 #+BEGIN_SRC emacs-lisp
@@ -145,6 +175,7 @@ ivy is a helm lightweight replacement
 #+END_SRC
 
 * Autocomplete
+
   #+BEGIN_SRC emacs-lisp
   (use-package auto-complete
   :ensure t
@@ -154,6 +185,7 @@ ivy is a helm lightweight replacement
     (global-auto-complete-mode t)
     ))
   #+END_SRC
+
 * Reveal.js
   #+BEGIN_SRC emacs-lisp
     (use-package ox-reveal
@@ -172,20 +204,25 @@ ivy is a helm lightweight replacement
   : t
   
 * Flycheck
+
   #+BEGIN_SRC emacs-lisp
     (use-package flycheck
       :ensure t
       :init
       (global-flycheck-mode t))
   #+END_SRC
+
 * Yasnippet
+
   #+BEGIN_SRC emacs-lisp
     (use-package yasnippet
       :ensure t
       :init
         (yas-global-mode 1))
   #+END_SRC
+
 * Magit
+
 #+BEGIN_SRC emacs-lisp
 (use-package magit
   :ensure t
@@ -194,10 +231,12 @@ ivy is a helm lightweight replacement
   :ensure t
 )
 #+END_SRC
+
 * Spacemacs steals
 ** alternate last buffer
 SPC TAB
 back and forth between current and last buffer
+
 #+BEGIN_SRC emacs-lisp
 (defun spacemacs/alternate-buffer (&optional window)
   "Switch back and forth between current and last buffer in the
@@ -217,8 +256,10 @@ current window."
          ;; `other-buffer' honors `buffer-predicate' so no need to filter
          (other-buffer current-buffer t)))))
 #+END_SRC
+
 ** kill this buffer
 SPC b d
+
 #+BEGIN_SRC emacs-lisp
 (defun spacemacs/kill-this-buffer (&optional arg)
   "Kill the current buffer.
@@ -230,7 +271,9 @@ If the universal prefix argument is used then kill also the window."
         (kill-buffer-and-window)
       (kill-buffer))))
 #+END_SRC
+
 * Bind-map
+
 #+BEGIN_SRC emacs-lisp
 (use-package bind-map
   :ensure t
@@ -243,8 +286,10 @@ If the universal prefix argument is used then kill also the window."
       :major-modes (org-mode ))
 )
 #+END_SRC
+
 * Binds
 ** normal binds
+
   #+BEGIN_SRC emacs-lisp
     (define-key evil-normal-state-map (kbd "<tab>") 'spacemacs/alternate-buffer)
     (define-key evil-normal-state-map (kbd "RET") 'evil-write)
@@ -262,6 +307,7 @@ If the universal prefix argument is used then kill also the window."
     (define-key evil-normal-state-map "gs" 'magit-status)
 
   #+END_SRC
+
 ** esc key special treatment
 
 esc quits pretty much anything (like pending prompts in the minibuffer)
@@ -278,6 +324,7 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
 
 ** org-mode binds
 **** normal org mode binds
+
   #+BEGIN_SRC emacs-lisp
   (evil-define-key 'normal org-mode-map "gh" 'outline-up-heading)
   (evil-define-key 'normal org-mode-map "gk" 'org-backward-heading-same-level)
@@ -289,7 +336,9 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
   (evil-define-key 'visual org-mode-map "<" 'org-do-promote)
   (evil-define-key 'visual org-mode-map ">" 'org-do-demote)
   #+END_SRC
+
 **** leader org binds 
+
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
   "*" 'org-ctrl-c-star
@@ -297,12 +346,16 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
   "s" 'widen
 )
 #+END_SRC
+
 **** local org mode bind fixes
+
 #+BEGIN_SRC emacs-lisp
   (evil-define-key 'normal org-mode-map (kbd "RET") 'evil-write)
 #+END_SRC
+
 ** leader binds
 *** window movements
+
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
   "j" 'evil-window-down
@@ -313,7 +366,9 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
   "x" 'evil-window-split
 )
 #+END_SRC
+
 *** other leader binds
+
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys main-map
     "f" 'counsel-find-file
@@ -324,3 +379,4 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
     "TAB" 'spacemacs/alternate-buffer
   )
 #+END_SRC
+
