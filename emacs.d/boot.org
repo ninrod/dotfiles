@@ -1,9 +1,8 @@
 #+STARTUP: overview
 #+STARTUP: indent
 
-* Evil mode
+* evil mode
 ** evil bootstrap
-
 #+BEGIN_SRC emacs-lisp
 (use-package evil
   :ensure t
@@ -12,7 +11,6 @@
 #+END_SRC
 
 ** evil commentary
-
 #+BEGIN_SRC emacs-lisp
 (use-package evil-commentary
   :ensure t
@@ -20,7 +18,7 @@
     (evil-commentary-mode))
 #+END_SRC
 
-* Spacemacs steals
+* spacemacs steals
 ** alternate last buffer
 SPC TAB
 back and forth between current and last buffer
@@ -47,7 +45,6 @@ current window."
 
 ** kill this buffer
 SPC b d
-
 #+BEGIN_SRC emacs-lisp
 (defun spacemacs/kill-this-buffer (&optional arg)
   "Kill the current buffer.
@@ -60,8 +57,7 @@ If the universal prefix argument is used then kill also the window."
       (kill-buffer))))
 #+END_SRC
 
-* Bind-map
-
+* bind-map
 #+BEGIN_SRC emacs-lisp
 (use-package bind-map
   :ensure t
@@ -75,44 +71,78 @@ If the universal prefix argument is used then kill also the window."
 )
 #+END_SRC
 
-* Binds
+* binds
 ** normal binds
-
+*** single binds
   #+BEGIN_SRC emacs-lisp
-    (define-key evil-normal-state-map (kbd "TAB") 'spacemacs/alternate-buffer)
-    (define-key evil-normal-state-map (kbd "RET") 'evil-write)
-    (define-key evil-normal-state-map "s" 'evil-toggle-fold)
-    (define-key evil-normal-state-map "Q" 'evil-quit)
-    (define-key evil-normal-state-map "Z" 'evil-save-modified-and-close)
-    (define-key evil-motion-state-map "go" 'evil-goto-first-line)
-    (define-key evil-motion-state-map "gl" 'evil-goto-line)
-    (define-key evil-motion-state-map "(" 'evil-backward-paragraph)
-    (define-key evil-motion-state-map ")" 'evil-forward-paragraph)
-    (define-key evil-normal-state-map "-" 'evil-ex-nohighlight)
-
-    ;; (define-key evil-normal-state-map "S" 'evil-avy-goto-word-1)
-
-    (define-key evil-normal-state-map "gs" 'magit-status)
-
+(define-key evil-normal-state-map (kbd "TAB") 'spacemacs/alternate-buffer)
+(define-key evil-normal-state-map (kbd "RET") 'evil-write)
+(define-key evil-normal-state-map "s" 'evil-toggle-fold)
+(define-key evil-normal-state-map "Q" 'evil-quit)
+(define-key evil-normal-state-map "Z" 'evil-save-modified-and-close)
+(define-key evil-motion-state-map "(" 'evil-backward-paragraph)
+(define-key evil-motion-state-map ")" 'evil-forward-paragraph)
+(define-key evil-normal-state-map "-" 'evil-ex-nohighlight)
+;; (define-key evil-normal-state-map "S" 'evil-avy-goto-word-1)
   #+END_SRC
 
-** esc key special treatment
-
-esc quits pretty much anything (like pending prompts in the minibuffer)
-
+*** g prefix binds
 #+BEGIN_SRC emacs-lisp
-  (define-key evil-normal-state-map [escape] 'keyboard-quit)
-  (define-key evil-visual-state-map [escape] 'keyboard-quit)
-  (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
-  (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
-  (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
-  (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
-  (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+(define-key evil-motion-state-map "go" 'evil-goto-first-line)
+(define-key evil-motion-state-map "gl" 'evil-goto-line)
+(define-key evil-normal-state-map "gs" 'magit-status)
 #+END_SRC
 
+** leader group binds
+*** buffer binds
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys main-map
+    "bb" 'ivy-switch-buffer
+    "bd" 'spacemacs/kill-this-buffer)
+(which-key-declare-prefixes "SPC b" "buffers")
+#+END_SRC
+*** docs, descriptions
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys main-map
+    "dc" 'describe-char
+    "df" 'counsel-describe-function
+    "dv" 'counsel-describe-variable
+  )
+  (which-key-declare-prefixes "SPC d" "docs/descriptions")
+#+END_SRC
+
+*** windows
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys main-map
+  "wj" 'evil-window-down
+  "wk" 'evil-window-up
+  "wh" 'evil-window-left
+  "wl" 'evil-window-right
+  "wv" 'evil-window-vsplit
+  "wx" 'evil-window-split
+)
+(which-key-declare-prefixes "SPC w" "windows")
+#+END_SRC
+
+*** files
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys main-map
+  "ff" 'counsel-find-file
+  "fr" 'counsel-recentf
+)
+(which-key-declare-prefixes "SPC f" "files")
+#+END_SRC
+
+** leader direct binds
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys main-map
+  "<SPC>" 'counsel-M-x
+  "?" 'counsel-descbinds
+  ; "TAB" 'achar uma função bacana para colocar aqui 
+)
+#+END_SRC
 ** org-mode binds
 **** normal org mode binds
-
   #+BEGIN_SRC emacs-lisp
   
   (evil-define-key 'normal org-mode-map (kbd "TAB") 'spacemacs/alternate-buffer)
@@ -132,7 +162,6 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
   #+END_SRC
 
 **** leader org binds 
-
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
   "*" 'org-ctrl-c-star
@@ -142,53 +171,24 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
 #+END_SRC
 
 **** local org mode bind fixes
-
 #+BEGIN_SRC emacs-lisp
   (evil-define-key 'normal org-mode-map (kbd "RET") 'evil-write)
 #+END_SRC
 
-** leader binds
-*** window movements
-
+** esc key fixes
+esc quits pretty much anything (like pending prompts in the minibuffer)
 #+BEGIN_SRC emacs-lisp
-(bind-map-set-keys main-map
-  "j" 'evil-window-down
-  "k" 'evil-window-up
-  "h" 'evil-window-left
-  "l" 'evil-window-right
-  "v" 'evil-window-vsplit
-  "x" 'evil-window-split
-)
+  (define-key evil-normal-state-map [escape] 'keyboard-quit)
+  (define-key evil-visual-state-map [escape] 'keyboard-quit)
+  (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 #+END_SRC
 
-*** other leader binds
-
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys main-map
-    "f" 'counsel-find-file
-    "r" 'counsel-recentf
-    "g" 'magit-status
-    "<SPC>" 'counsel-M-x
-    "TAB" 'spacemacs/alternate-buffer
-    "?" 'counsel-descbinds
-  )
-#+END_SRC
-
-*** groups
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys main-map
-    "bb" 'ivy-switch-buffer
-    "bd" 'spacemacs/kill-this-buffer
-
-    "dc" 'describe-char
-    "df" 'counsel-describe-function
-    "dv" 'counsel-describe-variable
-  )
-#+END_SRC
-
-* Fixes
+* fixes
 ** Yasnippet hijacks TAB key in term mode
-
 #+BEGIN_SRC emacs-lisp
 (add-hook 'term-mode-hook 'my-term-mode-hook)
 (defun my-term-mode-hook ()
@@ -199,7 +199,6 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
 *** TheBB's solution
 - shamelessly lifted from github.com/TheBB's config
 - not working though.
-
 #+BEGIN_SRC emacs-lisp
   ;(evil-set-initial-state 'term-mode 'emacs)
   ;(evil-set-initial-state 'calculator-mode 'emacs)
@@ -208,7 +207,6 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
 #+END_SRC
 
 *** from SO question: [[http://emacs.stackexchange.com/questions/21605/term-raw-map-and-local-unset-key-need-to-pass-m-left-right-up-down-to-shell][question]]
-
 #+BEGIN_SRC emacs-lisp
 (defun my-term-hook ()
   (define-key term-raw-map (kbd "<escape>")
@@ -217,9 +215,8 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
 (add-hook 'term-mode-hook 'my-term-hook)
 #+END_SRC
 
-* Appearance
+* appearance
 ** Interface tweaks
-
 #+BEGIN_SRC emacs-lisp
 (setq inhibit-startup-message t)
 
@@ -235,7 +232,6 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
 #+END_SRC
 
 ** Font configuration
-
   #+BEGIN_SRC emacs-lisp
   (add-to-list 'default-frame-alist
                '(font . "Monoisome-14"))
@@ -243,7 +239,6 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
 
 ** Themes
 *** spacemacs
-
   #+BEGIN_SRC emacs-lisp
     (use-package spacemacs-theme 
       :ensure t)
@@ -251,7 +246,6 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
   #+END_SRC
 
 *** gruvbox
-
   #+BEGIN_SRC emacs-lisp
     ;; (use-package gruvbox-theme
     ;;    :ensure t
@@ -261,7 +255,6 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
 
 ** Modeline
 *** smartmodeline
-
 #+BEGIN_SRC emacs-lisp
   ;; (use-package smart-mode-line
   ;;   :ensure t
@@ -271,7 +264,6 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
 #+END_SRC
 
 *** spaceline
-
 #+BEGIN_SRC emacs-lisp
 (use-package spaceline
   :ensure t)
@@ -283,8 +275,7 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
 (spaceline-compile)
 #+END_SRC
 
-* Magit
-
+* magit
 #+BEGIN_SRC emacs-lisp
 (use-package magit
   :ensure t
@@ -296,9 +287,8 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
 )
 #+END_SRC
 
-* Utils
+* utils
 ** Try
-
 #+BEGIN_SRC emacs-lisp
 (use-package try
   :ensure t
@@ -306,7 +296,6 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
 #+END_SRC
 
 ** restart-emacs
-
 #+BEGIN_SRC emacs-lisp
 (use-package restart-emacs
   :ensure t
@@ -315,7 +304,6 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
 
 ** Which key
   Brings up some help
-
   #+BEGIN_SRC emacs-lisp
   (use-package which-key
 	:ensure t 
@@ -323,9 +311,8 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
 	(which-key-mode))
   #+END_SRC
 
-* Org mode
+* org mode
 ** Org bullets 
-
   #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
   :ensure t
@@ -356,17 +343,16 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
   #+RESULTS:
   : t
   
-* Avy
+* avy
   See https://github.com/abo-abo/avy for more info
   navigate by searching for a letter on the screen and jumping to it
-
   #+BEGIN_SRC emacs-lisp
   (use-package avy
     :ensure t
   )
   #+END_SRC
   
-* Ivy
+* ivy
 ivy is a helm lightweight replacement
 #+BEGIN_SRC emacs-lisp
     (use-package ivy
@@ -386,7 +372,6 @@ ivy is a helm lightweight replacement
 
 * disabled
 ** Flycheck
-
   #+BEGIN_SRC emacs-lisp
     ;; (use-package flycheck
     ;;   :ensure t
@@ -395,7 +380,6 @@ ivy is a helm lightweight replacement
   #+END_SRC
 
 ** Autocomplete
-
   #+BEGIN_SRC emacs-lisp
     ;; (use-package auto-complete
     ;; :ensure t
@@ -407,7 +391,6 @@ ivy is a helm lightweight replacement
   #+END_SRC
 
 ** Yasnippet
-
   #+BEGIN_SRC emacs-lisp
     ;; (use-package yasnippet
     ;;   :ensure t
