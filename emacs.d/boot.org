@@ -343,8 +343,7 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
 **** normal org mode binds
 
   #+BEGIN_SRC emacs-lisp
-
-      (define-key evil-normal-state-map (kbd "TAB") 'spacemacs/alternate-buffer)
+  
   (evil-define-key 'normal org-mode-map (kbd "TAB") 'spacemacs/alternate-buffer)
 
   (evil-define-key 'normal org-mode-map "gh" 'outline-up-heading)
