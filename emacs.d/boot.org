@@ -252,7 +252,7 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
   #+BEGIN_SRC emacs-lisp
     (use-package spacemacs-theme 
       :ensure t)
-    (load-theme 'spacemacs-dark t)
+    ;(load-theme 'spacemacs-dark t)
   #+END_SRC
 
 *** gruvbox
@@ -263,6 +263,10 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
     ;;    (load-theme 'gruvbox t))
   #+END_SRC
 
+*** leuven
+#+BEGIN_SRC emacs-lisp
+(load-theme 'leuven t)
+#+END_SRC
 ** Modeline
 *** spaceline
 #+BEGIN_SRC emacs-lisp
