@@ -330,10 +330,10 @@ nnoremap " '
 xnoremap ' "
 xnoremap " '
 
-nnoremap : ;
-nnoremap ; :
-xnoremap : ;
-xnoremap ; :
+" nnoremap : ;
+" nnoremap ; :
+" xnoremap : ;
+" xnoremap ; :
 
 " `cl` is a complete substitute for `s` (also note that `cc` substitues `S`)
 nnoremap <silent> s :silent! normal za<cr>
