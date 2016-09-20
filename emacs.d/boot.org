@@ -129,6 +129,7 @@ If the universal prefix argument is used then kill also the window."
 (bind-map-set-keys main-map
   "ff" 'counsel-find-file
   "fr" 'counsel-recentf
+  "fb" 'restart-emacs
 )
 (which-key-declare-prefixes "SPC f" "files")
 #+END_SRC
@@ -192,7 +193,7 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
 - more info [[http://irreal.org/blog/?p=3765][here]]
 - and [[http://emacsblog.org/2008/12/06/quick-tip-detaching-the-custom-file/][here (M-x all-things-emacs)]]
   #+BEGIN_SRC emacs-lisp
-(setq custom-file "~/.emacs.d/custom.el")
+(setq custom-file "~/.emacs.d/emacs-customizations.el")
 (load custom-file 'noerror)
   #+END_SRC
 ** Yasnippet hijacks TAB key in term mode
