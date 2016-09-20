@@ -259,9 +259,9 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
 ** Themes
 *** spacemacs
   #+BEGIN_SRC emacs-lisp
-    ;; (use-package spacemacs-theme 
-    ;;   :ensure t)
-    ;; (load-theme 'spacemacs-dark t)
+    (use-package spacemacs-theme 
+      :ensure t)
+    (load-theme 'spacemacs-dark t)
   #+END_SRC
 
 *** gruvbox
@@ -274,7 +274,7 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
 
 *** leuven
 #+BEGIN_SRC emacs-lisp
-(load-theme 'leuven t)
+;(load-theme 'leuven t)
 #+END_SRC
 
 ** Modeline
@@ -313,17 +313,15 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
 
 *** smartmodeline (activated on GNU/Linux)
 #+BEGIN_SRC emacs-lisp
-(when (eq system-type 'gnu/linux)
-  (use-package smart-mode-line
-    :ensure t
-    :config
-      ;; (setq sml/theme 'dark)
-      ;; (setq sml/theme 'light)
-      (setq sml/theme 'respectful)
-      (setq sml/no-confirm-load-theme t)
-      (sml/setup)
+  (when (eq system-type 'gnu/linux)
+    (use-package smart-mode-line
+      :ensure t
+      :config
+        (setq sml/theme 'respectful)
+        (setq sml/no-confirm-load-theme t)
+        (sml/setup)
+    )
   )
-)
 #+END_SRC
 
 * magit
