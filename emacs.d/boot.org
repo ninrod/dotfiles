@@ -20,218 +20,6 @@
     (evil-commentary-mode))
 #+END_SRC
 
-* Interface tweaks
-
-#+BEGIN_SRC emacs-lisp
-(setq inhibit-startup-message t)
-
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-
-;; emacs without X does not have scrollbars
-(when (display-graphic-p)
-  (scroll-bar-mode -1))
-
-(fset 'yes-or-no-p 'y-or-n-p)
-#+END_SRC
-
-* Fixes
-** Yasnippet hijacks TAB key in term mode
-
-#+BEGIN_SRC emacs-lisp
-(add-hook 'term-mode-hook 'my-term-mode-hook)
-(defun my-term-mode-hook ()
-  (yas-minor-mode -1))
-#+END_SRC
-
-** make zsh with bindkey -v and ansi-term be friendly to each other [[https://github.com/syl20bnr/spacemacs/issues/7140][syl20bnr/spacemacs#7140]]
-- shamelessly lifted from github.com/TheBB's config
-- not working though.
-
-#+BEGIN_SRC emacs-lisp
-  ;(evil-set-initial-state 'term-mode 'emacs)
-  ;(evil-set-initial-state 'calculator-mode 'emacs)
-  ;(evil-define-key 'emacs term-raw-map (kbd "C-c") 'term-send-raw)
-  ;(push 'term-mode evil-escape-excluded-major-modes)
-#+END_SRC
-
-* Font configuration
-
-  #+BEGIN_SRC emacs-lisp
-  (add-to-list 'default-frame-alist
-               '(font . "Monoisome-14"))
-  #+END_SRC
-
-* Themes
-** spacemacs
-
-  #+BEGIN_SRC emacs-lisp
-    (use-package spacemacs-theme 
-      :ensure t)
-    (load-theme 'spacemacs-dark t)
-  #+END_SRC
-
-** gruvbox
-
-  #+BEGIN_SRC emacs-lisp
-    ;; (use-package gruvbox-theme
-    ;;    :ensure t
-    ;;    :config
-    ;;    (load-theme 'gruvbox t))
-  #+END_SRC
-
-* Modeline
-** smartmodeline
-
-#+BEGIN_SRC emacs-lisp
-  ;; (use-package smart-mode-line
-  ;;   :ensure t
-  ;;   :config
-  ;;     (sml/setup)
-  ;; )
-#+END_SRC
-
-** spaceline
-
-#+BEGIN_SRC emacs-lisp
-(use-package spaceline
-  :ensure t)
-(require 'spaceline-config)
-(spaceline-spacemacs-theme)
-
-;; more options here: https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11
-(setq powerline-default-separator nil)
-(spaceline-compile)
-#+END_SRC
-
-* Try
-
-#+BEGIN_SRC emacs-lisp
-(use-package try
-  :ensure t
-)
-#+END_SRC
-
-* Utils
-
-#+BEGIN_SRC emacs-lisp
-(use-package restart-emacs
-  :ensure t
-)
-#+END_SRC
-
-* Which key
-  Brings up some help
-
-  #+BEGIN_SRC emacs-lisp
-  (use-package which-key
-	:ensure t 
-	:config
-	(which-key-mode))
-  #+END_SRC
-
-* Org mode
-  Org bullets makes things look pretty
-
-  #+BEGIN_SRC emacs-lisp
-  (use-package org-bullets
-  :ensure t
-  :config
-    (when (display-graphic-p)
-     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-    )
-    (setq org-ellipsis "…")
-    ;Other interesting characters are ▼, ↴, ⬎, ⤷,…, and ⋱.
-    ;(setq org-ellipsis "⤵")
-  )
-  #+END_SRC
-
-* Avy
-  See https://github.com/abo-abo/avy for more info
-  navigate by searching for a letter on the screen and jumping to it
-
-  #+BEGIN_SRC emacs-lisp
-  (use-package avy
-    :ensure t
-  )
-  #+END_SRC
-  
-* Ivy
-ivy is a helm lightweight replacement
-#+BEGIN_SRC emacs-lisp
-    (use-package ivy
-      :ensure t
-      :config
-
-      (ivy-mode 1)
-      (setq ivy-use-virtual-buffers t)
-      (setq ivy-count-format "(%d/%d) ")
-
-      (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit))
-
-    (use-package counsel
-      :ensure t
-    )
-#+END_SRC
-
-* Autocomplete
-
-  #+BEGIN_SRC emacs-lisp
-  (use-package auto-complete
-  :ensure t
-  :init
-  (progn
-    (ac-config-default)
-    (global-auto-complete-mode t)
-    ))
-  #+END_SRC
-
-* Reveal.js
-  #+BEGIN_SRC emacs-lisp
-    (use-package ox-reveal
-      :ensure t
-    )
-
-    (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
-    (setq org-reveal-mathjax t)
-
-    (use-package htmlize
-      :ensure t
-    )
-  #+END_SRC
-
-  #+RESULTS:
-  : t
-  
-* Flycheck
-
-  #+BEGIN_SRC emacs-lisp
-    (use-package flycheck
-      :ensure t
-      :init
-      (global-flycheck-mode t))
-  #+END_SRC
-
-* Yasnippet
-
-  #+BEGIN_SRC emacs-lisp
-    (use-package yasnippet
-      :ensure t
-      :init
-        (yas-global-mode 1))
-  #+END_SRC
-
-* Magit
-
-#+BEGIN_SRC emacs-lisp
-(use-package magit
-  :ensure t
-)
-(use-package evil-magit
-  :ensure t
-)
-#+END_SRC
-
 * Spacemacs steals
 ** alternate last buffer
 SPC TAB
@@ -377,6 +165,232 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
     "g" 'magit-status
     "<SPC>" 'counsel-M-x
     "TAB" 'spacemacs/alternate-buffer
+    "?" 'counsel-descbinds
   )
 #+END_SRC
+
+*** groups
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys main-map
+    "dc" 'describe-char
+    "df" 'counsel-describe-function
+    "dv" 'counsel-describe-variable
+  )
+#+END_SRC
+
+* Fixes
+** Yasnippet hijacks TAB key in term mode
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'term-mode-hook 'my-term-mode-hook)
+(defun my-term-mode-hook ()
+  (yas-minor-mode -1))
+#+END_SRC
+
+** make zsh with bindkey -v and ansi-term be friendly to each other [[https://github.com/syl20bnr/spacemacs/issues/7140][syl20bnr/spacemacs#7140]]
+- shamelessly lifted from github.com/TheBB's config
+- not working though.
+
+#+BEGIN_SRC emacs-lisp
+  ;(evil-set-initial-state 'term-mode 'emacs)
+  ;(evil-set-initial-state 'calculator-mode 'emacs)
+  ;(evil-define-key 'emacs term-raw-map (kbd "C-c") 'term-send-raw)
+  ;(push 'term-mode evil-escape-excluded-major-modes)
+#+END_SRC
+
+* Appearance
+** Interface tweaks
+
+#+BEGIN_SRC emacs-lisp
+(setq inhibit-startup-message t)
+
+(tool-bar-mode -1)
+;(menu-bar-mode -1)
+
+;; emacs without X does not have scrollbars
+(when (display-graphic-p)
+  (scroll-bar-mode -1))
+
+(fset 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
+
+** Font configuration
+
+  #+BEGIN_SRC emacs-lisp
+  (add-to-list 'default-frame-alist
+               '(font . "Monoisome-14"))
+  #+END_SRC
+
+** Themes
+*** spacemacs
+
+  #+BEGIN_SRC emacs-lisp
+    (use-package spacemacs-theme 
+      :ensure t)
+    (load-theme 'spacemacs-dark t)
+  #+END_SRC
+
+*** gruvbox
+
+  #+BEGIN_SRC emacs-lisp
+    ;; (use-package gruvbox-theme
+    ;;    :ensure t
+    ;;    :config
+    ;;    (load-theme 'gruvbox t))
+  #+END_SRC
+
+** Modeline
+*** smartmodeline
+
+#+BEGIN_SRC emacs-lisp
+  ;; (use-package smart-mode-line
+  ;;   :ensure t
+  ;;   :config
+  ;;     (sml/setup)
+  ;; )
+#+END_SRC
+
+*** spaceline
+
+#+BEGIN_SRC emacs-lisp
+(use-package spaceline
+  :ensure t)
+(require 'spaceline-config)
+(spaceline-spacemacs-theme)
+
+;; more options here: https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11
+(setq powerline-default-separator nil)
+(spaceline-compile)
+#+END_SRC
+
+* Magit
+
+#+BEGIN_SRC emacs-lisp
+(use-package magit
+  :ensure t
+  :config
+    (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
+)
+(use-package evil-magit
+  :ensure t
+)
+#+END_SRC
+
+* Utils
+** Try
+
+#+BEGIN_SRC emacs-lisp
+(use-package try
+  :ensure t
+)
+#+END_SRC
+
+** restart-emacs
+
+#+BEGIN_SRC emacs-lisp
+(use-package restart-emacs
+  :ensure t
+)
+#+END_SRC
+
+** Which key
+  Brings up some help
+
+  #+BEGIN_SRC emacs-lisp
+  (use-package which-key
+	:ensure t 
+	:config
+	(which-key-mode))
+  #+END_SRC
+
+* Org mode
+** Org bullets 
+
+  #+BEGIN_SRC emacs-lisp
+  (use-package org-bullets
+  :ensure t
+  :config
+    (when (display-graphic-p)
+     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+    )
+    (setq org-ellipsis "…")
+    ;Other interesting characters are ▼, ↴, ⬎, ⤷,…, and ⋱.
+    ;(setq org-ellipsis "⤵")
+  )
+  #+END_SRC
+
+** Reveal.js
+  #+BEGIN_SRC emacs-lisp
+    (use-package ox-reveal
+      :ensure t
+    )
+
+    (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
+    (setq org-reveal-mathjax t)
+
+    (use-package htmlize
+      :ensure t
+    )
+  #+END_SRC
+
+  #+RESULTS:
+  : t
+  
+* Avy
+  See https://github.com/abo-abo/avy for more info
+  navigate by searching for a letter on the screen and jumping to it
+
+  #+BEGIN_SRC emacs-lisp
+  (use-package avy
+    :ensure t
+  )
+  #+END_SRC
+  
+* Ivy
+ivy is a helm lightweight replacement
+#+BEGIN_SRC emacs-lisp
+    (use-package ivy
+      :ensure t
+      :config
+
+      (ivy-mode 1)
+      (setq ivy-use-virtual-buffers t)
+      (setq ivy-count-format "(%d/%d) ")
+
+      (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit))
+
+    (use-package counsel
+      :ensure t
+    )
+#+END_SRC
+
+* Flycheck
+
+  #+BEGIN_SRC emacs-lisp
+    (use-package flycheck
+      :ensure t
+      :init
+      (global-flycheck-mode t))
+  #+END_SRC
+
+* Autocomplete
+
+  #+BEGIN_SRC emacs-lisp
+  (use-package auto-complete
+  :ensure t
+  :init
+  (progn
+    (ac-config-default)
+    (global-auto-complete-mode t)
+    ))
+  #+END_SRC
+
+* Yasnippet
+
+  #+BEGIN_SRC emacs-lisp
+    (use-package yasnippet
+      :ensure t
+      :init
+        (yas-global-mode 1))
+  #+END_SRC
 

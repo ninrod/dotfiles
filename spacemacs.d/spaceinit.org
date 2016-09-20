@@ -1,6 +1,9 @@
-* config
-#+BEGIN_SRC emacs-lisp
+#+STARTUP: indent
+#+STARTUP: overview
 
+* main config
+
+#+BEGIN_SRC emacs-lisp
   ;; magit config
   (setq-default
    evil-shift-round nil
@@ -56,7 +59,12 @@
   (setq powerline-default-separator nil)
   
 #+END_SRC
-* local org options
-#+STARTUP: indent
-#+STARTUP: overview
 
+* fixes
+
+#+BEGIN_SRC emacs-lisp
+(evil-set-initial-state 'term-mode 'emacs)
+(evil-set-initial-state 'calculator-mode 'emacs)
+(push 'term-mode evil-escape-excluded-major-modes)
+(evil-define-key 'emacs term-raw-map (kbd "C-c") 'term-send-raw)
+#+END_SRC

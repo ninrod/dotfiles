@@ -316,23 +316,16 @@ before packages are loaded. If you are unsure, you should try in setting them in
    evil-shift-round nil
    git-magit-status-fullscreen t)
 
-  (setq magit-repository-directories '("~/code/sources"))
-
   ;; partial port of my vim bindings
   (define-key evil-normal-state-map "s" 'evil-toggle-fold)
   (define-key evil-normal-state-map (kbd "RET") 'evil-write)
   (define-key evil-normal-state-map "Q" 'evil-quit)
   (define-key evil-normal-state-map "Z" 'evil-save-modified-and-close)
-  (define-key evil-normal-state-map ":" 'evil-repeat-find-char)
-  (define-key evil-normal-state-map ";" 'evil-ex)
-  (define-key evil-visual-state-map ";" 'evil-ex)
   (define-key evil-motion-state-map "go" 'evil-goto-first-line)
   (define-key evil-motion-state-map "gl" 'evil-goto-line)
   (define-key evil-motion-state-map "(" 'evil-backward-paragraph)
   (define-key evil-motion-state-map ")" 'evil-forward-paragraph)
   (define-key evil-normal-state-map "-" 'evil-ex-nohighlight)
-
-  ;(define-key evil-normal-state-map "q" 'evil-avy-goto-char)
 
   ;; SPC rebinds
   (spacemacs/set-leader-keys "ff" 'counsel-find-file)
@@ -349,23 +342,17 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (evil-define-key 'visual org-mode-map "<" 'org-do-promote)
   (evil-define-key 'visual org-mode-map ">" 'org-do-demote)
 
-  ; helm binds
-  (with-eval-after-load 'helm-buffers
-    (define-key helm-buffer-map (kbd "C-d") 'helm-buffer-run-kill-buffers))
-
-  (defun enter-scratch-buffer nil
-    "switch to the scratch buffer"
-    (interactive)
-    (switch-to-buffer "*scratch*")
-    (lisp-interaction-mode))
-  (define-key evil-normal-state-map "gs" 'enter-scratch-buffer)
-
-  ;; more options here: https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11
-  ;; example:
-  ;; (setq powerline-default-separator 'alternate)
   (setq powerline-default-separator nil)
+
+  ;; TheBB tips
+  (evil-set-initial-state 'term-mode 'emacs)
+  (evil-set-initial-state 'calculator-mode 'emacs)
+  (push 'term-mode evil-escape-excluded-major-modes)
+  (evil-define-key 'emacs term-raw-map (kbd "C-c") 'term-send-raw)
+
   ;; (org-babel-load-file (expand-file-name "~/.spacemacs.d/spaceinit.org"))
 )
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
