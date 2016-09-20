@@ -290,9 +290,6 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
   (evil-define-key 'normal org-mode-map "gj" 'org-forward-heading-same-level)
   (evil-define-key 'normal org-mode-map "gn" 'outline-next-visible-heading)
 
-  (evil-define-key 'normal org-mode-map (kbd "DEL") 'widen)
-  (evil-define-key 'normal org-mode-map "g-" 'org-narrow-to-subtree)
-
   (evil-define-key 'normal org-mode-map "<" 'org-do-promote)
   (evil-define-key 'normal org-mode-map ">" 'org-do-demote)
   (evil-define-key 'visual org-mode-map "<" 'org-do-promote)
@@ -302,14 +299,14 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
   "*" 'org-ctrl-c-star
+  "e" 'org-narrow-to-subtree
+  "s" 'widen
 )
 #+END_SRC
-
 **** local org mode bind fixes
 #+BEGIN_SRC emacs-lisp
   (evil-define-key 'normal org-mode-map (kbd "RET") 'evil-write)
 #+END_SRC
-
 ** leader binds
 *** window movements
 #+BEGIN_SRC emacs-lisp
