@@ -101,6 +101,16 @@ If the universal prefix argument is used then kill also the window."
     "bd" 'spacemacs/kill-this-buffer)
 (which-key-declare-prefixes "SPC b" "buffers")
 #+END_SRC
+*** files
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys main-map
+  "ff" 'counsel-find-file
+  "fr" 'counsel-recentf
+  "fb" 'restart-emacs
+)
+(which-key-declare-prefixes "SPC f" "files")
+#+END_SRC
+
 *** docs, descriptions
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys main-map
@@ -111,6 +121,13 @@ If the universal prefix argument is used then kill also the window."
   (which-key-declare-prefixes "SPC d" "docs/descriptions")
 #+END_SRC
 
+*** terminals
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys main-map
+  "tt" 'ansi-term
+)
+(which-key-declare-prefixes "SPC t" "terminals")
+#+END_SRC
 *** windows
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
@@ -122,16 +139,6 @@ If the universal prefix argument is used then kill also the window."
   "wx" 'evil-window-split
 )
 (which-key-declare-prefixes "SPC w" "windows")
-#+END_SRC
-
-*** files
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys main-map
-  "ff" 'counsel-find-file
-  "fr" 'counsel-recentf
-  "fb" 'restart-emacs
-)
-(which-key-declare-prefixes "SPC f" "files")
 #+END_SRC
 
 ** leader direct binds
@@ -168,6 +175,7 @@ If the universal prefix argument is used then kill also the window."
   "*" 'org-ctrl-c-star
   "e" 'org-narrow-to-subtree
   "s" 'widen
+  "o" 'org-export-dispatch
 )
 #+END_SRC
 
