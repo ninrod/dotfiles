@@ -364,33 +364,34 @@ ivy is a helm lightweight replacement
     )
 #+END_SRC
 
-* Flycheck
+* disabled
+** Flycheck
 
   #+BEGIN_SRC emacs-lisp
-    (use-package flycheck
-      :ensure t
-      :init
-      (global-flycheck-mode t))
+    ;; (use-package flycheck
+    ;;   :ensure t
+    ;;   :init
+    ;;   (global-flycheck-mode t))
   #+END_SRC
 
-* Autocomplete
+** Autocomplete
 
   #+BEGIN_SRC emacs-lisp
-  (use-package auto-complete
-  :ensure t
-  :init
-  (progn
-    (ac-config-default)
-    (global-auto-complete-mode t)
-    ))
+    ;; (use-package auto-complete
+    ;; :ensure t
+    ;; :init
+    ;; (progn
+    ;;   (ac-config-default)
+    ;;   (global-auto-complete-mode t)
+    ;;   ))
   #+END_SRC
 
-* Yasnippet
+** Yasnippet
 
   #+BEGIN_SRC emacs-lisp
-    (use-package yasnippet
-      :ensure t
-      :init
-        (yas-global-mode 1))
+    ;; (use-package yasnippet
+    ;;   :ensure t
+    ;;   :init
+    ;;     (yas-global-mode 1))
   #+END_SRC
 
