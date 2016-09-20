@@ -319,7 +319,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; partial port of my vim bindings
   (define-key evil-normal-state-map "s" 'evil-toggle-fold)
   (define-key evil-normal-state-map (kbd "RET") 'evil-write)
-  (define-key evil-normal-state-map (kbd "<tab>") 'spacemacs/alternate-buffer)
+  (define-key evil-normal-state-map (kbd "TAB") 'spacemacs/alternate-buffer)
   (define-key evil-normal-state-map "Q" 'evil-quit)
   (define-key evil-normal-state-map "Z" 'evil-save-modified-and-close)
   (define-key evil-motion-state-map "go" 'evil-goto-first-line)
