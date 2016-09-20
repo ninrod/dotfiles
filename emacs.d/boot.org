@@ -270,14 +270,20 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
 #+END_SRC
 ** Modeline
 *** spaceline
+- separators. more options [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
+- determine operating system hack (if darwin) found [[http://stackoverflow.com/a/1817318/4921402][here.]]
 #+BEGIN_SRC emacs-lisp
 (use-package spaceline
   :ensure t)
 (require 'spaceline-config)
 (spaceline-spacemacs-theme)
 
-;; more options here: https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11
-(setq powerline-default-separator nil)
+;; determine operating system.
+(if (eq system-type 'darwin)
+  (setq powerline-default-separator 'alternate)
+  (setq powerline-default-separator nil)
+)
+
 (spaceline-compile)
 #+END_SRC
 
