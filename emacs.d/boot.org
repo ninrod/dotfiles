@@ -60,6 +60,132 @@ If the universal prefix argument is used then kill also the window."
       (kill-buffer))))
 #+END_SRC
 
+* Bind-map
+
+#+BEGIN_SRC emacs-lisp
+(use-package bind-map
+  :ensure t
+  :config
+    (bind-map main-map
+      :evil-keys ("SPC")
+      :evil-states (normal motion visual))
+    (bind-map org-map
+      :evil-keys ("SPC m" ",")
+      :major-modes (org-mode ))
+)
+#+END_SRC
+
+* Binds
+** normal binds
+
+  #+BEGIN_SRC emacs-lisp
+    (define-key evil-normal-state-map (kbd "TAB") 'spacemacs/alternate-buffer)
+    (define-key evil-normal-state-map (kbd "RET") 'evil-write)
+    (define-key evil-normal-state-map "s" 'evil-toggle-fold)
+    (define-key evil-normal-state-map "Q" 'evil-quit)
+    (define-key evil-normal-state-map "Z" 'evil-save-modified-and-close)
+    (define-key evil-motion-state-map "go" 'evil-goto-first-line)
+    (define-key evil-motion-state-map "gl" 'evil-goto-line)
+    (define-key evil-motion-state-map "(" 'evil-backward-paragraph)
+    (define-key evil-motion-state-map ")" 'evil-forward-paragraph)
+    (define-key evil-normal-state-map "-" 'evil-ex-nohighlight)
+
+    ;; (define-key evil-normal-state-map "S" 'evil-avy-goto-word-1)
+
+    (define-key evil-normal-state-map "gs" 'magit-status)
+
+  #+END_SRC
+
+** esc key special treatment
+
+esc quits pretty much anything (like pending prompts in the minibuffer)
+
+#+BEGIN_SRC emacs-lisp
+  (define-key evil-normal-state-map [escape] 'keyboard-quit)
+  (define-key evil-visual-state-map [escape] 'keyboard-quit)
+  (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+#+END_SRC
+
+** org-mode binds
+**** normal org mode binds
+
+  #+BEGIN_SRC emacs-lisp
+  
+  (evil-define-key 'normal org-mode-map (kbd "TAB") 'spacemacs/alternate-buffer)
+  (when (display-graphic-p)
+    (evil-define-key 'normal org-mode-map (kbd "<tab>") 'spacemacs/alternate-buffer)
+  )
+
+  (evil-define-key 'normal org-mode-map "gh" 'outline-up-heading)
+  (evil-define-key 'normal org-mode-map "gk" 'org-backward-heading-same-level)
+  (evil-define-key 'normal org-mode-map "gj" 'org-forward-heading-same-level)
+  (evil-define-key 'normal org-mode-map "gn" 'outline-next-visible-heading)
+
+  (evil-define-key 'normal org-mode-map "<" 'org-do-promote)
+  (evil-define-key 'normal org-mode-map ">" 'org-do-demote)
+  (evil-define-key 'visual org-mode-map "<" 'org-do-promote)
+  (evil-define-key 'visual org-mode-map ">" 'org-do-demote)
+  #+END_SRC
+
+**** leader org binds 
+
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys org-map
+  "*" 'org-ctrl-c-star
+  "e" 'org-narrow-to-subtree
+  "s" 'widen
+)
+#+END_SRC
+
+**** local org mode bind fixes
+
+#+BEGIN_SRC emacs-lisp
+  (evil-define-key 'normal org-mode-map (kbd "RET") 'evil-write)
+#+END_SRC
+
+** leader binds
+*** window movements
+
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys main-map
+  "j" 'evil-window-down
+  "k" 'evil-window-up
+  "h" 'evil-window-left
+  "l" 'evil-window-right
+  "v" 'evil-window-vsplit
+  "x" 'evil-window-split
+)
+#+END_SRC
+
+*** other leader binds
+
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys main-map
+    "f" 'counsel-find-file
+    "r" 'counsel-recentf
+    "g" 'magit-status
+    "<SPC>" 'counsel-M-x
+    "TAB" 'spacemacs/alternate-buffer
+    "?" 'counsel-descbinds
+  )
+#+END_SRC
+
+*** groups
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys main-map
+    "bb" 'ivy-switch-buffer
+    "bd" 'spacemacs/kill-this-buffer
+
+    "dc" 'describe-char
+    "df" 'counsel-describe-function
+    "dv" 'counsel-describe-variable
+  )
+#+END_SRC
+
 * Fixes
 ** Yasnippet hijacks TAB key in term mode
 
@@ -288,127 +414,4 @@ ivy is a helm lightweight replacement
     ;;   :init
     ;;     (yas-global-mode 1))
   #+END_SRC
-
-* Bind-map
-
-#+BEGIN_SRC emacs-lisp
-(use-package bind-map
-  :ensure t
-  :config
-    (bind-map main-map
-      :evil-keys ("SPC")
-      :evil-states (normal motion visual))
-    (bind-map org-map
-      :evil-keys ("SPC m" ",")
-      :major-modes (org-mode ))
-)
-#+END_SRC
-
-* Binds
-** normal binds
-
-  #+BEGIN_SRC emacs-lisp
-    (define-key evil-normal-state-map (kbd "TAB") 'spacemacs/alternate-buffer)
-    (define-key evil-normal-state-map (kbd "RET") 'evil-write)
-    (define-key evil-normal-state-map "s" 'evil-toggle-fold)
-    (define-key evil-normal-state-map "Q" 'evil-quit)
-    (define-key evil-normal-state-map "Z" 'evil-save-modified-and-close)
-    (define-key evil-motion-state-map "go" 'evil-goto-first-line)
-    (define-key evil-motion-state-map "gl" 'evil-goto-line)
-    (define-key evil-motion-state-map "(" 'evil-backward-paragraph)
-    (define-key evil-motion-state-map ")" 'evil-forward-paragraph)
-    (define-key evil-normal-state-map "-" 'evil-ex-nohighlight)
-
-    ;; (define-key evil-normal-state-map "S" 'evil-avy-goto-word-1)
-
-    (define-key evil-normal-state-map "gs" 'magit-status)
-
-  #+END_SRC
-
-** esc key special treatment
-
-esc quits pretty much anything (like pending prompts in the minibuffer)
-
-#+BEGIN_SRC emacs-lisp
-  (define-key evil-normal-state-map [escape] 'keyboard-quit)
-  (define-key evil-visual-state-map [escape] 'keyboard-quit)
-  (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
-  (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
-  (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
-  (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
-  (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
-#+END_SRC
-
-** org-mode binds
-**** normal org mode binds
-
-  #+BEGIN_SRC emacs-lisp
-  
-  (evil-define-key 'normal org-mode-map (kbd "TAB") 'spacemacs/alternate-buffer)
-
-  (evil-define-key 'normal org-mode-map "gh" 'outline-up-heading)
-  (evil-define-key 'normal org-mode-map "gk" 'org-backward-heading-same-level)
-  (evil-define-key 'normal org-mode-map "gj" 'org-forward-heading-same-level)
-  (evil-define-key 'normal org-mode-map "gn" 'outline-next-visible-heading)
-
-  (evil-define-key 'normal org-mode-map "<" 'org-do-promote)
-  (evil-define-key 'normal org-mode-map ">" 'org-do-demote)
-  (evil-define-key 'visual org-mode-map "<" 'org-do-promote)
-  (evil-define-key 'visual org-mode-map ">" 'org-do-demote)
-  #+END_SRC
-
-**** leader org binds 
-
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys org-map
-  "*" 'org-ctrl-c-star
-  "e" 'org-narrow-to-subtree
-  "s" 'widen
-)
-#+END_SRC
-
-**** local org mode bind fixes
-
-#+BEGIN_SRC emacs-lisp
-  (evil-define-key 'normal org-mode-map (kbd "RET") 'evil-write)
-#+END_SRC
-
-** leader binds
-*** window movements
-
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys main-map
-  "j" 'evil-window-down
-  "k" 'evil-window-up
-  "h" 'evil-window-left
-  "l" 'evil-window-right
-  "v" 'evil-window-vsplit
-  "x" 'evil-window-split
-)
-#+END_SRC
-
-*** other leader binds
-
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys main-map
-    "f" 'counsel-find-file
-    "r" 'counsel-recentf
-    "g" 'magit-status
-    "<SPC>" 'counsel-M-x
-    "TAB" 'spacemacs/alternate-buffer
-    "?" 'counsel-descbinds
-  )
-#+END_SRC
-
-*** groups
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys main-map
-    "bb" 'ivy-switch-buffer
-    "bd" 'spacemacs/kill-this-buffer
-
-    "dc" 'describe-char
-    "df" 'counsel-describe-function
-    "dv" 'counsel-describe-variable
-  )
-#+END_SRC
 
