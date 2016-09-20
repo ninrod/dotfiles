@@ -268,22 +268,35 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
 #+BEGIN_SRC emacs-lisp
 (load-theme 'leuven t)
 #+END_SRC
+
 ** Modeline
 *** spaceline
-- separators. more options [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
-- determine operating system hack (if darwin) found [[http://stackoverflow.com/a/1817318/4921402][here.]]
+**** bootstrap
 #+BEGIN_SRC emacs-lisp
 (use-package spaceline
   :ensure t)
 (require 'spaceline-config)
 (spaceline-spacemacs-theme)
+#+END_SRC
 
+**** customization
+***** determine operating system hack (if darwin) found [[http://stackoverflow.com/a/1817318/4921402][here.]]
+- system-type is a variable defined in `C source code'.
+- Special values:
+  - `gnu'         compiled for a GNU Hurd system.
+  - `gnu/linux'   compiled for a GNU/Linux system.
+  - `darwin'      compiled for Darwin (GNU-Darwin, Mac OS X, ...).
+  - `ms-dos'      compiled as an MS-DOS application.
+  - `windows-nt'  compiled as a native W32 application.
+  - `cygwin'      compiled using the Cygwin library.
+- Anything else indicates some sort of Unix system.
+***** determine separators. more options [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
+#+BEGIN_SRC emacs-lisp
 ;; determine operating system.
 (if (eq system-type 'darwin)
   (setq powerline-default-separator 'alternate)
   (setq powerline-default-separator nil)
 )
-
 (spaceline-compile)
 #+END_SRC
 
