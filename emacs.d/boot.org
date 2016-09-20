@@ -9,14 +9,6 @@
   :config
     (evil-mode))
 #+END_SRC
-** evil leader
-#+BEGIN_SRC emacs-lisp
-(use-package evil-leader
-  :ensure t
-  :config
-    (evil-leader/set-leader "<SPC>")
-    (global-evil-leader-mode))
-#+END_SRC
 ** evil commentary
 #+BEGIN_SRC emacs-lisp
 (use-package evil-commentary
@@ -185,7 +177,6 @@ ivy is a helm lightweight replacement
       :ensure t
       :init
       (global-flycheck-mode t))
-
   #+END_SRC
 * Yasnippet
   #+BEGIN_SRC emacs-lisp
@@ -194,21 +185,66 @@ ivy is a helm lightweight replacement
       :init
         (yas-global-mode 1))
   #+END_SRC
-
 * Magit
 #+BEGIN_SRC emacs-lisp
 (use-package magit
   :ensure t
 )
-
 (use-package evil-magit
   :ensure t
 )
 #+END_SRC
+* Spacemacs steals
+** alternate last buffer
+SPC TAB
+back and forth between current and last buffer
+#+BEGIN_SRC emacs-lisp
+(defun spacemacs/alternate-buffer (&optional window)
+  "Switch back and forth between current and last buffer in the
+current window."
+  (interactive)
+  (let ((current-buffer (window-buffer window))
+        (buffer-predicate
+         (frame-parameter (window-frame window) 'buffer-predicate)))
+    ;; switch to first buffer previously shown in this window that matches
+    ;; frame-parameter `buffer-predicate'
+    (switch-to-buffer
+     (or (cl-find-if (lambda (buffer)
+                       (and (not (eq buffer current-buffer))
+                            (or (null buffer-predicate)
+                                (funcall buffer-predicate buffer))))
+                     (mapcar #'car (window-prev-buffers window)))
+         ;; `other-buffer' honors `buffer-predicate' so no need to filter
+         (other-buffer current-buffer t)))))
+#+END_SRC
+** kill this buffer
+SPC b d
+#+BEGIN_SRC emacs-lisp
+(defun spacemacs/kill-this-buffer (&optional arg)
+  "Kill the current buffer.
+If the universal prefix argument is used then kill also the window."
+  (interactive "P")
+  (if (window-minibuffer-p)
+      (abort-recursive-edit)
+    (if (equal '(4) arg)
+        (kill-buffer-and-window)
+      (kill-buffer))))
+#+END_SRC
+* Bind-map
+#+BEGIN_SRC emacs-lisp
+(use-package bind-map
+  :ensure t
+  :config
+    (bind-map main-map
+      :evil-keys ("SPC")
+      :evil-states (normal motion visual))
+    (bind-map org-map
+      :evil-keys ("SPC m" ",")
+      :major-modes (org-mode ))
+)
+#+END_SRC
 * Binds
-  here goes my evil binding
 ** normal binds
-
   #+BEGIN_SRC emacs-lisp
   (define-key evil-normal-state-map "s" 'evil-toggle-fold)
   (define-key evil-normal-state-map (kbd "RET") 'evil-write)
@@ -231,17 +267,6 @@ ivy is a helm lightweight replacement
   (define-key evil-normal-state-map "gs" 'enter-scratch-buffer)
 
   #+END_SRC
-** window movements
-#+BEGIN_SRC emacs-lisp
-    (evil-leader/set-key
-      "j" 'evil-window-down
-      "k" 'evil-window-up
-      "h" 'evil-window-left
-      "l" 'evil-window-right
-      "v" 'evil-window-vsplit
-      "x" 'evil-window-split
-    )
-#+END_SRC
 ** esc key special treatment
 
 esc quits pretty much anything (like pending prompts in the minibuffer)
@@ -271,7 +296,9 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
   #+END_SRC
 *** leader org binds 
 #+BEGIN_SRC emacs-lisp
-    (evil-leader/set-key "*" 'org-ctrl-c-star)
+(bind-map-set-keys org-map
+  "*" 'org-ctrl-c-star
+)
 #+END_SRC
 
 *** local org mode bind fixes
@@ -280,11 +307,25 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
 #+END_SRC
 
 ** leader binds
+*** window movements
 #+BEGIN_SRC emacs-lisp
-    (evil-leader/set-key
-      "f" 'counsel-find-file
-      "b" 'ivy-switch-buffer
-      "r" 'counsel-recentf
-      "g" 'magit-status
-      "<SPC>" 'counsel-M-x)
+(bind-map-set-keys main-map
+  "j" 'evil-window-down
+  "k" 'evil-window-up
+  "h" 'evil-window-left
+  "l" 'evil-window-right
+  "v" 'evil-window-vsplit
+  "x" 'evil-window-split
+)
+#+END_SRC
+*** other leader binds
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys main-map
+    "f" 'counsel-find-file
+    "b" 'ivy-switch-buffer
+    "r" 'counsel-recentf
+    "g" 'magit-status
+    "<SPC>" 'counsel-M-x
+    "TAB" 'spacemacs/alternate-buffer
+  )
 #+END_SRC
