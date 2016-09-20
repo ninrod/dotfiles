@@ -259,9 +259,9 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
 ** Themes
 *** spacemacs
   #+BEGIN_SRC emacs-lisp
-    (use-package spacemacs-theme 
-      :ensure t)
-    ;(load-theme 'spacemacs-dark t)
+    ;; (use-package spacemacs-theme 
+    ;;   :ensure t)
+    ;; (load-theme 'spacemacs-dark t)
   #+END_SRC
 
 *** gruvbox
@@ -278,16 +278,28 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
 #+END_SRC
 
 ** Modeline
-*** spaceline
+*** spaceline (activated on OSx)
 **** bootstrap
 #+BEGIN_SRC emacs-lisp
-(use-package spaceline
-  :ensure t)
-(require 'spaceline-config)
-(spaceline-spacemacs-theme)
+(when (eq system-type 'darwin)
+  (use-package spaceline
+    :ensure t)
+  (require 'spaceline-config)
+  (spaceline-spacemacs-theme)
+)
 #+END_SRC
 
 **** customization
+#+BEGIN_SRC emacs-lisp
+;; determine operating system.
+(when (eq system-type 'darwin)
+  (progn
+    (setq powerline-default-separator 'alternate)
+    (spaceline-compile)
+  )
+)
+#+END_SRC
+- determine separators. more options [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
 ***** determine operating system hack (if darwin) found [[http://stackoverflow.com/a/1817318/4921402][here.]]
 - system-type is a variable defined in `C source code'.
 - Special values:
@@ -298,23 +310,20 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
   - `windows-nt'  compiled as a native W32 application.
   - `cygwin'      compiled using the Cygwin library.
 - Anything else indicates some sort of Unix system.
-***** determine separators. more options [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
-#+BEGIN_SRC emacs-lisp
-;; determine operating system.
-(if (eq system-type 'darwin)
-  (setq powerline-default-separator 'alternate)
-  (setq powerline-default-separator nil)
-)
-(spaceline-compile)
-#+END_SRC
 
-*** smartmodeline
+*** smartmodeline (activated on GNU/Linux)
 #+BEGIN_SRC emacs-lisp
-  ;; (use-package smart-mode-line
-  ;;   :ensure t
-  ;;   :config
-  ;;     (sml/setup)
-  ;; )
+(when (eq system-type 'gnu/linux)
+  (use-package smart-mode-line
+    :ensure t
+    :config
+      ;; (setq sml/theme 'dark)
+      ;; (setq sml/theme 'light)
+      (setq sml/theme 'respectful)
+      (setq sml/no-confirm-load-theme t)
+      (sml/setup)
+  )
+)
 #+END_SRC
 
 * magit
