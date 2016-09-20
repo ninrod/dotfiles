@@ -88,6 +88,12 @@ values."
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (setq-default
+
+   configuration-layer--elpa-archives
+        '(("melpa" . "/Users/ninrod/code/apps/spacemacs-elpa-mirror/melpa")
+          ("org"   . "/Users/ninrod/code/apps/spacemacs-elpa-mirror/org/")
+          ("gnu"   . "/Users/ninrod/code/apps/spacemacs-elpa-mirror/gnu/"))
+
    ;; If non nil ELPA repositories are contacted via HTTPS whenever it's
    ;; possible. Set it to nil if you have no way to use HTTPS in your
    ;; environment, otherwise it is strongly recommended to let it set to t.
@@ -296,8 +302,6 @@ values."
    ))
 
 (defun dotspacemacs/user-init ()
-  (add-to-list 'load-path "~/code/sources/elpa-mirror/")
-  (require 'elpa-mirror)
   "Initialization function for user code.
 It is called immediately after `dotspacemacs/init', before layer configuration
 executes.
