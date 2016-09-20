@@ -188,6 +188,13 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
 #+END_SRC
 
 * fixes
+** move custom data out of init.el
+- more info [[http://irreal.org/blog/?p=3765][here]]
+- and [[http://emacsblog.org/2008/12/06/quick-tip-detaching-the-custom-file/][here (M-x all-things-emacs)]]
+  #+BEGIN_SRC emacs-lisp
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file 'noerror)
+  #+END_SRC
 ** Yasnippet hijacks TAB key in term mode
 #+BEGIN_SRC emacs-lisp
 (add-hook 'term-mode-hook 'my-term-mode-hook)
@@ -222,6 +229,7 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
 
 (tool-bar-mode -1)
 (menu-bar-mode -1)
+
 ;; emacs without X does not have scrollbars
 (when (display-graphic-p)
   (scroll-bar-mode -1)
@@ -232,6 +240,8 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
 #+END_SRC
 
 ** Font configuration
+*** Monoisome
+- get it at [[https://github.com/larsenwork/monoid][larsenwork/monoid]]
   #+BEGIN_SRC emacs-lisp
   (add-to-list 'default-frame-alist
                '(font . "Monoisome-14"))
@@ -254,15 +264,6 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
   #+END_SRC
 
 ** Modeline
-*** smartmodeline
-#+BEGIN_SRC emacs-lisp
-  ;; (use-package smart-mode-line
-  ;;   :ensure t
-  ;;   :config
-  ;;     (sml/setup)
-  ;; )
-#+END_SRC
-
 *** spaceline
 #+BEGIN_SRC emacs-lisp
 (use-package spaceline
@@ -273,6 +274,15 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
 ;; more options here: https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11
 (setq powerline-default-separator nil)
 (spaceline-compile)
+#+END_SRC
+
+*** smartmodeline
+#+BEGIN_SRC emacs-lisp
+  ;; (use-package smart-mode-line
+  ;;   :ensure t
+  ;;   :config
+  ;;     (sml/setup)
+  ;; )
 #+END_SRC
 
 * magit
