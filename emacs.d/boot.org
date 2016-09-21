@@ -87,11 +87,6 @@ If the universal prefix argument is used then kill also the window."
 (define-key evil-normal-state-map (kbd "TAB") 'spacemacs/alternate-buffer)
 #+END_SRC
 
-*** windows
-heavily muscle memorized
-  #+BEGIN_SRC emacs-lisp
-  #+END_SRC
-
 *** g: jumps
 #+BEGIN_SRC emacs-lisp
 (define-key evil-motion-state-map "go" 'evil-goto-first-line)
@@ -101,18 +96,25 @@ heavily muscle memorized
 
 ** leader
 *** direct
+**** core
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
   "<SPC>" 'counsel-M-x
-;(define-key evil-normal-state-map "j" 'evil-window-down)
-;(define-key evil-normal-state-map "k" 'evil-window-up)
-;(define-key evil-normal-state-map "h" 'evil-window-left)
-;(define-key evil-normal-state-map "j" 'evil-window-right)
-;(define-key evil-normal-state-map "v" 'evil-window-vsplit)
-;(define-key evil-normal-state-map "x" 'evil-window-split)
   ;; "TAB" 'available
   ;; "-"   'available
   ;; "?"   'available
+)
+#+END_SRC
+
+**** window 
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys main-map
+  "j" 'evil-window-down
+  "k" 'evil-window-up
+  "h" 'evil-window-left
+  "l" 'evil-window-right
+  "v" 'evil-window-vsplit
+  "x" 'evil-window-split
 )
 #+END_SRC
 
@@ -193,7 +195,6 @@ heavily muscle memorized
   ;; zoom/visualization
   "zi" 'org-narrow-to-subtree
   "zo" 'widen
-  "z*" 'org-ctrl-c-star
 
   ;; subtree commands
   "th" 'org-promote-subtree
@@ -206,6 +207,7 @@ heavily muscle memorized
   ;; promotions
   "<" 'org-do-promote
   ">" 'org-do-demote
+  "*" 'org-ctrl-c-star
 
   ;; exports
   "-" 'org-export-dispatch
