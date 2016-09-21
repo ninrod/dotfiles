@@ -20,7 +20,7 @@
 #+END_SRC
 
 * spacemacs steals
-** alternate last buffer
+** alternate-buffer
 SPC TAB
 back and forth between current and last buffer
 
@@ -44,7 +44,7 @@ current window."
          (other-buffer current-buffer t)))))
 #+END_SRC
 
-** kill this buffer
+** kill-this-buffer
 SPC b d
 #+BEGIN_SRC emacs-lisp
 (defun spacemacs/kill-this-buffer (&optional arg)
@@ -61,26 +61,20 @@ If the universal prefix argument is used then kill also the window."
 * bind-map
 #+BEGIN_SRC emacs-lisp
 (use-package bind-map
-  :ensure t
-  :config
-    (bind-map main-map
-      :evil-keys ("SPC")
-      :evil-states (normal motion visual)
-    )
-    (bind-map dash-map
-      :evil-keys ("-")
-      :evil-states (normal motion visual)
-    )
-    (bind-map backslash-map
-      :evil-keys ("\\")
-      :evil-states (normal motion visual)
-    )
-    (bind-map org-map
-      :evil-keys ("," "q")
-      :evil-states (normal visual)
-      :major-modes (org-mode)
-    )
-)
+  :ensure t)
+(bind-map main-map
+    :evil-keys ("SPC")
+    :evil-states (normal motion visual))
+(bind-map dash-map
+    :evil-keys ("-")
+    :evil-states (normal motion visual))
+(bind-map backslash-map
+    :evil-keys ("\\")
+    :evil-states (normal motion visual))
+(bind-map org-map
+    :evil-keys ("," "q")
+    :evil-states (normal visual)
+    :major-modes (org-mode))
 #+END_SRC
 
 * binds
