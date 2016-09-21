@@ -76,7 +76,7 @@ If the universal prefix argument is used then kill also the window."
       :evil-states (normal motion visual)
     )
     (bind-map org-map
-      :evil-keys ("SPC m" ",")
+      :evil-keys ("," "q")
       :evil-states (normal visual)
       :major-modes (org-mode)
     )
@@ -85,24 +85,19 @@ If the universal prefix argument is used then kill also the window."
 
 * binds
 ** normal state
-*** core
+** core
 #+BEGIN_SRC emacs-lisp
+(define-key evil-normal-state-map "Q" 'evil-record-macro)
+
 (define-key evil-normal-state-map (kbd "RET") 'evil-write)
 (define-key evil-normal-state-map "s" 'evil-toggle-fold)
 (define-key evil-motion-state-map "(" 'evil-backward-paragraph)
 (define-key evil-motion-state-map ")" 'evil-forward-paragraph)
 
-;(define-key evil-normal-state-map (kbd "TAB") 'spacemacs/alternate-buffer)
+(define-key evil-normal-state-map (kbd "TAB") 'spacemacs/alternate-buffer)
 
-#+END_SRC
-
-*** g: jumps
-#+BEGIN_SRC emacs-lisp
 (define-key evil-motion-state-map "go" 'evil-goto-first-line)
 (define-key evil-motion-state-map "gl" 'evil-goto-line)
-
-; avy
-(define-key evil-normal-state-map "-l" 'evil-avy-goto-word-1)
 #+END_SRC
 
 ** leaders
@@ -112,7 +107,7 @@ If the universal prefix argument is used then kill also the window."
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
   "<SPC>" 'counsel-M-x
-  ;; "TAB" 'available
+  "TAB" 'evil-next-buffer
   ;; "-"   'available
   ;; "?"   'available
 )
@@ -145,6 +140,7 @@ If the universal prefix argument is used then kill also the window."
     "db" 'counsel-descbinds
     "dc" 'describe-char
     "df" 'counsel-describe-function
+    "dk" 'describe-key
     "dv" 'counsel-describe-variable
   )
   (which-key-declare-prefixes "SPC d" "docs/descriptions")
@@ -199,11 +195,11 @@ If the universal prefix argument is used then kill also the window."
 #+END_SRC
 ** org-mode
 **** local fixes
-  #+BEGIN_SRC emacs-lisp
-;(evil-define-key 'normal org-mode-map (kbd "TAB") 'spacemacs/alternate-buffer)
-;(when (display-graphic-p)
-  ;(evil-define-key 'normal org-mode-map (kbd "<tab>") 'spacemacs/alternate-buffer)
-;)
+#+BEGIN_SRC emacs-lisp
+(evil-define-key 'normal org-mode-map (kbd "TAB") 'spacemacs/alternate-buffer)
+(when (display-graphic-p)
+  (evil-define-key 'normal org-mode-map (kbd "<tab>") 'spacemacs/alternate-buffer)
+)
 
 (evil-define-key 'normal org-mode-map (kbd "RET") 'evil-write)
   #+END_SRC
@@ -212,7 +208,8 @@ If the universal prefix argument is used then kill also the window."
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
   ;; movement
-  "h" 'outline-up-heading
+  "u" 'outline-up-heading
+  "h" 'outline-previous-visible-heading
   "k" 'org-backward-heading-same-level
   "j" 'org-forward-heading-same-level
   "l" 'outline-next-visible-heading
@@ -228,6 +225,8 @@ If the universal prefix argument is used then kill also the window."
   "tj" 'org-move-subtree-down
   "td" 'org-cut-subtree
   "ty" 'org-copy-subtree
+  "ts" 'org-show-subtree
+  "tc" 'org-clone-subtree-with-time-shift
   
   ;; promotions
   "<" 'org-do-promote
