@@ -7,7 +7,8 @@
 (use-package evil
   :ensure t
   :config
-    (evil-mode))
+    (evil-mode)
+)
 #+END_SRC
 
 ** evil commentary
@@ -361,7 +362,7 @@ esc quits pretty much anything (like pending prompts in the minibuffer)
   #+END_SRC
 
 * org mode
-** Org bullets 
+** Org bullets
   #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
   :ensure t
@@ -417,6 +418,18 @@ ivy is a helm lightweight replacement
     (use-package counsel
       :ensure t
     )
+#+END_SRC
+
+* syntax highlights
+** markdown
+#+BEGIN_SRC emacs-lisp
+(use-package markdown-mode
+      :ensure t
+      :commands (markdown-mode gfm-mode)
+      :mode (("README\\.md\\'" . gfm-mode)
+             ("\\.md\\'" . markdown-mode)
+             ("\\.markdown\\'" . markdown-mode))
+      :init (setq markdown-command "multimarkdown"))
 #+END_SRC
 
 * disabled
