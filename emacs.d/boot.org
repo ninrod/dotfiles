@@ -91,7 +91,9 @@ If the universal prefix argument is used then kill also the window."
 (define-key evil-normal-state-map "s" 'evil-toggle-fold)
 (define-key evil-motion-state-map "(" 'evil-backward-paragraph)
 (define-key evil-motion-state-map ")" 'evil-forward-paragraph)
-(define-key evil-normal-state-map (kbd "TAB") 'spacemacs/alternate-buffer)
+
+;(define-key evil-normal-state-map (kbd "TAB") 'spacemacs/alternate-buffer)
+
 #+END_SRC
 
 *** g: jumps
@@ -103,7 +105,7 @@ If the universal prefix argument is used then kill also the window."
 (define-key evil-normal-state-map "-l" 'evil-avy-goto-word-1)
 #+END_SRC
 
-** leader
+** leaders
 *** SPC
 **** direct
 ***** core
@@ -198,10 +200,11 @@ If the universal prefix argument is used then kill also the window."
 ** org-mode
 **** local fixes
   #+BEGIN_SRC emacs-lisp
-(evil-define-key 'normal org-mode-map (kbd "TAB") 'spacemacs/alternate-buffer)
-(when (display-graphic-p)
-  (evil-define-key 'normal org-mode-map (kbd "<tab>") 'spacemacs/alternate-buffer)
-)
+;(evil-define-key 'normal org-mode-map (kbd "TAB") 'spacemacs/alternate-buffer)
+;(when (display-graphic-p)
+  ;(evil-define-key 'normal org-mode-map (kbd "<tab>") 'spacemacs/alternate-buffer)
+;)
+
 (evil-define-key 'normal org-mode-map (kbd "RET") 'evil-write)
   #+END_SRC
 
