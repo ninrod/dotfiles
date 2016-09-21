@@ -78,7 +78,6 @@ If the universal prefix argument is used then kill also the window."
 #+END_SRC
 
 * binds
-** normal state
 ** core
 #+BEGIN_SRC emacs-lisp
 (define-key evil-normal-state-map "Q" 'evil-record-macro)
