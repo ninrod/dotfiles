@@ -67,6 +67,14 @@ If the universal prefix argument is used then kill also the window."
       :evil-keys ("SPC")
       :evil-states (normal motion visual)
     )
+    (bind-map dash-map
+      :evil-keys ("-")
+      :evil-states (normal motion visual)
+    )
+    (bind-map backslash-map
+      :evil-keys ("\\")
+      :evil-states (normal motion visual)
+    )
     (bind-map org-map
       :evil-keys ("SPC m" ",")
       :evil-states (normal visual)
@@ -81,7 +89,6 @@ If the universal prefix argument is used then kill also the window."
 #+BEGIN_SRC emacs-lisp
 (define-key evil-normal-state-map (kbd "RET") 'evil-write)
 (define-key evil-normal-state-map "s" 'evil-toggle-fold)
-(define-key evil-normal-state-map "-" 'evil-ex-nohighlight)
 (define-key evil-motion-state-map "(" 'evil-backward-paragraph)
 (define-key evil-motion-state-map ")" 'evil-forward-paragraph)
 (define-key evil-normal-state-map (kbd "TAB") 'spacemacs/alternate-buffer)
@@ -91,12 +98,15 @@ If the universal prefix argument is used then kill also the window."
 #+BEGIN_SRC emacs-lisp
 (define-key evil-motion-state-map "go" 'evil-goto-first-line)
 (define-key evil-motion-state-map "gl" 'evil-goto-line)
-(define-key evil-normal-state-map "gs" 'evil-avy-goto-word-1)
+
+; avy
+(define-key evil-normal-state-map "-l" 'evil-avy-goto-word-1)
 #+END_SRC
 
 ** leader
-*** direct
-**** core
+*** SPC
+**** direct
+***** core
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
   "<SPC>" 'counsel-M-x
@@ -106,7 +116,7 @@ If the universal prefix argument is used then kill also the window."
 )
 #+END_SRC
 
-**** window 
+***** window 
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
   "j" 'evil-window-down
@@ -118,8 +128,8 @@ If the universal prefix argument is used then kill also the window."
 )
 #+END_SRC
 
-*** prefixes
-**** b: buffer binds
+**** prefixes
+***** b: buffer binds
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
     "bb" 'ivy-switch-buffer
@@ -127,7 +137,7 @@ If the universal prefix argument is used then kill also the window."
 (which-key-declare-prefixes "SPC b" "buffers")
 #+END_SRC
 
-**** d: docs, descriptions, help
+***** d: docs, descriptions, help
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys main-map
     "db" 'counsel-descbinds
@@ -138,7 +148,7 @@ If the universal prefix argument is used then kill also the window."
   (which-key-declare-prefixes "SPC d" "docs/descriptions")
 #+END_SRC
 
-**** f: files
+***** f: files
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
   "ff" 'counsel-find-file
@@ -147,7 +157,7 @@ If the universal prefix argument is used then kill also the window."
 (which-key-declare-prefixes "SPC f" "files")
 #+END_SRC
 
-**** g: git
+***** g: git
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
   "gs" 'magit-status
@@ -155,7 +165,7 @@ If the universal prefix argument is used then kill also the window."
 (which-key-declare-prefixes "SPC g" "git")
 #+END_SRC
 
-**** q: quit/restart
+***** q: quit/restart
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
   "qq" 'evil-quit
@@ -165,7 +175,7 @@ If the universal prefix argument is used then kill also the window."
 (which-key-declare-prefixes "SPC q" "quit/restart")
 #+END_SRC
 
-**** t: terminal
+***** t: terminal
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
   "tt" 'ansi-term
@@ -173,6 +183,18 @@ If the universal prefix argument is used then kill also the window."
 (which-key-declare-prefixes "SPC t" "terminal")
 #+END_SRC
 
+*** Dash
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys dash-map
+  "-" 'evil-ex-nohighlight
+)
+#+END_SRC
+*** Backslash
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys backslash-map
+  "-" 'evil-ex-nohighlight
+)
+#+END_SRC
 ** org-mode
 **** local fixes
   #+BEGIN_SRC emacs-lisp
