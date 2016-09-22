@@ -61,7 +61,7 @@ If the universal prefix argument is used then kill also the window."
 * bind-map
 #+BEGIN_SRC emacs-lisp
 (use-package bind-map
-  :ensure t)
+    :ensure t)
 (bind-map main-map
     :evil-keys ("SPC")
     :evil-states (normal motion visual))
@@ -91,6 +91,10 @@ If the universal prefix argument is used then kill also the window."
 
 (define-key evil-motion-state-map "go" 'evil-goto-first-line)
 (define-key evil-motion-state-map "gl" 'evil-goto-line)
+
+;; I've sequestered < and > when in org mode. need a backup.
+(define-key evil-motion-state-map "g>" 'evil-shift-right)
+(define-key evil-motion-state-map "g<" 'evil-shift-left)
 #+END_SRC
 
 ** leaders
@@ -139,6 +143,13 @@ If the universal prefix argument is used then kill also the window."
   (which-key-declare-prefixes "SPC d" "docs/descriptions")
 #+END_SRC
 
+***** e: evaluation
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys main-map
+    "el" 'eval-last-sexp)
+  (which-key-declare-prefixes "SPC e" "evaluation")
+#+END_SRC
+
 ***** f: files
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
@@ -180,12 +191,14 @@ If the universal prefix argument is used then kill also the window."
   "-" 'evil-ex-nohighlight
 )
 #+END_SRC
+
 *** Backslash
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys backslash-map
   "-" 'evil-ex-nohighlight
 )
 #+END_SRC
+
 ** org-mode
 **** local fixes
 #+BEGIN_SRC emacs-lisp
@@ -195,42 +208,80 @@ If the universal prefix argument is used then kill also the window."
 )
 
 (evil-define-key 'normal org-mode-map (kbd "RET") 'evil-write)
+
+(evil-define-key 'normal org-mode-map "<" 'org-do-promote)
+(evil-define-key 'normal org-mode-map ">" 'org-do-demote)
   #+END_SRC
 
 **** local leader
+***** movement
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
   ;; movement
-  "u" 'outline-up-heading
-  "h" 'outline-previous-visible-heading
+  "u" 'outline-previous-visible-heading
+  "h" 'outline-up-heading
   "k" 'org-backward-heading-same-level
   "j" 'org-forward-heading-same-level
   "l" 'outline-next-visible-heading
+)
+#+END_SRC
 
-  ;; zoom/visualization
+***** zoom / visualization
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys org-map
   "zi" 'org-narrow-to-subtree
   "zo" 'widen
+)
+(which-key-declare-prefixes ", z" "org zoom")
+(which-key-declare-prefixes "q z" "org zoom")
+#+END_SRC
 
+***** subtree commands
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys org-map
   ;; subtree commands
   "th" 'org-promote-subtree
   "tl" 'org-demote-subtree
   "tk" 'org-move-subtree-up
   "tj" 'org-move-subtree-down
-  "td" 'org-cut-subtree
   "ty" 'org-copy-subtree
+  "td" 'org-cut-subtree
+  "tp" 'org-paste-subtree
   "ts" 'org-show-subtree
   "tc" 'org-clone-subtree-with-time-shift
-  
-  ;; promotions
-  "<" 'org-do-promote
-  ">" 'org-do-demote
-  "*" 'org-ctrl-c-star
-
-  ;; exports
-  "-" 'org-export-dispatch
 )
 (which-key-declare-prefixes ", t" "org tree ops")
-(which-key-declare-prefixes ", z" "org zoom")
+(which-key-declare-prefixes "q t" "org tree ops")
+#+END_SRC
+
+***** insertions
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys org-map
+
+  "ih" 'org-insert-heading
+  "ia" 'org-insert-heading-after-current
+  "ir" 'org-insert-heading-respect-content
+
+  "is" 'org-insert-subheading
+
+  "il" 'org-insert-link
+)
+(which-key-declare-prefixes ", i" "insertions")
+(which-key-declare-prefixes "q i" "insertions")
+#+END_SRC
+
+***** others
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys org-map
+  ;; code blocks
+  "*" 'org-ctrl-c-star
+
+  ;; lists
+  "-" 'org-ctrl-c-minus
+
+  ;; lists
+  "=" 'org-export-dispatch
+)
 #+END_SRC
 
 * fixes
