@@ -170,6 +170,14 @@ If the universal prefix argument is used then kill also the window."
 
 ** SPC
 *** prefixes
+**** c: counsel/ivy
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys main-map
+  "ca" 'counsel-ag
+)
+(which-key-declare-prefixes "SPC c" "counsel/ivy")
+#+END_SRC
+
 **** d: docs, descriptions, help
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys main-map
@@ -189,42 +197,11 @@ If the universal prefix argument is used then kill also the window."
   (which-key-declare-prefixes "SPC e" "evaluation")
 #+END_SRC
 
-**** f: files
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys main-map
-  "fr" 'counsel-recentf)
-(which-key-declare-prefixes "SPC f" "files")
-#+END_SRC
-
-**** g: git
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys main-map
-  "gs" 'magit-status)
-(which-key-declare-prefixes "SPC g" "git")
-#+END_SRC
-
 **** p: projectile
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
   "pa" 'projectile-ag)
 (which-key-declare-prefixes "SPC p" "projectile")
-#+END_SRC
-
-**** q: quit/restart
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys main-map
-  "qn" 'evil-quit
-  "qs" 'evil-save-modified-and-close
-  "qr" 'restart-emacs)
-(which-key-declare-prefixes "SPC q" "quit/restart")
-#+END_SRC
-
-**** s: search/ivy/counsel
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys main-map
-  "sa" 'counsel-ag
-  "ss" 'swiper)
-(which-key-declare-prefixes "SPC s" "search/ivy/counsel")
 #+END_SRC
 
 **** t: terminal
