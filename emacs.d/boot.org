@@ -1,7 +1,7 @@
 #+STARTUP: overview
 #+STARTUP: indent
 
-* evil mode
+* evil corruption
 ** evil bootstrap
 #+BEGIN_SRC emacs-lisp
 (use-package evil
@@ -19,6 +19,13 @@
     (evil-commentary-mode))
 #+END_SRC
 
+** evil matchit
+#+BEGIN_SRC emacs-lisp
+(use-package evil-matchit
+  :ensure t
+  :config
+    (global-evil-matchit-mode 1))
+#+END_SRC
 * spacemacs steals
 ** alternate-buffer
 SPC TAB
@@ -92,7 +99,7 @@ If the universal prefix argument is used then kill also the window."
 (define-key evil-motion-state-map "go" 'evil-goto-first-line)
 (define-key evil-motion-state-map "gl" 'evil-goto-line)
 
-;; I've sequestered < and > when in org mode. need a backup.
+;; As I've sequestered < and > when in org mode, we need a workaround.
 (define-key evil-motion-state-map "g>" 'evil-shift-right)
 (define-key evil-motion-state-map "g<" 'evil-shift-left)
 #+END_SRC
@@ -146,6 +153,7 @@ If the universal prefix argument is used then kill also the window."
 ***** e: evaluation
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys main-map
+    "eb" 'org-babel-execute-src-block
     "el" 'eval-last-sexp)
   (which-key-declare-prefixes "SPC e" "evaluation")
 #+END_SRC
@@ -281,6 +289,9 @@ If the universal prefix argument is used then kill also the window."
 
   ;; lists
   "=" 'org-export-dispatch
+  
+  ;; cycle
+  "TAB" 'org-cycle
 )
 #+END_SRC
 
@@ -321,24 +332,28 @@ If the universal prefix argument is used then kill also the window."
 
 * appearance
 ** Interface tweaks
+*** common
 #+BEGIN_SRC emacs-lisp
 (setq inhibit-startup-message t)
-
 (tool-bar-mode -1)
 (menu-bar-mode -1)
+(fset 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
 
+*** gui 
+#+BEGIN_SRC emacs-lisp
 (when (display-graphic-p)
   ;; emacs without X does not have scrollbars
   (scroll-bar-mode -1)
 
   ;; osx does not lose screen real state with menu bar mode on
   (when (eq system-type 'darwin)
-    (menu-bar-mode 1)
-  )
-)
-
-
-(fset 'yes-or-no-p 'y-or-n-p)
+    (progn
+      ;; start maximized
+      ;; (toggle-frame-maximized)
+      (set-frame-parameter nil 'fullscreen 'fullboth)
+      (menu-bar-mode 1))
+  ))
 #+END_SRC
 
 ** Font configuration
@@ -457,15 +472,15 @@ If the universal prefix argument is used then kill also the window."
 ** Org bullets
   #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
-  :ensure t
-  :config
-    (when (display-graphic-p)
-     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-    )
-    (setq org-ellipsis "…")
-    ;Other interesting characters are ▼, ↴, ⬎, ⤷,…, and ⋱.
-    ;(setq org-ellipsis "⤵")
-  )
+    :ensure t
+    :config
+      (progn
+        (when (display-graphic-p)
+          (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+        (setq org-ellipsis "…")))
+
+;Other interesting characters are ▼, ↴, ⬎, ⤷,…, and ⋱.
+;(setq org-ellipsis "⤵")
   #+END_SRC
 
 ** Reveal.js
@@ -474,42 +489,35 @@ If the universal prefix argument is used then kill also the window."
       :ensure t
     )
 
-    (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
+    (setq org-reveal-root "https://cdn.jsdelivr.net/reveal.js/3.0.0/")
     (setq org-reveal-mathjax t)
 
     (use-package htmlize
       :ensure t
     )
   #+END_SRC
-
-  #+RESULTS:
-  : t
   
-* avy
-  See https://github.com/abo-abo/avy for more info
-  navigate by searching for a letter on the screen and jumping to it
-  #+BEGIN_SRC emacs-lisp
-  (use-package avy
-    :ensure t
-  )
-  #+END_SRC
-  
-* ivy
-ivy is a helm lightweight replacement
+* ivy/counsel
 #+BEGIN_SRC emacs-lisp
     (use-package ivy
       :ensure t
       :config
-
-      (ivy-mode 1)
-      (setq ivy-use-virtual-buffers t)
-      (setq ivy-count-format "(%d/%d) ")
-
-      (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit))
+        (progn
+            (ivy-mode 1)
+            (setq ivy-use-virtual-buffers t)
+            (setq ivy-count-format "(%d/%d) ")
+            (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)))
 
     (use-package counsel
-      :ensure t
-    )
+      :ensure t)
+#+END_SRC
+
+* projectile
+#+BEGIN_SRC emacs-lisp
+(use-package projectile
+  :ensure t)
+(use-package counsel-projectile
+  :ensure t)
 #+END_SRC
 
 * syntax highlights
@@ -538,8 +546,7 @@ ivy is a helm lightweight replacement
 #+BEGIN_SRC emacs-lisp
   (use-package highlight-parentheses
     :ensure t
-    :defer t
-    :init
+    :config
       (progn
         (add-hook 'prog-mode-hook #'highlight-parentheses-mode)
         (add-hook 'org-mode-hook #'highlight-parentheses-mode)
@@ -547,11 +554,16 @@ ivy is a helm lightweight replacement
         (setq hl-paren-colors '("Springgreen3"
                                 "IndianRed1"
                                 "IndianRed3"
-                                "IndianRed4")))
-    :config
-      (set-face-attribute 'hl-paren-face nil :weight 'ultra-bold)
-   )
+                                "IndianRed4"))
+        (set-face-attribute 'hl-paren-face nil :weight 'ultra-bold)))
+#+END_SRC
 
+* company mode
+#+BEGIN_SRC emacs-lisp
+(use-package company
+  :ensure t
+  :config
+    (add-hook 'after-init-hook 'global-company-mode))
 #+END_SRC
 
 * disabled
@@ -580,5 +592,13 @@ ivy is a helm lightweight replacement
     ;;   :ensure t
     ;;   :init
     ;;     (yas-global-mode 1))
+  #+END_SRC
+
+** Avy
+  1. See https://github.com/abo-abo/avy for more info
+  2. navigate by searching for a letter on the screen and jumping to it
+  #+BEGIN_SRC emacs-lisp
+    ;; (use-package avy
+    ;;   :ensure t)
   #+END_SRC
 
