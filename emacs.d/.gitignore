@@ -3,4 +3,5 @@ recentf*
 *.dat
 elpa/
 boot.el
+projectile-bookmarks.eld
 auto-save-list/

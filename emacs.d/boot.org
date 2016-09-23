@@ -163,6 +163,7 @@ If the universal prefix argument is used then kill also the window."
 (bind-map-set-keys main-map
   "ff" 'counsel-find-file
   "fr" 'counsel-recentf
+  "fp" 'counsel-projectile
 )
 (which-key-declare-prefixes "SPC f" "files")
 #+END_SRC
@@ -515,7 +516,11 @@ If the universal prefix argument is used then kill also the window."
 * projectile
 #+BEGIN_SRC emacs-lisp
 (use-package projectile
-  :ensure t)
+  :ensure t
+  :config
+    (add-hook 'prog-mode-hook 'projectile-mode)
+    (add-hook 'org-mode-hook 'projectile-mode))
+
 (use-package counsel-projectile
   :ensure t)
 #+END_SRC
