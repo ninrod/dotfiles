@@ -434,7 +434,7 @@ If the universal prefix argument is used then kill also the window."
 (use-package ox-reveal
   :ensure t)
 
-(setq org-reveal-root "https://cdn.jsdelivr.net/reveal.js/3.0.0/")
+(setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
 (setq org-reveal-mathjax t)
 
 (use-package htmlize 
