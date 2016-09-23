@@ -2,7 +2,7 @@
 #+STARTUP: indent
 
 * evil corruption
-** evil bootstrap
+** Evil Mode
 #+BEGIN_SRC emacs-lisp
 (use-package evil
   :ensure t
@@ -11,7 +11,7 @@
 )
 #+END_SRC
 
-** evil commentary
+** Evil Commentary
 #+BEGIN_SRC emacs-lisp
 (use-package evil-commentary
   :ensure t
@@ -19,7 +19,7 @@
     (evil-commentary-mode))
 #+END_SRC
 
-** evil matchit
+** evil Matchit
 #+BEGIN_SRC emacs-lisp
 (use-package evil-matchit
   :ensure t
@@ -27,7 +27,7 @@
     (global-evil-matchit-mode 1))
 #+END_SRC
 
-** evil surround
+** evil Surround
 #+BEGIN_SRC emacs-lisp
 (use-package evil-surround
   :ensure t
@@ -81,14 +81,14 @@ If the universal prefix argument is used then kill also the window."
 )
 #+END_SRC
 
-** restart-emacs
+** Restart-emacs
 #+BEGIN_SRC emacs-lisp
 (use-package restart-emacs
   :ensure t
 )
 #+END_SRC
 
-** which key
+** Which key
   Brings up some help
   #+BEGIN_SRC emacs-lisp
   (use-package which-key
@@ -101,25 +101,24 @@ If the universal prefix argument is used then kill also the window."
 ** bind-map
 #+BEGIN_SRC emacs-lisp
 (use-package bind-map
-    :ensure t)
-(bind-map main-map
-    :evil-keys ("SPC")
-    :evil-states (normal motion visual))
-(bind-map dash-map
-    :evil-keys ("-")
-    :evil-states (normal motion visual))
-(bind-map backslash-map
-    :evil-keys ("\\")
-    :evil-states (normal motion visual))
-(bind-map org-map
-    :evil-keys ("," "q")
-    :evil-states (normal visual)
-    :major-modes (org-mode))
+    :ensure t
+    :config 
+    (progn
+      (bind-map main-map
+        :evil-keys ("SPC")
+        :evil-states (normal motion visual))
+      (bind-map org-map
+        :evil-keys ("," "q")
+        :evil-states (normal visual)
+        :major-modes (org-mode))))
 #+END_SRC
 
 ** core
 #+BEGIN_SRC emacs-lisp
 (define-key evil-normal-state-map "Q" 'evil-record-macro)
+
+(define-key evil-normal-state-map "'" 'evil-use-register)
+(define-key evil-normal-state-map "\"" 'evil-goto-mark-line)
 
 (define-key evil-normal-state-map (kbd "RET") 'evil-write)
 (define-key evil-normal-state-map "s" 'evil-toggle-fold)
@@ -224,20 +223,6 @@ If the universal prefix argument is used then kill also the window."
   "tt" 'ansi-term
 )
 (which-key-declare-prefixes "SPC t" "terminal")
-#+END_SRC
-
-*** Dash
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys dash-map
-  "-" 'evil-ex-nohighlight
-)
-#+END_SRC
-
-*** Backslash
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys backslash-map
-  "-" 'evil-ex-nohighlight
-)
 #+END_SRC
 
 ** org-mode
@@ -429,19 +414,17 @@ If the universal prefix argument is used then kill also the window."
   )
 #+END_SRC
 
-* magit
+* Magit
 #+BEGIN_SRC emacs-lisp
 (use-package magit
   :ensure t
   :config
-    (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
-)
+    (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1))
 (use-package evil-magit
-  :ensure t
-)
+  :ensure t)
 #+END_SRC
 
-* org mode
+* Org Mode
 ** Org bullets
   #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
@@ -470,7 +453,7 @@ If the universal prefix argument is used then kill also the window."
     )
   #+END_SRC
   
-* ivy/counsel
+* Ivy/Counsel
 #+BEGIN_SRC emacs-lisp
     (use-package ivy
       :ensure t
@@ -485,20 +468,27 @@ If the universal prefix argument is used then kill also the window."
       :ensure t)
 #+END_SRC
 
-* projectile
+* Projectile
 #+BEGIN_SRC emacs-lisp
 (use-package projectile
   :ensure t
   :config
-    (add-hook 'prog-mode-hook 'projectile-mode)
-    (add-hook 'org-mode-hook 'projectile-mode))
+    (add-hook 'after-init-hook 'projectile-mode))
 
 (use-package counsel-projectile
   :ensure t)
 #+END_SRC
 
+* Company
+#+BEGIN_SRC emacs-lisp
+(use-package company
+  :ensure t
+  :config
+    (add-hook 'after-init-hook 'global-company-mode))
+#+END_SRC
+
 * syntax highlights
-** markdown
+** Markdown
 #+BEGIN_SRC emacs-lisp
 (use-package markdown-mode
       :ensure t
@@ -509,7 +499,7 @@ If the universal prefix argument is used then kill also the window."
       :init (setq markdown-command "multimarkdown"))
 #+END_SRC
 
-** rainbow delimiters
+** rainbow-delimiters
 #+BEGIN_SRC emacs-lisp
 (use-package rainbow-delimiters
   :ensure t
@@ -533,14 +523,6 @@ If the universal prefix argument is used then kill also the window."
                                 "IndianRed3"
                                 "IndianRed4"))
         (set-face-attribute 'hl-paren-face nil :weight 'ultra-bold)))
-#+END_SRC
-
-* company mode
-#+BEGIN_SRC emacs-lisp
-(use-package company
-  :ensure t
-  :config
-    (add-hook 'after-init-hook 'global-company-mode))
 #+END_SRC
 
 * fixes
