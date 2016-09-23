@@ -143,8 +143,7 @@ If the universal prefix argument is used then kill also the window."
   "<SPC>" 'counsel-M-x
   "TAB" 'evil-next-buffer
   ;; "-"   'available
-  ;; "?"   'available
-)
+  ;; "?"   'available)
 #+END_SRC
 
 **** window 
@@ -155,8 +154,7 @@ If the universal prefix argument is used then kill also the window."
   "h" 'evil-window-left
   "l" 'evil-window-right
   "v" 'evil-window-vsplit
-  "x" 'evil-window-split
-)
+  "x" 'evil-window-split)
 #+END_SRC
 
 *** prefixes
@@ -175,8 +173,7 @@ If the universal prefix argument is used then kill also the window."
     "dc" 'describe-char
     "df" 'counsel-describe-function
     "dk" 'describe-key
-    "dv" 'counsel-describe-variable
-  )
+    "dv" 'counsel-describe-variable)
   (which-key-declare-prefixes "SPC d" "docs/descriptions")
 #+END_SRC
 
@@ -194,16 +191,14 @@ If the universal prefix argument is used then kill also the window."
   "ff" 'counsel-find-file
   "fr" 'counsel-recentf
   "fp" 'counsel-projectile
-  "fa" 'projectile-ag
-)
+  "fa" 'projectile-ag)
 (which-key-declare-prefixes "SPC f" "files")
 #+END_SRC
 
 **** g: git
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
-  "gs" 'magit-status
-)
+  "gs" 'magit-status)
 (which-key-declare-prefixes "SPC g" "git")
 #+END_SRC
 
@@ -212,8 +207,7 @@ If the universal prefix argument is used then kill also the window."
 (bind-map-set-keys main-map
   "qq" 'evil-quit
   "qs" 'evil-save-modified-and-close
-  "qr" 'restart-emacs
-)
+  "qr" 'restart-emacs)
 (which-key-declare-prefixes "SPC q" "quit/restart")
 #+END_SRC
 
@@ -221,16 +215,14 @@ If the universal prefix argument is used then kill also the window."
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
   "sa" 'counsel-ag
-  "ss" 'swiper
-)
+  "ss" 'swiper)
 (which-key-declare-prefixes "SPC s" "search/ivy/counsel")
 #+END_SRC
 
 **** t: terminal
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
-  "tt" 'ansi-term
-)
+  "tt" 'ansi-term)
 (which-key-declare-prefixes "SPC t" "terminal")
 #+END_SRC
 
@@ -239,8 +231,7 @@ If the universal prefix argument is used then kill also the window."
 #+BEGIN_SRC emacs-lisp
 (evil-define-key 'normal org-mode-map (kbd "TAB") 'spacemacs/alternate-buffer)
 (when (display-graphic-p)
-  (evil-define-key 'normal org-mode-map (kbd "<tab>") 'spacemacs/alternate-buffer)
-)
+  (evil-define-key 'normal org-mode-map (kbd "<tab>") 'spacemacs/alternate-buffer))
 
 (evil-define-key 'normal org-mode-map (kbd "RET") 'evil-write)
 
@@ -257,16 +248,14 @@ If the universal prefix argument is used then kill also the window."
   "h" 'outline-up-heading
   "k" 'org-backward-heading-same-level
   "j" 'org-forward-heading-same-level
-  "l" 'outline-next-visible-heading
-)
+  "l" 'outline-next-visible-heading)
 #+END_SRC
 
 ***** zoom / visualization
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
   "zi" 'org-narrow-to-subtree
-  "zo" 'widen
-)
+  "zo" 'widen)
 (which-key-declare-prefixes ", z" "org zoom")
 (which-key-declare-prefixes "q z" "org zoom")
 #+END_SRC
@@ -283,8 +272,7 @@ If the universal prefix argument is used then kill also the window."
   "td" 'org-cut-subtree
   "tp" 'org-paste-subtree
   "ts" 'org-show-subtree
-  "tc" 'org-clone-subtree-with-time-shift
-)
+  "tc" 'org-clone-subtree-with-time-shift)
 (which-key-declare-prefixes ", t" "org tree ops")
 (which-key-declare-prefixes "q t" "org tree ops")
 #+END_SRC
@@ -292,15 +280,11 @@ If the universal prefix argument is used then kill also the window."
 ***** insertions
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
-
   "ih" 'org-insert-heading
   "ia" 'org-insert-heading-after-current
   "ir" 'org-insert-heading-respect-content
-
   "is" 'org-insert-subheading
-
-  "il" 'org-insert-link
-)
+  "il" 'org-insert-link)
 (which-key-declare-prefixes ", i" "insertions")
 (which-key-declare-prefixes "q i" "insertions")
 #+END_SRC
@@ -318,8 +302,7 @@ If the universal prefix argument is used then kill also the window."
   "=" 'org-export-dispatch
   
   ;; cycle
-  "TAB" 'org-cycle
-)
+  "TAB" 'org-cycle)
 #+END_SRC
 
 * interface tweaks
@@ -343,8 +326,7 @@ If the universal prefix argument is used then kill also the window."
       ;; start maximized
       ;; (toggle-frame-maximized)
       (set-frame-parameter nil 'fullscreen 'fullboth)
-      (menu-bar-mode 1))
-  ))
+      (menu-bar-mode 1))))
 #+END_SRC
 
 ** Font configuration
@@ -451,16 +433,14 @@ If the universal prefix argument is used then kill also the window."
 
 *** Reveal.js
   #+BEGIN_SRC emacs-lisp
-    (use-package ox-reveal
-      :ensure t
-    )
+(use-package ox-reveal
+  :ensure t)
 
-    (setq org-reveal-root "https://cdn.jsdelivr.net/reveal.js/3.0.0/")
-    (setq org-reveal-mathjax t)
+(setq org-reveal-root "https://cdn.jsdelivr.net/reveal.js/3.0.0/")
+(setq org-reveal-mathjax t)
 
-    (use-package htmlize
-      :ensure t
-    )
+(use-package htmlize 
+  :ensure t)
   #+END_SRC
   
 ** ivy/counsel
@@ -542,9 +522,7 @@ If the universal prefix argument is used then kill also the window."
         (setq web-mode-markup-indent-offset 2)
         (setq web-mode-css-indent-offset    2)
         (setq web-mode-code-indent-offset   2))
-      (add-hook 'web-mode-hook 'my-web-mode-hook)
-    )
-   )
+      (add-hook 'web-mode-hook 'my-web-mode-hook)))
 #+END_SRC
 
 ** js2-mode
@@ -553,8 +531,7 @@ If the universal prefix argument is used then kill also the window."
   :ensure t
   :config
     (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-    (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2)))
-)
+    (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2))))
 #+END_SRC
 
 * syntax-highlight
