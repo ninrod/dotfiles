@@ -80,19 +80,19 @@ If the universal prefix argument is used then kill also the window."
 #+END_SRC
 
 * utils
-** Try
+** try
 #+BEGIN_SRC emacs-lisp
 (use-package try
   :ensure t)
 #+END_SRC
 
-** Restart-emacs
+** restart-emacs
 #+BEGIN_SRC emacs-lisp
 (use-package restart-emacs
   :ensure t)
 #+END_SRC
 
-** Which key
+** which key
   Brings up some help
   #+BEGIN_SRC emacs-lisp
   (use-package which-key
@@ -247,10 +247,6 @@ If the universal prefix argument is used then kill also the window."
   (when (display-graphic-p)
     (evil-define-key 'normal org-mode-map (kbd "<tab>") 'ivy-switch-buffer))
 
-  ;; (evil-define-key 'normal org-mode-map (kbd "TAB") 'spacemacs/alternate-buffer)
-  ;; (when (display-graphic-p)
-  ;;   (evil-define-key 'normal org-mode-map (kbd "<tab>") 'spacemacs/alternate-buffer))
-
   (evil-define-key 'normal org-mode-map (kbd "RET") 'evil-write)
 
   ;; movement
@@ -316,16 +312,21 @@ If the universal prefix argument is used then kill also the window."
   "TAB" 'org-cycle)
 #+END_SRC
 
+** insert state
+#+begin_src emacs-lisp :tangle yes
+(define-key company-mode-map (kbd "C-SPC") 'company-complete)
+#+end_src
+
 * interface tweaks
-** Options
+** options
 #+BEGIN_SRC emacs-lisp
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
-(menu-bar-mode -1)
+(menu-bar-mode 1)
 (fset 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
 
-** Gui
+** gui
 #+BEGIN_SRC emacs-lisp
 (when (display-graphic-p)
   ;; emacs without X does not have scrollbars
@@ -340,7 +341,7 @@ If the universal prefix argument is used then kill also the window."
       (menu-bar-mode 1))))
 #+END_SRC
 
-** Font configuration
+** font configuration
 *** Monoisome
 - get it at [[https://github.com/larsenwork/monoid][larsenwork/monoid]]
   #+BEGIN_SRC emacs-lisp
@@ -348,7 +349,7 @@ If the universal prefix argument is used then kill also the window."
                '(font . "Monoisome-14"))
   #+END_SRC
 
-** Themes
+** themes
 *** spacemacs
   #+BEGIN_SRC emacs-lisp
     (use-package spacemacs-theme 
@@ -369,7 +370,7 @@ If the universal prefix argument is used then kill also the window."
 ;(load-theme 'leuven t)
 #+END_SRC
 
-** Modeline
+** modeline
 *** spaceline (activated on OSx)
 **** bootstrap
 #+BEGIN_SRC emacs-lisp
@@ -492,8 +493,11 @@ If the universal prefix argument is used then kill also the window."
   #+BEGIN_SRC emacs-lisp
 (use-package yasnippet
   :ensure t
-  :init
-    (yas-global-mode 1))
+  :config
+    (progn
+      (yas-global-mode 1)
+    )
+)
   #+END_SRC
 
 ** ag: the silver searcher
@@ -581,7 +585,7 @@ If the universal prefix argument is used then kill also the window."
 (load custom-file 'noerror)
   #+END_SRC
 
-** Yasnippet hijacks TAB key in term mode
+** yasnippet hijacks TAB key in term mode
 #+BEGIN_SRC emacs-lisp
 (add-hook 'term-mode-hook 'my-term-mode-hook)
 (defun my-term-mode-hook ()
@@ -618,7 +622,7 @@ If the universal prefix argument is used then kill also the window."
 #+END_SRC
 
 * disabled
-** Flycheck
+** flycheck
   #+BEGIN_SRC emacs-lisp
     ;; (use-package flycheck
     ;;   :ensure t
