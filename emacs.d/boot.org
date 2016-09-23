@@ -114,7 +114,7 @@ If the universal prefix argument is used then kill also the window."
   :ensure t
   :config
     (global-evil-mc-mode 1)
-    ;(define-key evil-mc-key-map "grv" 'make-vertical-cursors)
+    (evil-define-key 'normal evil-mc-key-map "grv" 'make-vertical-cursors)
 )
 #+end_src
 
