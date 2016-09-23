@@ -34,6 +34,13 @@
     (global-evil-surround-mode 1))
 #+END_SRC
 
+** Evil Exchange
+#+BEGIN_SRC emacs-lisp
+(use-package evil-exchange
+  :ensure t
+  :config
+    (evil-exchange-install))
+#+END_SRC
 * spacemacs lifting
 *** alternate-buffer
 SPC TAB
@@ -76,15 +83,13 @@ If the universal prefix argument is used then kill also the window."
 ** Try
 #+BEGIN_SRC emacs-lisp
 (use-package try
-  :ensure t
-)
+  :ensure t)
 #+END_SRC
 
 ** Restart-emacs
 #+BEGIN_SRC emacs-lisp
 (use-package restart-emacs
-  :ensure t
-)
+  :ensure t)
 #+END_SRC
 
 ** Which key
@@ -105,59 +110,14 @@ If the universal prefix argument is used then kill also the window."
     (progn
       (bind-map main-map
         :evil-keys ("SPC")
-        :evil-states (normal motion visual))
+        :evil-states (normal visual motion))
       (bind-map org-map
-        :evil-keys ("," "q")
+        :evil-keys (",")
         :evil-states (normal visual)
         :major-modes (org-mode))))
 #+END_SRC
 
-** core
-#+BEGIN_SRC emacs-lisp
-(define-key evil-normal-state-map "Q" 'evil-record-macro)
-
-(define-key evil-normal-state-map "'" 'evil-use-register)
-(define-key evil-normal-state-map "\"" 'evil-goto-mark-line)
-
-(define-key evil-normal-state-map (kbd "RET") 'evil-write)
-(define-key evil-normal-state-map "s" 'evil-toggle-fold)
-(define-key evil-motion-state-map "(" 'evil-backward-paragraph)
-(define-key evil-motion-state-map ")" 'evil-forward-paragraph)
-
-(define-key evil-normal-state-map (kbd "TAB") 'spacemacs/alternate-buffer)
-
-(define-key evil-motion-state-map "go" 'evil-goto-first-line)
-(define-key evil-motion-state-map "gl" 'evil-goto-line)
-
-;; As I've sequestered < and > when in org mode, we need a workaround.
-(define-key evil-motion-state-map "g>" 'evil-shift-right)
-(define-key evil-motion-state-map "g<" 'evil-shift-left)
-#+END_SRC
-
 ** SPC
-*** direct
-**** core
-
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys main-map
-  "<SPC>" 'counsel-M-x
-  "TAB" 'evil-next-buffer
-)
-;; "-"   'available
-;; "?"   'available
-#+END_SRC
-
-**** window 
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys main-map
-  "j" 'evil-window-down
-  "k" 'evil-window-up
-  "h" 'evil-window-left
-  "l" 'evil-window-right
-  "v" 'evil-window-vsplit
-  "x" 'evil-window-split)
-#+END_SRC
-
 *** prefixes
 **** b: buffer binds
 #+BEGIN_SRC emacs-lisp
@@ -206,7 +166,7 @@ If the universal prefix argument is used then kill also the window."
 **** q: quit/restart
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
-  "qq" 'evil-quit
+  "qn" 'evil-quit
   "qs" 'evil-save-modified-and-close
   "qr" 'restart-emacs)
 (which-key-declare-prefixes "SPC q" "quit/restart")
@@ -227,8 +187,32 @@ If the universal prefix argument is used then kill also the window."
 (which-key-declare-prefixes "SPC t" "terminal")
 #+END_SRC
 
-** org-mode
-**** local fixes
+*** direct
+**** core
+
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys main-map
+  "<SPC>" 'counsel-M-x
+  "TAB" 'evil-next-buffer
+  "." 'ivy-switch-buffer
+)
+;; "-"   'available
+;; "?"   'available
+#+END_SRC
+
+**** window 
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys main-map
+  "j" 'evil-window-down
+  "k" 'evil-window-up
+  "h" 'evil-window-left
+  "l" 'evil-window-right
+  "v" 'evil-window-vsplit
+  "x" 'evil-window-split)
+#+END_SRC
+
+** ORG
+*** local fixes
 #+BEGIN_SRC emacs-lisp
 (evil-define-key 'normal org-mode-map (kbd "TAB") 'spacemacs/alternate-buffer)
 (when (display-graphic-p)
@@ -236,49 +220,42 @@ If the universal prefix argument is used then kill also the window."
 
 (evil-define-key 'normal org-mode-map (kbd "RET") 'evil-write)
 
+(evil-define-key 'normal org-mode-map "zu" 'outline-up-heading)
+(evil-define-key 'normal org-mode-map "zh" 'outline-previous-visible-heading)
+(evil-define-key 'normal org-mode-map "zj" 'org-forward-heading-same-level)
+(evil-define-key 'normal org-mode-map "zk" 'org-backward-heading-same-level)
+(evil-define-key 'normal org-mode-map "zl" 'outline-next-visible-heading)
+
 (evil-define-key 'normal org-mode-map "<" 'org-do-promote)
 (evil-define-key 'normal org-mode-map ">" 'org-do-demote)
   #+END_SRC
 
-**** local leader
-***** movement
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys org-map
-  ;; movement
-  "u" 'outline-previous-visible-heading
-  "h" 'outline-up-heading
-  "k" 'org-backward-heading-same-level
-  "j" 'org-forward-heading-same-level
-  "l" 'outline-next-visible-heading)
-#+END_SRC
-
-***** zoom / visualization
+*** local leader
+***** z: zoom / visualization
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
   "zi" 'org-narrow-to-subtree
   "zo" 'widen)
-(which-key-declare-prefixes ", z" "org zoom")
-(which-key-declare-prefixes "q z" "org zoom")
+(which-key-declare-prefixes ", z" "zoom")
 #+END_SRC
 
-***** subtree commands
+***** t: subtree commands
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
   ;; subtree commands
-  "th" 'org-promote-subtree
-  "tl" 'org-demote-subtree
-  "tk" 'org-move-subtree-up
-  "tj" 'org-move-subtree-down
-  "ty" 'org-copy-subtree
-  "td" 'org-cut-subtree
-  "tp" 'org-paste-subtree
-  "ts" 'org-show-subtree
-  "tc" 'org-clone-subtree-with-time-shift)
-(which-key-declare-prefixes ", t" "org tree ops")
-(which-key-declare-prefixes "q t" "org tree ops")
+  "sh" 'org-promote-subtree
+  "sl" 'org-demote-subtree
+  "sk" 'org-move-subtree-up
+  "sj" 'org-move-subtree-down
+  "sy" 'org-copy-subtree
+  "sd" 'org-cut-subtree
+  "sp" 'org-paste-subtree
+  "ss" 'org-show-subtree
+  "sc" 'org-clone-subtree-with-time-shift)
+(which-key-declare-prefixes ", s" "org subtree operations")
 #+END_SRC
 
-***** insertions
+***** i: insertions
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
   "ih" 'org-insert-heading
@@ -287,10 +264,9 @@ If the universal prefix argument is used then kill also the window."
   "is" 'org-insert-subheading
   "il" 'org-insert-link)
 (which-key-declare-prefixes ", i" "insertions")
-(which-key-declare-prefixes "q i" "insertions")
 #+END_SRC
 
-***** others
+***** *: others
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
   ;; code blocks
@@ -304,6 +280,26 @@ If the universal prefix argument is used then kill also the window."
   
   ;; cycle
   "TAB" 'org-cycle)
+#+END_SRC
+
+** core
+#+BEGIN_SRC emacs-lisp
+(define-key evil-normal-state-map "'" 'evil-use-register)
+(define-key evil-normal-state-map "\"" 'evil-goto-mark-line)
+
+(define-key evil-normal-state-map (kbd "RET") 'evil-write)
+(define-key evil-normal-state-map "s" 'evil-toggle-fold)
+(define-key evil-motion-state-map "(" 'evil-backward-paragraph)
+(define-key evil-motion-state-map ")" 'evil-forward-paragraph)
+
+(define-key evil-normal-state-map (kbd "TAB") 'spacemacs/alternate-buffer)
+
+(define-key evil-motion-state-map "go" 'evil-goto-first-line)
+(define-key evil-motion-state-map "gl" 'evil-goto-line)
+
+;; As I've sequestered < and > when in org mode, we need a workaround.
+(define-key evil-motion-state-map "g>" 'evil-shift-right)
+(define-key evil-motion-state-map "g<" 'evil-shift-left)
 #+END_SRC
 
 * interface tweaks
