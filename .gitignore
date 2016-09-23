@@ -1,2 +1,3 @@
 deps/
 /emacs.d/emacs-customizations.el*
+/emacs.d/.mc-lists.el

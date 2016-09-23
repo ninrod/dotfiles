@@ -72,6 +72,11 @@ If the universal prefix argument is used then kill also the window."
 #+BEGIN_SRC emacs-lisp
 (use-package evil
   :ensure t
+  :init
+    ;; @see https://bitbucket.org/lyro/evil/issue/342/evil-default-cursor-setting-should-default
+    ;; cursor is alway black because of evil
+    ;; here is the workaround
+    (setq evil-default-cursor t)
   :config
     (evil-mode))
 #+END_SRC
@@ -108,14 +113,13 @@ If the universal prefix argument is used then kill also the window."
     (evil-exchange-install))
 #+END_SRC
 
-** Evil MC
+** Evil MC 
 #+begin_src emacs-lisp
-(use-package evil-mc
-  :ensure t
-  :config
-    (global-evil-mc-mode 1)
-    (evil-define-key 'normal evil-mc-key-map "grv" 'make-vertical-cursors)
-)
+  (use-package evil-mc
+    :ensure t
+    :config
+      (global-evil-mc-mode 1)
+      (evil-define-key 'normal evil-mc-key-map "grv" 'make-vertical-cursors))
 #+end_src
 
 * utils
