@@ -7,8 +7,7 @@
 (use-package evil
   :ensure t
   :config
-    (evil-mode)
-)
+    (evil-mode))
 #+END_SRC
 
 ** Evil Commentary
@@ -138,12 +137,14 @@ If the universal prefix argument is used then kill also the window."
 ** SPC
 *** direct
 **** core
+
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
   "<SPC>" 'counsel-M-x
   "TAB" 'evil-next-buffer
-  ;; "-"   'available
-  ;; "?"   'available)
+)
+;; "-"   'available
+;; "?"   'available
 #+END_SRC
 
 **** window 
