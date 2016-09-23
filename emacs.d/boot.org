@@ -103,7 +103,7 @@ If the universal prefix argument is used then kill also the window."
 
 * binds
 ** core
-*** special chars
+*** very fast access to frequent commands
 #+BEGIN_SRC emacs-lisp
   ;; save: faster than `:w'
   (define-key evil-normal-state-map (kbd "RET") 'evil-write)
@@ -113,15 +113,25 @@ If the universal prefix argument is used then kill also the window."
   (define-key evil-normal-state-map (kbd "DEL") 'counsel-find-file)
   (define-key evil-normal-state-map "-" 'counsel-projectile)
 
-  ;; invertion of `'` e `"`
-  (define-key evil-normal-state-map "'" 'evil-use-register)
-  (define-key evil-normal-state-map "\"" 'evil-goto-mark-line)
+  ;; magit status
+  (define-key evil-motion-state-map "gs" 'magit-status)
+
+  ;; toggle fold: faster and more comfortable than `za'
+  (define-key evil-normal-state-map "s" 'evil-toggle-fold)
+
+  ;; file saves
+  ;; `z.' is a complete replacement for `zz'
+  (define-key evil-normal-state-map "zz" 'evil-save-modified-and-close)
+  (define-key evil-normal-state-map "zn" 'evil-quit)
+  (define-key evil-normal-state-map "zb" 'restart-emacs)
+  (define-key evil-normal-state-map "zd" 'spacemacs/kill-this-buffer)
 #+END_SRC
 
-*** letters
+*** comfort swaps/improvements
 #+BEGIN_SRC emacs-lisp
-;; toggle fold: faster and more comfortable than `za'
-(define-key evil-normal-state-map "s" 'evil-toggle-fold)
+;; invertion of `'` e `"`
+(define-key evil-normal-state-map "'" 'evil-use-register)
+(define-key evil-normal-state-map "\"" 'evil-goto-mark-line)
 
 ;; used way more then { and }
 (define-key evil-motion-state-map "(" 'evil-backward-paragraph)
@@ -131,15 +141,13 @@ If the universal prefix argument is used then kill also the window."
 (define-key evil-motion-state-map "go" 'evil-goto-first-line)
 (define-key evil-motion-state-map "gl" 'evil-goto-line)
 
+#+END_SRC
+
+*** fixes
+#+BEGIN_SRC emacs-lisp
 ;; As I've sequestered < and > when in org mode, we need a workaround.
 (define-key evil-motion-state-map "g>" 'evil-shift-right)
 (define-key evil-motion-state-map "g<" 'evil-shift-left)
-
-
-;; `z.' is a complete replacement for `zz'
-(define-key evil-normal-state-map "zz" 'evil-save-modified-and-close)
-(define-key evil-normal-state-map "zn" 'evil-quit)
-(define-key evil-normal-state-map "zb" 'restart-emacs)
 
 ;; `z.' fix
 (define-key evil-normal-state-map "z." 'evil-scroll-line-to-center)
@@ -162,14 +170,6 @@ If the universal prefix argument is used then kill also the window."
 
 ** SPC
 *** prefixes
-**** b: buffer binds
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys main-map
-    "bb" 'ivy-switch-buffer
-    "bd" 'spacemacs/kill-this-buffer)
-(which-key-declare-prefixes "SPC b" "buffers")
-#+END_SRC
-
 **** d: docs, descriptions, help
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys main-map
@@ -189,21 +189,18 @@ If the universal prefix argument is used then kill also the window."
   (which-key-declare-prefixes "SPC e" "evaluation")
 #+END_SRC
 
-**** f: files
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys main-map
-  "ff" 'counsel-find-file
-  "fr" 'counsel-recentf
-  "fp" 'counsel-projectile
-  "fa" 'projectile-ag)
-(which-key-declare-prefixes "SPC f" "files")
-#+END_SRC
-
 **** g: git
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
   "gs" 'magit-status)
 (which-key-declare-prefixes "SPC g" "git")
+#+END_SRC
+
+**** p: projectile
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys main-map
+  "pa" 'projectile-ag)
+(which-key-declare-prefixes "SPC p" "projectile")
 #+END_SRC
 
 **** q: quit/restart
