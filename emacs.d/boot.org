@@ -73,6 +73,30 @@ If the universal prefix argument is used then kill also the window."
       (kill-buffer))))
 #+END_SRC
 
+* utils
+** Try
+#+BEGIN_SRC emacs-lisp
+(use-package try
+  :ensure t
+)
+#+END_SRC
+
+** restart-emacs
+#+BEGIN_SRC emacs-lisp
+(use-package restart-emacs
+  :ensure t
+)
+#+END_SRC
+
+** which key
+  Brings up some help
+  #+BEGIN_SRC emacs-lisp
+  (use-package which-key
+	:ensure t 
+	:config
+	(which-key-mode))
+  #+END_SRC
+
 * binds
 ** bind-map
 #+BEGIN_SRC emacs-lisp
@@ -92,15 +116,6 @@ If the universal prefix argument is used then kill also the window."
     :evil-states (normal visual)
     :major-modes (org-mode))
 #+END_SRC
-
-** which key
-  Brings up some help
-  #+BEGIN_SRC emacs-lisp
-  (use-package which-key
-	:ensure t 
-	:config
-	(which-key-mode))
-  #+END_SRC
 
 ** core
 #+BEGIN_SRC emacs-lisp
@@ -313,9 +328,8 @@ If the universal prefix argument is used then kill also the window."
 )
 #+END_SRC
 
-* appearance
-** Interface tweaks
-*** common
+* interface tweaks
+** Options
 #+BEGIN_SRC emacs-lisp
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
@@ -323,7 +337,7 @@ If the universal prefix argument is used then kill also the window."
 (fset 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
 
-*** gui 
+** Gui
 #+BEGIN_SRC emacs-lisp
 (when (display-graphic-p)
   ;; emacs without X does not have scrollbars
@@ -423,21 +437,6 @@ If the universal prefix argument is used then kill also the window."
     (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
 )
 (use-package evil-magit
-  :ensure t
-)
-#+END_SRC
-
-* utils
-** Try
-#+BEGIN_SRC emacs-lisp
-(use-package try
-  :ensure t
-)
-#+END_SRC
-
-** restart-emacs
-#+BEGIN_SRC emacs-lisp
-(use-package restart-emacs
   :ensure t
 )
 #+END_SRC
