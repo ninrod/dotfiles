@@ -19,7 +19,7 @@
     (evil-commentary-mode))
 #+END_SRC
 
-** evil Matchit
+** Evil Matchit
 #+BEGIN_SRC emacs-lisp
 (use-package evil-matchit
   :ensure t
@@ -27,18 +27,18 @@
     (global-evil-matchit-mode 1))
 #+END_SRC
 
-** evil Surround
+** Evil Surround
 #+BEGIN_SRC emacs-lisp
 (use-package evil-surround
   :ensure t
   :config
     (global-evil-surround-mode 1))
 #+END_SRC
+
 * spacemacs lifting
 *** alternate-buffer
 SPC TAB
 back and forth between current and last buffer
-
 #+BEGIN_SRC emacs-lisp
 (defun spacemacs/alternate-buffer (&optional window)
   "Switch back and forth between current and last buffer in the
@@ -135,10 +135,9 @@ If the universal prefix argument is used then kill also the window."
 (define-key evil-motion-state-map "g<" 'evil-shift-left)
 #+END_SRC
 
-** leaders
-*** SPC
-**** direct
-***** core
+** SPC
+*** direct
+**** core
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
   "<SPC>" 'counsel-M-x
@@ -148,7 +147,7 @@ If the universal prefix argument is used then kill also the window."
 )
 #+END_SRC
 
-***** window 
+**** window 
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
   "j" 'evil-window-down
@@ -160,8 +159,8 @@ If the universal prefix argument is used then kill also the window."
 )
 #+END_SRC
 
-**** prefixes
-***** b: buffer binds
+*** prefixes
+**** b: buffer binds
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
     "bb" 'ivy-switch-buffer
@@ -169,7 +168,7 @@ If the universal prefix argument is used then kill also the window."
 (which-key-declare-prefixes "SPC b" "buffers")
 #+END_SRC
 
-***** d: docs, descriptions, help
+**** d: docs, descriptions, help
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys main-map
     "db" 'counsel-descbinds
@@ -181,7 +180,7 @@ If the universal prefix argument is used then kill also the window."
   (which-key-declare-prefixes "SPC d" "docs/descriptions")
 #+END_SRC
 
-***** e: evaluation
+**** e: evaluation
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys main-map
     "eb" 'org-babel-execute-src-block
@@ -189,17 +188,18 @@ If the universal prefix argument is used then kill also the window."
   (which-key-declare-prefixes "SPC e" "evaluation")
 #+END_SRC
 
-***** f: files
+**** f: files
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
   "ff" 'counsel-find-file
   "fr" 'counsel-recentf
   "fp" 'counsel-projectile
+  "fa" 'projectile-ag
 )
 (which-key-declare-prefixes "SPC f" "files")
 #+END_SRC
 
-***** g: git
+**** g: git
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
   "gs" 'magit-status
@@ -207,7 +207,7 @@ If the universal prefix argument is used then kill also the window."
 (which-key-declare-prefixes "SPC g" "git")
 #+END_SRC
 
-***** q: quit/restart
+**** q: quit/restart
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
   "qq" 'evil-quit
@@ -217,7 +217,16 @@ If the universal prefix argument is used then kill also the window."
 (which-key-declare-prefixes "SPC q" "quit/restart")
 #+END_SRC
 
-***** t: terminal
+**** s: search/ivy/counsel
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys main-map
+  "sa" 'counsel-ag
+  "ss" 'swiper
+)
+(which-key-declare-prefixes "SPC s" "search/ivy/counsel")
+#+END_SRC
+
+**** t: terminal
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
   "tt" 'ansi-term
@@ -414,7 +423,8 @@ If the universal prefix argument is used then kill also the window."
   )
 #+END_SRC
 
-* Magit
+* modes
+** magit
 #+BEGIN_SRC emacs-lisp
 (use-package magit
   :ensure t
@@ -424,8 +434,8 @@ If the universal prefix argument is used then kill also the window."
   :ensure t)
 #+END_SRC
 
-* Org Mode
-** Org bullets
+** org Mode
+*** Org bullets
   #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
     :ensure t
@@ -439,7 +449,7 @@ If the universal prefix argument is used then kill also the window."
 ;(setq org-ellipsis "⤵")
   #+END_SRC
 
-** Reveal.js
+*** Reveal.js
   #+BEGIN_SRC emacs-lisp
     (use-package ox-reveal
       :ensure t
@@ -453,7 +463,7 @@ If the universal prefix argument is used then kill also the window."
     )
   #+END_SRC
   
-* Ivy/Counsel
+** ivy/counsel
 #+BEGIN_SRC emacs-lisp
     (use-package ivy
       :ensure t
@@ -468,7 +478,7 @@ If the universal prefix argument is used then kill also the window."
       :ensure t)
 #+END_SRC
 
-* Projectile
+** projectile
 #+BEGIN_SRC emacs-lisp
 (use-package projectile
   :ensure t
@@ -479,7 +489,7 @@ If the universal prefix argument is used then kill also the window."
   :ensure t)
 #+END_SRC
 
-* Company
+** company
 #+BEGIN_SRC emacs-lisp
 (use-package company
   :ensure t
@@ -487,8 +497,21 @@ If the universal prefix argument is used then kill also the window."
     (add-hook 'after-init-hook 'global-company-mode))
 #+END_SRC
 
-* syntax highlights
-** Markdown
+** yasnippet
+  #+BEGIN_SRC emacs-lisp
+(use-package yasnippet
+  :ensure t
+  :init
+    (yas-global-mode 1))
+  #+END_SRC
+
+** ag: the silver searcher
+#+BEGIN_SRC emacs-lisp
+(use-package ag
+  :ensure t)
+#+END_SRC
+
+** markdown
 #+BEGIN_SRC emacs-lisp
 (use-package markdown-mode
       :ensure t
@@ -499,6 +522,42 @@ If the universal prefix argument is used then kill also the window."
       :init (setq markdown-command "multimarkdown"))
 #+END_SRC
 
+** web-mode
+#+BEGIN_SRC emacs-lisp
+(use-package web-mode
+  :ensure t
+  :config
+    (progn
+      (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+      (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+      (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+      (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+      (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+      (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+      (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+      (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+
+      (defun my-web-mode-hook ()
+        "Hooks for Web mode."
+        (setq web-mode-markup-indent-offset 2)
+        (setq web-mode-css-indent-offset    2)
+        (setq web-mode-code-indent-offset   2))
+      (add-hook 'web-mode-hook 'my-web-mode-hook)
+    )
+   )
+#+END_SRC
+
+** js2-mode
+#+BEGIN_SRC emacs-lisp
+(use-package js2-mode
+  :ensure t
+  :config
+    (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+    (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2)))
+)
+#+END_SRC
+
+* syntax-highlight
 ** rainbow-delimiters
 #+BEGIN_SRC emacs-lisp
 (use-package rainbow-delimiters
@@ -561,6 +620,15 @@ If the universal prefix argument is used then kill also the window."
 (add-hook 'term-mode-hook 'my-term-hook)
 #+END_SRC
 
+** fix $PATH on macosx with exec-path-from-shell
+#+BEGIN_SRC emacs-lisp
+  (when (eq system-type 'darwin)
+      (use-package exec-path-from-shell
+        :ensure t
+        :config
+          (exec-path-from-shell-initialize)))
+#+END_SRC
+
 * disabled
 ** Flycheck
   #+BEGIN_SRC emacs-lisp
@@ -568,25 +636,6 @@ If the universal prefix argument is used then kill also the window."
     ;;   :ensure t
     ;;   :init
     ;;   (global-flycheck-mode t))
-  #+END_SRC
-
-** Autocomplete
-  #+BEGIN_SRC emacs-lisp
-    ;; (use-package auto-complete
-    ;; :ensure t
-    ;; :init
-    ;; (progn
-    ;;   (ac-config-default)
-    ;;   (global-auto-complete-mode t)
-    ;;   ))
-  #+END_SRC
-
-** Yasnippet
-  #+BEGIN_SRC emacs-lisp
-    ;; (use-package yasnippet
-    ;;   :ensure t
-    ;;   :init
-    ;;     (yas-global-mode 1))
   #+END_SRC
 
 ** Avy
