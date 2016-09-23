@@ -102,6 +102,49 @@ If the universal prefix argument is used then kill also the window."
   #+END_SRC
 
 * binds
+** core
+*** special chars
+#+BEGIN_SRC emacs-lisp
+  ;; save: faster than `:w'
+  (define-key evil-normal-state-map (kbd "RET") 'evil-write)
+
+  ;; file/buffer selection
+  (define-key evil-normal-state-map (kbd "TAB") 'ivy-switch-buffer)
+  (define-key evil-normal-state-map (kbd "DEL") 'counsel-find-file)
+  (define-key evil-normal-state-map "-" 'counsel-projectile)
+
+  ;; invertion of `'` e `"`
+  (define-key evil-normal-state-map "'" 'evil-use-register)
+  (define-key evil-normal-state-map "\"" 'evil-goto-mark-line)
+#+END_SRC
+
+*** letters
+#+BEGIN_SRC emacs-lisp
+;; toggle fold: faster and more comfortable than `za'
+(define-key evil-normal-state-map "s" 'evil-toggle-fold)
+
+;; used way more then { and }
+(define-key evil-motion-state-map "(" 'evil-backward-paragraph)
+(define-key evil-motion-state-map ")" 'evil-forward-paragraph)
+
+;; faster than `gg' and `G`.
+(define-key evil-motion-state-map "go" 'evil-goto-first-line)
+(define-key evil-motion-state-map "gl" 'evil-goto-line)
+
+;; As I've sequestered < and > when in org mode, we need a workaround.
+(define-key evil-motion-state-map "g>" 'evil-shift-right)
+(define-key evil-motion-state-map "g<" 'evil-shift-left)
+
+
+;; `z.' is a complete replacement for `zz'
+(define-key evil-normal-state-map "zz" 'evil-save-modified-and-close)
+(define-key evil-normal-state-map "zn" 'evil-quit)
+(define-key evil-normal-state-map "zb" 'restart-emacs)
+
+;; `z.' fix
+(define-key evil-normal-state-map "z." 'evil-scroll-line-to-center)
+#+END_SRC
+
 ** bind-map
 #+BEGIN_SRC emacs-lisp
 (use-package bind-map
@@ -190,16 +233,20 @@ If the universal prefix argument is used then kill also the window."
 *** direct
 **** core
 #+BEGIN_SRC emacs-lisp
-(bind-map-set-keys main-map
-  "<SPC>" 'counsel-M-x
-  "TAB" 'evil-next-buffer
-  ";" 'ivy-switch-buffer
-  "," 'counsel-recentf
-  "." 'counsel-find-file
-)
-;; "-"   'available
-;; "?"   'available
+  (bind-map-set-keys main-map
+    "<SPC>" 'counsel-M-x
+    "/" 'swiper
+
+    ;; "TAB" 'available
+    ;; ";" 'available
+    ;; "," 'available
+    ;; "." 'available
+    ;; "-"   'available
+    ;; "?"   'available
+  )
 #+END_SRC
+
+#+RESULTS:
 
 **** window 
 #+BEGIN_SRC emacs-lisp
@@ -215,20 +262,25 @@ If the universal prefix argument is used then kill also the window."
 ** org
 *** local fixes
 #+BEGIN_SRC emacs-lisp
-(evil-define-key 'normal org-mode-map (kbd "TAB") 'spacemacs/alternate-buffer)
-(when (display-graphic-p)
-  (evil-define-key 'normal org-mode-map (kbd "<tab>") 'spacemacs/alternate-buffer))
-(evil-define-key 'normal org-mode-map (kbd "RET") 'evil-write)
+  (evil-define-key 'normal org-mode-map (kbd "TAB") 'ivy-switch-buffer)
+  (when (display-graphic-p)
+    (evil-define-key 'normal org-mode-map (kbd "<tab>") 'ivy-switch-buffer))
 
-;; movement
-(evil-define-key 'normal org-mode-map "zu" 'outline-up-heading)
-(evil-define-key 'normal org-mode-map "zh" 'outline-previous-visible-heading)
-(evil-define-key 'normal org-mode-map "zj" 'org-forward-heading-same-level)
-(evil-define-key 'normal org-mode-map "zk" 'org-backward-heading-same-level)
-(evil-define-key 'normal org-mode-map "zl" 'outline-next-visible-heading)
+  ;; (evil-define-key 'normal org-mode-map (kbd "TAB") 'spacemacs/alternate-buffer)
+  ;; (when (display-graphic-p)
+  ;;   (evil-define-key 'normal org-mode-map (kbd "<tab>") 'spacemacs/alternate-buffer))
 
-(evil-define-key 'normal org-mode-map "<" 'org-do-promote)
-(evil-define-key 'normal org-mode-map ">" 'org-do-demote)
+  (evil-define-key 'normal org-mode-map (kbd "RET") 'evil-write)
+
+  ;; movement
+  (evil-define-key 'normal org-mode-map "zu" 'outline-up-heading)
+  (evil-define-key 'normal org-mode-map "zh" 'outline-previous-visible-heading)
+  (evil-define-key 'normal org-mode-map "zj" 'org-forward-heading-same-level)
+  (evil-define-key 'normal org-mode-map "zk" 'org-backward-heading-same-level)
+  (evil-define-key 'normal org-mode-map "zl" 'outline-next-visible-heading)
+
+  (evil-define-key 'normal org-mode-map "<" 'org-do-promote)
+  (evil-define-key 'normal org-mode-map ">" 'org-do-demote)
   #+END_SRC
 
 *** local leader
@@ -281,26 +333,6 @@ If the universal prefix argument is used then kill also the window."
   
   ;; cycle
   "TAB" 'org-cycle)
-#+END_SRC
-
-** core
-#+BEGIN_SRC emacs-lisp
-(define-key evil-normal-state-map "'" 'evil-use-register)
-(define-key evil-normal-state-map "\"" 'evil-goto-mark-line)
-
-(define-key evil-normal-state-map (kbd "RET") 'evil-write)
-(define-key evil-normal-state-map "s" 'evil-toggle-fold)
-(define-key evil-motion-state-map "(" 'evil-backward-paragraph)
-(define-key evil-motion-state-map ")" 'evil-forward-paragraph)
-
-(define-key evil-normal-state-map (kbd "TAB") 'spacemacs/alternate-buffer)
-
-(define-key evil-motion-state-map "go" 'evil-goto-first-line)
-(define-key evil-motion-state-map "gl" 'evil-goto-line)
-
-;; As I've sequestered < and > when in org mode, we need a workaround.
-(define-key evil-motion-state-map "g>" 'evil-shift-right)
-(define-key evil-motion-state-map "g<" 'evil-shift-left)
 #+END_SRC
 
 * interface tweaks
