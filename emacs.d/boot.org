@@ -1,6 +1,72 @@
 #+STARTUP: overview
 #+STARTUP: indent
 
+* lisp lifts
+*** spacemacs/alternate-buffer
+SPC TAB
+back and forth between current and last buffer
+#+BEGIN_SRC emacs-lisp
+(defun spacemacs/alternate-buffer (&optional window)
+  "Switch back and forth between current and last buffer in the
+current window."
+  (interactive)
+  (let ((current-buffer (window-buffer window))
+        (buffer-predicate
+         (frame-parameter (window-frame window) 'buffer-predicate)))
+    ;; switch to first buffer previously shown in this window that matches
+    ;; frame-parameter `buffer-predicate'
+    (switch-to-buffer
+     (or (cl-find-if (lambda (buffer)
+                       (and (not (eq buffer current-buffer))
+                            (or (null buffer-predicate)
+                                (funcall buffer-predicate buffer))))
+                     (mapcar #'car (window-prev-buffers window)))
+         ;; `other-buffer' honors `buffer-predicate' so no need to filter
+         (other-buffer current-buffer t)))))
+#+END_SRC
+
+*** spacemacs/kill-this-buffer
+SPC b d
+#+BEGIN_SRC emacs-lisp
+(defun spacemacs/kill-this-buffer (&optional arg)
+  "Kill the current buffer.
+If the universal prefix argument is used then kill also the window."
+  (interactive "P")
+  (if (window-minibuffer-p)
+      (abort-recursive-edit)
+    (if (equal '(4) arg)
+        (kill-buffer-and-window)
+      (kill-buffer))))
+#+END_SRC
+*** evil-mc: function to mimic mc/edit-lines
+- lifted from [[https://github.com/gabesoft/evil-mc/issues/22][gabesoft/evil-mc#22]] (code from github user @quicknir)
+#+begin_src emacs-lisp
+(defun column-number-at-pos (pos)
+    (save-excursion (goto-char pos) (current-column)))
+
+(defun make-vertical-cursors (p1 p2)
+    "makes vertical cursors"
+    (interactive "r")
+    (evil-mc-pause-cursors)
+    (let ((start-row (line-number-at-pos p1))
+            (end-row (line-number-at-pos p2))
+            (start-col (min (column-number-at-pos p1) (column-number-at-pos p2))))
+
+        (save-excursion
+        (goto-char p1)
+        (move-to-column start-col)
+        (while (< start-row end-row)
+            (call-interactively 'evil-mc-make-cursor-here)
+            (forward-line 1)
+            (move-to-column start-col)
+            (setq start-row (+ start-row 1))))
+
+        (call-interactively 'evil-exit-visual-state)
+        (call-interactively 'evil-mc-resume-cursors)
+        (goto-char p2)
+        (move-to-column start-col)))
+#+end_src
+
 * evil corruption
 ** Evil Mode
 #+BEGIN_SRC emacs-lisp
@@ -41,43 +107,16 @@
   :config
     (evil-exchange-install))
 #+END_SRC
-* spacemacs lifting
-*** alternate-buffer
-SPC TAB
-back and forth between current and last buffer
-#+BEGIN_SRC emacs-lisp
-(defun spacemacs/alternate-buffer (&optional window)
-  "Switch back and forth between current and last buffer in the
-current window."
-  (interactive)
-  (let ((current-buffer (window-buffer window))
-        (buffer-predicate
-         (frame-parameter (window-frame window) 'buffer-predicate)))
-    ;; switch to first buffer previously shown in this window that matches
-    ;; frame-parameter `buffer-predicate'
-    (switch-to-buffer
-     (or (cl-find-if (lambda (buffer)
-                       (and (not (eq buffer current-buffer))
-                            (or (null buffer-predicate)
-                                (funcall buffer-predicate buffer))))
-                     (mapcar #'car (window-prev-buffers window)))
-         ;; `other-buffer' honors `buffer-predicate' so no need to filter
-         (other-buffer current-buffer t)))))
-#+END_SRC
 
-*** kill-this-buffer
-SPC b d
-#+BEGIN_SRC emacs-lisp
-(defun spacemacs/kill-this-buffer (&optional arg)
-  "Kill the current buffer.
-If the universal prefix argument is used then kill also the window."
-  (interactive "P")
-  (if (window-minibuffer-p)
-      (abort-recursive-edit)
-    (if (equal '(4) arg)
-        (kill-buffer-and-window)
-      (kill-buffer))))
-#+END_SRC
+** Evil MC
+#+begin_src emacs-lisp
+(use-package evil-mc
+  :ensure t
+  :config
+    (global-evil-mc-mode 1)
+    ;(define-key evil-mc-key-map "grv" 'make-vertical-cursors)
+)
+#+end_src
 
 * utils
 ** try
@@ -313,8 +352,7 @@ If the universal prefix argument is used then kill also the window."
 #+END_SRC
 
 ** insert state
-#+begin_src emacs-lisp :tangle yes
-(define-key company-mode-map (kbd "C-SPC") 'company-complete)
+#+begin_src emacs-lisp
 #+end_src
 
 * interface tweaks
@@ -322,7 +360,7 @@ If the universal prefix argument is used then kill also the window."
 #+BEGIN_SRC emacs-lisp
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
-(menu-bar-mode 1)
+(menu-bar-mode -1)
 (fset 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
 
@@ -486,7 +524,9 @@ If the universal prefix argument is used then kill also the window."
 (use-package company
   :ensure t
   :config
-    (add-hook 'after-init-hook 'global-company-mode))
+    (add-hook 'after-init-hook 'global-company-mode)
+    (define-key company-mode-map (kbd "C-SPC") 'company-complete)
+)
 #+END_SRC
 
 ** yasnippet
