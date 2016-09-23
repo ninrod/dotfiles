@@ -189,6 +189,13 @@ If the universal prefix argument is used then kill also the window."
   (which-key-declare-prefixes "SPC e" "evaluation")
 #+END_SRC
 
+**** f: files
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys main-map
+  "fr" 'counsel-recentf)
+(which-key-declare-prefixes "SPC f" "files")
+#+END_SRC
+
 **** g: git
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
@@ -233,8 +240,8 @@ If the universal prefix argument is used then kill also the window."
   (bind-map-set-keys main-map
     "<SPC>" 'counsel-M-x
     "/" 'swiper
+    "TAB" 'counsel-recentf
 
-    ;; "TAB" 'available
     ;; ";" 'available
     ;; "," 'available
     ;; "." 'available
