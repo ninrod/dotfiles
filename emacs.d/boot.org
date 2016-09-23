@@ -189,12 +189,13 @@ If the universal prefix argument is used then kill also the window."
 
 *** direct
 **** core
-
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
   "<SPC>" 'counsel-M-x
   "TAB" 'evil-next-buffer
-  "." 'ivy-switch-buffer
+  ";" 'ivy-switch-buffer
+  "," 'counsel-recentf
+  "." 'counsel-find-file
 )
 ;; "-"   'available
 ;; "?"   'available
@@ -211,15 +212,15 @@ If the universal prefix argument is used then kill also the window."
   "x" 'evil-window-split)
 #+END_SRC
 
-** ORG
+** org
 *** local fixes
 #+BEGIN_SRC emacs-lisp
 (evil-define-key 'normal org-mode-map (kbd "TAB") 'spacemacs/alternate-buffer)
 (when (display-graphic-p)
   (evil-define-key 'normal org-mode-map (kbd "<tab>") 'spacemacs/alternate-buffer))
-
 (evil-define-key 'normal org-mode-map (kbd "RET") 'evil-write)
 
+;; movement
 (evil-define-key 'normal org-mode-map "zu" 'outline-up-heading)
 (evil-define-key 'normal org-mode-map "zh" 'outline-previous-visible-heading)
 (evil-define-key 'normal org-mode-map "zj" 'org-forward-heading-same-level)
@@ -255,15 +256,15 @@ If the universal prefix argument is used then kill also the window."
 (which-key-declare-prefixes ", s" "org subtree operations")
 #+END_SRC
 
-***** i: insertions
+***** a: additions
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
-  "ih" 'org-insert-heading
-  "ia" 'org-insert-heading-after-current
-  "ir" 'org-insert-heading-respect-content
-  "is" 'org-insert-subheading
-  "il" 'org-insert-link)
-(which-key-declare-prefixes ", i" "insertions")
+  "ah" 'org-insert-heading
+  "aa" 'org-insert-heading-after-current
+  "ar" 'org-insert-heading-respect-content
+  "as" 'org-insert-subheading
+  "al" 'org-insert-link)
+(which-key-declare-prefixes ", a" "additions/insertions")
 #+END_SRC
 
 ***** *: others
