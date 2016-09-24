@@ -156,6 +156,7 @@ If the universal prefix argument is used then kill also the window."
   :config
     (evil-indent-plus-default-bindings))
 #+end_src
+
 * utils
 ** restart-emacs
 #+BEGIN_SRC emacs-lisp
