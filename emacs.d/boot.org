@@ -154,7 +154,9 @@ If the universal prefix argument is used then kill also the window."
   ;; file/buffer selection
   (define-key evil-normal-state-map (kbd "TAB") 'ivy-switch-buffer)
   (define-key evil-normal-state-map (kbd "DEL") 'counsel-find-file)
-  (define-key evil-normal-state-map "-" 'counsel-projectile)
+  
+  ;; turn off search highlight
+  (define-key evil-normal-state-map "-" 'evil-ex-nohighlight)
 
   ;; magit status
   (define-key evil-motion-state-map "gs" 'magit-status)
@@ -261,10 +263,10 @@ If the universal prefix argument is used then kill also the window."
     "<SPC>" 'counsel-M-x
     "/" 'swiper
     "TAB" 'counsel-recentf
+    "." 'counsel-projectile
 
     ;; ";" 'available
     ;; "," 'available
-    ;; "." 'available
     ;; "-"   'available
     ;; "?"   'available
   )
