@@ -330,15 +330,15 @@ If the universal prefix argument is used then kill also the window."
 (which-key-declare-prefixes ", s" "org subtree operations")
 #+END_SRC
 
-***** a: additions
+***** i: insertions
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
-  "ah" 'org-insert-heading
-  "aa" 'org-insert-heading-after-current
-  "ar" 'org-insert-heading-respect-content
-  "as" 'org-insert-subheading
-  "al" 'org-insert-link)
-(which-key-declare-prefixes ", a" "additions/insertions")
+  "ih" 'org-insert-heading
+  "ia" 'org-insert-heading-after-current
+  "ir" 'org-insert-heading-respect-content
+  "is" 'org-insert-subheading
+  "il" 'org-insert-link)
+(which-key-declare-prefixes ", i" "insertions/additions")
 #+END_SRC
 
 ***** *: others
