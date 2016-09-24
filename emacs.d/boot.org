@@ -149,6 +149,13 @@ If the universal prefix argument is used then kill also the window."
     (define-key evil-outer-text-objects-map "b" 'evil-textobj-anyblock-a-block))
 #+END_SRC
 
+** evil-indent-plus
+#+begin_src emacs-lisp
+(use-package evil-indent-plus
+  :ensure t
+  :config
+    (evil-indent-plus-default-bindings))
+#+end_src
 * utils
 ** try
 #+BEGIN_SRC emacs-lisp
