@@ -132,6 +132,14 @@ If the universal prefix argument is used then kill also the window."
 )
 #+end_src
 
+** evil-visualstar
+#+begin_src emacs-lisp
+(use-package evil-visualstar 
+  :ensure t
+  :config
+    (global-evil-visualstar-mode))
+#+end_src
+
 * utils
 ** try
 #+BEGIN_SRC emacs-lisp
