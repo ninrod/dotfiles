@@ -68,7 +68,7 @@ If the universal prefix argument is used then kill also the window."
 #+end_src
 
 * evil corruption
-** Evil Mode
+** evil
 #+BEGIN_SRC emacs-lisp
 (use-package evil
   :ensure t
@@ -81,7 +81,7 @@ If the universal prefix argument is used then kill also the window."
     (evil-mode))
 #+END_SRC
 
-** Evil Commentary
+** evil-commentary
 #+BEGIN_SRC emacs-lisp
 (use-package evil-commentary
   :ensure t
@@ -89,7 +89,7 @@ If the universal prefix argument is used then kill also the window."
     (evil-commentary-mode))
 #+END_SRC
 
-** Evil Matchit
+** evil-matchit
 #+BEGIN_SRC emacs-lisp
 (use-package evil-matchit
   :ensure t
@@ -97,7 +97,7 @@ If the universal prefix argument is used then kill also the window."
     (global-evil-matchit-mode 1))
 #+END_SRC
 
-** Evil Surround
+** evil-surround
 #+BEGIN_SRC emacs-lisp
 (use-package evil-surround
   :ensure t
@@ -105,7 +105,7 @@ If the universal prefix argument is used then kill also the window."
     (global-evil-surround-mode 1))
 #+END_SRC
 
-** Evil Exchange
+** Evil-exchange
 #+BEGIN_SRC emacs-lisp
 (use-package evil-exchange
   :ensure t
@@ -113,13 +113,23 @@ If the universal prefix argument is used then kill also the window."
     (evil-exchange-install))
 #+END_SRC
 
-** Evil MC 
+** evil-mc
 #+begin_src emacs-lisp
   (use-package evil-mc
     :ensure t
     :config
       (global-evil-mc-mode 1)
       (evil-define-key 'normal evil-mc-key-map "grv" 'make-vertical-cursors))
+#+end_src
+
+** evil-args
+#+begin_src emacs-lisp
+(use-package evil-args
+  :ensure t
+  :config
+    (define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
+    (define-key evil-outer-text-objects-map "a" 'evil-outer-arg)
+)
 #+end_src
 
 * utils
