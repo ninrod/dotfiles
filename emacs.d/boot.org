@@ -105,7 +105,7 @@ If the universal prefix argument is used then kill also the window."
     (global-evil-surround-mode 1))
 #+END_SRC
 
-** Evil-exchange
+** evil-exchange
 #+BEGIN_SRC emacs-lisp
 (use-package evil-exchange
   :ensure t
