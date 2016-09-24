@@ -140,6 +140,15 @@ If the universal prefix argument is used then kill also the window."
     (global-evil-visualstar-mode))
 #+end_src
 
+** evil-textobj-anyblock
+#+BEGIN_SRC emacs-lisp
+(use-package evil-textobj-anyblock
+  :ensure t
+  :config
+    (define-key evil-inner-text-objects-map "b" 'evil-textobj-anyblock-inner-block)
+    (define-key evil-outer-text-objects-map "b" 'evil-textobj-anyblock-a-block))
+#+END_SRC
+
 * utils
 ** try
 #+BEGIN_SRC emacs-lisp
