@@ -6,6 +6,10 @@
 
 ## Screenshots
 
+### Emacs
+
+![emacs-config](https://github.com/ninrod/dotfiles/raw/misc/images/emacs-shot-2016-10-01.png)
+
 ### With [gruvbox](https://github.com/morhetz/gruvbox) (default)
 
 ![gruvbox-config](https://github.com/ninrod/dotfiles/raw/misc/images/shot-2016-06-16-gruvbox.png)
