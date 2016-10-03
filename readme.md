@@ -6,19 +6,19 @@
 
 ## Screenshots
 
-### Emacs
+### Emacs using spacemacs' theme
 
 ![emacs-config](https://github.com/ninrod/dotfiles/raw/misc/images/emacs-shot-2016-10-01.png)
 
-### With [gruvbox](https://github.com/morhetz/gruvbox) (default)
+### Vim/Tmux on iTerm2 with [gruvbox](https://github.com/morhetz/gruvbox) (default)
 
 ![gruvbox-config](https://github.com/ninrod/dotfiles/raw/misc/images/shot-2016-06-16-gruvbox.png)
 
-### With [jellybeans](https://github.com/nanotech/jellybeans.vim)
+### Vim/Tmux on iTerm2 with [jellybeans](https://github.com/nanotech/jellybeans.vim)
 
 ![jellybeans-config](https://github.com/ninrod/dotfiles/raw/misc/images/shot-2016-06-15-jellybeans.png)
 
-### With [molokai](https://github.com/tomasr/molokai)
+### Vim/Tmux on iTerm2 with [molokai](https://github.com/tomasr/molokai)
 
 ![molokai-config](https://github.com/ninrod/dotfiles/raw/misc/images/molokai.png)
 
