@@ -491,20 +491,13 @@ If the universal prefix argument is used then kill also the window."
 #+END_SRC
 
 * packages
-** magit
-#+BEGIN_SRC emacs-lisp
-(use-package magit
-  :ensure t
-  :config
-    (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1))
-(use-package evil-magit
-  :ensure t)
-#+END_SRC
-
 ** org Mode
 *** general configs
 - somewhat lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
 #+BEGIN_SRC emacs-lisp
+(setq org-todo-keywords
+    '((sequence "☛ TODO" "○ IN-PROGRESS" "⚑ WAITING" "|" "✓ DONE" "✗ CANCELED")))
+
 (setq org-blank-before-new-entry (quote ((heading) (plain-list-item))))
 (setq org-log-done (quote time))
 (setq org-log-redeadline (quote time))
@@ -516,8 +509,8 @@ If the universal prefix argument is used then kill also the window."
 #+BEGIN_SRC emacs-lisp
 (setq org-capture-templates
       '(("a" "My TODO task format." entry
-         (file "~/code/sources/life/todo.org")
-         "* TODO %?
+         (file "~/code/sources/life/inbox.org")
+         "* ☛ TODO %?
 SCHEDULED: %t")))
 (defun air-org-task-capture ()
   "Capture a task with my default template."
@@ -529,19 +522,21 @@ SCHEDULED: %t")))
 *** org agenda
 - lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
 #+BEGIN_SRC emacs-lisp
-(setq org-todo-keywords
-      '((sequence "TODO" "WIP" "WAITING" "|" "DONE" "CANCELED")))
-(setq org-agenda-files '("~/code/sources/life/"))
+  ;; (setq org-todo-keywords
+  ;;       '((sequence "TODO" "WIP" "WAITING" "|" "DONE" "CANCELED")))
 
-(defun air-pop-to-org-agenda (split)
-  "Visit the org agenda, in the current window or a SPLIT."
-  (interactive "P")
-  (org-agenda-list)
-  (when (not split)
-    (delete-other-windows)))
 
-(define-key global-map (kbd "C-c t a") 'air-pop-to-org-agenda)
-(setq org-agenda-text-search-extra-files '(agenda-archives))
+  (setq org-agenda-files '("~/code/sources/life/"))
+
+  (defun air-pop-to-org-agenda (split)
+    "Visit the org agenda, in the current window or a SPLIT."
+    (interactive "P")
+    (org-agenda-list)
+    (when (not split)
+      (delete-other-windows)))
+
+  (define-key global-map (kbd "C-c t a") 'air-pop-to-org-agenda)
+  (setq org-agenda-text-search-extra-files '(agenda-archives))
 #+END_SRC
 
 *** Org bullets
@@ -570,6 +565,16 @@ SCHEDULED: %t")))
   :ensure t)
   #+END_SRC
   
+** magit
+#+BEGIN_SRC emacs-lisp
+(use-package magit
+  :ensure t
+  :config
+    (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1))
+(use-package evil-magit
+  :ensure t)
+#+END_SRC
+
 ** ivy/counsel
 #+BEGIN_SRC emacs-lisp
     (use-package ivy
