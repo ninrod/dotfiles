@@ -72,11 +72,6 @@ If the universal prefix argument is used then kill also the window."
 #+BEGIN_SRC emacs-lisp
 (use-package evil
   :ensure t
-  :init
-    ;; @see https://bitbucket.org/lyro/evil/issue/342/evil-default-cursor-setting-should-default
-    ;; cursor is alway black because of evil
-    ;; here is the workaround
-    (setq evil-default-cursor t)
   :config
     (evil-mode))
 #+END_SRC
@@ -112,15 +107,6 @@ If the universal prefix argument is used then kill also the window."
   :config
     (evil-exchange-install))
 #+END_SRC
-
-** evil-mc
-#+begin_src emacs-lisp
-  (use-package evil-mc
-    :ensure t
-    :config
-      (global-evil-mc-mode 1)
-      (evil-define-key 'normal evil-mc-key-map "grv" 'make-vertical-cursors))
-#+end_src
 
 ** evil-args
 #+begin_src emacs-lisp
@@ -190,6 +176,15 @@ If the universal prefix argument is used then kill also the window."
   ;; magit status
   (define-key evil-motion-state-map "gs" 'magit-status)
 
+  ;; counsel-projectile
+  (define-key evil-motion-state-map "g." 'counsel-projectile)
+
+  ;; swiper
+  (define-key evil-motion-state-map "g/" 'swiper)
+  
+  ;; counsel-recentf
+  (define-key evil-motion-state-map "gr" 'counsel-recentf)
+  
   ;; toggle fold: faster and more comfortable than `za'
   (define-key evil-normal-state-map "s" 'evil-toggle-fold)
 
@@ -290,10 +285,10 @@ If the universal prefix argument is used then kill also the window."
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys main-map
     "<SPC>" 'counsel-M-x
-    "/" 'swiper
-    "TAB" 'counsel-recentf
-    "." 'counsel-projectile
 
+    ;; "TAB" 'available
+    ;; "/" 'available
+    ;; "." 'available
     ;; ";" 'available
     ;; "," 'available
     ;; "-"   'available
