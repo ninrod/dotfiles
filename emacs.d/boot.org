@@ -38,34 +38,6 @@ If the universal prefix argument is used then kill also the window."
         (kill-buffer-and-window)
       (kill-buffer))))
 #+END_SRC
-*** evil-mc: function to mimic mc/edit-lines
-- lifted from [[https://github.com/gabesoft/evil-mc/issues/22][gabesoft/evil-mc#22]] (code from github user @quicknir)
-#+begin_src emacs-lisp
-(defun column-number-at-pos (pos)
-    (save-excursion (goto-char pos) (current-column)))
-
-(defun make-vertical-cursors (p1 p2)
-    "makes vertical cursors"
-    (interactive "r")
-    (evil-mc-pause-cursors)
-    (let ((start-row (line-number-at-pos p1))
-            (end-row (line-number-at-pos p2))
-            (start-col (min (column-number-at-pos p1) (column-number-at-pos p2))))
-
-        (save-excursion
-        (goto-char p1)
-        (move-to-column start-col)
-        (while (< start-row end-row)
-            (call-interactively 'evil-mc-make-cursor-here)
-            (forward-line 1)
-            (move-to-column start-col)
-            (setq start-row (+ start-row 1))))
-
-        (call-interactively 'evil-exit-visual-state)
-        (call-interactively 'evil-mc-resume-cursors)
-        (goto-char p2)
-        (move-to-column start-col)))
-#+end_src
 
 * evil corruption
 ** evil
@@ -702,6 +674,12 @@ SCHEDULED: %t")))
                                 "IndianRed3"
                                 "IndianRed4"))
         (set-face-attribute 'hl-paren-face nil :weight 'ultra-bold)))
+#+END_SRC
+
+** vimrc mode
+#+BEGIN_SRC emacs-lisp
+(use-package vimrc-mode
+  :ensure t)
 #+END_SRC
 
 * fixes
