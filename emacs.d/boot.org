@@ -691,13 +691,13 @@ SCHEDULED: %t")))
 
 ** ranger
 #+BEGIN_SRC emacs-lisp
-(use-package ranger
-  :ensure t
-  :config
-  (ranger-override-dired-mode t)
-  (setq ranger-cleanup-on-disable t)
-  (setq ranger-show-dotfiles t)
-  (setq ranger-hide-cursor nil))
+  (use-package ranger
+    :ensure t
+    :config
+    ;; (ranger-override-dired-mode t)
+    (setq ranger-cleanup-on-disable t)
+    (setq ranger-show-dotfiles t)
+    (setq ranger-hide-cursor nil))
 #+END_SRC
 
 * syntax-highlight
