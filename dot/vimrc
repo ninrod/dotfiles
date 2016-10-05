@@ -57,8 +57,8 @@ set hlsearch
 set ignorecase
 
 " line numbers
-set number
-set relativenumber
+" set number
+" set relativenumber
 
 " convert tabs to spaces
 set expandtab
@@ -171,7 +171,7 @@ autocmd! User GoyoLeave Limelight!
 " }}}
 
 " }}}
-" nvim specific {{{
+" nvim specific fixes {{{
 
 if has('nvim')
   Plug 'bfredl/nvim-miniyank'
@@ -184,9 +184,6 @@ endif
 " theme plugins
 Plug 'morhetz/gruvbox'
 Plug 'itchyny/lightline.vim'
-Plug 'Yggdroot/indentLine'
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
 
 " syntax highlight extension plugins
 Plug 'pangloss/vim-javascript', {'for': ['javascript']}
@@ -201,7 +198,6 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'luochen1990/rainbow'
-Plug 'mbbill/undotree'
 Plug 'nelstrom/vim-markdown-folding'
 Plug 'nhooyr/neoman.vim'
 Plug 'ninrod/ninscratch-vim'
@@ -225,9 +221,9 @@ Plug 'kana/vim-textobj-user'
 Plug '~/.fzf'
 
 " temporarily, while I fix bug #152
-Plug '~/code/sources/ninrod-multiple-cursors'
+Plug 'ninrod/vim-multiple-cursors'
+" Plug '~/code/sources/ninrod-multiple-cursors'
 " Plug 'terryma/vim-multiple-cursors'
-" Plug 'ninrod/vim-multiple-cursors'
 
 " heavy plugins
 " Plug 'SirVer/ultisnips'
@@ -239,11 +235,15 @@ Plug '~/code/sources/ninrod-multiple-cursors'
 " Plug 'nanotech/jellybeans.vim'
 " Plug 'lifepillar/vim-solarized8'
 " Plug 'justinmk/molokai'
+" Plug 'Yggdroot/indentLine'
+" Plug 'junegunn/goyo.vim'
+" Plug 'junegunn/limelight.vim'
 
 " plugin cemetery
 " Plug 'vim-scripts/ReplaceWithRegister'
 " Plug 'whatyouhide/vim-lengthmatters'
 " Plug 'sheerun/vim-polyglot'
+" Plug 'mbbill/undotree'
 
 call plug#end()
 
