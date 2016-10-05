@@ -38,6 +38,7 @@ If the universal prefix argument is used then kill also the window."
         (kill-buffer-and-window)
       (kill-buffer))))
 #+END_SRC
+
 *** clipboard
 #+BEGIN_SRC emacs-lisp
 (defun copy-to-clipboard ()
@@ -68,6 +69,7 @@ If the universal prefix argument is used then kill also the window."
     )
   )
 #+END_SRC
+
 * evil corruption
 ** evil
 #+BEGIN_SRC emacs-lisp
@@ -215,11 +217,6 @@ If the universal prefix argument is used then kill also the window."
   ;; `Q' is my new `q'. open up q prefix for abuse.
   (define-key evil-normal-state-map "Q" 'evil-record-macro)
 
-  ;; quits: file saves, buffer deletes, window exits, you name it...
-  ;; (define-key evil-normal-state-map "qy" 'evil-save-modified-and-close)
-  ;; (define-key evil-normal-state-map "qn" 'evil-quit)
-  ;; (define-key evil-normal-state-map "qr" 'restart-emacs)
-  ;; (define-key evil-normal-state-map "qk" 'spacemacs/kill-this-buffer)
 #+END_SRC
 
 *** fixes
@@ -247,7 +244,10 @@ If the universal prefix argument is used then kill also the window."
       (bind-map org-map
         :evil-keys (",")
         :evil-states (normal visual)
-        :major-modes (org-mode))))
+        :major-modes (org-mode))
+      (bind-map q-map 
+        :evil-keys ("q")
+        :evil-states (normal visual))))
 #+END_SRC
 
 ** SPC
@@ -318,6 +318,17 @@ If the universal prefix argument is used then kill also the window."
   "l" 'evil-window-right
   "v" 'evil-window-vsplit
   "x" 'evil-window-split)
+#+END_SRC
+
+** q
+#+BEGIN_SRC emacs-lisp
+  ;; quits: file saves, buffer deletes, window exits, you name it...
+  (bind-map-set-keys q-map
+      "y" 'evil-save-modified-and-close
+      "n" 'evil-quit
+      "r" 'restart-emacs
+      "k" 'kill-this-buffer
+    )
 #+END_SRC
 
 ** org
