@@ -39,6 +39,19 @@ If the universal prefix argument is used then kill also the window."
       (kill-buffer))))
 #+END_SRC
 
+*** emacs-prelude
+#+BEGIN_SRC emacs-lisp
+(defun prelude-copy-file-name-to-clipboard ()
+  "Copy the current buffer file name to the clipboard."
+  (interactive)
+  (let ((filename (if (equal major-mode 'dired-mode)
+                      default-directory
+                    (buffer-file-name))))
+    (when filename
+      (kill-new filename)
+      (message "Copied buffer file name '%s' to the clipboard." filename))))
+#+END_SRC
+
 *** clipboard
 #+BEGIN_SRC emacs-lisp
 (defun copy-to-clipboard ()
@@ -632,9 +645,19 @@ SCHEDULED: %t")))
 **** f: file
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys main-map
-    "fj" 'dired-jump)
+    "fj" 'dired-jump
+    "fp" 'prelude-copy-file-name-to-clipboard
+  )
   (which-key-declare-prefixes "SPC f" "file operations")
 #+END_SRC
+
+**** g: git
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys main-map
+    "gf" 'magit-log-buffer-file)
+  (which-key-declare-prefixes "SPC g" "[ma]git operations")
+#+END_SRC
+
 **** p: projectile
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
