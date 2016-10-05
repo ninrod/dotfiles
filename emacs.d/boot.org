@@ -162,260 +162,6 @@ If the universal prefix argument is used then kill also the window."
 	(which-key-mode))
   #+END_SRC
 
-* binds
-** core
-*** abusing the g prefix
-#+BEGIN_SRC emacs-lisp
-;; faster than `gg' and `G`.
-(define-key evil-motion-state-map "go" 'evil-goto-first-line)
-(define-key evil-motion-state-map "gl" 'evil-goto-line)
-
-;; magit status
-(define-key evil-motion-state-map "gs" 'magit-status)
-
-;; counsel-projectile
-(define-key evil-motion-state-map "g." 'counsel-projectile)
-
-;; swiper
-(define-key evil-motion-state-map "g/" 'swiper)
-
-;; counsel-recentf
-(define-key evil-motion-state-map "gr" 'counsel-recentf)
-
-;;custom pagedowns and pageups
-(define-key evil-motion-state-map "g9" (kbd "Hz-M"))
-(define-key evil-motion-state-map "g0" (kbd "LztM"))
-
-;; turn off search highlight (muscle memory)
-(define-key evil-normal-state-map "g-" 'evil-ex-nohighlight)
-#+END_SRC
-
-*** comfort binds
-#+BEGIN_SRC emacs-lisp
-;; toggle fold: faster and more comfortable than `za'
-;; `cl' is a complete replacement for `s'
-(define-key evil-normal-state-map "s" 'evil-toggle-fold)
-
-;; save: faster than `:w'
-(define-key evil-normal-state-map (kbd "RET") 'evil-write)
-
-;; file/buffer selection
-(define-key evil-normal-state-map (kbd "TAB") 'ivy-switch-buffer)
-(define-key evil-normal-state-map (kbd "DEL") 'counsel-find-file)
-
-#+END_SRC
-
-*** comfort swaps/improvements
-#+BEGIN_SRC emacs-lisp
-  ;; invertion of `'` and `"`
-  (define-key evil-normal-state-map "'" 'evil-use-register)
-  (define-key evil-normal-state-map "\"" 'evil-goto-mark-line)
-
-  ;; invert `{' and `)'. used way more then { and }
-  (define-key evil-motion-state-map "(" 'evil-backward-paragraph)
-  (define-key evil-motion-state-map ")" 'evil-forward-paragraph)
-
-  ;; `Q' is my new `q'. open up q prefix for abuse.
-  (define-key evil-normal-state-map "Q" 'evil-record-macro)
-
-#+END_SRC
-
-*** fixes
-#+BEGIN_SRC emacs-lisp
-;; As I've sequestered < and > when in org mode, we need a workaround.
-(define-key evil-motion-state-map "g>" 'evil-shift-right)
-(define-key evil-motion-state-map "g<" 'evil-shift-left)
-
-;; `z.' fix
-(define-key evil-normal-state-map "z." 'evil-scroll-line-to-center)
-
-;; `z-' fix
-(define-key evil-normal-state-map "z-" 'evil-scroll-line-to-bottom)
-#+END_SRC
-
-** bind-map
-#+BEGIN_SRC emacs-lisp
-(use-package bind-map
-    :ensure t
-    :config 
-    (progn
-      (bind-map main-map
-        :evil-keys ("SPC")
-        :evil-states (normal visual motion))
-      (bind-map org-map
-        :evil-keys (",")
-        :evil-states (normal visual)
-        :major-modes (org-mode))
-      (bind-map q-map 
-        :evil-keys ("q")
-        :evil-states (normal visual))))
-#+END_SRC
-
-** SPC
-*** prefixes
-**** c: counsel/ivy
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys main-map
-  "ca" 'counsel-ag
-)
-(which-key-declare-prefixes "SPC c" "counsel/ivy")
-#+END_SRC
-
-**** d: docs, descriptions, help
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys main-map
-    "db" 'counsel-descbinds
-    "dc" 'describe-char
-    "df" 'counsel-describe-function
-    "dk" 'describe-key
-    "dv" 'counsel-describe-variable)
-  (which-key-declare-prefixes "SPC d" "docs/descriptions/help")
-#+END_SRC
-
-**** e: evaluation
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys main-map
-    "eb" 'org-babel-execute-src-block
-    "el" 'eval-last-sexp)
-  (which-key-declare-prefixes "SPC e" "evaluation")
-#+END_SRC
-
-**** p: projectile
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys main-map
-  "pa" 'projectile-ag)
-(which-key-declare-prefixes "SPC p" "projectile")
-#+END_SRC
-
-**** t: terminal
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys main-map
-  "tt" 'ansi-term)
-(which-key-declare-prefixes "SPC t" "terminal")
-#+END_SRC
-
-*** direct
-**** core
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys main-map
-    "<SPC>" 'counsel-M-x
-
-    ;; "TAB" 'available
-    ;; "/" 'available
-    ;; "." 'available
-    ;; ";" 'available
-    ;; "," 'available
-    ;; "-"   'available
-    ;; "?"   'available
-  )
-#+END_SRC
-
-**** window 
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys main-map
-  "j" 'evil-window-down
-  "k" 'evil-window-up
-  "h" 'evil-window-left
-  "l" 'evil-window-right
-  "v" 'evil-window-vsplit
-  "x" 'evil-window-split)
-#+END_SRC
-
-** q
-#+BEGIN_SRC emacs-lisp
-  ;; quits: file saves, buffer deletes, window exits, you name it...
-  (bind-map-set-keys q-map
-      "c" 'evil-save-modified-and-close
-      "e" 'evil-quit
-      "r" 'restart-emacs
-      "k" 'kill-this-buffer
-    )
-#+END_SRC
-
-** insert state
-#+begin_src emacs-lisp
-#+end_src
-
-** org
-*** local fixes
-#+BEGIN_SRC emacs-lisp
-  (evil-define-key 'normal org-mode-map (kbd "TAB") 'ivy-switch-buffer)
-  (when (display-graphic-p)
-    (evil-define-key 'normal org-mode-map (kbd "<tab>") 'ivy-switch-buffer))
-
-  (evil-define-key 'normal org-mode-map (kbd "RET") 'evil-write)
-
-  ;; movement
-  (evil-define-key 'normal org-mode-map "zu" 'outline-up-heading)
-  (evil-define-key 'normal org-mode-map "zh" 'outline-previous-visible-heading)
-  (evil-define-key 'normal org-mode-map "zj" 'org-forward-heading-same-level)
-  (evil-define-key 'normal org-mode-map "zk" 'org-backward-heading-same-level)
-  (evil-define-key 'normal org-mode-map "zl" 'outline-next-visible-heading)
-
-  (evil-define-key 'normal org-mode-map "<" 'org-do-promote)
-  (evil-define-key 'normal org-mode-map ">" 'org-do-demote)
-  #+END_SRC
-
-*** local leader
-***** z: zoom / visualization
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys org-map
-  "zi" 'org-narrow-to-subtree
-  "zo" 'widen)
-(which-key-declare-prefixes ", z" "zoom")
-#+END_SRC
-
-***** t: subtree commands
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys org-map
-  ;; subtree commands
-  "sh" 'org-promote-subtree
-  "sl" 'org-demote-subtree
-  "sk" 'org-move-subtree-up
-  "sj" 'org-move-subtree-down
-  "sy" 'org-copy-subtree
-  "sd" 'org-cut-subtree
-  "sp" 'org-paste-subtree
-  "ss" 'org-show-subtree
-  "sc" 'org-clone-subtree-with-time-shift)
-(which-key-declare-prefixes ", s" "org subtree operations")
-#+END_SRC
-
-***** i: insertions
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys org-map
-  "ih" 'org-insert-heading
-  "ia" 'org-insert-heading-after-current
-  "ir" 'org-insert-heading-respect-content
-  "is" 'org-insert-subheading
-  "il" 'org-insert-link)
-(which-key-declare-prefixes ", i" "insertions/additions")
-#+END_SRC
-
-***** *: others
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys org-map
-  ;; code blocks
-  "*" 'org-ctrl-c-star
-
-  ;; lists
-  "-" 'org-ctrl-c-minus
-
-  ;; lists
-  "=" 'org-export-dispatch
-  
-  ;; cycle
-  "TAB" 'org-cycle)
-#+END_SRC
-
-** dired
-*** fix: unhijack my precious SPC leader key.
-- lifted from this [[http://stackoverflow.com/a/10672548/4921402][SO question]]
-#+BEGIN_SRC emacs-lisp
-; 
-(define-key dired-mode-map (kbd "SPC") nil)
-#+END_SRC
-
 * tweaks
 ** interface options
 #+BEGIN_SRC emacs-lisp
@@ -763,6 +509,264 @@ SCHEDULED: %t")))
         (setq ranger-cleanup-on-disable t)
         (setq ranger-show-dotfiles t)
         (setq ranger-hide-cursor nil))
+#+END_SRC
+
+* binds
+** core
+*** abusing the g prefix
+#+BEGIN_SRC emacs-lisp
+;; faster than `gg' and `G`.
+(define-key evil-motion-state-map "go" 'evil-goto-first-line)
+(define-key evil-motion-state-map "gl" 'evil-goto-line)
+
+;; magit status
+(define-key evil-motion-state-map "gs" 'magit-status)
+
+;; counsel-projectile
+(define-key evil-motion-state-map "g." 'counsel-projectile)
+
+;; swiper
+(define-key evil-motion-state-map "g/" 'swiper)
+
+;; counsel-recentf
+(define-key evil-motion-state-map "gr" 'counsel-recentf)
+
+;;custom pagedowns and pageups
+(define-key evil-motion-state-map "g9" (kbd "Hz-M"))
+(define-key evil-motion-state-map "g0" (kbd "LztM"))
+
+;; turn off search highlight (muscle memory)
+(define-key evil-normal-state-map "g-" 'evil-ex-nohighlight)
+#+END_SRC
+
+*** comfort binds
+#+BEGIN_SRC emacs-lisp
+;; toggle fold: faster and more comfortable than `za'
+;; `cl' is a complete replacement for `s'
+(define-key evil-normal-state-map "s" 'evil-toggle-fold)
+
+;; save: faster than `:w'
+(define-key evil-normal-state-map (kbd "RET") 'evil-write)
+
+;; file/buffer selection
+(define-key evil-normal-state-map (kbd "TAB") 'ivy-switch-buffer)
+(define-key evil-normal-state-map (kbd "DEL") 'counsel-find-file)
+
+#+END_SRC
+
+*** comfort swaps/improvements
+#+BEGIN_SRC emacs-lisp
+  ;; invertion of `'` and `"`
+  (define-key evil-normal-state-map "'" 'evil-use-register)
+  (define-key evil-normal-state-map "\"" 'evil-goto-mark-line)
+
+  ;; invert `{' and `)'. used way more then { and }
+  (define-key evil-motion-state-map "(" 'evil-backward-paragraph)
+  (define-key evil-motion-state-map ")" 'evil-forward-paragraph)
+
+  ;; `Q' is my new `q'. open up q prefix for abuse.
+  (define-key evil-normal-state-map "Q" 'evil-record-macro)
+
+#+END_SRC
+
+*** fixes
+#+BEGIN_SRC emacs-lisp
+;; As I've sequestered < and > when in org mode, we need a workaround.
+(define-key evil-motion-state-map "g>" 'evil-shift-right)
+(define-key evil-motion-state-map "g<" 'evil-shift-left)
+
+;; `z.' fix
+(define-key evil-normal-state-map "z." 'evil-scroll-line-to-center)
+
+;; `z-' fix
+(define-key evil-normal-state-map "z-" 'evil-scroll-line-to-bottom)
+#+END_SRC
+
+** bind-map
+#+BEGIN_SRC emacs-lisp
+(use-package bind-map
+    :ensure t
+    :config 
+    (progn
+      (bind-map main-map
+        :evil-keys ("SPC")
+        :evil-states (normal visual motion))
+      (bind-map org-map
+        :evil-keys (",")
+        :evil-states (normal visual)
+        :major-modes (org-mode))
+      (bind-map q-map 
+        :evil-keys ("q")
+        :evil-states (normal visual))))
+#+END_SRC
+
+** SPC
+*** prefixes
+**** c: counsel/ivy
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys main-map
+  "ca" 'counsel-ag
+)
+(which-key-declare-prefixes "SPC c" "counsel/ivy")
+#+END_SRC
+
+**** d: docs, descriptions, help
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys main-map
+    "db" 'counsel-descbinds
+    "dc" 'describe-char
+    "df" 'counsel-describe-function
+    "dk" 'describe-key
+    "dv" 'counsel-describe-variable)
+  (which-key-declare-prefixes "SPC d" "docs/descriptions/help")
+#+END_SRC
+
+**** e: evaluation
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys main-map
+    "eb" 'org-babel-execute-src-block
+    "el" 'eval-last-sexp)
+  (which-key-declare-prefixes "SPC e" "evaluation")
+#+END_SRC
+
+**** p: projectile
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys main-map
+  "pa" 'projectile-ag)
+(which-key-declare-prefixes "SPC p" "projectile")
+#+END_SRC
+
+**** t: terminal
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys main-map
+  "tt" 'ansi-term)
+(which-key-declare-prefixes "SPC t" "terminal")
+#+END_SRC
+
+*** direct
+**** core
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys main-map
+    "<SPC>" 'counsel-M-x
+
+    ;; "TAB" 'available
+    ;; "/" 'available
+    ;; "." 'available
+    ;; ";" 'available
+    ;; "," 'available
+    ;; "-"   'available
+    ;; "?"   'available
+  )
+#+END_SRC
+
+**** window 
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys main-map
+  "j" 'evil-window-down
+  "k" 'evil-window-up
+  "h" 'evil-window-left
+  "l" 'evil-window-right
+  "v" 'evil-window-vsplit
+  "x" 'evil-window-split)
+#+END_SRC
+
+** q
+#+BEGIN_SRC emacs-lisp
+  ;; quits: file saves, buffer deletes, window exits, you name it...
+  (bind-map-set-keys q-map
+      "c" 'evil-save-modified-and-close
+      "e" 'evil-quit
+      "r" 'restart-emacs
+      "k" 'kill-this-buffer
+    )
+#+END_SRC
+
+** insert state
+#+begin_src emacs-lisp
+#+end_src
+
+** org
+*** local fixes
+#+BEGIN_SRC emacs-lisp
+  (evil-define-key 'normal org-mode-map (kbd "TAB") 'ivy-switch-buffer)
+  (when (display-graphic-p)
+    (evil-define-key 'normal org-mode-map (kbd "<tab>") 'ivy-switch-buffer))
+
+  (evil-define-key 'normal org-mode-map (kbd "RET") 'evil-write)
+
+  ;; movement
+  (evil-define-key 'normal org-mode-map "zu" 'outline-up-heading)
+  (evil-define-key 'normal org-mode-map "zh" 'outline-previous-visible-heading)
+  (evil-define-key 'normal org-mode-map "zj" 'org-forward-heading-same-level)
+  (evil-define-key 'normal org-mode-map "zk" 'org-backward-heading-same-level)
+  (evil-define-key 'normal org-mode-map "zl" 'outline-next-visible-heading)
+
+  (evil-define-key 'normal org-mode-map "<" 'org-do-promote)
+  (evil-define-key 'normal org-mode-map ">" 'org-do-demote)
+  #+END_SRC
+
+*** local leader
+***** z: zoom / visualization
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys org-map
+  "zi" 'org-narrow-to-subtree
+  "zo" 'widen)
+(which-key-declare-prefixes ", z" "zoom")
+#+END_SRC
+
+***** t: subtree commands
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys org-map
+  ;; subtree commands
+  "sh" 'org-promote-subtree
+  "sl" 'org-demote-subtree
+  "sk" 'org-move-subtree-up
+  "sj" 'org-move-subtree-down
+  "sy" 'org-copy-subtree
+  "sd" 'org-cut-subtree
+  "sp" 'org-paste-subtree
+  "ss" 'org-show-subtree
+  "sc" 'org-clone-subtree-with-time-shift)
+(which-key-declare-prefixes ", s" "org subtree operations")
+#+END_SRC
+
+***** i: insertions
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys org-map
+  "ih" 'org-insert-heading
+  "ia" 'org-insert-heading-after-current
+  "ir" 'org-insert-heading-respect-content
+  "is" 'org-insert-subheading
+  "il" 'org-insert-link)
+(which-key-declare-prefixes ", i" "insertions/additions")
+#+END_SRC
+
+***** *: others
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys org-map
+  ;; code blocks
+  "*" 'org-ctrl-c-star
+
+  ;; lists
+  "-" 'org-ctrl-c-minus
+
+  ;; lists
+  "=" 'org-export-dispatch
+  
+  ;; cycle
+  "TAB" 'org-cycle)
+#+END_SRC
+
+** dired
+*** fix: unhijack my precious SPC leader key.
+- lifted from this [[http://stackoverflow.com/a/10672548/4921402][SO question]]
+#+BEGIN_SRC emacs-lisp
+(define-key dired-mode-map (kbd "SPC") nil)
+#+END_SRC
+
+** magit
+#+BEGIN_SRC emacs-lisp
+(define-key magit-status-mode-map (kbd "SPC") nil)
 #+END_SRC
 
 * syntax-highlight
