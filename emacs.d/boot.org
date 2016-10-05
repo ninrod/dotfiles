@@ -325,8 +325,8 @@ If the universal prefix argument is used then kill also the window."
 #+BEGIN_SRC emacs-lisp
   ;; quits: file saves, buffer deletes, window exits, you name it...
   (bind-map-set-keys q-map
-      "m" 'evil-save-modified-and-close
-      "q" 'evil-quit
+      "c" 'evil-save-modified-and-close
+      "e" 'evil-quit
       "r" 'restart-emacs
       "k" 'kill-this-buffer
     )

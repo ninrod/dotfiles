@@ -370,7 +370,7 @@ nmap g<space> <Plug>(blankUp)
 nmap g<cr> <Plug>(blankDown)
 
 nnoremap Q q
-nnoremap qm ZZ
+nnoremap qc ZZ
 nnoremap qe ZQ
 nnoremap qk :bd<cr>
 
