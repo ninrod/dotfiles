@@ -408,8 +408,8 @@ If the universal prefix argument is used then kill also the window."
 #+begin_src emacs-lisp
 #+end_src
 
-* interface tweaks
-** options
+* tweaks
+** interface options
 #+BEGIN_SRC emacs-lisp
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
@@ -506,6 +506,18 @@ If the universal prefix argument is used then kill also the window."
         (sml/setup)
     )
   )
+#+END_SRC
+
+** backups
+- lifted from [[https://github.com/magnars/.emacs.d/blob/master/init.el][magnar's emacs.d]]
+#+BEGIN_SRC emacs-lisp
+;; Write backup files to own directory
+(setq backup-directory-alist
+      `(("." . ,(expand-file-name
+                 (concat user-emacs-directory "backups")))))
+
+;; Make backups of files, even when they're in version control
+(setq vc-make-backup-files t)
 #+END_SRC
 
 * packages
