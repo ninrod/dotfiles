@@ -332,6 +332,10 @@ If the universal prefix argument is used then kill also the window."
     )
 #+END_SRC
 
+** insert state
+#+begin_src emacs-lisp
+#+end_src
+
 ** org
 *** local fixes
 #+BEGIN_SRC emacs-lisp
@@ -404,9 +408,12 @@ If the universal prefix argument is used then kill also the window."
   "TAB" 'org-cycle)
 #+END_SRC
 
-** insert state
-#+begin_src emacs-lisp
-#+end_src
+** dired
+*** fix: unhijack my precious SPC leader key.
+#+BEGIN_SRC emacs-lisp
+; 
+(define-key dired-mode-map (kbd "SPC") nil)
+#+END_SRC
 
 * tweaks
 ** interface options
@@ -751,10 +758,10 @@ SCHEDULED: %t")))
   (use-package ranger
     :ensure t
     :config
-    ;; (ranger-override-dired-mode t)
-    (setq ranger-cleanup-on-disable t)
-    (setq ranger-show-dotfiles t)
-    (setq ranger-hide-cursor nil))
+        (ranger-override-dired-mode t)
+        (setq ranger-cleanup-on-disable t)
+        (setq ranger-show-dotfiles t)
+        (setq ranger-hide-cursor nil))
 #+END_SRC
 
 * syntax-highlight
