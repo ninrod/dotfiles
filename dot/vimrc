@@ -330,10 +330,10 @@ nnoremap " '
 xnoremap ' "
 xnoremap " '
 
-" nnoremap : ;
-" nnoremap ; :
-" xnoremap : ;
-" xnoremap ; :
+nnoremap : ;
+nnoremap ; :
+xnoremap : ;
+xnoremap ; :
 
 " `cl` is a complete substitute for `s` (also note that `cc` substitues `S`)
 nnoremap <silent> s :silent! normal za<cr>
@@ -369,8 +369,14 @@ onoremap gl G
 nmap g<space> <Plug>(blankUp)
 nmap g<cr> <Plug>(blankDown)
 
-nnoremap Q ZQ
-nnoremap Z ZZ
+nnoremap Q q
+nnoremap qm ZZ
+nnoremap qe ZQ
+nnoremap qk :bd<cr>
+
+nnoremap g0 LztM
+nnoremap g9 Hz-M
+
 nnoremap <cr> :w<cr>
 
 " space is my leader key, but '\' remains as leader.
@@ -396,9 +402,8 @@ nmap <leader>l <C-W>l
 
 " fzf.vim {{{
 
-nnoremap <leader>f :Files<cr>
-nnoremap <leader>r :History<cr>
-nnoremap <leader>g :GitFiles<cr>
+nnoremap g. :Files<cr>
+nnoremap gr :History<cr>
 
 " FZF Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
