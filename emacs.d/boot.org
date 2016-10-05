@@ -38,7 +38,36 @@ If the universal prefix argument is used then kill also the window."
         (kill-buffer-and-window)
       (kill-buffer))))
 #+END_SRC
+*** clipboard
+#+BEGIN_SRC emacs-lisp
+(defun copy-to-clipboard ()
+  "Copies selection to x-clipboard."
+  (interactive)
+  (if (display-graphic-p)
+      (progn
+        (message "Yanked region to x-clipboard!")
+        (call-interactively 'clipboard-kill-ring-save)
+        )
+    (if (region-active-p)
+        (progn
+          (shell-command-on-region (region-beginning) (region-end) "pbcopy")
+          (message "Yanked region to clipboard!")
+          (deactivate-mark))
+      (message "No region active; can't yank to clipboard!")))
+  )
 
+(defun paste-from-clipboard ()
+  "Pastes from x-clipboard."
+  (interactive)
+  (if (display-graphic-p)
+      (progn
+        (clipboard-yank)
+        (message "graphics active")
+        )
+    (insert (shell-command-to-string "pbpaste"))
+    )
+  )
+#+END_SRC
 * evil corruption
 ** evil
 #+BEGIN_SRC emacs-lisp
@@ -133,55 +162,64 @@ If the universal prefix argument is used then kill also the window."
 
 * binds
 ** core
-*** very fast access to frequent commands
+*** abusing the g prefix
 #+BEGIN_SRC emacs-lisp
-  ;; save: faster than `:w'
-  (define-key evil-normal-state-map (kbd "RET") 'evil-write)
-
-  ;; file/buffer selection
-  (define-key evil-normal-state-map (kbd "TAB") 'ivy-switch-buffer)
-  (define-key evil-normal-state-map (kbd "DEL") 'counsel-find-file)
-  
-  ;; turn off search highlight
-  (define-key evil-normal-state-map "-" 'evil-ex-nohighlight)
-
-  ;; magit status
-  (define-key evil-motion-state-map "gs" 'magit-status)
-
-  ;; counsel-projectile
-  (define-key evil-motion-state-map "g." 'counsel-projectile)
-
-  ;; swiper
-  (define-key evil-motion-state-map "g/" 'swiper)
-  
-  ;; counsel-recentf
-  (define-key evil-motion-state-map "gr" 'counsel-recentf)
-  
-  ;; toggle fold: faster and more comfortable than `za'
-  (define-key evil-normal-state-map "s" 'evil-toggle-fold)
-
-  ;; file saves
-  ;; `z.' is a complete replacement for `zz'
-  (define-key evil-normal-state-map "zz" 'evil-save-modified-and-close)
-  (define-key evil-normal-state-map "zn" 'evil-quit)
-  (define-key evil-normal-state-map "zb" 'restart-emacs)
-  (define-key evil-normal-state-map "zd" 'spacemacs/kill-this-buffer)
-#+END_SRC
-
-*** comfort swaps/improvements
-#+BEGIN_SRC emacs-lisp
-;; invertion of `'` e `"`
-(define-key evil-normal-state-map "'" 'evil-use-register)
-(define-key evil-normal-state-map "\"" 'evil-goto-mark-line)
-
-;; used way more then { and }
-(define-key evil-motion-state-map "(" 'evil-backward-paragraph)
-(define-key evil-motion-state-map ")" 'evil-forward-paragraph)
-
 ;; faster than `gg' and `G`.
 (define-key evil-motion-state-map "go" 'evil-goto-first-line)
 (define-key evil-motion-state-map "gl" 'evil-goto-line)
 
+;; magit status
+(define-key evil-motion-state-map "gs" 'magit-status)
+
+;; counsel-projectile
+(define-key evil-motion-state-map "g." 'counsel-projectile)
+
+;; swiper
+(define-key evil-motion-state-map "g/" 'swiper)
+
+;; counsel-recentf
+(define-key evil-motion-state-map "gr" 'counsel-recentf)
+
+;;custom pagedowns and pageups
+(define-key evil-motion-state-map "g9" (kbd "Hz-M"))
+(define-key evil-motion-state-map "g0" (kbd "LztM"))
+
+;; turn off search highlight (muscle memory)
+(define-key evil-normal-state-map "g-" 'evil-ex-nohighlight)
+#+END_SRC
+
+*** comfort binds
+#+BEGIN_SRC emacs-lisp
+;; toggle fold: faster and more comfortable than `za'
+(define-key evil-normal-state-map "s" 'evil-toggle-fold)
+
+;; save: faster than `:w'
+(define-key evil-normal-state-map (kbd "RET") 'evil-write)
+
+;; file/buffer selection
+(define-key evil-normal-state-map (kbd "TAB") 'ivy-switch-buffer)
+(define-key evil-normal-state-map (kbd "DEL") 'counsel-find-file)
+
+#+END_SRC
+
+*** comfort swaps/improvements
+#+BEGIN_SRC emacs-lisp
+  ;; invertion of `'` and `"`
+  (define-key evil-normal-state-map "'" 'evil-use-register)
+  (define-key evil-normal-state-map "\"" 'evil-goto-mark-line)
+
+  ;; invert `{' and `)'. used way more then { and }
+  (define-key evil-motion-state-map "(" 'evil-backward-paragraph)
+  (define-key evil-motion-state-map ")" 'evil-forward-paragraph)
+
+  ;; `Q' is my new `q'. open up q prefix for abuse.
+  (define-key evil-normal-state-map "Q" 'evil-record-macro)
+
+  ;; quits: file saves, buffer deletes, window exits, you name it...
+  ;; (define-key evil-normal-state-map "qy" 'evil-save-modified-and-close)
+  ;; (define-key evil-normal-state-map "qn" 'evil-quit)
+  ;; (define-key evil-normal-state-map "qr" 'restart-emacs)
+  ;; (define-key evil-normal-state-map "qk" 'spacemacs/kill-this-buffer)
 #+END_SRC
 
 *** fixes
@@ -192,6 +230,9 @@ If the universal prefix argument is used then kill also the window."
 
 ;; `z.' fix
 (define-key evil-normal-state-map "z." 'evil-scroll-line-to-center)
+
+;; `z-' fix
+(define-key evil-normal-state-map "z-" 'evil-scroll-line-to-bottom)
 #+END_SRC
 
 ** bind-map
@@ -227,7 +268,7 @@ If the universal prefix argument is used then kill also the window."
     "df" 'counsel-describe-function
     "dk" 'describe-key
     "dv" 'counsel-describe-variable)
-  (which-key-declare-prefixes "SPC d" "docs/descriptions")
+  (which-key-declare-prefixes "SPC d" "docs/descriptions/help")
 #+END_SRC
 
 **** e: evaluation
@@ -267,8 +308,6 @@ If the universal prefix argument is used then kill also the window."
     ;; "?"   'available
   )
 #+END_SRC
-
-#+RESULTS:
 
 **** window 
 #+BEGIN_SRC emacs-lisp
