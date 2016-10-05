@@ -629,6 +629,12 @@ SCHEDULED: %t")))
   (which-key-declare-prefixes "SPC e" "evaluation")
 #+END_SRC
 
+**** f: file
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys main-map
+    "fj" 'dired-jump)
+  (which-key-declare-prefixes "SPC f" "file operations")
+#+END_SRC
 **** p: projectile
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
