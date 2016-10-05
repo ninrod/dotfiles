@@ -193,6 +193,7 @@ If the universal prefix argument is used then kill also the window."
 *** comfort binds
 #+BEGIN_SRC emacs-lisp
 ;; toggle fold: faster and more comfortable than `za'
+;; `cl' is a complete replacement for `s'
 (define-key evil-normal-state-map "s" 'evil-toggle-fold)
 
 ;; save: faster than `:w'
