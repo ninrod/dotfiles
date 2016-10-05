@@ -410,6 +410,7 @@ If the universal prefix argument is used then kill also the window."
 
 ** dired
 *** fix: unhijack my precious SPC leader key.
+- lifted from this [[http://stackoverflow.com/a/10672548/4921402][SO question]]
 #+BEGIN_SRC emacs-lisp
 ; 
 (define-key dired-mode-map (kbd "SPC") nil)
