@@ -668,9 +668,15 @@ SCHEDULED: %t")))
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys main-map
     "gf" 'magit-log-buffer-file
+
     "gs" (lambda () (interactive) 
            (magit-status (magit-read-repository 
              (>= (prefix-numeric-value current-prefix-arg) 16))))
+       
+    ;; testing out http://emacs.stackexchange.com/a/27625/12585 hack.
+    ;; "gs" (lambda () (interactive)
+    ;;         (universal-argument)
+    ;;         (call-interactively 'magit-status))
 
   )
   (which-key-declare-prefixes "SPC g" "[ma]git operations")
