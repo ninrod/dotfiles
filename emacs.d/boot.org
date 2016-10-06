@@ -664,9 +664,15 @@ SCHEDULED: %t")))
 #+END_SRC
 
 **** g: git
+- *lift*: the below magit SPC gs bind hack was lifted from [[http://emacs.stackexchange.com/a/27623/12585][this]] SO answer.
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys main-map
-    "gf" 'magit-log-buffer-file)
+    "gf" 'magit-log-buffer-file
+    "gs" (lambda () (interactive) 
+           (magit-status (magit-read-repository 
+             (>= (prefix-numeric-value current-prefix-arg) 16))))
+
+  )
   (which-key-declare-prefixes "SPC g" "[ma]git operations")
 #+END_SRC
 
