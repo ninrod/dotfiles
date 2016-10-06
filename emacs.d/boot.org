@@ -212,7 +212,7 @@ If the universal prefix argument is used then kill also the window."
   #+BEGIN_SRC emacs-lisp
     (use-package spacemacs-theme 
       :ensure t)
-    (load-theme 'spacemacs-light t)
+    (load-theme 'spacemacs-dark t)
   #+END_SRC
 
 *** gruvbox
@@ -656,6 +656,15 @@ SCHEDULED: %t")))
   (bind-map-set-keys main-map
     "gf" 'magit-log-buffer-file)
   (which-key-declare-prefixes "SPC g" "[ma]git operations")
+#+END_SRC
+
+**** i: ivy
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys main-map
+    "is" 'ivy-push-view
+    "ik" 'ivy-pop-view
+  )
+  (which-key-declare-prefixes "SPC i" "ivy")
 #+END_SRC
 
 **** p: projectile
