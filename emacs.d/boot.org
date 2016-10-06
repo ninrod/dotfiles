@@ -525,6 +525,20 @@ SCHEDULED: %t")))
 #+END_SRC
 
 * binds
+** awesome available binds
+*** g prefix
+- gr
+
+*** SPC leader
+- TAB
+- / 
+- .
+- ;
+- ,
+- -
+
+- ?
+    
 ** core
 *** abusing the g prefix
 #+BEGIN_SRC emacs-lisp
@@ -542,7 +556,7 @@ SCHEDULED: %t")))
 (define-key evil-motion-state-map "g/" 'swiper)
 
 ;; counsel-recentf
-(define-key evil-motion-state-map "gr" 'counsel-recentf)
+(define-key evil-motion-state-map "gh" 'counsel-recentf)
 
 ;;custom pagedowns and pageups
 (define-key evil-motion-state-map "g9" (kbd "Hz-M"))
@@ -564,7 +578,6 @@ SCHEDULED: %t")))
 ;; file/buffer selection
 (define-key evil-normal-state-map (kbd "TAB") 'ivy-switch-buffer)
 (define-key evil-normal-state-map (kbd "DEL") 'counsel-find-file)
-
 #+END_SRC
 
 *** comfort swaps/improvements
@@ -579,7 +592,6 @@ SCHEDULED: %t")))
 
   ;; `Q' is my new `q'. open up q prefix for abuse.
   (define-key evil-normal-state-map "Q" 'evil-record-macro)
-
 #+END_SRC
 
 *** fixes
@@ -686,14 +698,6 @@ SCHEDULED: %t")))
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys main-map
     "<SPC>" 'counsel-M-x
-
-    ;; "TAB" 'available
-    ;; "/" 'available
-    ;; "." 'available
-    ;; ";" 'available
-    ;; "," 'available
-    ;; "-"   'available
-    ;; "?"   'available
   )
 #+END_SRC
 
@@ -705,7 +709,8 @@ SCHEDULED: %t")))
   "h" 'evil-window-left
   "l" 'evil-window-right
   "v" 'evil-window-vsplit
-  "x" 'evil-window-split)
+  "x" 'evil-window-split
+)
 #+END_SRC
 
 ** q
