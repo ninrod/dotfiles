@@ -212,7 +212,7 @@ If the universal prefix argument is used then kill also the window."
   #+BEGIN_SRC emacs-lisp
     (use-package spacemacs-theme 
       :ensure t)
-    (load-theme 'spacemacs-dark t)
+    (load-theme 'spacemacs-light t)
   #+END_SRC
 
 *** gruvbox
