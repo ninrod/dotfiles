@@ -424,31 +424,34 @@ SCHEDULED: %t")))
 
 ** ivy/counsel
 #+BEGIN_SRC emacs-lisp
-(use-package ivy
-  :ensure t
-  :config
-    (ivy-mode 1)
-    (setq ivy-use-virtual-buffers t)
-    (setq ivy-count-format "(%d/%d) ")
-    (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)
+  (use-package ivy
+    :ensure t
+    :config
+      (ivy-mode 1)
+      (setq ivy-use-virtual-buffers t)
+      (setq ivy-count-format "(%d/%d) ")
+      (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)
 
-    ;; here we turn on ivy fuzzy matching mode (and use `flx' package, if present)
-    ;;
-    ;; * lifted from bling's and abo-abo's  comments from these urls: 
-    ;;   - https://github.com/abo-abo/swiper/issues/154 
-    ;;   - https://www.reddit.com/r/emacs/comments/3xzas3/help_with_ivycounsel_fuzzy_matching_and_sorting/cy9432y
-    ;; 
-    ;; * also se this post on oremacs.com (abo-abo's blog, the creator of ivy, counsel, hydra and avy):
-    ;;   - http://oremacs.com/2016/01/06/ivy-flx/
-    (setq ivy--regex-function 'ivy--regex-fuzzy)
-    (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
+      ;; here we turn on ivy fuzzy matching mode (and use `flx' package, if present)
+      ;;
+      ;; * lifted from bling's and abo-abo's  comments from these urls: 
+      ;;   - https://github.com/abo-abo/swiper/issues/154 
+      ;;   - https://www.reddit.com/r/emacs/comments/3xzas3/help_with_ivycounsel_fuzzy_matching_and_sorting/cy9432y
+      ;; 
+      ;; * also se this post on oremacs.com (abo-abo's blog, the creator of ivy, counsel, hydra and avy):
+      ;;   - http://oremacs.com/2016/01/06/ivy-flx/
+      (setq ivy--regex-function 'ivy--regex-fuzzy)
+      (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
+      ;; (setq ivy-re-builders-alist
+      ;;   '((ivy-switch-buffer . ivy--regex-plus)
+      ;;    (t . ivy--regex-fuzzy)))
 
-    ;; use counsel
-    (use-package counsel :ensure t)
-    
-    ;; use flx for fuzzy matching
-    (use-package flx :ensure t)
-)
+      ;; use counsel
+      (use-package counsel :ensure t)
+
+      ;; use flx for fuzzy matching
+      (use-package flx :ensure t)
+  )
 
 #+END_SRC
 
@@ -543,6 +546,11 @@ SCHEDULED: %t")))
         (setq ranger-cleanup-on-disable t)
         (setq ranger-show-dotfiles t)
         (setq ranger-hide-cursor nil))
+#+END_SRC
+
+** eyebrowse
+#+BEGIN_SRC emacs-lisp
+(use-package eyebrowse :ensure t)
 #+END_SRC
 
 * binds
