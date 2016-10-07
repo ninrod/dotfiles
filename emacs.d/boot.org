@@ -83,6 +83,15 @@ If the universal prefix argument is used then kill also the window."
   )
 #+END_SRC
 
+* my lisp functions
+** bind tester
+#+BEGIN_SRC emacs-lisp
+(defun nin-echo ()
+  "just a simple test message for binds"
+  (interactive)
+  (message "a bind funcionou! aeee!"))
+#+END_SRC
+
 * evil corruption
 ** evil
 #+BEGIN_SRC emacs-lisp
@@ -440,11 +449,8 @@ SCHEDULED: %t")))
       ;; 
       ;; * also se this post on oremacs.com (abo-abo's blog, the creator of ivy, counsel, hydra and avy):
       ;;   - http://oremacs.com/2016/01/06/ivy-flx/
-      (setq ivy--regex-function 'ivy--regex-fuzzy)
-      (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
-      ;; (setq ivy-re-builders-alist
-      ;;   '((ivy-switch-buffer . ivy--regex-plus)
-      ;;    (t . ivy--regex-fuzzy)))
+      ;; (setq ivy--regex-function 'ivy--regex-fuzzy)
+      ;; (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
 
       ;; use counsel
       (use-package counsel :ensure t)
@@ -561,10 +567,8 @@ SCHEDULED: %t")))
 * binds
 ** bind-map
 #+BEGIN_SRC emacs-lisp
-(use-package bind-map
-    :ensure t
+(use-package bind-map :ensure t
     :config 
-    (progn
       (bind-map main-map
         :evil-keys ("SPC")
         :evil-states (normal visual motion))
@@ -574,7 +578,8 @@ SCHEDULED: %t")))
         :major-modes (org-mode))
       (bind-map q-map 
         :evil-keys ("q")
-        :evil-states (normal visual))))
+        :evil-states (normal visual))
+)
 #+END_SRC
 
 ** SPC
@@ -600,13 +605,7 @@ SCHEDULED: %t")))
 
 **** e: eyebrowse
 #+BEGIN_SRC emacs-lisp
-(defun nin-message ()
-  "just a simple test"
-  (interactive)
-  (message "hello world"))
-
 (define-key evil-motion-state-map "gt" 'nin-message)
-
 (which-key-declare-prefixes "SPC e" "eyebrowse")
 #+END_SRC
 
@@ -677,18 +676,6 @@ SCHEDULED: %t")))
   (bind-map-set-keys main-map
     "<SPC>" 'counsel-M-x
   )
-#+END_SRC
-
-**** window 
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys main-map
-  "j" 'evil-window-down
-  "k" 'evil-window-up
-  "h" 'evil-window-left
-  "l" 'evil-window-right
-  "v" 'evil-window-vsplit
-  "x" 'evil-window-split
-)
 #+END_SRC
 
 ** core
