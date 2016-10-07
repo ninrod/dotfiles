@@ -287,6 +287,11 @@ If the universal prefix argument is used then kill also the window."
 (setq vc-make-backup-files t)
 #+END_SRC
 
+** garbage collection tuning
+#+BEGIN_SRC emacs-lisp
+(setq gc-cons-threshold 20000000)
+#+END_SRC
+
 * fixes
 ** move custom data out of init.el
 - more info [[http://irreal.org/blog/?p=3765][here]]
@@ -412,22 +417,37 @@ SCHEDULED: %t")))
 (use-package magit :ensure t
   :config
     (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
-    (use-package evil-magit :ensure t))
+    (use-package evil-magit :ensure t)
+    (setq magit-repository-directories '("~/code/sources"))
+)
 #+END_SRC
 
 ** ivy/counsel
 #+BEGIN_SRC emacs-lisp
-    (use-package ivy
-      :ensure t
-      :config
-        (progn
-            (ivy-mode 1)
-            (setq ivy-use-virtual-buffers t)
-            (setq ivy-count-format "(%d/%d) ")
-            (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)))
+(use-package ivy
+  :ensure t
+  :config
+    (ivy-mode 1)
+    (setq ivy-use-virtual-buffers t)
+    (setq ivy-count-format "(%d/%d) ")
+    (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)
 
-    (use-package counsel
-      :ensure t)
+    ;; turn on ivy fuzzy matching mode (and use flx if present)
+    ;; lifted from blings and abo-abo comments from these urls: 
+    ;;   - https://github.com/abo-abo/swiper/issues/154 
+    ;;   - https://www.reddit.com/r/emacs/comments/3xzas3/help_with_ivycounsel_fuzzy_matching_and_sorting/cy9432y
+    (setq ivy--regex-function 'ivy--regex-fuzzy)
+    (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
+
+    ;; use counsel
+    (use-package counsel :ensure t)
+)
+
+#+END_SRC
+
+** flx
+#+BEGIN_SRC emacs-lisp
+(use-package flx :ensure t)
 #+END_SRC
 
 ** projectile
