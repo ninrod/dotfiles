@@ -241,6 +241,7 @@ If the universal prefix argument is used then kill also the window."
 
 ** modeline
 *** spaceline
+- determine separators. more options [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
 #+BEGIN_SRC emacs-lisp
 (use-package spaceline :ensure t
   :config
@@ -896,7 +897,6 @@ SCHEDULED: %t")))
 * tips
 ** hack to determine operating system
 - originally (if darwin) found [[http://stackoverflow.com/a/1817318/4921402][here.]]
-- determine separators. more options [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
 - system-type is a variable defined in `C source code'.
 - Special values:
   - `gnu'         compiled for a GNU Hurd system.
