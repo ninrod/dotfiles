@@ -887,10 +887,10 @@ SCHEDULED: %t")))
 #+END_SRC
 
 * diminishes
-** undo-tree-mode
 #+BEGIN_SRC emacs-lisp
-(use-package undo-tree
-  :diminish undo-tree-mode)
+(diminish 'undo-tree-mode)
+(diminish 'auto-revert-mode)
+(diminish 'org-indent-mode)
 #+END_SRC
 
 * tips
