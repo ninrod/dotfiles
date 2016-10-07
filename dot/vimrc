@@ -305,11 +305,71 @@ let g:tmuxline_powerline_separators = 0
 
 " standard bind changes {{{
 
-" in test: scroll horizontally in wrap off mode
-nnoremap z> g$zs
-nnoremap z< zeg0
-nmap z<RIGHT> z>
-nmap z<LEFT> z<
+" core binds {{{
+
+" space is my leader key, but '\' remains as leader.
+nmap <Space> <Leader>
+omap <Space> <Leader>
+xmap <Space> <Leader>
+
+nnoremap <silent>- :noh<cr>
+xnoremap <silent>- :noh<cr>
+nnoremap <cr> :w<cr>
+
+" `cl` is a complete substitute for `s` (also note that `cc` replaces `S`)
+nnoremap <silent> s :silent! normal za<cr>
+
+" }}}
+" g prefix abuse {{{
+
+" sequestering q. Yes, we did that.
+nnoremap qc ZZ
+nnoremap qe ZQ
+nnoremap qk :bd<cr>
+
+" but fear not, here is q again.
+" nonstop ex mode is really not that useful for us
+nnoremap Q q
+
+" custom pageups and pagedowns (you use F12 in intellij, right, so don't come with mnemonic bullshit.)
+" Just kidding. note that 0 is below ) with could mean "right" or "below" or "forward"
+" likewise 9 is below ( with could mean "left" or "above" or "backwards"
+" there's your mnemonic
+nnoremap g0 LztM
+nnoremap g9 Hz-M
+
+" sequestering g'{mark}	like |'| but without changing the jumplist
+nnoremap g' "
+xnoremap g' "
+
+" sequestering `g;` go to N older position in the changelist
+nnoremap g; :
+xnoremap g; :
+
+" trying out gl for `G` (shift sucks)
+" basically: `go` goes to the first line. `gl` goes to the last line
+" btw: `go` is built in
+nnoremap gl G
+vnoremap gl G
+onoremap gl G
+
+" These <Plug> are not from a plugin
+" They come from functions I wrote below. See the `functions section`
+nmap g<space> <Plug>(blankUp)
+nmap g<cr> <Plug>(blankDown)
+
+" fzf.vmm
+nnoremap g. :Files<cr>
+nnoremap gr :History<cr>
+
+" }}}
+" comfort binds {{{
+
+" rationale: ( is way more comfortable than {, and I use paragraph jump way more than sentence
+nnoremap ( {
+xnoremap ( {
+nnoremap ) }
+xnoremap ) }
 
 " as vim-wordmotion sequestered our `w` binds, we must provide an alternative
 " more info here: https://github.com/chaoren/vim-wordmotion/issues/6
@@ -317,28 +377,6 @@ xnoremap io iw
 xnoremap ao aw
 onoremap io iw
 onoremap ao aw
-
-" these bind switches were inspired on the famous Damian Conway talk at
-" OSCON 2013 https://youtu.be/aHm36-na4-4?t=598
-" the idea basically is that shift sucks.
-" If you can access a bind without having to press shift,
-" that's a significant speed and comfort improvement.
-" So we configure our binds based on this idea.
-
-nnoremap ' "
-nnoremap " '
-xnoremap ' "
-xnoremap " '
-
-nnoremap : ;
-nnoremap ; :
-xnoremap : ;
-xnoremap ; :
-
-" `cl` is a complete substitute for `s` (also note that `cc` substitues `S`)
-nnoremap <silent> s :silent! normal za<cr>
-nnoremap <silent>- :noh<cr>
-xnoremap <silent>- :noh<cr>
 
 omap ir i[
 omap ar a[
@@ -350,39 +388,18 @@ omap ac a{
 xmap ic i{
 xmap ac a{
 
-nnoremap ( {
-xnoremap ( {
-nnoremap ) }
-xnoremap ) }
+" in test: scroll horizontally in wrap off mode
+nnoremap z> g$zs
+nnoremap z< zeg0
+nmap z<RIGHT> z>
+nmap z<LEFT> z<
+
 
 " navigate vim help files
 nnoremap  } <C-]>
 nnoremap {  <C-T>
 
-" trying out gl for `G` (shift sucks)
-nnoremap gl G
-vnoremap gl G
-onoremap gl G
-
-" These <Plug> are not from a plugin
-" They come from functions I wrote below. See the `functions section`
-nmap g<space> <Plug>(blankUp)
-nmap g<cr> <Plug>(blankDown)
-
-nnoremap Q q
-nnoremap qc ZZ
-nnoremap qe ZQ
-nnoremap qk :bd<cr>
-
-nnoremap g0 LztM
-nnoremap g9 Hz-M
-
-nnoremap <cr> :w<cr>
-
-" space is my leader key, but '\' remains as leader.
-nmap <Space> <Leader>
-omap <Space> <Leader>
-xmap <Space> <Leader>
+" }}}
 
 " }}}
 " leader binds {{{
@@ -402,8 +419,6 @@ nmap <leader>l <C-W>l
 
 " fzf.vim {{{
 
-nnoremap g. :Files<cr>
-nnoremap gr :History<cr>
 
 " FZF Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
