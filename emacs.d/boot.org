@@ -432,22 +432,24 @@ SCHEDULED: %t")))
     (setq ivy-count-format "(%d/%d) ")
     (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)
 
-    ;; turn on ivy fuzzy matching mode (and use flx if present)
-    ;; lifted from blings and abo-abo comments from these urls: 
+    ;; here we turn on ivy fuzzy matching mode (and use `flx' package, if present)
+    ;;
+    ;; * lifted from bling's and abo-abo's  comments from these urls: 
     ;;   - https://github.com/abo-abo/swiper/issues/154 
     ;;   - https://www.reddit.com/r/emacs/comments/3xzas3/help_with_ivycounsel_fuzzy_matching_and_sorting/cy9432y
+    ;; 
+    ;; * also se this post on oremacs.com (abo-abo's blog, the creator of ivy, counsel, hydra and avy):
+    ;;   - http://oremacs.com/2016/01/06/ivy-flx/
     (setq ivy--regex-function 'ivy--regex-fuzzy)
     (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
 
     ;; use counsel
     (use-package counsel :ensure t)
+    
+    ;; use flx for fuzzy matching
+    (use-package flx :ensure t)
 )
 
-#+END_SRC
-
-** flx
-#+BEGIN_SRC emacs-lisp
-(use-package flx :ensure t)
 #+END_SRC
 
 ** projectile
