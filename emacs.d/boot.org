@@ -463,7 +463,9 @@ SCHEDULED: %t")))
   :config
     (add-hook 'after-init-hook 'projectile-mode)
     (use-package counsel-projectile :ensure t)
-    (setq projectile-switch-project-action 'projectile-vc)
+    
+    ;; not used because `SPC-gs' is sealing the deal for the moment
+    ;;(setq projectile-switch-project-action 'projectile-vc)
 )
 #+END_SRC
 
@@ -550,24 +552,145 @@ SCHEDULED: %t")))
 
 ** eyebrowse
 #+BEGIN_SRC emacs-lisp
-(use-package eyebrowse :ensure t)
+(use-package eyebrowse :ensure t
+  :config
+    (eyebrowse-mode t)
+)
 #+END_SRC
 
 * binds
-** awesome available binds
-*** g prefix
-- gr
+** bind-map
+#+BEGIN_SRC emacs-lisp
+(use-package bind-map
+    :ensure t
+    :config 
+    (progn
+      (bind-map main-map
+        :evil-keys ("SPC")
+        :evil-states (normal visual motion))
+      (bind-map org-map
+        :evil-keys (",")
+        :evil-states (normal visual)
+        :major-modes (org-mode))
+      (bind-map q-map 
+        :evil-keys ("q")
+        :evil-states (normal visual))))
+#+END_SRC
 
-*** SPC leader
-- TAB
-- / 
-- .
-- ;
-- ,
-- -
+** SPC
+*** prefixes
+**** c: counsel/ivy
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys main-map
+  "ca" 'counsel-ag
+)
+(which-key-declare-prefixes "SPC c" "counsel/ivy")
+#+END_SRC
 
-- ?
-    
+**** d: docs, descriptions, help
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys main-map
+    "db" 'counsel-descbinds
+    "dc" 'describe-char
+    "df" 'counsel-describe-function
+    "dk" 'describe-key
+    "dv" 'counsel-describe-variable)
+  (which-key-declare-prefixes "SPC d" "docs/descriptions/help")
+#+END_SRC
+
+**** e: eyebrowse
+#+BEGIN_SRC emacs-lisp
+(defun nin-message ()
+  "just a simple test"
+  (interactive)
+  (message "hello world"))
+
+(define-key evil-motion-state-map "gt" 'nin-message)
+
+(which-key-declare-prefixes "SPC e" "eyebrowse")
+#+END_SRC
+
+**** f: file
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys main-map
+    "fj" 'dired-jump
+    "fp" 'prelude-copy-file-name-to-clipboard
+  )
+  (which-key-declare-prefixes "SPC f" "file operations")
+#+END_SRC
+
+**** g: git
+- *lift*: the below magit SPC gs bind hack was lifted from [[http://emacs.stackexchange.com/a/27623/12585][this]] SO answer.
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys main-map
+    "gf" 'magit-log-buffer-file
+
+    "gs" (lambda () (interactive) 
+           (magit-status (magit-read-repository 
+             (>= (prefix-numeric-value current-prefix-arg) 16))))
+       
+    ;; testing out http://emacs.stackexchange.com/a/27625/12585 hack.
+    ;; "gs" (lambda () (interactive)
+    ;;         (universal-argument)
+    ;;         (call-interactively 'magit-status))
+
+  )
+  (which-key-declare-prefixes "SPC g" "[ma]git operations")
+#+END_SRC
+
+**** i: ivy
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys main-map
+    "is" 'ivy-push-view
+    "ik" 'ivy-pop-view
+  )
+  (which-key-declare-prefixes "SPC i" "ivy")
+#+END_SRC
+
+**** l: lisp evaluation
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys main-map
+    "lb" 'org-babel-execute-src-block
+    "ll" 'eval-last-sexp)
+  (which-key-declare-prefixes "SPC l" "evaluation")
+#+END_SRC
+
+**** p: projectile
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys main-map
+  "pa" 'projectile-ag
+  "ps" 'counsel-projectile-switch-project
+)
+(which-key-declare-prefixes "SPC p" "projectile")
+#+END_SRC
+
+**** t: terminal
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys main-map
+  "tt" 'ansi-term)
+(which-key-declare-prefixes "SPC t" "terminal")
+#+END_SRC
+
+*** direct
+**** core
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys main-map
+    "<SPC>" 'counsel-M-x
+  )
+#+END_SRC
+
+**** window 
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys main-map
+  "j" 'evil-window-down
+  "k" 'evil-window-up
+  "h" 'evil-window-left
+  "l" 'evil-window-right
+  "v" 'evil-window-vsplit
+  "x" 'evil-window-split
+)
+#+END_SRC
+
 ** core
 *** abusing the g prefix
 #+BEGIN_SRC emacs-lisp
@@ -636,135 +759,22 @@ SCHEDULED: %t")))
 (define-key evil-normal-state-map "z-" 'evil-scroll-line-to-bottom)
 #+END_SRC
 
-** bind-map
-#+BEGIN_SRC emacs-lisp
-(use-package bind-map
-    :ensure t
-    :config 
-    (progn
-      (bind-map main-map
-        :evil-keys ("SPC")
-        :evil-states (normal visual motion))
-      (bind-map org-map
-        :evil-keys (",")
-        :evil-states (normal visual)
-        :major-modes (org-mode))
-      (bind-map q-map 
-        :evil-keys ("q")
-        :evil-states (normal visual))))
-#+END_SRC
-
-** SPC
-*** prefixes
-**** c: counsel/ivy
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys main-map
-  "ca" 'counsel-ag
-)
-(which-key-declare-prefixes "SPC c" "counsel/ivy")
-#+END_SRC
-
-**** d: docs, descriptions, help
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys main-map
-    "db" 'counsel-descbinds
-    "dc" 'describe-char
-    "df" 'counsel-describe-function
-    "dk" 'describe-key
-    "dv" 'counsel-describe-variable)
-  (which-key-declare-prefixes "SPC d" "docs/descriptions/help")
-#+END_SRC
-
-**** e: evaluation
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys main-map
-    "eb" 'org-babel-execute-src-block
-    "el" 'eval-last-sexp)
-  (which-key-declare-prefixes "SPC e" "evaluation")
-#+END_SRC
-
-**** f: file
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys main-map
-    "fj" 'dired-jump
-    "fp" 'prelude-copy-file-name-to-clipboard
-  )
-  (which-key-declare-prefixes "SPC f" "file operations")
-#+END_SRC
-
-**** g: git
-- *lift*: the below magit SPC gs bind hack was lifted from [[http://emacs.stackexchange.com/a/27623/12585][this]] SO answer.
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys main-map
-    "gf" 'magit-log-buffer-file
-
-    "gs" (lambda () (interactive) 
-           (magit-status (magit-read-repository 
-             (>= (prefix-numeric-value current-prefix-arg) 16))))
-       
-    ;; testing out http://emacs.stackexchange.com/a/27625/12585 hack.
-    ;; "gs" (lambda () (interactive)
-    ;;         (universal-argument)
-    ;;         (call-interactively 'magit-status))
-
-  )
-  (which-key-declare-prefixes "SPC g" "[ma]git operations")
-#+END_SRC
-
-**** i: ivy
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys main-map
-    "is" 'ivy-push-view
-    "ik" 'ivy-pop-view
-  )
-  (which-key-declare-prefixes "SPC i" "ivy")
-#+END_SRC
-
-**** p: projectile
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys main-map
-  "pa" 'projectile-ag
-  "ps" 'projectile-switch-project
-)
-(which-key-declare-prefixes "SPC p" "projectile")
-#+END_SRC
-
-**** t: terminal
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys main-map
-  "tt" 'ansi-term)
-(which-key-declare-prefixes "SPC t" "terminal")
-#+END_SRC
-
-*** direct
-**** core
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys main-map
-    "<SPC>" 'counsel-M-x
-  )
-#+END_SRC
-
-**** window 
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys main-map
-  "j" 'evil-window-down
-  "k" 'evil-window-up
-  "h" 'evil-window-left
-  "l" 'evil-window-right
-  "v" 'evil-window-vsplit
-  "x" 'evil-window-split
-)
-#+END_SRC
-
 ** q
 #+BEGIN_SRC emacs-lisp
   ;; quits: file saves, buffer deletes, window exits, you name it...
   (bind-map-set-keys q-map
-      "c" 'evil-save-modified-and-close
-      "e" 'evil-quit
-      "r" 'restart-emacs
-      "k" 'kill-this-buffer
-    )
+    "c" 'evil-save-modified-and-close
+    "e" 'evil-quit
+    "r" 'restart-emacs
+    "d" 'kill-this-buffer
+      
+    "j" 'evil-window-down
+    "k" 'evil-window-up
+    "h" 'evil-window-left
+    "l" 'evil-window-right
+    "v" 'evil-window-vsplit
+    "x" 'evil-window-split
+  )
 #+END_SRC
 
 ** insert state
@@ -855,6 +865,20 @@ SCHEDULED: %t")))
 (define-key magit-status-mode-map (kbd "SPC") nil)
 #+END_SRC
 
+** awesome available binds
+*** g prefix
+- gr
+
+*** SPC leader
+- TAB
+- / 
+- .
+- ;
+- ,
+- -
+
+- ?
+    
 * syntax-highlight
 ** rainbow-delimiters
 #+BEGIN_SRC emacs-lisp
