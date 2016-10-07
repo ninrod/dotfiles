@@ -105,6 +105,7 @@ If the universal prefix argument is used then kill also the window."
 #+BEGIN_SRC emacs-lisp
 (use-package evil-commentary
   :ensure t
+  :diminish evil-commentary-mode
   :config
     (evil-commentary-mode))
 #+END_SRC
@@ -180,6 +181,7 @@ If the universal prefix argument is used then kill also the window."
   #+BEGIN_SRC emacs-lisp
   (use-package which-key
 	:ensure t 
+    :diminish which-key-mode
 	:config
 	(which-key-mode))
   #+END_SRC
@@ -438,6 +440,7 @@ SCHEDULED: %t")))
 #+BEGIN_SRC emacs-lisp
 (use-package projectile
   :ensure t
+  :diminish projectile-mode
   :config
     (add-hook 'after-init-hook 'projectile-mode)
     (use-package counsel-projectile :ensure t)
@@ -824,6 +827,7 @@ SCHEDULED: %t")))
 ** magit
 #+BEGIN_SRC emacs-lisp
 (define-key magit-status-mode-map (kbd "SPC") nil)
+(define-key magit-status-mode-map "go" 'evil-goto-first-line)
 #+END_SRC
 
 ** awesome available binds
@@ -855,6 +859,7 @@ SCHEDULED: %t")))
 #+BEGIN_SRC emacs-lisp
   (use-package highlight-parentheses
     :ensure t
+    :diminish highlight-parentheses-mode
     :config
       (progn
         (add-hook 'prog-mode-hook #'highlight-parentheses-mode)
@@ -881,6 +886,26 @@ SCHEDULED: %t")))
     (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
 #+END_SRC
 
+* diminishes
+** undo-tree-mode
+#+BEGIN_SRC emacs-lisp
+(use-package undo-tree
+  :diminish undo-tree-mode)
+#+END_SRC
+
+* tips
+** hack to determine operating system
+- originally (if darwin) found [[http://stackoverflow.com/a/1817318/4921402][here.]]
+- determine separators. more options [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
+- system-type is a variable defined in `C source code'.
+- Special values:
+  - `gnu'         compiled for a GNU Hurd system.
+  - `gnu/linux'   compiled for a GNU/Linux system.
+  - `darwin'      compiled for Darwin (GNU-Darwin, Mac OS X, ...).
+  - `ms-dos'      compiled as an MS-DOS application.
+  - `windows-nt'  compiled as a native W32 application.
+  - `cygwin'      compiled using the Cygwin library.
+- Anything else indicates some sort of Unix system.
 * disabled
 ** flycheck
   #+BEGIN_SRC emacs-lisp
@@ -897,19 +922,4 @@ SCHEDULED: %t")))
     ;; (use-package avy
     ;;   :ensure t)
   #+END_SRC
-
-* tips
-** hack to determine operating system
-- originally (if darwin) found [[http://stackoverflow.com/a/1817318/4921402][here.]]
-- determine separators. more options [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
-- system-type is a variable defined in `C source code'.
-- Special values:
-  - `gnu'         compiled for a GNU Hurd system.
-  - `gnu/linux'   compiled for a GNU/Linux system.
-  - `darwin'      compiled for Darwin (GNU-Darwin, Mac OS X, ...).
-  - `ms-dos'      compiled as an MS-DOS application.
-  - `windows-nt'  compiled as a native W32 application.
-  - `cygwin'      compiled using the Cygwin library.
-- Anything else indicates some sort of Unix system.
-
 
