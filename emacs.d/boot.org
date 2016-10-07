@@ -238,50 +238,22 @@ If the universal prefix argument is used then kill also the window."
 #+END_SRC
 
 ** modeline
-*** spaceline (activated on OSx)
-**** bootstrap
+*** spaceline
 #+BEGIN_SRC emacs-lisp
-(when (eq system-type 'darwin)
-  (use-package spaceline
-    :ensure t)
-  (require 'spaceline-config)
-  (spaceline-spacemacs-theme)
-)
-#+END_SRC
+(use-package spaceline :ensure t
+  :config
+    (require 'spaceline-config)
+    (spaceline-spacemacs-theme)
 
-**** customization
-#+BEGIN_SRC emacs-lisp
-;; determine operating system.
-(when (eq system-type 'darwin)
-  (progn
-    (setq powerline-default-separator 'alternate)
-    (spaceline-compile)
-  )
-)
-#+END_SRC
-- determine separators. more options [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
-***** determine operating system hack (if darwin) found [[http://stackoverflow.com/a/1817318/4921402][here.]]
-- system-type is a variable defined in `C source code'.
-- Special values:
-  - `gnu'         compiled for a GNU Hurd system.
-  - `gnu/linux'   compiled for a GNU/Linux system.
-  - `darwin'      compiled for Darwin (GNU-Darwin, Mac OS X, ...).
-  - `ms-dos'      compiled as an MS-DOS application.
-  - `windows-nt'  compiled as a native W32 application.
-  - `cygwin'      compiled using the Cygwin library.
-- Anything else indicates some sort of Unix system.
+    (when (eq system-type 'darwin)
+      (progn
+        (setq powerline-default-separator 'alternate)
+        (spaceline-compile)))
 
-*** smartmodeline (activated on GNU/Linux)
-#+BEGIN_SRC emacs-lisp
-  (when (eq system-type 'gnu/linux)
-    (use-package smart-mode-line
-      :ensure t
-      :config
-        (setq sml/theme 'respectful)
-        (setq sml/no-confirm-load-theme t)
-        (sml/setup)
-    )
-  )
+    (when (eq system-type 'gnu/linux)
+      (progn
+        (setq powerline-default-separator nil)
+        (spaceline-compile))))
 #+END_SRC
 
 ** backups
@@ -560,6 +532,7 @@ SCHEDULED: %t")))
 #+BEGIN_SRC emacs-lisp
 (use-package eyebrowse :ensure t
   :config
+    (setq eyebrowse-wrap-around t)
     (eyebrowse-mode t)
 )
 #+END_SRC
@@ -583,8 +556,14 @@ SCHEDULED: %t")))
 #+END_SRC
 
 ** SPC
-*** prefixes
-**** c: counsel/ivy
+*** core/directs
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys main-map
+    "<SPC>" 'counsel-M-x
+  )
+#+END_SRC
+
+*** c: counsel/ivy
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
   "ca" 'counsel-ag
@@ -592,7 +571,7 @@ SCHEDULED: %t")))
 (which-key-declare-prefixes "SPC c" "counsel/ivy")
 #+END_SRC
 
-**** d: docs, descriptions, help
+*** d: docs, descriptions, help
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys main-map
     "db" 'counsel-descbinds
@@ -603,13 +582,16 @@ SCHEDULED: %t")))
   (which-key-declare-prefixes "SPC d" "docs/descriptions/help")
 #+END_SRC
 
-**** e: eyebrowse
+*** e: eyebrowse
 #+BEGIN_SRC emacs-lisp
-(define-key evil-motion-state-map "gt" 'nin-message)
+;; small test
+(define-key evil-motion-state-map "gt" 'eyebrowse-next-window-config)
+(define-key evil-motion-state-map "gT" 'eyebrowse-prev-window-config)
+
 (which-key-declare-prefixes "SPC e" "eyebrowse")
 #+END_SRC
 
-**** f: file
+*** f: file
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys main-map
     "fj" 'dired-jump
@@ -618,7 +600,7 @@ SCHEDULED: %t")))
   (which-key-declare-prefixes "SPC f" "file operations")
 #+END_SRC
 
-**** g: git
+*** g: git
 - *lift*: the below magit SPC gs bind hack was lifted from [[http://emacs.stackexchange.com/a/27623/12585][this]] SO answer.
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys main-map
@@ -637,7 +619,7 @@ SCHEDULED: %t")))
   (which-key-declare-prefixes "SPC g" "[ma]git operations")
 #+END_SRC
 
-**** i: ivy
+*** i: ivy
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys main-map
     "is" 'ivy-push-view
@@ -646,7 +628,7 @@ SCHEDULED: %t")))
   (which-key-declare-prefixes "SPC i" "ivy")
 #+END_SRC
 
-**** l: lisp evaluation
+*** l: lisp evaluation
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys main-map
     "lb" 'org-babel-execute-src-block
@@ -654,7 +636,7 @@ SCHEDULED: %t")))
   (which-key-declare-prefixes "SPC l" "evaluation")
 #+END_SRC
 
-**** p: projectile
+*** p: projectile
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
   "pa" 'projectile-ag
@@ -663,19 +645,11 @@ SCHEDULED: %t")))
 (which-key-declare-prefixes "SPC p" "projectile")
 #+END_SRC
 
-**** t: terminal
+*** t: terminal
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
   "tt" 'ansi-term)
 (which-key-declare-prefixes "SPC t" "terminal")
-#+END_SRC
-
-*** direct
-**** core
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys main-map
-    "<SPC>" 'counsel-M-x
-  )
 #+END_SRC
 
 ** core
@@ -923,4 +897,19 @@ SCHEDULED: %t")))
     ;; (use-package avy
     ;;   :ensure t)
   #+END_SRC
+
+* tips
+** hack to determine operating system
+- originally (if darwin) found [[http://stackoverflow.com/a/1817318/4921402][here.]]
+- determine separators. more options [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
+- system-type is a variable defined in `C source code'.
+- Special values:
+  - `gnu'         compiled for a GNU Hurd system.
+  - `gnu/linux'   compiled for a GNU/Linux system.
+  - `darwin'      compiled for Darwin (GNU-Darwin, Mac OS X, ...).
+  - `ms-dos'      compiled as an MS-DOS application.
+  - `windows-nt'  compiled as a native W32 application.
+  - `cygwin'      compiled using the Cygwin library.
+- Anything else indicates some sort of Unix system.
+
 
