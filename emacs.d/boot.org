@@ -409,12 +409,10 @@ SCHEDULED: %t")))
   
 ** magit
 #+BEGIN_SRC emacs-lisp
-(use-package magit
-  :ensure t
+(use-package magit :ensure t
   :config
-    (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1))
-(use-package evil-magit
-  :ensure t)
+    (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
+    (use-package evil-magit :ensure t))
 #+END_SRC
 
 ** ivy/counsel
@@ -433,14 +431,15 @@ SCHEDULED: %t")))
 #+END_SRC
 
 ** projectile
+- the projectile-switch-project-action hack was lifted from [[projectile-switch-project-action][here]].
 #+BEGIN_SRC emacs-lisp
 (use-package projectile
   :ensure t
   :config
-    (add-hook 'after-init-hook 'projectile-mode))
-
-(use-package counsel-projectile
-  :ensure t)
+    (add-hook 'after-init-hook 'projectile-mode)
+    (use-package counsel-projectile :ensure t)
+    (setq projectile-switch-project-action 'projectile-vc)
+)
 #+END_SRC
 
 ** company
@@ -694,7 +693,9 @@ SCHEDULED: %t")))
 **** p: projectile
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
-  "pa" 'projectile-ag)
+  "pa" 'projectile-ag
+  "ps" 'projectile-switch-project
+)
 (which-key-declare-prefixes "SPC p" "projectile")
 #+END_SRC
 
