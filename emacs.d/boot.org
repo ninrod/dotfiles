@@ -239,29 +239,45 @@ If the universal prefix argument is used then kill also the window."
 ;(load-theme 'leuven t)
 #+END_SRC
 
-** modeline
-*** spaceline
-- determine separators. more options [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
+** spaceline
+- to determine separators. more options [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
 #+BEGIN_SRC emacs-lisp
-(use-package spaceline :ensure t
-  :config
-    (require 'spaceline-config)
-    (spaceline-spacemacs-theme)
+  (use-package spaceline :ensure t
+    :config
+      (require 'spaceline-config)
+      (spaceline-spacemacs-theme)
 
-    ;; Separators for Powerline.
-    ;; Included separators: 
-    ;;   (alternate), arrow, arrow-fade, bar, (box), brace, butt,
-    ;;   chamfer, contour, curve, rounded, roundstub, (slant), 
-    ;;   (wave), (zigzag), and nil.
-    (when (eq system-type 'darwin)
-      (progn
-        (setq powerline-default-separator 'zigzag)
-        (spaceline-compile)))
+      ;; Separators for Powerline.
+      ;; Included separators: 
+      ;;   (alternate), arrow, arrow-fade, bar, (box), brace, butt,
+      ;;   chamfer, contour, curve, rounded, roundstub, (slant), 
+      ;;   (wave), (zigzag), and nil.
+      (when (eq system-type 'darwin)
+        (progn
+          (setq ns-use-srgb-colorspace nil)
+          (setq powerline-height 25)
+          (setq powerline-default-separator 'utf-8)
+          (setq powerline-default-separator 'slant)
 
-    (when (eq system-type 'gnu/linux)
-      (progn
-        (setq powerline-default-separator nil)
-        (spaceline-compile))))
+          ;; this is for eyebrowse. nice looking unicode numbers for tagging different layouts
+          ;; lifted from spaceline documentation
+          (setq spaceline-workspace-numbers-unicode t)
+          (setq spaceline-window-numbers-unicode t)
+
+          ;; colouring for different evil-states
+          (setq spaceline-highlight-face-func #'spaceline-highlight-face-evil-state)
+
+          ;; this setting is waiting upon confirmation of usefullness on reddit
+          ;; thread: https://www.reddit.com/r/emacs/comments/56hlch/challenge_explain_to_me_what_powerlineraw_really/
+          ;;(setq powerline-raw " ")
+
+          (spaceline-compile)))
+
+      (when (eq system-type 'gnu/linux)
+        (progn
+          (setq powerline-height 25)
+          (setq powerline-default-separator nil)
+          (spaceline-compile))))
 #+END_SRC
 
 ** backups
@@ -402,13 +418,16 @@ SCHEDULED: %t")))
   #+END_SRC
   
 ** magit
+- for more info about magit-display-buffer-function, see [[http://stackoverflow.com/q/39933868/4921402][here]].
 #+BEGIN_SRC emacs-lisp
-(use-package magit :ensure t
-  :config
-    (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
-    (use-package evil-magit :ensure t)
-    (setq magit-repository-directories '("~/code/sources"))
-)
+  (use-package magit :ensure t
+    :config
+      ;;(setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
+      (setq magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
+
+      (use-package evil-magit :ensure t)
+      (setq magit-repository-directories '("~/code/sources"))
+  )
 #+END_SRC
 
 ** ivy/counsel
