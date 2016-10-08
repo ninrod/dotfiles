@@ -595,8 +595,10 @@ SCHEDULED: %t")))
 #+BEGIN_SRC emacs-lisp
 ;; small test
 (bind-map-set-keys main-map
+    "ec" 'eyebrowse-create-window-config
+    "en" 'eyebrowse-next-window-config
+    "er" 'eyebrowse-rename-window-config
     "es" 'eyebrowse-switch-to-window-config
-    "ee" 'eyebrowse-next-window-config
 )
 (which-key-declare-prefixes "SPC e" "eyebrowse")
 #+END_SRC
