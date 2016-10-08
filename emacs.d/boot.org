@@ -496,6 +496,15 @@ SCHEDULED: %t")))
 )
   #+END_SRC
 
+** flycheck
+  #+BEGIN_SRC emacs-lisp
+    (use-package flycheck
+      :ensure t
+      :init
+      (global-flycheck-mode t))
+  #+END_SRC
+
+
 ** ag: the silver searcher
 #+BEGIN_SRC emacs-lisp
 (use-package ag
@@ -612,7 +621,6 @@ SCHEDULED: %t")))
 
 *** e: eyebrowse
 #+BEGIN_SRC emacs-lisp
-;; small test
 (bind-map-set-keys main-map
     "ec" 'eyebrowse-create-window-config
     "en" 'eyebrowse-next-window-config
@@ -937,14 +945,6 @@ SCHEDULED: %t")))
   - `cygwin'      compiled using the Cygwin library.
 - Anything else indicates some sort of Unix system.
 * disabled
-** flycheck
-  #+BEGIN_SRC emacs-lisp
-    ;; (use-package flycheck
-    ;;   :ensure t
-    ;;   :init
-    ;;   (global-flycheck-mode t))
-  #+END_SRC
-
 ** Avy
   1. See https://github.com/abo-abo/avy for more info
   2. navigate by searching for a letter on the screen and jumping to it
