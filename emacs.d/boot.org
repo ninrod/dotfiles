@@ -248,9 +248,14 @@ If the universal prefix argument is used then kill also the window."
     (require 'spaceline-config)
     (spaceline-spacemacs-theme)
 
+    ;; Separators for Powerline.
+    ;; Included separators: 
+    ;;   (alternate), arrow, arrow-fade, bar, (box), brace, butt,
+    ;;   chamfer, contour, curve, rounded, roundstub, (slant), 
+    ;;   (wave), (zigzag), and nil.
     (when (eq system-type 'darwin)
       (progn
-        (setq powerline-default-separator 'alternate)
+        (setq powerline-default-separator 'zigzag)
         (spaceline-compile)))
 
     (when (eq system-type 'gnu/linux)
@@ -589,9 +594,10 @@ SCHEDULED: %t")))
 *** e: eyebrowse
 #+BEGIN_SRC emacs-lisp
 ;; small test
-(define-key evil-motion-state-map "gt" 'eyebrowse-next-window-config)
-(define-key evil-motion-state-map "gT" 'eyebrowse-prev-window-config)
-
+(bind-map-set-keys main-map
+    "es" 'eyebrowse-switch-to-window-config
+    "ee" 'eyebrowse-next-window-config
+)
 (which-key-declare-prefixes "SPC e" "eyebrowse")
 #+END_SRC
 
@@ -834,6 +840,9 @@ SCHEDULED: %t")))
 ** awesome available binds
 *** g prefix
 - gr
+- gt
+
+- gT
 
 *** SPC leader
 - TAB
