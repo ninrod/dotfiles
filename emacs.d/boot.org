@@ -2,6 +2,7 @@
 #+STARTUP: indent
 
 * lisp lifts
+** spacemacs/buffer operations
 *** spacemacs/alternate-buffer
 SPC TAB
 back and forth between current and last buffer
@@ -39,7 +40,7 @@ If the universal prefix argument is used then kill also the window."
       (kill-buffer))))
 #+END_SRC
 
-*** spacemacs/align functions
+** spacemacs/align functions
 #+BEGIN_SRC emacs-lisp
 ;; BEGIN align functions
 
@@ -93,7 +94,29 @@ the right."
 
 ;; END align functions
 #+END_SRC
-*** emacs-prelude
+
+** spacemacs/window splits
+#+BEGIN_SRC emacs-lisp
+(defun split-window-below-and-focus ()
+  "Split the window vertically and focus the new window."
+  (interactive)
+  (split-window-below)
+  (windmove-down)
+  (when (and (boundp 'golden-ratio-mode)
+             (symbol-value golden-ratio-mode))
+    (golden-ratio)))
+
+(defun split-window-right-and-focus ()
+  "Split the window horizontally and focus the new window."
+  (interactive)
+  (split-window-right)
+  (windmove-right)
+  (when (and (boundp 'golden-ratio-mode)
+             (symbol-value golden-ratio-mode))
+    (golden-ratio)))
+#+END_SRC
+
+** emacs-prelude
 #+BEGIN_SRC emacs-lisp
 (defun prelude-copy-file-name-to-clipboard ()
   "Copy the current buffer file name to the clipboard."
@@ -106,7 +129,9 @@ the right."
       (message "Copied buffer file name '%s' to the clipboard." filename))))
 #+END_SRC
 
-*** clipboard
+
+
+** clipboard
 #+BEGIN_SRC emacs-lisp
 (defun copy-to-clipboard ()
   "Copies selection to x-clipboard."
@@ -894,8 +919,9 @@ SCHEDULED: %t")))
     "k" 'evil-window-up
     "h" 'evil-window-left
     "l" 'evil-window-right
-    "v" 'evil-window-vsplit
-    "x" 'evil-window-split
+
+    "v" 'split-window-right-and-focus
+    "x" 'split-window-below-and-focus
   )
 #+END_SRC
 
@@ -926,15 +952,28 @@ SCHEDULED: %t")))
   #+END_SRC
 
 *** local leader
-***** z: zoom / visualization
+**** l: label/tag
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
-  "zi" 'org-narrow-to-subtree
-  "zo" 'widen)
-(which-key-declare-prefixes ", z" "zoom")
+  "ll" 'counsel-org-tag
+)
+(which-key-declare-prefixes ", l" "label/tag")
 #+END_SRC
 
-***** t: subtree commands
+**** i: insertions
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys org-map
+  "ih" 'org-insert-heading
+  "ia" 'org-insert-heading-after-current
+  "ir" 'org-insert-heading-respect-content
+  "is" 'org-insert-subheading
+  "il" 'org-insert-link
+  "iL" 'org-toggle-link-display
+)
+(which-key-declare-prefixes ", i" "insertions/additions")
+#+END_SRC
+
+**** s: subtree commands
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
   ;; subtree commands
@@ -950,18 +989,15 @@ SCHEDULED: %t")))
 (which-key-declare-prefixes ", s" "org subtree operations")
 #+END_SRC
 
-***** i: insertions
+**** z: zoom / visualization
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
-  "ih" 'org-insert-heading
-  "ia" 'org-insert-heading-after-current
-  "ir" 'org-insert-heading-respect-content
-  "is" 'org-insert-subheading
-  "il" 'org-insert-link)
-(which-key-declare-prefixes ", i" "insertions/additions")
+  "zi" 'org-narrow-to-subtree
+  "zo" 'widen)
+(which-key-declare-prefixes ", z" "zoom")
 #+END_SRC
 
-***** *: others
+**** *: others
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
   ;; code blocks
