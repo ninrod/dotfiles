@@ -152,15 +152,6 @@ If the universal prefix argument is used then kill also the window."
     (global-evil-visualstar-mode))
 #+end_src
 
-** evil-textobj-anyblock
-#+BEGIN_SRC emacs-lisp
-(use-package evil-textobj-anyblock
-  :ensure t
-  :config
-    (define-key evil-inner-text-objects-map "b" 'evil-textobj-anyblock-inner-block)
-    (define-key evil-outer-text-objects-map "b" 'evil-textobj-anyblock-a-block))
-#+END_SRC
-
 ** evil-indent-plus
 #+begin_src emacs-lisp
 (use-package evil-indent-plus
@@ -189,10 +180,15 @@ If the universal prefix argument is used then kill also the window."
 * tweaks
 ** interface options
 #+BEGIN_SRC emacs-lisp
-(setq inhibit-startup-message t)
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(fset 'yes-or-no-p 'y-or-n-p)
+  (setq inhibit-startup-message t)
+  (tool-bar-mode -1)
+  (menu-bar-mode -1)
+  (fset 'yes-or-no-p 'y-or-n-p)
+
+  ;; highlight current line
+  ;;(setq hl-line-sticky-flag nil)
+  ;; (hl-line-mode 1)
+  (global-hl-line-mode 1)
 #+END_SRC
 
 ** gui
@@ -684,6 +680,17 @@ SCHEDULED: %t")))
 (which-key-declare-prefixes "SPC p" "projectile")
 #+END_SRC
 
+*** s: spelling
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys main-map
+  "sw" 'ispell-word
+  "se" (lambda () (interactive) (ispell-change-dictionary "english") (flyspell-mode))
+  "sp" (lambda () (interactive) (ispell-change-dictionary "pt_BR")   (flyspell-mode))
+  "sk" (lambda () (interactive) (flyspell-mode -1))
+)
+(which-key-declare-prefixes "SPC s" "spelling")
+#+END_SRC
+
 *** t: terminal
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
@@ -714,8 +721,13 @@ SCHEDULED: %t")))
 (define-key evil-motion-state-map "g9" (kbd "Hz-M"))
 (define-key evil-motion-state-map "g0" (kbd "LztM"))
 
+(define-key evil-motion-state-map "g1" 'eyebrowse-switch-to-window-config-1)
+(define-key evil-motion-state-map "g2" 'eyebrowse-switch-to-window-config-2)
+(define-key evil-motion-state-map "g3" 'eyebrowse-switch-to-window-config-3)
+(define-key evil-motion-state-map "g4" 'eyebrowse-switch-to-window-config-4)
+
 ;; turn off search highlight (muscle memory)
-(define-key evil-normal-state-map "g-" 'evil-ex-nohighlight)
+(define-key evil-motion-state-map "g-" 'evil-ex-nohighlight)
 #+END_SRC
 
 *** comfort binds
