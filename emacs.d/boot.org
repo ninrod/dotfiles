@@ -235,42 +235,35 @@ If the universal prefix argument is used then kill also the window."
 ** spaceline
 - to determine separators. more options [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
 #+BEGIN_SRC emacs-lisp
-  (use-package spaceline :ensure t
-    :config
-      (require 'spaceline-config)
-      (spaceline-spacemacs-theme)
+   (use-package spaceline :ensure t
+     :config
+       (require 'spaceline-config)
+       (spaceline-spacemacs-theme)
 
-      ;; Separators for Powerline.
-      ;; Included separators: 
-      ;;   (alternate), arrow, arrow-fade, bar, (box), brace, butt,
-      ;;   chamfer, contour, curve, rounded, roundstub, (slant), 
-      ;;   (wave), (zigzag), and nil.
-      (when (eq system-type 'darwin)
-        (progn
-          (setq ns-use-srgb-colorspace nil)
-          (setq powerline-height 25)
-          (setq powerline-default-separator 'utf-8)
-          (setq powerline-default-separator 'slant)
+       ;; Separators for Powerline.
+       ;; Included separators: slant, alternate, wave, zigzag, box, arrow-fade, nil.
+       (when (eq system-type 'darwin)
+         (progn
+           (setq ns-use-srgb-colorspace nil)
+           (setq powerline-height 25)
+           (setq powerline-default-separator 'utf-8)
+           (setq powerline-default-separator 'slant)
 
-          ;; this is for eyebrowse. nice looking unicode numbers for tagging different layouts
-          ;; lifted from spaceline documentation
-          (setq spaceline-workspace-numbers-unicode t)
-          (setq spaceline-window-numbers-unicode t)
+           ;; this is for eyebrowse. nice looking unicode numbers for tagging different layouts
+           ;; lifted from spaceline documentation
+           (setq spaceline-workspace-numbers-unicode t)
+           (setq spaceline-window-numbers-unicode t)
 
-          ;; colouring for different evil-states
-          (setq spaceline-highlight-face-func #'spaceline-highlight-face-evil-state)
+           ;; colouring for different evil-states
+           (setq spaceline-highlight-face-func #'spaceline-highlight-face-evil-state)
 
-          ;; this setting is waiting upon confirmation of usefullness on reddit
-          ;; thread: https://www.reddit.com/r/emacs/comments/56hlch/challenge_explain_to_me_what_powerlineraw_really/
-          ;;(setq powerline-raw " ")
+           (spaceline-compile)))
 
-          (spaceline-compile)))
-
-      (when (eq system-type 'gnu/linux)
-        (progn
-          (setq powerline-height 25)
-          (setq powerline-default-separator nil)
-          (spaceline-compile))))
+       (when (eq system-type 'gnu/linux)
+         (progn
+           (setq powerline-height 25)
+           (setq powerline-default-separator nil)
+           (spaceline-compile))))
 #+END_SRC
 
 ** backups
@@ -691,6 +684,7 @@ SCHEDULED: %t")))
   "se" (lambda () (interactive) (ispell-change-dictionary "english") (flyspell-mode))
   "sp" (lambda () (interactive) (ispell-change-dictionary "pt_BR")   (flyspell-mode))
   "sk" (lambda () (interactive) (flyspell-mode -1))
+  "ss" (lambda () (interactive) (flyspell-mode 1))
 )
 (which-key-declare-prefixes "SPC s" "spelling")
 #+END_SRC
