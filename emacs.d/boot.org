@@ -813,6 +813,8 @@ SCHEDULED: %t")))
 
   (evil-define-key 'normal org-mode-map "<" 'org-do-promote)
   (evil-define-key 'normal org-mode-map ">" 'org-do-demote)
+
+  (evil-define-key 'normal org-mode-map "t" 'org-todo)
   #+END_SRC
 
 *** local leader
