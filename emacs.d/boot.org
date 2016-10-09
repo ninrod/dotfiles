@@ -321,39 +321,43 @@ the right."
 ** spaceline
 - to determine separators. more options [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
 #+BEGIN_SRC emacs-lisp
-   (use-package spaceline :ensure t
-     :config
-       (require 'spaceline-config)
-       (spaceline-spacemacs-theme)
+     (use-package spaceline :ensure t
+       :config
+         (require 'spaceline-config)
+         (spaceline-spacemacs-theme)
 
-       ;; Separators for Powerline.
-       ;; Included separators: slant, alternate, wave, zigzag, box, arrow-fade, nil.
-       (when (eq system-type 'darwin)
-         (progn
-           (setq powerline-height 25)
+         ;; Separators for Powerline.
+         ;; Included separators: slant, alternate, wave, zigzag, box, arrow-fade, nil.
+         (when (eq system-type 'darwin)
+           (progn
+             (setq powerline-height 25)
 
-           ;; separator setup
-           (setq ns-use-srgb-colorspace nil)
-           (setq powerline-default-separator 'utf-8)
-           (setq powerline-default-separator 'slant)
-           (setq spaceline-separator-dir-left '(right . right))
-           (setq spaceline-separator-dir-right '(right . right))
+             ;; separator setup
+             (setq ns-use-srgb-colorspace nil)
+             (setq powerline-default-separator 'utf-8)
+             (setq powerline-default-separator 'slant)
+             (setq spaceline-separator-dir-left '(right . right))
+             (setq spaceline-separator-dir-right '(right . right))
 
-           ;; this is for eyebrowse. nice looking unicode numbers for tagging different layouts
-           ;; lifted from spaceline documentation
-           (setq spaceline-workspace-numbers-unicode t)
-           (setq spaceline-window-numbers-unicode t)
+             ;; this is for eyebrowse. nice looking unicode numbers for tagging different layouts
+             ;; lifted from spaceline documentation
+             (setq spaceline-workspace-numbers-unicode t)
+             (setq spaceline-window-numbers-unicode t)
 
-           ;; colouring for different evil-states
-           (setq spaceline-highlight-face-func #'spaceline-highlight-face-evil-state)
+             ;; colouring for different evil-states
+             (setq spaceline-highlight-face-func #'spaceline-highlight-face-evil-state)
+           
+             ;; display time in powerline
+             (setq display-time-default-load-average nil)
+             (display-time-mode)
 
-           (spaceline-compile)))
+             (spaceline-compile)))
 
-       (when (eq system-type 'gnu/linux)
-         (progn
-           (setq powerline-height 25)
-           (setq powerline-default-separator nil)
-           (spaceline-compile))))
+         (when (eq system-type 'gnu/linux)
+           (progn
+             (setq powerline-height 25)
+             (setq powerline-default-separator nil)
+             (spaceline-compile))))
 #+END_SRC
 
 ** backups
