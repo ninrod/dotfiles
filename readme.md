@@ -7,20 +7,17 @@
 ## Screenshots
 
 ### Emacs using spacemacs' theme
-
-![emacs-config](https://github.com/ninrod/dotfiles/raw/misc/images/emacs-shot-2016-10-01.png)
+![emacs-config](https://raw.githubusercontent.com/ninrod/dotfiles/master/img/emacs-shot-2016-10-08.png)
 
 ### Vim/Tmux on iTerm2 with [gruvbox](https://github.com/morhetz/gruvbox) (default)
+![gruvbox-config](https://raw.githubusercontent.com/ninrod/dotfiles/master/img/shot-2016-06-16-gruvbox.png)
 
-![gruvbox-config](https://github.com/ninrod/dotfiles/raw/misc/images/shot-2016-06-16-gruvbox.png)
 
 ### Vim/Tmux on iTerm2 with [jellybeans](https://github.com/nanotech/jellybeans.vim)
-
-![jellybeans-config](https://github.com/ninrod/dotfiles/raw/misc/images/shot-2016-06-15-jellybeans.png)
+![jellybeans-config](https://raw.githubusercontent.com/ninrod/dotfiles/master/img/shot-2016-06-15-jellybeans.png)
 
 ### Vim/Tmux on iTerm2 with [molokai](https://github.com/tomasr/molokai)
-
-![molokai-config](https://github.com/ninrod/dotfiles/raw/misc/images/molokai.png)
+![molokai-config](https://raw.githubusercontent.com/ninrod/dotfiles/master/img/molokai.png)
 
 ## Important notice 
 
