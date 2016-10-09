@@ -348,6 +348,7 @@ the right."
              (setq spaceline-highlight-face-func #'spaceline-highlight-face-evil-state)
            
              ;; display time in powerline
+             ;; lifted from here: https://www.reddit.com/r/emacs/comments/2ziinn/displaytimemode_but_not_system_load/
              (setq display-time-default-load-average nil)
              (display-time-mode)
 
@@ -977,6 +978,19 @@ SCHEDULED: %t")))
 (which-key-declare-prefixes ", i" "insertions/additions")
 #+END_SRC
 
+
+**** m: meta
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys org-map
+    "ml" 'org-metaright
+    "mh" 'org-metaleft
+    "mj" 'org-metadown
+    "mk" 'org-metaup
+    "mr"  'org-meta-return
+  )
+  (which-key-declare-prefixes ", m" "org-meta")
+#+END_SRC
+
 **** s: subtree commands
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
@@ -991,6 +1005,17 @@ SCHEDULED: %t")))
   "ss" 'org-show-subtree
   "sc" 'org-clone-subtree-with-time-shift)
 (which-key-declare-prefixes ", s" "org subtree operations")
+#+END_SRC
+
+**** t: table
+***** ☛ TODO lift more binds from [[http://orgmode.org/manual/Built_002din-table-editor.html][here]]:
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys org-map
+    "ta" 'org-table-align
+    "th" 'org-backward-sentence
+    "tl" 'org-forward-sentence
+  )
+  (which-key-declare-prefixes ", t" "org-table")
 #+END_SRC
 
 **** z: zoom / visualization
