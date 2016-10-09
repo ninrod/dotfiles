@@ -705,7 +705,9 @@ SCHEDULED: %t")))
 *** t: terminal
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
-  "tt" 'ansi-term)
+  "ta" 'ansi-term
+  "tt" 'eshell
+)
 (which-key-declare-prefixes "SPC t" "terminal")
 #+END_SRC
 
