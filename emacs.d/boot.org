@@ -195,9 +195,7 @@ If the universal prefix argument is used then kill also the window."
   (fset 'yes-or-no-p 'y-or-n-p)
 
   ;; highlight current line
-  ;;(setq hl-line-sticky-flag nil)
-  ;; (hl-line-mode 1)
-  (global-hl-line-mode 1)
+  ;;(global-hl-line-mode)
 #+END_SRC
 
 ** gui
@@ -747,10 +745,10 @@ SCHEDULED: %t")))
 (define-key evil-motion-state-map "g4" 'eyebrowse-switch-to-window-config-4)
 
 ;; turn off search highlight (muscle memory)
-(define-key evil-motion-state-map "g-" 'evil-ex-nohighlight)
+;;(define-key evil-motion-state-map "g-" 'available)
 #+END_SRC
 
-*** comfort binds
+*** comfort improvements
 #+BEGIN_SRC emacs-lisp
 ;; toggle fold: faster and more comfortable than `za'
 ;; `cl' is a complete replacement for `s'
@@ -762,20 +760,19 @@ SCHEDULED: %t")))
 ;; file/buffer selection
 (define-key evil-normal-state-map (kbd "TAB") 'ivy-switch-buffer)
 (define-key evil-normal-state-map (kbd "DEL") 'counsel-find-file)
-#+END_SRC
 
-*** comfort swaps/improvements
-#+BEGIN_SRC emacs-lisp
-  ;; invertion of `'` and `"`
-  (define-key evil-normal-state-map "'" 'evil-use-register)
-  (define-key evil-normal-state-map "\"" 'evil-goto-mark-line)
+(define-key evil-normal-state-map "-" 'evil-ex-nohighlight)
 
-  ;; invert `{' and `)'. used way more then { and }
-  (define-key evil-motion-state-map "(" 'evil-backward-paragraph)
-  (define-key evil-motion-state-map ")" 'evil-forward-paragraph)
+;; invertion of `'` and `"`
+(define-key evil-normal-state-map "'" 'evil-use-register)
+(define-key evil-normal-state-map "\"" 'evil-goto-mark-line)
 
-  ;; `Q' is my new `q'. open up q prefix for abuse.
-  (define-key evil-normal-state-map "Q" 'evil-record-macro)
+;; invert `{' and `)'. used way more then { and }
+(define-key evil-motion-state-map "(" 'evil-backward-paragraph)
+(define-key evil-motion-state-map ")" 'evil-forward-paragraph)
+
+;; `Q' is my new `q'. open up q prefix for abuse.
+(define-key evil-normal-state-map "Q" 'evil-record-macro)
 #+END_SRC
 
 *** fixes
