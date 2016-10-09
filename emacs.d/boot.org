@@ -39,6 +39,60 @@ If the universal prefix argument is used then kill also the window."
       (kill-buffer))))
 #+END_SRC
 
+*** spacemacs/align functions
+#+BEGIN_SRC emacs-lisp
+;; BEGIN align functions
+
+;; modified function from http://emacswiki.org/emacs/AlignCommands
+(defun spacemacs/align-repeat (start end regexp &optional justify-right after)
+  "Repeat alignment with respect to the given regular expression.
+If JUSTIFY-RIGHT is non nil justify to the right instead of the
+left. If AFTER is non-nil, add whitespace to the left instead of
+the right."
+  (interactive "r\nsAlign regexp: ")
+  (let* ((ws-regexp (if (string-empty-p regexp)
+                        "\\(\\s-+\\)"
+                      "\\(\\s-*\\)"))
+         (complete-regexp (if after
+                              (concat regexp ws-regexp)
+                            (concat ws-regexp regexp)))
+         (group (if justify-right -1 1)))
+    (message "%S" complete-regexp)
+    (align-regexp start end complete-regexp group 1 t)))
+
+;; Modified answer from http://emacs.stackexchange.com/questions/47/align-vertical-columns-of-numbers-on-the-decimal-point
+(defun spacemacs/align-repeat-decimal (start end)
+  "Align a table of numbers on decimal points and dollar signs (both optional)"
+  (interactive "r")
+  (require 'align)
+  (align-region start end nil
+                '((nil (regexp . "\\([\t ]*\\)\\$?\\([\t ]+[0-9]+\\)\\.?")
+                       (repeat . t)
+                       (group 1 2)
+                       (spacing 1 1)
+                       (justify nil t)))
+                nil))
+
+(defmacro spacemacs|create-align-repeat-x (name regexp &optional justify-right default-after)
+  (let ((new-func (intern (concat "spacemacs/align-repeat-" name))))
+    `(defun ,new-func (start end switch)
+       (interactive "r\nP")
+       (let ((after (not (eq (if switch t nil) (if ,default-after t nil)))))
+         (spacemacs/align-repeat start end ,regexp ,justify-right after)))))
+
+(spacemacs|create-align-repeat-x "comma" "," nil t)
+(spacemacs|create-align-repeat-x "semicolon" ";" nil t)
+(spacemacs|create-align-repeat-x "colon" ":" nil t)
+(spacemacs|create-align-repeat-x "equal" "=")
+(spacemacs|create-align-repeat-x "math-oper" "[+\\-*/]")
+(spacemacs|create-align-repeat-x "ampersand" "&")
+(spacemacs|create-align-repeat-x "bar" "|")
+(spacemacs|create-align-repeat-x "left-paren" "(")
+(spacemacs|create-align-repeat-x "right-paren" ")" t)
+(spacemacs|create-align-repeat-x "backslash" "\\\\")
+
+;; END align functions
+#+END_SRC
 *** emacs-prelude
 #+BEGIN_SRC emacs-lisp
 (defun prelude-copy-file-name-to-clipboard ()
@@ -596,6 +650,29 @@ SCHEDULED: %t")))
   )
 #+END_SRC
 
+*** a: align
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys main-map
+  "aa" 'align
+  "ac" 'align-current
+  "am" 'spacemacs/align-repeat-math-oper
+  "ar" 'spacemacs/align-repeat
+
+  "a&" 'spacemacs/align-repeat-ampersand
+  "a(" 'spacemacs/align-repeat-left-paren
+  "a)" 'spacemacs/align-repeat-right-paren
+  "a," 'spacemacs/align-repeat-comma
+  "a." 'spacemacs/align-repeat-decimal
+  "a:" 'spacemacs/align-repeat-colon
+  "a;" 'spacemacs/align-repeat-semicolon
+  "a=" 'spacemacs/align-repeat-equal
+  "a\\" 'spacemacs/align-repeat-backslash
+  "a|" 'spacemacs/align-repeat-bar
+)
+(which-key-declare-prefixes "SPC a" "align")
+
+#+END_SRC
+
 *** c: counsel/ivy
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
@@ -638,20 +715,16 @@ SCHEDULED: %t")))
 *** g: git
 - *lift*: the below magit SPC gs bind hack was lifted from [[http://emacs.stackexchange.com/a/27623/12585][this]] SO answer.
 #+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys main-map
-    "gf" 'magit-log-buffer-file
-
-    "gs" (lambda () (interactive) 
-           (magit-status (magit-read-repository 
-             (>= (prefix-numeric-value current-prefix-arg) 16))))
-       
-    ;; testing out http://emacs.stackexchange.com/a/27625/12585 hack.
-    ;; "gs" (lambda () (interactive)
-    ;;         (universal-argument)
-    ;;         (call-interactively 'magit-status))
-
-  )
-  (which-key-declare-prefixes "SPC g" "[ma]git operations")
+(bind-map-set-keys main-map
+  "gf" 'magit-log-buffer-file
+  "gs" (lambda () (interactive) 
+         (magit-status (magit-read-repository 
+           (>= (prefix-numeric-value current-prefix-arg) 16))))
+)
+(which-key-declare-prefixes "SPC g" "[ma]git operations")
+(which-key-add-key-based-replacements
+  "SPC gs" "repo magit status"
+)
 #+END_SRC
 
 *** i: ivy
@@ -676,6 +749,7 @@ SCHEDULED: %t")))
   (bind-map-set-keys main-map
     "oc" 'air-org-task-capture
     "oa" 'air-pop-to-org-agenda
+    "ot" 'org-table-convert-region
   )
   (which-key-declare-prefixes "SPC o" "org-mode")
 #+END_SRC
