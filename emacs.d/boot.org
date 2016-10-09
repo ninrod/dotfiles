@@ -364,7 +364,6 @@ SCHEDULED: %t")))
   "Capture a task with my default template."
   (interactive)
   (org-capture nil "a"))
-(define-key global-map (kbd "C-c c") 'air-org-task-capture)
 #+END_SRC
 
 *** org agenda
@@ -383,7 +382,6 @@ SCHEDULED: %t")))
     (when (not split)
       (delete-other-windows)))
 
-  (define-key global-map (kbd "C-c t a") 'air-pop-to-org-agenda)
   (setq org-agenda-text-search-extra-files '(agenda-archives))
 #+END_SRC
 
@@ -669,6 +667,15 @@ SCHEDULED: %t")))
     "lb" 'org-babel-execute-src-block
     "ll" 'eval-last-sexp)
   (which-key-declare-prefixes "SPC l" "evaluation")
+#+END_SRC
+
+*** o: org-mode
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys main-map
+    "oc" 'air-org-task-capture
+    "oa" 'air-pop-to-org-agenda
+  )
+  (which-key-declare-prefixes "SPC o" "org-mode")
 #+END_SRC
 
 *** p: projectile
