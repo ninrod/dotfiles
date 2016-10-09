@@ -1,4 +1,3 @@
-#+STARTUP: overview
 #+STARTUP: indent
 
 * lisp lifts
