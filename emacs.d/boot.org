@@ -694,12 +694,19 @@ SCHEDULED: %t")))
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
   "sw" 'ispell-word
-  "se" (lambda () (interactive) (ispell-change-dictionary "english") (flyspell-mode))
-  "sp" (lambda () (interactive) (ispell-change-dictionary "pt_BR")   (flyspell-mode))
+  "se" (lambda () (interactive) (ispell-change-dictionary "english"))
+  "sp" (lambda () (interactive) (ispell-change-dictionary "pt_BR"))
   "sk" (lambda () (interactive) (flyspell-mode -1))
   "ss" (lambda () (interactive) (flyspell-mode 1))
 )
 (which-key-declare-prefixes "SPC s" "spelling")
+(which-key-add-key-based-replacements
+  "SPC sw" "ispell: check word"
+  "SPC se" "ispell: use english dictionary"
+  "SPC sp" "ispell: use pt_BR dictionary"
+  "SPC sk" "turn off flyspell mode"
+  "SPC ss" "turn on flyspell mode"
+)
 #+END_SRC
 
 *** t: terminal
@@ -957,6 +964,8 @@ SCHEDULED: %t")))
 (diminish 'undo-tree-mode)
 (diminish 'auto-revert-mode)
 (diminish 'org-indent-mode)
+(diminish 'flyspell-mode "FlyS")
+(diminish 'flycheck-mode "FlyC")
 #+END_SRC
 
 * tips
