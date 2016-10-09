@@ -244,10 +244,14 @@ If the universal prefix argument is used then kill also the window."
        ;; Included separators: slant, alternate, wave, zigzag, box, arrow-fade, nil.
        (when (eq system-type 'darwin)
          (progn
-           (setq ns-use-srgb-colorspace nil)
            (setq powerline-height 25)
+
+           ;; separator setup
+           (setq ns-use-srgb-colorspace nil)
            (setq powerline-default-separator 'utf-8)
            (setq powerline-default-separator 'slant)
+           (setq spaceline-separator-dir-left '(right . right))
+           (setq spaceline-separator-dir-right '(right . right))
 
            ;; this is for eyebrowse. nice looking unicode numbers for tagging different layouts
            ;; lifted from spaceline documentation
