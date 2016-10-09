@@ -587,11 +587,12 @@ SCHEDULED: %t")))
 )
 #+END_SRC
 
-** SPC
+** SPC fast
 *** core/directs
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys main-map
     "<SPC>" 'counsel-M-x
+    ;; "TAB" 'available
   )
 #+END_SRC
 
@@ -714,6 +715,24 @@ SCHEDULED: %t")))
   "tt" 'eshell
 )
 (which-key-declare-prefixes "SPC t" "terminal")
+#+END_SRC
+
+*** t: terminal
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys main-map
+  "ta" 'ansi-term
+  "tt" 'eshell
+)
+(which-key-declare-prefixes "SPC t" "terminal")
+#+END_SRC
+
+** SPC caps/shift
+*** E: evil
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys main-map
+    "Eu" 'undo-tree-visualize
+)
+(which-key-declare-prefixes "SPC E" "evil-mode")
 #+END_SRC
 
 ** core
