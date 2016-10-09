@@ -7,7 +7,7 @@
 ## Screenshots
 
 ### Emacs using spacemacs' theme
-![emacs-config](https://raw.githubusercontent.com/ninrod/dotfiles/master/img/emacs-shot-2016-10-08.png)
+![emacs-config](https://raw.githubusercontent.com/ninrod/dotfiles/master/img/emacs-2016-10-09.png)
 
 ### Vim/Tmux on iTerm2 with [gruvbox](https://github.com/morhetz/gruvbox) (default)
 ![gruvbox-config](https://raw.githubusercontent.com/ninrod/dotfiles/master/img/shot-2016-06-16-gruvbox.png)
