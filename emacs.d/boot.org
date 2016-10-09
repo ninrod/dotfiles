@@ -652,6 +652,14 @@ SCHEDULED: %t")))
 )
 #+END_SRC
 
+** multi-term
+#+BEGIN_SRC emacs-lisp
+(use-package multi-term :ensure t
+  :config
+    (setq multi-term-program "/bin/zsh")
+)
+#+END_SRC
+
 * binds
 ** bind-map
 #+BEGIN_SRC emacs-lisp
@@ -811,23 +819,22 @@ SCHEDULED: %t")))
 )
 #+END_SRC
 
-*** t: terminal
+*** t: terminals
 #+BEGIN_SRC emacs-lisp
-(bind-map-set-keys main-map
-  "ta" 'ansi-term
-  "tt" 'eshell
-)
-(which-key-declare-prefixes "SPC t" "terminal")
+  (bind-map-set-keys main-map
+    "ta" 'ansi-term
+    "te" 'eshell
+
+    ;; multi-term
+    "tt"  'multi-term
+    "tn" 'multi-term-next
+    "tp" 'multi-term-prev
+  )
+  (which-key-declare-prefixes "SPC t" "terminals")
+  (which-key-declare-prefixes "SPC tm" "multi-term")
 #+END_SRC
 
-*** t: terminal
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys main-map
-  "ta" 'ansi-term
-  "tt" 'eshell
-)
-(which-key-declare-prefixes "SPC t" "terminal")
-#+END_SRC
+#+RESULTS:
 
 ** SPC caps/shift
 *** E: evil
