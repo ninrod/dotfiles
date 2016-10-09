@@ -160,6 +160,15 @@ If the universal prefix argument is used then kill also the window."
     (evil-indent-plus-default-bindings))
 #+end_src
 
+** evil-anzu
+- config section hack: see [[https://github.com/TheBB/spaceline/issues/69][TheBB/spaceline#69]]
+#+BEGIN_SRC emacs-lisp
+(use-package evil-anzu :ensure t
+  :config
+  (setq anzu-cons-mode-line-p nil)
+)
+#+END_SRC
+
 * utils
 ** restart-emacs
 #+BEGIN_SRC emacs-lisp
