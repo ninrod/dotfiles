@@ -672,6 +672,43 @@ SCHEDULED: %t")))
 )
 #+END_SRC
 
+** rainbow-delimiters
+#+BEGIN_SRC emacs-lisp
+(use-package rainbow-delimiters :ensure t
+  :config
+    ;; start in almost all main program modes
+    (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+)
+#+END_SRC
+
+** highlight-parentheses
+#+BEGIN_SRC emacs-lisp
+  (use-package highlight-parentheses :ensure t
+    :diminish highlight-parentheses-mode
+    :config
+      (progn
+        (add-hook 'prog-mode-hook #'highlight-parentheses-mode)
+        (add-hook 'org-mode-hook #'highlight-parentheses-mode)
+        (setq hl-paren-delay 0.2)
+        (setq hl-paren-colors '("Springgreen3"
+                                "IndianRed1"
+                                "IndianRed3"
+                                "IndianRed4"))
+        (set-face-attribute 'hl-paren-face nil :weight 'ultra-bold)))
+#+END_SRC
+
+** vimrc mode
+#+BEGIN_SRC emacs-lisp
+(use-package vimrc-mode :ensure t)
+#+END_SRC
+
+** dockerfile
+#+BEGIN_SRC emacs-lisp
+(use-package dockerfile-mode :ensure t
+  :config 
+    (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
+#+END_SRC
+
 * binds
 ** bind-map
 #+BEGIN_SRC emacs-lisp
@@ -1101,48 +1138,6 @@ SCHEDULED: %t")))
 
 - ?
     
-* syntax-highlight
-** rainbow-delimiters
-#+BEGIN_SRC emacs-lisp
-(use-package rainbow-delimiters
-  :ensure t
-  :config
-    ;; start in almost all main program modes
-    (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
-)
-#+END_SRC
-
-** highlight-parentheses
-#+BEGIN_SRC emacs-lisp
-  (use-package highlight-parentheses
-    :ensure t
-    :diminish highlight-parentheses-mode
-    :config
-      (progn
-        (add-hook 'prog-mode-hook #'highlight-parentheses-mode)
-        (add-hook 'org-mode-hook #'highlight-parentheses-mode)
-        (setq hl-paren-delay 0.2)
-        (setq hl-paren-colors '("Springgreen3"
-                                "IndianRed1"
-                                "IndianRed3"
-                                "IndianRed4"))
-        (set-face-attribute 'hl-paren-face nil :weight 'ultra-bold)))
-#+END_SRC
-
-** vimrc mode
-#+BEGIN_SRC emacs-lisp
-(use-package vimrc-mode
-  :ensure t)
-#+END_SRC
-
-** dockerfile
-#+BEGIN_SRC emacs-lisp
-(use-package dockerfile-mode
-  :ensure t
-  :config 
-    (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
-#+END_SRC
-
 * diminishes
 #+BEGIN_SRC emacs-lisp
 (diminish 'undo-tree-mode)

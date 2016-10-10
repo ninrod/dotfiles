@@ -170,9 +170,6 @@ else
   ### emacs bindings
   bindkey "^[[A" history-beginning-search-backward
   bindkey "^[[B" history-beginning-search-forward
-  ### vim bindings
-  bindkey -a k history-beginning-search-backward
-  bindkey -a j history-beginning-search-forward
 fi
 
 zplug "${DOTPATH}/deps/ninrod/docker-alias", from:local
