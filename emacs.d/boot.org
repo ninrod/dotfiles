@@ -856,6 +856,14 @@ SCHEDULED: %t")))
 (which-key-declare-prefixes "SPC E" "evil-mode")
 #+END_SRC
 
+*** A: applications
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys main-map
+    "Am" 'man
+)
+(which-key-declare-prefixes "SPC A" "applications")
+#+END_SRC
+
 ** core
 *** abusing the g prefix
 #+BEGIN_SRC emacs-lisp
