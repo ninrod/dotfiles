@@ -405,12 +405,23 @@ the right."
 #+END_SRC
 
 *** from SO question: [[http://emacs.stackexchange.com/questions/21605/term-raw-map-and-local-unset-key-need-to-pass-m-left-right-up-down-to-shell][question]]
+- not working either
 #+BEGIN_SRC emacs-lisp
-(defun my-term-hook ()
-  (define-key term-raw-map (kbd "<escape>")
-    (lambda () (interactive) (term-send-raw-string "\e[")))
-)
-(add-hook 'term-mode-hook 'my-term-hook)
+  ;; (defun my-term-hook ()
+  ;;   (define-key term-raw-map (kbd "<escape>")
+  ;;     (lambda () (interactive) (term-send-raw-string "\e[")))
+  ;; )
+  ;; (add-hook 'term-mode-hook 'my-term-hook)
+#+END_SRC
+
+*** @chadhs tip
+#+BEGIN_SRC emacs-lisp
+(evil-define-key 'normal term-raw-map "p" 'term-paste)
+(evil-define-key 'normal term-raw-map "j" 'term-send-down)
+(evil-define-key 'normal term-raw-map "k" 'term-send-up)
+(evil-define-key 'normal term-raw-map "/" 'term-send-reverse-search-history)
+(evil-define-key 'normal term-raw-map (kbd "C-c") 'term-send-raw)
+(evil-define-key 'insert term-raw-map (kbd "C-c") 'term-send-raw)
 #+END_SRC
 
 ** fix $PATH on macosx with exec-path-from-shell

@@ -148,9 +148,11 @@ export EMACS_SRC_DIR="${HOME}/code/apps/emacs"
 # }}}
 # plugins {{{
 
-# fzf setup
-[[ $- == *i* ]] && source ~/.fzf/shell/completion.zsh 2> /dev/null
-source ~/.fzf/shell/key-bindings.zsh
+# fzf bootstrap
+if [[ -z ${EMACS+x} ]]; then
+  [[ $- == *i* ]] && source ~/.fzf/shell/completion.zsh 2> /dev/null
+  source ~/.fzf/shell/key-bindings.zsh
+fi
 
 # Zplug
 source ~/.zplug/init.zsh
@@ -158,13 +160,25 @@ source ~/.zplug/init.zsh
 # personal plugins
 # zplug "~/code/sources/nin-vi-mode", from:local
 
-zplug "${DOTPATH}/deps/ninrod/nin-vi-mode", from:local
+# with help from @chadhs https://github.com/syl20bnr/spacemacs/issues/7140#issuecomment-252036519
+if [[ -z ${EMACS+x} ]]; then
+  zplug "${DOTPATH}/deps/ninrod/nin-vi-mode", from:local
+  zplug "${DOTPATH}/deps/b4b4r07/enhancd", from:local, use:init.sh
+else
+  bindkey -e
+  ## command specific history search
+  ### emacs bindings
+  bindkey "^[[A" history-beginning-search-backward
+  bindkey "^[[B" history-beginning-search-forward
+  ### vim bindings
+  bindkey -a k history-beginning-search-backward
+  bindkey -a j history-beginning-search-forward
+fi
+
 zplug "${DOTPATH}/deps/ninrod/docker-alias", from:local
 zplug "${DOTPATH}/deps/ninrod/docker-zsh-completion", from:local
-
 zplug "${DOTPATH}/deps/Tarrasch/zsh-bd", from:local
 zplug "${DOTPATH}/deps/supercrabtree/k", from:local
-zplug "${DOTPATH}/deps/b4b4r07/enhancd", from:local, use:init.sh
 zplug "${DOTPATH}/deps/zsh-users/zsh-completions", from:local
 zplug "${DOTPATH}/deps/zsh-users/zsh-syntax-highlighting", from:local, nice:10
   ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
