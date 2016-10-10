@@ -558,7 +558,8 @@ SCHEDULED: %t")))
   :config
     (add-hook 'after-init-hook 'projectile-mode)
     (use-package counsel-projectile :ensure t)
-    
+    (setq projectile-completion-system 'ivy)   
+
     ;; not used because `SPC-gs' is sealing the deal for the moment
     ;;(setq projectile-switch-project-action 'projectile-vc)
 )
@@ -851,6 +852,7 @@ SCHEDULED: %t")))
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys main-map
     "xm" 'man
+    "xw" 'woman
   )
   (which-key-declare-prefixes "SPC x" "useful M-x commands")
 #+END_SRC
@@ -1153,8 +1155,14 @@ SCHEDULED: %t")))
 * final touches
 ** M-x man
 - [[http://emacs.stackexchange.com/a/10669/12585][list]] of evil states: 
+- with [[https://github.com/syl20bnr/spacemacs/issues/7346][help]] from @TheBB 
 #+BEGIN_SRC emacs-lisp
-(evil-set-initial-state 'Man-mode 'normal)
+  (with-eval-after-load "man" 
+    (progn
+      (evil-set-initial-state 'Man-mode 'normal)
+      (setq Man-notify-method 'pushy)
+    )
+  )
 #+END_SRC
 
 * tips
