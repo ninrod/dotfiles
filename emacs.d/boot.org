@@ -1150,6 +1150,13 @@ SCHEDULED: %t")))
 (diminish 'flycheck-mode "FlyC")
 #+END_SRC
 
+* final touches
+** M-x man
+- [[http://emacs.stackexchange.com/a/10669/12585][list]] of evil states: 
+#+BEGIN_SRC emacs-lisp
+(evil-set-initial-state 'Man-mode 'normal)
+#+END_SRC
+
 * tips
 ** hack to determine operating system
 - originally (if darwin) found [[http://stackoverflow.com/a/1817318/4921402][here.]]
