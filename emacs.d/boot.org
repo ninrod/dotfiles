@@ -847,6 +847,14 @@ SCHEDULED: %t")))
 
 #+RESULTS:
 
+*** x: useful M-x commands
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys main-map
+    "xm" 'man
+  )
+  (which-key-declare-prefixes "SPC x" "useful M-x commands")
+#+END_SRC
+
 ** SPC caps/shift
 *** E: evil
 #+BEGIN_SRC emacs-lisp
@@ -854,14 +862,6 @@ SCHEDULED: %t")))
     "Eu" 'undo-tree-visualize
 )
 (which-key-declare-prefixes "SPC E" "evil-mode")
-#+END_SRC
-
-*** A: applications
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys main-map
-    "Am" 'man
-)
-(which-key-declare-prefixes "SPC A" "applications")
 #+END_SRC
 
 ** core
@@ -949,6 +949,8 @@ SCHEDULED: %t")))
     "k" 'evil-window-up
     "h" 'evil-window-left
     "l" 'evil-window-right
+
+    "o" 'delete-other-windows
 
     "v" 'split-window-right-and-focus
     "x" 'split-window-below-and-focus
