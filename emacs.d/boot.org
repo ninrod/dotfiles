@@ -624,29 +624,17 @@ SCHEDULED: %t")))
 - not working though.
 #+BEGIN_SRC emacs-lisp
   ;(evil-set-initial-state 'term-mode 'emacs)
-  ;(evil-set-initial-state 'calculator-mode 'emacs)
-  ;(evil-define-key 'emacs term-raw-map (kbd "C-c") 'term-send-raw)
   ;(push 'term-mode evil-escape-excluded-major-modes)
-#+END_SRC
-
-*** from SO question: [[http://emacs.stackexchange.com/questions/21605/term-raw-map-and-local-unset-key-need-to-pass-m-left-right-up-down-to-shell][question]]
-- not working either
-#+BEGIN_SRC emacs-lisp
-  ;; (defun my-term-hook ()
-  ;;   (define-key term-raw-map (kbd "<escape>")
-  ;;     (lambda () (interactive) (term-send-raw-string "\e[")))
-  ;; )
-  ;; (add-hook 'term-mode-hook 'my-term-hook)
 #+END_SRC
 
 *** @chadhs tip
 #+BEGIN_SRC emacs-lisp
-(evil-define-key 'normal term-raw-map "p" 'term-paste)
-(evil-define-key 'normal term-raw-map "j" 'term-send-down)
-(evil-define-key 'normal term-raw-map "k" 'term-send-up)
-(evil-define-key 'normal term-raw-map "/" 'term-send-reverse-search-history)
-(evil-define-key 'normal term-raw-map (kbd "C-c") 'term-send-raw)
-(evil-define-key 'insert term-raw-map (kbd "C-c") 'term-send-raw)
+  ;; (evil-define-key 'normal term-raw-map "p" 'term-paste)
+  (evil-define-key 'normal term-raw-map "j" 'term-send-down)
+  (evil-define-key 'normal term-raw-map "k" 'term-send-up)
+  ;; (evil-define-key 'normal term-raw-map "/" 'term-send-reverse-search-history)
+  ;; (evil-define-key 'normal term-raw-map (kbd "C-c") 'term-send-raw)
+  ;; (evil-define-key 'insert term-raw-map (kbd "C-c") 'term-send-raw)
 #+END_SRC
 
 ** fix $PATH on macosx with exec-path-from-shell
@@ -683,15 +671,17 @@ SCHEDULED: %t")))
 (bind-map main-map
     :evil-keys ("SPC")
     :evil-states (normal visual motion))
-
+(bind-map q-map 
+    :evil-keys ("q")
+    :evil-states (normal visual))
 (bind-map org-map
     :evil-keys (",")
     :evil-states (normal visual)
     :major-modes (org-mode))
-
-(bind-map q-map 
-    :evil-keys ("q")
-    :evil-states (normal visual))
+(bind-map term-map
+    :evil-keys (",")
+    :evil-states (normal visual)
+    :major-modes (term-mode))
 #+END_SRC
 
 ** SPC fast
@@ -1084,6 +1074,15 @@ SCHEDULED: %t")))
   
   ;; cycle
   "TAB" 'org-cycle)
+#+END_SRC
+
+** term
+- with help from [[https://www.reddit.com/r/emacs/comments/56xmvg/properly_editing_a_shell_buffer_with_evilmode/][/r/emacs]]
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys term-map
+  "l" 'term-line-mode
+  "c" 'term-char-mode
+)
 #+END_SRC
 
 ** dired
