@@ -232,86 +232,26 @@ the right."
   #+END_SRC
 
 * packages
-** evil corruption
-*** evil
-#+BEGIN_SRC emacs-lisp
-(use-package evil :ensure t
-  :config (evil-mode))
-#+END_SRC
-
-*** evil-commentary
-#+BEGIN_SRC emacs-lisp
-(use-package evil-commentary :ensure t
-  :diminish evil-commentary-mode
-  :config (evil-commentary-mode))
-#+END_SRC
-
-*** evil-matchit
-#+BEGIN_SRC emacs-lisp
-(use-package evil-matchit :ensure t
-  :config (global-evil-matchit-mode 1))
-#+END_SRC
-
-*** evil-surround
-#+BEGIN_SRC emacs-lisp
-(use-package evil-surround :ensure t
-  :config (global-evil-surround-mode 1))
-#+END_SRC
-
-*** evil-exchange
-#+BEGIN_SRC emacs-lisp
-(use-package evil-exchange :ensure t
-  :config (evil-exchange-install))
-#+END_SRC
-
-*** evil-args
-#+begin_src emacs-lisp
-(use-package evil-args :ensure t
-  :config
-    (define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
-    (define-key evil-outer-text-objects-map "a" 'evil-outer-arg)
-)
-#+end_src
-
-*** evil-visualstar
-#+begin_src emacs-lisp
-(use-package evil-visualstar :ensure t
-  :config (global-evil-visualstar-mode))
-#+end_src
-
-*** evil-indent-plus
-#+begin_src emacs-lisp
-(use-package evil-indent-plus :ensure t
-  :config (evil-indent-plus-default-bindings))
-#+end_src
-
-*** evil-anzu
-- config section hack: see [[https://github.com/TheBB/spaceline/issues/69][TheBB/spaceline#69]]
-#+BEGIN_SRC emacs-lisp
-(use-package evil-anzu :ensure t
-  :config (setq anzu-cons-mode-line-p nil))
-#+END_SRC
-
-** themes
-*** spacemacs
+** cosmetic
+*** theme
+**** spacemacs
   #+BEGIN_SRC emacs-lisp
     (use-package spacemacs-theme :ensure t)
     (load-theme 'spacemacs-dark t)
   #+END_SRC
 
-*** gruvbox
+**** gruvbox
   #+BEGIN_SRC emacs-lisp
     ;; (use-package gruvbox-theme :ensure t)
     ;; (load-theme 'gruvbox t)
   #+END_SRC
 
-*** leuven
+**** leuven
 #+BEGIN_SRC emacs-lisp
   ;; (load-theme 'leuven t)
 #+END_SRC
 
-
-** spaceline
+*** spaceline
 - to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
 #+BEGIN_SRC emacs-lisp
 (use-package spaceline :ensure t
@@ -346,25 +286,171 @@ the right."
 #+END_SRC
 
 
-** restart-emacs
+*** rainbow-delimiters
 #+BEGIN_SRC emacs-lisp
-(use-package restart-emacs
-  :ensure t)
+(use-package rainbow-delimiters :ensure t
+  :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 #+END_SRC
 
-** which key
-  Brings up some help
+*** highlight-parentheses
+#+BEGIN_SRC emacs-lisp
+  (use-package highlight-parentheses :ensure t
+    :diminish highlight-parentheses-mode
+    :config
+        (add-hook 'prog-mode-hook #'highlight-parentheses-mode)
+        (add-hook 'org-mode-hook #'highlight-parentheses-mode)
+        (setq hl-paren-delay 0.2)
+        (setq hl-paren-colors '("Springgreen3"
+                                "IndianRed1"
+                                "IndianRed3"
+                                "IndianRed4"))
+        (set-face-attribute 'hl-paren-face nil :weight 'ultra-bold))
+#+END_SRC
+
+** expand funcionality
+*** restart-emacs
+#+BEGIN_SRC emacs-lisp
+(use-package restart-emacs :ensure t)
+#+END_SRC
+
+*** eyebrowse
+#+BEGIN_SRC emacs-lisp
+(use-package eyebrowse :ensure t
+  :config
+    (setq eyebrowse-wrap-around t)
+    (eyebrowse-mode t)
+)
+#+END_SRC
+
+*** multi-term
+#+BEGIN_SRC emacs-lisp
+(use-package multi-term :ensure t
+  :config (setq multi-term-program "/bin/zsh"))
+#+END_SRC
+
+*** avy
   #+BEGIN_SRC emacs-lisp
-  (use-package which-key
-	:ensure t 
-    :diminish which-key-mode
-	:config
-	(which-key-mode))
+(use-package avy :ensure t)
   #+END_SRC
 
+*** ag: the silver searcher
+#+BEGIN_SRC emacs-lisp
+(use-package ag :ensure t)
+#+END_SRC
 
-** org Mode
-*** general configs
+** keybinds
+*** which key
+  #+BEGIN_SRC emacs-lisp
+  (use-package which-key :ensure t 
+    :diminish which-key-mode
+	:config (which-key-mode))
+  #+END_SRC
+
+*** bind-map
+#+BEGIN_SRC emacs-lisp
+(use-package bind-map :ensure t)
+#+END_SRC
+
+*** evil corruption
+**** evil
+#+BEGIN_SRC emacs-lisp
+(use-package evil :ensure t
+  :config (evil-mode))
+#+END_SRC
+
+**** evil-commentary
+#+BEGIN_SRC emacs-lisp
+(use-package evil-commentary :ensure t
+  :diminish evil-commentary-mode
+  :config (evil-commentary-mode))
+#+END_SRC
+
+**** evil-matchit
+#+BEGIN_SRC emacs-lisp
+(use-package evil-matchit :ensure t
+  :config (global-evil-matchit-mode 1))
+#+END_SRC
+
+**** evil-surround
+#+BEGIN_SRC emacs-lisp
+(use-package evil-surround :ensure t
+  :config (global-evil-surround-mode 1))
+#+END_SRC
+
+**** evil-exchange
+#+BEGIN_SRC emacs-lisp
+(use-package evil-exchange :ensure t
+  :config (evil-exchange-install))
+#+END_SRC
+
+**** evil-args
+#+begin_src emacs-lisp
+(use-package evil-args :ensure t
+  :config
+    (define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
+    (define-key evil-outer-text-objects-map "a" 'evil-outer-arg)
+)
+#+end_src
+
+**** evil-visualstar
+#+begin_src emacs-lisp
+(use-package evil-visualstar :ensure t
+  :config (global-evil-visualstar-mode))
+#+end_src
+
+**** evil-indent-plus
+#+begin_src emacs-lisp
+(use-package evil-indent-plus :ensure t
+  :config (evil-indent-plus-default-bindings))
+#+end_src
+
+**** evil-anzu
+- config section hack: see [[https://github.com/TheBB/spaceline/issues/69][TheBB/spaceline#69]]
+#+BEGIN_SRC emacs-lisp
+(use-package evil-anzu :ensure t
+  :config (setq anzu-cons-mode-line-p nil))
+#+END_SRC
+
+** file browsing
+*** projectile
+- the projectile-switch-project-action hack was lifted from [[projectile-switch-project-action][here]].
+#+BEGIN_SRC emacs-lisp
+(use-package projectile :ensure t
+  :diminish projectile-mode
+  :config
+    (add-hook 'after-init-hook 'projectile-mode)
+    (use-package counsel-projectile :ensure t)
+    (setq projectile-completion-system 'ivy)   
+
+    ;; not used because `SPC-gs' is sealing the deal for the moment
+    ;;(setq projectile-switch-project-action 'projectile-vc)
+)
+#+END_SRC
+
+*** ranger
+#+BEGIN_SRC emacs-lisp
+  (use-package ranger :ensure t
+    :config
+        (ranger-override-dired-mode t)
+        (setq ranger-cleanup-on-disable t)
+        (setq ranger-show-dotfiles t)
+        (setq ranger-hide-cursor nil))
+#+END_SRC
+
+** magit
+- for more info about magit-display-buffer-function, see [[http://stackoverflow.com/q/39933868/4921402][here]].
+#+BEGIN_SRC emacs-lisp
+  (use-package magit :ensure t
+    :config
+      ;;(setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
+      (setq magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
+      (setq magit-repository-directories '("~/code/sources"))
+      (use-package evil-magit :ensure t)
+  )
+#+END_SRC
+
+** org
+**** general configs
 - somewhat lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
 #+BEGIN_SRC emacs-lisp
 (setq org-todo-keywords
@@ -376,7 +462,7 @@ the right."
 (setq org-log-reschedule (quote time))
 #+END_SRC
 
-*** org capture
+**** org capture
 - lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
 #+BEGIN_SRC emacs-lisp
 (setq org-capture-templates
@@ -390,7 +476,7 @@ SCHEDULED: %t")))
   (org-capture nil "a"))
 #+END_SRC
 
-*** org agenda
+**** org agenda
 - lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
 #+BEGIN_SRC emacs-lisp
   ;; (setq org-todo-keywords
@@ -409,7 +495,7 @@ SCHEDULED: %t")))
   (setq org-agenda-text-search-extra-files '(agenda-archives))
 #+END_SRC
 
-*** Org bullets
+**** Org bullets
   #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
     :ensure t
@@ -423,7 +509,7 @@ SCHEDULED: %t")))
 ;(setq org-ellipsis "⤵")
   #+END_SRC
 
-*** Reveal.js
+**** Export to Reveal.js
   #+BEGIN_SRC emacs-lisp
 (use-package ox-reveal
   :ensure t)
@@ -435,110 +521,47 @@ SCHEDULED: %t")))
   :ensure t)
   #+END_SRC
   
-** magit
-- for more info about magit-display-buffer-function, see [[http://stackoverflow.com/q/39933868/4921402][here]].
-#+BEGIN_SRC emacs-lisp
-  (use-package magit :ensure t
-    :config
-      ;;(setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
-      (setq magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
-
-      (use-package evil-magit :ensure t)
-      (setq magit-repository-directories '("~/code/sources"))
-  )
-#+END_SRC
-
-** ivy/counsel
+** completions
+*** ivy/counsel
 #+BEGIN_SRC emacs-lisp
   (use-package ivy
     :ensure t
     :config
-      (ivy-mode 1)
       (setq ivy-use-virtual-buffers t)
       (setq ivy-count-format "(%d/%d) ")
+      (ivy-mode 1)
       (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)
-
-      ;; here we turn on ivy fuzzy matching mode (and use `flx' package, if present)
-      ;;
-      ;; * lifted from bling's and abo-abo's  comments from these urls: 
-      ;;   - https://github.com/abo-abo/swiper/issues/154 
-      ;;   - https://www.reddit.com/r/emacs/comments/3xzas3/help_with_ivycounsel_fuzzy_matching_and_sorting/cy9432y
-      ;; 
-      ;; * also se this post on oremacs.com (abo-abo's blog, the creator of ivy, counsel, hydra and avy):
-      ;;   - http://oremacs.com/2016/01/06/ivy-flx/
-      ;; (setq ivy--regex-function 'ivy--regex-fuzzy)
-      ;; (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
-
-      ;; use counsel
       (use-package counsel :ensure t)
-
-      ;; use flx for fuzzy matching
-      (use-package flx :ensure t)
   )
-
 #+END_SRC
 
-** Avy
-  #+BEGIN_SRC emacs-lisp
-(use-package avy :ensure t)
-  #+END_SRC
 
-** projectile
-- the projectile-switch-project-action hack was lifted from [[projectile-switch-project-action][here]].
+*** company
 #+BEGIN_SRC emacs-lisp
-(use-package projectile
-  :ensure t
-  :diminish projectile-mode
-  :config
-    (add-hook 'after-init-hook 'projectile-mode)
-    (use-package counsel-projectile :ensure t)
-    (setq projectile-completion-system 'ivy)   
-
-    ;; not used because `SPC-gs' is sealing the deal for the moment
-    ;;(setq projectile-switch-project-action 'projectile-vc)
-)
-#+END_SRC
-
-** company
-#+BEGIN_SRC emacs-lisp
-(use-package company
-  :ensure t
+(use-package company :ensure t
   :config
     (add-hook 'after-init-hook 'global-company-mode)
+    ;; TODO: could we use TAB?
     (define-key company-mode-map (kbd "C-SPC") 'company-complete)
 )
 #+END_SRC
 
-** yasnippet
+*** yasnippet
   #+BEGIN_SRC emacs-lisp
-(use-package yasnippet
-  :ensure t
-  :config
-    (progn
-      (yas-global-mode 1)
-    )
-)
+(use-package yasnippet :ensure t
+  :config (yas-global-mode 1))
   #+END_SRC
 
-** flycheck
+*** flycheck
   #+BEGIN_SRC emacs-lisp
-    (use-package flycheck
-      :ensure t
-      :init
-      (global-flycheck-mode t))
+    (use-package flycheck :ensure t
+      :config (global-flycheck-mode t))
   #+END_SRC
 
-
-** ag: the silver searcher
+** filetypes
+*** md: markdown
 #+BEGIN_SRC emacs-lisp
-(use-package ag
-  :ensure t)
-#+END_SRC
-
-** markdown
-#+BEGIN_SRC emacs-lisp
-(use-package markdown-mode
-      :ensure t
+(use-package markdown-mode :ensure t
       :commands (markdown-mode gfm-mode)
       :mode (("README\\.md\\'" . gfm-mode)
              ("\\.md\\'" . markdown-mode)
@@ -546,12 +569,11 @@ SCHEDULED: %t")))
       :init (setq markdown-command "multimarkdown"))
 #+END_SRC
 
-** web-mode
+*** html: web-mode
 #+BEGIN_SRC emacs-lisp
 (use-package web-mode
   :ensure t
   :config
-    (progn
       (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
       (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
       (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
@@ -566,81 +588,26 @@ SCHEDULED: %t")))
         (setq web-mode-markup-indent-offset 2)
         (setq web-mode-css-indent-offset    2)
         (setq web-mode-code-indent-offset   2))
-      (add-hook 'web-mode-hook 'my-web-mode-hook)))
+      (add-hook 'web-mode-hook 'my-web-mode-hook))
 #+END_SRC
 
-** js2-mode
+*** js: js2-mode
 #+BEGIN_SRC emacs-lisp
-(use-package js2-mode
-  :ensure t
+(use-package js2-mode :ensure t
   :config
     (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
     (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2))))
 #+END_SRC
 
-** ranger
-#+BEGIN_SRC emacs-lisp
-  (use-package ranger
-    :ensure t
-    :config
-        (ranger-override-dired-mode t)
-        (setq ranger-cleanup-on-disable t)
-        (setq ranger-show-dotfiles t)
-        (setq ranger-hide-cursor nil))
-#+END_SRC
-
-** eyebrowse
-#+BEGIN_SRC emacs-lisp
-(use-package eyebrowse :ensure t
-  :config
-    (setq eyebrowse-wrap-around t)
-    (eyebrowse-mode t)
-)
-#+END_SRC
-
-** multi-term
-#+BEGIN_SRC emacs-lisp
-(use-package multi-term :ensure t
-  :config
-    (setq multi-term-program "/bin/zsh")
-)
-#+END_SRC
-
-** rainbow-delimiters
-#+BEGIN_SRC emacs-lisp
-(use-package rainbow-delimiters :ensure t
-  :config
-    ;; start in almost all main program modes
-    (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
-)
-#+END_SRC
-
-** highlight-parentheses
-#+BEGIN_SRC emacs-lisp
-  (use-package highlight-parentheses :ensure t
-    :diminish highlight-parentheses-mode
-    :config
-      (progn
-        (add-hook 'prog-mode-hook #'highlight-parentheses-mode)
-        (add-hook 'org-mode-hook #'highlight-parentheses-mode)
-        (setq hl-paren-delay 0.2)
-        (setq hl-paren-colors '("Springgreen3"
-                                "IndianRed1"
-                                "IndianRed3"
-                                "IndianRed4"))
-        (set-face-attribute 'hl-paren-face nil :weight 'ultra-bold)))
-#+END_SRC
-
-** vimrc mode
+*** vimrc: vimrc mode
 #+BEGIN_SRC emacs-lisp
 (use-package vimrc-mode :ensure t)
 #+END_SRC
 
-** dockerfile
+*** docker: dockerfile
 #+BEGIN_SRC emacs-lisp
 (use-package dockerfile-mode :ensure t
-  :config 
-    (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
+  :config (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
 #+END_SRC
 
 * fixes
@@ -700,35 +667,31 @@ SCHEDULED: %t")))
 (diminish 'flycheck-mode "FlyC")
 #+END_SRC
 
-
 ** M-x man
 - [[http://emacs.stackexchange.com/a/10669/12585][list]] of evil states: 
 - with [[https://github.com/syl20bnr/spacemacs/issues/7346][help]] from @TheBB 
 #+BEGIN_SRC emacs-lisp
   (with-eval-after-load "man" 
-    (progn
       (evil-set-initial-state 'Man-mode 'normal)
       (setq Man-notify-method 'pushy)
-    )
   )
 #+END_SRC
 
 * binds
 ** bind-map
 #+BEGIN_SRC emacs-lisp
-(use-package bind-map :ensure t
-    :config 
-      (bind-map main-map
-        :evil-keys ("SPC")
-        :evil-states (normal visual motion))
-      (bind-map org-map
-        :evil-keys (",")
-        :evil-states (normal visual)
-        :major-modes (org-mode))
-      (bind-map q-map 
-        :evil-keys ("q")
-        :evil-states (normal visual))
-)
+(bind-map main-map
+    :evil-keys ("SPC")
+    :evil-states (normal visual motion))
+
+(bind-map org-map
+    :evil-keys (",")
+    :evil-states (normal visual)
+    :major-modes (org-mode))
+
+(bind-map q-map 
+    :evil-keys ("q")
+    :evil-states (normal visual))
 #+END_SRC
 
 ** SPC fast
