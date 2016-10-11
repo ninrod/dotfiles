@@ -256,7 +256,7 @@ the right."
 #+BEGIN_SRC emacs-lisp
 (use-package spaceline :ensure t
   :config
-    (setq powerline-height 25)
+    (setq powerline-height 30)
 
     ;; customize separators for Powerline.
     ;; Included separators: slant, alternate, wave, zigzag, box, arrow-fade, nil.
