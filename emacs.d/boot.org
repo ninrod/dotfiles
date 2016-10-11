@@ -1051,6 +1051,17 @@ SCHEDULED: %t")))
   (which-key-declare-prefixes ", m" "org-meta")
 #+END_SRC
 
+**** o: interesting org commands
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys org-map
+
+    ;; from https://www.reddit.com/r/emacs/comments/56oc9c/orgtables_is_there_a_way_to_delete_a_whole_table/
+    "om" 'org-mark-element
+
+  )
+  (which-key-declare-prefixes ", o" "interesting org commands")
+#+END_SRC
+
 **** s: subtree commands
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
