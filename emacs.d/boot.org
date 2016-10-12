@@ -426,6 +426,10 @@ the right."
 (use-package evil-anzu :ensure t
   :config (setq anzu-cons-mode-line-p nil))
 #+END_SRC
+**** evil-numbers
+#+BEGIN_SRC emacs-lisp
+(use-package evil-numbers :ensure t)
+#+END_SRC
 
 ** file browsing
 *** projectile
@@ -620,19 +624,18 @@ SCHEDULED: %t")))
     (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2))))
 #+END_SRC
 
-*** config files
-**** vimrc: vimrc mode
+*** vimrc: vimrc mode
 #+BEGIN_SRC emacs-lisp
 (use-package vimrc-mode :ensure t)
 #+END_SRC
 
-**** docker: dockerfile
+*** docker: dockerfile
 #+BEGIN_SRC emacs-lisp
 (use-package dockerfile-mode :ensure t
   :config (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
 #+END_SRC
 
-**** gitconfig mode
+*** gitconfig-mode
 #+BEGIN_SRC emacs-lisp
 (use-package gitconfig-mode :ensure t)
 #+END_SRC
@@ -883,6 +886,8 @@ SCHEDULED: %t")))
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys main-map
     "Eu" 'undo-tree-visualize
+    "E+" 'evil-numbers/inc-at-pt
+    "E-" 'evil-numbers/dec-at-pt
 )
 (which-key-declare-prefixes "SPC E" "evil-mode")
 #+END_SRC
