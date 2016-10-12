@@ -236,19 +236,19 @@ the right."
 *** theme
 **** spacemacs
   #+BEGIN_SRC emacs-lisp
-    (use-package spacemacs-theme :ensure t)
-    (load-theme 'spacemacs-dark t)
+    ;; (use-package spacemacs-theme :ensure t
+    ;;   :config (load-theme 'spacemacs-dark t))
   #+END_SRC
 
 **** gruvbox
   #+BEGIN_SRC emacs-lisp
-    ;; (use-package gruvbox-theme :ensure t)
-    ;; (load-theme 'gruvbox t)
+(use-package gruvbox-theme :ensure t
+  :config (load-theme 'gruvbox t))
   #+END_SRC
 
 **** leuven
 #+BEGIN_SRC emacs-lisp
-  ;; (load-theme 'leuven t)
+;; (load-theme 'leuven t)
 #+END_SRC
 
 *** spaceline
