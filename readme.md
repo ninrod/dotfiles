@@ -6,12 +6,14 @@
 
 ## Screenshots
 
-### Emacs using spacemacs' theme
+### Emacs: gruvbox theme
+![emacs-config](https://raw.githubusercontent.com/ninrod/dotfiles/master/img/emacs-gruvbox-2016-10-11.png)
+
+### Emacs: spacemacs theme
 ![emacs-config](https://raw.githubusercontent.com/ninrod/dotfiles/master/img/emacs-2016-10-09.png)
 
 ### Vim/Tmux on iTerm2 with [gruvbox](https://github.com/morhetz/gruvbox) (default)
 ![gruvbox-config](https://raw.githubusercontent.com/ninrod/dotfiles/master/img/shot-2016-06-16-gruvbox.png)
-
 
 ### Vim/Tmux on iTerm2 with [jellybeans](https://github.com/nanotech/jellybeans.vim)
 ![jellybeans-config](https://raw.githubusercontent.com/ninrod/dotfiles/master/img/shot-2016-06-15-jellybeans.png)
