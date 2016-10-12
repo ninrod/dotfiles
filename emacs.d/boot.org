@@ -864,9 +864,18 @@ SCHEDULED: %t")))
            (>= (prefix-numeric-value current-prefix-arg) 16))))
 )
 (which-key-declare-prefixes "SPC g" "[ma]git operations")
-(which-key-add-key-based-replacements
-  "SPC gs" "repo magit status"
-)
+(which-key-add-key-based-replacements "SPC gs" "repo magit status")
+#+END_SRC
+
+*** h: hydras
+**** z: zoom
+#+BEGIN_SRC emacs-lisp
+(defhydra hydra-zoom (spc-map "hz")
+  "zoom"
+  ("i" text-scale-increase "in")
+  ("o" text-scale-decrease "out"))
+(which-key-declare-prefixes "SPC h" "hydras")
+(which-key-add-key-based-replacements "SPC hz" "zooming hydra")
 #+END_SRC
 
 *** i: ivy
