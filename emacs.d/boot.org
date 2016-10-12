@@ -8,8 +8,7 @@ SPC TAB
 back and forth between current and last buffer
 #+BEGIN_SRC emacs-lisp
 (defun spacemacs/alternate-buffer (&optional window)
-  "Switch back and forth between current and last buffer in the
-current window."
+  "Switch back and forth between current and last buffer in the current window."
   (interactive)
   (let ((current-buffer (window-buffer window))
         (buffer-predicate
@@ -179,7 +178,7 @@ the right."
   (menu-bar-mode -1)
   (fset 'yes-or-no-p 'y-or-n-p)
 
-  ;; highlight current line
+  ;;highlight current line
   ;;(global-hl-line-mode)
 #+END_SRC
 
@@ -245,6 +244,12 @@ the right."
     ;; (use-package gruvbox-theme :ensure t
     ;;     :init (load-theme 'gruvbox t))
   #+END_SRC
+
+**** zenburn
+#+BEGIN_SRC emacs-lisp
+  ;; (use-package zenburn-theme :ensure t
+  ;;   :init (load-theme 'zenburn t))
+#+END_SRC
 
 **** leuven
 #+BEGIN_SRC emacs-lisp
@@ -438,6 +443,11 @@ the right."
 )
 #+END_SRC
 
+*** neotree
+#+BEGIN_SRC emacs-lisp
+(use-package neotree :ensure t)
+#+END_SRC
+
 *** ranger
 #+BEGIN_SRC emacs-lisp
   (use-package ranger :ensure t
@@ -610,15 +620,21 @@ SCHEDULED: %t")))
     (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2))))
 #+END_SRC
 
-*** vimrc: vimrc mode
+*** config files
+**** vimrc: vimrc mode
 #+BEGIN_SRC emacs-lisp
 (use-package vimrc-mode :ensure t)
 #+END_SRC
 
-*** docker: dockerfile
+**** docker: dockerfile
 #+BEGIN_SRC emacs-lisp
 (use-package dockerfile-mode :ensure t
   :config (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
+#+END_SRC
+
+**** gitconfig mode
+#+BEGIN_SRC emacs-lisp
+(use-package gitconfig-mode :ensure t)
 #+END_SRC
 
 * fixes
