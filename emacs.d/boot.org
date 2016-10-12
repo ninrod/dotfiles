@@ -338,6 +338,17 @@ the right."
 (use-package ag :ensure t)
 #+END_SRC
 
+*** smartparens
+#+BEGIN_SRC emacs-lisp
+  (use-package smartparens :ensure t
+    :config
+     ;; Always start smartparens mode in js-mode.
+     ;; (add-hook 'js-mode-hook #'smartparens-mode)
+     (add-hook 'prog-mode-hook #'smartparens-mode)
+     (add-hook 'org-mode-hook #'smartparens-mode)
+  )
+#+END_SRC
+
 ** keybinds
 *** which key
   #+BEGIN_SRC emacs-lisp
@@ -980,12 +991,12 @@ SCHEDULED: %t")))
   #+END_SRC
 
 *** local leader
-**** l: label/tag
+**** c: code
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
-  "ll" 'counsel-org-tag
+  "cc" 'org-edit-src-code
 )
-(which-key-declare-prefixes ", l" "label/tag")
+(which-key-declare-prefixes ", c" "code editing")
 #+END_SRC
 
 **** i: insertions
@@ -1001,6 +1012,14 @@ SCHEDULED: %t")))
 (which-key-declare-prefixes ", i" "insertions/additions")
 #+END_SRC
 
+
+**** l: label/tag
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys org-map
+  "ll" 'counsel-org-tag
+)
+(which-key-declare-prefixes ", l" "label/tag")
+#+END_SRC
 
 **** m: meta
 #+BEGIN_SRC emacs-lisp
