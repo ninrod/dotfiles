@@ -455,11 +455,6 @@ the right."
 )
 #+END_SRC
 
-*** neotree
-#+BEGIN_SRC emacs-lisp
-(use-package neotree :ensure t)
-#+END_SRC
-
 *** ranger
 #+BEGIN_SRC emacs-lisp
   (use-package ranger :ensure t
