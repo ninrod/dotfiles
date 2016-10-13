@@ -178,6 +178,10 @@ the right."
   (menu-bar-mode -1)
   (fset 'yes-or-no-p 'y-or-n-p)
 
+  (setq-default js-basic-offset 2
+                sh-basic-offset 2
+                indent-tabs-mode nil)
+
   ;;highlight current line
   ;;(global-hl-line-mode)
 #+END_SRC
