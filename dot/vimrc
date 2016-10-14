@@ -322,29 +322,12 @@ nnoremap <silent> s :silent! normal za<cr>
 " }}}
 " g prefix abuse {{{
 
-" sequestering q. Yes, we did that.
-nnoremap qc ZZ
-nnoremap qe ZQ
-nnoremap qk :bd<cr>
-
-" but fear not, here is q again.
-" nonstop ex mode is really not that useful for us
-nnoremap Q q
-
-" custom pageups and pagedowns (you use F12 in intellij, right, so don't come with mnemonic bullshit.)
-" Just kidding. note that 0 is below ) with could mean "right" or "below" or "forward"
-" likewise 9 is below ( with could mean "left" or "above" or "backwards"
+" custom pageups and pagedowns (you use F12 in intellij, right? so don't come with mnemonic bullshit.)
+" Just kidding. note that 0 is below `)` with could mean "right" or "below" or "forward"
+" likewise 9 is below `(` with could (mean) "left" or "above" or "backwards"
 " there's your mnemonic
 nnoremap g0 LztM
 nnoremap g9 Hz-M
-
-" sequestering g'{mark}	like |'| but without changing the jumplist
-nnoremap g' "
-xnoremap g' "
-
-" sequestering `g;` go to N older position in the changelist
-nnoremap g; :
-xnoremap g; :
 
 " trying out gl for `G` (shift sucks)
 " basically: `go` goes to the first line. `gl` goes to the last line
