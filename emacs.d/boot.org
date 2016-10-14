@@ -160,7 +160,14 @@ the right."
     )
   )
 #+END_SRC
-
+** revert-buffer with no confirmation
+- from [[http://www.emacswiki.org/emacs-en/download/misc-cmds.el][emacswiki]]
+#+BEGIN_SRC emacs-lisp
+(defun nin-revert-buffer-no-confirm ()
+    "Revert buffer without confirmation."
+    (interactive)
+    (revert-buffer :ignore-auto :noconfirm))
+#+END_SRC
 ** my lisp functions
 *** nin-echo
 #+BEGIN_SRC emacs-lisp
@@ -180,6 +187,7 @@ the right."
 
   (setq-default js-basic-offset 2
                 sh-basic-offset 2
+                sh-indentation 2
                 indent-tabs-mode nil)
 
   ;;highlight current line
@@ -814,12 +822,12 @@ SCHEDULED: %t")))
 
 #+END_SRC
 
-*** c: counsel/ivy
+*** c: change dir
 #+BEGIN_SRC emacs-lisp
-(bind-map-set-keys spc-map
-  "ca" 'counsel-ag
-)
-(which-key-declare-prefixes "SPC c" "counsel/ivy")
+  (bind-map-set-keys spc-map
+    "cd" 'cd
+  )
+  (which-key-declare-prefixes "SPC c" "change dir")
 #+END_SRC
 
 *** d: docs, descriptions, help
@@ -848,6 +856,7 @@ SCHEDULED: %t")))
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
     "fj" 'dired-jump
+    "fr" 'nin-revert-buffer-no-confirm
     "fp" 'prelude-copy-file-name-to-clipboard
   )
   (which-key-declare-prefixes "SPC f" "file operations")
@@ -882,6 +891,7 @@ SCHEDULED: %t")))
   (bind-map-set-keys spc-map
     "is" 'ivy-push-view
     "ik" 'ivy-pop-view
+    "ia" 'counsel-ag
   )
   (which-key-declare-prefixes "SPC i" "ivy")
 #+END_SRC
