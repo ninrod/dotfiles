@@ -696,6 +696,7 @@ SCHEDULED: %t")))
 (diminish 'undo-tree-mode)
 (diminish 'auto-revert-mode)
 (diminish 'org-indent-mode)
+(diminish 'smartparens-mode)
 (diminish 'flyspell-mode "FlyS")
 (diminish 'flycheck-mode "FlyC")
 #+END_SRC
