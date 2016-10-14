@@ -1232,7 +1232,12 @@ SCHEDULED: %t")))
 (define-key magit-status-mode-map (kbd "SPC") nil)
 (define-key magit-status-mode-map "go" 'evil-goto-first-line)
 #+END_SRC
-
+*** eshell
+#+BEGIN_SRC emacs-lisp
+  (evil-define-key 'normal eshell-mode-map (kbd "TAB") 'ivy-switch-buffer)
+  (when (display-graphic-p)
+    (evil-define-key 'normal eshell-mode-map (kbd "<tab>") 'ivy-switch-buffer))
+#+END_SRC
 ** awesome available binds
 *** g prefix
 - gr
