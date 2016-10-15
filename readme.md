@@ -66,7 +66,7 @@ $ vim ~/.options/shell-options.conf
 $ exec zsh
 ```
 
-* note: the alias `v` is mapped to `nvim`. ([neovim](https://neovim.io/) is a fork of vim. It's my main editor.)
+* note: the alias `v` is mapped to `nvim`. ( note that [neovim](https://neovim.io/) is a fork of vim. It was my main editor. Now I use emacs, mostly.)
 
 * That's it, your're all set.
 
