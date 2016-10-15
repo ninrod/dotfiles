@@ -398,9 +398,19 @@ the right."
 
 *** evil corruption
 **** evil
+- emacsify insert state. based on this SO question [[http://stackoverflow.com/a/26573722/4921402][here]].
 #+BEGIN_SRC emacs-lisp
-(use-package evil :ensure t
-  :config (evil-mode))
+  (use-package evil :ensure t
+    :config 
+
+    ;; remove all keybindings from insert-state keymap just
+    ;; because I want to use emacs keybindings in insert state.
+    (setcdr evil-insert-state-map nil)
+
+    ;; but [escape] should switch back to normal state, obviously.
+    (define-key evil-insert-state-map [escape] 'evil-normal-state)
+
+    (evil-mode))
 #+END_SRC
 
 **** evil-commentary
@@ -723,6 +733,11 @@ SCHEDULED: %t")))
 
 * binds
 ** evil
+*** emacsify insert state
+#+BEGIN_SRC emacs-lisp
+
+
+#+END_SRC
 *** abusing the g prefix
 #+BEGIN_SRC emacs-lisp
 ;; faster than `gg' and `G`.
