@@ -1077,6 +1077,7 @@ adfasf
   "ir" 'org-insert-heading-respect-content
   "is" 'org-insert-subheading
   "il" 'org-insert-link
+  "io" 'org-open-at-point
   "iL" 'org-toggle-link-display
 )
 (which-key-declare-prefixes ", i" "insertions/additions")
