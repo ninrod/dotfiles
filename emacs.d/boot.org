@@ -1166,6 +1166,9 @@ adfasf
     ;; from https://www.reddit.com/r/emacs/comments/56oc9c/orgtables_is_there_a_way_to_delete_a_whole_table/
     "om" 'org-mark-element
 
+    ;; from: http://emacsist.com/10284 
+    "or" 'org-refile
+
   )
   (which-key-declare-prefixes ", o" "interesting org commands")
 #+END_SRC
