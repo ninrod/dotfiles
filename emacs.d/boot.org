@@ -1089,7 +1089,7 @@ adfasf
   (bind-map-set-keys org-map
     "ll" 'counsel-org-tag
   )
-  (which-key-declare-prefixes ", l" "label/tag")
+  (which-key-add-major-mode-key-based-replacements 'org-mode ", l" "label/tag")
 #+END_SRC
 
 ***** m: meta
@@ -1180,6 +1180,8 @@ adfasf
   "l" 'term-line-mode
   "c" 'term-char-mode
 )
+(which-key-add-major-mode-key-based-replacements 'term-mode ", l" "line mode")
+(which-key-add-major-mode-key-based-replacements 'term-mode ", c" "char mode")
 #+END_SRC
 
 *** dired
