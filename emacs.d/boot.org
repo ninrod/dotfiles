@@ -765,6 +765,8 @@ SCHEDULED: %t")))
 (define-key evil-motion-state-map "g3" 'eyebrowse-switch-to-window-config-3)
 (define-key evil-motion-state-map "g4" 'eyebrowse-switch-to-window-config-4)
 
+(define-key evil-motion-state-map "gp" 'eyebrowse-next-window-config)
+
 ;; turn off search highlight (muscle memory)
 ;;(define-key evil-motion-state-map "g-" 'available)
 #+END_SRC
