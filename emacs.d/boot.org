@@ -760,9 +760,16 @@ SCHEDULED: %t")))
 (define-key evil-motion-state-map "g9" (kbd "Hz-M"))
 (define-key evil-motion-state-map "g0" (kbd "LztM"))
 
+(define-key evil-motion-state-map (kbd "<f1>") 'eyebrowse-switch-to-window-config-1)
+(define-key evil-motion-state-map (kbd "<f2>") 'eyebrowse-switch-to-window-config-2)
+(define-key evil-motion-state-map (kbd "<f3>") 'eyebrowse-switch-to-window-config-3)
+(define-key evil-motion-state-map (kbd "<f4>") 'eyebrowse-switch-to-window-config-4)
+
 (define-key evil-motion-state-map "g1" 'eyebrowse-switch-to-window-config-1)
 (define-key evil-motion-state-map "g2" 'eyebrowse-switch-to-window-config-2)
 (define-key evil-motion-state-map "g3" 'eyebrowse-switch-to-window-config-3)
+(define-key evil-motion-state-map "g4" 'eyebrowse-switch-to-window-config-4)
+
 (define-key evil-motion-state-map "g4" 'eyebrowse-switch-to-window-config-4)
 
 (define-key evil-motion-state-map "gp" 'eyebrowse-next-window-config)
@@ -850,14 +857,6 @@ SCHEDULED: %t")))
 
 #+END_SRC
 
-*** c: change dir
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys spc-map
-    "cd" 'cd
-  )
-  (which-key-declare-prefixes "SPC c" "change dir")
-#+END_SRC
-
 *** d: docs, descriptions, help
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
@@ -880,14 +879,16 @@ SCHEDULED: %t")))
 (which-key-declare-prefixes "SPC e" "eyebrowse")
 #+END_SRC
 
-*** f: file
+*** f: files and directories
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
+    "fc" 'make-directory
+    "fd" 'cd
     "fj" 'dired-jump
-    "fr" 'nin-revert-buffer-no-confirm
     "fp" 'prelude-copy-file-name-to-clipboard
+    "fr" 'nin-revert-buffer-no-confirm
   )
-  (which-key-declare-prefixes "SPC f" "file operations")
+  (which-key-declare-prefixes "SPC f" "file/dir operations")
 #+END_SRC
 
 *** g: git

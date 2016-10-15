@@ -4,13 +4,6 @@
 if has('termguicolors')
   set termguicolors
 endif
-if has('nvim')
-  set mouse=c
-  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-else
-  set encoding=utf-8
-endif
 
 " escape sequence: `^[]1337;CursorShape=N^G`. where:
 " N=0: block;
@@ -55,10 +48,6 @@ set noswapfile
 set incsearch
 set hlsearch
 set ignorecase
-
-" line numbers
-" set number
-" set relativenumber
 
 " convert tabs to spaces
 set expandtab
@@ -160,90 +149,27 @@ let g:multi_cursor_exit_from_visual_mode=0
 let g:multi_cursor_exit_from_insert_mode=0
 
 " }}}
-" goyo and limelight {{{
-
-let g:goyo_width = '80%'
-let g:goyo_height = '80%'
-let g:limelight_default_coefficient = 0.85
-autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
-
-" }}}
-
-" }}}
-" nvim specific fixes {{{
-
-if has('nvim')
-  Plug 'bfredl/nvim-miniyank'
-  map p <Plug>(miniyank-autoput)
-  map P <Plug>(miniyank-autoPut)
-endif
 
 " }}}
 
 " theme plugins
 Plug 'morhetz/gruvbox'
 Plug 'itchyny/lightline.vim'
-
-" syntax highlight extension plugins
-Plug 'pangloss/vim-javascript', {'for': ['javascript']}
-Plug 'othree/xml.vim', {'for': ['xml', 'html']}
-Plug 'keith/tmux.vim'
+" Plug 'edkolev/tmuxline.vim'
 
 " core
 Plug 'bronson/vim-visual-star-search'
 Plug 'chaoren/vim-wordmotion'
 Plug 'ervandew/supertab'
 Plug 'jiangmiao/auto-pairs'
-Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'luochen1990/rainbow'
-Plug 'nelstrom/vim-markdown-folding'
-Plug 'nhooyr/neoman.vim'
-Plug 'ninrod/ninscratch-vim'
-Plug 'ninrod/vis'
+Plug 'ninrod/vim-multiple-cursors'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
-
-" new text objs
-Plug 'kana/vim-textobj-user'
-  \| Plug 'kana/vim-textobj-entire',
-  \| Plug 'kana/vim-textobj-indent'
-  \| Plug 'whatyouhide/vim-textobj-xmlattr', {'for': ['html', 'xml']}
-  \| Plug 'kana/vim-textobj-function', {'for': 'javascript'}
-  \| Plug 'thinca/vim-textobj-function-javascript', {'for': 'javascript'}
-
-" local
-Plug '~/.fzf'
-
-" temporarily, while I fix bug #152
-Plug 'ninrod/vim-multiple-cursors'
-" Plug '~/code/sources/ninrod-multiple-cursors'
-" Plug 'terryma/vim-multiple-cursors'
-
-" heavy plugins
-" Plug 'SirVer/ultisnips'
-"   \| Plug 'ninrod/vim-snippets'
-
-" unused themes
-" Plug 'edkolev/tmuxline.vim'
-" Plug 'NLKNguyen/papercolor-theme'
-" Plug 'nanotech/jellybeans.vim'
-" Plug 'lifepillar/vim-solarized8'
-" Plug 'justinmk/molokai'
-" Plug 'Yggdroot/indentLine'
-" Plug 'junegunn/goyo.vim'
-" Plug 'junegunn/limelight.vim'
-
-" plugin cemetery
-" Plug 'vim-scripts/ReplaceWithRegister'
-" Plug 'whatyouhide/vim-lengthmatters'
-" Plug 'sheerun/vim-polyglot'
-" Plug 'mbbill/undotree'
 
 call plug#end()
 
@@ -274,12 +200,6 @@ let g:lightline = {
       \'colorscheme': 'gruvbox'
       \}
 
-" let g:lightline = {
-"       \'colorscheme': 'gruvbox',
-"       \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-"       \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
-"       \}
-
 " }}}
 " tmuxline.vim {{{
 
@@ -287,18 +207,6 @@ let g:tmuxline_powerline_separators = 0
 
 " }}}
 
-" jellybeans {{{
-
-" silent! colorscheme jellybeans
-
-" }}}
-" molokai {{{
-
-" let g:rehash256 = 1
-" let g:molokai_original = 1
-" silent! colorscheme molokai
-
-" }}}
 
 " }}}
 " binds {{{
@@ -314,6 +222,7 @@ xmap <Space> <Leader>
 
 nnoremap <silent>- :noh<cr>
 xnoremap <silent>- :noh<cr>
+
 nnoremap <cr> :w<cr>
 
 " `cl` is a complete substitute for `s` (also note that `cc` replaces `S`)
@@ -340,10 +249,6 @@ onoremap gl G
 " They come from functions I wrote below. See the `functions section`
 nmap g<space> <Plug>(blankUp)
 nmap g<cr> <Plug>(blankDown)
-
-" fzf.vmm
-nnoremap g. :Files<cr>
-nnoremap gr :History<cr>
 
 " }}}
 " comfort binds {{{
@@ -377,7 +282,6 @@ nnoremap z< zeg0
 nmap z<RIGHT> z>
 nmap z<LEFT> z<
 
-
 " navigate vim help files
 nnoremap  } <C-]>
 nnoremap {  <C-T>
@@ -385,51 +289,12 @@ nnoremap {  <C-T>
 " }}}
 
 " }}}
-" leader binds {{{
-
-" open up window splits
-nmap <leader>v <C-W>v
-nmap <leader>x <C-W>s
-
-" moving between windows
-nmap <leader>h <C-W>h
-nmap <leader>j <C-W>j
-nmap <leader>k <C-W>k
-nmap <leader>l <C-W>l
-
-" }}}
 " plugin binds {{{
 
-" fzf.vim {{{
-
-
-" FZF Mapping selecting mappings
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
-
-" FZF Insert mode completion
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
-
-" }}}
 " easyalign {{{
 
 nmap ga <Plug>(EasyAlign)
 xmap <cr> <Plug>(EasyAlign)
-
-" }}}
-" nin-scratch {{{
-
-nnoremap gs :NinScratch<CR>
-
-" }}}
-" vim-multiple-cursors {{{
-
-nnoremap <silent> K :MultipleCursorsFind <C-R>/<CR>
-vnoremap <silent> K :MultipleCursorsFind <C-R>/<CR>
 
 " }}}
 
@@ -445,13 +310,6 @@ autocmd InsertEnter,WinLeave * set nocursorline
 " foldmethod configurations
 autocmd BufRead * setlocal foldmethod=marker
   set foldlevelstart=0
-
-" let shell_option_fold_start=$SHELL_VIM_FOLD_START
-" if (shell_option_fold_start ==# "true")
-"   set foldlevelstart=0
-" else
-"   set foldlevelstart=3
-" endif
 
 " jump to last cursor
 autocmd BufReadPost *
@@ -500,15 +358,6 @@ highlight clear SignColumn
 
 " }}}
 "  functions {{{
-
-" credits go to junegunn who personally helped me with this function
-function! s:ag_with_opts(arg, bang)
-  let tokens  = split(a:arg)
-  let ag_opts = join(filter(copy(tokens + ['--hidden']), 'v:val =~ "^-"'))
-  let query   = join(filter(copy(tokens), 'v:val !~ "^-"'))
-  call fzf#vim#ag(query, ag_opts, a:bang ? {} : {'down': '40%'})
-endfunction
-autocmd VimEnter * command! -nargs=* -bang Nag call s:ag_with_opts(<q-args>, <bang>0)
 
 " my custom function for opening up new lines without leaving normal mode
 " as a bonus, the cursor point is unchanged
