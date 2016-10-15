@@ -320,9 +320,15 @@ PWD is not in a git repo (or the git command is not found)."
 
 **** gruvbox
   #+BEGIN_SRC emacs-lisp
-    (use-package gruvbox-theme :ensure t
-        :init (load-theme 'gruvbox t))
+    ;; (use-package gruvbox-theme :ensure t
+    ;;     :init (load-theme 'gruvbox t))
   #+END_SRC
+
+**** material
+#+BEGIN_SRC emacs-lisp
+(use-package material-theme :ensure t)
+(load-theme 'material-light t)
+#+END_SRC
 
 **** zenburn
 #+BEGIN_SRC emacs-lisp
@@ -777,6 +783,7 @@ SCHEDULED: %t")))
       (setq Man-notify-method 'pushy)
   )
 #+END_SRC
+
 * binds
 ** evil
 *** abusing the g prefix
