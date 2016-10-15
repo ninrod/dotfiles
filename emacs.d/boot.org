@@ -281,35 +281,35 @@ the right."
 *** spaceline
 - to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
 #+BEGIN_SRC emacs-lisp
-(use-package spaceline :ensure t
-  :config
-    (setq powerline-height 30)
+  (use-package spaceline :ensure t
+    :config
+      (setq powerline-height 30)
 
-    ;; customize separators for Powerline.
-    ;; Included separators: slant, alternate, wave, zigzag, box, arrow-fade, nil.
-    (setq ns-use-srgb-colorspace nil)
-    (setq powerline-default-separator 'utf-8)
-    (setq spaceline-separator-dir-left '(right . right))
-    (setq spaceline-separator-dir-right '(right . right))
-    (setq powerline-default-separator 'slant)
-    
-    ;; hack: is for eyebrowse. nice looking unicode numbers for tagging different layouts
-    ;; lifted from TheBB/spaceline readme.md
-    (setq spaceline-workspace-numbers-unicode t)
-    (setq spaceline-window-numbers-unicode t)
+      ;; customize separators for Powerline.
+      ;; Included separators: slant, alternate, wave, zigzag, box, arrow-fade, nil.
+      (setq ns-use-srgb-colorspace nil)
+      (setq powerline-default-separator 'utf-8)
+      (setq spaceline-separator-dir-left '(right . left))
+      (setq spaceline-separator-dir-right '(left . right))
+      (setq powerline-default-separator 'slant)
+  
+      ;; hack: is for eyebrowse. nice looking unicode numbers for tagging different layouts
+      ;; lifted from TheBB/spaceline readme.md
+      (setq spaceline-workspace-numbers-unicode t)
+      (setq spaceline-window-numbers-unicode t)
 
-    ;; set colouring for different evil-states
-    (setq spaceline-highlight-face-func #'spaceline-highlight-face-evil-state)
-      
-    ;; hack: customize display time in spaceline. 
-    ;; lifted from https://www.reddit.com/r/emacs/comments/2ziinn/displaytimemode_but_not_system_load/
-    (setq display-time-default-load-average nil)
+      ;; set colouring for different evil-states
+      (setq spaceline-highlight-face-func #'spaceline-highlight-face-evil-state)
     
-    (require 'spaceline-config)
-    (spaceline-spacemacs-theme)
-    (display-time-mode)
-    (spaceline-compile)
-)
+      ;; hack: customize display time in spaceline. 
+      ;; lifted from https://www.reddit.com/r/emacs/comments/2ziinn/displaytimemode_but_not_system_load/
+      (setq display-time-default-load-average nil)
+  
+      (require 'spaceline-config)
+      (spaceline-spacemacs-theme)
+      (display-time-mode)
+      (spaceline-compile)
+  )
 #+END_SRC
 
 
