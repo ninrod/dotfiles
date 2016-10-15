@@ -1102,14 +1102,29 @@ SCHEDULED: %t")))
   #+END_SRC
 
 **** local leader
+***** b: bullets
+adfasf
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys org-map
+    "bb" 'org-ctrl-c-star
+    "b-" 'org-ctrl-c-minus
+  )
+  (which-key-declare-prefixes ", b" "bullets")
+#+END_SRC
 ***** c: code
 #+BEGIN_SRC emacs-lisp
-(bind-map-set-keys org-map
-  "cc" 'org-edit-src-code
-)
-(which-key-declare-prefixes ", c" "code editing")
+  (bind-map-set-keys org-map
+    "cc" 'org-edit-src-code
+  )
+  (which-key-declare-prefixes ", c" "code editing")
 #+END_SRC
-
+***** d: dates/schedulling
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys org-map
+    "dd" 'org-schedule
+  )
+  (which-key-declare-prefixes ", c" "code editing")
+#+END_SRC
 ***** i: insertions
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
@@ -1126,10 +1141,10 @@ SCHEDULED: %t")))
 
 ***** l: label/tag
 #+BEGIN_SRC emacs-lisp
-(bind-map-set-keys org-map
-  "ll" 'counsel-org-tag
-)
-(which-key-declare-prefixes ", l" "label/tag")
+  (bind-map-set-keys org-map
+    "ll" 'counsel-org-tag
+  )
+  (which-key-declare-prefixes ", l" "label/tag")
 #+END_SRC
 
 ***** m: meta
@@ -1190,18 +1205,17 @@ SCHEDULED: %t")))
 (which-key-declare-prefixes ", z" "zoom")
 #+END_SRC
 
-***** *: others
+***** E: exports
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
-  ;; code blocks
-  "*" 'org-ctrl-c-star
+  "Ed" 'org-export-dispatch
+)
+(which-key-declare-prefixes ", E" "Exports")
+#+END_SRC
 
-  ;; lists
-  "-" 'org-ctrl-c-minus
-
-  ;; lists
-  "=" 'org-export-dispatch
-  
+***** *-=: others
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys org-map
   ;; cycle
   "TAB" 'org-cycle)
 #+END_SRC
