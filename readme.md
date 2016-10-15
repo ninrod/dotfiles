@@ -56,7 +56,7 @@ $ git clone https://github.com/ninrod/dotfiles.git ~/.dotfiles
 # - creates ~/.options/shell-options.conf file, if not existent
 # - overwrites your .gitconfig (so back it up if you have something important)
 # - install/updates vim plugins
-# - install fzf and zplug
+# - install zplug
 $ ~/.dotfiles/install.zsh
 
 # change git/github user info

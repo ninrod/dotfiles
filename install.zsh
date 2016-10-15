@@ -166,9 +166,6 @@ cd $DEPS_DIR
 # zplug itself
 clonedep zplug/zplug https://github.com/zplug/zplug.git 2.1.0 100
 
-# fuzzy filter
-clonedep junegunn/fzf https://github.com/junegunn/fzf.git 0.13.3 100
-
 # in test: rupa/z async branch
 # clonedep rupa/z https://github.com/rupa/z.git
 clonedep rupa/z https://github.com/rupa/z.git async
@@ -188,12 +185,9 @@ echo ""
 cd $DEPS_DIR
 
 # }}}
-# extra adjustments for .fzf and .zplug {{{
+# extra adjustments for .zplug {{{
 
-verifylink ~/.fzf
 verifylink ~/.zplug
-
-updatelinks ~/.fzf junegunn/fzf
 updatelinks ~/.zplug zplug/zplug
 
 # }}}
@@ -221,9 +215,3 @@ ensure_vim_plugins
 apply_git_info
 
 cd $GIT_ROOT
-
-# extra install step for fzf
-echo ""
-echo "------------------"
-cd ~/.fzf
-./install --no-update-rc --completion --key-bindings
