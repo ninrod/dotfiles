@@ -245,16 +245,20 @@ the right."
 * packages
 ** cosmetic
 *** theme
+**** darktooth
+#+BEGIN_SRC emacs-lisp
+  (use-package darktooth-theme :ensure t
+    :init (load-theme 'darktooth t))
+#+END_SRC
+**** gruvbox
+  #+BEGIN_SRC emacs-lisp
+    ;; (use-package gruvbox-theme :ensure t
+    ;;     :init (load-theme 'gruvbox t))
+  #+END_SRC
 **** spacemacs
   #+BEGIN_SRC emacs-lisp
     ;; (use-package spacemacs-theme :ensure t
     ;;   :init (load-theme 'spacemacs-dark t))
-  #+END_SRC
-
-**** gruvbox
-  #+BEGIN_SRC emacs-lisp
-    (use-package gruvbox-theme :ensure t
-        :init (load-theme 'gruvbox t))
   #+END_SRC
 
 **** material
