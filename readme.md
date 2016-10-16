@@ -9,9 +9,8 @@
 ### Emacs: gruvbox theme
 ![emacs-config](https://raw.githubusercontent.com/ninrod/dotfiles/master/img/emacs-gruvbox-2016-10-11.png)
 
-### Vim/Tmux on iTerm2 with [gruvbox](https://github.com/morhetz/gruvbox) (default)
-![gruvbox-config](https://raw.githubusercontent.com/ninrod/dotfiles/master/img/shot-2016-06-16-gruvbox.png)
-
+### Vim, tmux and zsh in iTerm2 using [gruvbox](https://github.com/morhetz/gruvbox)
+![gruvbox-config](https://raw.githubusercontent.com/ninrod/dotfiles/master/img/vim-tmux-2016-10-15.png)
 
 ## Important notice 
 
