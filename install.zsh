@@ -171,6 +171,7 @@ clonedep Tarrasch/zsh-bd https://github.com/Tarrasch/zsh-bd.git
 clonedep supercrabtree/k https://github.com/supercrabtree/k.git
 
 # completions, alias, highlights
+clonedep ninrod/nin-alias                  https://github.com/ninrod/nin-alias.git
 clonedep ninrod/docker-alias               https://github.com/ninrod/docker-alias.git
 clonedep ninrod/docker-zsh-completion      https://github.com/ninrod/docker-zsh-completion.git
 clonedep zsh-users/zsh-completions         https://github.com/zsh-users/zsh-completions.git
