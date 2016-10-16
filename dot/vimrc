@@ -19,16 +19,15 @@ endif
 " SI = START insert mode
 " EI = END insert mode
 " SR = START replace mode
-if !has('nvim')
-  if empty($TMUX)
-    let &t_SI = "\<Esc>]1337;CursorShape=1\x7"
-    let &t_EI = "\<Esc>]1337;CursorShape=0\x7"
-    let &t_SR = "\<Esc>]1337;CursorShape=2\x7"
-  else
-    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]1337;CursorShape=1\x7\<Esc>\\"
-    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]1337;CursorShape=0\x7\<Esc>\\"
-    let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]1337;CursorShape=2\x7\<Esc>\\"
-  endif
+
+if empty($TMUX)
+  let &t_SI = "\<Esc>]1337;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]1337;CursorShape=0\x7"
+  let &t_SR = "\<Esc>]1337;CursorShape=2\x7"
+else
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]1337;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]1337;CursorShape=0\x7\<Esc>\\"
+  let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]1337;CursorShape=2\x7\<Esc>\\"
 endif
 
 " }}}

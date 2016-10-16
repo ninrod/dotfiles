@@ -9,7 +9,7 @@
 [difftool]
   prompt = false
 [core]
-  editor = nvim
+  editor = vim
   autocrlf = input
 [color]
   ui = auto
