@@ -132,16 +132,7 @@ bindkey -s "^[OR" "*"
 bindkey -s "^[OQ" "/"
 
 # }}}
-# plugins {{{
-
-# Zplug
-
-zstyle :zplug:tag depth 1
-source ~/.zplug/init.zsh
-
-# local plugins
-# zplug "~/code/sources/nin-vi-mode", from:local
-
+# editing mode setup {{{
 # with help from @chadhs https://github.com/syl20bnr/spacemacs/issues/7140#issuecomment-252036519
 if [[ -z ${EMACS+x} ]]; then
 
@@ -166,6 +157,14 @@ else
   bindkey "^[[A" history-beginning-search-backward
   bindkey "^[[B" history-beginning-search-forward
 fi
+# }}}
+# plugins {{{
+
+zstyle :zplug:tag depth 1
+source ~/.zplug/init.zsh
+
+# Source a file that isn't a .zsh file
+zplug "${DOTPATH}/deps/rupa/z", use:z.sh, from:local
 
 zplug "${DOTPATH}/deps/ninrod/docker-alias", from:local
 zplug "${DOTPATH}/deps/ninrod/docker-zsh-completion", from:local
