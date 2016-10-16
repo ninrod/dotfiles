@@ -25,9 +25,12 @@ nnoremap - :noh<cr>
 nnoremap X hx
 
 map gl G
+
 " easier quiting
-nnoremap Q ZQ
-nnoremap Z ZZ
+nnoremap q ZQ
+
+" move macro to safer place
+nnoremap Q q
 
 " faster paragraph navigation
 nnoremap ( {
