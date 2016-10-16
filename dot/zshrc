@@ -93,12 +93,6 @@ export LANG=en_US.UTF-8
 # useful in the case of Emacs M-x shell which advertises a dumb terminal
 #export TERM=xterm-256color
 
-if [[ -z ${EMACS+x} ]]; then
-  export EDITOR="vim"
-else
-  export EDITOR="emacsclient"
-fi
-
 # }}}
 # various escape code fixes {{{
 
@@ -134,7 +128,10 @@ bindkey -s "^[OQ" "/"
 # }}}
 # editing mode setup {{{
 # with help from @chadhs https://github.com/syl20bnr/spacemacs/issues/7140#issuecomment-252036519
+
 if [[ -z ${EMACS+x} ]]; then
+
+  export EDITOR="vim"
 
   # no delays when switching keymaps
   export KEYTIMEOUT=5
@@ -151,6 +148,7 @@ if [[ -z ${EMACS+x} ]]; then
   # zplug "${DOTPATH}/deps/ninrod/nin-vi-mode", from:local
 
 else
+  export EDITOR="emacsclient"
   bindkey -e
   ## command specific history search
   ### emacs bindings
