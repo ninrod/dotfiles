@@ -5,6 +5,8 @@ if has('termguicolors')
   set termguicolors
 endif
 
+" cursor shape config {{{
+
 " escape sequence: `^[]1337;CursorShape=N^G`. where:
 " N=0: block;
 " N=1: line;
@@ -29,13 +31,7 @@ if !has('nvim')
   endif
 endif
 
-" Keep undo history across sessions by storing it in a file
-" if has('persistent_undo')
-"   let myUndodir = expand('$HOME/.vim/undodir')
-"   let &undodir = myUndodir
-"   set undofile
-"   silent call system('mkdir -p ' . &undodir)
-" endif
+" }}}
 
 syntax on
 
@@ -65,7 +61,7 @@ set showcmd
 " show line numbers on status line
 set ruler
 
-" A buffer is marked as ‘hidden’ if it has unsaved changes, and it is not currently loaded in a window.
+" with this option on, a buffer is marked as ‘hidden’ if it has unsaved changes, and it is not currently loaded in a window.
 " If you try and quit Vim while there are hidden buffers, you will raise an error:
 " E162: No write since last change for buffer “a.txt”
 set hidden
@@ -227,6 +223,9 @@ nnoremap <cr> :w<cr>
 
 " `cl` is a complete substitute for `s` (also note that `cc` replaces `S`)
 nnoremap <silent> s :silent! normal za<cr>
+
+nnoremap Q q
+nnoremap q ZQ
 
 " }}}
 " g prefix abuse {{{
