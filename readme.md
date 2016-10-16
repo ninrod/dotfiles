@@ -9,17 +9,9 @@
 ### Emacs: gruvbox theme
 ![emacs-config](https://raw.githubusercontent.com/ninrod/dotfiles/master/img/emacs-gruvbox-2016-10-11.png)
 
-### Emacs: spacemacs theme
-![emacs-config](https://raw.githubusercontent.com/ninrod/dotfiles/master/img/emacs-2016-10-09.png)
-
 ### Vim/Tmux on iTerm2 with [gruvbox](https://github.com/morhetz/gruvbox) (default)
 ![gruvbox-config](https://raw.githubusercontent.com/ninrod/dotfiles/master/img/shot-2016-06-16-gruvbox.png)
 
-### Vim/Tmux on iTerm2 with [jellybeans](https://github.com/nanotech/jellybeans.vim)
-![jellybeans-config](https://raw.githubusercontent.com/ninrod/dotfiles/master/img/shot-2016-06-15-jellybeans.png)
-
-### Vim/Tmux on iTerm2 with [molokai](https://github.com/tomasr/molokai)
-![molokai-config](https://raw.githubusercontent.com/ninrod/dotfiles/master/img/molokai.png)
 
 ## Important notice 
 
@@ -30,16 +22,14 @@
 * First off, I strongly recommend using [iTerm2](https://github.com/gnachman/iTerm2.git) on OSx.
 * Secondly, this is for unix systems: `GNU/Linux`, `OSx`, etc... It should work on theory on windows, but I've faced a lot of configuration issues and ended up abandoning windows support.
 * configure your terminal to use the [gruvbox theme](https://github.com/morhetz/gruvbox). There's a `conf` folder within this repo that can help you with that. 
-* now get `vim` 7.4+ with [+clipboard](http://vimcasts.org/blog/2013/11/getting-vim-with-clipboard-support) and +python.
-* get [tmux](https://github.com/tmux/tmux.git) 2.2+
+* now get `vim` 8+ with [+clipboard](http://vimcasts.org/blog/2013/11/getting-vim-with-clipboard-support).
+* get [tmux](https://github.com/tmux/tmux.git) 2.3+
 * get [zsh](https://github.com/zsh-users/zsh.git) 5.2+ and make sure that `/bin/zsh` is valid. (if not: `$ cd /bin && sudo ln -s $(command -v zsh) zsh`)
 * `cat /etc/shells` and verify that zsh appears on the list. If not, `sudo vi /etc/shells` and append `/bin/zsh`
-* get [python2](http://python.org), python2-pip and `$ sudo pip install neovim`
 * get [ag](https://github.com/ggreer/the_silver_searcher.git) (you can `brew install ag` on OSx).
 * if you're on OSx, brew install these:
   * `brew install coreutils` (mainly because `BSD` `ls` `CLICOLOR` sucks).
   * `brew install reattach-to-user-namespace` (Mainly because of the `open` utility. [more info here](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard.git)).
-  * `brew install nvim`
   * `brew install diff-so-fancy`
 
 * __Kind remark__: for the moment (until I change the script to back it up for you), I'll overwrite your `~/.gitconfig` file, so if you have something important in it, now would be the perfect moment to back it up.
@@ -66,13 +56,11 @@ $ vim ~/.options/shell-options.conf
 $ exec zsh
 ```
 
-* note: the alias `v` is mapped to `nvim`. ( note that [neovim](https://neovim.io/) is a fork of vim. It was my main editor. Now I use emacs, mostly.)
+* note the alias `v` is mapped to `vim`.
 
 * That's it, your're all set.
 
 ## VIM: Powerful shell text editor. Tweaked with plugins.
-
-### Custom binds and plugins
 
 * To check out what binds and plugins I use in this config, my [vimrc](https://github.com/ninrod/dotfiles/blob/master/dot/vimrc) file is authoritative.
 
