@@ -1,8 +1,5 @@
 # zsh options {{{
 
-# ensure proper zsh functions are loaded
-fpath=(/usr/local/share/zsh/5.2-dev-1/functions $fpath)
-
 # defining word endings
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
@@ -87,28 +84,6 @@ if [[ -e "$SHELL_USER_CONFIG_FILE" ]]; then
 fi
 
 # }}}
-# path {{{
-
-PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-
-CUSTOM_SCRIPTS=$DOTPATH/scripts/emacs:$DOTPATH/scripts/vim
-PATH="$CUSTOM_SCRIPTS:$PATH"
-
-GNUBIN_PATH=/usr/local/opt/coreutils/libexec/gnubin
-PATH="$GNUBIN_PATH:$PATH"
-
-GOPATH=~/code/apps/go
-export GOPATH
-PATH="$GOPATH/bin:$PATH"
-
-export PATH
-
-GNUMANPATH="/usr/local/opt/coreutils/libexec/gnuman"
-MANPATH="$GNUMANPATH:$MANPATH"
-
-export MANPATH
-
-# }}}
 # exports {{{
 
 # standard configs
@@ -124,16 +99,15 @@ else
   export EDITOR="emacsclient"
 fi
 
-# zplug config
-export ZPLUG_CLONE_DEPTH=1
-
 # }}}
 # plugins {{{
 
 # Zplug
+
+export ZPLUG_CLONE_DEPTH=1
 source ~/.zplug/init.zsh
 
-# personal plugins
+# local plugins
 # zplug "~/code/sources/nin-vi-mode", from:local
 
 # with help from @chadhs https://github.com/syl20bnr/spacemacs/issues/7140#issuecomment-252036519
