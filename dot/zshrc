@@ -100,11 +100,43 @@ else
 fi
 
 # }}}
+# various escape code fixes {{{
+
+# home, end, delete and backspace
+bindkey "^[[1~" beginning-of-line # home key
+bindkey "^[[4~" end-of-line # end key
+bindkey "^[[3~" delete-char # delete key
+bindkey "^H" backward-delete-char # backspace key
+bindkey "^?" backward-delete-char # backspace key
+
+# Numeric Keypad fixes
+uname | grep -q Darwin; rc=$?
+if [[ ! $rc = 0 ]]; then
+  bindkey "${terminfo[kent]}" accept-line # numeric keypad return (enter)
+fi
+
+bindkey -s "^[Op" "0"
+bindkey -s "^[On" "."
+bindkey -s "^[Oq" "1"
+bindkey -s "^[Or" "2"
+bindkey -s "^[Os" "3"
+bindkey -s "^[Ot" "4"
+bindkey -s "^[Ou" "5"
+bindkey -s "^[Ov" "6"
+bindkey -s "^[Ow" "7"
+bindkey -s "^[Ox" "8"
+bindkey -s "^[Oy" "9"
+bindkey -s "^[Ol" "+"
+bindkey -s "^[OS" "-"
+bindkey -s "^[OR" "*"
+bindkey -s "^[OQ" "/"
+
+# }}}
 # plugins {{{
 
 # Zplug
 
-export ZPLUG_CLONE_DEPTH=1
+zstyle :zplug:tag depth 1
 source ~/.zplug/init.zsh
 
 # local plugins
@@ -112,8 +144,21 @@ source ~/.zplug/init.zsh
 
 # with help from @chadhs https://github.com/syl20bnr/spacemacs/issues/7140#issuecomment-252036519
 if [[ -z ${EMACS+x} ]]; then
-  zplug "${DOTPATH}/deps/ninrod/nin-vi-mode", from:local
-  zplug "${DOTPATH}/deps/b4b4r07/enhancd", from:local, use:init.sh
+
+  # no delays when switching keymaps
+  export KEYTIMEOUT=5
+  # bootstrap vi-mode
+  bindkey -v
+
+  autoload -Uz edit-command-line
+  zle -N edit-command-line
+  bindkey -M vicmd 'gs' edit-command-line
+
+  # bindkey -M vicmd '?' history-incremental-search-backward
+
+  # trying to live without a customized vi-mode
+  # zplug "${DOTPATH}/deps/ninrod/nin-vi-mode", from:local
+
 else
   bindkey -e
   ## command specific history search
@@ -159,30 +204,6 @@ eval $(dircolors ~/.lscolors)
 
 # function alias {{{
 
-# cd: enhancing enhancd {{{
-
-cd() {
-  if [[ -z $1 ]]; then
-    # $1 is empty. go home
-    builtin cd ~
-  elif [[ $1 == '-' ]]; then
-    # $1 == '-': switch to last visited dir
-    builtin cd - > /dev/null
-  elif [[ $1 == '..' ]]; then
-    builtin cd ..
-  elif [[ $1 =~ '\+[0-9]{1,2}' ]]; then
-    # $1: `cd +8`, `cd +10`, cherry pick auto_pushd stack
-    builtin cd $1 > /dev/null
-  elif command -v "$ENHANCD_COMMAND" > /dev/null; then
-    # populate dir enhancd dir cache, clear and list
-    eval "$ENHANCD_COMMAND $1"
-  else
-    # enhancd did not load, use normal cd, clear and list
-    builtin cd $1
-  fi
-}
-
-# }}}
 # s and sk: get recursive dir size measurements {{{
 
 # s: get megabytes measurement
@@ -238,29 +259,6 @@ md() {
 = () {
   bc -l <<< "$@"
 }
-
-# }}}
-# nman: neoman vim plugin {{{
-
-function nman () {
-  if [[ -z $* ]]; then
-    echo "What manual page do you want?"
-    return
-  fi
-  local tmp=$IFS
-  IFS=$'\n' out=($(command man -w $* 2>&1))
-  local code=$?
-  IFS=$tmp
-  if [[ ${#out[@]} > 1 ]]; then
-    echo "Too many manpages"
-    return
-  elif [[ $code != 0 ]]; then
-    echo "No manual entry for $*"
-    return
-  fi
-  vim -c "Nman $*"
-}
-compdef nman="man"
 
 # }}}
 

@@ -164,21 +164,21 @@ fi
 cd $DEPS_DIR
 
 # zplug itself
-clonedep zplug/zplug https://github.com/zplug/zplug.git 2.1.0 100
+clonedep zplug/zplug https://github.com/zplug/zplug.git 2.3.2 100
 
-# in test: rupa/z async branch
-# clonedep rupa/z https://github.com/rupa/z.git
-clonedep rupa/z https://github.com/rupa/z.git async
+# dir niceties
+clonedep Tarrasch/zsh-bd https://github.com/Tarrasch/zsh-bd.git
+clonedep supercrabtree/k https://github.com/supercrabtree/k.git
 
-# zplug deps
-clonedep Tarrasch/zsh-bd                   https://github.com/Tarrasch/zsh-bd.git
-clonedep b4b4r07/enhancd                   https://github.com/b4b4r07/enhancd.git
-clonedep ninrod/docker-zsh-completion      https://github.com/ninrod/docker-zsh-completion.git
+# completions, alias, highlights
 clonedep ninrod/docker-alias               https://github.com/ninrod/docker-alias.git
-clonedep ninrod/nin-vi-mode                https://github.com/ninrod/nin-vi-mode.git
-clonedep supercrabtree/k                   https://github.com/supercrabtree/k.git
+clonedep ninrod/docker-zsh-completion      https://github.com/ninrod/docker-zsh-completion.git
 clonedep zsh-users/zsh-completions         https://github.com/zsh-users/zsh-completions.git
 clonedep zsh-users/zsh-syntax-highlighting https://github.com/zsh-users/zsh-syntax-highlighting.git
+
+# quarentined
+clonedep ninrod/nin-vi-mode https://github.com/ninrod/nin-vi-mode.git
+clonedep rupa/z             https://github.com/rupa/z.git
 
 echo ""
 
@@ -215,3 +215,5 @@ ensure_vim_plugins
 apply_git_info
 
 cd $GIT_ROOT
+
+exec zsh
