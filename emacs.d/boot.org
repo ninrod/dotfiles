@@ -377,7 +377,11 @@ the right."
      (add-hook 'org-mode-hook #'smartparens-mode)
   )
 #+END_SRC
-
+*** origami
+#+BEGIN_SRC emacs-lisp
+(use-package origami :ensure t
+  :config (origami-mode))
+#+END_SRC
 ** keybinds
 *** which key
   #+BEGIN_SRC emacs-lisp
