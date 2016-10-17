@@ -1087,7 +1087,7 @@ adfasf
   (bind-map-set-keys org-map
     "dd" 'org-schedule
   )
-  (which-key-declare-prefixes ", c" "code editing")
+  (which-key-declare-prefixes ", d" "dates/schedule")
 #+END_SRC
 ***** i: insertions
 #+BEGIN_SRC emacs-lisp
