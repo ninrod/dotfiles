@@ -200,8 +200,6 @@ zplug load
 eval $(dircolors ~/.lscolors)
 
 # }}}
-
-# }}}
 # prompt {{{
 
 # char options: ❯, λ, ➜, ∴
