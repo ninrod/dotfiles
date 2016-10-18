@@ -1218,30 +1218,36 @@ SCHEDULED: %t")))
 ***** t: table
 ****** ☛ TODO lift more binds from [[http://orgmode.org/manual/Built_002din-table-editor.html][here]]:
 #+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-map
-    "ta" 'org-table-align
-    "tt" 'org-table-transpose-table-at-point
+    (bind-map-set-keys org-map
+      "ta" 'org-table-align
+      "tt" 'org-table-transpose-table-at-point
 
-    "th" 'org-backward-sentence
-    "tl" 'org-forward-sentence
+      "th" 'org-backward-sentence
+      "tl" 'org-forward-sentence
 
-    "tdc" 'org-table-delete-column
+      "tdc" 'org-table-delete-column
 
-    ;; from https://www.reddit.com/r/emacs/comments/56oc9c/orgtables_is_there_a_way_to_delete_a_whole_table/
-    ;; fist place point in the top left bar (`|')
-    "tm" 'org-mark-element
+      ;; from https://www.reddit.com/r/emacs/comments/56oc9c/orgtables_is_there_a_way_to_delete_a_whole_table/
+      ;; fist place point in the top left bar (`|')
+      "tm" 'org-mark-element
 
-    "tr" 'org-table-insert-row
-    "tc" 'org-table-insert-column
+      "tr" 'org-table-insert-row
+      "tc" 'org-table-insert-column
     
-    "to" 'org-table-toggle-coordinate-overlays
-    "t?" 'org-table-field-info
-    "t=" 'org-table-eval-formula
+      "to" 'org-table-toggle-coordinate-overlays
+      "t?" 'org-table-field-info
+      "t=" 'org-table-eval-formula
 
-    "t RET" 'org-table-copy-down
-  )
-(which-key-add-major-mode-key-based-replacements 'org-mode ", t" "org-table")
-(which-key-add-major-mode-key-based-replacements 'org-mode ", td" "org-table deletions")
+      "tf" (lambda () (interactive) 
+            (let ((current-prefix-arg 4))
+            (call-interactively 'org-table-recalculate))
+           )
+
+      "t RET" 'org-table-copy-down
+    )
+  (which-key-add-major-mode-key-based-replacements 'org-mode ", t" "org-table")
+  (which-key-add-major-mode-key-based-replacements 'org-mode ", td" "org-table deletions")
+  (which-key-add-major-mode-key-based-replacements 'org-mode ", tf" "recalculate formulas")
 #+END_SRC
 
 ***** z: zoom / visualization
