@@ -870,15 +870,25 @@ SCHEDULED: %t")))
 
 *** fixes
 #+BEGIN_SRC emacs-lisp
-;; As I've sequestered < and > when in org mode, we need a workaround.
-(define-key evil-motion-state-map "g>" 'evil-shift-right)
-(define-key evil-motion-state-map "g<" 'evil-shift-left)
+  ;; As I've sequestered < and > when in org mode, we need a workaround.
+  (define-key evil-motion-state-map "g>" 'evil-shift-right)
+  (define-key evil-motion-state-map "g<" 'evil-shift-left)
 
-;; `z.' fix
-(define-key evil-normal-state-map "z." 'evil-scroll-line-to-center)
+  ;; `z.' fix
+  (define-key evil-normal-state-map "z." 'evil-scroll-line-to-center)
 
-;; `z-' fix
-(define-key evil-normal-state-map "z-" 'evil-scroll-line-to-bottom)
+  ;; `z-' fix
+  (define-key evil-normal-state-map "z-" 'evil-scroll-line-to-bottom)
+
+  ;; make / and ? behave like vim
+  (define-key isearch-mode-map (kbd "<escape>") 'isearch-cancel)
+  (define-key evil-ex-search-keymap (kbd "<escape>") 'minibuffer-keyboard-quit)
+
+  ;; instantly display current keystrokes in mini buffer
+  (setq echo-keystrokes 0.02)
+
+  ;; auto-indent on RET
+  (define-key global-map (kbd "RET") 'newline-and-indent)
 #+END_SRC
 
 ** SPC
