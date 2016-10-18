@@ -1000,10 +1000,10 @@ SCHEDULED: %t")))
   (bind-map-set-keys spc-map
     "ms" 'sort-lines
     "mc" 'count-words
+    "mr" 'replace-string
   )
   (which-key-declare-prefixes "SPC m" "M-x useful functions")
 #+END_SRC
-
 
 *** o: org-mode
 #+BEGIN_SRC emacs-lisp
@@ -1180,13 +1180,11 @@ SCHEDULED: %t")))
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys org-map
 
-    ;; from https://www.reddit.com/r/emacs/comments/56oc9c/orgtables_is_there_a_way_to_delete_a_whole_table/
-    "om" 'org-mark-element
 
     ;; from: http://emacsist.com/10284 
     "or" 'org-refile
     
-    "oc" 'org-table-convert-region
+    "ot" 'org-table-convert-region
   )
   (which-key-declare-prefixes ", o" "interesting org commands")
 #+END_SRC
@@ -1218,6 +1216,10 @@ SCHEDULED: %t")))
     "tl" 'org-forward-sentence
 
     "tdc" 'org-table-delete-column
+
+    ;; from https://www.reddit.com/r/emacs/comments/56oc9c/orgtables_is_there_a_way_to_delete_a_whole_table/
+    ;; fist place point in the top left bar (`|')
+    "tm" 'org-mark-element
 
     "tr" 'org-table-insert-row
     "tc" 'org-table-insert-column
