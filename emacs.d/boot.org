@@ -1223,6 +1223,8 @@ SCHEDULED: %t")))
 
     "tr" 'org-table-insert-row
     "tc" 'org-table-insert-column
+    
+    "to" 'org-table-toggle-coordinate-overlays
   )
 (which-key-add-major-mode-key-based-replacements 'org-mode ", t" "org-table")
 (which-key-add-major-mode-key-based-replacements 'org-mode ", td" "org-table deletions")
