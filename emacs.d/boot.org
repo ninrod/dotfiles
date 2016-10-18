@@ -160,6 +160,7 @@ the right."
     )
   )
 #+END_SRC
+
 ** revert-buffer with no confirmation
 - from [[http://www.emacswiki.org/emacs-en/download/misc-cmds.el][emacswiki]]
 #+BEGIN_SRC emacs-lisp
@@ -168,6 +169,7 @@ the right."
     (interactive)
     (revert-buffer :ignore-auto :noconfirm))
 #+END_SRC
+
 ** my lisp functions
 *** nin-echo
 #+BEGIN_SRC emacs-lisp
@@ -177,18 +179,63 @@ the right."
   (message "the bind worked! yes!!"))
 #+END_SRC
 
+** org functions
+*** move cell down
+- credits go to [[https://www.reddit.com/r/emacs/comments/583n1x/movecopy_a_cel_to_the_right/][/u/gmfawcett]]
+#+BEGIN_SRC emacs-lisp
+(defun nin-org-mv-down ()           ; moves a value down
+  (interactive)
+  (let ((pos (point))               ; get current pos
+        (f (org-table-get-field)))  ; copy current field
+    (org-table-blank-field)         ; blank current field
+    (org-table-next-row)            ; move cursor down
+    (org-table-blank-field)         ; blank that field too
+    (insert f)                      ; insert the value from above
+    (org-table-align)               ; realign the table
+    (goto-char pos)))               ; move back to original position
+#+END_SRC
+
+*** swap cell down
+- credits go to [[https://www.reddit.com/r/emacs/comments/583n1x/movecopy_a_cel_to_the_right/][/u/gmfawcett]]
+#+BEGIN_SRC emacs-lisp
+(defun nin-org-swap-down ()               ; swap with value below
+  (interactive)
+  (let ((pos (point))                   ; get current pos
+        (v1 (org-table-get-field)))     ; copy current field
+    (org-table-blank-field)             ; blank current field
+    (org-table-next-row)                ; move cursor down
+    (let ((v2 (org-table-get-field)))   ; take copy of that field, too
+      (org-table-blank-field)           ; blank that field too
+      (insert v1)                       ; insert the value from above
+      (goto-char pos)                   ; go to original location
+      (insert v2)                       ; insert the value from below
+      (org-table-align)                 ; realign the table
+      (goto-char pos))))                ; move back to original position
+#+END_SRC
+
+** origami functions
+- with help from [[https://www.reddit.com/r/emacs/comments/580v30/tweaking_origamiel_lisp_and_regexes/][reddit]]
+#+BEGIN_SRC emacs-lisp
+(defun nin-origami-close-node ()
+ (interactive)
+ (save-excursion
+  (goto-char (point-at-eol))             ;; go to the end of line
+  (origami-close-node)))                 ;; then try to fold
+#+END_SRC
+
 * tweaks
-** interface options
+** scratch buffer tweaks
+#+BEGIN_SRC emacs-lisp
+(setq initial-major-mode 'org-mode)
+(setq initial-scratch-message "#+STARTUP: indent\n#+STARTUP: overview\n\n* this is an org-mode scratch buffer\n| A | B |\n| 1 | 2 |\n| 3 | 4 |")
+#+END_SRC
+
+** ui
 #+BEGIN_SRC emacs-lisp
   (setq inhibit-startup-message t)
   (tool-bar-mode -1)
   (menu-bar-mode -1)
   (fset 'yes-or-no-p 'y-or-n-p)
-
-  (setq-default js-basic-offset 2
-                sh-basic-offset 2
-                sh-indentation 2
-                indent-tabs-mode nil)
 
   ;;highlight current line
   ;;(global-hl-line-mode)
@@ -209,6 +256,14 @@ the right."
         (menu-bar-mode 1))))
 #+END_SRC
 
+** indentation
+#+BEGIN_SRC emacs-lisp
+(setq-default js-basic-offset 2
+                sh-basic-offset 2
+                sh-indentation 2
+                indent-tabs-mode nil)
+#+END_SRC
+
 ** font
 *** Monoisome
 - get it at [[https://github.com/larsenwork/monoid][larsenwork/monoid]]
@@ -224,7 +279,6 @@ the right."
 (setq backup-directory-alist
       `(("." . ,(expand-file-name
                  (concat user-emacs-directory "backups")))))
-
 ;; Make backups of files, even when they're in version control
 (setq vc-make-backup-files t)
 #+END_SRC
@@ -242,13 +296,59 @@ the right."
 (load custom-file 'noerror)
   #+END_SRC
 
+** org-mode
+*** general configs
+- somewhat lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
+#+BEGIN_SRC emacs-lisp
+(setq org-todo-keywords
+    '((sequence "☛ TODO" "○ IN-PROGRESS" "⚑ WAITING" "|" "✓ DONE" "✗ CANCELED")))
+
+(setq org-blank-before-new-entry (quote ((heading) (plain-list-item))))
+(setq org-log-done (quote time))
+(setq org-log-redeadline (quote time))
+(setq org-log-reschedule (quote time))
+#+END_SRC
+
+*** org capture
+- lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
+#+BEGIN_SRC emacs-lisp
+(setq org-capture-templates
+      '(("a" "My TODO task format." entry
+         (file "~/code/sources/life/inbox.org")
+         "* ☛ TODO %?
+SCHEDULED: %t")))
+(defun air-org-task-capture ()
+  "Capture a task with my default template."
+  (interactive)
+  (org-capture nil "a"))
+#+END_SRC
+
+*** org agenda
+- lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
+#+BEGIN_SRC emacs-lisp
+  ;; (setq org-todo-keywords
+  ;;       '((sequence "TODO" "WIP" "WAITING" "|" "DONE" "CANCELED")))
+
+
+  (setq org-agenda-files '("~/code/sources/life/"))
+
+  (defun air-pop-to-org-agenda (split)
+    "Visit the org agenda, in the current window or a SPLIT."
+    (interactive "P")
+    (org-agenda-list)
+    (when (not split)
+      (delete-other-windows)))
+
+  (setq org-agenda-text-search-extra-files '(agenda-archives))
+#+END_SRC
+
 * packages
 ** cosmetic
 *** theme
 **** darktooth
 #+BEGIN_SRC emacs-lisp
-  (use-package darktooth-theme :ensure t
-    :init (load-theme 'darktooth t))
+  ;; (use-package darktooth-theme :ensure t
+  ;;   :init (load-theme 'darktooth t))
 #+END_SRC
 
 **** gruvbox
@@ -259,8 +359,8 @@ the right."
 
 **** spacemacs
   #+BEGIN_SRC emacs-lisp
-    ;; (use-package spacemacs-theme :ensure t
-    ;;   :init (load-theme 'spacemacs-dark t))
+    (use-package spacemacs-theme :ensure t
+      :init (load-theme 'spacemacs-dark t))
   #+END_SRC
 
 **** material
@@ -383,6 +483,7 @@ the right."
   :config (add-hook 'prog-mode-hook #'origami-mode)
 )
 #+END_SRC
+
 ** keybinds
 *** which key
   #+BEGIN_SRC emacs-lisp
@@ -517,52 +618,7 @@ the right."
 #+END_SRC
 
 ** org
-**** general configs
-- somewhat lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
-#+BEGIN_SRC emacs-lisp
-(setq org-todo-keywords
-    '((sequence "☛ TODO" "○ IN-PROGRESS" "⚑ WAITING" "|" "✓ DONE" "✗ CANCELED")))
-
-(setq org-blank-before-new-entry (quote ((heading) (plain-list-item))))
-(setq org-log-done (quote time))
-(setq org-log-redeadline (quote time))
-(setq org-log-reschedule (quote time))
-#+END_SRC
-
-**** org capture
-- lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
-#+BEGIN_SRC emacs-lisp
-(setq org-capture-templates
-      '(("a" "My TODO task format." entry
-         (file "~/code/sources/life/inbox.org")
-         "* ☛ TODO %?
-SCHEDULED: %t")))
-(defun air-org-task-capture ()
-  "Capture a task with my default template."
-  (interactive)
-  (org-capture nil "a"))
-#+END_SRC
-
-**** org agenda
-- lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
-#+BEGIN_SRC emacs-lisp
-  ;; (setq org-todo-keywords
-  ;;       '((sequence "TODO" "WIP" "WAITING" "|" "DONE" "CANCELED")))
-
-
-  (setq org-agenda-files '("~/code/sources/life/"))
-
-  (defun air-pop-to-org-agenda (split)
-    "Visit the org agenda, in the current window or a SPLIT."
-    (interactive "P")
-    (org-agenda-list)
-    (when (not split)
-      (delete-other-windows)))
-
-  (setq org-agenda-text-search-extra-files '(agenda-archives))
-#+END_SRC
-
-**** Org bullets
+**** Org Bullets
   #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
     :ensure t
@@ -576,7 +632,7 @@ SCHEDULED: %t")))
 ;(setq org-ellipsis "⤵")
   #+END_SRC
 
-**** Export to Reveal.js
+**** Reveal.js
   #+BEGIN_SRC emacs-lisp
 (use-package ox-reveal
   :ensure t)
@@ -587,7 +643,12 @@ SCHEDULED: %t")))
 (use-package htmlize 
   :ensure t)
   #+END_SRC
-  
+
+**** orgbox
+#+BEGIN_SRC emacs-lisp
+(use-package orgbox :ensure t)
+#+END_SRC
+
 ** completions
 *** ivy/counsel
 #+BEGIN_SRC emacs-lisp
@@ -935,10 +996,18 @@ SCHEDULED: %t")))
 *** l: lisp evaluation
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
-    "lb" 'org-babel-execute-src-block
     "ll" 'eval-last-sexp)
   (which-key-declare-prefixes "SPC l" "evaluation")
 #+END_SRC
+
+*** m: M-x useful functions
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys spc-map
+    "ms" 'sort-lines
+  )
+  (which-key-declare-prefixes "SPC m" "M-x useful functions")
+#+END_SRC
+
 
 *** o: org-mode
 #+BEGIN_SRC emacs-lisp
@@ -1049,27 +1118,6 @@ SCHEDULED: %t")))
     :major-modes (org-mode))
 #+END_SRC
 
-**** local fixes
-#+BEGIN_SRC emacs-lisp
-  (evil-define-key 'normal org-mode-map (kbd "TAB") 'ivy-switch-buffer)
-  (when (display-graphic-p)
-    (evil-define-key 'normal org-mode-map (kbd "<tab>") 'ivy-switch-buffer))
-
-  (evil-define-key 'normal org-mode-map (kbd "RET") 'evil-write)
-
-  ;; movement
-  (evil-define-key 'normal org-mode-map "zu" 'outline-up-heading)
-  (evil-define-key 'normal org-mode-map "zh" 'outline-previous-visible-heading)
-  (evil-define-key 'normal org-mode-map "zj" 'org-forward-heading-same-level)
-  (evil-define-key 'normal org-mode-map "zk" 'org-backward-heading-same-level)
-  (evil-define-key 'normal org-mode-map "zl" 'outline-next-visible-heading)
-
-  (evil-define-key 'normal org-mode-map "<" 'org-do-promote)
-  (evil-define-key 'normal org-mode-map ">" 'org-do-demote)
-
-  (evil-define-key 'normal org-mode-map "t" 'org-todo)
-  #+END_SRC
-
 **** local leader
 ***** b: bullets
 adfasf
@@ -1080,13 +1128,16 @@ adfasf
   )
   (which-key-declare-prefixes ", b" "bullets")
 #+END_SRC
+
 ***** c: code
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys org-map
     "cc" 'org-edit-src-code
+    "cb" 'org-babel-execute-src-block
   )
   (which-key-declare-prefixes ", c" "code editing")
 #+END_SRC
+
 ***** d: dates/schedulling
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys org-map
@@ -1094,6 +1145,7 @@ adfasf
   )
   (which-key-declare-prefixes ", d" "dates/schedule")
 #+END_SRC
+
 ***** i: insertions
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
@@ -1124,7 +1176,7 @@ adfasf
     "mh" 'org-metaleft
     "mj" 'org-metadown
     "mk" 'org-metaup
-    "mr"  'org-meta-return
+    "m RET"  'org-meta-return
   )
   (which-key-declare-prefixes ", m" "org-meta")
 #+END_SRC
@@ -1138,7 +1190,8 @@ adfasf
 
     ;; from: http://emacsist.com/10284 
     "or" 'org-refile
-
+    
+    "oc" 'org-table-convert-region
   )
   (which-key-declare-prefixes ", o" "interesting org commands")
 #+END_SRC
@@ -1164,10 +1217,18 @@ adfasf
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys org-map
     "ta" 'org-table-align
+    "tt" 'org-table-transpose-table-at-point
+
     "th" 'org-backward-sentence
     "tl" 'org-forward-sentence
+
+    "tdc" 'org-table-delete-column
+
+    "tr" 'org-table-insert-row
+    "tc" 'org-table-insert-column
   )
-  (which-key-declare-prefixes ", t" "org-table")
+(which-key-add-major-mode-key-based-replacements 'org-mode ", t" "org-table")
+(which-key-add-major-mode-key-based-replacements 'org-mode ", td" "org-table deletions")
 #+END_SRC
 
 ***** z: zoom / visualization
@@ -1192,6 +1253,27 @@ adfasf
   ;; cycle
   "TAB" 'org-cycle)
 #+END_SRC
+
+**** local fixes
+#+BEGIN_SRC emacs-lisp
+  (evil-define-key 'normal org-mode-map (kbd "TAB") 'ivy-switch-buffer)
+  (when (display-graphic-p)
+    (evil-define-key 'normal org-mode-map (kbd "<tab>") 'ivy-switch-buffer))
+
+  (evil-define-key 'normal org-mode-map (kbd "RET") 'evil-write)
+
+  ;; movement
+  (evil-define-key 'normal org-mode-map "zu" 'outline-up-heading)
+  (evil-define-key 'normal org-mode-map "zh" 'outline-previous-visible-heading)
+  (evil-define-key 'normal org-mode-map "zj" 'org-forward-heading-same-level)
+  (evil-define-key 'normal org-mode-map "zk" 'org-backward-heading-same-level)
+  (evil-define-key 'normal org-mode-map "zl" 'outline-next-visible-heading)
+
+  (evil-define-key 'normal org-mode-map "<" 'org-do-promote)
+  (evil-define-key 'normal org-mode-map ">" 'org-do-demote)
+
+  (evil-define-key 'normal org-mode-map "t" 'org-todo)
+  #+END_SRC
 
 *** term
 - with help from [[https://www.reddit.com/r/emacs/comments/56xmvg/properly_editing_a_shell_buffer_with_evilmode/][/r/emacs]]
@@ -1221,12 +1303,14 @@ adfasf
 (define-key magit-status-mode-map (kbd "SPC") nil)
 (define-key magit-status-mode-map "go" 'evil-goto-first-line)
 #+END_SRC
+
 *** eshell
 #+BEGIN_SRC emacs-lisp
   (evil-define-key 'normal eshell-mode-map (kbd "TAB") 'ivy-switch-buffer)
   (when (display-graphic-p)
     (evil-define-key 'normal eshell-mode-map (kbd "<tab>") 'ivy-switch-buffer))
 #+END_SRC
+
 ** awesome available binds
 *** g prefix
 - gr
