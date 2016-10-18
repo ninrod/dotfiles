@@ -1227,13 +1227,12 @@ SCHEDULED: %t")))
     "to" 'org-table-toggle-coordinate-overlays
     "t?" 'org-table-field-info
     "t=" 'org-table-eval-formula
+
+    "t RET" 'org-table-copy-down
   )
 (which-key-add-major-mode-key-based-replacements 'org-mode ", t" "org-table")
 (which-key-add-major-mode-key-based-replacements 'org-mode ", td" "org-table deletions")
 #+END_SRC
-
-#+RESULTS:
-: ((, t d . org-table deletions) (, t . org-table) (, l . label/tag))
 
 ***** z: zoom / visualization
 #+BEGIN_SRC emacs-lisp
