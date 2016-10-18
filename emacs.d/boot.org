@@ -1115,7 +1115,6 @@ SCHEDULED: %t")))
 
 **** local leader
 ***** b: bullets
-adfasf
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys org-map
     "bb" 'org-ctrl-c-star
