@@ -999,6 +999,7 @@ SCHEDULED: %t")))
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
     "ms" 'sort-lines
+    "mc" 'count-words
   )
   (which-key-declare-prefixes "SPC m" "M-x useful functions")
 #+END_SRC
