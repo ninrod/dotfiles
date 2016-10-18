@@ -216,11 +216,11 @@ the right."
 ** origami functions
 - with help from [[https://www.reddit.com/r/emacs/comments/580v30/tweaking_origamiel_lisp_and_regexes/][reddit]]
 #+BEGIN_SRC emacs-lisp
-(defun nin-origami-close-node ()
+(defun nin-origami-toggle-node ()
  (interactive)
- (save-excursion
-  (goto-char (point-at-eol))             ;; go to the end of line
-  (origami-close-node)))                 ;; then try to fold
+ (save-excursion ;; leave point where it is
+  (goto-char (point-at-eol))             ;; then go to the end of line
+  (origami-toggle-node (current-buffer) (point))))                 ;; and try to fold
 #+END_SRC
 
 * tweaks
@@ -1304,6 +1304,11 @@ SCHEDULED: %t")))
   (evil-define-key 'normal eshell-mode-map (kbd "TAB") 'ivy-switch-buffer)
   (when (display-graphic-p)
     (evil-define-key 'normal eshell-mode-map (kbd "<tab>") 'ivy-switch-buffer))
+#+END_SRC
+
+*** prog-mode
+#+BEGIN_SRC emacs-lisp
+(evil-define-key 'normal prog-mode-map "s" 'nin-origami-toggle-node)
 #+END_SRC
 
 ** awesome available binds
