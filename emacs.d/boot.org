@@ -380,7 +380,8 @@ the right."
 *** origami
 #+BEGIN_SRC emacs-lisp
 (use-package origami :ensure t
-  :config (origami-mode))
+  :config (add-hook 'prog-mode-hook #'origami-mode)
+)
 #+END_SRC
 ** keybinds
 *** which key
