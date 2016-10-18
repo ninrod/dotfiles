@@ -801,11 +801,6 @@ SCHEDULED: %t")))
 
 * binds
 ** evil
-*** emacsify insert state
-#+BEGIN_SRC emacs-lisp
-
-
-#+END_SRC
 *** abusing the g prefix
 #+BEGIN_SRC emacs-lisp
 ;; faster than `gg' and `G`.
