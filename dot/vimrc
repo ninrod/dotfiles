@@ -129,44 +129,37 @@ filetype plugin indent on
 " }}}
 " plugins {{{
 
-call plug#begin('~/.vim/plugged')
-
 " plugin configuration {{{
 
-" rainbow configs {{{
-
+" rainbow configs
 let g:rainbow_active = 1
 
-" }}}
-" vim-multiple-cursors {{{
-
+" vim-multiple-cursors
 let g:multi_cursor_exit_from_visual_mode=0
 let g:multi_cursor_exit_from_insert_mode=0
 
 " }}}
 
-" }}}
+let basepath=','.'~/.vim/plugged/'
 
 " theme plugins
-Plug 'morhetz/gruvbox'
-Plug 'itchyny/lightline.vim'
-" Plug 'edkolev/tmuxline.vim'
+let &runtimepath.=basepath . 'morhetz/gruvbox'
+let &runtimepath.=basepath . 'itchyny/lightline.vim'
+" let &runtimepath.=basepath . 'edkolev/tmuxline.vim'
 
-" core
-Plug 'bronson/vim-visual-star-search'
-Plug 'chaoren/vim-wordmotion'
-Plug 'ervandew/supertab'
-Plug 'jiangmiao/auto-pairs'
-Plug 'junegunn/vim-easy-align'
-Plug 'luochen1990/rainbow'
-Plug 'ninrod/vim-multiple-cursors'
-Plug 'tommcdo/vim-exchange'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-Plug 'wellle/targets.vim'
-
-call plug#end()
+"core
+let &runtimepath.=basepath . 'bronson/vim-visual-star-search'
+let &runtimepath.=basepath . 'chaoren/vim-wordmotion'
+let &runtimepath.=basepath . 'ervandew/supertab'
+let &runtimepath.=basepath . 'jiangmiao/auto-pairs'
+let &runtimepath.=basepath . 'junegunn/vim-easy-align'
+let &runtimepath.=basepath . 'luochen1990/rainbow'
+let &runtimepath.=basepath . 'ninrod/vim-multiple-cursors'
+let &runtimepath.=basepath . 'tommcdo/vim-exchange'
+let &runtimepath.=basepath . 'tpope/vim-commentary'
+let &runtimepath.=basepath . 'tpope/vim-repeat'
+let &runtimepath.=basepath . 'tpope/vim-surround'
+let &runtimepath.=basepath . 'wellle/targets.vim'
 
 " }}}
 " theme configuration {{{

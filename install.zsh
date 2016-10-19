@@ -154,7 +154,6 @@ clonedep() {
 }
 
 # }}}
-
 # dependency fetch {{{
 
 DEPS_DIR=$GIT_ROOT/deps
@@ -180,7 +179,32 @@ clonedep rupa/z             https://github.com/rupa/z.git
 
 echo ""
 
-cd $DEPS_DIR
+plugged=$GIT_ROOT/vim/plugged
+mkdir -p $plugged
+cd $plugged
+
+echo "now cloning vim dependencies...."
+echo ""
+echo ""
+
+# vim deps
+clonedep morhetz/gruvbox                https://github.com/morhetz/gruvbox.git
+clonedep itchyny/lightline.vim          https://github.com/itchyny/lightline.vim.git
+clonedep edkolev/tmuxline.vim           https://github.com/edkolev/tmuxline.vim.git
+clonedep bronson/vim-visual-star-search https://github.com/bronson/vim-visual-star-search.git
+clonedep chaoren/vim-wordmotion         https://github.com/chaoren/vim-wordmotion.git
+clonedep ervandew/supertab              https://github.com/ervandew/supertab.git
+clonedep jiangmiao/auto-pairs           https://github.com/jiangmiao/auto-pairs.git
+clonedep junegunn/vim-easy-align        https://github.com/junegunn/vim-easy-align.git
+clonedep luochen1990/rainbow            https://github.com/luochen1990/rainbow.git
+clonedep ninrod/vim-multiple-cursors    https://github.com/ninrod/vim-multiple-cursors.git
+clonedep tommcdo/vim-exchange           https://github.com/tommcdo/vim-exchange.git
+clonedep tpope/vim-commentary           https://github.com/tpope/vim-commentary.git
+clonedep tpope/vim-repeat               https://github.com/tpope/vim-repeat.git
+clonedep tpope/vim-surround             https://github.com/tpope/vim-surround.git
+clonedep wellle/targets.vim             https://github.com/wellle/targets.vim.git
+
+echo "finish cloning vim dependencies"
 
 # }}}
 
