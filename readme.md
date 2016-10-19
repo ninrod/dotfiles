@@ -59,6 +59,11 @@ $ exec zsh
 
 * That's it, your're all set.
 
+
+## Emacs: the timeless and infinitely powerful editor
+
+* I maintain my configuration using an org-mode file, trough org-babel. So you can see it in it's full glory [here](https://github.com/ninrod/dotfiles/blob/master/emacs.d/boot.org)
+
 ## VIM: Powerful shell text editor. Tweaked with plugins.
 
 * To check out what binds and plugins I use in this config, my [vimrc](https://github.com/ninrod/dotfiles/blob/master/dot/vimrc) file is authoritative.
