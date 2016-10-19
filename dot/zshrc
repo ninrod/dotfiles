@@ -158,43 +158,69 @@ fi
 # }}}
 # plugins {{{
 
-zstyle :zplug:tag depth 1
-source ~/.zplug/init.zsh
+deps="${DOTPATH}/deps/"
 
-# custom alias
-zplug "${DOTPATH}/deps/ninrod/nin-alias", from:local
+plugin_paths=(ninrod/nin-alias)
+plugin_paths+=(rupa/z)
+plugin_paths+=(ninrod/docker-alias)
+plugin_paths+=(ninrod/docker-zsh-completion)
+plugin_paths+=(Tarrasch/zsh-bd)
+plugin_paths+=(supercrabtree/k)
+plugin_paths+=(zsh-users/zsh-completions)
+plugin_paths+=(zsh-users/zsh-syntax-highlighting)
 
-# Source a file that isn't a .zsh file
-zplug "${DOTPATH}/deps/rupa/z", use:z.sh, from:local
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[alias]='fg=cyan,bold'
+ZSH_HIGHLIGHT_STYLES[command]='fg=green,bold'
+ZSH_HIGHLIGHT_STYLES[function]='fg=yellow,bold'
+ZSH_HIGHLIGHT_STYLES[path]='fg=blue'
+ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=yellow'
+ZSH_HIGHLIGHT_STYLES[path_prefix]='fg=cyan'
+ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]='fg=red'
 
-zplug "${DOTPATH}/deps/ninrod/docker-alias", from:local
-zplug "${DOTPATH}/deps/ninrod/docker-zsh-completion", from:local
-zplug "${DOTPATH}/deps/Tarrasch/zsh-bd", from:local
-zplug "${DOTPATH}/deps/supercrabtree/k", from:local
-zplug "${DOTPATH}/deps/zsh-users/zsh-completions", from:local
-zplug "${DOTPATH}/deps/zsh-users/zsh-syntax-highlighting", from:local, nice:10
-  ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
-  typeset -A ZSH_HIGHLIGHT_STYLES
-  ZSH_HIGHLIGHT_STYLES[alias]='fg=cyan,bold'
-  ZSH_HIGHLIGHT_STYLES[command]='fg=green,bold'
-  ZSH_HIGHLIGHT_STYLES[function]='fg=yellow,bold'
-  ZSH_HIGHLIGHT_STYLES[path]='fg=blue'
-  ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=yellow'
-  ZSH_HIGHLIGHT_STYLES[path_prefix]='fg=cyan'
-  ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]='fg=red'
+is_plugin() {
+  local base_dir=$1
+  local plugin_path=$2
+  local plugin_file=${plugin_path:t}
+  test -f $base_dir/$plugin_path/$plugin_file.plugin.zsh || \
+    test -f $base_dir/$plugin_path/_$plugin_file || \
+    test -f $base_dir/$plugin_path/$plugin_file.sh
+}
 
-# enhancd config
-# if [[ "${SHELL_ENHANCD_ENABLED}" == "true"  ]]; then
-#   zplug "${DOTPATH}/zplug-deps/enhancd", use:enhancd.sh, from:local
-# fi
+construct_filename() {
+  local base_dir=$1
+  local plugin_path=$2
+  local plugin_file=${plugin_path:t}
 
-if ! zplug check --verbose; then
-  printf "Install? [y/N]: "
-  if read -q; then
-    echo; zplug install
+  name1=$base_dir/$plugin_path/$plugin_file.plugin.zsh
+  name2=$base_dir/$plugin_path/_$plugin_file
+  name3=$base_dir/$plugin_path/$plugin_file.sh
+
+  if test -f $name1; then
+    echo $name1
+    return 0
   fi
-fi
-zplug load
+
+  if test -f $name2; then
+    echo $name2
+    return 0
+  fi
+
+  if test -f $name3; then
+    echo $name3
+    return 0
+  fi
+
+  test -f $name1
+}
+
+for plugin_path ($plugin_paths); do
+  if is_plugin $deps $plugin_path; then
+    local file=$(construct_filename $deps $plugin_path)
+    source $file
+  fi
+done  
 
 # colors for GNU ls (from coreutils)
 eval $(dircolors ~/.lscolors)
