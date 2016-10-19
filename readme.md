@@ -69,8 +69,6 @@ $ exec zsh
 
 bind                          | action
 ----------------------------- | ----------------------------------------------------------------------------------------
-`ctrl + arrow`                | creates a new panel
-`alt + arrow`                 | navigates to a panel
 `F1...F5`                     | navigates to window `n`
 `F6`                          | creates a new window
 `F7`                          | renames current window
