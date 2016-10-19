@@ -20,6 +20,7 @@ source ${DOTPATH}/lib/ninplug.zsh
 
 deps="${DOTPATH}/deps"
 
+# plugin selection
 plugin_paths=(ninrod/nin-alias)
 plugin_paths+=(rupa/z)
 plugin_paths+=(ninrod/docker-alias)
@@ -29,7 +30,9 @@ plugin_paths+=(supercrabtree/k)
 plugin_paths+=(zsh-users/zsh-completions)
 plugin_paths+=(zsh-users/zsh-syntax-highlighting)
 
-# plugin options
+# plugin options {{{
+
+# options for zsh-users/zsh-syntax-highlighting
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[alias]='fg=cyan,bold'
@@ -40,6 +43,9 @@ ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=yellow'
 ZSH_HIGHLIGHT_STYLES[path_prefix]='fg=cyan'
 ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]='fg=red'
 
+# }}}
+
+# load step
 load_plugins
 
 # colors for GNU ls (from coreutils)
