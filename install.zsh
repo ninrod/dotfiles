@@ -2,24 +2,16 @@
 
 # author: Filipe Silva (ninrod)
 
-# scriptpath fix {{{
+# initial setup {{{
 
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P  )"
 cd $SCRIPTPATH
-
-# }}}
-# CONSTANTS {{{
-
 GIT_ROOT=$(git rev-parse --show-toplevel)
-
-# }}}
-# terminal colors {{{
-
 source $GIT_ROOT/zsh/termcolors.zsh
 
 # }}}
+# define helper functions {{{
 
-# functions ------------
 # ensure_options_file: ensure options_file exists {{{
 
 ensure_options_file() {
@@ -145,22 +137,16 @@ clonedep() {
 }
 
 # }}}
-# dependency fetch {{{
 
-DEPS_DIR=$GIT_ROOT/deps
-if [[ ! -d $DEPS_DIR ]]; then
-  mkdir $DEPS_DIR
-fi
-cd $DEPS_DIR
+# }}}
+# fetch zsh deps {{{
 
-# dir niceties
-clonedep Tarrasch/zsh-bd https://github.com/Tarrasch/zsh-bd.git
-clonedep supercrabtree/k https://github.com/supercrabtree/k.git
+deps=$GIT_ROOT/deps
+mkdir -p $deps
+cd $deps
 
-# completions, alias, highlights
-clonedep ninrod/nin-alias                  https://github.com/ninrod/nin-alias.git
-clonedep ninrod/docker-alias               https://github.com/ninrod/docker-alias.git
-
+clonedep Tarrasch/zsh-bd                   https://github.com/Tarrasch/zsh-bd.git
+clonedep supercrabtree/k                   https://github.com/supercrabtree/k.git
 clonedep ninrod/docker-zsh-completion      https://github.com/ninrod/docker-zsh-completion.git
 clonedep zsh-users/zsh-completions         https://github.com/zsh-users/zsh-completions.git
 clonedep zsh-users/zsh-syntax-highlighting https://github.com/zsh-users/zsh-syntax-highlighting.git
@@ -168,15 +154,12 @@ clonedep zsh-users/zsh-syntax-highlighting https://github.com/zsh-users/zsh-synt
 # quarentined
 clonedep rupa/z             https://github.com/rupa/z.git
 
-echo ""
+# }}}
+# fetch vim deps {{{
 
 plugged=$GIT_ROOT/vim/plugged
 mkdir -p $plugged
 cd $plugged
-
-echo "now cloning vim dependencies...."
-echo ""
-echo ""
 
 # vim deps
 clonedep morhetz/gruvbox                https://github.com/morhetz/gruvbox.git
@@ -195,9 +178,8 @@ clonedep tpope/vim-repeat               https://github.com/tpope/vim-repeat.git
 clonedep tpope/vim-surround             https://github.com/tpope/vim-surround.git
 clonedep wellle/targets.vim             https://github.com/wellle/targets.vim.git
 
-echo "finish cloning vim dependencies"
-
 # }}}
+# apply symlinks {{{
 
 setopt extended_glob
 
@@ -221,4 +203,4 @@ ensure_dotpath
 ensure_vim_plugins
 apply_git_info
 
-cd $GIT_ROOT
+# }}}
