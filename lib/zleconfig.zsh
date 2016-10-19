@@ -16,9 +16,6 @@ if [[ -z ${EMACS+x} ]]; then
 
   # bindkey -M vicmd '?' history-incremental-search-backward
 
-  # trying to live without a customized vi-mode
-  # zplug "${DOTPATH}/deps/ninrod/nin-vi-mode", from:local
-
 else
   export EDITOR="emacsclient"
   bindkey -e

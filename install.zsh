@@ -163,9 +163,6 @@ if [[ ! -d $DEPS_DIR ]]; then
 fi
 cd $DEPS_DIR
 
-# zplug itself
-clonedep zplug/zplug https://github.com/zplug/zplug.git 2.3.2 100
-
 # dir niceties
 clonedep Tarrasch/zsh-bd https://github.com/Tarrasch/zsh-bd.git
 clonedep supercrabtree/k https://github.com/supercrabtree/k.git
@@ -173,23 +170,17 @@ clonedep supercrabtree/k https://github.com/supercrabtree/k.git
 # completions, alias, highlights
 clonedep ninrod/nin-alias                  https://github.com/ninrod/nin-alias.git
 clonedep ninrod/docker-alias               https://github.com/ninrod/docker-alias.git
+
 clonedep ninrod/docker-zsh-completion      https://github.com/ninrod/docker-zsh-completion.git
 clonedep zsh-users/zsh-completions         https://github.com/zsh-users/zsh-completions.git
 clonedep zsh-users/zsh-syntax-highlighting https://github.com/zsh-users/zsh-syntax-highlighting.git
 
 # quarentined
-clonedep ninrod/nin-vi-mode https://github.com/ninrod/nin-vi-mode.git
 clonedep rupa/z             https://github.com/rupa/z.git
 
 echo ""
 
 cd $DEPS_DIR
-
-# }}}
-# extra adjustments for .zplug {{{
-
-verifylink ~/.zplug
-updatelinks ~/.zplug zplug/zplug
 
 # }}}
 
