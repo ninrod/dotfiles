@@ -6,10 +6,10 @@
 
 ## Screenshots
 
-### Emacs: gruvbox theme
+* **Emacs**: gruvbox theme
 ![emacs-config](https://raw.githubusercontent.com/ninrod/dotfiles/master/img/emacs-gruvbox-2016-10-11.png)
 
-### Vim, tmux and zsh in iTerm2 using [gruvbox](https://github.com/morhetz/gruvbox)
+* **Vim, tmux and zsh in iTerm2 using [gruvbox](https://github.com/morhetz/gruvbox)**
 ![gruvbox-config](https://raw.githubusercontent.com/ninrod/dotfiles/master/img/vim-tmux-2016-10-15.png)
 
 ## Important notice 
@@ -34,28 +34,28 @@
 
 * __Kind remark__: for the moment (until I change the script to back it up for you), I'll overwrite your `~/.gitconfig` file, so if you have something important in it, now would be the perfect moment to back it up.
 
-* now open your shell and write this:
+## Shell time
+
+* note: the install.zsh script basically does this:
+  - mounts symlinks on your home folder;
+  - creates ~/.options/shell-options.conf file, if not existent
+  - overwrites your .gitconfig (so back it up if you have something important)
+  - install/updates vim plugins
+  
+
+* open your shell and write this:
 
 ```sh
-# clone dotfiles repo
 $ git clone https://github.com/ninrod/dotfiles.git ~/.dotfiles
-
-# run install script 
-# basically the script does this:
-# - mounts symlinks on your home folder;
-# - creates ~/.options/shell-options.conf file, if not existent
-# - overwrites your .gitconfig (so back it up if you have something important)
-# - install/updates vim plugins
 $ ~/.dotfiles/install.zsh
-
-# change git/github user info
-$ vim ~/.options/shell-options.conf
-
-# reload zsh
-$ exec zsh
 ```
 
-* note the alias `v` is mapped to `vim`.
+* now a `~/.options/shell-options.conf` was created for you and you will setup your github configuration in it.
+
+```sh
+$ vim ~/.options/shell-options.conf
+$ exec zsh
+```
 
 * That's it, your're all set.
 
@@ -67,23 +67,12 @@ $ exec zsh
 
 ## TMUX custom binds
 
-bind                          | action
------------------------------ | ----------------------------------------------------------------------------------------
-`F1...F5`                     | navigates to window `n`
-`F6`                          | creates a new window
-`F7`                          | renames current window
-`F9`                          | alternates between preset layouts
-`F10`                         | enter copy mode
-`F11`                         | toggle mouse mode
-`F12`                         | toggle tmux bar
-`$ exit` or `$ q`             | closes the current panel. If the current panel is the last panel, the window is also closed.
+* checkout the [tmux.conf](https://github.com/ninrod/dotfiles/blob/master/dot/tmux.conf) file for tmux binding setup.
 
-LICENSE
------------
+## LICENSE
 
 [GNU General Public License v3](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
-LINKS
-----------
+## LINKS
 
 [mantained since '15](https://github.com/ninrod/dotfiles/tree/212d09fb3859ca03d98aefbcd2c03c4e7d43b68e)
