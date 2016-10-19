@@ -352,8 +352,8 @@ SCHEDULED: %t")))
 *** theme
 **** darktooth
 #+BEGIN_SRC emacs-lisp
-  ;; (use-package darktooth-theme :ensure t
-  ;;   :init (load-theme 'darktooth t))
+  (use-package darktooth-theme :ensure t
+    :init (load-theme 'darktooth t))
 #+END_SRC
 
 **** gruvbox
@@ -364,8 +364,8 @@ SCHEDULED: %t")))
 
 **** spacemacs
   #+BEGIN_SRC emacs-lisp
-    (use-package spacemacs-theme :ensure t
-      :init (load-theme 'spacemacs-dark t))
+    ;; (use-package spacemacs-theme :ensure t
+    ;;   :init (load-theme 'spacemacs-dark t))
   #+END_SRC
 
 **** material
