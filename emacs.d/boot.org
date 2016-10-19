@@ -238,6 +238,10 @@ the right."
   (menu-bar-mode -1)
   (fset 'yes-or-no-p 'y-or-n-p)
 
+  ;; save last cursor position
+  (save-place-mode 1) 
+  ;; (setq save-place-file (locate-user-emacs-file "places" "emacs-places"))
+
   ;;highlight current line
   ;;(global-hl-line-mode)
 #+END_SRC
