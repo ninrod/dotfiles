@@ -1,111 +1,21 @@
-# zsh options {{{
-
-# defining word endings
-WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
-
-# history config options
-HISTFILE=$HOME/.zsh_history
-HISTSIZE=20000
-SAVEHIST=20000
-
-setopt append_history
-setopt extended_history
-setopt share_history
-setopt hist_verify
-
-# I actually want to profile my command usage
-# setopt hist_ignore_all_dups
-
-# I do not care if I entered a command with a leading space
-# I want it to be stored
-# setopt hist_ignore_space
-
-# dir navigation options
-setopt auto_pushd
-setopt pushd_ignore_dups
-setopt pushd_silent
-setopt auto_cd
-
-# glob options
-setopt extended_glob # allows us to use ^ to negate globs
-unsetopt nomatch # but when pattern matching fails, simply use the command as is. See robbyrussell/oh-my-zsh#449
-
-##### completions
-
-# explaining the compinit -u hack:
-  # the compinit -u hack is called for because I run the shell as a docker image
-  # and mount the dotfiles repo as a volume. Compinit gets angry at me because
-  # when docker mounts the volume, the permissions are wrong.
-  # So when you run `exec zsh`, for exemple, compinit gets angry at you by saying:
-  # "zsh compinit: insecure directories and files, run compaudit for list."
-  # The -u flag tells compinit to be silent about that.
-  # more info here: http://stackoverflow.com/a/19601821/4921402
-# comp bootstrap
-autoload -Uz compinit && compinit -u
-zstyle ':completion:*' menu select
-
-# better completion
-setopt menu_complete
-
-# case insensitive completion
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-
-### fuzzy completion
-# lifted from http://superuser.com/a/815317/555734
-# 0 -- vanilla completion (abc => abc)
-# 1 -- smart case completion (abc => Abc)
-# 2 -- word flex completion (abc => A-big-Car)
-# 3 -- full flex completion (abc => ABraCadabra)
-zstyle ':completion:*' matcher-list '' \
-  'm:{a-z\-}={A-Z\_}' \
-  'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
-  'r:[[:ascii:]]||[[:ascii:]]=** r:|=* m:{a-z\-}={A-Z\_}'
-
-# }}}
-# terminal colors {{{
-
-TC='\e['
-Rst="${TC}0m"     # Reset all coloring and style
-Black="${TC}30m";
-Red="${TC}31m";
-Green="${TC}32m";
-Yellow="${TC}33m";
-Blue="${TC}34m";
-Purple="${TC}35m";
-Cyan="${TC}36m";
-White="${TC}37m";
-
-# }}}
-# load user config {{{
+# -*- mode: sh -*-
+# load user environment {{{
 
 SHELL_USER_CONFIG_FILE="${HOME}/.options/shell-options.conf"
 if [[ -e "$SHELL_USER_CONFIG_FILE" ]]; then
   . "$SHELL_USER_CONFIG_FILE"
 fi
 
-# }}}
-# exports {{{
-
-# standard configs
-export LANG=en_US.UTF-8
-
-# let the terminal define TERM to advertise capabilities
-# useful in the case of Emacs M-x shell which advertises a dumb terminal
-#export TERM=xterm-256color
+source $DOTPATH/lib/envbootstrap.zsh
 
 # }}}
-# escape code fixes {{{
 
+source $DOTPATH/lib/options.zsh
+source $DOTPATH/lib/completions.zsh
+source $DOTPATH/lib/termcolors.zsh
 source $DOTPATH/lib/fixescapecodes.zsh
-
-# }}}
-# editing mode setup {{{
-
 source $DOTPATH/lib/zleconfig.zsh
-
-# }}}
-# plugins {{{
-
+source $DOTPATH/lib/prompt.zsh
 source ${DOTPATH}/lib/ninplug.zsh
 
 deps="${DOTPATH}/deps"
@@ -134,37 +44,3 @@ load_plugins
 
 # colors for GNU ls (from coreutils)
 eval $(dircolors ~/.lscolors)
-
-# }}}
-# prompt {{{
-
-source $DOTPATH/lib/prompt.zsh
-
-# }}}
-# bootstrap commands {{{
-
-# user git information set up
-if [[ -n ${GIT_USER_NAME+x} ]]; then
-  git config --global user.name $GIT_USER_NAME
-  export GIT_USER_NAME
-fi
-if [[ -n ${GIT_USER_EMAIL+x} ]]; then
-  git config --global user.email $GIT_USER_EMAIL
-  export GIT_USER_EMAIL
-fi
-
-if [[ -n ${DOTPATH+x} ]]; then
-  export DOTPATH
-fi
-
-# export relevant user options
-if [[ -n ${DOT_TERMINAL_EMULATOR+x} ]]; then
-  export DOT_TERMINAL_EMULATOR
-fi
-
-# Emacs
-# Local Variables:
-# mode: sh
-# End:
-
-# }}}
