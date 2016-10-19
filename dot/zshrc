@@ -6,17 +6,17 @@ if [[ -e "$SHELL_USER_CONFIG_FILE" ]]; then
   . "$SHELL_USER_CONFIG_FILE"
 fi
 
-source $DOTPATH/lib/envbootstrap.zsh
+source $DOTPATH/zsh/envbootstrap.zsh
 
 # }}}
 
-source $DOTPATH/lib/options.zsh
-source $DOTPATH/lib/completions.zsh
-source $DOTPATH/lib/termcolors.zsh
-source $DOTPATH/lib/fixescapecodes.zsh
-source $DOTPATH/lib/zleconfig.zsh
-source $DOTPATH/lib/prompt.zsh
-source ${DOTPATH}/lib/ninplug.zsh
+source $DOTPATH/zsh/options.zsh
+source $DOTPATH/zsh/completions.zsh
+source $DOTPATH/zsh/termcolors.zsh
+source $DOTPATH/zsh/fixescapecodes.zsh
+source $DOTPATH/zsh/zleconfig.zsh
+source $DOTPATH/zsh/prompt.zsh
+source ${DOTPATH}/zsh/ninplug.zsh
 
 deps="${DOTPATH}/deps"
 
