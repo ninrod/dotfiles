@@ -1,1 +1,1 @@
-../emacs.d
+../emacs

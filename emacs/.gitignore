@@ -2,6 +2,8 @@ bookmarks
 *.log
 recentf*
 *.dat
+places
+.cache/
 elpa/
 boot.el
 projectile-bookmarks.eld

@@ -1,1 +1,1 @@
-../spacemacs.d
+../spacemacs
