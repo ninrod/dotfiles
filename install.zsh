@@ -1,30 +1,30 @@
 #!/usr/bin/env zsh
 
 # author: Filipe Silva (ninrod)
-# LICENSE and COPYRIGHT notice {{{
 
-# ninrod's dotfiles - sharpened dotfiles for zsh, vim, tmux and friends.
-# Copyright (C) 2016 Filipe Silva (ninrod)
-
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-# }}}
-# lib import {{{
+# scriptpath fix {{{
 
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P  )"
 cd $SCRIPTPATH
-. $SCRIPTPATH/lib/import.sh
+
+# }}}
+# terminal colors {{{
+
+TC='\e['
+Rst="${TC}0m"
+Black="${TC}30m";
+Red="${TC}31m";
+Green="${TC}32m";
+Yellow="${TC}33m";
+Blue="${TC}34m";
+Purple="${TC}35m";
+Cyan="${TC}36m";
+White="${TC}37m";
+
+# }}}
+# CONSTANTS {{{
+
+GIT_ROOT=$(git rev-parse --show-toplevel)
 
 # }}}
 
