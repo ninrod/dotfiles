@@ -207,5 +207,3 @@ ensure_vim_plugins
 apply_git_info
 
 cd $GIT_ROOT
-
-exec zsh
