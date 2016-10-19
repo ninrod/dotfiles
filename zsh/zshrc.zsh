@@ -12,6 +12,7 @@ source $DOTPATH/zsh/envbootstrap.zsh
 # }}}
 
 source $DOTPATH/zsh/options.zsh
+source $DOTPATH/zsh/functions.zsh
 source $DOTPATH/zsh/completions.zsh
 source $DOTPATH/zsh/termcolors.zsh
 source $DOTPATH/zsh/fixescapecodes.zsh
