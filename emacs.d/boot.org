@@ -49,7 +49,8 @@ If the universal prefix argument is used then kill also the window."
 If JUSTIFY-RIGHT is non nil justify to the right instead of the
 left. If AFTER is non-nil, add whitespace to the left instead of
 the right."
-  (interactive "r\nsAlign regexp: ")
+ 
+ (interactive "r\nsAlign regexp: ")
   (let* ((ws-regexp (if (string-empty-p regexp)
                         "\\(\\s-+\\)"
                       "\\(\\s-*\\)"))
@@ -840,7 +841,7 @@ SCHEDULED: %t")))
 
 (define-key evil-motion-state-map "g4" 'eyebrowse-switch-to-window-config-4)
 
-(define-key evil-motion-state-map "gp" 'eyebrowse-next-window-config)
+(define-key evil-motion-state-map "gp" 'pop-global-mark)
 
 ;; turn off search highlight (muscle memory)
 ;;(define-key evil-motion-state-map "g-" 'available)
