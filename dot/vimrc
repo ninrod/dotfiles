@@ -206,59 +206,32 @@ let g:tmuxline_powerline_separators = 0
 " }}}
 " binds {{{
 
-" standard bind changes {{{
-
-" core binds {{{
-
 " space is my leader key, but '\' remains as leader.
 nmap <Space> <Leader>
 omap <Space> <Leader>
 xmap <Space> <Leader>
 
+nnoremap g0 LztM
+nnoremap g9 Hz-M
+
+nnoremap gl G
+vnoremap gl G
+onoremap gl G
 nnoremap <silent>- :noh<cr>
 xnoremap <silent>- :noh<cr>
 
 nnoremap <cr> :w<cr>
 
-" `cl` is a complete substitute for `s` (also note that `cc` replaces `S`)
 nnoremap <silent> s :silent! normal za<cr>
 
 nnoremap Q q
 nnoremap q ZQ
 
-" }}}
-" g prefix abuse {{{
-
-" custom pageups and pagedowns (you use F12 in intellij, right? so don't come with mnemonic bullshit.)
-" Just kidding. note that 0 is below `)` with could mean "right" or "below" or "forward"
-" likewise 9 is below `(` with could (mean) "left" or "above" or "backwards"
-" there's your mnemonic
-nnoremap g0 LztM
-nnoremap g9 Hz-M
-
-" trying out gl for `G` (shift sucks)
-" basically: `go` goes to the first line. `gl` goes to the last line
-" btw: `go` is built in
-nnoremap gl G
-vnoremap gl G
-onoremap gl G
-
-" These <Plug> are not from a plugin
-" They come from functions I wrote below. See the `functions section`
-nmap g<space> <Plug>(blankUp)
-nmap g<cr> <Plug>(blankDown)
-
-" }}}
-" comfort binds {{{
-
-" rationale: ( is way more comfortable than {, and I use paragraph jump way more than sentence
 nnoremap ( {
 xnoremap ( {
 nnoremap ) }
 xnoremap ) }
 
-" as vim-wordmotion sequestered our `w` binds, we must provide an alternative
-" more info here: https://github.com/chaoren/vim-wordmotion/issues/6
 xnoremap io iw
 xnoremap ao aw
 onoremap io iw
@@ -274,7 +247,6 @@ omap ac a{
 xmap ic i{
 xmap ac a{
 
-" in test: scroll horizontally in wrap off mode
 nnoremap z> g$zs
 nnoremap z< zeg0
 nmap z<RIGHT> z>
@@ -284,19 +256,8 @@ nmap z<LEFT> z<
 nnoremap  } <C-]>
 nnoremap {  <C-T>
 
-" }}}
-
-" }}}
-" plugin binds {{{
-
-" easyalign {{{
-
 nmap ga <Plug>(EasyAlign)
 xmap <cr> <Plug>(EasyAlign)
-
-" }}}
-
-" }}}
 
 " }}}
 " auto commands {{{
@@ -355,7 +316,7 @@ silent! autocmd CmdwinLeave * nnoremap <cr> :w<cr>
 highlight clear SignColumn
 
 " }}}
-"  functions {{{
+" functions {{{
 
 " my custom function for opening up new lines without leaving normal mode
 " as a bonus, the cursor point is unchanged
