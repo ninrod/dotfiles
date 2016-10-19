@@ -94,67 +94,15 @@ export LANG=en_US.UTF-8
 #export TERM=xterm-256color
 
 # }}}
-# various escape code fixes {{{
+# escape code fixes {{{
 
-# home, end, delete and backspace
-bindkey "^[[1~" beginning-of-line # home key
-bindkey "^[[4~" end-of-line # end key
-bindkey "^[[3~" delete-char # delete key
-bindkey "^H" backward-delete-char # backspace key
-bindkey "^?" backward-delete-char # backspace key
-
-# Numeric Keypad fixes
-uname | grep -q Darwin; rc=$?
-if [[ ! $rc = 0 ]]; then
-  bindkey "${terminfo[kent]}" accept-line # numeric keypad return (enter)
-fi
-
-bindkey -s "^[Op" "0"
-bindkey -s "^[On" "."
-bindkey -s "^[Oq" "1"
-bindkey -s "^[Or" "2"
-bindkey -s "^[Os" "3"
-bindkey -s "^[Ot" "4"
-bindkey -s "^[Ou" "5"
-bindkey -s "^[Ov" "6"
-bindkey -s "^[Ow" "7"
-bindkey -s "^[Ox" "8"
-bindkey -s "^[Oy" "9"
-bindkey -s "^[Ol" "+"
-bindkey -s "^[OS" "-"
-bindkey -s "^[OR" "*"
-bindkey -s "^[OQ" "/"
+source $DOTPATH/lib/fixescapecodes.zsh
 
 # }}}
 # editing mode setup {{{
-# with help from @chadhs https://github.com/syl20bnr/spacemacs/issues/7140#issuecomment-252036519
 
-if [[ -z ${EMACS+x} ]]; then
+source $DOTPATH/lib/zleconfig.zsh
 
-  export EDITOR="vim"
-
-  # no delays when switching keymaps
-  export KEYTIMEOUT=5
-  # bootstrap vi-mode
-  bindkey -v
-
-  autoload -Uz edit-command-line
-  zle -N edit-command-line
-  bindkey -M vicmd 'gs' edit-command-line
-
-  # bindkey -M vicmd '?' history-incremental-search-backward
-
-  # trying to live without a customized vi-mode
-  # zplug "${DOTPATH}/deps/ninrod/nin-vi-mode", from:local
-
-else
-  export EDITOR="emacsclient"
-  bindkey -e
-  ## command specific history search
-  ### emacs bindings
-  bindkey "^[[A" history-beginning-search-backward
-  bindkey "^[[B" history-beginning-search-forward
-fi
 # }}}
 # plugins {{{
 
