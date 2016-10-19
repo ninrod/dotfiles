@@ -8,23 +8,14 @@ SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P  )"
 cd $SCRIPTPATH
 
 # }}}
-# terminal colors {{{
-
-TC='\e['
-Rst="${TC}0m"
-Black="${TC}30m";
-Red="${TC}31m";
-Green="${TC}32m";
-Yellow="${TC}33m";
-Blue="${TC}34m";
-Purple="${TC}35m";
-Cyan="${TC}36m";
-White="${TC}37m";
-
-# }}}
 # CONSTANTS {{{
 
 GIT_ROOT=$(git rev-parse --show-toplevel)
+
+# }}}
+# terminal colors {{{
+
+source $GIT_ROOT/zsh/termcolors.zsh
 
 # }}}
 
@@ -109,11 +100,11 @@ ensure_vim_plugins() {
 
 # if available through environment variables
 apply_git_info() {
-  if [[ -n ${GIT_BCB_NAME+x} ]]; then
-    git config --global user.name "$GIT_BCB_NAME"
+  if [[ -n ${GIT_USER_NAME+x} ]]; then
+    git config --global user.name "$GIT_USER_NAME"
   fi
-  if [[ -n ${GIT_BCB_EMAIL+x} ]]; then
-    git config --global user.email "$GIT_BCB_EMAIL"
+  if [[ -n ${GIT_USER_EMAIL+x} ]]; then
+    git config --global user.email "$GIT_USER_EMAIL"
   fi
 }
 
