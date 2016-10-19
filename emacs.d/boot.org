@@ -477,11 +477,16 @@ SCHEDULED: %t")))
      (add-hook 'org-mode-hook #'smartparens-mode)
   )
 #+END_SRC
+
 *** origami
 #+BEGIN_SRC emacs-lisp
 (use-package origami :ensure t
-  :config (add-hook 'prog-mode-hook #'origami-mode)
-)
+  :config 
+    (add-hook 'prog-mode-hook 
+      (lambda () 
+        (setq-local origami-fold-style 'triple-braces)
+        (origami-mode)
+        (origami-close-all-nodes (current-buffer)))))
 #+END_SRC
 
 ** keybinds
