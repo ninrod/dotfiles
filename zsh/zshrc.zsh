@@ -12,15 +12,19 @@ source $DOTPATH/zsh/envbootstrap.zsh
 # }}}
 
 source $DOTPATH/zsh/options.zsh
-source $DOTPATH/zsh/functions.zsh
 source $DOTPATH/zsh/completions.zsh
+
 source $DOTPATH/zsh/termcolors.zsh
 source $DOTPATH/zsh/fixescapecodes.zsh
 source $DOTPATH/zsh/zleconfig.zsh
+
+source $DOTPATH/zsh/functions.zsh
+source $DOTPATH/zsh/alias.zsh
+source $DOTPATH/zsh/alias-docker.zsh
+
 source $DOTPATH/zsh/prompt.zsh
-source ${DOTPATH}/zsh/ninplug.zsh
-source ${DOTPATH}/zsh/alias.zsh
-source ${DOTPATH}/zsh/alias-docker.zsh
+
+source $DOTPATH/zsh/ninplug.zsh
 
 deps="${DOTPATH}/deps"
 

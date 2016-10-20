@@ -181,21 +181,17 @@ clonedep wellle/targets.vim             https://github.com/wellle/targets.vim.gi
 # }}}
 # apply symlinks {{{
 
-setopt extended_glob
-
 cd $GIT_ROOT
 
-# FIXME: is there a bash way to do this?
-setopt extended_glob
-for file in dot/^*.cp; do
-  verifylink ~/.${file:t}
+for file in dot/*.symlink; do
+  verifylink ~/.${file:t:r}
 done
-for file in dot/^*.cp; do
-  updatelinks ~/.${file:t} $file
+for file in dot/*.symlink; do
+  updatelinks ~/.${file:t:r} $file
 done
 
 # TODO make this function backup user files to $SCRIPTPATH/tmp/bkp, if applicable
-for file in dot/*.cp; do
+for file in dot/*.copy; do
   cp $file ~/.${file:t:r}
 done
 
