@@ -1,0 +1,8 @@
+#+STARTUP: indent
+#+STARTUP: overview
+
+* Ninrod's zsh configuration
+- I don't use any plugin manager. just some functions to source plugins that live under ~/.dotfiles/deps.
+- I use a separate simple script to git clone the plugins myself (install.zsh)
+- zshrc.zsh is the main file and it's split up into more manageable pieces
+
