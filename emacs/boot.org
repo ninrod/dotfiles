@@ -654,6 +654,98 @@ SCHEDULED: %t")))
   (use-package htmlize 
   :ensure t)
   #+END_SRC
+** completions
+*** ivy/counsel
+#+BEGIN_SRC emacs-lisp
+  (use-package ivy
+    :ensure t
+    :config
+      (setq ivy-use-virtual-buffers t)
+      (setq ivy-count-format "(%d/%d) ")
+      (ivy-mode 1)
+      (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)
+      (use-package counsel :ensure t)
+  )
+#+END_SRC
+
+*** company
+#+BEGIN_SRC emacs-lisp
+(use-package company :ensure t
+  :config
+    (add-hook 'after-init-hook 'global-company-mode)
+    ;; TODO: could we use TAB?
+    (define-key company-mode-map (kbd "C-SPC") 'company-complete)
+)
+#+END_SRC
+
+*** yasnippet
+  #+BEGIN_SRC emacs-lisp
+(use-package yasnippet :ensure t
+  :config (yas-global-mode 1))
+  #+END_SRC
+
+*** flycheck
+  #+BEGIN_SRC emacs-lisp
+    (use-package flycheck :ensure t
+      :config (global-flycheck-mode t))
+  #+END_SRC
+
+** filetypes
+*** md: markdown
+#+BEGIN_SRC emacs-lisp
+(use-package markdown-mode :ensure t
+      :commands (markdown-mode gfm-mode)
+      :mode (("README\\.md\\'" . gfm-mode)
+             ("\\.md\\'" . markdown-mode)
+             ("\\.markdown\\'" . markdown-mode))
+      :init (setq markdown-command "multimarkdown"))
+#+END_SRC
+
+*** html: web-mode
+#+BEGIN_SRC emacs-lisp
+(use-package web-mode
+  :ensure t
+  :config
+      (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+      (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+      (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+      (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+      (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+      (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+      (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+      (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+
+      (defun my-web-mode-hook ()
+        "Hooks for Web mode."
+        (setq web-mode-markup-indent-offset 2)
+        (setq web-mode-css-indent-offset    2)
+        (setq web-mode-code-indent-offset   2))
+      (add-hook 'web-mode-hook 'my-web-mode-hook))
+#+END_SRC
+
+*** js: js2-mode
+#+BEGIN_SRC emacs-lisp
+(use-package js2-mode :ensure t
+  :config
+    (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+    (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2))))
+#+END_SRC
+
+*** vimrc: vimrc mode
+#+BEGIN_SRC emacs-lisp
+(use-package vimrc-mode :ensure t)
+#+END_SRC
+
+*** docker: dockerfile
+#+BEGIN_SRC emacs-lisp
+(use-package dockerfile-mode :ensure t
+  :config (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
+#+END_SRC
+
+*** gitconfig-mode
+#+BEGIN_SRC emacs-lisp
+(use-package gitconfig-mode :ensure t)
+#+END_SRC
 
 * fixes
 ** yasnippet hijacks TAB key in term mode
