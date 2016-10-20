@@ -24,38 +24,3 @@ alias re='exec zsh'
 alias r='echo -e "${Red}you have pressed \`r\`. careful. this repeats last command."'
 alias dot='la $(find ~ -maxdepth 1 -type l)'
 
-# emacs {{{
-
-# main
-alias e="force-start-emacsclient.sh"
-alias em="emacs.sh"
-alias ec="emacsclient.sh"
-
-# emacs server management
-alias ed="up-emacs-server.sh"
-alias ek="kill-emacs-server.sh"
-alias er='ek && ed'
-alias ep='pgrep -i emacs'
-
-# edit init files
-alias ei='e $(readlink -f ~/.emacs.d/boot.org)'
-alias es='e $(readlink -f ~/.spacemacs.d/init.el)'
-alias eo='e $(readlink -f ~/code/orgmode/oficina.org)'
-
-# }}}
-# vim {{{
-
-alias v="vim"
-alias vi='vim -u NONE -N'
-
-# fast edit frequent files
-alias vt='v $(readlink -f ~/.tmux.conf)'
-alias vv='v $(readlink -f ~/.vimrc)'
-alias vz='v $(readlink -f ~/.zshrc)'
-alias vo='v $(readlink -f ~/.options/shell-options.conf)'
-
-# vim helping in emacs setup
-alias ve='v $(readlink -f ~/.emacs.d/init.el)'
-alias vs='v $(readlink -f ~/.spacemacs.d/init.el)'
-
-# }}}

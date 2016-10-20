@@ -23,6 +23,8 @@ source $DOTPATH/zsh/alias.zsh
 source $DOTPATH/zsh/alias-git.zsh
 source $DOTPATH/zsh/alias-dir.zsh
 source $DOTPATH/zsh/alias-docker.zsh
+source $DOTPATH/zsh/alias-emacs.zsh
+source $DOTPATH/zsh/alias-vim.zsh
 
 source $DOTPATH/zsh/prompt.zsh
 
