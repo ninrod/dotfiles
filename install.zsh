@@ -22,7 +22,7 @@ ensure_options_file() {
   local options_file="$(readlink -f ~/.options/shell-options.conf)"
 
   if [[ ! -e $options_file ]]; then
-    cp conf/options/shell-options.conf ~/.options
+    cp misc/options/shell-options.conf ~/.options
   fi
 }
 
