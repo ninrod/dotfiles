@@ -11,4 +11,3 @@ function! s:blankDown()
   silent! call repeat#set("\<Plug>(blankDown)", 1)
 endfunction
 nnoremap <Plug>(blankDown) :<C-u>call <SID>blankDown()<CR>
-
