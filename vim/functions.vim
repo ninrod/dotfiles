@@ -6,6 +6,7 @@ function! s:blankUp()
   silent! call repeat#set("\<Plug>(blankUp)", 1)
 endfunction
 nnoremap <Plug>(blankUp) :<C-u>call <SID>blankUp()<CR>
+
 function! s:blankDown()
   execute "normal mzo\<esc>`z"
   silent! call repeat#set("\<Plug>(blankDown)", 1)
