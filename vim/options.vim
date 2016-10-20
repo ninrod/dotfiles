@@ -21,7 +21,7 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 
-set history=100
+set history=1000
 
 " diff options. without this Gdiff was splitting horizontally on OSx.
 set diffopt=filler,vertical
