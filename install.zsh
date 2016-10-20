@@ -183,15 +183,15 @@ clonedep wellle/targets.vim             https://github.com/wellle/targets.vim.gi
 
 cd $GIT_ROOT
 
-for file in symlink/*.symlink; do
+for file in symlinks/*.symlink; do
   verifylink ~/.${file:t:r}
 done
-for file in symlink/*.symlink; do
+for file in symlinks/*.symlink; do
   updatelinks ~/.${file:t:r} $file
 done
 
 # TODO make this function backup user files to $SCRIPTPATH/tmp/bkp, if applicable
-for file in symlink/*.copy; do
+for file in symlinks/*.copy; do
   cp $file ~/.${file:t:r}
 done
 
