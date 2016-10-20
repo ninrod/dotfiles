@@ -9,9 +9,9 @@
 
 * Screenshots
 ** Emacs: gruvbox theme
-[[emacs-screenshot][https://raw.githubusercontent.com/ninrod/dotfiles/master/misc/img/emacs-gruvbox-2016-10-11.png]]
+[[https://raw.githubusercontent.com/ninrod/dotfiles/master/misc/img/emacs-gruvbox-2016-10-11.png%5D%5D][https://raw.githubusercontent.com/ninrod/dotfiles/master/misc/img/emacs-gruvbox-2016-10-11.png]]
 ** Vim, tmux and zsh in iTerm2 using [[https://github.com/morhetz/gruvbox][gruvbox]]
-[[vim-gruvbox-screenshot][https://raw.githubusercontent.com/ninrod/dotfiles/master/misc/img/vim-tmux-2016-10-15.png]]
+[[https://raw.githubusercontent.com/ninrod/dotfiles/master/misc/img/vim-tmux-2016-10-15.png%5D%5D][https://raw.githubusercontent.com/ninrod/dotfiles/master/misc/img/vim-tmux-2016-10-15.png]]
 * Note
 These are my personal configuration files, 
 which are in a constant state of change as I develop my environment across several systems. 
