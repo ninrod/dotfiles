@@ -40,11 +40,9 @@ alias dbash='docker_alias_bash_into_running_container'
 # Get latest container ID
 alias dl="docker ps -l -q"
 
-# Get container process
-alias dps="docker ps"
+alias dp='docker ps --format="table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Command}}\t{{.Status}}"'
 
-# Get process included stop container
-alias dpa="docker ps -a"
+alias dclean='drmf && drei'
 
 # Get images
 alias di="docker images"
