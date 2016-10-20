@@ -21,6 +21,7 @@ source $DOTPATH/zsh/zleconfig.zsh
 source $DOTPATH/zsh/functions.zsh
 source $DOTPATH/zsh/alias.zsh
 source $DOTPATH/zsh/alias-git.zsh
+source $DOTPATH/zsh/alias-dir.zsh
 source $DOTPATH/zsh/alias-docker.zsh
 
 source $DOTPATH/zsh/prompt.zsh
