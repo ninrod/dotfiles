@@ -1,0 +1,5 @@
+#+STARTUP: indent
+#+STARTUP: overview
+
+* Install strategy
+  this is where I maintain the installation process files
