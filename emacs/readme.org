@@ -1,0 +1,8 @@
+#+STARTUP: indent
+#+STARTUP: overview
+
+* Ninrod's emacs configuration
+- use-package for managing dependencies
+- org-babel to keep the init.el organized as an org-mode file.
+- ivy instead of helm
+
