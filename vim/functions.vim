@@ -1,5 +1,10 @@
-" my custom function for opening up new lines without leaving normal mode
-" as a bonus, the cursor point is unchanged
+" no need for pathogen, vimplug, etc. just use this tiny function
+function LoadPlugin(plugin)
+  let basepath=','.'~/.vim/plugged/'
+  let &runtimepath.=basepath . a:plugin
+endfunction
+
+" open up new lines without leaving normal mode. cursor stays put.
 " TODO: I sequester the `z` mark. Maybe there's a better way to do this?
 function! s:blankUp()
   execute "normal mzO\<esc>`z"
