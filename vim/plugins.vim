@@ -1,18 +1,10 @@
-" theme plugins
-call LoadPlugin('morhetz/gruvbox')
-call LoadPlugin('itchyny/lightline.vim')
-" call LoadPlugin('edkolev/tmuxline.vim')
+" plugins that require babysitting
+source ~/.vim/conf/gruvbox-conf.vim
+source ~/.vim/conf/lightline-conf.vim
+source ~/.vim/conf/rainbow-conf.vim
+source ~/.vim/conf/vim-multiple-cursors-conf.vim
 
-" rainbow configs
-let g:rainbow_active = 1
-call LoadPlugin('luochen1990/rainbow')
-
-" vim-multiple-cursors
-let g:multi_cursor_exit_from_visual_mode=0
-let g:multi_cursor_exit_from_insert_mode=0
-call LoadPlugin('ninrod/vim-multiple-cursors')
-
-" core
+" core plugins, stock configuration
 call LoadPlugin('bronson/vim-visual-star-search')
 call LoadPlugin('chaoren/vim-wordmotion')
 call LoadPlugin('ervandew/supertab')
@@ -23,3 +15,6 @@ call LoadPlugin('tpope/vim-commentary')
 call LoadPlugin('tpope/vim-repeat')
 call LoadPlugin('tpope/vim-surround')
 call LoadPlugin('wellle/targets.vim')
+
+" once in a lifetime used plugins
+" call LoadPlugin('edkolev/tmuxline.vim')

@@ -1,3 +1,6 @@
+" theme plugins
+call LoadPlugin('morhetz/gruvbox')
+
 " less eye strain
 set background=dark
 
@@ -12,12 +15,6 @@ silent! colorscheme gruvbox
 " see https://github.com/neovim/neovim/issues/4946
 " 124 = gruvbox red
 highlight SpecialKey ctermfg=124 guifg=#cc241d                            	
-
-let g:lightline = {
-      \'colorscheme': 'gruvbox'
-      \}
-
-let g:tmuxline_powerline_separators = 0
 
 " fix contrast issue with solarized dark.
 " https://github.com/airblade/vim-gitgutter/issues/164
