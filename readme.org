@@ -1,0 +1,78 @@
+#+STARTUP: indent
+#+STARTUP: overview
+
+* Ninrod's emacs, vim, zsh and tmux dotfiles
+
+[[http://opensource.org/licenses/GPL-3.0][http://img.shields.io/:license-gpl-blue.svg]]
+
+- Simplicity, speed and power while working inside the shell.
+
+* Screenshots
+** Emacs: gruvbox theme
+[[emacs-screenshot][https://raw.githubusercontent.com/ninrod/dotfiles/master/misc/img/emacs-gruvbox-2016-10-11.png]]
+** Vim, tmux and zsh in iTerm2 using [[https://github.com/morhetz/gruvbox][gruvbox]]
+[[vim-gruvbox-screenshot][https://raw.githubusercontent.com/ninrod/dotfiles/master/misc/img/vim-tmux-2016-10-15.png]]
+* Note
+These are my personal configuration files, 
+which are in a constant state of change as I develop my environment across several systems. 
+I can't guarantee that these configurations will work for you, at all. 
+So if you encounter problems with them, you're pretty much on your own. 
+Still, it can be useful and instructional to look around and take bits 
+and snippets to use within your own configuration files. 
+(this notice was based on [[https://github.com/aaronbieber/dotfiles][aaron bieber's dotfiles]])
+* Install Instructions
+
+- First off, I strongly recommend using [[https://github.com/gnachman/iTerm2.git][iTerm2]] on OSx.
+- Secondly, this is for unix systems: `GNU/Linux`, `OSx`, etc... It should work on theory on windows, but I've faced a lot of configuration issues and ended up abandoning windows support.
+- configure your terminal to use the [[https://github.com/morhetz/gruvbox][gruvbox]] theme. There's a `conf` folder within this repo that can help you with that. 
+- *recommendation*: I use and recommend the excelent [[https://github.com/larsenwork/monoid][monoid]] font.
+- now get `vim` 8+ with [[http://vimcasts.org/blog/2013/11/getting-vim-with-clipboard-support][+clipboard]].
+- get [[https://github.com/tmux/tmux.git][tmux]] 2.3+
+- get [[https://github.com/zsh-users/zsh.git][zsh]] 5.2+ and make sure that `/bin/zsh` is valid. (if not: `$ cd /bin && sudo ln -s $(command -v zsh) zsh`)
+- `cat /etc/shells` and verify that zsh appears on the list. If not, `sudo vi /etc/shells` and append `/bin/zsh`
+- get [[https://github.com/ggreer/the_silver_searcher.git][ag]] (you can `brew install ag` on OSx).
+- if you're on OSx, brew install these:
+  1. =brew install coreutils= (mainly because `BSD` `ls` `CLICOLOR` sucks).
+  2. =brew install reattach-to-user-namespace= (Mainly because of the `open` utility. [[https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard.git][more info here]]).
+  3. =brew install diff-so-fancy=
+- *Kind remark*: for the moment (until I change the script to back it up for you), I'll overwrite your `~/.gitconfig` file, so if you have something important in it, now would be the perfect moment to back it up.
+
+* Shell time
+now lets write some shell commands.
+
+- *note*: the install.zsh script basically does this:
+  1. mounts symlinks on your home folder;
+  2. creates ~/.options/shell-options.conf file, if not existent
+  3. overwrites your .gitconfig (so back it up if you have something important)
+  4. install/updates vim plugins
+  
+
+- now open your shell and write this:
+
+#+BEGIN_SRC shell
+$ git clone https://github.com/ninrod/dotfiles.git ~/.dotfiles
+$ ~/.dotfiles/install.zsh
+#+END_SRC
+
+- a `~/.options/shell-options.conf` was created for you and you will setup your github configuration in it.
+
+#+BEGIN_SRC shell
+$ vim ~/.options/shell-options.conf
+$ exec zsh
+#+END_SRC
+
+- That's it, your're all set.
+* Emacs: the timeless and infinitely powerful editor
+I maintain my configuration using an org-mode file, trough org-babel. 
+So you can see it in it's full glory [[https://github.com/ninrod/dotfiles/blob/master/emacs/boot.org][here]].
+* VIM: Powerful shell text editor. Tweaked with plugins.
+To check out what binds and plugins I use in this config, my [[https://github.com/ninrod/dotfiles/blob/master/vim/keybinds.vim][keybinds.vim]] file is authoritative.
+That said, it is worth noting that I've remapped `<space>` to be an alias to the `<leader>` key.
+* TMUX custom binds
+checkout the [[https://github.com/ninrod/dotfiles/blob/master/tmux/tmux.conf][tmux.conf]] file for tmux binding setup.
+
+* LICENSE
+[[https://www.gnu.org/licenses/gpl-3.0.en.html][GNU General Public License v3]]
+
+* LINKS
+[[https://github.com/ninrod/dotfiles/tree/212d09fb3859ca03d98aefbcd2c03c4e7d43b68e][first commit]]
