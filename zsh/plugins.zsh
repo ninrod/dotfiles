@@ -1,11 +1,16 @@
-# plugin selection
+# local plugins selection
+source $DOTPATH/zsh/pj.zsh
+
+# 3rd party plugin selection
 plugin_paths+=(Tarrasch/zsh-bd)
 plugin_paths+=(ninrod/docker-zsh-completion)
-plugin_paths+=(rupa/z)
 plugin_paths+=(supercrabtree/k)
 plugin_paths+=(zsh-users/zsh-completions)
 
-# options for zsh-users/zsh-syntax-highlighting
+# quarentined maybe pj.zsh will completely substitute rupa's z.
+# plugin_paths+=(rupa/z)
+
+# zsh-users/zsh-syntax-highlighting complex configuration
 plugin_paths+=(zsh-users/zsh-syntax-highlighting)
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 typeset -A ZSH_HIGHLIGHT_STYLES
