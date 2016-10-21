@@ -8,3 +8,4 @@ ningrab ninrod/docker-zsh-completion
 ningrab zsh-users/zsh-completions         
 ningrab zsh-users/zsh-syntax-highlighting 
 ningrab rupa/z
+ningrab seebi/dircolors-solarized
