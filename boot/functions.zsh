@@ -63,25 +63,16 @@ updatelinks() {
 }
 
 # }}}
-# ensure_vim_plugins: ensure vim plugins are installed {{{
-
-ensure_vim_plugins() {
-  local plug_dir=$(readlink -m ~/.vim/plugged)
-  if [[ ! -d $plug_dir ]]; then
-    echo -e "installing ${Yellow}vim${Rst} plugins..."
-    vim +PlugInstall +qall
-  fi
-}
-
-# }}}
 # apply_git_info: apply git information  {{{
 
 # if available through environment variables
 apply_git_info() {
   if [[ -n ${GIT_USER_NAME+x} ]]; then
+    export GIT_USER_NAME
     git config --global user.name "$GIT_USER_NAME"
   fi
   if [[ -n ${GIT_USER_EMAIL+x} ]]; then
+    export GIT_USER_EMAIL
     git config --global user.email "$GIT_USER_EMAIL"
   fi
 }
@@ -89,20 +80,22 @@ apply_git_info() {
 # }}}
 # clonedep: smarter clones {{{
 
-clonedep() {
+build_git_url() {
   local name="$1"
-
   local gitmask='https://github.com/'
   local url=${gitmask}${name}.git
   if [[ -n ${hashdeps+x} ]] && ((${+hashdeps[$name]})); then
     local url=${hashdeps[$name]}
   fi
+  echo $url
+}
 
+clonedep() {
+  local name="$1"
+  local url=$(build_git_url $name)
   local ref=$3
-
   echo ""
   echo -e "-------------------"
-
   if [[ -d $name ]]; then
     echo -e "[${Green}${name}${Rst}] already cloned from ${Blue}${url}${Rst}"
   else
@@ -122,7 +115,6 @@ clonedep() {
     fi
     echo -e "[${Green}${name}${Rst}] sucessfully cloned."
   fi
-
   echo -e "-------------------"
 }
 

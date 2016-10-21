@@ -895,6 +895,221 @@ SCHEDULED: %t")))
   (define-key global-map (kbd "RET") 'newline-and-indent)
 #+END_SRC
 
+** modes
+*** org
+**** bind-map
+#+BEGIN_SRC emacs-lisp
+(bind-map org-map
+    :evil-keys (",")
+    :evil-states (normal visual)
+    :major-modes (org-mode))
+#+END_SRC
+
+**** local leader
+***** c: code
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys org-map
+    "cc" 'org-edit-src-code
+    "cb" 'org-babel-execute-src-block
+  )
+  (which-key-declare-prefixes ", c" "code editing")
+#+END_SRC
+
+***** d: dates/schedulling
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys org-map
+    "dd" 'org-schedule
+  )
+  (which-key-declare-prefixes ", d" "dates/schedule")
+#+END_SRC
+
+***** i: insertions
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys org-map
+  "ih" 'org-insert-heading
+  "ia" 'org-insert-heading-after-current
+  "ir" 'org-insert-heading-respect-content
+  "is" 'org-insert-subheading
+  "il" 'org-insert-link
+  "io" 'org-open-at-point
+  "iL" 'org-toggle-link-display
+)
+(which-key-declare-prefixes ", i" "insertions/additions")
+#+END_SRC
+
+
+***** l: label/tag
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys org-map
+    "ll" 'counsel-org-tag
+  )
+  (which-key-add-major-mode-key-based-replacements 'org-mode ", l" "label/tag")
+#+END_SRC
+
+***** m: meta
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys org-map
+    "ml" 'org-metaright
+    "mh" 'org-metaleft
+    "mj" 'org-metadown
+    "mk" 'org-metaup
+    "m RET"  'org-meta-return
+  )
+  (which-key-declare-prefixes ", m" "org-meta")
+#+END_SRC
+
+***** o: interesting org commands
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys org-map
+
+
+    ;; from: http://emacsist.com/10284 
+    "or" 'org-refile
+    
+    "ot" 'org-table-convert-region
+  )
+  (which-key-declare-prefixes ", o" "interesting org commands")
+#+END_SRC
+
+***** s: subtree commands
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys org-map
+  ;; subtree commands
+  "sh" 'org-promote-subtree
+  "sl" 'org-demote-subtree
+  "sk" 'org-move-subtree-up
+  "sj" 'org-move-subtree-down
+  "sy" 'org-copy-subtree
+  "sd" 'org-cut-subtree
+  "sp" 'org-paste-subtree
+  "ss" 'org-show-subtree
+  "sc" 'org-clone-subtree-with-time-shift)
+(which-key-declare-prefixes ", s" "org subtree operations")
+#+END_SRC
+
+***** t: table
+****** ☛ TODO lift more binds from [[http://orgmode.org/manual/Built_002din-table-editor.html][here]]:
+#+BEGIN_SRC emacs-lisp
+    (bind-map-set-keys org-map
+      "ta" 'org-table-align
+      "tt" 'org-table-transpose-table-at-point
+
+      "th" 'org-backward-sentence
+      "tl" 'org-forward-sentence
+
+      "tdc" 'org-table-delete-column
+
+      ;; from https://www.reddit.com/r/emacs/comments/56oc9c/orgtables_is_there_a_way_to_delete_a_whole_table/
+      ;; fist place point in the top left bar (`|')
+      "tm" 'org-mark-element
+
+      "tr" 'org-table-insert-row
+      "tc" 'org-table-insert-column
+    
+      "to" 'org-table-toggle-coordinate-overlays
+      "t?" 'org-table-field-info
+      "t=" 'org-table-eval-formula
+
+      "tf" (lambda () (interactive) 
+            (let ((current-prefix-arg 4))
+            (call-interactively 'org-table-recalculate))
+           )
+
+      "t RET" 'org-table-copy-down
+    )
+  (which-key-add-major-mode-key-based-replacements 'org-mode ", t" "org-table")
+  (which-key-add-major-mode-key-based-replacements 'org-mode ", td" "org-table deletions")
+  (which-key-add-major-mode-key-based-replacements 'org-mode ", tf" "recalculate formulas")
+#+END_SRC
+
+***** z: zoom / visualization
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys org-map
+  "zi" 'org-narrow-to-subtree
+  "zo" 'widen)
+(which-key-declare-prefixes ", z" "zoom")
+#+END_SRC
+
+***** E: exports
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys org-map
+  "Ed" 'org-export-dispatch
+)
+(which-key-declare-prefixes ", E" "Exports")
+#+END_SRC
+
+***** *-=: others
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys org-map
+  ;; cycle
+  "TAB" 'org-cycle
+  "*" 'org-ctrl-c-star
+  "-" 'org-ctrl-c-minus
+)
+#+END_SRC
+
+**** local fixes
+#+BEGIN_SRC emacs-lisp
+  (evil-define-key 'normal org-mode-map (kbd "TAB") 'ivy-switch-buffer)
+  (when (display-graphic-p)
+    (evil-define-key 'normal org-mode-map (kbd "<tab>") 'ivy-switch-buffer))
+
+  (evil-define-key 'normal org-mode-map (kbd "RET") 'evil-write)
+
+  ;; movement
+  (evil-define-key 'normal org-mode-map "zu" 'outline-up-heading)
+  (evil-define-key 'normal org-mode-map "zh" 'outline-previous-visible-heading)
+  (evil-define-key 'normal org-mode-map "zj" 'org-forward-heading-same-level)
+  (evil-define-key 'normal org-mode-map "zk" 'org-backward-heading-same-level)
+  (evil-define-key 'normal org-mode-map "zl" 'outline-next-visible-heading)
+
+  (evil-define-key 'normal org-mode-map "<" 'org-do-promote)
+  (evil-define-key 'normal org-mode-map ">" 'org-do-demote)
+
+  (evil-define-key 'normal org-mode-map "t" 'org-todo)
+  #+END_SRC
+
+*** term
+- with help from [[https://www.reddit.com/r/emacs/comments/56xmvg/properly_editing_a_shell_buffer_with_evilmode/][/r/emacs]]
+#+BEGIN_SRC emacs-lisp
+(bind-map term-map
+    :evil-keys (",")
+    :evil-states (normal visual)
+    :major-modes (term-mode))
+
+(bind-map-set-keys term-map
+  "l" 'term-line-mode
+  "c" 'term-char-mode
+)
+(which-key-add-major-mode-key-based-replacements 'term-mode ", l" "line mode")
+(which-key-add-major-mode-key-based-replacements 'term-mode ", c" "char mode")
+#+END_SRC
+
+*** dired
+**** fix: unhijack my precious SPC leader key.
+- lifted from this [[http://stackoverflow.com/a/10672548/4921402][SO question]]
+#+BEGIN_SRC emacs-lisp
+(define-key dired-mode-map (kbd "SPC") nil)
+#+END_SRC
+
+*** magit
+#+BEGIN_SRC emacs-lisp
+(define-key magit-status-mode-map (kbd "SPC") nil)
+(define-key magit-status-mode-map "go" 'evil-goto-first-line)
+#+END_SRC
+
+*** eshell
+#+BEGIN_SRC emacs-lisp
+  (evil-define-key 'normal eshell-mode-map (kbd "TAB") 'ivy-switch-buffer)
+  (when (display-graphic-p)
+    (evil-define-key 'normal eshell-mode-map (kbd "<tab>") 'ivy-switch-buffer))
+#+END_SRC
+
+*** prog-mode
+#+BEGIN_SRC emacs-lisp
+(evil-define-key 'normal prog-mode-map "s" 'nin-origami-toggle-node)
+#+END_SRC
+
 ** SPC
 *** bind-map
 #+BEGIN_SRC emacs-lisp
@@ -1116,227 +1331,6 @@ SCHEDULED: %t")))
     "v" 'split-window-right-and-focus
     "x" 'split-window-below-and-focus
   )
-#+END_SRC
-
-** modes
-*** org
-**** bind-map
-#+BEGIN_SRC emacs-lisp
-(bind-map org-map
-    :evil-keys (",")
-    :evil-states (normal visual)
-    :major-modes (org-mode))
-#+END_SRC
-
-**** local leader
-***** b: bullets
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-map
-    "bb" 'org-ctrl-c-star
-    "b-" 'org-ctrl-c-minus
-  )
-  (which-key-declare-prefixes ", b" "bullets")
-#+END_SRC
-
-***** c: code
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-map
-    "cc" 'org-edit-src-code
-    "cb" 'org-babel-execute-src-block
-  )
-  (which-key-declare-prefixes ", c" "code editing")
-#+END_SRC
-
-***** d: dates/schedulling
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-map
-    "dd" 'org-schedule
-  )
-  (which-key-declare-prefixes ", d" "dates/schedule")
-#+END_SRC
-
-***** i: insertions
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys org-map
-  "ih" 'org-insert-heading
-  "ia" 'org-insert-heading-after-current
-  "ir" 'org-insert-heading-respect-content
-  "is" 'org-insert-subheading
-  "il" 'org-insert-link
-  "io" 'org-open-at-point
-  "iL" 'org-toggle-link-display
-)
-(which-key-declare-prefixes ", i" "insertions/additions")
-#+END_SRC
-
-
-***** l: label/tag
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-map
-    "ll" 'counsel-org-tag
-  )
-  (which-key-add-major-mode-key-based-replacements 'org-mode ", l" "label/tag")
-#+END_SRC
-
-***** m: meta
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-map
-    "ml" 'org-metaright
-    "mh" 'org-metaleft
-    "mj" 'org-metadown
-    "mk" 'org-metaup
-    "m RET"  'org-meta-return
-  )
-  (which-key-declare-prefixes ", m" "org-meta")
-#+END_SRC
-
-***** o: interesting org commands
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-map
-
-
-    ;; from: http://emacsist.com/10284 
-    "or" 'org-refile
-    
-    "ot" 'org-table-convert-region
-  )
-  (which-key-declare-prefixes ", o" "interesting org commands")
-#+END_SRC
-
-***** s: subtree commands
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys org-map
-  ;; subtree commands
-  "sh" 'org-promote-subtree
-  "sl" 'org-demote-subtree
-  "sk" 'org-move-subtree-up
-  "sj" 'org-move-subtree-down
-  "sy" 'org-copy-subtree
-  "sd" 'org-cut-subtree
-  "sp" 'org-paste-subtree
-  "ss" 'org-show-subtree
-  "sc" 'org-clone-subtree-with-time-shift)
-(which-key-declare-prefixes ", s" "org subtree operations")
-#+END_SRC
-
-***** t: table
-****** ☛ TODO lift more binds from [[http://orgmode.org/manual/Built_002din-table-editor.html][here]]:
-#+BEGIN_SRC emacs-lisp
-    (bind-map-set-keys org-map
-      "ta" 'org-table-align
-      "tt" 'org-table-transpose-table-at-point
-
-      "th" 'org-backward-sentence
-      "tl" 'org-forward-sentence
-
-      "tdc" 'org-table-delete-column
-
-      ;; from https://www.reddit.com/r/emacs/comments/56oc9c/orgtables_is_there_a_way_to_delete_a_whole_table/
-      ;; fist place point in the top left bar (`|')
-      "tm" 'org-mark-element
-
-      "tr" 'org-table-insert-row
-      "tc" 'org-table-insert-column
-    
-      "to" 'org-table-toggle-coordinate-overlays
-      "t?" 'org-table-field-info
-      "t=" 'org-table-eval-formula
-
-      "tf" (lambda () (interactive) 
-            (let ((current-prefix-arg 4))
-            (call-interactively 'org-table-recalculate))
-           )
-
-      "t RET" 'org-table-copy-down
-    )
-  (which-key-add-major-mode-key-based-replacements 'org-mode ", t" "org-table")
-  (which-key-add-major-mode-key-based-replacements 'org-mode ", td" "org-table deletions")
-  (which-key-add-major-mode-key-based-replacements 'org-mode ", tf" "recalculate formulas")
-#+END_SRC
-
-***** z: zoom / visualization
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys org-map
-  "zi" 'org-narrow-to-subtree
-  "zo" 'widen)
-(which-key-declare-prefixes ", z" "zoom")
-#+END_SRC
-
-***** E: exports
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys org-map
-  "Ed" 'org-export-dispatch
-)
-(which-key-declare-prefixes ", E" "Exports")
-#+END_SRC
-
-***** *-=: others
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys org-map
-  ;; cycle
-  "TAB" 'org-cycle)
-#+END_SRC
-
-**** local fixes
-#+BEGIN_SRC emacs-lisp
-  (evil-define-key 'normal org-mode-map (kbd "TAB") 'ivy-switch-buffer)
-  (when (display-graphic-p)
-    (evil-define-key 'normal org-mode-map (kbd "<tab>") 'ivy-switch-buffer))
-
-  (evil-define-key 'normal org-mode-map (kbd "RET") 'evil-write)
-
-  ;; movement
-  (evil-define-key 'normal org-mode-map "zu" 'outline-up-heading)
-  (evil-define-key 'normal org-mode-map "zh" 'outline-previous-visible-heading)
-  (evil-define-key 'normal org-mode-map "zj" 'org-forward-heading-same-level)
-  (evil-define-key 'normal org-mode-map "zk" 'org-backward-heading-same-level)
-  (evil-define-key 'normal org-mode-map "zl" 'outline-next-visible-heading)
-
-  (evil-define-key 'normal org-mode-map "<" 'org-do-promote)
-  (evil-define-key 'normal org-mode-map ">" 'org-do-demote)
-
-  (evil-define-key 'normal org-mode-map "t" 'org-todo)
-  #+END_SRC
-
-*** term
-- with help from [[https://www.reddit.com/r/emacs/comments/56xmvg/properly_editing_a_shell_buffer_with_evilmode/][/r/emacs]]
-#+BEGIN_SRC emacs-lisp
-(bind-map term-map
-    :evil-keys (",")
-    :evil-states (normal visual)
-    :major-modes (term-mode))
-
-(bind-map-set-keys term-map
-  "l" 'term-line-mode
-  "c" 'term-char-mode
-)
-(which-key-add-major-mode-key-based-replacements 'term-mode ", l" "line mode")
-(which-key-add-major-mode-key-based-replacements 'term-mode ", c" "char mode")
-#+END_SRC
-
-*** dired
-**** fix: unhijack my precious SPC leader key.
-- lifted from this [[http://stackoverflow.com/a/10672548/4921402][SO question]]
-#+BEGIN_SRC emacs-lisp
-(define-key dired-mode-map (kbd "SPC") nil)
-#+END_SRC
-
-*** magit
-#+BEGIN_SRC emacs-lisp
-(define-key magit-status-mode-map (kbd "SPC") nil)
-(define-key magit-status-mode-map "go" 'evil-goto-first-line)
-#+END_SRC
-
-*** eshell
-#+BEGIN_SRC emacs-lisp
-  (evil-define-key 'normal eshell-mode-map (kbd "TAB") 'ivy-switch-buffer)
-  (when (display-graphic-p)
-    (evil-define-key 'normal eshell-mode-map (kbd "<tab>") 'ivy-switch-buffer))
-#+END_SRC
-
-*** prog-mode
-#+BEGIN_SRC emacs-lisp
-(evil-define-key 'normal prog-mode-map "s" 'nin-origami-toggle-node)
 #+END_SRC
 
 ** awesome available binds

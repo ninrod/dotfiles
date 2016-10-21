@@ -23,7 +23,7 @@ source $DOTPATH/zsh/ninplug.zsh
 source $DOTPATH/zsh/plugins.zsh
 
 # load step
-deps="${DOTPATH}/deps"
+deps="${DOTPATH}/zsh/deps"
 load_plugins
 
 # colors for GNU ls (from coreutils)
