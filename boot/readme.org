@@ -4,7 +4,7 @@
 * Boot strategy
 this is where I maintain my boot process strategy programs
 * Options
-- note: the user can define his own git url to define from where he wants to grab his dependencies.
+- note: the user can opt for defining his own git url to assert from where he wants to grab his dependencies.
 - that's useful, for example, if you mantain your own private gilab server.
 - you just have to create a file that populates a zsh associative array:
   1. create a file called =~/.options/urlhash.zsh=
