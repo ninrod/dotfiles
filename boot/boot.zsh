@@ -8,10 +8,10 @@ source $GIT_ROOT/zsh/termcolors.zsh
 source $GIT_ROOT/boot/functions.zsh
 
 # source custom giturl definitions, if applicable
-hash_options=~/.options/hashdeps.zsh
-if [[ -e $hash_options ]]; then
-  typeset -A hashdeps
-  source $hash_options
+url_hash_file=~/.options/urlhash.zsh
+if [[ -e $url_hash_file ]]; then
+  typeset -A urlhash
+  source $url_hash_file
 fi
 
 source $GIT_ROOT/boot/zsh-deps.zsh

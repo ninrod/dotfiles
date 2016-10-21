@@ -84,8 +84,8 @@ build_git_url() {
   local name="$1"
   local gitmask='https://github.com/'
   local url=${gitmask}${name}.git
-  if [[ -n ${hashdeps+x} ]] && ((${+hashdeps[$name]})); then
-    local url=${hashdeps[$name]}
+  if [[ -n ${urlhash+x} ]] && ((${+urlhash[$name]})); then
+    local url=${urlhash[$name]}
   fi
   echo $url
 }

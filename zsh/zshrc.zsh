@@ -22,8 +22,10 @@ source $DOTPATH/zsh/prompt.zsh
 source $DOTPATH/zsh/ninplug.zsh
 source $DOTPATH/zsh/plugins.zsh
 
+# fix dependency location
+source $DOTPATH/zsh/deps-location.zsh
+
 # load step
-deps="${DOTPATH}/zsh/deps"
 load_plugins
 
 # colors for GNU ls (from coreutils)

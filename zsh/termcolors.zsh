@@ -1,4 +1,4 @@
-# terminal colors {{{
+# terminal colors
 
 TC='\e['
 Rst="${TC}0m"     # Reset all coloring and style
@@ -10,5 +10,3 @@ Blue="${TC}34m";
 Purple="${TC}35m";
 Cyan="${TC}36m";
 White="${TC}37m";
-
-# }}}

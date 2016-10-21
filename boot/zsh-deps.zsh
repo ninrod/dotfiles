@@ -1,5 +1,5 @@
 # fetch zsh deps
-deps=$GIT_ROOT/zsh/deps
+source $GIT_ROOT/zsh/deps-location.zsh
 mkdir -p $deps && cd $deps
 
 clonedep Tarrasch/zsh-bd                   
