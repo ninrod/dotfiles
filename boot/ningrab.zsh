@@ -1,4 +1,4 @@
-# source custom giturl definitions, if applicable
+# source optional user custom git url definitions
 url_hash_file=~/.options/urlhash.zsh
 if [[ -e $url_hash_file ]]; then
   typeset -A urlhash
@@ -15,17 +15,16 @@ build_git_url() {
   echo $url
 }
 
+# simplest dependency fetcher known to mankind
 ningrab() {
   local name="$1"
   local url=$(build_git_url $name)
   local ref=$3
-  echo ""
-  echo -e "-------------------"
+  echo "" && echo "-------------------"
   if [[ -d $name ]]; then
     echo -e "[${Green}${name}${Rst}] already cloned from ${Blue}${url}${Rst}"
   else
     echo -e "[${Red}${name}${Rst}] not cloned. cloning now from ${Blue}${url}${Rst}"
-    # TODO: verificar se esses ifs são necessários
     if [[ -n ${3+x} ]]; then
       echo -e "the ref: ${Yellow}${ref}${Rst} was passed. Performing ${Blue}full${Rst} clone."
       git clone $url $name
