@@ -91,21 +91,26 @@ apply_git_info() {
 
 clonedep() {
   local name="$1"
-  local url="$2"
-  local ref="$3"
+
+  local gitmask='https://github.com/'
+  local url=${gitmask}${name}.git
+  if [[ -n ${hashdeps+x} ]] && ((${+hashdeps[$name]})); then
+    local url=${hashdeps[$name]}
+  fi
+
+  local ref=$3
+
   echo ""
   echo -e "-------------------"
-  if [[ ! -d $name ]]; then
-    echo -e "[${Red}${name}${Rst}] not cloned. cloning now."
+
+  if [[ -d $name ]]; then
+    echo -e "[${Green}${name}${Rst}] already cloned from ${Blue}${url}${Rst}"
+  else
+    echo -e "[${Red}${name}${Rst}] not cloned. cloning now from ${Blue}${url}${Rst}"
+    # TODO: verificar se esses ifs são necessários
     if [[ -n ${3+x} ]]; then
-      local clone_depth=${4:-400}
-      if [[ -n ${4+x} ]]; then
-        echo -e "a clone depth ${Blue}${4}${Rst} was passed. cloning deeper"
-        git clone --depth $clone_depth $url $name
-      else
-        echo -e "No depth arg passed. Performing ${Blue}full${Rst} clone."
-        git clone $url $name
-      fi
+      echo -e "the ref: ${Yellow}${ref}${Rst} was passed. Performing ${Blue}full${Rst} clone."
+      git clone $url $name
       local cwd=$(readlink -f .)
       cd $name
       git checkout --quiet $ref
@@ -116,9 +121,8 @@ clonedep() {
       git clone --depth 1 $url $name
     fi
     echo -e "[${Green}${name}${Rst}] sucessfully cloned."
-  else
-    echo -e "[${Green}${name}${Rst}] already cloned."
   fi
+
   echo -e "-------------------"
 }
 
