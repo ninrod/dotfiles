@@ -2,9 +2,9 @@
 source $GIT_ROOT/zsh/deps-location.zsh
 mkdir -p $deps && cd $deps
 
-clonedep Tarrasch/zsh-bd                   
-clonedep supercrabtree/k                   
-clonedep ninrod/docker-zsh-completion      
-clonedep zsh-users/zsh-completions         
-clonedep zsh-users/zsh-syntax-highlighting 
-clonedep rupa/z
+ningrab Tarrasch/zsh-bd                   
+ningrab supercrabtree/k                   
+ningrab ninrod/docker-zsh-completion      
+ningrab zsh-users/zsh-completions         
+ningrab zsh-users/zsh-syntax-highlighting 
+ningrab rupa/z
