@@ -1,36 +1,19 @@
-# ensure_options_file: ensure options_file exists {{{
-
 ensure_options_file() {
   if [[ ! -d ~/.options ]]; then
     mkdir ~/.options
   fi
-
   local options_file="$(readlink -f ~/.options/shell-options.conf)"
-
   if [[ ! -e $options_file ]]; then
     cp misc/options/shell-options.conf ~/.options
   fi
 }
-
-# }}}
-# ensure_dotpath: ensure $DOTPATH is set on $options_file {{{
-
 ensure_dotpath() {
   ensure_options_file
-
   local options_file="$(readlink -f ~/.options/shell-options.conf)"
   local temp_file="$(readlink -f ~/.options/temp.conf)"
-
-  # remove DOTPATH, if it exists
   awk '!/^DOTPATH/' $options_file > $temp_file && mv $temp_file $options_file
-
-  # append $DOTPATH to $options_file
   echo "DOTPATH=${GIT_ROOT/$HOME/~}" >> $options_file
 }
-
-# }}}
-# verifylink: ensure no regular user file will be overwritten {{{
-
 verifylink() {
   local symlink=${1:a}
 
@@ -40,10 +23,6 @@ verifylink() {
     exit 1
   fi
 }
-
-# }}}
-# updatelinks: help with symlinkage {{{
-
 updatelinks() {
   local symlink=${1:a}
   local symlink_old_target=${1:A}
@@ -61,11 +40,6 @@ updatelinks() {
 
   ln -s $symlink_new_target $symlink
 }
-
-# }}}
-# apply_git_info: apply git information  {{{
-
-# if available through environment variables
 apply_git_info() {
   if [[ -n ${GIT_USER_NAME+x} ]]; then
     export GIT_USER_NAME
@@ -76,5 +50,3 @@ apply_git_info() {
     git config --global user.email "$GIT_USER_EMAIL"
   fi
 }
-
-# }}}
