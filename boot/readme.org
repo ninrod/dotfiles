@@ -1,8 +1,8 @@
 #+STARTUP: indent
 #+STARTUP: overview
 
-* Install strategy
-this is where I maintain the installation process files
+* Boot strategy
+this is where I maintain my boot process strategy programs
 * Options
 - note: the user can define his own git url to define from where he wants to grab his dependencies.
 - that's useful, for example, if you mantain your own private gilab server.
