@@ -26,7 +26,7 @@ and snippets to use within your own configuration files.
 
 - First off, I strongly recommend using [[https://github.com/gnachman/iTerm2.git][iTerm2]] on OSx.
 - Secondly, this is for unix systems: `GNU/Linux`, `OSx`, etc... It should work on theory on windows, but I've faced a lot of configuration issues and ended up abandoning windows support.
-- configure your terminal to use the [[https://github.com/morhetz/gruvbox][gruvbox]] theme. There's a `conf` folder within this repo that can help you with that. 
+- configure your terminal to use the [[https://github.com/morhetz/gruvbox][gruvbox]] theme. There's a `misc/themes` folder within this repo that can help you with that. 
 - *recommendation*: I use and recommend the excelent [[https://github.com/larsenwork/monoid][monoid]] font.
 - now get `vim` 8+ with [[http://vimcasts.org/blog/2013/11/getting-vim-with-clipboard-support][+clipboard]].
 - get [[https://github.com/tmux/tmux.git][tmux]] 2.3+
@@ -45,25 +45,20 @@ now lets write some shell commands.
 - *note*: the install.zsh script basically does this:
   1. mounts symlinks on your home folder;
   2. creates ~/.options/shell-options.conf file, if not existent
-  3. overwrites your .gitconfig (so back it up if you have something important)
-  4. install/updates vim plugins
-  
+  3. sources the ~/.options/shell-options.conf file
+  4. overwrites your .gitconfig (so back it up if you have something important)
+  5. tries to configure your git information, if applicable.
+  6. fetches vim and zsh dependencies
 
-- now open your shell and write this:
-
+- now open you shell and change your git information
 #+BEGIN_SRC shell
-$ git clone https://github.com/ninrod/dotfiles.git ~/.dotfiles
-$ ~/.dotfiles/install.zsh
-#+END_SRC
-
-- a `~/.options/shell-options.conf` was created for you and you will setup your github configuration in it.
-
-#+BEGIN_SRC shell
+$ git clone https://github.com/ninrod/dotfiles && cd dotfiles && ./install.zsh
 $ vim ~/.options/shell-options.conf
 $ exec zsh
 #+END_SRC
 
 - That's it, your're all set.
+
 * Emacs: the timeless and infinitely powerful editor
 I maintain my configuration using an org-mode file, trough org-babel. 
 So you can see it in it's full glory [[https://github.com/ninrod/dotfiles/blob/master/emacs/boot.org][here]].
