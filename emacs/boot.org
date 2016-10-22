@@ -424,7 +424,6 @@ SCHEDULED: %t")))
   )
 #+END_SRC
 
-
 *** rainbow-delimiters
 #+BEGIN_SRC emacs-lisp
 (use-package rainbow-delimiters :ensure t
