@@ -654,6 +654,7 @@ SCHEDULED: %t")))
   (use-package htmlize 
   :ensure t)
   #+END_SRC
+
 ** completions
 *** ivy/counsel
 #+BEGIN_SRC emacs-lisp
@@ -849,13 +850,13 @@ SCHEDULED: %t")))
 #+BEGIN_SRC emacs-lisp
 ;; toggle fold: faster and more comfortable than `za'
 ;; `cl' is a complete replacement for `s'
-(define-key evil-normal-state-map "s" 'evil-toggle-fold)
+(define-key evil-normal-state-map "q" 'evil-quit)
 
 ;; save: faster than `:w'
 (define-key evil-normal-state-map (kbd "RET") 'evil-write)
 
 ;; file/buffer selection
-(define-key evil-normal-state-map (kbd "TAB") 'ivy-switch-buffer)
+(define-key evil-normal-state-map (kbd "TAB") 'evil-toggle-fold)
 (define-key evil-normal-state-map (kbd "DEL") 'counsel-find-file)
 
 (define-key evil-normal-state-map "-" 'evil-ex-nohighlight)
@@ -1050,9 +1051,9 @@ SCHEDULED: %t")))
 
 **** local fixes
 #+BEGIN_SRC emacs-lisp
-  (evil-define-key 'normal org-mode-map (kbd "TAB") 'ivy-switch-buffer)
-  (when (display-graphic-p)
-    (evil-define-key 'normal org-mode-map (kbd "<tab>") 'ivy-switch-buffer))
+  ;; (evil-define-key 'normal org-mode-map (kbd "TAB") 'ivy-switch-buffer)
+  ;; (when (display-graphic-p)
+  ;;   (evil-define-key 'normal org-mode-map (kbd "<tab>") 'ivy-switch-buffer))
 
   (evil-define-key 'normal org-mode-map (kbd "RET") 'evil-write)
 
@@ -1107,7 +1108,7 @@ SCHEDULED: %t")))
 
 *** prog-mode
 #+BEGIN_SRC emacs-lisp
-(evil-define-key 'normal prog-mode-map "s" 'nin-origami-toggle-node)
+(evil-define-key 'normal prog-mode-map (kbd "TAB") 'nin-origami-toggle-node)
 #+END_SRC
 
 ** SPC
@@ -1122,7 +1123,7 @@ SCHEDULED: %t")))
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
     "<SPC>" 'counsel-M-x
-    ;; "TAB" 'available
+    "TAB" 'evil-toggle-fold
   )
 #+END_SRC
 
@@ -1308,18 +1309,21 @@ SCHEDULED: %t")))
 (which-key-declare-prefixes "SPC E" "evil-mode")
 #+END_SRC
 
-** q
+** s
 #+BEGIN_SRC emacs-lisp
-(bind-map q-map 
-    :evil-keys ("q")
-    :evil-states (normal visual))
+(bind-map s-map 
+    :evil-keys ("s")
+    :evil-states (normal visual motion))
 
   ;; quits: file saves, buffer deletes, window exits, you name it...
-  (bind-map-set-keys q-map
-    "c" 'evil-save-modified-and-close
+  (bind-map-set-keys s-map
+    "s" 'evil-save-modified-and-close
     "e" 'evil-quit
     "r" 'restart-emacs
     "d" 'kill-this-buffer
+
+    "i" 'ivy-switch-buffer
+
       
     "j" 'evil-window-down
     "k" 'evil-window-up
@@ -1350,3 +1354,4 @@ SCHEDULED: %t")))
 
 - ?
     
+  
