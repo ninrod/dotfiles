@@ -7,7 +7,7 @@ else
   echo 'emacs is not running. bringing it up.'
 fi
 
-emacs.sh -nw --daemon; rc=$?
+emacs.sh -nw --daemon=terminal; rc=$?
 
 if [[ $rc = 0 ]]; then
   echo 'emacs daemon started. success.'
