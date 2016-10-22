@@ -1,5 +1,5 @@
 # local plugins selection
-source $DOTPATH/zsh/pj.zsh
+source ~/.zsh.d/pj.zsh
 
 # 3rd party plugin selection
 plugin_paths+=(Tarrasch/zsh-bd)

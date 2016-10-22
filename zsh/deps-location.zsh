@@ -1,2 +1,2 @@
 # load step
-deps="${DOTPATH}/zsh/deps"
+deps=~/.zsh.d/deps
