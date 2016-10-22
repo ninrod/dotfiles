@@ -1052,6 +1052,11 @@ SCHEDULED: %t")))
 #+END_SRC
 
 **** local fixes
+***** org-src-code-map
+#+BEGIN_SRC emacs-lisp
+  (bind-key "C-c C-c" 'org-edit-src-exit org-src-mode-map)
+#+END_SRC
+***** other
 #+BEGIN_SRC emacs-lisp
   ;; (evil-define-key 'normal org-mode-map (kbd "TAB") 'ivy-switch-buffer)
   ;; (when (display-graphic-p)
