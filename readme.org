@@ -50,7 +50,7 @@ now lets write some shell commands.
   5. tries to configure your git information, if applicable.
   6. fetches vim and zsh dependencies
 
-- now open you shell and change your git information
+- now open you shell and don't forget to set up your git information (=vim ~/.options/shell-options.conf=)
 #+BEGIN_SRC shell
 $ git clone https://github.com/ninrod/dotfiles && cd dotfiles && ./install.zsh
 $ vim ~/.options/shell-options.conf
