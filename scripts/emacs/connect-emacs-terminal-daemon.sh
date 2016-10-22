@@ -1,3 +1,3 @@
 #!/bin/sh
 
-emacsclient --server-file=terminal -nw
+emacsclient --server-file=terminal -nw "$@"
