@@ -1,4 +1,3 @@
-" space is my leader key, but '\' remains as leader.
 nmap <Space> <Leader>
 omap <Space> <Leader>
 xmap <Space> <Leader>
@@ -14,10 +13,17 @@ xnoremap <silent>- :noh<cr>
 
 nnoremap <cr> :w<cr>
 
-nnoremap <silent> s :silent! normal za<cr>
+nnoremap <silent> <TAB> :silent! normal za<cr>
 
 nnoremap Q q
 nnoremap q ZQ
+
+nnoremap sh <C-w>h
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+nnoremap sx <C-w>s
+nnoremap sv <C-w>v
 
 nnoremap ( {
 xnoremap ( {
@@ -48,5 +54,6 @@ nmap z<LEFT> z<
 nnoremap  } <C-]>
 nnoremap {  <C-T>
 
+" plugins
 nmap ga <Plug>(EasyAlign)
-xmap <cr> <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)
