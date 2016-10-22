@@ -129,8 +129,6 @@ the right."
       (message "Copied buffer file name '%s' to the clipboard." filename))))
 #+END_SRC
 
-
-
 ** clipboard
 #+BEGIN_SRC emacs-lisp
 (defun copy-to-clipboard ()
@@ -506,6 +504,10 @@ SCHEDULED: %t")))
 *** bind-map
 #+BEGIN_SRC emacs-lisp
 (use-package bind-map :ensure t)
+#+END_SRC
+*** bind-key
+#+BEGIN_SRC emacs-lisp
+(use-package bind-key :ensure t)
 #+END_SRC
 
 *** hydra
@@ -1094,9 +1096,20 @@ SCHEDULED: %t")))
 #+END_SRC
 
 *** magit
+**** magit-status-mode-map fixes
 #+BEGIN_SRC emacs-lisp
 (define-key magit-status-mode-map (kbd "SPC") nil)
 (define-key magit-status-mode-map "go" 'evil-goto-first-line)
+#+END_SRC
+
+**** magit-hunk-section-map fixes
+#+BEGIN_SRC emacs-lisp
+(unbind-key "s" magit-hunk-section-map)
+#+END_SRC
+
+**** magit-file-section-map
+#+BEGIN_SRC emacs-lisp
+(unbind-key "s" magit-file-section-map)
 #+END_SRC
 
 *** eshell
