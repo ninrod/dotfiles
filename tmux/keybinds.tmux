@@ -48,3 +48,16 @@ bind-key m set -g mouse
 
 # toggles tmux bar on/off
 bind-key - set status
+
+# F keys
+# fast window selection
+bind -n F1 select-window -t 1
+bind -n F2 select-window -t 2
+bind -n F3 select-window -t 3
+bind -n F4 select-window -t 4
+bind -n F5 select-window -t 5
+bind -n F6 new-window
+
+# renames tmux window
+# more info here: http://unix.stackexchange.com/a/269542/155613
+bind -n F7 command-prompt "rename-window '%%'"
