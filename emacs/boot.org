@@ -223,6 +223,11 @@ the right."
 #+END_SRC
 
 * tweaks
+** daemon configuration
+#+BEGIN_SRC emacs-lisp
+  (setq server-use-tcp t)
+#+END_SRC
+
 ** scratch buffer tweaks
 #+BEGIN_SRC emacs-lisp
 (setq initial-major-mode 'org-mode)
