@@ -1,7 +1,7 @@
 # -*- mode: sh -*-
 
 # main
-alias e="emacs -nw"
+alias e="connect-emacs-terminal-daemon.sh"
 
 # emacs server management
 alias ed="up-emacs-server.sh"
