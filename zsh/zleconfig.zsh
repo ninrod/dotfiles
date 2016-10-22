@@ -1,21 +1,13 @@
-# with help from @chadhs
-# more info here: https://github.com/syl20bnr/spacemacs/issues/7140#issuecomment-252036519
-
 if [[ -z ${EMACS+x} ]]; then
-
   export EDITOR="vim"
 
   # no delays when switching keymaps
   export KEYTIMEOUT=5
-  # bootstrap vi-mode
   bindkey -v
-
   autoload -Uz edit-command-line
   zle -N edit-command-line
   bindkey -M vicmd 'gs' edit-command-line
-
   # bindkey -M vicmd '?' history-incremental-search-backward
-
 else
   export EDITOR="emacsclient"
   bindkey -e
