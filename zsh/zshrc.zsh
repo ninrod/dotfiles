@@ -5,25 +5,25 @@ if [[ -e "$SHELL_USER_CONFIG_FILE" ]]; then
   . "$SHELL_USER_CONFIG_FILE"
 fi
 
-source $DOTPATH/zsh/envbootstrap.zsh
-source $DOTPATH/zsh/options.zsh
-source $DOTPATH/zsh/completions.zsh
-source $DOTPATH/zsh/termcolors.zsh
-source $DOTPATH/zsh/fixescapecodes.zsh
-source $DOTPATH/zsh/zleconfig.zsh
-source $DOTPATH/zsh/functions.zsh
-source $DOTPATH/zsh/alias.zsh
-source $DOTPATH/zsh/alias-git.zsh
-source $DOTPATH/zsh/alias-dir.zsh
-source $DOTPATH/zsh/alias-docker.zsh
-source $DOTPATH/zsh/alias-emacs.zsh
-source $DOTPATH/zsh/alias-vim.zsh
-source $DOTPATH/zsh/prompt.zsh
-source $DOTPATH/zsh/ninplug.zsh
-source $DOTPATH/zsh/plugins.zsh
+source ~/.zsh.d/envbootstrap.zsh
+source ~/.zsh.d/options.zsh
+source ~/.zsh.d/completions.zsh
+source ~/.zsh.d/termcolors.zsh
+source ~/.zsh.d/fixescapecodes.zsh
+source ~/.zsh.d/zleconfig.zsh
+source ~/.zsh.d/functions.zsh
+source ~/.zsh.d/alias.zsh
+source ~/.zsh.d/alias-git.zsh
+source ~/.zsh.d/alias-dir.zsh
+source ~/.zsh.d/alias-docker.zsh
+source ~/.zsh.d/alias-emacs.zsh
+source ~/.zsh.d/alias-vim.zsh
+source ~/.zsh.d/prompt.zsh
+source ~/.zsh.d/ninplug.zsh
+source ~/.zsh.d/plugins.zsh
 
-# fix dependency location
-source $DOTPATH/zsh/deps-location.zsh
+# lock dependency location
+source ~/.zsh.d/deps-location.zsh
 
 # load step
 load_plugins
