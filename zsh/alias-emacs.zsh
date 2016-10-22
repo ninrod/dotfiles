@@ -1,9 +1,7 @@
 # -*- mode: sh -*-
 
 # main
-alias e="force-start-emacsclient.sh"
-alias em="emacs.sh"
-alias ec="emacsclient.sh"
+alias e="emacs -nw"
 
 # emacs server management
 alias ed="up-emacs-server.sh"
