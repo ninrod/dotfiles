@@ -1,13 +1,6 @@
 if [[ -z ${EMACS+x} ]]; then
   export EDITOR="e"
-
-  # no delays when switching keymaps
-  export KEYTIMEOUT=5
-  bindkey -v
-  autoload -Uz edit-command-line
-  zle -N edit-command-line
-  bindkey -M vicmd 'gs' edit-command-line
-  # bindkey -M vicmd '?' history-incremental-search-backward
+  source ~/.zsh.d/nin-vi-mode.zsh
 else
   export EDITOR="emacsclient"
   bindkey -e
