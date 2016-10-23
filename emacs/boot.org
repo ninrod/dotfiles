@@ -356,16 +356,16 @@ SCHEDULED: %t")))
 *** theme
 **** darktooth (gui)
 #+BEGIN_SRC emacs-lisp
-  (when (display-graphic-p)
-    (use-package darktooth-theme :ensure t)
-    (load-theme 'darktooth t))
+  ;; (when (display-graphic-p)
+  ;;   (use-package darktooth-theme :ensure t)
+  ;;   (load-theme 'darktooth t))
 #+END_SRC
 
 **** cyberpunk (terminal)
 #+BEGIN_SRC emacs-lisp
-  (when (not (display-graphic-p))
-    (use-package cyberpunk-theme :ensure t)
-    (load-theme 'cyberpunk t))
+  ;; (when (not (display-graphic-p))
+  ;;     (use-package cyberpunk-theme :ensure t)
+  ;;     (load-theme 'cyberpunk t))
 #+END_SRC
 
 **** gruvbox
@@ -376,15 +376,18 @@ SCHEDULED: %t")))
 
 **** spacemacs
   #+BEGIN_SRC emacs-lisp
-    ;; (use-package spacemacs-theme :ensure t)
-    ;; (load-theme 'spacemacs-dark t)
+    ;; (when (display-graphic-p)
+    ;;   (use-package spacemacs-theme :ensure t)
+    ;;   (load-theme 'spacemacs-dark t))
   #+END_SRC
 
 **** material
 #+BEGIN_SRC emacs-lisp
-  ;; (use-package material-theme :ensure t)
-  ;; (load-theme 'material t)
-  ;; (load-theme 'material-light t)
+  ;; (when (display-graphic-p)
+    (use-package material-theme :ensure t)
+    ;; (load-theme 'material t)
+    (load-theme 'material-light t)
+  ;; )
 #+END_SRC
 
 **** zenburn 
@@ -408,11 +411,11 @@ SCHEDULED: %t")))
 
       ;; customize separators for Powerline.
       ;; Included separators: alternate, slant, wave, zigzag, nil.
-      ;; (setq ns-use-srgb-colorspace nil)
+      (setq ns-use-srgb-colorspace nil)
       (setq powerline-default-separator 'utf-8)
       (setq spaceline-separator-dir-left '(right . left))
       (setq spaceline-separator-dir-right '(left . right))
-      (setq powerline-default-separator 'alternate)
+      (setq powerline-default-separator 'slant)
 
       ;; hack: is for eyebrowse. nice looking unicode numbers for tagging different layouts
       ;; lifted from TheBB/spaceline readme.md
