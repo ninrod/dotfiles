@@ -368,6 +368,12 @@ SCHEDULED: %t")))
   ;;     (load-theme 'cyberpunk t))
 #+END_SRC
 
+**** tangotango
+#+BEGIN_SRC emacs-lisp
+(use-package tangotango-theme :ensure t)
+(load-theme 'tangotango t)
+#+END_SRC
+
 **** gruvbox
   #+BEGIN_SRC emacs-lisp
     ;; (use-package gruvbox-theme :ensure t)
@@ -384,10 +390,17 @@ SCHEDULED: %t")))
 **** material
 #+BEGIN_SRC emacs-lisp
   ;; (when (display-graphic-p)
-    (use-package material-theme :ensure t)
+    ;; (use-package material-theme :ensure t)
     ;; (load-theme 'material t)
-    (load-theme 'material-light t)
+    ;; (load-theme 'material-light t)
   ;; )
+#+END_SRC
+
+**** solarized
+#+BEGIN_SRC emacs-lisp
+  ;; (use-package solarized-theme :ensure t)
+  ;; (load-theme 'solarized-light t)
+  ;; (load-theme 'material-light t)
 #+END_SRC
 
 **** zenburn 
@@ -399,7 +412,8 @@ SCHEDULED: %t")))
 
 **** leuven
 #+BEGIN_SRC emacs-lisp
-  ;; (load-theme 'leuven t)
+  ;; (when (not (display-graphic-p))
+  ;;   (load-theme 'leuven t))
 #+END_SRC
 
 *** spaceline
@@ -1145,7 +1159,10 @@ SCHEDULED: %t")))
 #+BEGIN_SRC emacs-lisp
 (evil-define-key 'normal prog-mode-map (kbd "TAB") 'nin-origami-toggle-node)
 #+END_SRC
-
+*** ivy
+#+BEGIN_SRC emacs-lisp
+(define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)
+#+END_SRC
 ** SPC
 *** bind-map
 #+BEGIN_SRC emacs-lisp
@@ -1194,6 +1211,7 @@ SCHEDULED: %t")))
     "dk" 'describe-key
     "dv" 'counsel-describe-variable)
   (which-key-declare-prefixes "SPC d" "docs/descriptions/help")
+  (bind-key "C-c c" 'describe-key)
 #+END_SRC
 
 *** e: eyebrowse
