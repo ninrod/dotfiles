@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if ps -ef | ag 'macs.*\-\-daemon' > /dev/null; then
+if ps -ef | ag 'macs.*\-\-daemon.*terminal' > /dev/null; then
   echo "emacs daemon is already running, nothing to do."
   exit 0
 fi
