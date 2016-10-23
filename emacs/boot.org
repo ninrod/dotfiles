@@ -535,6 +535,7 @@ SCHEDULED: %t")))
 #+BEGIN_SRC emacs-lisp
 (use-package bind-map :ensure t)
 #+END_SRC
+
 *** bind-key
 #+BEGIN_SRC emacs-lisp
 (use-package bind-key :ensure t)
@@ -620,6 +621,14 @@ SCHEDULED: %t")))
 **** evil-numbers
 #+BEGIN_SRC emacs-lisp
 (use-package evil-numbers :ensure t)
+#+END_SRC
+
+**** evil-escape
+#+BEGIN_SRC emacs-lisp
+(use-package evil-escape :ensure t
+  :config 
+  (evil-escape-mode)
+)
 #+END_SRC
 
 ** file browsing
@@ -907,8 +916,6 @@ SCHEDULED: %t")))
 
 *** fixes
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "<escape>")      'keyboard-escape-quit)
-
   ;; As I've sequestered < and > when in org mode, we need a workaround.
   (define-key evil-motion-state-map "g>" 'evil-shift-right)
   (define-key evil-motion-state-map "g<" 'evil-shift-left)
@@ -1163,11 +1170,11 @@ SCHEDULED: %t")))
 
 *** ivy
 #+BEGIN_SRC emacs-lisp
-(define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)
-(define-key ivy-mode-map (kbd "<escape>") 'minibuffer-keyboard-quit)
-(define-key ivy-switch-buffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)
-(define-key ivy-occur-mode-map (kbd "<escape>") 'minibuffer-keyboard-quit)
-(define-key ivy-occur-grep-mode-map (kbd "<escape>") 'minibuffer-keyboard-quit)
+(bind-key "<escape>"  'evil-escape ivy-minibuffer-map)
+(bind-key "<escape>"  'evil-escape ivy-switch-buffer-map)
+(bind-key "<escape>"  'evil-escape ivy-mode-map)
+(bind-key "<escape>"  'evil-escape ivy-occur-mode-map)
+(bind-key "<escape>"  'evil-escape ivy-occur-grep-mode-map)
 #+END_SRC
 
 ** SPC
