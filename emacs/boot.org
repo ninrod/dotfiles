@@ -354,11 +354,18 @@ SCHEDULED: %t")))
 * packages
 ** cosmetic
 *** theme
-**** darktooth
+**** darktooth (gui)
 #+BEGIN_SRC emacs-lisp
   (when (display-graphic-p)
     (use-package darktooth-theme :ensure t)
     (load-theme 'darktooth t))
+#+END_SRC
+
+**** cyberpunk (terminal)
+#+BEGIN_SRC emacs-lisp
+  (when (not (display-graphic-p))
+    (use-package cyberpunk-theme :ensure t)
+    (load-theme 'cyberpunk t))
 #+END_SRC
 
 **** gruvbox
@@ -380,11 +387,11 @@ SCHEDULED: %t")))
   ;; (load-theme 'material-light t)
 #+END_SRC
 
-**** zenburn
+**** zenburn 
 #+BEGIN_SRC emacs-lisp
-  (when (not (display-graphic-p))
-    (use-package zenburn-theme :ensure t)
-    (load-theme 'zenburn t))
+  ;; (when (not (display-graphic-p))
+  ;;   (use-package zenburn-theme :ensure t)
+  ;;   (load-theme 'zenburn t))
 #+END_SRC
 
 **** leuven
