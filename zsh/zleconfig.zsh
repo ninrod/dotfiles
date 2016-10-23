@@ -1,5 +1,5 @@
 if [[ -z ${EMACS+x} ]]; then
-  export EDITOR="vim"
+  export EDITOR="e"
 
   # no delays when switching keymaps
   export KEYTIMEOUT=5
