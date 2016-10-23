@@ -1,15 +1,15 @@
 #!/bin/sh
 
 if ps -ef | ag 'macs.*\-\-daemon.*terminal' > /dev/null; then
-  echo "emacs daemon is already running, nothing to do."
+  echo "emacs terminal daemon is already running, nothing to do."
   exit 0
 fi
 
-echo "Emacs daemon is stopped. bringing it up."
+echo "Emacs terminal daemon is stopped. bringing it up."
 
 emacs.sh -nw --daemon=terminal; rc=$?
 if [[ $rc = 0 ]]; then
-  echo 'emacs daemon started. success.'
+  echo 'emacs terminal daemon started. success.'
 else
-  echo "there was a problem starting emacs daemon: $rc"
+  echo "there was a problem starting emacs terminal daemon: $rc"
 fi
