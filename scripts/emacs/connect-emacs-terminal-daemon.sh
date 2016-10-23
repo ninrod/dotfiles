@@ -1,4 +1,4 @@
 #!/bin/sh
 
-up-emacs-server.sh
+terminal-emacs-daemon-up.sh
 emacsclient --server-file=terminal -nw "$@"
