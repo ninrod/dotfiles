@@ -68,7 +68,7 @@ So you can see it in it's full glory [[https://github.com/ninrod/dotfiles/blob/m
 To check out what binds and plugins I use in this config, my [[https://github.com/ninrod/dotfiles/blob/master/vim/keybinds.vim][keybinds.vim]] file is authoritative.
 That said, it is worth noting that I've remapped `<space>` to be an alias to the `<leader>` key.
 * TMUX custom binds
-checkout the [[https://github.com/ninrod/dotfiles/blob/master/tmux/tmux.conf][tmux.conf]] file for tmux binding setup.
+checkout the [[https://github.com/ninrod/dotfiles/blob/master/tmux/keybinds.tmux][keybinds.tmux]] file for binding setup.
 
 * LICENSE
 [[https://www.gnu.org/licenses/gpl-3.0.en.html][GNU General Public License v3]]
