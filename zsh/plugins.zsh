@@ -2,7 +2,7 @@
 source ~/.zsh.d/pj.zsh
 
 # 3rd party plugin selection
-plugin_paths+=(Tarrasch/zsh-bd)
+plugin_paths+=(Tarrasch/bd)
 plugin_paths+=(ninrod/docker-zsh-completion)
 plugin_paths+=(supercrabtree/k)
 plugin_paths+=(zsh-users/zsh-completions)
