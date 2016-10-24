@@ -131,7 +131,7 @@ the right."
 
 ** clipboard
 #+BEGIN_SRC emacs-lisp
-(defun copy-to-clipboard ()
+(defun nin-yank-to-clipboard ()
   "Copies selection to x-clipboard."
   (interactive)
   (if (display-graphic-p)
@@ -147,7 +147,7 @@ the right."
       (message "No region active; can't yank to clipboard!")))
   )
 
-(defun paste-from-clipboard ()
+(defun nin-paste-from-clipboard ()
   "Pastes from x-clipboard."
   (interactive)
   (if (display-graphic-p)
@@ -1376,6 +1376,15 @@ SCHEDULED: %t")))
     "xw" 'woman
   )
   (which-key-declare-prefixes "SPC x" "useful M-x commands")
+#+END_SRC
+
+*** y: clipboard/yank/paste operations
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys spc-map
+  "yy" 'nin-yank-to-clipboard
+  "yp" 'nin-paste-from-clipboard
+)
+(which-key-add-key-based-replacements "SPC y" "clipboard/yank/paste")
 #+END_SRC
 
 *** E: evil
