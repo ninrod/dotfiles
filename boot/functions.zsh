@@ -1,6 +1,6 @@
 ensure_options_file() {
-  if [[ ! -d ~/.options ]]; then
-    mkdir ~/.options
+  if [[ ! -d $SHELL_OPTIONS_DIR ]]; then
+    mkdir -p $SHELL_OPTIONS_DIR
   fi
   local options_file="$(readlink -f $SHELL_OPTIONS_FILE)"
   if [[ ! -e $options_file ]]; then

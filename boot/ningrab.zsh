@@ -1,5 +1,4 @@
 # source optional user custom git url definitions
-url_hash_file=~/.options/urlhash.zsh
 if [[ -e $url_hash_file ]]; then
   typeset -A urlhash
   source $url_hash_file
