@@ -327,7 +327,7 @@ the right."
 #+BEGIN_SRC emacs-lisp
 (setq org-capture-templates
       '(("a" "My TODO task format." entry
-         (file "~/code/sources/life/inbox.org")
+         (file "~/code/sources/life/gtd/inbox.org")
          "* ☛ TODO %?
 SCHEDULED: %t")))
 (defun air-org-task-capture ()
