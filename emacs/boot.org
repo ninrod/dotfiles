@@ -241,7 +241,7 @@ the right."
 
   ;; careful with emacs compiled with `nox'
   (scroll-bar-mode -1)
-
+  (fringe-mode 0)
   (tool-bar-mode -1)
   (menu-bar-mode -1)
   (fset 'yes-or-no-p 'y-or-n-p)
@@ -257,7 +257,6 @@ the right."
 ** gui
 #+BEGIN_SRC emacs-lisp
   (when (display-graphic-p)
-    (fringe-mode 0)
     (when (eq system-type 'darwin)
         ;; start maximized
         ;; (toggle-frame-maximized)
