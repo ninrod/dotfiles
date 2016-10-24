@@ -4,19 +4,22 @@
 alias e="connect-emacs-terminal-daemon.sh"
 alias eg="connect-emacs-gui-daemon.sh"
 
-# emacs terminal daemon
+# start daemon
 alias ed="terminal-emacs-daemon-up.sh"
-alias ek="kill-terminal-emacs-server.sh"
-alias er='ek && ed'
-
-# emacs gui daemon
 alias egd="gui-emacs-daemon-up.sh"
-alias egk="kill-gui-emacs-server.sh"
-alias egr='egk && egd'
+alias eed="ed; egd"
 
-# inspect specific emacs daemon instances
+# kill deamon
+alias ek="kill-terminal-emacs-server.sh"
+alias egk="kill-gui-emacs-server.sh"
+alias eek="ek; egk"
+
+# restart daemon
+alias er='ek && ed'
+alias egr='egk && egd'
+alias eer='er; egr;'
+
+# inspect daemon state
 alias eu="ps -ef | ag 'macs.*\-\-daemon.*terminal'"
 alias egu="ps -ef | ag 'macs.*\-\-daemon.*gui'"
-
-# inspect all emacs instances 
 alias ep="ps -ef | ag macs"

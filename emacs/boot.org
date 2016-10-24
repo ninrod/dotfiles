@@ -657,7 +657,7 @@ SCHEDULED: %t")))
         (setq ranger-hide-cursor nil))
 #+END_SRC
 ** git
-*** git-gutter just a test
+*** git-gutter
 #+BEGIN_SRC emacs-lisp
 (use-package git-gutter :ensure t
   :config
@@ -665,7 +665,7 @@ SCHEDULED: %t")))
 )
 #+END_SRC
 
-** magit
+*** magit
 - for more info about magit-display-buffer-function, see [[http://stackoverflow.com/q/39933868/4921402][here]].
 #+BEGIN_SRC emacs-lisp
   (use-package magit :ensure t
