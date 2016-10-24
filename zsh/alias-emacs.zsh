@@ -5,8 +5,8 @@ alias e="connect-emacs-terminal-daemon.sh"
 alias em="connect-emacs-gui-daemon.sh"
 
 # start daemon
-alias ed="terminal-emacs-daemon-up.sh"
-alias emd="gui-emacs-daemon-up.sh"
+alias ed="up-terminal-emacs-daemon.sh"
+alias emd="up-gui-emacs-daemon.sh"
 alias eed="ed; emd"
 
 # kill deamon

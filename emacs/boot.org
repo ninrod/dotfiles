@@ -257,8 +257,6 @@ the right."
 ** gui
 #+BEGIN_SRC emacs-lisp
   (when (display-graphic-p)
-    ;; emacs without X does not have scrollbars
-
     ;; osx does not lose screen real state with menu bar mode on
     (when (eq system-type 'darwin)
       (progn
