@@ -7,7 +7,7 @@ fi
 
 echo "Emacs terminal daemon is stopped. bringing it up."
 
-emacs.sh -nw --daemon=terminal; rc=$?
+emacs -nw --daemon=terminal; rc=$?
 if [[ $rc = 0 ]]; then
   echo 'emacs terminal daemon started. success.'
 else

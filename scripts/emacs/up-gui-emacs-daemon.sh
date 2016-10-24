@@ -7,7 +7,7 @@ fi
 
 echo "Emacs gui daemon is stopped. bringing it up."
 
-emacs.sh --daemon=gui; rc=$?
+emacs --daemon=gui; rc=$?
 if [[ $rc = 0 ]]; then
   echo 'emacs gui daemon started. success.'
 else
