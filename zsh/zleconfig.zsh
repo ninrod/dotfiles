@@ -1,6 +1,14 @@
 if [[ -z ${EMACS+x} ]]; then
   export EDITOR="e"
-  source ~/.zsh.d/nin-vi-mode.zsh
+
+  # simplest possible vi key configuration
+  # no delays when switching keymaps
+  export KEYTIMEOUT=5
+  # bootstrap vi-mode
+  bindkey -v
+
+  # much more complex vi keys configuration
+  # source ~/.zsh.d/nin-vi-mode.zsh
 else
   export EDITOR="emacsclient"
   bindkey -e
