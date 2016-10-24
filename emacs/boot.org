@@ -378,9 +378,10 @@ SCHEDULED: %t")))
 
 **** tangotango
 #+BEGIN_SRC emacs-lisp
-  (use-package tangotango-theme :ensure t)
-  (load-theme 'tangotango t)
+  ;; (use-package tangotango-theme :ensure t)
+  ;; (load-theme 'tangotango t)
 #+END_SRC
+
 **** gruvbox
   #+BEGIN_SRC emacs-lisp
     ;; (use-package gruvbox-theme :ensure t)
@@ -389,9 +390,8 @@ SCHEDULED: %t")))
 
 **** spacemacs
   #+BEGIN_SRC emacs-lisp
-    ;; (when (display-graphic-p)
-    ;;   (use-package spacemacs-theme :ensure t)
-    ;;   (load-theme 'spacemacs-dark t))
+    (use-package spacemacs-theme :ensure t)
+    (load-theme 'spacemacs-light t)
   #+END_SRC
 
 **** material
@@ -622,9 +622,9 @@ SCHEDULED: %t")))
 **** evil-anzu
 - config section hack: see [[https://github.com/TheBB/spaceline/issues/69][TheBB/spaceline#69]]
 #+BEGIN_SRC emacs-lisp
-(if (fboundp 'scroll-bar-mode)
-  (use-package evil-anzu :ensure t
-    :config (setq anzu-cons-mode-line-p nil)))
+;(if (fboundp 'scroll-bar-mode)
+;  (use-package evil-anzu :ensure t
+;    :config (setq anzu-cons-mode-line-p nil)))
 #+END_SRC
 
 **** evil-numbers

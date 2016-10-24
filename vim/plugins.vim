@@ -1,8 +1,8 @@
 " plugins that require babysitting
-source ~/.vim/conf/gruvbox-conf.vim
-source ~/.vim/conf/lightline-conf.vim
-source ~/.vim/conf/rainbow-conf.vim
-source ~/.vim/conf/vim-multiple-cursors-conf.vim
+source ~/.vim/theme-conf.vim
+source ~/.vim/lightline-conf.vim
+source ~/.vim/rainbow-conf.vim
+source ~/.vim/vim-multiple-cursors-conf.vim
 
 " core plugins, stock configuration
 call LoadPlugin('bronson/vim-visual-star-search')
@@ -17,4 +17,4 @@ call LoadPlugin('tpope/vim-surround')
 call LoadPlugin('wellle/targets.vim')
 
 " once in a lifetime used plugins
-" call LoadPlugin('edkolev/tmuxline.vim')
+call LoadPlugin('edkolev/tmuxline.vim')
