@@ -245,6 +245,9 @@ the right."
   (tool-bar-mode -1)
   (menu-bar-mode -1)
   (fset 'yes-or-no-p 'y-or-n-p)
+  
+  ;; silence, please.
+  (setq visible-bell t)
 
   ;; save last cursor position
   (save-place-mode 1) 
