@@ -2,7 +2,7 @@
 
 # main
 alias e="connect-emacs-terminal-daemon.sh"
-alias em="connect-emacs-gui-daemon.sh"
+alias em="background-connect-gui.sh"
 
 # start daemon
 alias ed="up-terminal-emacs-daemon.sh"
