@@ -656,6 +656,11 @@ SCHEDULED: %t")))
         (setq ranger-show-dotfiles t)
         (setq ranger-hide-cursor nil))
 #+END_SRC
+** git
+*** git-gutter
+#+BEGIN_SRC emacs-lisp
+(use-package git-gutter :ensure t)
+#+END_SRC
 
 ** magit
 - for more info about magit-display-buffer-function, see [[http://stackoverflow.com/q/39933868/4921402][here]].
