@@ -657,9 +657,12 @@ SCHEDULED: %t")))
         (setq ranger-hide-cursor nil))
 #+END_SRC
 ** git
-*** git-gutter
+*** git-gutter just a test
 #+BEGIN_SRC emacs-lisp
-(use-package git-gutter :ensure t)
+(use-package git-gutter :ensure t
+  :config
+    (global-git-gutter-mode +1)
+)
 #+END_SRC
 
 ** magit
