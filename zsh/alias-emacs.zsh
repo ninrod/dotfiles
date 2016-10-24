@@ -2,22 +2,22 @@
 
 # main
 alias e="connect-emacs-terminal-daemon.sh"
-alias eg="connect-emacs-gui-daemon.sh"
+alias em="connect-emacs-gui-daemon.sh"
 
 # start daemon
 alias ed="terminal-emacs-daemon-up.sh"
-alias egd="gui-emacs-daemon-up.sh"
-alias eed="ed; egd"
+alias emd="gui-emacs-daemon-up.sh"
+alias eed="ed; emd"
 
 # kill deamon
 alias ek="kill-terminal-emacs-server.sh"
-alias egk="kill-gui-emacs-server.sh"
-alias eek="ek; egk"
+alias emk="kill-gui-emacs-server.sh"
+alias eek="ek; emk"
 
 # restart daemon
 alias er='ek && ed'
-alias egr='egk && egd'
-alias eer='er; egr;'
+alias emr='egk && emd'
+alias eer='er; emr;'
 
 # inspect daemon state
 alias eu="ps -ef | ag 'macs.*\-\-daemon.*terminal'"
