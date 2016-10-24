@@ -7,7 +7,7 @@ fi
 
 echo 'emacs gui server is up. proceeding to the kill'
 
-emacsclient --server-file=gui -e "(kill-emacs)"; rc=$?
+emacsclient.sh --server-file=gui -e "(kill-emacs)"; rc=$?
 
 if [[ $rc = 0 ]]; then
   echo 'emacs gui server killed.'

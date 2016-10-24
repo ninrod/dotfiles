@@ -7,7 +7,7 @@ fi
 
 echo 'emacs terminal server is up. proceeding to the kill'
 
-emacsclient --server-file=terminal -e "(kill-emacs)"; rc=$?
+emacsclient.sh --server-file=terminal -e "(kill-emacs)"; rc=$?
 
 if [[ $rc = 0 ]]; then
   echo 'emacs terminal daemon killed.'
