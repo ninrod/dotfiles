@@ -4,16 +4,17 @@
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P)" && cd $SCRIPTPATH
 GIT_ROOT=$(git rev-parse --show-toplevel)
 
-source $GIT_ROOT/zsh/constants.zsh
 source $GIT_ROOT/zsh/termcolors.zsh
 source $GIT_ROOT/boot/functions.zsh
-source $GIT_ROOT/boot/ningrab.zsh
+source $GIT_ROOT/zsh/constants.zsh
 source $GIT_ROOT/boot/symlinks.zsh
-source $GIT_ROOT/boot/zsh-deps.zsh
-source $GIT_ROOT/boot/vim-deps.zsh
 
 ensure_dotpath
 source $SHELL_OPTIONS_FILE
 export DOTPATH
+
+source $GIT_ROOT/boot/ningrab.zsh
+source $GIT_ROOT/boot/zsh-deps.zsh
+source $GIT_ROOT/boot/vim-deps.zsh
 
 apply_git_info

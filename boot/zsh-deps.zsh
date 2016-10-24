@@ -1,6 +1,6 @@
 # fetch zsh deps
-source $GIT_ROOT/zsh/deps-location.zsh
-mkdir -p $deps && cd $deps
+source $GIT_ROOT/zsh/constants.zsh
+mkdir -p $zsh_deps && cd $zsh_deps
 
 ningrab Tarrasch/bd
 ningrab supercrabtree/k
