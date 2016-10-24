@@ -27,19 +27,19 @@ and snippets to use within your own configuration files.
 * Install Instructions
 
 - First off, I strongly recommend using [[https://github.com/gnachman/iTerm2.git][iTerm2]] on OSx.
-- Secondly, this is for unix systems: `GNU/Linux`, `OSx`, etc... It should work on theory on windows, but I've faced a lot of configuration issues and ended up abandoning windows support.
+- Secondly, this is for unix systems: =GNU/Linux=, =OSx=, etc... It should work on theory on windows, but I've faced a lot of configuration issues and ended up abandoning windows support.
 - configure your terminal to use the [[https://github.com/morhetz/gruvbox][gruvbox]] theme. There's a [[https://github.com/ninrod/themes.git][ninrod/themes]] repo within this repo that can help you with that. 
 - *recommendation*: I use and recommend the excelent [[https://github.com/larsenwork/monoid][monoid]] font.
-- now get `vim` 8+ with [[http://vimcasts.org/blog/2013/11/getting-vim-with-clipboard-support][+clipboard]].
+- now get =vim= 8+ with [[http://vimcasts.org/blog/2013/11/getting-vim-with-clipboard-support][+clipboard]].
 - get [[https://github.com/tmux/tmux.git][tmux]] 2.3+
-- get [[https://github.com/zsh-users/zsh.git][zsh]] 5.2+ and make sure that `/bin/zsh` is valid. (if not: `$ cd /bin && sudo ln -s $(command -v zsh) zsh`)
-- `cat /etc/shells` and verify that zsh appears on the list. If not, `sudo vi /etc/shells` and append `/bin/zsh`
-- get [[https://github.com/ggreer/the_silver_searcher.git][ag]] (you can `brew install ag` on OSx).
+- get [[https://github.com/zsh-users/zsh.git][zsh]] 5.2+ and make sure that =/bin/zsh= is valid. (if not: =$ cd /bin && sudo ln -s $(command -v zsh) zsh=)
+- =cat /etc/shells= and verify that zsh appears on the list. If not, =sudo vi /etc/shells= and append =/bin/zsh=
+- get [[https://github.com/ggreer/the_silver_searcher.git][ag]] (you can =brew install ag= on OSx).
 - if you're on OSx, brew install these:
-  1. =brew install coreutils= (mainly because `BSD` `ls` `CLICOLOR` sucks).
-  2. =brew install reattach-to-user-namespace= (Mainly because of the `open` utility. [[https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard.git][more info here]]).
+  1. =brew install coreutils= (mainly because =BSD= =ls= =CLICOLOR= sucks).
+  2. =brew install reattach-to-user-namespace= (Mainly because of the =open= utility. [[https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard.git][more info here]]).
   3. =brew install diff-so-fancy=
-- *Kind remark*: for the moment (until I change the script to back it up for you), I'll overwrite your `~/.gitconfig` file, so if you have something important in it, now would be the perfect moment to back it up.
+- *Kind remark*: for the moment (until I change the script to back it up for you), I'll overwrite your =~/.gitconfig= file, so if you have something important in it, now would be the perfect moment to back it up.
 
 * Shell time
 now lets write some shell commands.
@@ -66,7 +66,7 @@ I maintain my configuration using an org-mode file, trough org-babel.
 So you can see it in it's full glory [[https://github.com/ninrod/dotfiles/blob/master/emacs/boot.org][here]].
 * VIM: Powerful shell text editor. Tweaked with plugins.
 To check out what binds and plugins I use in this config, my [[https://github.com/ninrod/dotfiles/blob/master/vim/keybinds.vim][keybinds.vim]] file is authoritative.
-That said, it is worth noting that I've remapped `<space>` to be an alias to the `<leader>` key.
+That said, it is worth noting that I've remapped =<space>= to be an alias to the =<leader>= key.
 * TMUX custom binds
 checkout the [[https://github.com/ninrod/dotfiles/blob/master/tmux/keybinds.tmux][keybinds.tmux]] file for binding setup.
 
