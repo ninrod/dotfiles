@@ -46,16 +46,16 @@ now lets write some shell commands.
 
 - *note*: the install.zsh script basically does this:
   1. mounts symlinks on your home folder;
-  2. creates ~/.options/shell-options.conf file, if not existent
-  3. sources the ~/.options/shell-options.conf file
+  2. creates ~/.options/shell-options.zsh file, if not existent
+  3. sources the ~/.options/shell-options.zsh file
   4. overwrites your .gitconfig (so back it up if you have something important)
   5. tries to configure your git information, if applicable.
   6. fetches vim and zsh dependencies
 
-- now open you shell and don't forget to set up your git information (=vim ~/.options/shell-options.conf=)
+- now open you shell and don't forget to set up your git information (=vim ~/.options/shell-options.zsh=)
 #+BEGIN_SRC shell
 $ git clone https://github.com/ninrod/dotfiles && cd dotfiles && ./install.zsh
-$ vim ~/.options/shell-options.conf
+$ vim ~/.options/shell-options.zsh
 $ exec zsh
 #+END_SRC
 

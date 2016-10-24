@@ -2,14 +2,14 @@ ensure_options_file() {
   if [[ ! -d ~/.options ]]; then
     mkdir ~/.options
   fi
-  local options_file="$(readlink -f ~/.options/shell-options.conf)"
+  local options_file="$(readlink -f $SHELL_OPTIONS_FILE)"
   if [[ ! -e $options_file ]]; then
-    cp boot/options/shell-options.conf ~/.options
+    cp boot/options/shell-options.zsh $SHELL_OPTIONS_DIR
   fi
 }
 ensure_dotpath() {
   ensure_options_file
-  local options_file="$(readlink -f ~/.options/shell-options.conf)"
+  local options_file="$(readlink -f $SHELL_OPTIONS_FILE)"
   local temp_file="$(readlink -f ~/.options/temp.conf)"
   awk '!/^DOTPATH/' $options_file > $temp_file && mv $temp_file $options_file
   echo "DOTPATH=${GIT_ROOT/$HOME/~}" >> $options_file
