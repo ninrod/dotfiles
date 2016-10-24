@@ -16,10 +16,10 @@ alias eek="ek; emk"
 
 # restart daemon
 alias er='ek && ed'
-alias emr='egk && emd'
+alias emr='emk && emd'
 alias eer='er; emr;'
 
 # inspect daemon state
 alias eu="ps -ef | ag 'macs.*\-\-daemon.*terminal'"
-alias egu="ps -ef | ag 'macs.*\-\-daemon.*gui'"
-alias ep="ps -ef | ag macs"
+alias emu="ps -ef | ag 'macs.*\-\-daemon.*gui'"
+alias eeu="ps -ef | ag macs"

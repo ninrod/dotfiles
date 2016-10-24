@@ -257,13 +257,14 @@ the right."
 ** gui
 #+BEGIN_SRC emacs-lisp
   (when (display-graphic-p)
-    ;; osx does not lose screen real state with menu bar mode on
+    (fringe-mode 0)
     (when (eq system-type 'darwin)
-      (progn
         ;; start maximized
-        (toggle-frame-maximized)
-        (set-frame-parameter nil 'fullscreen 'fullboth)
-        (menu-bar-mode 1))))
+        ;; (toggle-frame-maximized)
+        ;; (set-frame-parameter nil 'fullscreen 'fullboth)
+
+        ;; osx does not lose screen real state with menu bar mode on
+        (menu-bar-mode 1)))
 #+END_SRC
 
 ** indentation
