@@ -238,6 +238,10 @@ the right."
 ** ui
 #+BEGIN_SRC emacs-lisp
   (setq inhibit-startup-message t)
+
+  ;; careful with emacs compiled with `nox'
+  (scroll-bar-mode -1)
+
   (tool-bar-mode -1)
   (menu-bar-mode -1)
   (fset 'yes-or-no-p 'y-or-n-p)
@@ -254,7 +258,6 @@ the right."
 #+BEGIN_SRC emacs-lisp
   (when (display-graphic-p)
     ;; emacs without X does not have scrollbars
-    (scroll-bar-mode -1)
 
     ;; osx does not lose screen real state with menu bar mode on
     (when (eq system-type 'darwin)
