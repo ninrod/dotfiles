@@ -240,12 +240,16 @@ the right."
   (setq inhibit-startup-message t)
 
   ;; careful with emacs compiled with `nox'
-  (scroll-bar-mode -1)
-  (fringe-mode 0)
+  (if (fboundp 'scroll-bar-mode)
+    (scroll-bar-mode -1))
+
+  (if (fboundp 'fringe-mode)
+    (fringe-mode 0))
+
   (tool-bar-mode -1)
   (menu-bar-mode -1)
   (fset 'yes-or-no-p 'y-or-n-p)
-  
+
   ;; silence, please.
   (setq visible-bell t)
 
@@ -618,8 +622,9 @@ SCHEDULED: %t")))
 **** evil-anzu
 - config section hack: see [[https://github.com/TheBB/spaceline/issues/69][TheBB/spaceline#69]]
 #+BEGIN_SRC emacs-lisp
-(use-package evil-anzu :ensure t
-  :config (setq anzu-cons-mode-line-p nil))
+(if (fboundp 'scroll-bar-mode)
+  (use-package evil-anzu :ensure t
+    :config (setq anzu-cons-mode-line-p nil)))
 #+END_SRC
 
 **** evil-numbers
