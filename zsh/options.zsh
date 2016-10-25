@@ -1,5 +1,3 @@
-# zsh options {{{
-
 # defining word endings
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
@@ -32,5 +30,3 @@ unsetopt nomatch # but when pattern matching fails, simply use the command as is
 
 # better completion
 setopt menu_complete
-
-# }}}
