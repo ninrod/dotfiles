@@ -68,7 +68,7 @@ set splitbelow
 set splitright
 
 " Highlight the current line
-set cursorline
+" set cursorline
 
 " Visual autocomplete for command menu (e.g. :e ~/path/to/file)
 " partially lifted from http://stackoverflow.com/a/15583861/4921402
