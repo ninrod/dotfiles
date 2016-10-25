@@ -221,7 +221,7 @@ the right."
 ** daemon configuration
 - more info [[http://www.tychoish.com/posts/running-multiple-emacs-daemons-on-a-single-system/][here]]
 #+BEGIN_SRC emacs-lisp
-  (setq server-use-tcp t)
+  ;; (setq server-use-tcp t)
 #+END_SRC
 
 ** scratch buffer tweaks
@@ -357,18 +357,23 @@ SCHEDULED: %t")))
 * packages
 ** cosmetic
 *** theme
-**** darktooth (gui)
+**** dracula
 #+BEGIN_SRC emacs-lisp
-  ;; (when (display-graphic-p)
-  ;;   (use-package darktooth-theme :ensure t)
-  ;;   (load-theme 'darktooth t))
+  (use-package dracula-theme :ensure t
+    :init (load-theme 'dracula t))
 #+END_SRC
 
-**** cyberpunk (terminal)
+
+**** darktooth
 #+BEGIN_SRC emacs-lisp
-  ;; (when (not (display-graphic-p))
+  ;;   (use-package darktooth-theme :ensure t)
+  ;;   (load-theme 'darktooth t)
+#+END_SRC
+
+**** cyberpunk
+#+BEGIN_SRC emacs-lisp
   ;;     (use-package cyberpunk-theme :ensure t)
-  ;;     (load-theme 'cyberpunk t))
+  ;;     (load-theme 'cyberpunk t)
 #+END_SRC
 
 **** tangotango
@@ -385,17 +390,15 @@ SCHEDULED: %t")))
 
 **** spacemacs
   #+BEGIN_SRC emacs-lisp
-    (use-package spacemacs-theme :ensure t)
-    (load-theme 'spacemacs-light t)
+    ;; (use-package spacemacs-theme :ensure t)
+    ;; (load-theme 'spacemacs-light t)
   #+END_SRC
 
 **** material
 #+BEGIN_SRC emacs-lisp
-  ;; (when (display-graphic-p)
     ;; (use-package material-theme :ensure t)
     ;; (load-theme 'material t)
     ;; (load-theme 'material-light t)
-  ;; )
 #+END_SRC
 
 **** solarized
@@ -407,15 +410,13 @@ SCHEDULED: %t")))
 
 **** zenburn 
 #+BEGIN_SRC emacs-lisp
-  ;; (when (not (display-graphic-p))
   ;;   (use-package zenburn-theme :ensure t)
-  ;;   (load-theme 'zenburn t))
+  ;;   (load-theme 'zenburn t)
 #+END_SRC
 
 **** leuven
 #+BEGIN_SRC emacs-lisp
-  ;; (when (not (display-graphic-p))
-  ;;   (load-theme 'leuven t))
+  ;;   (load-theme 'leuven t)
 #+END_SRC
 
 *** spaceline
@@ -617,9 +618,8 @@ SCHEDULED: %t")))
 **** evil-anzu
 - config section hack: see [[https://github.com/TheBB/spaceline/issues/69][TheBB/spaceline#69]]
 #+BEGIN_SRC emacs-lisp
-;(if (fboundp 'scroll-bar-mode)
-;  (use-package evil-anzu :ensure t
-;    :config (setq anzu-cons-mode-line-p nil)))
+   (use-package evil-anzu :ensure t
+     :config (setq anzu-cons-mode-line-p nil))
 #+END_SRC
 
 **** evil-numbers
@@ -684,16 +684,16 @@ SCHEDULED: %t")))
 ** org
 *** Org Bullets
   #+BEGIN_SRC emacs-lisp
-  (use-package org-bullets
-    :ensure t
-    :config
-      (progn
-        (when (display-graphic-p)
-          (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
-        (setq org-ellipsis "…")))
+    (use-package org-bullets
+      :ensure t
+      :config
+      (add-hook 'org-mode-hook 
+                (lambda () 
+                  (org-bullets-mode 1)))
+      (setq org-ellipsis "…"))
 
-;Other interesting characters are ▼, ↴, ⬎, ⤷,…, and ⋱.
-;(setq org-ellipsis "⤵")
+    ;; Other interesting characters are ▼, ↴, ⬎, ⤷,…, and ⋱.
+    ;; (setq org-ellipsis "⤵")
   #+END_SRC
 
 *** Reveal.js
