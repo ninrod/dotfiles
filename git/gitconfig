@@ -9,7 +9,7 @@
 [difftool]
   prompt = false
 [core]
-  editor = connect-emacs-terminal-daemon.sh
+  editor = vim
   autocrlf = input
 [color]
   ui = auto
