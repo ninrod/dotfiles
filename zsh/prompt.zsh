@@ -6,7 +6,7 @@ build_prompt_char() {
   if [[ "${SHELL_IS_DOCKERIZED}" == "true" ]] && [[ -n ${DOT_DOCKER_PROMPT_CHAR+x} ]]; then
     pc="$DOT_DOCKER_PROMPT_CHAR"
   fi
-  local prompt_char="%(?.%F{magenta}.%F{red})${pc:-$}%f"
+  local prompt_char="%(?.%F{green}.%F{red})${pc:-$}%f"
   echo -n "$prompt_char"
 }
 
