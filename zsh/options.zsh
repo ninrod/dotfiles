@@ -5,8 +5,8 @@ WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
 # history config options
 HISTFILE=$HOME/.zsh_history
-HISTSIZE=20000
-SAVEHIST=20000
+HISTSIZE=2000000
+SAVEHIST=2000000
 
 setopt append_history
 setopt extended_history

@@ -8,19 +8,18 @@ ln -sf tpope/vim-pathogen/autoload/pathogen.vim .
 bundle=$GIT_ROOT/vim/bundle
 mkdir -p $bundle && cd $bundle
 
-# ningrab morhetz/gruvbox
-ningrab dracula
-ningrab lightline.vim
-ningrab tmuxline.vim
-ningrab vim-visual-star-search
-ningrab vim-wordmotion
-ningrab supertab
-ningrab auto-pairs
-ningrab vim-easy-align
-ningrab rainbow
-ningrab vim-multiple-cursors
-ningrab vim-exchange
-ningrab vim-commentary
-ningrab vim-repeat
-ningrab vim-surround
-ningrab targets.vim
+ningrab dracula_vim
+ningrab itchyny_lightline.vim
+ningrab edkolev_tmuxline.vim
+ningrab bronson_vim-visual-star-search
+ningrab chaoren_vim-wordmotion
+ningrab ervandew_supertab
+ningrab jiangmiao_auto-pairs
+ningrab junegunn_vim-easy-align
+ningrab luochen1990_rainbow
+ningrab ninrod_vim-multiple-cursors
+ningrab tommcdo_vim-exchange
+ningrab tpope_vim-commentary
+ningrab tpope_vim-repeat
+ningrab tpope_vim-surround
+ningrab wellle_targets.vim
