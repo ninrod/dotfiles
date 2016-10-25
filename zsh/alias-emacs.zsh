@@ -13,4 +13,4 @@ alias ek="kill-gui-emacs-server.sh"
 alias er='ek && ed'
 
 # inspect daemon state
-alias eu="ps -ef | ag 'macs.*\-\-daemon.*gui'"
+alias eu="ps -ef | ag 'macs.*\-\-daemon'"
