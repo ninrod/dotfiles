@@ -1,20 +1,26 @@
+# tpope's pathogen install procedure
+autoload_folder=$GIT_ROOT/vim/autoload
+mkdir -p $autoload_folder && cd $autoload_folder
+ningrab tpope/vim-pathogen
+ln -sf tpope/vim-pathogen/autoload/pathogen.vim .
+
 # fetch vim deps
-plugged=$GIT_ROOT/vim/plugged
-mkdir -p $plugged && cd $plugged
+bundle=$GIT_ROOT/vim/bundle
+mkdir -p $bundle && cd $bundle
 
 # ningrab morhetz/gruvbox
-ningrab dracula/vim
-ningrab itchyny/lightline.vim
-ningrab edkolev/tmuxline.vim
-ningrab bronson/vim-visual-star-search
-ningrab chaoren/vim-wordmotion
-ningrab ervandew/supertab
-ningrab jiangmiao/auto-pairs
-ningrab junegunn/vim-easy-align
-ningrab luochen1990/rainbow
-ningrab ninrod/vim-multiple-cursors
-ningrab tommcdo/vim-exchange
-ningrab tpope/vim-commentary
-ningrab tpope/vim-repeat
-ningrab tpope/vim-surround
-ningrab wellle/targets.vim
+ningrab dracula
+ningrab lightline.vim
+ningrab tmuxline.vim
+ningrab vim-visual-star-search
+ningrab vim-wordmotion
+ningrab supertab
+ningrab auto-pairs
+ningrab vim-easy-align
+ningrab rainbow
+ningrab vim-multiple-cursors
+ningrab vim-exchange
+ningrab vim-commentary
+ningrab vim-repeat
+ningrab vim-surround
+ningrab targets.vim

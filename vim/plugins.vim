@@ -1,20 +1,18 @@
-" plugins that require babysitting
-source ~/.vim/theme-conf.vim
-source ~/.vim/lightline-conf.vim
-source ~/.vim/rainbow-conf.vim
-source ~/.vim/vim-multiple-cursors-conf.vim
+execute pathogen#infect()
 
-" core plugins, stock configuration
-call LoadPlugin('bronson/vim-visual-star-search')
-call LoadPlugin('chaoren/vim-wordmotion')
-call LoadPlugin('ervandew/supertab')
-call LoadPlugin('jiangmiao/auto-pairs')
-call LoadPlugin('junegunn/vim-easy-align')
-call LoadPlugin('tommcdo/vim-exchange')
-call LoadPlugin('tpope/vim-commentary')
-call LoadPlugin('tpope/vim-repeat')
-call LoadPlugin('tpope/vim-surround')
-call LoadPlugin('wellle/targets.vim')
+" appearance
+let g:lightline = {'colorscheme': 'Dracula'}
+let g:tmuxline_powerline_separators = 0
+set background=dark
+colorscheme dracula
 
-" once in a lifetime used plugins
-call LoadPlugin('edkolev/tmuxline.vim')
+" fix contrast issue with solarized dark.
+" https://github.com/airblade/vim-gitgutter/issues/164
+highlight clear SignColumn
+
+" rainbow configs
+let g:rainbow_active = 1
+
+" multiple cursors config
+let g:multi_cursor_exit_from_visual_mode=0
+let g:multi_cursor_exit_from_insert_mode=0
