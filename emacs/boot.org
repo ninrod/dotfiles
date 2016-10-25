@@ -428,11 +428,11 @@ SCHEDULED: %t")))
 
       ;; customize separators for Powerline.
       ;; Included separators: alternate, slant, wave, zigzag, nil.
-      (setq ns-use-srgb-colorspace nil)
+      ;; (setq ns-use-srgb-colorspace nil)
       (setq powerline-default-separator 'utf-8)
       (setq spaceline-separator-dir-left '(right . left))
       (setq spaceline-separator-dir-right '(left . right))
-      (setq powerline-default-separator 'slant)
+      (setq powerline-default-separator 'alternate)
 
       ;; hack: is for eyebrowse. nice looking unicode numbers for tagging different layouts
       ;; lifted from TheBB/spaceline readme.md
