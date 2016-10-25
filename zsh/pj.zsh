@@ -8,12 +8,19 @@ fi
 project_jump () {
   emulate -L zsh
   project=$1
+
+  if [[ -z ${1+x} ]] && [[ -d ${PROJECT_PATHS[1]} ]]; then
+    cd ${PROJECT_PATHS[1]}
+    return 0
+  fi
+
   for chosen_project ($PROJECT_PATHS); do
-    if [[ -d "$chosen_project" ]] && [[ "${chosen_project:t}" == "$project" ]] then
+    if [[ -d "$chosen_project" ]] && [[ "${chosen_project:t}" == "$project" ]]; then
       cd "$chosen_project"
       return 0
     fi
   done
+
   echo "No such project '${project}'."
 }
 
