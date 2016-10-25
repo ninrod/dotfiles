@@ -1,11 +1,3 @@
-# source optional user custom git url definitions
-echo "vai entrar na logica do url_hash: $url_hash_file"
-if [[ -e $url_hash_file ]]; then
-  echo "entrou"
-  typeset -A urlhash
-  source $url_hash_file
-fi
-
 build_git_url() {
   local name="$1"
   local gitmask='https://github.com/'

@@ -1,5 +1,5 @@
 # fetch zsh deps
-source $GIT_ROOT/zsh/constants.zsh
+source ~/.zsh.d/constants.zsh
 mkdir -p $zsh_deps && cd $zsh_deps
 
 ningrab Tarrasch/bd

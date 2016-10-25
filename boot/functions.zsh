@@ -37,13 +37,3 @@ updatelinks() {
   fi
   ln -s $symlink_new_target $symlink
 }
-apply_git_info() {
-  if [[ -n ${GIT_USER_NAME+x} ]]; then
-    export GIT_USER_NAME
-    git config --global user.name "$GIT_USER_NAME"
-  fi
-  if [[ -n ${GIT_USER_EMAIL+x} ]]; then
-    export GIT_USER_EMAIL
-    git config --global user.email "$GIT_USER_EMAIL"
-  fi
-}
