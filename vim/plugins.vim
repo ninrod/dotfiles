@@ -2,7 +2,7 @@ execute pathogen#infect()
 
 " appearance
 let g:lightline = {'colorscheme': 'Dracula'}
-" let g:tmuxline_powerline_separators = 0
+let g:tmuxline_powerline_separators = 0
 " set background=light
 colorscheme dracula
 
