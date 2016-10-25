@@ -23,4 +23,3 @@ alias tarx='tar -zxvf'
 alias re='exec zsh'
 alias r='echo -e "${Red}you have pressed \`r\`. careful. this repeats last command."'
 alias dot='la $(find ~ -maxdepth 1 -type l)'
-

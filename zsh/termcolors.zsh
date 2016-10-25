@@ -1,5 +1,4 @@
 # terminal colors
-
 TC='\e['
 Rst="${TC}0m"     # Reset all coloring and style
 Black="${TC}30m";

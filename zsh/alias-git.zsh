@@ -1,5 +1,3 @@
-# -*- mode: sh -*-
-
 # check
 alias g='git status -sb'
 alias gi='builtin cd $(git rev-parse --show-toplevel)'

@@ -5,7 +5,7 @@ alias vi='vim -u NONE -N'
 
 # fast edit frequent files
 alias vt='v $(readlink -f ~/.tmux.conf)'
-alias vv='v $(readlink -f ~/.vimrc)'
+alias vv='v $(readlink -f ~/.vim/main.vim)'
 alias vz='v $(readlink -f ~/.zshrc)'
 alias vo='v $(readlink -f ~/.options/shell-options.conf)'
 
