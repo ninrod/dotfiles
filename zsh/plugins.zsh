@@ -1,11 +1,9 @@
-# local plugins selection
-source ~/.zsh.d/pj.zsh
 
 # 3rd party plugin selection
 plugin_paths+=(Tarrasch/bd)
 plugin_paths+=(ninrod/docker-zsh-completion)
-plugin_paths+=(supercrabtree/k)
 plugin_paths+=(zsh-users/zsh-completions)
+plugin_paths+=(supercrabtree/k)
 
 # quarentined maybe pj.zsh will completely substitute rupa's z.
 # plugin_paths+=(rupa/z)
