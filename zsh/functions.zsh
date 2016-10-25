@@ -1,5 +1,4 @@
-# s and sk: get recursive dir size measurements {{{
-
+##### s and sk: get recursive dir size measurements
 # s: get megabytes measurement
 # usage: s [-h] [path]
 s() {
@@ -37,21 +36,15 @@ sk() {
   du -sk $1 | sort -nr | head -n 20
 }
 
-# }}}
-# md: faster dir creation {{{
-
+# md: faster dir creation
 md() {
   mkdir -p $1
   builtin cd $1
 }
 
-# }}}
-# =: front for the `bc` utility  {{{
-
+##### =: front for the `bc` utility
 # credits: original idea by github.com/arzzen/calc.plugin.zsh
 # usage: = '1+1'
 = () {
   bc -l <<< "$@"
 }
-
-# }}}
