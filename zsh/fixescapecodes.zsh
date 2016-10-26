@@ -7,12 +7,13 @@ bindkey "^[[3~" delete-char # delete key
 bindkey "^H" backward-delete-char # backspace key
 bindkey "^?" backward-delete-char # backspace key
 
-# Numeric Keypad fixes
-uname | grep -q Darwin; rc=$?
-if [[ ! $rc = 0 ]]; then
-  bindkey "${terminfo[kent]}" accept-line # numeric keypad return (enter)
+# numeric keypad return fix (enter)
+unamestr=$(uname)
+if [[ "$unamestr" == 'Linux' ]] && [[ -z ${EMACS+x} ]]; then
+  bindkey "${terminfo[kent]}" accept-line 
 fi
 
+# Numeric Keypad fixes
 bindkey -s "^[Op" "0"
 bindkey -s "^[On" "."
 bindkey -s "^[Oq" "1"

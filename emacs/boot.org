@@ -680,6 +680,9 @@ SCHEDULED: %t")))
     (add-hook 'after-init-hook 'projectile-mode)
     (use-package counsel-projectile :ensure t)
     (setq projectile-completion-system 'ivy)   
+    
+    ;; make projectile usable for every directory
+    (setq projectile-require-project-root nil)
 
     ;; not used because `SPC-gs' is sealing the deal for the moment
     ;;(setq projectile-switch-project-action 'projectile-vc)
@@ -898,76 +901,40 @@ SCHEDULED: %t")))
 ** evil
 *** abusing the g prefix
 #+BEGIN_SRC emacs-lisp
-;; faster than `gg' and `G`.
 (define-key evil-motion-state-map "go" 'evil-goto-first-line)
 (define-key evil-motion-state-map "gl" 'evil-goto-line)
-
-;; magit status
-(define-key evil-motion-state-map "gs" 'magit-status)
-
-;; counsel-projectile
-(define-key evil-motion-state-map "g." 'counsel-projectile)
-
-;; swiper
-(define-key evil-motion-state-map "g/" 'swiper)
-
-;; counsel-recentf
-(define-key evil-motion-state-map "gh" 'counsel-recentf)
-
-;;custom pagedowns and pageups
+(define-key evil-motion-state-map "gp" 'pop-global-mark)
 (define-key evil-motion-state-map "g9" (kbd "Hz-M"))
 (define-key evil-motion-state-map "g0" (kbd "LztM"))
-
-(define-key evil-motion-state-map (kbd "<f1>") 'eyebrowse-switch-to-window-config-1)
-(define-key evil-motion-state-map (kbd "<f2>") 'eyebrowse-switch-to-window-config-2)
-(define-key evil-motion-state-map (kbd "<f3>") 'eyebrowse-switch-to-window-config-3)
-(define-key evil-motion-state-map (kbd "<f4>") 'eyebrowse-switch-to-window-config-4)
 
 (define-key evil-motion-state-map "g1" 'eyebrowse-switch-to-window-config-1)
 (define-key evil-motion-state-map "g2" 'eyebrowse-switch-to-window-config-2)
 (define-key evil-motion-state-map "g3" 'eyebrowse-switch-to-window-config-3)
 (define-key evil-motion-state-map "g4" 'eyebrowse-switch-to-window-config-4)
 
-(define-key evil-motion-state-map "g4" 'eyebrowse-switch-to-window-config-4)
-
-(define-key evil-motion-state-map "gp" 'pop-global-mark)
-
-;; turn off search highlight (muscle memory)
-;;(define-key evil-motion-state-map "g-" 'available)
+(define-key evil-motion-state-map "gs" 'magit-status)
+(define-key evil-motion-state-map "g." 'counsel-projectile)
+(define-key evil-motion-state-map "g/" 'swiper)
+(define-key evil-motion-state-map "gh" 'counsel-recentf)
 #+END_SRC
 
 *** comfort improvements
 #+BEGIN_SRC emacs-lisp
-  ;; toggle fold: faster and more comfortable than `za'
-  ;; `cl' is a complete replacement for `s'
-  (define-key evil-normal-state-map "q" 'evil-quit)
-
-  ;; save: faster than `:w'
   (define-key evil-normal-state-map (kbd "RET") 'evil-write)
-
-  ;; file/buffer selection
   (define-key evil-normal-state-map (kbd "TAB") 'evil-toggle-fold)
   (define-key evil-normal-state-map (kbd "DEL") 'counsel-find-file)
-
+  (define-key evil-normal-state-map "q" 'evil-quit)
   (define-key evil-normal-state-map "-" 'evil-ex-nohighlight)
-
-  ;; invertion of `'` and `"`
-  ;; (define-key evil-normal-state-map "'" 'evil-use-register)
-  ;; (define-key evil-normal-state-map "\"" 'evil-goto-mark-line)
-
-  ;; invert `{' and `)'. used way more then { and }
+  (define-key evil-normal-state-map "Q" 'evil-record-macro)
   (define-key evil-motion-state-map "(" 'evil-backward-paragraph)
   (define-key evil-motion-state-map ")" 'evil-forward-paragraph)
-
-  ;; `Q' is my new `q'. open up q prefix for abuse.
-  (define-key evil-normal-state-map "Q" 'evil-record-macro)
 #+END_SRC
 *** function keys
 #+BEGIN_SRC emacs-lisp
-(bind-key (kbd "<f1>") 'eyebrowse-switch-to-window-config-1)
-(bind-key (kbd "<f2>") 'eyebrowse-switch-to-window-config-2)
-(bind-key (kbd "<f3>") 'eyebrowse-switch-to-window-config-3)
-(bind-key (kbd "<f4>") 'eyebrowse-switch-to-window-config-4)
+(bind-key (kbd "<f1>") 'eyebrowse-switch-to-window-config-1 evil-motion-state-map)
+(bind-key (kbd "<f2>") 'eyebrowse-switch-to-window-config-2 evil-motion-state-map)
+(bind-key (kbd "<f3>") 'eyebrowse-switch-to-window-config-3 evil-motion-state-map)
+(bind-key (kbd "<f4>") 'eyebrowse-switch-to-window-config-4 evil-motion-state-map)
 #+END_SRC
 
 *** fixes
