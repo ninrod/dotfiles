@@ -356,11 +356,13 @@ SCHEDULED: %t")))
 
 * packages
 ** cosmetic
-*** theme
+*** theme collection
 **** dracula
 #+BEGIN_SRC emacs-lisp
-  (use-package dracula-theme :ensure t)
-  (load-theme 'dracula t)
+  (use-package dracula-theme
+    :init (load-theme 'dracula t)
+    :defer t
+    :ensure t)
 #+END_SRC
 
 **** ample
@@ -441,13 +443,13 @@ SCHEDULED: %t")))
     ;; customize separators for Powerline.
     ;; Included separators: alternate, slant, wave, zigzag, nil.
     (setq powerline-default-separator 'utf-8)
-    (setq spaceline-separator-dir-left '(right . left))
-    (setq spaceline-separator-dir-right '(left . right))
+    (setq spaceline-separator-dir-left '(right . right))
+    (setq spaceline-separator-dir-right '(right . right))
 
 
     (when (eq system-type 'darwin)
-      ;; (setq ns-use-srgb-colorspace nil)
-      (setq powerline-default-separator 'alternate))
+      (setq ns-use-srgb-colorspace nil)
+      (setq powerline-default-separator 'slant))
 
     (when (eq system-type 'gnu/linux)
       (setq powerline-default-separator 'slant))
@@ -920,29 +922,29 @@ SCHEDULED: %t")))
 
 *** comfort improvements
 #+BEGIN_SRC emacs-lisp
-;; toggle fold: faster and more comfortable than `za'
-;; `cl' is a complete replacement for `s'
-(define-key evil-normal-state-map "q" 'evil-quit)
+  ;; toggle fold: faster and more comfortable than `za'
+  ;; `cl' is a complete replacement for `s'
+  (define-key evil-normal-state-map "q" 'evil-quit)
 
-;; save: faster than `:w'
-(define-key evil-normal-state-map (kbd "RET") 'evil-write)
+  ;; save: faster than `:w'
+  (define-key evil-normal-state-map (kbd "RET") 'evil-write)
 
-;; file/buffer selection
-(define-key evil-normal-state-map (kbd "TAB") 'evil-toggle-fold)
-(define-key evil-normal-state-map (kbd "DEL") 'counsel-find-file)
+  ;; file/buffer selection
+  (define-key evil-normal-state-map (kbd "TAB") 'evil-toggle-fold)
+  (define-key evil-normal-state-map (kbd "DEL") 'counsel-find-file)
 
-(define-key evil-normal-state-map "-" 'evil-ex-nohighlight)
+  (define-key evil-normal-state-map "-" 'evil-ex-nohighlight)
 
-;; invertion of `'` and `"`
-(define-key evil-normal-state-map "'" 'evil-use-register)
-(define-key evil-normal-state-map "\"" 'evil-goto-mark-line)
+  ;; invertion of `'` and `"`
+  ;; (define-key evil-normal-state-map "'" 'evil-use-register)
+  ;; (define-key evil-normal-state-map "\"" 'evil-goto-mark-line)
 
-;; invert `{' and `)'. used way more then { and }
-(define-key evil-motion-state-map "(" 'evil-backward-paragraph)
-(define-key evil-motion-state-map ")" 'evil-forward-paragraph)
+  ;; invert `{' and `)'. used way more then { and }
+  (define-key evil-motion-state-map "(" 'evil-backward-paragraph)
+  (define-key evil-motion-state-map ")" 'evil-forward-paragraph)
 
-;; `Q' is my new `q'. open up q prefix for abuse.
-(define-key evil-normal-state-map "Q" 'evil-record-macro)
+  ;; `Q' is my new `q'. open up q prefix for abuse.
+  (define-key evil-normal-state-map "Q" 'evil-record-macro)
 #+END_SRC
 
 *** fixes
