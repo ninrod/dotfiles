@@ -1365,7 +1365,7 @@ SCHEDULED: %t")))
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
     "ta" 'ansi-term
-    "tt" 'eshell
+    "te" 'eshell
 
     ;; multi-term
     "tm"  'multi-term

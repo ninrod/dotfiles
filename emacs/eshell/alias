@@ -1,3 +1,8 @@
-alias b cd .. $*
-alias c clear $*
-alias l ls -la $*
+alias gal git add --all
+alias c clear
+alias gd git diff
+alias gc git commit -m $*
+alias g git status -sb
+alias b cd ..
+alias e find-file $1
+alias l ls -l $*
