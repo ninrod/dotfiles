@@ -154,7 +154,26 @@ the right."
         (message "graphics active"))
     (insert (shell-command-to-string "pbpaste"))))
 #+END_SRC
-
+** emacswiki
+*** Tab Completion
+**** Fancy Tab
+#+BEGIN_SRC emacs-lisp
+(defun fancy-tab (arg)
+    (interactive "P")
+    (setq this-command last-command)
+    (if (or (eq this-command 'hippie-expand) (looking-at "\\_>"))
+        (progn
+          (setq this-command 'hippie-expand)
+          (hippie-expand arg))
+      (setq this-command 'indent-for-tab-command)
+      (indent-for-tab-command arg)))
+#+END_SRC
+**** hippie-unexpand
+#+BEGIN_SRC emacs-lisp
+(defun hippie-unexpand ()
+    (interactive)
+    (hippie-expand 0))
+#+END_SRC
 ** revert-buffer with no confirmation
 - from [[http://www.emacswiki.org/emacs-en/download/misc-cmds.el][emacswiki]]
 #+BEGIN_SRC emacs-lisp
@@ -164,7 +183,7 @@ the right."
     (revert-buffer :ignore-auto :noconfirm))
 #+END_SRC
 
-** my lisp functions
+** ninrod's lisp functions
 *** nin-echo
 #+BEGIN_SRC emacs-lisp
 (defun nin-echo ()
@@ -561,6 +580,51 @@ SCHEDULED: %t")))
         (origami-close-all-nodes (current-buffer)))))
 #+END_SRC
 
+** completions
+*** ivy/counsel
+#+BEGIN_SRC emacs-lisp
+  (use-package ivy
+    :ensure t
+    :config
+      (setq ivy-use-virtual-buffers t)
+      (setq ivy-count-format "(%d/%d) ")
+      (ivy-mode 1)
+
+      (use-package counsel :ensure t)
+  )
+#+END_SRC
+
+*** company
+#+BEGIN_SRC emacs-lisp
+(use-package company :ensure t
+  :config
+    (add-hook 'after-init-hook 'global-company-mode)
+    ;; TODO: could we use TAB?
+    (define-key company-mode-map (kbd "C-SPC") 'company-complete)
+)
+#+END_SRC
+
+*** yasnippet
+  #+BEGIN_SRC emacs-lisp
+(use-package yasnippet :ensure t
+  :config (yas-global-mode 1))
+  #+END_SRC
+
+*** flycheck
+  #+BEGIN_SRC emacs-lisp
+    (use-package flycheck :ensure t
+      :config (global-flycheck-mode t))
+  #+END_SRC
+*** emmet
+#+BEGIN_SRC emacs-lisp
+  (use-package emmet-mode
+    :init (progn (add-hook 'sgml-mode-hook 'emmet-mode)
+                 (add-hook 'web-mode-hook  'emmet-mode)
+                 (add-hook 'html-mode-hook 'emmet-mode)
+                 (add-hook 'css-mode-hook  'emmet-mode))
+    :defer t
+    :ensure t)
+#+END_SRC
 ** keybinds
 *** which key
   #+BEGIN_SRC emacs-lisp
@@ -669,7 +733,6 @@ SCHEDULED: %t")))
   (evil-escape-mode)
 )
 #+END_SRC
-
 ** file browsing
 *** projectile
 - the projectile-switch-project-action hack was lifted from [[projectile-switch-project-action][here]].
@@ -746,42 +809,6 @@ SCHEDULED: %t")))
   :ensure t)
   #+END_SRC
 
-** completions
-*** ivy/counsel
-#+BEGIN_SRC emacs-lisp
-  (use-package ivy
-    :ensure t
-    :config
-      (setq ivy-use-virtual-buffers t)
-      (setq ivy-count-format "(%d/%d) ")
-      (ivy-mode 1)
-
-      (use-package counsel :ensure t)
-  )
-#+END_SRC
-
-*** company
-#+BEGIN_SRC emacs-lisp
-(use-package company :ensure t
-  :config
-    (add-hook 'after-init-hook 'global-company-mode)
-    ;; TODO: could we use TAB?
-    (define-key company-mode-map (kbd "C-SPC") 'company-complete)
-)
-#+END_SRC
-
-*** yasnippet
-  #+BEGIN_SRC emacs-lisp
-(use-package yasnippet :ensure t
-  :config (yas-global-mode 1))
-  #+END_SRC
-
-*** flycheck
-  #+BEGIN_SRC emacs-lisp
-    (use-package flycheck :ensure t
-      :config (global-flycheck-mode t))
-  #+END_SRC
-
 ** filetypes
 *** md: markdown
 #+BEGIN_SRC emacs-lisp
@@ -813,6 +840,10 @@ SCHEDULED: %t")))
         (setq web-mode-css-indent-offset    2)
         (setq web-mode-code-indent-offset   2))
       (add-hook 'web-mode-hook 'my-web-mode-hook))
+#+END_SRC
+*** css/less: 
+#+BEGIN_SRC emacs-lisp
+  (use-package less-css-mode :ensure t)
 #+END_SRC
 
 *** js: js2-mode
@@ -964,6 +995,15 @@ SCHEDULED: %t")))
   ;; auto-indent on RET
   (define-key global-map (kbd "RET") 'newline-and-indent)
 #+END_SRC
+
+*** tab-key completions
+#+BEGIN_SRC emacs-lisp
+  (define-key read-expression-map [(tab)] 'hippie-expand)
+  (define-key read-expression-map [(shift tab)] 'hippie-unexpand)
+  (define-key read-expression-map [(tab)] 'hippie-expand)
+  (global-set-key (kbd "TAB") 'fancy-tab)
+#+END_SRC
+
 
 ** modes
 *** org
@@ -1197,7 +1237,6 @@ SCHEDULED: %t")))
 (bind-key "<escape>"  'evil-escape ivy-occur-mode-map)
 (bind-key "<escape>"  'evil-escape ivy-occur-grep-mode-map)
 #+END_SRC
-
 ** SPC
 *** bind-map
 #+BEGIN_SRC emacs-lisp
@@ -1450,5 +1489,3 @@ SCHEDULED: %t")))
 - -
 
 - ?
-    
-  
