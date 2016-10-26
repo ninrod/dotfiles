@@ -359,18 +359,17 @@ SCHEDULED: %t")))
 *** theme
 **** dracula
 #+BEGIN_SRC emacs-lisp
-  ;; (use-package dracula-theme :ensure t)
-  ;; (load-theme 'dracula t)
+  (use-package dracula-theme :ensure t)
+  (load-theme 'dracula t)
 #+END_SRC
 
 **** ample
 #+BEGIN_SRC emacs-lisp
-  (use-package ample-theme
-    :init (progn (load-theme 'ample t t)
-                 (load-theme 'ample-flat t t)
-                 (enable-theme 'ample))
-    :defer t
-    :ensure t)
+  ;; (use-package ample-theme
+  ;;   :init (progn (load-theme 'ample t t)
+  ;;                (enable-theme 'ample))
+  ;;   :defer t
+  ;;   :ensure t)
 #+END_SRC
 
 **** tangotango
