@@ -154,26 +154,6 @@ the right."
         (message "graphics active"))
     (insert (shell-command-to-string "pbpaste"))))
 #+END_SRC
-** emacswiki
-*** Tab Completion
-**** Fancy Tab
-#+BEGIN_SRC emacs-lisp
-(defun fancy-tab (arg)
-    (interactive "P")
-    (setq this-command last-command)
-    (if (or (eq this-command 'hippie-expand) (looking-at "\\_>"))
-        (progn
-          (setq this-command 'hippie-expand)
-          (hippie-expand arg))
-      (setq this-command 'indent-for-tab-command)
-      (indent-for-tab-command arg)))
-#+END_SRC
-**** hippie-unexpand
-#+BEGIN_SRC emacs-lisp
-(defun hippie-unexpand ()
-    (interactive)
-    (hippie-expand 0))
-#+END_SRC
 ** revert-buffer with no confirmation
 - from [[http://www.emacswiki.org/emacs-en/download/misc-cmds.el][emacswiki]]
 #+BEGIN_SRC emacs-lisp
@@ -615,12 +595,18 @@ SCHEDULED: %t")))
     (use-package flycheck :ensure t
       :config (global-flycheck-mode t))
   #+END_SRC
+*** smart-tab
+#+BEGIN_SRC emacs-lisp
+  (use-package smart-tab :ensure t
+    :config (global-smart-tab-mode 1))
+#+END_SRC
 *** emmet
 #+BEGIN_SRC emacs-lisp
   (use-package emmet-mode
-    :init (progn (add-hook 'sgml-mode-hook 'emmet-mode)
+    :init (progn
                  (add-hook 'web-mode-hook  'emmet-mode)
                  (add-hook 'html-mode-hook 'emmet-mode)
+                 (add-hook 'sgml-mode-hook 'emmet-mode)
                  (add-hook 'css-mode-hook  'emmet-mode))
     :defer t
     :ensure t)
@@ -733,6 +719,7 @@ SCHEDULED: %t")))
   (evil-escape-mode)
 )
 #+END_SRC
+
 ** file browsing
 *** projectile
 - the projectile-switch-project-action hack was lifted from [[projectile-switch-project-action][here]].
@@ -995,15 +982,6 @@ SCHEDULED: %t")))
   ;; auto-indent on RET
   (define-key global-map (kbd "RET") 'newline-and-indent)
 #+END_SRC
-
-*** tab-key completions
-#+BEGIN_SRC emacs-lisp
-  (define-key read-expression-map [(tab)] 'hippie-expand)
-  (define-key read-expression-map [(shift tab)] 'hippie-unexpand)
-  (define-key read-expression-map [(tab)] 'hippie-expand)
-  (global-set-key (kbd "TAB") 'fancy-tab)
-#+END_SRC
-
 
 ** modes
 *** org
