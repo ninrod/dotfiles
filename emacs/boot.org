@@ -878,6 +878,8 @@ SCHEDULED: %t")))
 (diminish 'auto-revert-mode)
 (diminish 'org-indent-mode)
 (diminish 'smartparens-mode)
+(diminish 'git-gutter-mode)
+(diminish 'evil-escape-mode)
 (diminish 'flyspell-mode "FlyS")
 (diminish 'flycheck-mode "FlyC")
 #+END_SRC
@@ -1210,13 +1212,6 @@ SCHEDULED: %t")))
 (unbind-key "s" magit-file-section-map)
 #+END_SRC
 
-*** eshell
-#+BEGIN_SRC emacs-lisp
-  (evil-define-key 'normal eshell-mode-map (kbd "TAB") 'ivy-switch-buffer)
-  (when (display-graphic-p)
-    (evil-define-key 'normal eshell-mode-map (kbd "<tab>") 'ivy-switch-buffer))
-#+END_SRC
-
 *** prog-mode
 #+BEGIN_SRC emacs-lisp
 (evil-define-key 'normal prog-mode-map (kbd "TAB") 'nin-origami-toggle-node)
@@ -1398,10 +1393,10 @@ SCHEDULED: %t")))
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
     "ta" 'ansi-term
-    "te" 'eshell
+    "tt" 'eshell
 
     ;; multi-term
-    "tt"  'multi-term
+    "tm"  'multi-term
     "tn" 'multi-term-next
     "tp" 'multi-term-prev
   )
