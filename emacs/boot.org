@@ -359,26 +359,30 @@ SCHEDULED: %t")))
 *** theme
 **** dracula
 #+BEGIN_SRC emacs-lisp
-  (use-package dracula-theme :ensure t
-    :init (load-theme 'dracula t))
+  ;; (use-package dracula-theme :ensure t)
+  ;; (load-theme 'dracula t)
 #+END_SRC
 
-**** darktooth
+**** ample
 #+BEGIN_SRC emacs-lisp
-  ;;   (use-package darktooth-theme :ensure t)
-  ;;   (load-theme 'darktooth t)
-#+END_SRC
-
-**** cyberpunk
-#+BEGIN_SRC emacs-lisp
-  ;;     (use-package cyberpunk-theme :ensure t)
-  ;;     (load-theme 'cyberpunk t)
+  (use-package ample-theme
+    :init (progn (load-theme 'ample t t)
+                 (load-theme 'ample-flat t t)
+                 (enable-theme 'ample))
+    :defer t
+    :ensure t)
 #+END_SRC
 
 **** tangotango
 #+BEGIN_SRC emacs-lisp
   ;; (use-package tangotango-theme :ensure t)
   ;; (load-theme 'tangotango t)
+#+END_SRC
+
+**** darktooth
+#+BEGIN_SRC emacs-lisp
+  ;;   (use-package darktooth-theme :ensure t)
+  ;;   (load-theme 'darktooth t)
 #+END_SRC
 
 **** gruvbox
@@ -390,8 +394,14 @@ SCHEDULED: %t")))
 **** spacemacs
   #+BEGIN_SRC emacs-lisp
     ;; (use-package spacemacs-theme :ensure t)
-    ;; (load-theme 'spacemacs-light t)
+    ;; (load-theme 'spacemacs-dark t)
   #+END_SRC
+
+**** cyberpunk
+#+BEGIN_SRC emacs-lisp
+  ;;     (use-package cyberpunk-theme :ensure t)
+  ;;     (load-theme 'cyberpunk t)
+#+END_SRC
 
 **** material
 #+BEGIN_SRC emacs-lisp
@@ -402,12 +412,16 @@ SCHEDULED: %t")))
 
 **** solarized
 #+BEGIN_SRC emacs-lisp
-  ;; (use-package solarized-theme :ensure t)
-  ;; (load-theme 'solarized-light t)
-  ;; (load-theme 'material-light t)
+  ;; (use-package solarized-theme :ensure t
+  ;;   :config
+
+  ;;   (setq solarized-high-contrast-mode-line t)
+  ;;   (setq solarized-use-variable-pitch nil))
+
+  ;; (load-theme 'solarized-dark t)
 #+END_SRC
 
-**** zenburn 
+**** zenburn
 #+BEGIN_SRC emacs-lisp
   ;;   (use-package zenburn-theme :ensure t)
   ;;   (load-theme 'zenburn t)
