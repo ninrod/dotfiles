@@ -227,7 +227,7 @@ the right."
 ** scratch buffer tweaks
 #+BEGIN_SRC emacs-lisp
 (setq initial-major-mode 'org-mode)
-(setq initial-scratch-message "#+STARTUP: indent\n#+STARTUP: overview\n\n* this is an org-mode scratch buffer\n| A | B |\n| 1 | 2 |\n| 3 | 4 |")
+(setq initial-scratch-message "#+STARTUP: indent\n#+STARTUP: overview\n\n* this is an org-mode scratch buffer")
 #+END_SRC
 
 ** ui
@@ -357,10 +357,11 @@ SCHEDULED: %t")))
 - with help from [[http://stackoverflow.com/a/22200624/4921402][so]]
 #+BEGIN_SRC emacs-lisp
   (setq org-agenda-files
-        '("~/code/sources/life/gtd/done.org" 
-          "~/code/sources/life/gtd/info.org" 
-          "~/code/sources/life/gtd/projects.org" 
-          "~/code/sources/life/gtd/canceled.org" 
+        '("~/code/sources/life/gtd/archives/done.org" 
+          "~/code/sources/life/gtd/archives/canceled.org" 
+          "~/code/sources/life/gtd/projects/projects.org" 
+          "~/code/sources/life/gtd/inbox.org" 
+          "~/code/sources/life/gtd/next.org" 
           "~/code/sources/life/gtd/talvez.org"))
 
   (setq org-refile-targets
