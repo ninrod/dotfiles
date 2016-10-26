@@ -1,6 +1,6 @@
 " use cursor line only when in current window and out of insert mode
-autocmd InsertLeave,WinEnter * set cursorline
-autocmd InsertEnter,WinLeave * set nocursorline
+" autocmd InsertLeave,WinEnter * set cursorline
+" autocmd InsertEnter,WinLeave * set nocursorline
 
 " foldmethod configurations
 autocmd BufRead * setlocal foldmethod=marker
