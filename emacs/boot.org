@@ -960,6 +960,13 @@ SCHEDULED: %t")))
   ;; `Q' is my new `q'. open up q prefix for abuse.
   (define-key evil-normal-state-map "Q" 'evil-record-macro)
 #+END_SRC
+*** function keys
+#+BEGIN_SRC emacs-lisp
+(bind-key (kbd "<f1>") 'eyebrowse-switch-to-window-config-1)
+(bind-key (kbd "<f2>") 'eyebrowse-switch-to-window-config-2)
+(bind-key (kbd "<f3>") 'eyebrowse-switch-to-window-config-3)
+(bind-key (kbd "<f4>") 'eyebrowse-switch-to-window-config-4)
+#+END_SRC
 
 *** fixes
 #+BEGIN_SRC emacs-lisp
