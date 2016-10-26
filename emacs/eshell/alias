@@ -1,7 +1,8 @@
+alias gl git log --graph --oneline --decorate
+alias gc git commit -m $1
 alias gal git add --all
 alias c clear
 alias gd git diff
-alias gc git commit -m $*
 alias g git status -sb
 alias b cd ..
 alias e find-file $1
