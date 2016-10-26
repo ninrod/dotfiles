@@ -155,7 +155,7 @@ bindkey -M vicmd '?' history-incremental-search-backward
 
 # pressing <ESC> in normal mode is bogus: you need to press 'i' twice to enter insert mode again.
 # rebinding <ESC> in normal mode to something harmless solves the problem.
-nin_noop() {
+nin-noop() {
   return 0
 }
 zle -N nin-noop
