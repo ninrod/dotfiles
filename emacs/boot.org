@@ -353,7 +353,20 @@ SCHEDULED: %t")))
 
   (setq org-agenda-text-search-extra-files '(agenda-archives))
 #+END_SRC
+*** org refile
+- with help from [[http://stackoverflow.com/a/22200624/4921402][so]]
+#+BEGIN_SRC emacs-lisp
+  (setq org-agenda-files
+        '("~/code/sources/life/gtd/done.org" 
+          "~/code/sources/life/gtd/info.org" 
+          "~/code/sources/life/gtd/projects.org" 
+          "~/code/sources/life/gtd/canceled.org" 
+          "~/code/sources/life/gtd/talvez.org"))
 
+  (setq org-refile-targets
+        '((nil :maxlevel . 1)
+          (org-agenda-files :maxlevel . 1)))
+#+END_SRC
 * packages
 ** cosmetic
 *** theme collection
