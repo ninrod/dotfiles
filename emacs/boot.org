@@ -1448,9 +1448,10 @@ SCHEDULED: %t")))
 
       ;; "b" 'buffer-menu
       ;; "b" 'list-buffers???
+      ;; more info here: http://emacs.stackexchange.com/a/21635/12585
       "b" (lambda ()  
       (interactive)
-      (execute-extended-command t "buffer-menu"))
+      (execute-extended-command '(4) "buffer-menu"))
 
       ;; window manipulation
       "j" 'evil-window-down
