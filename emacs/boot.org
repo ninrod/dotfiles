@@ -1333,8 +1333,10 @@ SCHEDULED: %t")))
 *** l: lisp evaluation
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
+    "li" 'ielm
     "ll" 'eval-last-sexp)
   (which-key-declare-prefixes "SPC l" "evaluation")
+  (which-key-declare-prefixes "SPC li" "REPL: inferior elisp mode")
 #+END_SRC
 
 *** m: M-x useful functions
