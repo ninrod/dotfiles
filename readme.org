@@ -28,7 +28,7 @@ and snippets to use within your own configuration files.
 
 - First off, I strongly recommend using [[https://github.com/gnachman/iTerm2.git][iTerm2]] on OSx.
 - Secondly, this is for unix systems: =GNU/Linux=, =OSx=, etc... It should work on theory on windows, but I've faced a lot of configuration issues and ended up abandoning windows support.
-- configure your terminal to use the [[https://github.com/morhetz/gruvbox][gruvbox]] theme. There's a [[https://github.com/ninrod/themes.git][ninrod/themes]] repo within this repo that can help you with that. 
+- configure your terminal to use the [[https://github.com/morhetz/gruvbox][gruvbox]] theme. There's a [[https://github.com/ninrod/themes.git][ninrod/themes]] repo that can help you with that. 
 - *recommendation*: I use and recommend the excelent [[https://github.com/larsenwork/monoid][monoid]] font.
 - now get =vim= 8+ with [[http://vimcasts.org/blog/2013/11/getting-vim-with-clipboard-support][+clipboard]].
 - get [[https://github.com/tmux/tmux.git][tmux]] 2.3+
@@ -65,7 +65,7 @@ $ exec zsh
 I maintain my configuration using an org-mode file, trough org-babel. 
 So you can see it in it's full glory [[https://github.com/ninrod/dotfiles/blob/master/emacs/boot.org][here]].
 * VIM: Powerful shell text editor. Tweaked with plugins.
-To check out what binds and plugins I use in this config, my [[https://github.com/ninrod/dotfiles/blob/master/vim/keybinds.vim][keybinds.vim]] file is authoritative.
+To check out what binds and plugins I use in this config, my [[https://github.com/ninrod/dotfiles/blob/master/vim/][vim directory]] is authoritative.
 That said, it is worth noting that I've remapped =<space>= to be an alias to the =<leader>= key.
 * TMUX custom binds
 checkout the [[https://github.com/ninrod/dotfiles/blob/master/tmux/keybinds.tmux][keybinds.tmux]] file for binding setup.
