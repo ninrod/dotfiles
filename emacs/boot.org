@@ -1267,9 +1267,10 @@ SCHEDULED: %t")))
     "dc" 'describe-char
     "df" 'counsel-describe-function
     "dk" 'describe-key
+    "dm" 'describe-mode
     "dv" 'counsel-describe-variable)
   (which-key-declare-prefixes "SPC d" "docs/descriptions/help")
-  (bind-key "C-c c" 'describe-key)
+  ;; (bind-key "C-c c" 'describe-key)
 #+END_SRC
 
 *** e: eyebrowse
