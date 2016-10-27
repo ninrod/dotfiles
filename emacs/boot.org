@@ -1323,8 +1323,8 @@ SCHEDULED: %t")))
 *** i: ivy
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
-    "is" 'ivy-push-view
-    "ik" 'ivy-pop-view
+    "is" 'ivy-push-view ; save
+    "il" 'ivy-pop-view  ; load
     "ia" 'counsel-ag
   )
   (which-key-declare-prefixes "SPC i" "ivy")
@@ -1434,30 +1434,34 @@ SCHEDULED: %t")))
 
 ** s
 #+BEGIN_SRC emacs-lisp
-(bind-map s-map 
-    :evil-keys ("s")
-    :evil-states (normal visual motion))
+    (bind-map s-map 
+      :evil-keys ("s")
+      :evil-states (normal visual motion))
 
-  ;; quits: file saves, buffer deletes, window exits, you name it...
-  (bind-map-set-keys s-map
-    "s" 'evil-save-modified-and-close
-    "e" 'evil-quit
-    "r" 'restart-emacs
-    "d" 'kill-this-buffer
+    ;; quits: file saves, buffer deletes, window exits, you name it...
+    (bind-map-set-keys s-map
+      "s" 'evil-save-modified-and-close
+      "d" 'kill-this-buffer
+      "r" 'restart-emacs
 
-    "i" 'ivy-switch-buffer
+      "i" 'ivy-switch-buffer
 
-      
-    "j" 'evil-window-down
-    "k" 'evil-window-up
-    "h" 'evil-window-left
-    "l" 'evil-window-right
+      ;; "b" 'buffer-menu
+      ;; "b" 'list-buffers???
+      "b" (lambda ()  
+      (interactive)
+      (execute-extended-command t "buffer-menu"))
 
-    "o" 'delete-other-windows
+      ;; window manipulation
+      "j" 'evil-window-down
+      "k" 'evil-window-up
+      "h" 'evil-window-left
+      "l" 'evil-window-right
+      "v" 'split-window-right-and-focus
+      "x" 'split-window-below-and-focus
+      "w" 'delete-other-windows)
 
-    "v" 'split-window-right-and-focus
-    "x" 'split-window-below-and-focus
-  )
+  (which-key-add-key-based-replacements "sb" "buffer menu")
 #+END_SRC
 
 ** awesome available binds
