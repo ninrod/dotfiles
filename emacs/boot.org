@@ -223,12 +223,6 @@ the right."
   ;; (setq server-use-tcp t)
 #+END_SRC
 
-** scratch buffer tweaks
-#+BEGIN_SRC emacs-lisp
-(setq initial-major-mode 'org-mode)
-(setq initial-scratch-message "#+STARTUP: indent\n#+STARTUP: overview\n\n* this is an org-mode scratch buffer")
-#+END_SRC
-
 ** ui
 #+BEGIN_SRC emacs-lisp
   (setq inhibit-startup-message t)
@@ -595,11 +589,6 @@ SCHEDULED: %t")))
     (use-package flycheck :ensure t
       :config (global-flycheck-mode t))
   #+END_SRC
-*** smart-tab
-#+BEGIN_SRC emacs-lisp
-  (use-package smart-tab :ensure t
-    :config (global-smart-tab-mode 1))
-#+END_SRC
 *** emmet
 #+BEGIN_SRC emacs-lisp
   (use-package emmet-mode
@@ -610,6 +599,11 @@ SCHEDULED: %t")))
                  (add-hook 'css-mode-hook  'emmet-mode))
     :defer t
     :ensure t)
+#+END_SRC
+*** smart-tab
+#+BEGIN_SRC emacs-lisp
+  (use-package smart-tab :ensure t
+    :config (global-smart-tab-mode 1))
 #+END_SRC
 ** keybinds
 *** which key
@@ -857,7 +851,7 @@ SCHEDULED: %t")))
 (use-package gitconfig-mode :ensure t)
 #+END_SRC
 
-* fixes
+* fixes/patches
 ** yasnippet hijacks TAB key in term mode
 #+BEGIN_SRC emacs-lisp
 (add-hook 'term-mode-hook 'my-term-mode-hook)
@@ -914,8 +908,11 @@ SCHEDULED: %t")))
       (setq Man-notify-method 'pushy)
   )
 #+END_SRC
-
-* binds
+** dabbrev-expand case fix
+#+BEGIN_SRC emacs-lisp
+  (setq dabbrev-case-fold-search nil)
+#+END_SRC
+* keybinds
 ** evil
 *** abusing the g prefix
 #+BEGIN_SRC emacs-lisp
@@ -983,6 +980,11 @@ SCHEDULED: %t")))
   (define-key global-map (kbd "RET") 'newline-and-indent)
 #+END_SRC
 
+*** insert state
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-<tab>") 'dabbrev-expand)
+  (define-key minibuffer-local-map (kbd "C-<tab>") 'dabbrev-expand)
+#+END_SRC
 ** modes
 *** org
 **** bind-map
@@ -1137,6 +1139,10 @@ SCHEDULED: %t")))
 #+END_SRC
 
 **** local fixes
+***** org-mode-map
+#+BEGIN_SRC emacs-lisp
+  (unbind-key "C-<tab>" org-mode-map)
+#+END_SRC
 ***** org-src-code-map
 #+BEGIN_SRC emacs-lisp
   (bind-key "C-c C-c" 'org-edit-src-exit org-src-mode-map)
@@ -1452,12 +1458,14 @@ SCHEDULED: %t")))
 #+END_SRC
 
 ** awesome available binds
+*** normal state
+- t, except in org-mode
+
 *** g prefix
 - gr
 - gt
-
 - gT
-
+  
 *** SPC leader
 - TAB
 - / 
@@ -1465,5 +1473,4 @@ SCHEDULED: %t")))
 - ;
 - ,
 - -
-
 - ?
