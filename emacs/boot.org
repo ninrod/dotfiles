@@ -1397,9 +1397,16 @@ SCHEDULED: %t")))
     "tm"  'multi-term
     "tn" 'multi-term-next
     "tp" 'multi-term-prev
+    
+    ;; shell-commands
+    "ts" 'shell-command
+    "to" (lambda ()  
+      (interactive)
+      (execute-extended-command '(4) "shell-command"))
   )
   (which-key-declare-prefixes "SPC t" "terminals")
   (which-key-declare-prefixes "SPC tm" "multi-term")
+  (which-key-add-key-based-replacements "SPC to" "C-u shell-command")
 #+END_SRC
 
 #+RESULTS:
