@@ -1287,6 +1287,8 @@ SCHEDULED: %t")))
 *** f: files and directories
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
+    "fb" 'counsel-bookmark
+    "fm" 'bookmark-set
     "fc" 'make-directory
     "fd" 'cd
     "fj" 'dired-jump
