@@ -1287,6 +1287,7 @@ SCHEDULED: %t")))
 *** f: files and directories
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
+    "fk" 'bookmark-delete
     "fb" 'counsel-bookmark
     "fm" 'bookmark-set
     "fc" 'make-directory
