@@ -1169,6 +1169,22 @@ SCHEDULED: %t")))
   (evil-define-key 'normal org-mode-map "t" 'org-todo)
   #+END_SRC
 
+*** lisp-mode
+- with help from [[https://www.reddit.com/r/emacs/comments/56xmvg/properly_editing_a_shell_buffer_with_evilmode/][/r/emacs]]
+#+BEGIN_SRC emacs-lisp
+(bind-map term-map
+    :evil-keys (",")
+    :evil-states (normal visual)
+    :major-modes (lisp-mode lisp-interaction-mode))
+
+(bind-map-set-keys term-map
+  "e" 'eval-last-sexp
+  "r" 'eval-print-last-sexp
+)
+(which-key-add-major-mode-key-based-replacements 'term-mode ", e" "eval-last-sexp")
+(which-key-add-major-mode-key-based-replacements 'term-mode ", p" "eval-print-last-sexp")
+#+END_SRC
+
 *** term
 - with help from [[https://www.reddit.com/r/emacs/comments/56xmvg/properly_editing_a_shell_buffer_with_evilmode/][/r/emacs]]
 #+BEGIN_SRC emacs-lisp
