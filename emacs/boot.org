@@ -1001,8 +1001,9 @@ SCHEDULED: %t")))
   (bind-map-set-keys org-map
     "cc" 'org-edit-src-code
     "cb" 'org-babel-execute-src-block
-  )
-  (which-key-declare-prefixes ", c" "code editing")
+    "cp" 'eval-print-last-sexp
+    "ce" 'eval-last-sexp)
+  (which-key-declare-prefixes ", c" "code")
 #+END_SRC
 
 ***** d: dates/schedulling
@@ -1333,23 +1334,16 @@ SCHEDULED: %t")))
   (which-key-declare-prefixes "SPC i" "ivy")
 #+END_SRC
 
-*** l: lisp evaluation
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys spc-map
-    "li" 'ielm
-    "ll" 'eval-last-sexp)
-  (which-key-declare-prefixes "SPC l" "evaluation")
-  (which-key-declare-prefixes "SPC li" "REPL: inferior elisp mode")
-#+END_SRC
-
 *** m: M-x useful functions
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
+    "mi" 'ielm
     "ms" 'sort-lines
     "mc" 'count-words
     "mr" 'replace-string
   )
   (which-key-declare-prefixes "SPC m" "M-x useful functions")
+  (which-key-declare-prefixes "SPC mi" "REPL: inferior elisp mode")
 #+END_SRC
 
 *** o: org-mode
