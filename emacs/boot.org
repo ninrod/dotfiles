@@ -1288,19 +1288,6 @@ SCHEDULED: %t")))
 
 #+END_SRC
 
-*** d: docs, descriptions, help
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys spc-map
-    "db" 'counsel-descbinds
-    "dc" 'describe-char
-    "df" 'counsel-describe-function
-    "dk" 'describe-key
-    "dm" 'describe-mode
-    "dv" 'counsel-describe-variable)
-  (which-key-declare-prefixes "SPC d" "docs/descriptions/help")
-  ;; (bind-key "C-c c" 'describe-key)
-#+END_SRC
-
 *** e: eyebrowse
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys spc-map
@@ -1340,17 +1327,6 @@ SCHEDULED: %t")))
 (which-key-add-key-based-replacements "SPC gs" "repo magit status")
 #+END_SRC
 
-*** h: hydras
-**** z: zoom
-#+BEGIN_SRC emacs-lisp
-(defhydra hydra-zoom (spc-map "hz")
-  "zoom"
-  ("i" text-scale-increase "in")
-  ("o" text-scale-decrease "out"))
-(which-key-declare-prefixes "SPC h" "hydras")
-(which-key-add-key-based-replacements "SPC hz" "zooming hydra")
-#+END_SRC
-
 *** i: ivy
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
@@ -1359,6 +1335,21 @@ SCHEDULED: %t")))
     "ia" 'counsel-ag
   )
   (which-key-declare-prefixes "SPC i" "ivy")
+#+END_SRC
+
+*** h: help
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys spc-map
+    "hb" 'counsel-descbinds
+    "hc" 'describe-char
+    "hf" 'counsel-describe-function
+    "hi" 'info
+    "hk" 'describe-key
+    "hm" 'describe-mode
+    "ht" 'help-with-tutorial
+    "hv" 'counsel-describe-variable
+  )
+  (which-key-declare-prefixes "SPC h" "help")
 #+END_SRC
 
 *** m: M-x useful functions
@@ -1451,6 +1442,17 @@ SCHEDULED: %t")))
   "yp" 'nin-paste-from-clipboard
 )
 (which-key-add-key-based-replacements "SPC y" "clipboard/yank/paste")
+#+END_SRC
+
+*** H: hydras
+**** z: zoom
+#+BEGIN_SRC emacs-lisp
+(defhydra hydra-zoom (spc-map "Hz")
+  "zoom"
+  ("i" text-scale-increase "in")
+  ("o" text-scale-decrease "out"))
+(which-key-declare-prefixes "SPC H" "hydras")
+(which-key-add-key-based-replacements "SPC Hz" "zooming hydra")
 #+END_SRC
 
 *** E: evil
