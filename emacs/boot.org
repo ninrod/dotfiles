@@ -154,6 +154,7 @@ the right."
         (message "graphics active"))
     (insert (shell-command-to-string "pbpaste"))))
 #+END_SRC
+
 ** revert-buffer with no confirmation
 - from [[http://www.emacswiki.org/emacs-en/download/misc-cmds.el][emacswiki]]
 #+BEGIN_SRC emacs-lisp
@@ -346,6 +347,7 @@ SCHEDULED: %t")))
 
   (setq org-agenda-text-search-extra-files '(agenda-archives))
 #+END_SRC
+
 *** org refile
 - with help from [[http://stackoverflow.com/a/22200624/4921402][so]]
 #+BEGIN_SRC emacs-lisp
@@ -361,18 +363,20 @@ SCHEDULED: %t")))
         '((nil :maxlevel . 1)
           (org-agenda-files :maxlevel . 1)))
 #+END_SRC
+
 * packages
 ** cosmetic
 *** theme collection
-**** dracula
+**** dark
+***** dracula
 #+BEGIN_SRC emacs-lisp
-  (use-package dracula-theme
-    :init (load-theme 'dracula t)
-    :defer t
-    :ensure t)
+  ;; (use-package dracula-theme
+  ;;   :init (load-theme 'dracula t)
+  ;;   :defer t
+  ;;   :ensure t)
 #+END_SRC
 
-**** ample
+***** ample
 #+BEGIN_SRC emacs-lisp
   ;; (use-package ample-theme
   ;;   :init (progn (load-theme 'ample t t)
@@ -381,44 +385,51 @@ SCHEDULED: %t")))
   ;;   :ensure t)
 #+END_SRC
 
-**** tangotango
+***** tangotango
 #+BEGIN_SRC emacs-lisp
   ;; (use-package tangotango-theme :ensure t)
   ;; (load-theme 'tangotango t)
 #+END_SRC
 
-**** darktooth
+***** darktooth
 #+BEGIN_SRC emacs-lisp
   ;;   (use-package darktooth-theme :ensure t)
   ;;   (load-theme 'darktooth t)
 #+END_SRC
 
-**** gruvbox
+***** gruvbox
   #+BEGIN_SRC emacs-lisp
     ;; (use-package gruvbox-theme :ensure t)
     ;; (load-theme 'gruvbox t)
   #+END_SRC
 
-**** spacemacs
-  #+BEGIN_SRC emacs-lisp
-    ;; (use-package spacemacs-theme :ensure t)
-    ;; (load-theme 'spacemacs-dark t)
-  #+END_SRC
-
-**** cyberpunk
+***** cyberpunk
 #+BEGIN_SRC emacs-lisp
   ;;     (use-package cyberpunk-theme :ensure t)
   ;;     (load-theme 'cyberpunk t)
 #+END_SRC
 
-**** material
+***** zenburn
 #+BEGIN_SRC emacs-lisp
-    ;; (use-package material-theme :ensure t)
-    ;; (load-theme 'material t)
-    ;; (load-theme 'material-light t)
+  ;;   (use-package zenburn-theme :ensure t)
+  ;;   (load-theme 'zenburn t)
 #+END_SRC
 
-**** solarized
+**** light
+***** spacemacs
+  #+BEGIN_SRC emacs-lisp
+    ;; (use-package spacemacs-theme :ensure t)
+    ;; (load-theme 'spacemacs-light t)
+  #+END_SRC
+
+***** material
+#+BEGIN_SRC emacs-lisp
+  ;; (use-package material-theme :ensure t)
+  ;; (load-theme 'material t)
+  ;; (load-theme 'material-light t)
+#+END_SRC
+
+***** solarized
 #+BEGIN_SRC emacs-lisp
   ;; (use-package solarized-theme :ensure t
   ;;   :config
@@ -426,18 +437,12 @@ SCHEDULED: %t")))
   ;;   (setq solarized-high-contrast-mode-line t)
   ;;   (setq solarized-use-variable-pitch nil))
 
-  ;; (load-theme 'solarized-dark t)
+  ;; (load-theme 'solarized-light t)
 #+END_SRC
 
-**** zenburn
+***** leuven
 #+BEGIN_SRC emacs-lisp
-  ;;   (use-package zenburn-theme :ensure t)
-  ;;   (load-theme 'zenburn t)
-#+END_SRC
-
-**** leuven
-#+BEGIN_SRC emacs-lisp
-  ;;   (load-theme 'leuven t)
+  (load-theme 'leuven t)
 #+END_SRC
 
 *** spaceline
@@ -605,6 +610,7 @@ SCHEDULED: %t")))
   (use-package smart-tab :ensure t
     :config (global-smart-tab-mode 1))
 #+END_SRC
+
 ** keybinds
 *** which key
   #+BEGIN_SRC emacs-lisp
@@ -742,6 +748,7 @@ SCHEDULED: %t")))
         (setq ranger-show-dotfiles t)
         (setq ranger-hide-cursor nil))
 #+END_SRC
+
 ** git
 *** git-gutter
 #+BEGIN_SRC emacs-lisp
@@ -908,10 +915,12 @@ SCHEDULED: %t")))
       (setq Man-notify-method 'pushy)
   )
 #+END_SRC
+
 ** dabbrev-expand case fix
 #+BEGIN_SRC emacs-lisp
   (setq dabbrev-case-fold-search nil)
 #+END_SRC
+
 * keybinds
 ** evil
 *** abusing the g prefix
@@ -985,6 +994,7 @@ SCHEDULED: %t")))
   (global-set-key (kbd "C-<tab>") 'dabbrev-expand)
   (define-key minibuffer-local-map (kbd "C-<tab>") 'dabbrev-expand)
 #+END_SRC
+
 ** modes
 *** org
 **** bind-map
@@ -1238,6 +1248,7 @@ SCHEDULED: %t")))
 (bind-key "<escape>"  'evil-escape ivy-occur-mode-map)
 (bind-key "<escape>"  'evil-escape ivy-occur-grep-mode-map)
 #+END_SRC
+
 ** SPC
 *** bind-map
 #+BEGIN_SRC emacs-lisp
