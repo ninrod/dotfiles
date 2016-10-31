@@ -424,20 +424,20 @@ SCHEDULED: %t")))
 **** light
 ***** material
 #+BEGIN_SRC emacs-lisp
-  (use-package material-theme :ensure t)
-  (load-theme 'material-light t)
+  ;; (use-package material-theme :ensure t)
+  ;; (load-theme 'material-light t)
   ;; (load-theme 'material t)
 #+END_SRC
 
 ***** solarized
 #+BEGIN_SRC emacs-lisp
-  ;; (use-package solarized-theme :ensure t
-  ;;   :config
+  (use-package solarized-theme :ensure t
+    :config
 
-  ;;   (setq solarized-high-contrast-mode-line t)
-  ;;   (setq solarized-use-variable-pitch nil))
+    (setq solarized-high-contrast-mode-line t)
+    (setq solarized-use-variable-pitch nil))
 
-  ;; (load-theme 'solarized-light t)
+  (load-theme 'solarized-light t)
 #+END_SRC
 
 ***** leuven
