@@ -415,18 +415,18 @@ SCHEDULED: %t")))
   ;;   (load-theme 'zenburn t)
 #+END_SRC
 
-**** light
 ***** spacemacs
   #+BEGIN_SRC emacs-lisp
     ;; (use-package spacemacs-theme :ensure t)
-    ;; (load-theme 'spacemacs-light t)
+    ;; (load-theme 'spacemacs-dark t)
   #+END_SRC
 
+**** light
 ***** material
 #+BEGIN_SRC emacs-lisp
-  ;; (use-package material-theme :ensure t)
+  (use-package material-theme :ensure t)
+  (load-theme 'material-light t)
   ;; (load-theme 'material t)
-  ;; (load-theme 'material-light t)
 #+END_SRC
 
 ***** solarized
@@ -442,7 +442,7 @@ SCHEDULED: %t")))
 
 ***** leuven
 #+BEGIN_SRC emacs-lisp
-  (load-theme 'leuven t)
+  ;; (load-theme 'leuven t)
 #+END_SRC
 
 *** spaceline
