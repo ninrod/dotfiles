@@ -824,6 +824,12 @@ SCHEDULED: %t")))
 
       (defun my-web-mode-hook ()
         "Hooks for Web mode."
+
+        ;; config auto closing: http://stackoverflow.com/a/23407052/4921402 
+        (setq web-mode-tag-auto-close-style 2)
+        (setq web-mode-auto-close-style 2)
+        (setq web-mode-enable-auto-closing t)
+
         (setq web-mode-markup-indent-offset 2)
         (setq web-mode-css-indent-offset    2)
         (setq web-mode-code-indent-offset   2))
