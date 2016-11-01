@@ -264,7 +264,8 @@ the right."
 
 ** indentation
 #+BEGIN_SRC emacs-lisp
-(setq-default js-basic-offset 2
+  (setq-default js-basic-offset 2
+                js-indent-level 2
                 sh-basic-offset 2
                 sh-indentation 2
                 indent-tabs-mode nil)
@@ -370,10 +371,10 @@ SCHEDULED: %t")))
 **** dark
 ***** dracula
 #+BEGIN_SRC emacs-lisp
-  ;; (use-package dracula-theme
-  ;;   :init (load-theme 'dracula t)
-  ;;   :defer t
-  ;;   :ensure t)
+  (use-package dracula-theme
+    :init (load-theme 'dracula t)
+    :defer t
+    :ensure t)
 #+END_SRC
 
 ***** ample
@@ -431,13 +432,13 @@ SCHEDULED: %t")))
 
 ***** solarized
 #+BEGIN_SRC emacs-lisp
-  (use-package solarized-theme :ensure t
-    :config
+  ;; (use-package solarized-theme :ensure t
+  ;;   :config
 
-    (setq solarized-high-contrast-mode-line t)
-    (setq solarized-use-variable-pitch nil))
+  ;;   (setq solarized-high-contrast-mode-line t)
+  ;;   (setq solarized-use-variable-pitch nil))
 
-  (load-theme 'solarized-light t)
+  ;; (load-theme 'solarized-light t)
 #+END_SRC
 
 ***** leuven
@@ -846,6 +847,15 @@ SCHEDULED: %t")))
   :config
     (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
     (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2))))
+#+END_SRC
+
+*** json: json-mode, json-reformat
+#+BEGIN_SRC emacs-lisp
+  (use-package json-reformat :ensure t
+    :config
+    (setq json-reformat:indent-width 2))
+
+  (use-package json-mode :ensure t)
 #+END_SRC
 
 *** vimrc: vimrc mode
