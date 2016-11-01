@@ -371,12 +371,18 @@ SCHEDULED: %t")))
 **** dark
 ***** dracula
 #+BEGIN_SRC emacs-lisp
-  (use-package dracula-theme
-    :init (load-theme 'dracula t)
+  ;; (use-package dracula-theme
+  ;;   :init (load-theme 'dracula t)
+  ;;   :defer t
+  ;;   :ensure t)
+#+END_SRC
+***** base16
+#+BEGIN_SRC emacs-lisp
+  (use-package base16-theme
+    :init (load-theme 'base16-ocean t)
     :defer t
     :ensure t)
 #+END_SRC
-
 ***** ample
 #+BEGIN_SRC emacs-lisp
   ;; (use-package ample-theme

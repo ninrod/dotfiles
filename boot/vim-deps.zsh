@@ -23,3 +23,4 @@ ningrab tpope_vim-commentary
 ningrab tpope_vim-repeat
 ningrab tpope_vim-surround
 ningrab wellle_targets.vim
+ningrab chriskempson_base16-vim
