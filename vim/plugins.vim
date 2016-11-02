@@ -4,7 +4,7 @@ execute pathogen#infect()
 let g:lightline = {'colorscheme': 'Tomorrow_Night_Eighties'}
 let g:tmuxline_powerline_separators = 0
 " set background=light
-colorscheme base16-ocean
+colorscheme base16-chalk
 
 " fix contrast issue with solarized dark.
 " https://github.com/airblade/vim-gitgutter/issues/164
