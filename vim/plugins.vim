@@ -1,9 +1,10 @@
 execute pathogen#infect()
 
 " appearance
-let g:lightline = {'colorscheme': 'Tomorrow_Night_Eighties'}
+let g:lightline = {'colorscheme': 'base16_chalk'}
 let g:tmuxline_powerline_separators = 0
-" set background=light
+
+set background=dark
 colorscheme base16-chalk
 
 " fix contrast issue with solarized dark.

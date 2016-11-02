@@ -1,6 +1,5 @@
 # -*- mode: sh -*-
 
-
 # positions each window name to the left most edge of the status bar
 set -g status-justify 'left'
 
@@ -12,4 +11,4 @@ set -g status-right '%R | %a | %d.%b.%y | #[fg=red]@#H'
 setw -g window-status-current-format '[#I.#W]'
 
 # load symlinked theme specific tmux bar configuration generated via tmuxline.vim
-source ~/.tmux.d/tomorrow-night-eighties.tmux
+source ~/.tmux.d/simpledark.tmux

@@ -8,19 +8,23 @@ ln -sf tpope/vim-pathogen/autoload/pathogen.vim .
 bundle=$GIT_ROOT/vim/bundle
 mkdir -p $bundle && cd $bundle
 
-ningrab dracula_vim
-ningrab itchyny_lightline.vim
-ningrab edkolev_tmuxline.vim
+# core editing
 ningrab bronson_vim-visual-star-search
 ningrab chaoren_vim-wordmotion
 ningrab ervandew_supertab
 ningrab jiangmiao_auto-pairs
 ningrab junegunn_vim-easy-align
-ningrab luochen1990_rainbow
 ningrab ninrod_vim-multiple-cursors
 ningrab tommcdo_vim-exchange
 ningrab tpope_vim-commentary
 ningrab tpope_vim-repeat
 ningrab tpope_vim-surround
 ningrab wellle_targets.vim
+
+# themes
 ningrab chriskempson_base16-vim
+ningrab dracula_vim
+ningrab itchyny_lightline.vim
+ningrab felixjung_vim-base16-lightline
+ningrab edkolev_tmuxline.vim
+ningrab luochen1990_rainbow
