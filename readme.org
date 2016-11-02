@@ -15,6 +15,9 @@
 ** Vim, tmux and zsh in iTerm2 using [[https://github.com/morhetz/gruvbox][gruvbox]]
 
 [[https://raw.githubusercontent.com/ninrod/dotshots/master/vim-tmux-2016-10-15.png][https://raw.githubusercontent.com/ninrod/dotshots/master/vim-tmux-2016-10-15.png]]
+** Emacs, vim and tmux: base16
+
+[[https://raw.githubusercontent.com/ninrod/dotshots/master/vim-emacs-tmux.png][https://raw.githubusercontent.com/ninrod/dotshots/master/vim-emacs-tmux.png]]
 
 * Note
 These are my personal configuration files, 
