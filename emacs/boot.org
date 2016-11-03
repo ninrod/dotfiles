@@ -248,6 +248,11 @@ the right."
 
   ;;highlight current line
   ;;(global-hl-line-mode)
+  
+
+  ;; support for camelcase words
+  (global-subword-mode)
+
 #+END_SRC
 
 ** gui
