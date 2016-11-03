@@ -900,8 +900,8 @@ SCHEDULED: %t")))
 *** @chadhs tip
 #+BEGIN_SRC emacs-lisp
   ;; (evil-define-key 'normal term-raw-map "p" 'term-paste)
-  (evil-define-key 'normal term-raw-map "j" 'term-send-down)
-  (evil-define-key 'normal term-raw-map "k" 'term-send-up)
+  ;; (evil-define-key 'normal term-raw-map "j" 'term-send-down)
+  ;; (evil-define-key 'normal term-raw-map "k" 'term-send-up)
   ;; (evil-define-key 'normal term-raw-map "/" 'term-send-reverse-search-history)
   ;; (evil-define-key 'normal term-raw-map (kbd "C-c") 'term-send-raw)
   ;; (evil-define-key 'insert term-raw-map (kbd "C-c") 'term-send-raw)
