@@ -1,3 +1,4 @@
+"iterm 2 specific:
 " escape sequence: `^[]1337;CursorShape=N^G`. where:
 " N=0: block;
 " N=1: line;
@@ -12,11 +13,11 @@
 " SR = START replace mode
 
 if empty($TMUX)
-  let &t_SI = "\<Esc>]1337;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]1337;CursorShape=0\x7"
-  let &t_SR = "\<Esc>]1337;CursorShape=2\x7"
+  let &t_SI = "\<Esc>[6 q"
+  let &t_EI = "\<Esc>[2 q"
+  let &t_SR = "\<Esc>[4 q"
 else
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]1337;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]1337;CursorShape=0\x7\<Esc>\\"
-  let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]1337;CursorShape=2\x7\<Esc>\\"
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>[6 q\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>[2 q\<Esc>\\"
+  let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>[4 q\<Esc>\\"
 endif
