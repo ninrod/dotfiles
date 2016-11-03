@@ -1397,6 +1397,7 @@ SCHEDULED: %t")))
     "oc" 'air-org-task-capture
     "oa" 'air-pop-to-org-agenda
     "ot" 'org-table-convert-region
+    "ob" 'org-bullets-mode
   )
   (which-key-declare-prefixes "SPC o" "org-mode")
 #+END_SRC
