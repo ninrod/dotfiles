@@ -371,6 +371,100 @@ SCHEDULED: %t")))
 #+END_SRC
 
 * packages
+** evil corruption
+*** evil
+- emacsify insert state. based on this SO question [[http://stackoverflow.com/a/26573722/4921402][here]].
+#+BEGIN_SRC emacs-lisp
+  (use-package evil :ensure t
+    :config 
+
+    ;; remove all keybindings from insert-state keymap just
+    ;; because I want to use emacs keybindings in insert state.
+    (setcdr evil-insert-state-map nil)
+
+    ;; but [escape] should switch back to normal state, obviously.
+    (define-key evil-insert-state-map [escape] 'evil-normal-state)
+
+    (evil-mode))
+#+END_SRC
+
+*** evil-commentary
+#+BEGIN_SRC emacs-lisp
+(use-package evil-commentary :ensure t
+  :diminish evil-commentary-mode
+  :config (evil-commentary-mode))
+#+END_SRC
+
+*** evil-matchit
+#+BEGIN_SRC emacs-lisp
+(use-package evil-matchit :ensure t
+  :config (global-evil-matchit-mode 1))
+#+END_SRC
+
+*** evil-surround
+#+BEGIN_SRC emacs-lisp
+(use-package evil-surround :ensure t
+  :config (global-evil-surround-mode 1))
+#+END_SRC
+
+*** evil-exchange
+#+BEGIN_SRC emacs-lisp
+(use-package evil-exchange :ensure t
+  :config (evil-exchange-install))
+#+END_SRC
+
+*** evil-args
+#+begin_src emacs-lisp
+(use-package evil-args :ensure t
+  :config
+    (define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
+    (define-key evil-outer-text-objects-map "a" 'evil-outer-arg)
+)
+#+end_src
+
+*** evil-visualstar
+#+begin_src emacs-lisp
+(use-package evil-visualstar :ensure t
+  :config (global-evil-visualstar-mode))
+#+end_src
+
+*** evil-indent-plus
+#+begin_src emacs-lisp
+(use-package evil-indent-plus :ensure t
+  :config (evil-indent-plus-default-bindings))
+#+end_src
+
+*** evil-anzu
+- config section hack: see [[https://github.com/TheBB/spaceline/issues/69][TheBB/spaceline#69]]
+#+BEGIN_SRC emacs-lisp
+  (use-package evil-anzu :ensure t
+    :config 
+    (setq anzu-cons-mode-line-p nil))
+#+END_SRC
+
+*** evil-numbers
+#+BEGIN_SRC emacs-lisp
+(use-package evil-numbers :ensure t)
+#+END_SRC
+
+*** evil-escape
+#+BEGIN_SRC emacs-lisp
+(use-package evil-escape :ensure t
+  :config 
+  (evil-escape-mode)
+)
+#+END_SRC
+**** evil-terminal-cursor-changer
+#+BEGIN_SRC emacs-lisp
+  (use-package evil-terminal-cursor-changer :ensure t
+    :config
+    (setq evil-motion-state-cursor 'box)
+    (setq evil-visual-state-cursor 'box)
+    (setq evil-normal-state-cursor 'box)
+    (setq evil-insert-state-cursor 'bar)
+    (setq evil-emacs-state-cursor  'hbar)
+    (evil-terminal-cursor-changer-activate))
+#+END_SRC
 ** cosmetic
 *** theme collection
 **** dark
@@ -655,104 +749,6 @@ SCHEDULED: %t")))
     (use-package ivy-hydra :ensure t))
 #+END_SRC
 
-** evil corruption
-*** evil
-- emacsify insert state. based on this SO question [[http://stackoverflow.com/a/26573722/4921402][here]].
-#+BEGIN_SRC emacs-lisp
-  (use-package evil :ensure t
-    :config 
-
-    ;; remove all keybindings from insert-state keymap just
-    ;; because I want to use emacs keybindings in insert state.
-    (setcdr evil-insert-state-map nil)
-
-    ;; but [escape] should switch back to normal state, obviously.
-    (define-key evil-insert-state-map [escape] 'evil-normal-state)
-
-    (evil-mode))
-#+END_SRC
-
-*** evil-commentary
-#+BEGIN_SRC emacs-lisp
-(use-package evil-commentary :ensure t
-  :diminish evil-commentary-mode
-  :config (evil-commentary-mode))
-#+END_SRC
-
-*** evil-matchit
-#+BEGIN_SRC emacs-lisp
-(use-package evil-matchit :ensure t
-  :config (global-evil-matchit-mode 1))
-#+END_SRC
-
-*** evil-surround
-#+BEGIN_SRC emacs-lisp
-(use-package evil-surround :ensure t
-  :config (global-evil-surround-mode 1))
-#+END_SRC
-
-*** evil-exchange
-#+BEGIN_SRC emacs-lisp
-(use-package evil-exchange :ensure t
-  :config (evil-exchange-install))
-#+END_SRC
-
-*** evil-args
-#+begin_src emacs-lisp
-(use-package evil-args :ensure t
-  :config
-    (define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
-    (define-key evil-outer-text-objects-map "a" 'evil-outer-arg)
-)
-#+end_src
-
-*** evil-visualstar
-#+begin_src emacs-lisp
-(use-package evil-visualstar :ensure t
-  :config (global-evil-visualstar-mode))
-#+end_src
-
-*** evil-indent-plus
-#+begin_src emacs-lisp
-(use-package evil-indent-plus :ensure t
-  :config (evil-indent-plus-default-bindings))
-#+end_src
-
-*** evil-anzu
-- config section hack: see [[https://github.com/TheBB/spaceline/issues/69][TheBB/spaceline#69]]
-#+BEGIN_SRC emacs-lisp
-  (use-package evil-anzu :ensure t
-    :config 
-    (setq anzu-cons-mode-line-p nil))
-#+END_SRC
-
-*** evil-numbers
-#+BEGIN_SRC emacs-lisp
-(use-package evil-numbers :ensure t)
-#+END_SRC
-
-*** evil-escape
-#+BEGIN_SRC emacs-lisp
-(use-package evil-escape :ensure t
-  :config 
-  (evil-escape-mode)
-)
-#+END_SRC
-*** evil-terminal-cursor-changer
-#+BEGIN_SRC emacs-lisp
-(use-package evil-terminal-cursor-changer :ensure t
-:config
-
-(setq evil-motion-state-cursor 'box)
-(setq evil-visual-state-cursor 'box)
-(setq evil-normal-state-cursor 'box)
-(setq evil-insert-state-cursor 'bar)
-(setq evil-emacs-state-cursor  'hbar)
-
-(evil-terminal-cursor-changer-activate)
-
-)
-#+END_SRC
 ** file browsing
 *** projectile
 - the projectile-switch-project-action hack was lifted from [[projectile-switch-project-action][here]].
