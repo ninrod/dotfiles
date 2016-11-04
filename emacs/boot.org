@@ -312,13 +312,13 @@ the right."
 *** general configs
 - somewhat lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
 #+BEGIN_SRC emacs-lisp
-(setq org-todo-keywords
-    '((sequence "☛ TODO" "○ IN-PROGRESS" "⚑ WAITING" "|" "✓ DONE" "✗ CANCELED")))
-
-(setq org-blank-before-new-entry (quote ((heading) (plain-list-item))))
-(setq org-log-done (quote time))
-(setq org-log-redeadline (quote time))
-(setq org-log-reschedule (quote time))
+  (setq org-todo-keywords
+        '((sequence "☛ TODO" "○ IN-PROGRESS" "⚑ WAITING" "|" "✓ DONE" "✗ CANCELED")))
+  (setq org-blank-before-new-entry (quote ((heading) (plain-list-item))))
+  (setq org-log-done (quote time))
+  (setq org-log-redeadline (quote time))
+  (setq org-log-reschedule (quote time))
+  (setq org-src-window-setup 'current-window)
 #+END_SRC
 
 *** org capture
@@ -1084,7 +1084,6 @@ SCHEDULED: %t")))
 (which-key-declare-prefixes ", i" "insertions/additions")
 #+END_SRC
 
-
 ***** l: label/tag
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys org-map
@@ -1139,6 +1138,9 @@ SCHEDULED: %t")))
 #+BEGIN_SRC emacs-lisp
     (bind-map-set-keys org-map
       "ta" 'org-table-align
+      
+      "te" 'org-edit-special
+
       "tt" 'org-table-transpose-table-at-point
 
       "th" 'org-backward-sentence
@@ -1348,12 +1350,13 @@ SCHEDULED: %t")))
 *** f: files and directories
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
-    "fk" 'bookmark-delete
+    "fa" 'write-file
     "fb" 'counsel-bookmark
-    "fm" 'bookmark-set
     "fc" 'make-directory
     "fd" 'cd
     "fj" 'dired-jump
+    "fk" 'bookmark-delete
+    "fm" 'bookmark-set
     "fp" 'prelude-copy-file-name-to-clipboard
     "fr" 'nin-revert-buffer-no-confirm
   )
