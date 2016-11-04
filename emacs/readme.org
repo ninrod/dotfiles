@@ -5,4 +5,22 @@
 - use-package for managing dependencies
 - org-babel to keep the init.el organized as an org-mode file.
 - ivy instead of helm
-
+* List of emacs paint points comming from vim
+** basic editing operations
+- `diw` in a sequence of spaces eats `\n` if applied in a line break.
+- `vt'` and `vt"` donot work.
+- `yiw` does not move cursor to beggining of text object.
+- does emacs have virtual columns?
+- the star operator is broken when subword-mode is active.
+** Completions
+- tab completion with dabbrev-expand ignores case.
+** Missing plugins
+- wellle/targets.vim (evil-targets)
+- terryma/multiple cursors (evil-multiple-cursors)
+- junegunn/easyalign (evil-align)
+** Faulty plugins
+- evil-surround is not capable of repeating.
+** Terminal issues
+- clipboard integration
+- truecolor support
+- dinamycally alter cursor shape based on state
