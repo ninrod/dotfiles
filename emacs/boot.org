@@ -619,6 +619,10 @@ SCHEDULED: %t")))
                                 "IndianRed4"))
         (set-face-attribute 'hl-paren-face nil :weight 'ultra-bold))
 #+END_SRC
+*** all-the-icons
+#+BEGIN_SRC emacs-lisp
+  (use-package all-the-icons :ensure t)
+#+END_SRC
 
 ** expand funcionality
 *** restart-emacs
@@ -777,6 +781,13 @@ SCHEDULED: %t")))
         (setq ranger-cleanup-on-disable t)
         (setq ranger-show-dotfiles t)
         (setq ranger-hide-cursor nil))
+#+END_SRC
+
+*** neotree
+#+BEGIN_SRC emacs-lisp
+  (use-package neotree :ensure t
+    :config
+    (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
 #+END_SRC
 
 ** git
