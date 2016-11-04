@@ -1,3 +1,4 @@
+alias la ls -la
 alias gl git log --graph --oneline --decorate
 alias gc git commit -m $1
 alias gal git add --all
@@ -7,3 +8,4 @@ alias g git status -sb
 alias b cd ..
 alias e find-file $1
 alias l ls -l $*
+alias q exit

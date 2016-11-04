@@ -4,7 +4,7 @@
 alias e="background-connect-gui.sh"
 
 # emacs
-alias em="background-emacs.sh"
+alias emacs="background-emacs.sh"
 
 # start daemon
 alias ed="up-gui-emacs-daemon.sh"
