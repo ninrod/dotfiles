@@ -474,10 +474,10 @@ SCHEDULED: %t")))
 **** dark
 ***** dracula
 #+BEGIN_SRC emacs-lisp
-  ;; (use-package dracula-theme
-  ;;   :init (load-theme 'dracula t)
-  ;;   :defer t
-  ;;   :ensure t)
+  (use-package dracula-theme
+    :init (load-theme 'dracula t)
+    :defer t
+    :ensure t)
 #+END_SRC
 
 ***** spacemacs
@@ -490,10 +490,10 @@ SCHEDULED: %t")))
 
 ***** ample-zen
 #+BEGIN_SRC emacs-lisp
-  (use-package ample-zen-theme
-    :init (load-theme 'ample-zen t)
-    :defer t
-    :ensure t)
+  ;; (use-package ample-zen-theme
+  ;;   :init (load-theme 'ample-zen t)
+  ;;   :defer t
+  ;;   :ensure t)
 #+END_SRC
 
 ***** gruvbox
@@ -685,6 +685,11 @@ SCHEDULED: %t")))
         (origami-close-all-nodes (current-buffer)))))
 #+END_SRC
 
+*** restclient
+#+BEGIN_SRC emacs-lisp
+(use-package restclient :ensure t)
+#+END_SRC
+
 ** completions
 *** ivy/counsel
 #+BEGIN_SRC emacs-lisp
@@ -853,7 +858,15 @@ SCHEDULED: %t")))
   (use-package htmlize 
   :ensure t)
   #+END_SRC
-
+*** ob-http
+#+BEGIN_SRC emacs-lisp
+(use-package ob-http :ensure t
+:config
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . t)
+   (http . t))))
+#+END_SRC
 ** filetypes
 *** md: markdown
 #+BEGIN_SRC emacs-lisp
@@ -929,7 +942,6 @@ SCHEDULED: %t")))
 #+BEGIN_SRC emacs-lisp
 (use-package gitconfig-mode :ensure t)
 #+END_SRC
-
 * fixes/patches
 ** yasnippet hijacks TAB key in term mode
 #+BEGIN_SRC emacs-lisp
