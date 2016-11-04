@@ -248,10 +248,10 @@ the right."
 
   ;;highlight current line
   ;;(global-hl-line-mode)
-  
+
 
   ;; support for camelcase words
-  (global-subword-mode)
+  ;; (global-subword-mode)
 
 #+END_SRC
 
@@ -474,10 +474,10 @@ SCHEDULED: %t")))
 **** dark
 ***** dracula
 #+BEGIN_SRC emacs-lisp
-  (use-package dracula-theme
-    :init (load-theme 'dracula t)
-    :defer t
-    :ensure t)
+  ;; (use-package dracula-theme
+  ;;   :init (load-theme 'dracula t)
+  ;;   :defer t
+  ;;   :ensure t)
 #+END_SRC
 
 ***** spacemacs
@@ -536,11 +536,11 @@ SCHEDULED: %t")))
 
 ***** ample
 #+BEGIN_SRC emacs-lisp
-  ;; (use-package ample-theme
-  ;;   :init (progn (load-theme 'ample t t)
-  ;;                (enable-theme 'ample))
-  ;;   :defer t
-  ;;   :ensure t)
+  (use-package ample-theme
+    :init (progn (load-theme 'ample t t)
+                 (enable-theme 'ample))
+    :defer t
+    :ensure t)
 #+END_SRC
 
 **** light
