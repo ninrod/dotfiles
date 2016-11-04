@@ -793,6 +793,7 @@ SCHEDULED: %t")))
             neo-window-width 50
             neo-show-updir-line nil
             neo-theme (if (display-graphic-p) 'icons 'nerd) ; fallback
+            ;; neo-theme 'nerd ; fallback
             neo-banner-message nil
   ))
 #+END_SRC
@@ -1327,6 +1328,7 @@ SCHEDULED: %t")))
   (bind-map-set-keys spc-map
     "<SPC>" 'counsel-M-x
     "TAB" 'evil-toggle-fold
+    "DEL" 'neotree-toggle
   )
 #+END_SRC
 
