@@ -313,7 +313,7 @@ the right."
 - somewhat lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
 #+BEGIN_SRC emacs-lisp
   (setq org-todo-keywords
-        '((sequence "☛ TODO" "○ IN-PROGRESS" "⚑ WAITING" "|" "✓ DONE" "✗ CANCELED")))
+        '((sequence "TODO" "IN-PROGRESS" "WAITING" "|" "DONE" "CANCELED")))
   (setq org-blank-before-new-entry (quote ((heading) (plain-list-item))))
   (setq org-log-done (quote time))
   (setq org-log-redeadline (quote time))
@@ -327,7 +327,7 @@ the right."
 (setq org-capture-templates
       '(("a" "My TODO task format." entry
          (file "~/code/sources/life/gtd/inbox.org")
-         "* ☛ TODO %?
+         "* TODO %?
 SCHEDULED: %t")))
 (defun air-org-task-capture ()
   "Capture a task with my default template."
@@ -338,10 +338,6 @@ SCHEDULED: %t")))
 *** org agenda
 - lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
 #+BEGIN_SRC emacs-lisp
-  ;; (setq org-todo-keywords
-  ;;       '((sequence "TODO" "WIP" "WAITING" "|" "DONE" "CANCELED")))
-
-
   (setq org-agenda-files '("~/code/sources/life/"))
 
   (defun air-pop-to-org-agenda (split)
