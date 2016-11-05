@@ -457,16 +457,15 @@ SCHEDULED: %t")))
 
 *** evil-terminal-cursor-changer
 #+BEGIN_SRC emacs-lisp
-    (use-package evil-terminal-cursor-changer :ensure t
-      :config
-      (setq evil-motion-state-cursor 'box)
-      (setq evil-visual-state-cursor 'box)
-      (setq evil-normal-state-cursor 'box)
-      (setq evil-insert-state-cursor 'bar)
-      (setq evil-emacs-state-cursor  'hbar)
-
-      (unless (display-graphic-p) 
-        (evil-terminal-cursor-changer-activate)))
+  ;; (use-package evil-terminal-cursor-changer :ensure t
+  ;;   :config
+  ;;   (setq evil-motion-state-cursor 'box)
+  ;;   (setq evil-visual-state-cursor 'box)
+  ;;   (setq evil-normal-state-cursor 'box)
+  ;;   (setq evil-insert-state-cursor 'bar)
+  ;;   (setq evil-emacs-state-cursor  'hbar)
+  ;;   (unless (display-graphic-p) 
+  ;;     (evil-terminal-cursor-changer-activate)))
 #+END_SRC
 
 ** cosmetic
