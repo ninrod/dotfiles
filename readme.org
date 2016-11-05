@@ -15,6 +15,11 @@
 ** Vim, tmux and zsh in iTerm2 using [[https://github.com/morhetz/gruvbox][gruvbox]]
 
 [[https://raw.githubusercontent.com/ninrod/dotshots/master/vim-tmux-2016-10-15.png][https://raw.githubusercontent.com/ninrod/dotshots/master/vim-tmux-2016-10-15.png]]
+
+** Quick vim/tmux/zsh shell session demo
+
+[[http://asciinema.org/a/3v68ugj16u0wmxt9asnllwrri][http://asciinema.org/a/3v68ugj16u0wmxt9asnllwrri.png]]
+
 * Note
 These are my personal configuration files, 
 which are in a constant state of change as I develop my environment across several systems. 
