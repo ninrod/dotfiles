@@ -998,6 +998,7 @@ SCHEDULED: %t")))
 (diminish 'git-gutter-mode)
 (diminish 'evil-escape-mode)
 (diminish 'subword-mode)
+(diminish 'smart-tab-mode)
 (diminish 'flyspell-mode "FlyS")
 (diminish 'flycheck-mode "FlyC")
 #+END_SRC
