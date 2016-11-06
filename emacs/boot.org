@@ -1334,7 +1334,8 @@ SCHEDULED: %t")))
 *** bind-map
 #+BEGIN_SRC emacs-lisp
 (bind-map spc-map
-    :evil-keys ("SPC" "C-b")
+    :keys ("M-SPC")
+    :evil-keys ("SPC")
     :evil-states (normal visual motion))
 #+END_SRC
 
