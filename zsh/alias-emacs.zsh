@@ -2,6 +2,7 @@
 
 # main
 alias e="background-connect-gui.sh"
+alias em="background-emacs.sh"
 
 # emacs
 alias emacs="emacs.sh"
