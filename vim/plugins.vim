@@ -1,4 +1,4 @@
-execute pathogen#infect()
+execute pathogen#infect('bundle/{}/{}')
 
 " appearance
 let g:lightline = {'colorscheme': 'Dracula'}
