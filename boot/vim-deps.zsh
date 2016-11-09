@@ -21,8 +21,9 @@ ningrab tpope_vim-repeat
 ningrab tpope_vim-surround
 ningrab wellle_targets.vim
 
-# ningrab dracula_vim
 # themes
+ningrab dracula_vim
+ningrab colepeters_spacemacs-theme.vim
 ningrab chriskempson_base16-vim
 ningrab itchyny_lightline.vim
 ningrab felixjung_vim-base16-lightline
