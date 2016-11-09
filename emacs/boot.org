@@ -892,6 +892,8 @@ SCHEDULED: %t")))
 #+BEGIN_SRC emacs-lisp
 (use-package web-mode
   :ensure t
+  :init 
+  (setq web-mode-enable-current-element-highlight t)
   :config
       (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
       (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
