@@ -21,13 +21,13 @@
 [[http://asciinema.org/a/3v68ugj16u0wmxt9asnllwrri][http://asciinema.org/a/3v68ugj16u0wmxt9asnllwrri.png]]
 
 * Note
+
 These are my personal configuration files, 
-which are in a constant state of change as I develop my environment across several systems. 
-I can't guarantee that these configurations will work for you, at all. 
-So if you encounter problems with them, you're pretty much on your own. 
-Still, it can be useful and instructional to look around and take bits 
-and snippets to use within your own configuration files. 
-(this notice was based on [[https://github.com/aaronbieber/dotfiles][aaron bieber's dotfiles]])
+which are in a constant state of change as I develop my environment across several systems so I can't guarantee 
+that these configurations will work for you, at all. 
+Still, it can be useful and instructional to look around and take bits and snippets to use within your own configuration files. 
+Feel free to open issues though, if the config did not work for you. I'll try to help if I can.
+
 * Install Instructions
 
 - First off, I strongly recommend using [[https://github.com/gnachman/iTerm2.git][iTerm2]] on OSx.
