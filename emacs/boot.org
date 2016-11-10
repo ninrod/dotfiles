@@ -736,6 +736,7 @@ SCHEDULED: %t")))
     (use-package flycheck :ensure t
       :config (global-flycheck-mode t))
   #+END_SRC
+
 *** emmet
 #+BEGIN_SRC emacs-lisp
   (use-package emmet-mode
@@ -747,6 +748,7 @@ SCHEDULED: %t")))
     :defer t
     :ensure t)
 #+END_SRC
+
 *** smart-tab
 #+BEGIN_SRC emacs-lisp
   (use-package smart-tab :ensure t
