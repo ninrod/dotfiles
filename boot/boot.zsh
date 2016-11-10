@@ -16,3 +16,4 @@ export DOTPATH
 source $GIT_ROOT/boot/ningrab.zsh
 source $GIT_ROOT/boot/zsh-deps.zsh
 source $GIT_ROOT/boot/vim-deps.zsh
+source $GIT_ROOT/boot/emacs-deps.zsh

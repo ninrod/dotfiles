@@ -633,7 +633,7 @@ SCHEDULED: %t")))
 #+BEGIN_SRC emacs-lisp
   (use-package all-the-icons :ensure t
     :config
-    (use-package all-the-icons-dired :load-path "lisp/all-the-icons-dired"))
+    (use-package all-the-icons-dired :load-path "lisp/jtbm37/all-the-icons-dired"))
 #+END_SRC
 
 ** expand funcionality
@@ -1440,7 +1440,7 @@ SCHEDULED: %t")))
 *** f: files and directories
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
-    "fa" 'write-file
+    "fs" 'write-file
     "fb" 'counsel-bookmark
     "fc" 'make-directory
     "fd" 'cd
@@ -1550,6 +1550,7 @@ SCHEDULED: %t")))
     "te" 'eshell
 
     ;; multi-term
+    "tt"  'multi-term
     "tm"  'multi-term
     "tn" 'multi-term-next
     "tp" 'multi-term-prev
