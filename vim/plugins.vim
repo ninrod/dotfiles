@@ -1,7 +1,12 @@
 execute pathogen#infect('bundle/{}/{}')
 
 " appearance
-let g:lightline = {'colorscheme': 'Dracula'}
+
+let g:lightline = {'colorscheme': 'base16_google'}
+" let g:lightline = {'colorscheme': 'base16_paraiso'}
+" let g:lightline = {'colorscheme': 'base16_pop'}
+" let g:lightline = {'colorscheme': 'base16_railscasts'}
+
 let g:tmuxline_powerline_separators = 0
 
 set background=dark

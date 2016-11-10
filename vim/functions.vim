@@ -1,5 +1,5 @@
 " no need for pathogen, vimplug, etc. just use this tiny function
-function LoadPlugin(plugin)
+function! LoadPlugin(plugin)
   let basepath=','.'~/.vim/plugged/'
   let &runtimepath.=basepath . a:plugin
 endfunction
