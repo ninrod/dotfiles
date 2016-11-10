@@ -822,18 +822,29 @@ SCHEDULED: %t")))
   ))
 #+END_SRC
 
+*** dired+
+#+BEGIN_SRC emacs-lisp
+  (use-package dired+ :ensure t
+    :init
+    (setq diredp-hide-details-initially-flag nil))
+#+END_SRC
+
 *** dired-k
 #+BEGIN_SRC emacs-lisp
   (use-package dired-k :ensure t
+    :init
+      (setq dired-k-human-readable t)
+      (setq dired-k-style 'git)
     :config
-    (bind-key "K" 'dired-k dired-mode-map)
-    (bind-key "g" 'dired-k dired-mode-map)
+    (add-hook 'dired-initial-position-hook 'dired-k))
 
-    ;; You can use dired-k alternative to revert-buffer
-    ;; always execute dired-k when dired buffer is opened
-    (add-hook 'dired-initial-position-hook 'dired-k)
-    (add-hook 'dired-after-readin-hook #'dired-k-no-revert))
 #+END_SRC
+
+*** dired-sort
+#+BEGIN_SRC emacs-lisp
+(use-package dired-sort :ensure t)
+#+END_SRC
+
 ** git
 *** git-gutter
 #+BEGIN_SRC emacs-lisp
