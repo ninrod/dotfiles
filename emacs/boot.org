@@ -1658,14 +1658,12 @@ SCHEDULED: %t")))
   (require 'evil)
   (require 'dired)
 
-  (defun neotree-copy-file ()
-    (interactive)
-    (let* ((current-path (neo-buffer--get-filename-current-line))
-           (msg (format "Copy [%s] to: "
-                        (neo-path--file-short-name current-path)))
-           (to-path (read-file-name msg (file-name-directory current-path))))
-      (dired-copy-file current-path to-path t))
-    (neo-buffer--refresh t))
+  (unbind-key "s" neotree-mode-map)
+  (unbind-key "d" neotree-mode-map)
+  (unbind-key "n" neotree-mode-map)
+  (unbind-key "-" neotree-mode-map)
+  (unbind-key "N" neotree-mode-map)
+  (unbind-key "<SPC>" neotree-mode-map)
 
   (define-minor-mode neotree-evil
     "Use NERDTree bindings on neotree."
@@ -1673,40 +1671,20 @@ SCHEDULED: %t")))
     :keymap (progn
               (evil-make-overriding-map neotree-mode-map 'normal t)
               (evil-define-key 'normal neotree-mode-map
-                "C" 'neotree-change-root
-                "U" 'neotree-select-up-node
-                "r" 'neotree-refresh
-                "o" 'neotree-enter
+                "d" 'neotree-change-root
+                "u" 'neotree-select-up-node
+                "zj" 'neotree-select-next-sibling-node
+                "zk" 'neotree-select-previous-sibling-node
+                "gr" 'neotree-refresh
                 "q" 'neotree-toggle
-                (kbd "<return>") 'neotree-enter
                 "i" 'neotree-enter-horizontal-split
-                "s" 'neotree-enter-vertical-split
-                "n" 'evil-search-next
-                "N" 'evil-search-previous
-                "ma" 'neotree-create-node
-                "mc" 'neotree-copy-file
-                "md" 'neotree-delete-node
-                "mm" 'neotree-rename-node
+                "c" 'neotree-create-node
+                "y" 'neotree-copy-node
+                "x" 'neotree-delete-node
+                "r" 'neotree-rename-node
                 "gg" 'evil-goto-first-line
                 "gl" 'evil-goto-line
-                "gi" (lambda ()
-                       (interactive)
-                       (if (string= pe/get-directory-tree-external-command
-                                    nt/gitignore-files-cmd)
-                           (progn (setq pe/get-directory-tree-external-command
-                                        nt/all-files-cmd))
-                         (progn (setq pe/get-directory-tree-external-command
-                                      nt/gitignore-files-cmd)))
-                       (nt/refresh))
-                "I" (lambda ()
-                      (interactive)
-                      (if pe/omit-enabled
-                          (progn (setq pe/directory-tree-function
-                                       'pe/get-directory-tree-async)
-                                 (pe/toggle-omit nil))
-                        (progn (setq pe/directory-tree-function
-                                     'pe/get-directory-tree-external)
-                               (pe/toggle-omit t)))))
+                (kbd "<return>") 'neotree-enter)
               neotree-mode-map))
 #+END_SRC
 
