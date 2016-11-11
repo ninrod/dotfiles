@@ -8,11 +8,11 @@
 - Simplicity, speed and power while working inside the shell.
 
 * Screenshots
-** Emacs: gruvbox theme
+** Emacs
 
 [[https://raw.githubusercontent.com/ninrod/dotshots/master/emacs-2016-11-11.png][https://raw.githubusercontent.com/ninrod/dotshots/master/emacs-2016-11-11.png]]
 
-** Vim, tmux and zsh in iTerm2 using [[https://github.com/morhetz/gruvbox][gruvbox]]
+** Vim, tmux and zsh
 
 [[https://raw.githubusercontent.com/ninrod/dotshots/master/vim-tmux-2016-10-15.png][https://raw.githubusercontent.com/ninrod/dotshots/master/vim-tmux-2016-10-15.png]]
 
