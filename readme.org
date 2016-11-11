@@ -14,7 +14,7 @@
 
 ** Vim, tmux and zsh
 
-[[https://raw.githubusercontent.com/ninrod/dotshots/master/vim-tmux-2016-10-15.png][https://raw.githubusercontent.com/ninrod/dotshots/master/vim-tmux-2016-10-15.png]]
+[[https://raw.githubusercontent.com/ninrod/dotshots/master/vim-2016-11-11.png][https://raw.githubusercontent.com/ninrod/dotshots/master/vim-2016-11-11.png]]
 
 ** Quick vim/tmux/zsh shell session demo
 
