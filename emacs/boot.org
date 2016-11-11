@@ -701,12 +701,10 @@ SCHEDULED: %t")))
   (use-package ivy
     :ensure t
     :config
-      (setq ivy-use-virtual-buffers t)
+      ;; (setq ivy-use-virtual-buffers t)
       (setq ivy-count-format "(%d/%d) ")
       (ivy-mode 1)
-
-      (use-package counsel :ensure t)
-  )
+      (use-package counsel :ensure t))
 #+END_SRC
 
 *** company
@@ -715,8 +713,7 @@ SCHEDULED: %t")))
   :config
     (add-hook 'after-init-hook 'global-company-mode)
     ;; TODO: could we use TAB?
-    (define-key company-mode-map (kbd "C-SPC") 'company-complete)
-)
+    (define-key company-mode-map (kbd "C-SPC") 'company-complete))
 #+END_SRC
 
 *** yasnippet
