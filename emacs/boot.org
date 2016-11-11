@@ -226,6 +226,7 @@ the right."
 
 ** ui
 #+BEGIN_SRC emacs-lisp
+  (setq default-directory "~/code/sources/dotfiles")
   (setq inhibit-startup-message t)
 
   ;; careful with emacs compiled with `nox'
@@ -812,6 +813,7 @@ SCHEDULED: %t")))
             neo-window-width 50
             neo-show-updir-line nil
             neo-smart-open t
+            neo-show-hidden-files t
             neo-theme (if (display-graphic-p) 'icons 'nerd) ; fallback
             ;; neo-theme 'nerd ; fallback
             neo-banner-message nil
@@ -1422,6 +1424,21 @@ SCHEDULED: %t")))
 
 #+END_SRC
 
+*** d: describe/help
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys spc-map
+    "db" 'counsel-descbinds
+    "dc" 'describe-char
+    "df" 'counsel-describe-function
+    "di" 'info
+    "dk" 'describe-key
+    "dm" 'describe-mode
+    "dt" 'help-with-tutorial
+    "dv" 'counsel-describe-variable
+  )
+  (which-key-declare-prefixes "SPC d" "describe/help")
+#+END_SRC
+
 *** e: eyebrowse
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys spc-map
@@ -1471,21 +1488,6 @@ SCHEDULED: %t")))
     "ia" 'counsel-ag
   )
   (which-key-declare-prefixes "SPC i" "ivy")
-#+END_SRC
-
-*** h: help
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys spc-map
-    "hb" 'counsel-descbinds
-    "hc" 'describe-char
-    "hf" 'counsel-describe-function
-    "hi" 'info
-    "hk" 'describe-key
-    "hm" 'describe-mode
-    "ht" 'help-with-tutorial
-    "hv" 'counsel-describe-variable
-  )
-  (which-key-declare-prefixes "SPC h" "help")
 #+END_SRC
 
 *** m: M-x useful functions
@@ -1614,6 +1616,8 @@ SCHEDULED: %t")))
       "s" 'evil-save-modified-and-close
       "d" 'kill-this-buffer
       "r" 'restart-emacs
+
+      "o" 'neotree-toggle
 
       "i" 'ivy-switch-buffer
 
