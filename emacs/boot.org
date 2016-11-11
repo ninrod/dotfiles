@@ -584,7 +584,7 @@ SCHEDULED: %t")))
 
 *** spaceline
 - to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package spaceline :ensure t
     :config
     (setq powerline-height 30)
