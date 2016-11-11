@@ -1,8 +1,7 @@
-# fetch vim deps
-bundle=$GIT_ROOT/vim/bundle
-mkdir -p $bundle && cd $bundle
+# setup vim deps dir
+mkdir -p $vim_deps && cd $vim_deps
 
-# core editing
+# fetch core editing deps
 ningrab tpope/vim-pathogen
 ningrab bronson/vim-visual-star-search
 ningrab chaoren/vim-wordmotion
@@ -16,7 +15,7 @@ ningrab tpope/vim-repeat
 ningrab tpope/vim-surround
 ningrab wellle/targets.vim
 
-# themes
+# fetch cosmetic deps
 ningrab dracula/vim
 ningrab colepeters/spacemacs-theme.vim
 ningrab chriskempson/base16-vim
@@ -25,8 +24,7 @@ ningrab felixjung/vim-base16-lightline
 ningrab edkolev/tmuxline.vim
 ningrab luochen1990/rainbow
 
-
-# tpope's pathogen install procedure
+# fetch tpope's pathogen plugin
 autoload_folder=$GIT_ROOT/vim/autoload
 mkdir -p $autoload_folder && cd $autoload_folder
-ln -sf $bundle/tpope/vim-pathogen/autoload/pathogen.vim
+ln -sf $vim_deps/tpope/vim-pathogen/autoload/pathogen.vim

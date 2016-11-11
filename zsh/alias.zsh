@@ -21,8 +21,7 @@ alias tarx='tar -zxvf'
 
 # zsh config
 alias re='exec zsh'
-alias r='echo -e "${Red}you have pressed \`r\`. careful. this repeats last command."'
 alias dot='la $(find ~ -maxdepth 1 -type l)'
 
 # dotfiles
-alias boot='~/.dotfiles/install.zsh'
+alias r='~/.dotfiles/install.zsh'
