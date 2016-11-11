@@ -2,6 +2,5 @@
 #+STARTUP: overview
 
 * Ninrod's vim configuration
-- I don't use any plugin manager. just a tiny function to manipulate the &runtimepath
 - I've split up vimrc into manageable smaller files
 
