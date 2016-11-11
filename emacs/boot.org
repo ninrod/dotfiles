@@ -248,6 +248,12 @@ the right."
   
   ;; save minibuffer history
   (savehist-mode 1)
+  
+  ;; hack: customize display time in modeline. 
+  ;; lifted from https://www.reddit.com/r/emacs/comments/2ziinn/displaytimemode_but_not_system_load/
+  (setq display-time-default-load-average nil)
+  (setq display-time-day-and-date t)
+  (display-time-mode)
 
   ;;highlight current line
   ;;(global-hl-line-mode)
@@ -473,26 +479,26 @@ SCHEDULED: %t")))
 ** cosmetic
 *** theme collection
 **** dark
-***** dracula 
-#+BEGIN_SRC emacs-lisp
-  ;; (use-package dracula-theme
-  ;;   :init (load-theme 'dracula t)
-  ;;   :defer t
-  ;;   :ensure t)
-#+END_SRC
-
-***** spacemacs
+***** birds-of-paradise-plus
   #+BEGIN_SRC emacs-lisp
-    (use-package spacemacs-theme
-      :init (load-theme 'spacemacs-dark t)
+    (use-package birds-of-paradise-plus-theme
+      :init (load-theme 'birds-of-paradise-plus t)
       :defer t
       :ensure t)
   #+END_SRC
 
-***** ample-zen
+***** spacemacs
+  #+BEGIN_SRC emacs-lisp
+    ;; (use-package spacemacs-theme
+    ;;   :init (load-theme 'spacemacs-dark t)
+    ;;   :defer t
+    ;;   :ensure t)
+  #+END_SRC
+
+***** dracula 
 #+BEGIN_SRC emacs-lisp
-  ;; (use-package ample-zen-theme
-  ;;   :init (load-theme 'ample-zen t)
+  ;; (use-package dracula-theme
+  ;;   :init (load-theme 'dracula t)
   ;;   :defer t
   ;;   :ensure t)
 #+END_SRC
@@ -531,6 +537,14 @@ SCHEDULED: %t")))
 #+BEGIN_SRC emacs-lisp
   ;; (use-package cyberpunk-theme
   ;;   :init (load-theme 'cyberpunk t)
+  ;;   :defer t
+  ;;   :ensure t)
+#+END_SRC
+
+***** ample-zen
+#+BEGIN_SRC emacs-lisp
+  ;; (use-package ample-zen-theme
+  ;;   :init (load-theme 'ample-zen t)
   ;;   :defer t
   ;;   :ensure t)
 #+END_SRC
@@ -574,37 +588,16 @@ SCHEDULED: %t")))
   (use-package spaceline :ensure t
     :config
     (setq powerline-height 30)
-
-    ;; customize separators for Powerline.
-    ;; Included separators: alternate, slant, wave, zigzag, nil.
-    (setq powerline-default-separator 'utf-8)
+    (setq powerline-default-separator 'utf-8) ;customize separators for Powerline: alternate, slant, wave, zigzag, nil.
     (setq spaceline-separator-dir-left '(right . right))
     (setq spaceline-separator-dir-right '(right . right))
-
-
-    (when (eq system-type 'darwin)
-      (setq ns-use-srgb-colorspace nil)
-      (setq powerline-default-separator 'slant))
-
-    (when (eq system-type 'gnu/linux)
-      (setq powerline-default-separator 'slant))
-
-
-    ;; hack: is for eyebrowse. nice looking unicode numbers for tagging different layouts
-    ;; lifted from TheBB/spaceline readme.md
-    (setq spaceline-workspace-numbers-unicode t)
+    (when (eq system-type 'darwin) (setq ns-use-srgb-colorspace nil))
+    (setq powerline-default-separator 'slant)
+    (setq spaceline-workspace-numbers-unicode t) ;for eyebrowse. nice looking unicode numbers for tagging different layouts
     (setq spaceline-window-numbers-unicode t)
-
-    ;; set colouring for different evil-states
-    (setq spaceline-highlight-face-func #'spaceline-highlight-face-evil-state)
-
-    ;; hack: customize display time in spaceline. 
-    ;; lifted from https://www.reddit.com/r/emacs/comments/2ziinn/displaytimemode_but_not_system_load/
-    (setq display-time-default-load-average nil)
-
+    (setq spaceline-highlight-face-func #'spaceline-highlight-face-evil-state) ; set colouring for different evil-states
     (require 'spaceline-config)
     (spaceline-spacemacs-theme)
-    (display-time-mode)
     (spaceline-compile))
 #+END_SRC
 
