@@ -310,7 +310,8 @@ the right."
 
 ** garbage collection tuning
 #+BEGIN_SRC emacs-lisp
-(setq gc-cons-threshold 20000000)
+(setq gc-cons-threshold 50000000)
+(setq gnutls-min-prime-bits 4096)
 #+END_SRC
 
 ** move custom data out of init.el
