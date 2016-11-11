@@ -481,7 +481,7 @@ SCHEDULED: %t")))
 *** theme collection
 **** dark
 ***** birds-of-paradise-plus
-  #+BEGIN_SRC emacs-lisp
+  #+BEGIN_SRC text
     (use-package birds-of-paradise-plus-theme
       :init (load-theme 'birds-of-paradise-plus t)
       :defer t
@@ -490,10 +490,10 @@ SCHEDULED: %t")))
 
 ***** spacemacs
   #+BEGIN_SRC emacs-lisp
-    ;; (use-package spacemacs-theme
-    ;;   :init (load-theme 'spacemacs-dark t)
-    ;;   :defer t
-    ;;   :ensure t)
+    (use-package spacemacs-theme
+      :init (load-theme 'spacemacs-dark t)
+      :defer t
+      :ensure t)
   #+END_SRC
 
 ***** dracula 
@@ -585,7 +585,7 @@ SCHEDULED: %t")))
 
 *** spaceline
 - to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package spaceline :ensure t
     :config
     (setq powerline-height 30)
