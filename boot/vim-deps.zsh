@@ -24,7 +24,3 @@ ningrab felixjung/vim-base16-lightline
 ningrab edkolev/tmuxline.vim
 ningrab luochen1990/rainbow
 
-# fetch tpope's pathogen plugin
-autoload_folder=$GIT_ROOT/vim/autoload
-mkdir -p $autoload_folder && cd $autoload_folder
-ln -sf $vim_deps/tpope/vim-pathogen/autoload/pathogen.vim
