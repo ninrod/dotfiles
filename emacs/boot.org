@@ -811,6 +811,7 @@ SCHEDULED: %t")))
             neo-mode-line-type 'none
             neo-window-width 50
             neo-show-updir-line nil
+            neo-smart-open t
             neo-theme (if (display-graphic-p) 'icons 'nerd) ; fallback
             ;; neo-theme 'nerd ; fallback
             neo-banner-message nil
