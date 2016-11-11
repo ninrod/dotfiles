@@ -10,7 +10,7 @@
 * Screenshots
 ** Emacs: gruvbox theme
 
-[[https://raw.githubusercontent.com/ninrod/dotshots/master/emacs-gruvbox-2016-10-11.png][https://raw.githubusercontent.com/ninrod/dotshots/master/emacs-gruvbox-2016-10-11.png]]
+[[https://raw.githubusercontent.com/ninrod/dotshots/master/emacs-2016-11-11.png][https://raw.githubusercontent.com/ninrod/dotshots/master/emacs-2016-11-11.png]]
 
 ** Vim, tmux and zsh in iTerm2 using [[https://github.com/morhetz/gruvbox][gruvbox]]
 
