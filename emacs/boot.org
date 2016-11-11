@@ -245,10 +245,10 @@ the right."
   ;; save last cursor position
   (save-place-mode 1) 
   ;; (setq save-place-file (locate-user-emacs-file "places" "emacs-places"))
-  
+
   ;; save minibuffer history
   (savehist-mode 1)
-  
+
   ;; hack: customize display time in modeline. 
   ;; lifted from https://www.reddit.com/r/emacs/comments/2ziinn/displaytimemode_but_not_system_load/
   (setq display-time-default-load-average nil)
@@ -584,7 +584,7 @@ SCHEDULED: %t")))
 
 *** spaceline
 - to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (use-package spaceline :ensure t
     :config
     (setq powerline-height 30)
