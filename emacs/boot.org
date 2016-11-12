@@ -116,7 +116,7 @@ the right."
     (golden-ratio)))
 #+END_SRC
 
-** emacs-prelude
+** emacs-prelude/copy-file-name-to-clipboard
 #+BEGIN_SRC emacs-lisp
 (defun prelude-copy-file-name-to-clipboard ()
   "Copy the current buffer file name to the clipboard."
@@ -476,6 +476,14 @@ SCHEDULED: %t")))
   ;;   (setq evil-emacs-state-cursor  'hbar)
   ;;   (unless (display-graphic-p) 
   ;;     (evil-terminal-cursor-changer-activate)))
+#+END_SRC
+
+*** evil-replace-with-register
+#+BEGIN_SRC emacs-lisp
+  (use-package evil-ReplaceWithRegister :load-path "lisp/Dewdrops/evil-ReplaceWithRegister"
+  :config
+  (setq evil-ReplaceWithRegister-key (kbd "gr"))
+  (evil-ReplaceWithRegister-install))
 #+END_SRC
 
 ** cosmetic
@@ -955,6 +963,7 @@ SCHEDULED: %t")))
         (setq web-mode-code-indent-offset   2))
       (add-hook 'web-mode-hook 'my-web-mode-hook))
 #+END_SRC
+
 *** css/less: 
 #+BEGIN_SRC emacs-lisp
   (use-package less-css-mode :ensure t)
@@ -1467,7 +1476,7 @@ SCHEDULED: %t")))
     "fk" 'bookmark-delete
     "fm" 'bookmark-set
     "fn" 'neotree-toggle
-    "fp" 'prelude-copy-file-name-to-clipboard
+    "fy" 'prelude-copy-file-name-to-clipboard
     "fr" 'nin-revert-buffer-no-confirm
   )
   (which-key-declare-prefixes "SPC f" "file/dir operations")

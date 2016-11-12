@@ -1,1 +1,1 @@
-/home/vagrant/.dotfiles/deps/vim/tpope/vim-pathogen/autoload/pathogen.vim
+../../deps/vim/tpope/vim-pathogen/autoload/pathogen.vim
