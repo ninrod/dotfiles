@@ -129,6 +129,14 @@ the right."
       (message "Copied buffer file name '%s' to the clipboard." filename))))
 #+END_SRC
 
+** ninrod/neotree-copy-filepath-to-clipboard
+- with help from [[http://stackoverflow.com/a/40564951/4921402][/u/lawlist]]
+#+BEGIN_SRC emacs-lisp
+(defun ninrod/neotree-copy-filepath-to-clipboard () 
+(interactive) 
+(kill-new (neo-buffer--get-filename-current-line)))
+#+END_SRC
+
 ** clipboard
 #+BEGIN_SRC emacs-lisp
 (defun nin-yank-to-clipboard ()
@@ -1692,6 +1700,7 @@ SCHEDULED: %t")))
               (evil-make-overriding-map neotree-mode-map 'normal t)
               (evil-define-key 'normal neotree-mode-map
                 "d" 'neotree-change-root
+                "p" 'ninrod/neotree-copy-filepath-to-clipboard
                 "u" 'neotree-select-up-node
                 "zj" 'neotree-select-next-sibling-node
                 "zk" 'neotree-select-previous-sibling-node
