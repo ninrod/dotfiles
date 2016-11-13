@@ -652,13 +652,14 @@ the right."
 (use-package highlight-numbers :ensure t
 :config (add-hook 'prog-mode-hook 'highlight-numbers-mode))
 #+END_SRC
+
 *** relative-line-numbers
 #+BEGIN_SRC emacs-lisp
 (use-package relative-line-numbers :ensure t
 :init
   (setq relative-line-numbers-motion-function #'forward-visible-line)
 :config
-  (global-relative-line-numbers-mode))
+  (add-hook 'prog-mode-hook #'relative-line-numbers-mode))
 #+END_SRC
 
 *** restart-emacs
