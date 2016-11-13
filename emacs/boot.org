@@ -349,8 +349,7 @@ the right."
 (setq org-capture-templates
       '(("a" "My TODO task format." entry
          (file "~/code/sources/life/gtd/inbox.org")
-         "* TODO %?
-SCHEDULED: %t")))
+         "* TODO %? ")))
 (defun air-org-task-capture ()
   "Capture a task with my default template."
   (interactive)
