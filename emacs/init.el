@@ -2,10 +2,9 @@
 (setq package-enable-at-startup nil)
 
 ;; use a local melpa mirror. much faster.
-(setq package-archives '(("melpa" . "~/code/apps/spacemacs-elpa-mirror/melpa/")
-                         ("org" . "~/code/apps/spacemacs-elpa-mirror/org/")
-                         ("gnu" . "~/code/apps/spacemacs-elpa-mirror/gnu/")
-                         ))
+(setq package-archives '(("melpa" . "~/.emacs.d/mirror-elpa/melpa/")
+                         ("org"   . "~/.emacs.d/mirror-elpa/org/")
+                         ("gnu"   . "~/.emacs.d/mirror-elpa/gnu/")))
 (package-initialize)
 
 ;; Bootstrap `use-package'
@@ -18,5 +17,5 @@
   :ensure org-plus-contrib
   :defer 7)
 
-;; load my config in `org-mode' format
+;; org-babel-load my config which is written in `org-mode' format
 (org-babel-load-file (expand-file-name "~/.emacs.d/boot.org"))

@@ -1,4 +1,4 @@
-##### s and sk: get recursive dir size measurements
+##### s and sk: get recursive dir size measurements {{{
 # s: get megabytes measurement
 # usage: s [-h] [path]
 s() {
@@ -23,6 +23,7 @@ s() {
     print -l 'bogus argument. check function documentation'
   fi
 }
+# end }}}
 
 # sk: get kilobytes measurement. for human readable output check the s function
 # usage: s [path]
