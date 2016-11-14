@@ -326,6 +326,8 @@ the right."
 
 
 (setq auto-save-default nil) ; stop creating those #auto-save# files
+
+(global-auto-revert-mode)
 #+END_SRC
 
 ** garbage collection tuning
