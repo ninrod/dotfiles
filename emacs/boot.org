@@ -683,10 +683,6 @@ the right."
 #+END_SRC
 
 ** expand funcionality
-*** expand-region
-#+BEGIN_SRC emacs-lisp
-(use-package expand-region :ensure t)
-#+END_SRC
 *** highlight-numbers
 #+BEGIN_SRC emacs-lisp
 (use-package highlight-numbers :ensure t
@@ -1142,9 +1138,7 @@ the right."
   (bind-key "g/" 'swiper evil-motion-state-map)
   (bind-key "gh" 'counsel-recentf evil-motion-state-map)
 
-
-  ;; (bind-key "ga" 'er/expand-region evil-motion-state-map)
-  (bind-key "g RET" 'er/expand-region evil-normal-state-map)
+  ;; (bind-key "g RET" 'er/expand-region evil-normal-state-map)
 #+END_SRC
 
 *** comfort improvements
