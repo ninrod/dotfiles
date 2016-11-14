@@ -278,9 +278,11 @@ the right."
   ;; replacing it with the Emacs’ text.
   ;; https://github.com/dakrone/eos/blob/master/eos.org
   (setq save-interprogram-paste-before-kill t)
+  (setq yank-pop-change-selection t)
   
   ;; MRU configs
   (setq recentf-max-menu-items 50)
+
 #+END_SRC
 
 ** gui
@@ -402,17 +404,39 @@ the right."
 *** evil
 - emacsify insert state. based on this SO question [[http://stackoverflow.com/a/26573722/4921402][here]].
 #+BEGIN_SRC emacs-lisp
-  (use-package evil :ensure t
-    :config 
+    (use-package evil :ensure t
+      :config 
 
-    ;; remove all keybindings from insert-state keymap just
-    ;; because I want to use emacs keybindings in insert state.
-    (setcdr evil-insert-state-map nil)
+      ;; remove all keybindings from insert-state keymap just
+      ;; because I want to use emacs keybindings in insert state.
+      (setcdr evil-insert-state-map nil)
 
-    ;; but [escape] should switch back to normal state, obviously.
-    (define-key evil-insert-state-map [escape] 'evil-normal-state)
+      ;; but [escape] should switch back to normal state, obviously.
+      (define-key evil-insert-state-map [escape] 'evil-normal-state)
 
-    (evil-mode))
+      ;; Amazing hack lifted from: http://emacs.stackexchange.com/a/15054/12585
+      ;; Imagine the following scenario.  One wants to paste some previously copied
+      ;; (from application other than Emacs) text to the system's clipboard in place
+      ;; of some contiguous block of text in a buffer.  Hence, one switches to
+      ;; `evil-visual-state' and selects the corresponding block of text to be
+      ;; replaced.  However, one either pastes some (previously killed) text from
+      ;; `kill-ring' or (if `kill-ring' is empty) receives the error: "Kill ring is
+      ;; empty"; see `evil-visual-paste' and `current-kill' respectively.  The
+      ;; reason why `current-kill' does not return the desired text from the
+      ;; system's clipboard is because `evil-visual-update-x-selection' is being run
+      ;; by `evil-visual-pre-command' before `evil-visual-paste'.  That is
+      ;; `x-select-text' is being run (by `evil-visual-update-x-selection') before
+      ;; `evil-visual-paste'.  As a result, `x-select-text' copies the selected
+      ;; block of text to the system's clipboard as long as
+      ;; `x-select-enable-clipboard' is non-nil (and in this scenario we assume that
+      ;; it is).  According to the documentation of `interprogram-paste-function',
+      ;; it should not return the text from the system's clipboard if it was last
+      ;; provided by Emacs (e.g. with `x-select-text').  Thus, one ends up with the
+      ;; problem described above.  To solve it, simply make
+      ;; `evil-visual-update-x-selection' do nothing:
+      (fset 'evil-visual-update-x-selection 'ignore)
+
+      (evil-mode))
 #+END_SRC
 
 *** evil-commentary
@@ -744,7 +768,7 @@ the right."
       ;; (setq ivy-use-virtual-buffers t)
       (setq ivy-count-format "(%d/%d) ")
       (ivy-mode 1)
-      (setq ivy-height 20)
+      (setq ivy-height 15)
       (use-package counsel :ensure t))
 #+END_SRC
 
