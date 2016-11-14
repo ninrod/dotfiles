@@ -548,7 +548,7 @@ the right."
       :ensure t)
   #+END_SRC
 
-***** dracula 
+***** dracula
 #+BEGIN_SRC text
   (use-package dracula-theme
     :init (load-theme 'dracula t)
@@ -683,6 +683,10 @@ the right."
 #+END_SRC
 
 ** expand funcionality
+*** expand-region
+#+BEGIN_SRC emacs-lisp
+(use-package expand-region :ensure t)
+#+END_SRC
 *** highlight-numbers
 #+BEGIN_SRC emacs-lisp
 (use-package highlight-numbers :ensure t
@@ -1122,21 +1126,25 @@ the right."
 ** evil
 *** abusing the g prefix
 #+BEGIN_SRC emacs-lisp
-(bind-key "go" 'evil-goto-first-line evil-motion-state-map)
-(bind-key "gl" 'evil-goto-line evil-motion-state-map)
-(bind-key "gp" 'pop-global-mark evil-motion-state-map)
-(bind-key "g9" (kbd "Hz-M") evil-motion-state-map)
-(bind-key "g0" (kbd "LztM") evil-motion-state-map)
+  (bind-key "go" 'evil-goto-first-line evil-motion-state-map)
+  (bind-key "gl" 'evil-goto-line evil-motion-state-map)
+  (bind-key "gp" 'pop-global-mark evil-motion-state-map)
+  (bind-key "g9" (kbd "Hz-M") evil-motion-state-map)
+  (bind-key "g0" (kbd "LztM") evil-motion-state-map)
 
-(bind-key "g1" 'eyebrowse-switch-to-window-config-1 evil-motion-state-map)
-(bind-key "g2" 'eyebrowse-switch-to-window-config-2 evil-motion-state-map)
-(bind-key "g3" 'eyebrowse-switch-to-window-config-3 evil-motion-state-map)
-(bind-key "g4" 'eyebrowse-switch-to-window-config-4 evil-motion-state-map)
+  (bind-key "g1" 'eyebrowse-switch-to-window-config-1 evil-motion-state-map)
+  (bind-key "g2" 'eyebrowse-switch-to-window-config-2 evil-motion-state-map)
+  (bind-key "g3" 'eyebrowse-switch-to-window-config-3 evil-motion-state-map)
+  (bind-key "g4" 'eyebrowse-switch-to-window-config-4 evil-motion-state-map)
 
-(bind-key "gs" 'magit-status evil-motion-state-map)
-(bind-key "g." 'counsel-projectile evil-motion-state-map)
-(bind-key "g/" 'swiper evil-motion-state-map)
-(bind-key "gh" 'counsel-recentf evil-motion-state-map)
+  (bind-key "gs" 'magit-status evil-motion-state-map)
+  (bind-key "g." 'counsel-projectile evil-motion-state-map)
+  (bind-key "g/" 'swiper evil-motion-state-map)
+  (bind-key "gh" 'counsel-recentf evil-motion-state-map)
+
+
+  ;; (bind-key "ga" 'er/expand-region evil-motion-state-map)
+  (bind-key "g RET" 'er/expand-region evil-normal-state-map)
 #+END_SRC
 
 *** comfort improvements
