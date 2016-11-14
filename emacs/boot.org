@@ -496,14 +496,6 @@ the right."
 ** cosmetic
 *** theme collection
 **** dark
-***** birds-of-paradise-plus
-  #+BEGIN_SRC text
-    (use-package birds-of-paradise-plus-theme
-      :init (load-theme 'birds-of-paradise-plus t)
-      :defer t
-      :ensure t)
-  #+END_SRC
-
 ***** spacemacs
   #+BEGIN_SRC emacs-lisp
     (use-package spacemacs-theme
@@ -512,91 +504,99 @@ the right."
       :ensure t)
   #+END_SRC
 
+***** birds-of-paradise-plus
+  #+BEGIN_SRC text
+    (use-package birds-of-paradise-plus-theme
+      :init (load-theme 'birds-of-paradise-plus t)
+      :defer t
+      :ensure t)
+  #+END_SRC
+
 ***** dracula 
-#+BEGIN_SRC emacs-lisp
-  ;; (use-package dracula-theme
-  ;;   :init (load-theme 'dracula t)
-  ;;   :defer t
-  ;;   :ensure t)
+#+BEGIN_SRC text
+  (use-package dracula-theme
+    :init (load-theme 'dracula t)
+    :defer t
+    :ensure t)
 #+END_SRC
 
 ***** gruvbox
-  #+BEGIN_SRC emacs-lisp
-    ;; (use-package gruvbox-theme
-    ;;   :init (load-theme 'gruvbox t)
-    ;;   :defer t
-    ;;   :ensure t)
+  #+BEGIN_SRC text
+    (use-package gruvbox-theme
+      :init (load-theme 'gruvbox t)
+      :defer t
+      :ensure t)
   #+END_SRC
 
 ***** darktooth
-#+BEGIN_SRC emacs-lisp
-  ;; (use-package darktooth-theme
-  ;;   :init (load-theme 'darktooth t)
-  ;;   :defer t
-  ;;   :ensure t)
+#+BEGIN_SRC text
+  (use-package darktooth-theme
+    :init (load-theme 'darktooth t)
+    :defer t
+    :ensure t)
 #+END_SRC
 
 ***** zenburn
-#+BEGIN_SRC emacs-lisp
-  ;;   (use-package zenburn-theme :ensure t)
-  ;;   (load-theme 'zenburn t)
+#+BEGIN_SRC text
+    (use-package zenburn-theme :ensure t)
+    (load-theme 'zenburn t)
 #+END_SRC
 
 ***** base16-chalk
-#+BEGIN_SRC emacs-lisp
-  ;; (use-package base16-theme
-  ;;   :init (load-theme 'base16-chalk t)
-  ;;   :defer t
-  ;;   :ensure t)
+#+BEGIN_SRC text
+  (use-package base16-theme
+    :init (load-theme 'base16-chalk t)
+    :defer t
+    :ensure t)
 #+END_SRC
 
 ***** cyberpunk
-#+BEGIN_SRC emacs-lisp
-  ;; (use-package cyberpunk-theme
-  ;;   :init (load-theme 'cyberpunk t)
-  ;;   :defer t
-  ;;   :ensure t)
+#+BEGIN_SRC text
+  (use-package cyberpunk-theme
+    :init (load-theme 'cyberpunk t)
+    :defer t
+    :ensure t)
 #+END_SRC
 
 ***** ample-zen
-#+BEGIN_SRC emacs-lisp
-  ;; (use-package ample-zen-theme
-  ;;   :init (load-theme 'ample-zen t)
-  ;;   :defer t
-  ;;   :ensure t)
+#+BEGIN_SRC text
+  (use-package ample-zen-theme
+    :init (load-theme 'ample-zen t)
+    :defer t
+    :ensure t)
 #+END_SRC
 
 ***** ample
-#+BEGIN_SRC emacs-lisp
-  ;; (use-package ample-theme
-  ;;   :init (progn (load-theme 'ample t t)
-  ;;                (enable-theme 'ample))
-  ;;   :defer t
-  ;;   :ensure t)
+#+BEGIN_SRC text
+  (use-package ample-theme
+    :init (progn (load-theme 'ample t t)
+                 (enable-theme 'ample))
+    :defer t
+    :ensure t)
 #+END_SRC
 
 **** light
 ***** material
-#+BEGIN_SRC emacs-lisp
-  ;; (use-package material-theme :ensure t)
-  ;; (load-theme 'material-light t)
-  ;; (load-theme 'material t)
+#+BEGIN_SRC text
+  (use-package material-theme :ensure t)
+  (load-theme 'material-light t)
+  (load-theme 'material t)
 #+END_SRC
 
 ***** solarized
-#+BEGIN_SRC emacs-lisp
-  ;; (use-package solarized-theme :ensure t
-  ;;   :config
+#+BEGIN_SRC text
+  (use-package solarized-theme :ensure t
+    :config
 
-  ;;   (setq solarized-high-contrast-mode-line t)
-  ;;   (setq solarized-use-variable-pitch nil))
+    (setq solarized-high-contrast-mode-line t)
+    (setq solarized-use-variable-pitch nil))
 
-  ;; (load-theme 'solarized-light t)
+  (load-theme 'solarized-light t)
 #+END_SRC
 
 ***** leuven
-#+BEGIN_SRC emacs-lisp
-  ;; (load-theme 'leuven t)
+#+BEGIN_SRC text
+  (load-theme 'leuven t)
 #+END_SRC
 
 *** spaceline
@@ -1648,6 +1648,7 @@ the right."
       "n" 'neotree-toggle
 
       "o" 'avy-goto-char
+      "f" 'avy-goto-char-in-line
 
 
       "i" 'ivy-switch-buffer
