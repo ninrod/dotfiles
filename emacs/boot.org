@@ -239,10 +239,10 @@ the right."
 
   ;; careful with emacs compiled with `nox'
   (if (fboundp 'scroll-bar-mode)
-    (scroll-bar-mode -1))
+      (scroll-bar-mode -1))
 
   (if (fboundp 'fringe-mode)
-    (fringe-mode 0))
+      (fringe-mode 0))
 
   (tool-bar-mode -1)
   (menu-bar-mode -1)
@@ -273,6 +273,14 @@ the right."
 
   ;; instantly display current keystrokes in mini buffer
   (setq echo-keystrokes 0.02)
+
+  ;; Save whatever’s in the current (system) clipboard before
+  ;; replacing it with the Emacs’ text.
+  ;; https://github.com/dakrone/eos/blob/master/eos.org
+  (setq save-interprogram-paste-before-kill t)
+  
+  ;; MRU configs
+  (setq recentf-max-menu-items 50)
 #+END_SRC
 
 ** gui
@@ -736,6 +744,7 @@ the right."
       ;; (setq ivy-use-virtual-buffers t)
       (setq ivy-count-format "(%d/%d) ")
       (ivy-mode 1)
+      (setq ivy-height 20)
       (use-package counsel :ensure t))
 #+END_SRC
 
@@ -890,6 +899,7 @@ the right."
       (setq magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
       (setq magit-repository-directories '("~/code/sources"))
       (use-package evil-magit :ensure t)
+      (setq magit-completing-read-function 'ivy-completing-read)
   )
 #+END_SRC
 
@@ -1513,6 +1523,7 @@ the right."
     "is" 'ivy-push-view ; save
     "il" 'ivy-pop-view  ; load
     "ia" 'counsel-ag
+    "ip" 'counsel-yank-pop
   )
   (which-key-declare-prefixes "SPC i" "ivy")
 #+END_SRC
