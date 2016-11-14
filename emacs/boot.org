@@ -1645,7 +1645,10 @@ the right."
       "d" 'kill-this-buffer
       "r" 'restart-emacs
 
-      "o" 'neotree-toggle
+      "n" 'neotree-toggle
+
+      "o" 'avy-goto-char-2
+
 
       "i" 'ivy-switch-buffer
 
