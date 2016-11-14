@@ -1647,7 +1647,7 @@ the right."
 
       "n" 'neotree-toggle
 
-      "o" 'avy-goto-char-2
+      "o" 'avy-goto-char
 
 
       "i" 'ivy-switch-buffer
