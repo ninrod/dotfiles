@@ -271,6 +271,8 @@ the right."
   ;; support for camelcase words
   ;; (global-subword-mode)
 
+  ;; instantly display current keystrokes in mini buffer
+  (setq echo-keystrokes 0.02)
 #+END_SRC
 
 ** gui
@@ -1084,75 +1086,72 @@ the right."
 ** evil
 *** abusing the g prefix
 #+BEGIN_SRC emacs-lisp
-(define-key evil-motion-state-map "go" 'evil-goto-first-line)
-(define-key evil-motion-state-map "gl" 'evil-goto-line)
-(define-key evil-motion-state-map "gp" 'pop-global-mark)
-(define-key evil-motion-state-map "g9" (kbd "Hz-M"))
-(define-key evil-motion-state-map "g0" (kbd "LztM"))
+(bind-key "go" 'evil-goto-first-line evil-motion-state-map)
+(bind-key "gl" 'evil-goto-line evil-motion-state-map)
+(bind-key "gp" 'pop-global-mark evil-motion-state-map)
+(bind-key "g9" (kbd "Hz-M") evil-motion-state-map)
+(bind-key "g0" (kbd "LztM") evil-motion-state-map)
 
-(define-key evil-motion-state-map "g1" 'eyebrowse-switch-to-window-config-1)
-(define-key evil-motion-state-map "g2" 'eyebrowse-switch-to-window-config-2)
-(define-key evil-motion-state-map "g3" 'eyebrowse-switch-to-window-config-3)
-(define-key evil-motion-state-map "g4" 'eyebrowse-switch-to-window-config-4)
+(bind-key "g1" 'eyebrowse-switch-to-window-config-1 evil-motion-state-map)
+(bind-key "g2" 'eyebrowse-switch-to-window-config-2 evil-motion-state-map)
+(bind-key "g3" 'eyebrowse-switch-to-window-config-3 evil-motion-state-map)
+(bind-key "g4" 'eyebrowse-switch-to-window-config-4 evil-motion-state-map)
 
-(define-key evil-motion-state-map "gs" 'magit-status)
-(define-key evil-motion-state-map "g." 'counsel-projectile)
-(define-key evil-motion-state-map "g/" 'swiper)
-(define-key evil-motion-state-map "gh" 'counsel-recentf)
+(bind-key "gs" 'magit-status evil-motion-state-map)
+(bind-key "g." 'counsel-projectile evil-motion-state-map)
+(bind-key "g/" 'swiper evil-motion-state-map)
+(bind-key "gh" 'counsel-recentf evil-motion-state-map)
 #+END_SRC
 
 *** comfort improvements
 #+BEGIN_SRC emacs-lisp
-  (define-key evil-normal-state-map (kbd "RET") 'evil-write)
-  (define-key evil-normal-state-map (kbd "TAB") 'evil-toggle-fold)
-  (define-key evil-normal-state-map (kbd "DEL") 'counsel-find-file)
-  (define-key evil-normal-state-map "q" 'evil-quit)
-  (define-key evil-normal-state-map "-" 'evil-ex-nohighlight)
-  (define-key evil-normal-state-map "Q" 'evil-record-macro)
-  (define-key evil-motion-state-map "(" 'evil-backward-paragraph)
-  (define-key evil-motion-state-map ")" 'evil-forward-paragraph)
+  (bind-key (kbd "RET") 'evil-write evil-normal-state-map)
+  (bind-key (kbd "TAB") 'evil-toggle-fold evil-normal-state-map)
+  (bind-key (kbd "DEL") 'counsel-find-file evil-normal-state-map)
+  (bind-key "q" 'evil-quit evil-normal-state-map)
+  (bind-key "-" 'evil-ex-nohighlight evil-normal-state-map)
+  (bind-key "Q" 'evil-record-macro evil-normal-state-map)
+  (bind-key "(" 'evil-backward-paragraph evil-motion-state-map)
+  (bind-key ")" 'evil-forward-paragraph evil-motion-state-map)
 #+END_SRC
 
 *** function keys
 #+BEGIN_SRC emacs-lisp
-(bind-key (kbd "<f1>") 'eyebrowse-switch-to-window-config-1 evil-motion-state-map)
-(bind-key (kbd "<f2>") 'eyebrowse-switch-to-window-config-2 evil-motion-state-map)
-(bind-key (kbd "<f3>") 'eyebrowse-switch-to-window-config-3 evil-motion-state-map)
-(bind-key (kbd "<f4>") 'eyebrowse-switch-to-window-config-4 evil-motion-state-map)
+  (bind-key (kbd "<f1>") 'eyebrowse-switch-to-window-config-1 evil-motion-state-map)
+  (bind-key (kbd "<f2>") 'eyebrowse-switch-to-window-config-2 evil-motion-state-map)
+  (bind-key (kbd "<f3>") 'eyebrowse-switch-to-window-config-3 evil-motion-state-map)
+  (bind-key (kbd "<f4>") 'eyebrowse-switch-to-window-config-4 evil-motion-state-map)
 
-(bind-key (kbd "<f5>") 'eyebrowse-switch-to-window-config-5 evil-motion-state-map)
-(bind-key (kbd "<f6>") 'eyebrowse-switch-to-window-config-6 evil-motion-state-map)
-(bind-key (kbd "<f7>") 'eyebrowse-switch-to-window-config-7 evil-motion-state-map)
-(bind-key (kbd "<f8>") 'eyebrowse-switch-to-window-config-8 evil-motion-state-map)
+  (bind-key (kbd "<f5>") 'eyebrowse-switch-to-window-config-5 evil-motion-state-map)
+  (bind-key (kbd "<f6>") 'eyebrowse-switch-to-window-config-6 evil-motion-state-map)
+  (bind-key (kbd "<f7>") 'eyebrowse-switch-to-window-config-7 evil-motion-state-map)
+  (bind-key (kbd "<f8>") 'eyebrowse-switch-to-window-config-8 evil-motion-state-map)
 #+END_SRC
 
 *** fixes
 #+BEGIN_SRC emacs-lisp
   ;; As I've sequestered < and > when in org mode, we need a workaround.
-  (define-key evil-motion-state-map "g>" 'evil-shift-right)
-  (define-key evil-motion-state-map "g<" 'evil-shift-left)
+  (bind-key "g>" 'evil-shift-right evil-motion-state-map)
+  (bind-key "g<" 'evil-shift-left evil-motion-state-map)
 
   ;; `z.' fix
-  (define-key evil-normal-state-map "z." 'evil-scroll-line-to-center)
+  (bind-key "z." 'evil-scroll-line-to-center evil-normal-state-map)
 
   ;; `z-' fix
-  (define-key evil-normal-state-map "z-" 'evil-scroll-line-to-bottom)
+  (bind-key "z-" 'evil-scroll-line-to-bottom evil-normal-state-map)
 
   ;; make / and ? behave like vim
-  (define-key isearch-mode-map (kbd "<escape>") 'isearch-cancel)
-  (define-key evil-ex-search-keymap (kbd "<escape>") 'minibuffer-keyboard-quit)
-
-  ;; instantly display current keystrokes in mini buffer
-  (setq echo-keystrokes 0.02)
+  (bind-key (kbd "<escape>") 'isearch-cancel isearch-mode-map)
+  (bind-key (kbd "<escape>") 'minibuffer-keyboard-quit evil-ex-search-keymap)
 
   ;; auto-indent on RET
-  (define-key global-map (kbd "RET") 'newline-and-indent)
+  (bind-key (kbd "RET") 'newline-and-indent global-map)
 #+END_SRC
 
 *** insert state
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-<tab>") 'dabbrev-expand)
-  (define-key minibuffer-local-map (kbd "C-<tab>") 'dabbrev-expand)
+  (bind-key (kbd "C-<tab>") 'dabbrev-expand minibuffer-local-map)
 #+END_SRC
 
 ** modes
