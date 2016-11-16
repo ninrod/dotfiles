@@ -252,13 +252,13 @@ the right."
   ;; (setq visible-bell t)
 
   ;; save last cursor position
-  (save-place-mode 1) 
+  (save-place-mode 1)
   ;; (setq save-place-file (locate-user-emacs-file "places" "emacs-places"))
 
   ;; save minibuffer history
   (savehist-mode 1)
 
-  ;; hack: customize display time in modeline. 
+  ;; hack: customize display time in modeline.
   ;; lifted from https://www.reddit.com/r/emacs/comments/2ziinn/displaytimemode_but_not_system_load/
   (setq display-time-default-load-average nil)
   (setq display-time-day-and-date t)
@@ -401,6 +401,41 @@ the right."
           (org-agenda-files :maxlevel . 1)))
 #+END_SRC
 
+** show trailing whitespaces
+*** complex option
+- lifted from [[https://github.com/jimeh/.emacs.d][jimeh's emacs.d configuration]]
+#+BEGIN_SRC text
+    ;; Display whitespace characters globally
+    (global-whitespace-mode t)
+    (diminish 'whitespace-mode)
+    (diminish 'global-whitespace-mode)
+    (setq whitespace-line-column 80)
+
+    ;; Customize Whitespace Characters
+    ;;  - Newline: \u00AC = ¬
+    ;;  - Tab:     \u2192 = →
+    ;;             \u00BB = »
+    ;;             \u25B6 = ▶
+
+    (setq whitespace-display-mappings
+          '((newline-mark ?\n [?\u00AC ?\n] [?$ ?\n])
+          (space-mark 32 [183] [46] [?.])
+          (tab-mark     ?\t [?\u2192 ?\t] [?\u00BB ?\t] [?\\ ?\t])))
+(setq whitespace-style
+      '(face tabs spaces space-mark trailing empty))
+#+END_SRC
+
+*** simple alternative
+#+BEGIN_SRC emacs-lisp
+(require 'whitespace)
+(setq-default show-trailing-whitespace t)
+(defun no-trailing-whitespace () (setq show-trailing-whitespace nil))
+(add-hook 'minibuffer-setup-hook 'no-trailing-whitespace)
+(add-hook 'ielm-mode-hook 'no-trailing-whitespace)
+(add-hook 'gdb-mode-hook 'no-trailing-whitespace)
+(add-hook 'help-mode-hook 'no-trailing-whitespace)
+#+END_SRC
+
 * packages
 ** evil corruption
 *** evil
@@ -533,7 +568,6 @@ the right."
 #+BEGIN_SRC text
   (use-package multiple-cursors :load-path "lisp/ninrod/multiple-cursors.el")
 #+END_SRC
-
 ** cosmetic
 *** theme collection
 **** dark
@@ -766,7 +800,6 @@ the right."
 :config
 (evil-define-key 'normal vdiff-mode-map "," vdiff-mode-prefix-map)))
 #+END_SRC
-
 ** completions
 *** ivy/counsel
 #+BEGIN_SRC emacs-lisp
