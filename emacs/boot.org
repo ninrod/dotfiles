@@ -529,6 +529,11 @@ the right."
   (evil-ReplaceWithRegister-install))
 #+END_SRC
 
+*** evil-multiple-cursors
+#+BEGIN_SRC emacs-lisp
+  (use-package multiple-cursors :load-path "lisp/ninrod/multiple-cursors.el")
+#+END_SRC
+
 ** cosmetic
 *** theme collection
 **** dark
