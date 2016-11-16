@@ -544,16 +544,16 @@ the right."
 #+END_SRC
 
 *** evil-terminal-cursor-changer
-#+BEGIN_SRC emacs-lisp
-  ;; (use-package evil-terminal-cursor-changer :ensure t
-  ;;   :config
-  ;;   (setq evil-motion-state-cursor 'box)
-  ;;   (setq evil-visual-state-cursor 'box)
-  ;;   (setq evil-normal-state-cursor 'box)
-  ;;   (setq evil-insert-state-cursor 'bar)
-  ;;   (setq evil-emacs-state-cursor  'hbar)
-  ;;   (unless (display-graphic-p) 
-  ;;     (evil-terminal-cursor-changer-activate)))
+#+BEGIN_SRC text
+  (use-package evil-terminal-cursor-changer :ensure t
+    :config
+    (setq evil-motion-state-cursor 'box)
+    (setq evil-visual-state-cursor 'box)
+    (setq evil-normal-state-cursor 'box)
+    (setq evil-insert-state-cursor 'bar)
+    (setq evil-emacs-state-cursor  'hbar)
+    (unless (display-graphic-p)
+      (evil-terminal-cursor-changer-activate)))
 #+END_SRC
 
 *** evil-replace-with-register
@@ -564,10 +564,6 @@ the right."
   (evil-ReplaceWithRegister-install))
 #+END_SRC
 
-*** evil-multiple-cursors
-#+BEGIN_SRC text
-  (use-package multiple-cursors :load-path "lisp/ninrod/multiple-cursors.el")
-#+END_SRC
 ** cosmetic
 *** theme collection
 **** dark
