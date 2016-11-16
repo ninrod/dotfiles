@@ -710,6 +710,26 @@ the right."
         (set-face-attribute 'hl-paren-face nil :weight 'ultra-bold))
 #+END_SRC
 
+*** smartparens
+#+BEGIN_SRC emacs-lisp
+(use-package smartparens
+    :defer t
+    :commands (sp-split-sexp sp-newline sp-up-sexp)
+    :config
+(show-smartparens-global-mode)
+    :init
+    (progn
+      ;; settings
+      (setq sp-show-pair-delay 0.1
+            ;; fix paren highlighting in normal mode
+            sp-show-pair-from-inside t
+            sp-highlight-pair-overlay nil
+            sp-highlight-wrap-overlay nil
+            sp-highlight-wrap-tag-overlay nil)))
+
+#+END_SRC
+
+
 *** all-the-icons
 #+BEGIN_SRC emacs-lisp
   (use-package all-the-icons :ensure t
