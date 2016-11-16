@@ -761,9 +761,10 @@ the right."
 
 *** vidff
 #+BEGIN_SRC emacs-lisp
+(when (display-graphic-p)
 (use-package vdiff :ensure t
 :config
-(evil-define-key 'normal vdiff-mode-map "," vdiff-mode-prefix-map))
+(evil-define-key 'normal vdiff-mode-map "," vdiff-mode-prefix-map)))
 #+END_SRC
 
 ** completions
