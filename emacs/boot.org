@@ -530,7 +530,7 @@ the right."
 #+END_SRC
 
 *** evil-multiple-cursors
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (use-package multiple-cursors :load-path "lisp/ninrod/multiple-cursors.el")
 #+END_SRC
 
