@@ -241,12 +241,13 @@ the right."
   (if (fboundp 'scroll-bar-mode)
       (scroll-bar-mode -1))
 
-  (if (fboundp 'fringe-mode)
-      (fringe-mode 0))
+  ;; (when (fboundp 'fringe-mode)
+  ;;     (fringe-mode 1))
 
   (tool-bar-mode -1)
   (menu-bar-mode -1)
   (fset 'yes-or-no-p 'y-or-n-p)
+
 
   ;; silence, please.
   ;; (setq visible-bell t)
@@ -279,7 +280,7 @@ the right."
   ;; https://github.com/dakrone/eos/blob/master/eos.org
   (setq save-interprogram-paste-before-kill t)
   (setq yank-pop-change-selection t)
-  
+
   ;; MRU configs
   (setq recentf-max-menu-items 50)
 
@@ -404,7 +405,7 @@ the right."
 ** show trailing whitespaces
 *** complex option
 - lifted from [[https://github.com/jimeh/.emacs.d][jimeh's emacs.d configuration]]
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
     ;; Display whitespace characters globally
     (global-whitespace-mode t)
     (diminish 'whitespace-mode)
@@ -415,18 +416,21 @@ the right."
     ;;  - Newline: \u00AC = ¬
     ;;  - Tab:     \u2192 = →
     ;;             \u00BB = »
-    ;;             \u25B6 = ▶
+    ;;             \u25B6 = ▶ 
 
     (setq whitespace-display-mappings
           '((newline-mark ?\n [?\u00AC ?\n] [?$ ?\n])
           (space-mark 32 [183] [46] [?.])
           (tab-mark     ?\t [?\u2192 ?\t] [?\u00BB ?\t] [?\\ ?\t])))
+
 (setq whitespace-style
-      '(face tabs spaces space-mark trailing empty))
+      '(face trailing)) 
+
+
 #+END_SRC
 
 *** simple alternative
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
 (require 'whitespace)
 (setq-default show-trailing-whitespace t)
 (defun no-trailing-whitespace () (setq show-trailing-whitespace nil))
@@ -715,6 +719,7 @@ the right."
   (use-package smartparens :ensure t
     :config
     (show-smartparens-global-mode +1)
+
     :init
     ;; settings
     (setq sp-show-pair-delay 0.1
@@ -727,7 +732,6 @@ the right."
 
           ))
 #+END_SRC
-
 
 *** all-the-icons
 #+BEGIN_SRC emacs-lisp
@@ -771,17 +775,6 @@ the right."
 *** ag: the silver searcher
 #+BEGIN_SRC emacs-lisp
 (use-package ag :ensure t)
-#+END_SRC
-
-*** smartparens
-#+BEGIN_SRC emacs-lisp
-  (use-package smartparens :ensure t
-    :config
-     ;; Always start smartparens mode in js-mode.
-     ;; (add-hook 'js-mode-hook #'smartparens-mode)
-     (add-hook 'prog-mode-hook #'smartparens-mode)
-     (add-hook 'org-mode-hook #'smartparens-mode)
-  )
 #+END_SRC
 
 *** origami
@@ -963,12 +956,35 @@ the right."
 #+END_SRC
 
 ** git
-*** git-gutter
+*** git-gutter-fringe
 #+BEGIN_SRC emacs-lisp
-(use-package git-gutter :ensure t
-  :config
-    (global-git-gutter-mode +1)
-)
+  (when (display-graphic-p)
+    (use-package git-gutter-fringe
+      :init
+      (setq git-gutter-fr:side 'right-fringe)
+      :config
+      (global-git-gutter-mode t)
+      (fringe-helper-define 'git-gutter-fr:added nil
+        "..X...."
+        "..X...."
+        "XXXXX.."
+        "..X...."
+        "..X...."
+        )
+      (fringe-helper-define 'git-gutter-fr:deleted nil
+        "......."
+        "......."
+        "XXXXX.."
+        "......."
+        "......."
+        )
+      (fringe-helper-define 'git-gutter-fr:modified nil
+        "..X...."
+        ".XXX..."
+        "XX.XX.."
+        ".XXX..."
+        "..X...."
+        )))
 #+END_SRC
 
 *** magit
