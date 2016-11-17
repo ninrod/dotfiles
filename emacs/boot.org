@@ -49,7 +49,7 @@ If the universal prefix argument is used then kill also the window."
 If JUSTIFY-RIGHT is non nil justify to the right instead of the
 left. If AFTER is non-nil, add whitespace to the left instead of
 the right."
- 
+
  (interactive "r\nsAlign regexp: ")
   (let* ((ws-regexp (if (string-empty-p regexp)
                         "\\(\\s-+\\)"
@@ -446,7 +446,7 @@ the right."
 - emacsify insert state. based on this SO question [[http://stackoverflow.com/a/26573722/4921402][here]].
 #+BEGIN_SRC emacs-lisp
     (use-package evil :ensure t
-      :config 
+      :config
 
       ;; remove all keybindings from insert-state keymap just
       ;; because I want to use emacs keybindings in insert state.
@@ -571,7 +571,7 @@ the right."
 ** cosmetic
 *** dark themes
 **** spacemacs
-  #+BEGIN_SRC emacs-lisp
+  #+BEGIN_SRC text
     (use-package spacemacs-theme
       :init (load-theme 'spacemacs-dark t)
       :defer t
@@ -669,7 +669,7 @@ the right."
 #+END_SRC
 
 **** leuven
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (load-theme 'leuven t)
 #+END_SRC
 
@@ -1338,13 +1338,6 @@ the right."
   (which-key-declare-prefixes ", o" "interesting org commands")
 #+END_SRC
 
-***** r: rotate TODO
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-map
-    "r" 'org-todo
-  )
-#+END_SRC
-
 ***** s: subtree commands
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
@@ -1422,6 +1415,7 @@ the right."
   "TAB" 'org-cycle
   "*" 'org-ctrl-c-star
   "-" 'org-ctrl-c-minus
+  "," 'org-todo
 )
 #+END_SRC
 
@@ -1430,10 +1424,12 @@ the right."
 #+BEGIN_SRC emacs-lisp
   (unbind-key "C-<tab>" org-mode-map)
 #+END_SRC
+
 ***** org-src-code-map
 #+BEGIN_SRC emacs-lisp
   (bind-key "C-c C-c" 'org-edit-src-exit org-src-mode-map)
 #+END_SRC
+
 ***** other
 #+BEGIN_SRC emacs-lisp
   ;; (evil-define-key 'normal org-mode-map (kbd "TAB") 'ivy-switch-buffer)
@@ -1785,6 +1781,7 @@ the right."
 
   (which-key-add-key-based-replacements "sb" "buffer menu")
 #+END_SRC
+
 ** t
 #+BEGIN_SRC emacs-lisp
   (bind-map t-map
