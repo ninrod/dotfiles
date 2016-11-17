@@ -282,8 +282,8 @@ the right."
   (setq yank-pop-change-selection t)
 
   ;; MRU configs
-  (setq recentf-max-menu-items 50)
-
+  (setq recentf-max-menu-items 100
+        recentf-max-saved-items 100)
 #+END_SRC
 
 ** gui
@@ -670,7 +670,10 @@ the right."
 
 **** leuven
 #+BEGIN_SRC emacs-lisp
-  (load-theme 'leuven t)
+    (use-package leuven-theme
+      :init (load-theme 'leuven t)
+      :defer t
+      :ensure t)
 #+END_SRC
 
 *** spaceline
