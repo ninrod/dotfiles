@@ -241,9 +241,6 @@ the right."
   (if (fboundp 'scroll-bar-mode)
       (scroll-bar-mode -1))
 
-  ;; (when (fboundp 'fringe-mode)
-  ;;     (fringe-mode 1))
-
   (tool-bar-mode -1)
   (menu-bar-mode -1)
   (fset 'yes-or-no-p 'y-or-n-p)
@@ -349,6 +346,7 @@ the right."
 *** general configs
 - somewhat lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
 #+BEGIN_SRC emacs-lisp
+
   (setq org-todo-keywords
         '((sequence "TODO" "IN-PROGRESS" "WAITING" "|" "DONE" "CANCELED")))
   (setq org-blank-before-new-entry (quote ((heading) (plain-list-item))))
@@ -633,8 +631,13 @@ the right."
     ;; (load-theme 'apropospriate-dark t)
     (load-theme 'apropospriate-light t)
 
-    ;; fix cursor shape
+    ;; ;; fix cursor shape
     (setq evil-insert-state-cursor 'bar)
+
+    (with-eval-after-load "git-gutter"
+    (set-face-foreground 'git-gutter:modified "#5C6BC0") ;; indigo
+    (set-face-foreground 'git-gutter:added    "#42A5F5") ;; blue
+    (set-face-foreground 'git-gutter:deleted  "#FF1744")) ;; red
 
     :defer t
     :ensure t)
@@ -955,11 +958,15 @@ the right."
 *** git-gutter-fringe
 #+BEGIN_SRC emacs-lisp
   (when (display-graphic-p)
+  (message "using git-gutter-fringe")
     (use-package git-gutter-fringe
       :init
+
       ;; (setq git-gutter-fr:side 'right-fringe)
-      :config
       (global-git-gutter-mode t)
+
+      :config
+
       (fringe-helper-define 'git-gutter-fr:added nil
         "..X...."
         "..X...."
@@ -980,8 +987,14 @@ the right."
         "XX.XX.."
         ".XXX..."
         "..X...."
-        )))
+        )
+
+      :defer t
+      :ensure t
+))
+
 #+END_SRC
+
 
 *** magit
 - for more info about magit-display-buffer-function, see [[http://stackoverflow.com/q/39933868/4921402][here]].
