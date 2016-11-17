@@ -403,33 +403,6 @@ the right."
 #+END_SRC
 
 ** show trailing whitespaces
-*** complex option
-- lifted from [[https://github.com/jimeh/.emacs.d][jimeh's emacs.d configuration]]
-#+BEGIN_SRC text
-    ;; Display whitespace characters globally
-    (global-whitespace-mode t)
-    (diminish 'whitespace-mode)
-    (diminish 'global-whitespace-mode)
-    (setq whitespace-line-column 80)
-
-    ;; Customize Whitespace Characters
-    ;;  - Newline: \u00AC = ¬
-    ;;  - Tab:     \u2192 = →
-    ;;             \u00BB = »
-    ;;             \u25B6 = ▶ 
-
-    (setq whitespace-display-mappings
-          '((newline-mark ?\n [?\u00AC ?\n] [?$ ?\n])
-          (space-mark 32 [183] [46] [?.])
-          (tab-mark     ?\t [?\u2192 ?\t] [?\u00BB ?\t] [?\\ ?\t])))
-
-(setq whitespace-style
-      '(face trailing)) 
-
-
-#+END_SRC
-
-*** simple alternative
 #+BEGIN_SRC emacs-lisp
 (require 'whitespace) 
 (setq-default show-trailing-whitespace t)
@@ -1639,6 +1612,7 @@ the right."
     "ms" 'sort-lines
     "mc" 'count-words
     "mr" 'replace-string
+    "mf" 'customize-apropos-faces
   )
   (which-key-declare-prefixes "SPC m" "M-x useful functions")
   (which-key-declare-prefixes "SPC mi" "REPL: inferior elisp mode")
