@@ -162,7 +162,10 @@ zle -N nin-noop
 bindkey -M vicmd '\e' nin-noop
 
 # }}}
-# in test: expandable aliases {{{
+# expandable aliases {{{
+
+# lifted from Gautam Lyer's blog:
+# https://wiki.math.cmu.edu/iki/wiki/tips/20140625-zsh-expand-alias.html
 
 typeset -a ealiases
 ealiases=()
