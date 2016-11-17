@@ -6,19 +6,19 @@ alias gi='builtin cd $(git rev-parse --show-toplevel)'
 alias gd='git diff'
 alias gds='git diff --staged'
 alias gal='git add -A'
-alias ga='git add'
+ealias ga='git add'
 ealias gc='git commit -m'
 
 # sync
 alias gf='git fetch'
 alias gp='git push'
 alias gm='git merge'
-alias gr='git rebase'
+ealias gr='git rebase'
 
 # branch
 alias gg='git branch -vv'
-alias gb='git branch'
-alias gco='git checkout'
+ealias gb='git branch'
+ealias gco='git checkout'
 
 # log
 alias git_log_custom='git log --pretty=format:"%C(yellow)%h%Creset %C(cyan)%>(14)%ad%Creset %C(magenta)%<(7)%an%Creset %C(blue)%d%Creset %C(white)%s%Creset" --abbrev=7 '
