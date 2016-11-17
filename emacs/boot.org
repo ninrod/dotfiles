@@ -585,8 +585,10 @@ the right."
 
 **** zenburn
 #+BEGIN_SRC text
-    (use-package zenburn-theme :ensure t)
-    (load-theme 'zenburn t)
+(use-package zenburn-theme
+    :init (load-theme 'zenburn t)
+    :defer t
+    :ensure t)
 #+END_SRC
 
 **** base16-chalk
@@ -623,26 +625,40 @@ the right."
 #+END_SRC
 
 *** light themes
+**** apropospriate
+#+BEGIN_SRC emacs-lisp
+  (use-package apropospriate-theme
+    :init
+    ;; (load-theme 'apropospriate-dark t)
+    (load-theme 'apropospriate-light t)
+    :defer t
+    :ensure t)
+#+END_SRC
+
 **** material
 #+BEGIN_SRC text
-  (use-package material-theme :ensure t)
-  (load-theme 'material-light t)
-  (load-theme 'material t)
+(use-package material-theme
+    :init
+    (load-theme 'material t)
+    ;; (load-theme 'material-light t)
+    :defer t
+    :ensure t)
 #+END_SRC
 
 **** solarized
 #+BEGIN_SRC text
-  (use-package solarized-theme :ensure t
-    :config
-
+  (use-package solarized-theme
+    :init
     (setq solarized-high-contrast-mode-line t)
-    (setq solarized-use-variable-pitch nil))
-
-  (load-theme 'solarized-light t)
+    (setq solarized-use-variable-pitch nil)
+    (load-theme 'solarized-dark t)
+    ;; (load-theme 'solarized-light t)
+    :defer t
+    :ensure t)
 #+END_SRC
 
 **** leuven
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
     (use-package leuven-theme
       :init (load-theme 'leuven t)
       :defer t
