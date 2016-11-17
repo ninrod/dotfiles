@@ -405,7 +405,7 @@ the right."
 ** show trailing whitespaces
 *** complex option
 - lifted from [[https://github.com/jimeh/.emacs.d][jimeh's emacs.d configuration]]
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
     ;; Display whitespace characters globally
     (global-whitespace-mode t)
     (diminish 'whitespace-mode)
@@ -430,8 +430,8 @@ the right."
 #+END_SRC
 
 *** simple alternative
-#+BEGIN_SRC text
-(require 'whitespace)
+#+BEGIN_SRC emacs-lisp
+(require 'whitespace) 
 (setq-default show-trailing-whitespace t)
 (defun no-trailing-whitespace () (setq show-trailing-whitespace nil))
 (add-hook 'minibuffer-setup-hook 'no-trailing-whitespace)
@@ -745,7 +745,7 @@ the right."
           ))
 #+END_SRC
 
-** expand funcionality
+** expand functionality
 *** restart-emacs
 #+BEGIN_SRC emacs-lisp
 (use-package restart-emacs :ensure t)
