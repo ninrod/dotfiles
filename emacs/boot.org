@@ -282,8 +282,8 @@ the right."
   (setq yank-pop-change-selection t)
 
   ;; MRU configs
-  (setq recentf-max-menu-items 100
-        recentf-max-saved-items 100)
+  (setq recentf-max-menu-items 200
+        recentf-max-saved-items 200)
 #+END_SRC
 
 ** gui
