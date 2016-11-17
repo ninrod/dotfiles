@@ -390,12 +390,12 @@ the right."
 - with help from [[http://stackoverflow.com/a/22200624/4921402][so]]
 #+BEGIN_SRC emacs-lisp
   (setq org-agenda-files
-        '("~/code/sources/life/gtd/archives/done.org" 
-          "~/code/sources/life/gtd/archives/canceled.org" 
-          "~/code/sources/life/gtd/projects/projects.org" 
-          "~/code/sources/life/gtd/inbox.org" 
-          "~/code/sources/life/gtd/next.org" 
-          "~/code/sources/life/gtd/talvez.org"))
+        '("~/code/sources/life/gtd/archives/done.org"
+          "~/code/sources/life/gtd/archives/canceled.org"
+          "~/code/sources/life/gtd/projects/projects.org"
+          "~/code/sources/life/gtd/inbox.org"
+          "~/code/sources/life/gtd/next.org"
+          "~/code/sources/life/gtd/maybe.org"))
 
   (setq org-refile-targets
         '((nil :maxlevel . 1)
