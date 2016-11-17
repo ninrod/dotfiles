@@ -132,8 +132,8 @@ the right."
 ** ninrod/neotree-copy-filepath-to-clipboard
 - with help from [[http://stackoverflow.com/a/40564951/4921402][/u/lawlist]]
 #+BEGIN_SRC emacs-lisp
-(defun ninrod/neotree-copy-filepath-to-clipboard () 
-(interactive) 
+(defun ninrod/neotree-copy-filepath-to-clipboard ()
+(interactive)
 (kill-new (neo-buffer--get-filename-current-line)))
 #+END_SRC
 
@@ -779,9 +779,9 @@ the right."
 *** origami
 #+BEGIN_SRC emacs-lisp
 (use-package origami :ensure t
-  :config 
-    (add-hook 'prog-mode-hook 
-      (lambda () 
+  :config
+    (add-hook 'prog-mode-hook
+      (lambda ()
         (setq-local origami-fold-style 'triple-braces)
         (origami-mode)
         (origami-close-all-nodes (current-buffer)))))
@@ -960,7 +960,7 @@ the right."
   (when (display-graphic-p)
     (use-package git-gutter-fringe
       :init
-      (setq git-gutter-fr:side 'right-fringe)
+      ;; (setq git-gutter-fr:side 'right-fringe)
       :config
       (global-git-gutter-mode t)
       (fringe-helper-define 'git-gutter-fr:added nil
