@@ -1330,12 +1330,19 @@ the right."
   (bind-map-set-keys org-map
 
 
-    ;; from: http://emacsist.com/10284 
+    ;; from: http://emacsist.com/10284
     "or" 'org-refile
-    
+
     "ot" 'org-table-convert-region
   )
   (which-key-declare-prefixes ", o" "interesting org commands")
+#+END_SRC
+
+***** r: rotate TODO
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys org-map
+    "r" 'org-todo
+  )
 #+END_SRC
 
 ***** s: subtree commands
@@ -1445,7 +1452,7 @@ the right."
   (evil-define-key 'normal org-mode-map "<" 'org-do-promote)
   (evil-define-key 'normal org-mode-map ">" 'org-do-demote)
 
-  (evil-define-key 'normal org-mode-map "t" 'org-todo)
+  ;; (evil-define-key 'normal org-mode-map "t" 'org-todo)
   #+END_SRC
 
 *** lisp-mode
@@ -1688,10 +1695,10 @@ the right."
     "tm"  'multi-term
     "tn" 'multi-term-next
     "tp" 'multi-term-prev
-    
+
     ;; shell-commands
     "ts" 'shell-command
-    "to" (lambda ()  
+    "to" (lambda ()
       (interactive)
       (execute-extended-command '(4) "shell-command"))
   )
@@ -1753,7 +1760,6 @@ the right."
       "d" 'kill-this-buffer
       "r" 'restart-emacs
 
-      "n" 'neotree-toggle
 
       "o" 'avy-goto-char
       "f" 'avy-goto-char-in-line
@@ -1778,6 +1784,16 @@ the right."
       "w" 'delete-other-windows)
 
   (which-key-add-key-based-replacements "sb" "buffer menu")
+#+END_SRC
+** t
+#+BEGIN_SRC emacs-lisp
+  (bind-map t-map
+    :evil-keys ("t")
+    :evil-states (normal))
+
+  (bind-map-set-keys t-map
+      "t" 'neotree-toggle
+    )
 #+END_SRC
 
 ** awesome available binds
