@@ -569,9 +569,8 @@ the right."
 #+END_SRC
 
 ** cosmetic
-*** theme collection
-**** dark
-***** spacemacs
+*** dark themes
+**** spacemacs
   #+BEGIN_SRC emacs-lisp
     (use-package spacemacs-theme
       :init (load-theme 'spacemacs-dark t)
@@ -579,7 +578,7 @@ the right."
       :ensure t)
   #+END_SRC
 
-***** birds-of-paradise-plus
+**** birds-of-paradise-plus
   #+BEGIN_SRC text
     (use-package birds-of-paradise-plus-theme
       :init (load-theme 'birds-of-paradise-plus t)
@@ -587,7 +586,7 @@ the right."
       :ensure t)
   #+END_SRC
 
-***** dracula
+**** dracula
 #+BEGIN_SRC text
   (use-package dracula-theme
     :init (load-theme 'dracula t)
@@ -595,7 +594,7 @@ the right."
     :ensure t)
 #+END_SRC
 
-***** gruvbox
+**** gruvbox
   #+BEGIN_SRC text
     (use-package gruvbox-theme
       :init (load-theme 'gruvbox t)
@@ -603,7 +602,7 @@ the right."
       :ensure t)
   #+END_SRC
 
-***** darktooth
+**** darktooth
 #+BEGIN_SRC text
   (use-package darktooth-theme
     :init (load-theme 'darktooth t)
@@ -611,13 +610,13 @@ the right."
     :ensure t)
 #+END_SRC
 
-***** zenburn
+**** zenburn
 #+BEGIN_SRC text
     (use-package zenburn-theme :ensure t)
     (load-theme 'zenburn t)
 #+END_SRC
 
-***** base16-chalk
+**** base16-chalk
 #+BEGIN_SRC text
   (use-package base16-theme
     :init (load-theme 'base16-chalk t)
@@ -625,7 +624,7 @@ the right."
     :ensure t)
 #+END_SRC
 
-***** cyberpunk
+**** cyberpunk
 #+BEGIN_SRC text
   (use-package cyberpunk-theme
     :init (load-theme 'cyberpunk t)
@@ -633,7 +632,7 @@ the right."
     :ensure t)
 #+END_SRC
 
-***** ample-zen
+**** ample-zen
 #+BEGIN_SRC text
   (use-package ample-zen-theme
     :init (load-theme 'ample-zen t)
@@ -641,7 +640,7 @@ the right."
     :ensure t)
 #+END_SRC
 
-***** ample
+**** ample
 #+BEGIN_SRC text
   (use-package ample-theme
     :init (progn (load-theme 'ample t t)
@@ -650,15 +649,15 @@ the right."
     :ensure t)
 #+END_SRC
 
-**** light
-***** material
+*** light themes
+**** material
 #+BEGIN_SRC text
   (use-package material-theme :ensure t)
   (load-theme 'material-light t)
   (load-theme 'material t)
 #+END_SRC
 
-***** solarized
+**** solarized
 #+BEGIN_SRC text
   (use-package solarized-theme :ensure t
     :config
@@ -669,7 +668,7 @@ the right."
   (load-theme 'solarized-light t)
 #+END_SRC
 
-***** leuven
+**** leuven
 #+BEGIN_SRC text
   (load-theme 'leuven t)
 #+END_SRC
@@ -693,10 +692,23 @@ the right."
     (spaceline-compile))
 #+END_SRC
 
+*** all-the-icons
+#+BEGIN_SRC emacs-lisp
+  (use-package all-the-icons :ensure t
+    :config
+    (use-package all-the-icons-dired :load-path "lisp/jtbm37/all-the-icons-dired"))
+#+END_SRC
+
 *** rainbow-delimiters
 #+BEGIN_SRC emacs-lisp
 (use-package rainbow-delimiters :ensure t
   :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+#+END_SRC
+
+*** highlight-numbers
+#+BEGIN_SRC emacs-lisp
+(use-package highlight-numbers :ensure t
+:config (add-hook 'prog-mode-hook 'highlight-numbers-mode))
 #+END_SRC
 
 *** highlight-parentheses
@@ -733,20 +745,7 @@ the right."
           ))
 #+END_SRC
 
-*** all-the-icons
-#+BEGIN_SRC emacs-lisp
-  (use-package all-the-icons :ensure t
-    :config
-    (use-package all-the-icons-dired :load-path "lisp/jtbm37/all-the-icons-dired"))
-#+END_SRC
-
 ** expand funcionality
-*** highlight-numbers
-#+BEGIN_SRC emacs-lisp
-(use-package highlight-numbers :ensure t
-:config (add-hook 'prog-mode-hook 'highlight-numbers-mode))
-#+END_SRC
-
 *** restart-emacs
 #+BEGIN_SRC emacs-lisp
 (use-package restart-emacs :ensure t)
