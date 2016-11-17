@@ -712,21 +712,20 @@ the right."
 
 *** smartparens
 #+BEGIN_SRC emacs-lisp
-(use-package smartparens
-    :defer t
-    :commands (sp-split-sexp sp-newline sp-up-sexp)
+  (use-package smartparens :ensure t
     :config
-(show-smartparens-global-mode)
+    (show-smartparens-global-mode +1)
     :init
-    (progn
-      ;; settings
-      (setq sp-show-pair-delay 0.1
-            ;; fix paren highlighting in normal mode
-            sp-show-pair-from-inside t
-            sp-highlight-pair-overlay nil
-            sp-highlight-wrap-overlay nil
-            sp-highlight-wrap-tag-overlay nil)))
+    ;; settings
+    (setq sp-show-pair-delay 0.1
+          sp-show-pair-from-inside t
 
+          ;; fix paren highlighting in normal mode
+          ;; sp-highlight-pair-overlay nil
+          ;; sp-highlight-wrap-overlay nil
+          ;; sp-highlight-wrap-tag-overlay nil
+
+          ))
 #+END_SRC
 
 
@@ -816,6 +815,7 @@ the right."
 :config
 (evil-define-key 'normal vdiff-mode-map "," vdiff-mode-prefix-map)))
 #+END_SRC
+
 ** completions
 *** ivy/counsel
 #+BEGIN_SRC emacs-lisp
