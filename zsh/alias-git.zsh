@@ -7,7 +7,7 @@ alias gd='git diff'
 alias gds='git diff --staged'
 alias gal='git add -A'
 alias ga='git add'
-alias gc='git commit -m'
+ealias gc='git commit -m'
 
 # sync
 alias gf='git fetch'
