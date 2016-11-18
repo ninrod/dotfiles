@@ -1785,7 +1785,8 @@ the right."
     :evil-states (normal))
 
   (bind-map-set-keys t-map
-      "t" 'neotree-toggle
+      "n" 'neotree-toggle
+      "t" 'eshell
     )
 #+END_SRC
 
