@@ -1,5 +1,5 @@
 if [[ -z ${EMACS+x} ]]; then
-  export EDITOR="e"
+  export EDITOR="v"
 
   # simplest possible vi key configuration
   # no delays when switching keymaps
@@ -17,3 +17,5 @@ else
   bindkey "^[[A" history-beginning-search-backward
   bindkey "^[[B" history-beginning-search-forward
 fi
+
+source ~/.zsh.d/expand-alias.zsh
