@@ -542,9 +542,9 @@ the right."
 ** cosmetic
 *** dark themes
 **** spacemacs
-  #+BEGIN_SRC text
+  #+BEGIN_SRC emacs-lisp
     (use-package spacemacs-theme
-      :init (load-theme 'spacemacs-dark t)
+      :init (load-theme 'spacemacs-light t)
       :defer t
       :ensure t)
   #+END_SRC
@@ -624,7 +624,7 @@ the right."
 
 *** light themes
 **** apropospriate
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (use-package apropospriate-theme
     :init
 
@@ -756,13 +756,7 @@ the right."
 (use-package eyebrowse :ensure t
   :config
     (setq eyebrowse-wrap-around t)
-    (eyebrowse-mode t)
-)
-#+END_SRC
-
-*** perspective-el
-#+BEGIN_SRC emacs-lisp
-(use-package perspective :ensure t)
+    (eyebrowse-mode t))
 #+END_SRC
 
 *** multi-term
