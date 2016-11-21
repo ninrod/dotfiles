@@ -1741,13 +1741,8 @@ the right."
   (bind-map-set-keys s-map
     "s" 'evil-save-modified-and-close
     "d" 'spacemacs/kill-this-buffer
-    "m" 'spacemacs/kill-other-buffers
+    "o" 'spacemacs/kill-other-buffers
     "r" 'restart-emacs
-
-
-    "o" 'avy-goto-char
-    "f" 'avy-goto-char-in-line
-
 
     "i" 'ivy-switch-buffer
 
