@@ -1816,6 +1816,7 @@ the right."
                 "x" 'neotree-delete-node
                 "r" 'neotree-rename-node
                 "gg" 'evil-goto-first-line
+                "go" 'evil-goto-first-line
                 "gl" 'evil-goto-line
                 (kbd "<DEL>") 'neotree-select-up-node
                 (kbd "<return>") 'neotree-enter)
