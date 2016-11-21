@@ -1,0 +1,13 @@
+#+TITLE: mirror-elpa
+
+Mirror ELPA archives with ease. Lifted from [[https://github.com/d12frosted/environment][d12frosted]].
+
+* Usage
+
+This little script uses [[https://github.com/dochang/elpa-clone][elpa-clone]] in order to create mirrors for Org ELPA, GNU
+ELPA, MELPA and Stable MELPA. In order to create / update your mirror just run
+following command in terminal:
+
+#+BEGIN_SRC bash
+$ ./mirror-elpa -o PATH_TO_MIRROR
+#+END_SRC

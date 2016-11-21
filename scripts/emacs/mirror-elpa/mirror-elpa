@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+
+# defaults
+MIRROR_PATH=$(pwd)
+ELPA_CLONE_PATH="$HOME/.elpa-clone"
+ELPA_CLONE_URL="https://github.com/dochang/elpa-clone.git"
+
+while [[ $# -gt 1 ]]
+do
+  key="$1"
+  case $key in
+    -o|--output)
+      MIRROR_PATH="$2"
+      shift # past argument
+      ;;
+    *)
+      # unknown option
+      echo "Unknown option '$key'"
+      exit 1
+      ;;
+  esac
+  shift # past argument or value
+done
+
+set -e
+
+function log {
+  echo "[$(date '+%d/%m/%y %H:%M:%S')]" "$@"
+}
+
+function clone {
+  log "Updating mirror for $2 ($1)"
+  emacs -l "$ELPA_CLONE_PATH/elpa-clone.el" -nw --batch --eval="(elpa-clone \"$1\" \"$MIRROR_PATH/$2\")"
+}
+
+trap '[ "$?" -eq 0 ] || log Error! Could not update elpa mirrors!' EXIT
+
+log "Start updating elpa mirrors"
+log "MIRROR_PATH: $MIRROR_PATH"
+log "ELPA_CLONE_PATH: $ELPA_CLONE_PATH"
+
+cd "$MIRROR_PATH"
+
+if [[ ! -d $ELPA_CLONE_PATH ]]; then
+  git clone "$ELPA_CLONE_URL" "$ELPA_CLONE_PATH"
+fi
+
+if [ -d .git ] || git rev-parse --git-dir > /dev/null 2>&1; then
+  git fetch origin
+  git reset --hard origin/master
+fi
+
+clone "http://orgmode.org/elpa/" "org"
+clone "https://elpa.gnu.org/packages/" "gnu"
+clone "https://melpa.org/packages/" "melpa"
+clone "https://stable.melpa.org/packages/" "stable-melpa"
+
+if [ -d .git ] || git rev-parse --git-dir > /dev/null 2>&1; then
+  git add --all
+  git commit -m "snapshot $(date '+%d/%m/%y %H:%M:%S')"
+  git push origin master
+fi
+
+log "Done updating elpa mirrors"
