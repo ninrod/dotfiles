@@ -134,6 +134,13 @@
 :config (evil-lisp-state-leader "t l"))
 #+END_SRC
 
+** evil-textobj-entire
+#+BEGIN_SRC emacs-lisp
+  (use-package evil-textobj-entire :load-path "lisp/supermomonga/evil-textobj-entire"
+    :config
+    (define-key evil-outer-text-objects-map evil-textobj-entire-key 'evil-entire-entire-buffer))
+#+END_SRC
+
 ** god-mode
 #+BEGIN_SRC emacs-lisp
 (use-package god-mode :ensure t

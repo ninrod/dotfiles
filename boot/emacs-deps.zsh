@@ -7,3 +7,4 @@ ningrab jtbm37/all-the-icons-dired
 ningrab Dewdrops/evil-ReplaceWithRegister
 ningrab syl20bnr/spacemacs-elpa-mirror
 ningrab ninrod/thin-melpa-mirror
+ningrab supermomonga/evil-textobj-entire

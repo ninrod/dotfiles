@@ -10,7 +10,7 @@
 
 ;; using ninrod's thin-elpa-mirror
 
-(when (eq system-type 'GNU/Linux)
+(when (eq system-type 'gnu/linux)
 (setq package-archives '(("melpa" . "~/.emacs.d/lisp/ninrod/thin-melpa-mirror"))))
 
 ;; ;; using elpa-clone (fat mirror)
