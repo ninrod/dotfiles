@@ -420,7 +420,7 @@ the right."
 **** spacemacs
   #+BEGIN_SRC emacs-lisp
     (use-package spacemacs-theme
-      :init (load-theme 'spacemacs-light t)
+      ;; :init (load-theme 'spacemacs-dark t)
       :defer t
       :ensure t)
   #+END_SRC
@@ -430,12 +430,12 @@ the right."
   (use-package apropospriate-theme
     :init
 
-    ;; (load-theme 'apropospriate-light t)
-    ;; (setq evil-insert-state-cursor 'bar)
-    ;; (with-eval-after-load "git-gutter"
-    ;;   (set-face-foreground 'git-gutter:modified "#5C6BC0") ;; indigo
-    ;;   (set-face-foreground 'git-gutter:added    "#42A5F5") ;; blue
-    ;;   (set-face-foreground 'git-gutter:deleted  "#FF1744")) ;; red
+    (load-theme 'apropospriate-light t)
+    (setq evil-insert-state-cursor 'bar)
+    (with-eval-after-load "git-gutter"
+      (set-face-foreground 'git-gutter:modified "#5C6BC0") ;; indigo
+      (set-face-foreground 'git-gutter:added    "#42A5F5") ;; blue
+      (set-face-foreground 'git-gutter:deleted  "#FF1744")) ;; red
 
     :defer t
     :ensure t)
@@ -822,7 +822,7 @@ the right."
       (setq neo-create-file-auto-open t
             neo-auto-indent-point nil
             neo-mode-line-type 'none
-            neo-window-width 50
+            ;; neo-window-width 50
             neo-show-updir-line nil
             neo-smart-open t
             neo-show-hidden-files t
