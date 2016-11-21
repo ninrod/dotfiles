@@ -128,6 +128,12 @@
   (evil-ReplaceWithRegister-install))
 #+END_SRC
 
+** evil-lisp-state
+#+BEGIN_SRC emacs-lisp
+(use-package evil-lisp-state :ensure t
+:config (evil-lisp-state-leader "t l"))
+#+END_SRC
+
 ** god-mode
 #+BEGIN_SRC emacs-lisp
 (use-package god-mode :ensure t

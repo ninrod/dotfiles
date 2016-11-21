@@ -1,25 +1,29 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 
-;; (setq package-archives
-;;       '(("melpa" . "https://melpa.org/packages/")
-;;         ("org"   . "http://orgmode.org/elpa/")
-;;         ("gnu"   . "https://elpa.gnu.org/packages/")))
+;; using online archives on OSx
+(when (eq system-type 'darwin)
+  (setq package-archives
+        '(("melpa" . "https://melpa.org/packages/")
+          ("org"   . "http://orgmode.org/elpa/")
+          ("gnu"   . "https://elpa.gnu.org/packages/"))))
 
-;; using elpa-mirror (thin mirror)
-(setq package-archives '(("melpa" . "~/.emacs.d/lisp/ninrod/thin-melpa-mirror")))
+;; using ninrod's thin-elpa-mirror
 
-; ;; using elpa-clone (fat mirror)
-; (setq package-archives '(("melpa" . "~/.emacs.d/mirror-elpa/melpa/")
-;                          ("org"   . "~/.emacs.d/mirror-elpa/org/")
-;                          ("gnu"   . "~/.emacs.d/mirror-elpa/gnu/")))
+(when (eq system-type 'GNU/Linux)
+(setq package-archives '(("melpa" . "~/.emacs.d/lisp/ninrod/thin-melpa-mirror"))))
+
+;; ;; using elpa-clone (fat mirror)
+;; (setq package-archives '(("melpa" . "~/.emacs.d/mirror-elpa/melpa/")
+;;                          ("org"   . "~/.emacs.d/mirror-elpa/org/")
+;;                          ("gnu"   . "~/.emacs.d/mirror-elpa/gnu/")))
 
 (package-initialize)
 
 ;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package)
-	(package-refresh-contents)
-	(package-install 'use-package))
+  (package-refresh-contents)
+  (package-install 'use-package))
 
 ;; fetch latest version of `org-mode'
 (use-package org
