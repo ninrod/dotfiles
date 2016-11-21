@@ -415,17 +415,104 @@ the right."
 #+END_SRC
 
 * packages
-** mirrors
-*** elpa-mirror
+** cosmetic
+*** themes
+**** spacemacs
+  #+BEGIN_SRC emacs-lisp
+    (use-package spacemacs-theme
+      :init (load-theme 'spacemacs-light t)
+      :defer t
+      :ensure t)
+  #+END_SRC
+
+**** apropospriate
 #+BEGIN_SRC emacs-lisp
-(use-package elpa-mirror :ensure t
-:init (setq elpamr-default-output-directory "~/.emacs.d/thin-elpa-mirror"))
+  (use-package apropospriate-theme
+    :init
+
+    ;; (load-theme 'apropospriate-light t)
+    ;; (setq evil-insert-state-cursor 'bar)
+    ;; (with-eval-after-load "git-gutter"
+    ;;   (set-face-foreground 'git-gutter:modified "#5C6BC0") ;; indigo
+    ;;   (set-face-foreground 'git-gutter:added    "#42A5F5") ;; blue
+    ;;   (set-face-foreground 'git-gutter:deleted  "#FF1744")) ;; red
+
+    :defer t
+    :ensure t)
 #+END_SRC
 
-*** elpa-clone
+*** spaceline
+- to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
 #+BEGIN_SRC emacs-lisp
-(use-package elpa-clone :ensure t)
+  (use-package spaceline :ensure t
+    :config
+    (setq powerline-height 30)
+    (setq powerline-default-separator 'utf-8) ;customize separators for Powerline: alternate, slant, wave, zigzag, nil.
+    (setq spaceline-separator-dir-left '(right . right))
+    (setq spaceline-separator-dir-right '(right . right))
+    (when (eq system-type 'darwin) (setq ns-use-srgb-colorspace nil))
+    (setq powerline-default-separator 'slant)
+    (setq spaceline-workspace-numbers-unicode t) ;for eyebrowse. nice looking unicode numbers for tagging different layouts
+    (setq spaceline-window-numbers-unicode t)
+    (setq spaceline-highlight-face-func #'spaceline-highlight-face-evil-state) ; set colouring for different evil-states
+    (require 'spaceline-config)
+    (spaceline-spacemacs-theme)
+    (spaceline-compile))
 #+END_SRC
+
+*** all-the-icons
+#+BEGIN_SRC emacs-lisp
+  (use-package all-the-icons :ensure t
+    :config
+    (use-package all-the-icons-dired :load-path "lisp/jtbm37/all-the-icons-dired"))
+#+END_SRC
+
+*** rainbow-delimiters
+#+BEGIN_SRC emacs-lisp
+(use-package rainbow-delimiters :ensure t
+  :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+#+END_SRC
+
+*** highlight-numbers
+#+BEGIN_SRC emacs-lisp
+(use-package highlight-numbers :ensure t
+:config (add-hook 'prog-mode-hook 'highlight-numbers-mode))
+#+END_SRC
+
+*** highlight-parentheses
+#+BEGIN_SRC emacs-lisp
+  (use-package highlight-parentheses :ensure t
+    :diminish highlight-parentheses-mode
+    :config
+        (add-hook 'prog-mode-hook #'highlight-parentheses-mode)
+        (add-hook 'org-mode-hook #'highlight-parentheses-mode)
+        (setq hl-paren-delay 0.2)
+        (setq hl-paren-colors '("Springgreen3"
+                                "IndianRed1"
+                                "IndianRed3"
+                                "IndianRed4"))
+        (set-face-attribute 'hl-paren-face nil :weight 'ultra-bold))
+#+END_SRC
+
+*** smartparens
+#+BEGIN_SRC emacs-lisp
+  (use-package smartparens :ensure t
+    :config
+    (show-smartparens-global-mode +1)
+
+    :init
+    ;; settings
+    (setq sp-show-pair-delay 0.1
+          sp-show-pair-from-inside t
+
+          ;; fix paren highlighting in normal mode
+          ;; sp-highlight-pair-overlay nil
+          ;; sp-highlight-wrap-overlay nil
+          ;; sp-highlight-wrap-tag-overlay nil
+
+          ))
+#+END_SRC
+
 ** evil corruption
 *** evil
 - emacsify insert state. based on this SO question [[http://stackoverflow.com/a/26573722/4921402][here]].
@@ -551,104 +638,6 @@ the right."
   :config
   (setq evil-ReplaceWithRegister-key (kbd "gr"))
   (evil-ReplaceWithRegister-install))
-#+END_SRC
-
-** cosmetic
-*** themes
-**** spacemacs
-  #+BEGIN_SRC emacs-lisp
-    (use-package spacemacs-theme
-      ;; :init (load-theme 'spacemacs-dark t)
-      :defer t
-      :ensure t)
-  #+END_SRC
-
-**** apropospriate
-#+BEGIN_SRC emacs-lisp
-  (use-package apropospriate-theme
-    :init
-
-    (load-theme 'apropospriate-light t)
-    (setq evil-insert-state-cursor 'bar)
-    (with-eval-after-load "git-gutter"
-      (set-face-foreground 'git-gutter:modified "#5C6BC0") ;; indigo
-      (set-face-foreground 'git-gutter:added    "#42A5F5") ;; blue
-      (set-face-foreground 'git-gutter:deleted  "#FF1744")) ;; red
-
-    :defer t
-    :ensure t)
-#+END_SRC
-
-*** spaceline
-- to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
-#+BEGIN_SRC emacs-lisp
-  (use-package spaceline :ensure t
-    :config
-    (setq powerline-height 30)
-    (setq powerline-default-separator 'utf-8) ;customize separators for Powerline: alternate, slant, wave, zigzag, nil.
-    (setq spaceline-separator-dir-left '(right . right))
-    (setq spaceline-separator-dir-right '(right . right))
-    (when (eq system-type 'darwin) (setq ns-use-srgb-colorspace nil))
-    (setq powerline-default-separator 'slant)
-    (setq spaceline-workspace-numbers-unicode t) ;for eyebrowse. nice looking unicode numbers for tagging different layouts
-    (setq spaceline-window-numbers-unicode t)
-    (setq spaceline-highlight-face-func #'spaceline-highlight-face-evil-state) ; set colouring for different evil-states
-    (require 'spaceline-config)
-    (spaceline-spacemacs-theme)
-    (spaceline-compile))
-#+END_SRC
-
-*** all-the-icons
-#+BEGIN_SRC emacs-lisp
-  (use-package all-the-icons :ensure t
-    :config
-    (use-package all-the-icons-dired :load-path "lisp/jtbm37/all-the-icons-dired"))
-#+END_SRC
-
-*** rainbow-delimiters
-#+BEGIN_SRC emacs-lisp
-(use-package rainbow-delimiters :ensure t
-  :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
-#+END_SRC
-
-*** highlight-numbers
-#+BEGIN_SRC emacs-lisp
-(use-package highlight-numbers :ensure t
-:config (add-hook 'prog-mode-hook 'highlight-numbers-mode))
-#+END_SRC
-
-*** highlight-parentheses
-#+BEGIN_SRC emacs-lisp
-  (use-package highlight-parentheses :ensure t
-    :diminish highlight-parentheses-mode
-    :config
-        (add-hook 'prog-mode-hook #'highlight-parentheses-mode)
-        (add-hook 'org-mode-hook #'highlight-parentheses-mode)
-        (setq hl-paren-delay 0.2)
-        (setq hl-paren-colors '("Springgreen3"
-                                "IndianRed1"
-                                "IndianRed3"
-                                "IndianRed4"))
-        (set-face-attribute 'hl-paren-face nil :weight 'ultra-bold))
-#+END_SRC
-
-*** smartparens
-#+BEGIN_SRC emacs-lisp
-  (use-package smartparens :ensure t
-    :config
-    (show-smartparens-global-mode +1)
-
-    :init
-    ;; settings
-    (setq sp-show-pair-delay 0.1
-          sp-show-pair-from-inside t
-
-          ;; fix paren highlighting in normal mode
-          ;; sp-highlight-pair-overlay nil
-          ;; sp-highlight-wrap-overlay nil
-          ;; sp-highlight-wrap-tag-overlay nil
-
-          ))
 #+END_SRC
 
 ** expand functionality
@@ -1013,6 +1002,18 @@ the right."
 *** gitconfig-mode
 #+BEGIN_SRC emacs-lisp
 (use-package gitconfig-mode :ensure t)
+#+END_SRC
+
+** mirrors
+*** elpa-mirror
+#+BEGIN_SRC emacs-lisp
+(use-package elpa-mirror :ensure t
+:init (setq elpamr-default-output-directory "~/.emacs.d/thin-elpa-mirror"))
+#+END_SRC
+
+*** elpa-clone
+#+BEGIN_SRC emacs-lisp
+(use-package elpa-clone :ensure t)
 #+END_SRC
 
 * fixes/patches
