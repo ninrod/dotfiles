@@ -234,6 +234,20 @@ If the universal prefix argument is used then kill also the window."
       (kill-buffer))))
 #+END_SRC
 
+*** spacemacs/kill-other-buffers
+#+BEGIN_SRC emacs-lisp
+;; found at http://emacswiki.org/emacs/KillingBuffers
+(defun spacemacs/kill-other-buffers (&optional arg)
+  "Kill all other buffers.
+If the universal prefix argument is used then will the windows too."
+  (interactive "P")
+  (when (yes-or-no-p (format "Killing all buffers except \"%s\"? "
+                             (buffer-name)))
+    (mapc 'kill-buffer (delq (current-buffer) (buffer-list)))
+    (when (equal '(4) arg) (delete-other-windows))
+    (message "Buffers deleted!")))
+#+END_SRC
+
 ** spacemacs/align functions
 #+BEGIN_SRC emacs-lisp
 ;; BEGIN align functions
@@ -1719,38 +1733,39 @@ the right."
 
 ** s
 #+BEGIN_SRC emacs-lisp
-    (bind-map s-map 
-      :evil-keys ("s")
-      :evil-states (normal visual motion))
+  (bind-map s-map
+    :evil-keys ("s")
+    :evil-states (normal visual motion))
 
-    ;; quits: file saves, buffer deletes, window exits, you name it...
-    (bind-map-set-keys s-map
-      "s" 'evil-save-modified-and-close
-      "d" 'kill-this-buffer
-      "r" 'restart-emacs
-
-
-      "o" 'avy-goto-char
-      "f" 'avy-goto-char-in-line
+  ;; quits: file saves, buffer deletes, window exits, you name it...
+  (bind-map-set-keys s-map
+    "s" 'evil-save-modified-and-close
+    "d" 'spacemacs/kill-this-buffer
+    "m" 'spacemacs/kill-other-buffers
+    "r" 'restart-emacs
 
 
-      "i" 'ivy-switch-buffer
+    "o" 'avy-goto-char
+    "f" 'avy-goto-char-in-line
 
-      ;; "b" 'buffer-menu
-      ;; "b" 'list-buffers???
-      ;; more info here: http://emacs.stackexchange.com/a/21635/12585
-      "b" (lambda ()  
-      (interactive)
-      (execute-extended-command '(4) "buffer-menu"))
 
-      ;; window manipulation
-      "j" 'evil-window-down
-      "k" 'evil-window-up
-      "h" 'evil-window-left
-      "l" 'evil-window-right
-      "v" 'split-window-right-and-focus
-      "x" 'split-window-below-and-focus
-      "w" 'delete-other-windows)
+    "i" 'ivy-switch-buffer
+
+    ;; "b" 'buffer-menu
+    ;; "b" 'list-buffers???
+    ;; more info here: http://emacs.stackexchange.com/a/21635/12585
+    "b" (lambda ()
+          (interactive)
+          (execute-extended-command '(4) "buffer-menu"))
+
+    ;; window manipulation
+    "j" 'evil-window-down
+    "k" 'evil-window-up
+    "h" 'evil-window-left
+    "l" 'evil-window-right
+    "v" 'split-window-right-and-focus
+    "x" 'split-window-below-and-focus
+    "w" 'delete-other-windows)
 
   (which-key-add-key-based-replacements "sb" "buffer menu")
 #+END_SRC
