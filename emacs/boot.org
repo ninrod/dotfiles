@@ -621,6 +621,7 @@ the right."
 (add-hook 'ielm-mode-hook 'no-trailing-whitespace)
 (add-hook 'gdb-mode-hook 'no-trailing-whitespace)
 (add-hook 'help-mode-hook 'no-trailing-whitespace)
+(add-hook 'term-mode-hook 'no-trailing-whitespace)
 #+END_SRC
 
 * packages
