@@ -1,10 +1,10 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 
-; (setq package-archives
-;       '(("melpa" . "https://melpa.org/packages/")
-;         ("org"   . "http://orgmode.org/elpa/")
-;         ("gnu"   . "https://elpa.gnu.org/packages/")))
+;; (setq package-archives
+;;       '(("melpa" . "https://melpa.org/packages/")
+;;         ("org"   . "http://orgmode.org/elpa/")
+;;         ("gnu"   . "https://elpa.gnu.org/packages/")))
 
 ;; using elpa-mirror (thin mirror)
 (setq package-archives '(("melpa" . "~/.emacs.d/lisp/ninrod/thin-melpa-mirror")))

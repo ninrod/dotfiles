@@ -1,6 +1,188 @@
 #+STARTUP: indent
 #+STARTUP: overview
 
+* evil corruption
+** evil
+- emacsify insert state. based on this SO question [[http://stackoverflow.com/a/26573722/4921402][here]].
+#+BEGIN_SRC emacs-lisp
+    (use-package evil :ensure t
+      :config
+
+      ;; remove all keybindings from insert-state keymap just
+      ;; because I want to use emacs keybindings in insert state.
+      (setcdr evil-insert-state-map nil)
+
+      ;; but [escape] should switch back to normal state, obviously.
+      (define-key evil-insert-state-map [escape] 'evil-normal-state)
+
+      ;; Amazing hack lifted from: http://emacs.stackexchange.com/a/15054/12585
+      ;; Imagine the following scenario.  One wants to paste some previously copied
+      ;; (from application other than Emacs) text to the system's clipboard in place
+      ;; of some contiguous block of text in a buffer.  Hence, one switches to
+      ;; `evil-visual-state' and selects the corresponding block of text to be
+      ;; replaced.  However, one either pastes some (previously killed) text from
+      ;; `kill-ring' or (if `kill-ring' is empty) receives the error: "Kill ring is
+      ;; empty"; see `evil-visual-paste' and `current-kill' respectively.  The
+      ;; reason why `current-kill' does not return the desired text from the
+      ;; system's clipboard is because `evil-visual-update-x-selection' is being run
+      ;; by `evil-visual-pre-command' before `evil-visual-paste'.  That is
+      ;; `x-select-text' is being run (by `evil-visual-update-x-selection') before
+      ;; `evil-visual-paste'.  As a result, `x-select-text' copies the selected
+      ;; block of text to the system's clipboard as long as
+      ;; `x-select-enable-clipboard' is non-nil (and in this scenario we assume that
+      ;; it is).  According to the documentation of `interprogram-paste-function',
+      ;; it should not return the text from the system's clipboard if it was last
+      ;; provided by Emacs (e.g. with `x-select-text').  Thus, one ends up with the
+      ;; problem described above.  To solve it, simply make
+      ;; `evil-visual-update-x-selection' do nothing:
+      (fset 'evil-visual-update-x-selection 'ignore)
+
+      (evil-mode))
+#+END_SRC
+
+** evil-commentary
+#+BEGIN_SRC emacs-lisp
+(use-package evil-commentary :ensure t
+  :diminish evil-commentary-mode
+  :config (evil-commentary-mode))
+#+END_SRC
+
+** evil-matchit
+#+BEGIN_SRC emacs-lisp
+(use-package evil-matchit :ensure t
+  :config (global-evil-matchit-mode 1))
+#+END_SRC
+
+** evil-surround
+#+BEGIN_SRC emacs-lisp
+(use-package evil-surround :ensure t
+  :config (global-evil-surround-mode 1))
+#+END_SRC
+
+** evil-exchange
+#+BEGIN_SRC emacs-lisp
+(use-package evil-exchange :ensure t
+  :config (evil-exchange-install))
+#+END_SRC
+
+** evil-args
+#+begin_src emacs-lisp
+(use-package evil-args :ensure t
+  :config
+    (define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
+    (define-key evil-outer-text-objects-map "a" 'evil-outer-arg)
+)
+#+end_src
+
+** evil-visualstar
+#+begin_src emacs-lisp
+(use-package evil-visualstar :ensure t
+  :config (global-evil-visualstar-mode))
+#+end_src
+
+** evil-indent-plus
+#+begin_src emacs-lisp
+(use-package evil-indent-plus :ensure t
+  :config (evil-indent-plus-default-bindings))
+#+end_src
+
+** evil-anzu
+- config section hack: see [[https://github.com/TheBB/spaceline/issues/69][TheBB/spaceline#69]]
+#+BEGIN_SRC emacs-lisp
+  (use-package evil-anzu :ensure t
+    :config 
+    (setq anzu-cons-mode-line-p nil))
+#+END_SRC
+
+** evil-numbers
+#+BEGIN_SRC emacs-lisp
+(use-package evil-numbers :ensure t)
+#+END_SRC
+
+** evil-escape
+#+BEGIN_SRC emacs-lisp
+(use-package evil-escape :ensure t
+  :config 
+  (evil-escape-mode)
+)
+#+END_SRC
+
+** evil-terminal-cursor-changer
+#+BEGIN_SRC text
+  (use-package evil-terminal-cursor-changer :ensure t
+    :config
+    (setq evil-motion-state-cursor 'box)
+    (setq evil-visual-state-cursor 'box)
+    (setq evil-normal-state-cursor 'box)
+    (setq evil-insert-state-cursor 'bar)
+    (setq evil-emacs-state-cursor  'hbar)
+    (unless (display-graphic-p)
+      (evil-terminal-cursor-changer-activate)))
+#+END_SRC
+
+** evil-replace-with-register
+#+BEGIN_SRC emacs-lisp
+  (use-package evil-ReplaceWithRegister :load-path "lisp/Dewdrops/evil-ReplaceWithRegister"
+  :config
+  (setq evil-ReplaceWithRegister-key (kbd "gr"))
+  (evil-ReplaceWithRegister-install))
+#+END_SRC
+
+** god-mode
+#+BEGIN_SRC emacs-lisp
+(use-package god-mode :ensure t
+:config
+(evil-define-state god
+  "God state."
+  :tag " <G> "
+  :message "-- GOD MODE --"
+  :entry-hook (evil-god-start-hook)
+  :exit-hook (evil-god-stop-hook)
+  :input-method t
+  :intercept-esc nil)
+
+(defun evil-god-start-hook ()
+  (diminish 'god-local-mode)
+  (god-local-mode 1))
+
+(defun evil-god-stop-hook ()
+  (god-local-mode -1)
+  (diminish-undo 'god-local-mode))
+
+(defvar evil-execute-in-god-state-buffer nil)
+
+(defun evil-stop-execute-in-god-state ()
+  (when (and (not (eq this-command #'evil-execute-in-god-state))
+             (not (minibufferp)))
+    (remove-hook 'post-command-hook 'evil-stop-execute-in-god-state)
+    (when (buffer-live-p evil-execute-in-god-state-buffer)
+      (with-current-buffer evil-execute-in-god-state-buffer
+        (if (and (eq evil-previous-state 'visual)
+                 (not (use-region-p)))
+            (progn
+              (evil-change-to-previous-state)
+              (evil-exit-visual-state))
+          (evil-change-to-previous-state))))
+    (setq evil-execute-in-god-state-buffer nil)))
+
+(evil-define-command evil-execute-in-god-state ()
+  "Execute the next command in God state."
+  (add-hook 'post-command-hook #'evil-stop-execute-in-god-state t)
+  (setq evil-execute-in-god-state-buffer (current-buffer))
+  (cond
+   ((evil-visual-state-p)
+    (let ((mrk (mark))
+          (pnt (point)))
+      (evil-god-state)
+      (set-mar mrk)
+      (goto-char pnt)))
+   (t
+    (evil-god-state)))
+  (evil-echo "Switched to God state for the next command ..."))
+
+(evil-define-key 'normal global-map "gg" 'evil-execute-in-god-state))
+#+END_SRC
+
 * lisp functions
 ** spacemacs/buffer operations
 *** spacemacs/alternate-buffer
@@ -420,7 +602,7 @@ the right."
 **** spacemacs
   #+BEGIN_SRC emacs-lisp
     (use-package spacemacs-theme
-      ;; :init (load-theme 'spacemacs-dark t)
+      :init (load-theme 'spacemacs-light t)
       :defer t
       :ensure t)
   #+END_SRC
@@ -430,12 +612,12 @@ the right."
   (use-package apropospriate-theme
     :init
 
-    (load-theme 'apropospriate-light t)
-    (setq evil-insert-state-cursor 'bar)
-    (with-eval-after-load "git-gutter"
-      (set-face-foreground 'git-gutter:modified "#5C6BC0") ;; indigo
-      (set-face-foreground 'git-gutter:added    "#42A5F5") ;; blue
-      (set-face-foreground 'git-gutter:deleted  "#FF1744")) ;; red
+    ;; (load-theme 'apropospriate-light t)
+    ;; (setq evil-insert-state-cursor 'bar)
+    ;; (with-eval-after-load "git-gutter"
+    ;;   (set-face-foreground 'git-gutter:modified "#5C6BC0") ;; indigo
+    ;;   (set-face-foreground 'git-gutter:added    "#42A5F5") ;; blue
+    ;;   (set-face-foreground 'git-gutter:deleted  "#FF1744")) ;; red
 
     :defer t
     :ensure t)
@@ -511,133 +693,6 @@ the right."
           ;; sp-highlight-wrap-tag-overlay nil
 
           ))
-#+END_SRC
-
-** evil corruption
-*** evil
-- emacsify insert state. based on this SO question [[http://stackoverflow.com/a/26573722/4921402][here]].
-#+BEGIN_SRC emacs-lisp
-    (use-package evil :ensure t
-      :config
-
-      ;; remove all keybindings from insert-state keymap just
-      ;; because I want to use emacs keybindings in insert state.
-      (setcdr evil-insert-state-map nil)
-
-      ;; but [escape] should switch back to normal state, obviously.
-      (define-key evil-insert-state-map [escape] 'evil-normal-state)
-
-      ;; Amazing hack lifted from: http://emacs.stackexchange.com/a/15054/12585
-      ;; Imagine the following scenario.  One wants to paste some previously copied
-      ;; (from application other than Emacs) text to the system's clipboard in place
-      ;; of some contiguous block of text in a buffer.  Hence, one switches to
-      ;; `evil-visual-state' and selects the corresponding block of text to be
-      ;; replaced.  However, one either pastes some (previously killed) text from
-      ;; `kill-ring' or (if `kill-ring' is empty) receives the error: "Kill ring is
-      ;; empty"; see `evil-visual-paste' and `current-kill' respectively.  The
-      ;; reason why `current-kill' does not return the desired text from the
-      ;; system's clipboard is because `evil-visual-update-x-selection' is being run
-      ;; by `evil-visual-pre-command' before `evil-visual-paste'.  That is
-      ;; `x-select-text' is being run (by `evil-visual-update-x-selection') before
-      ;; `evil-visual-paste'.  As a result, `x-select-text' copies the selected
-      ;; block of text to the system's clipboard as long as
-      ;; `x-select-enable-clipboard' is non-nil (and in this scenario we assume that
-      ;; it is).  According to the documentation of `interprogram-paste-function',
-      ;; it should not return the text from the system's clipboard if it was last
-      ;; provided by Emacs (e.g. with `x-select-text').  Thus, one ends up with the
-      ;; problem described above.  To solve it, simply make
-      ;; `evil-visual-update-x-selection' do nothing:
-      (fset 'evil-visual-update-x-selection 'ignore)
-
-      (evil-mode))
-#+END_SRC
-
-*** evil-commentary
-#+BEGIN_SRC emacs-lisp
-(use-package evil-commentary :ensure t
-  :diminish evil-commentary-mode
-  :config (evil-commentary-mode))
-#+END_SRC
-
-*** evil-matchit
-#+BEGIN_SRC emacs-lisp
-(use-package evil-matchit :ensure t
-  :config (global-evil-matchit-mode 1))
-#+END_SRC
-
-*** evil-surround
-#+BEGIN_SRC emacs-lisp
-(use-package evil-surround :ensure t
-  :config (global-evil-surround-mode 1))
-#+END_SRC
-
-*** evil-exchange
-#+BEGIN_SRC emacs-lisp
-(use-package evil-exchange :ensure t
-  :config (evil-exchange-install))
-#+END_SRC
-
-*** evil-args
-#+begin_src emacs-lisp
-(use-package evil-args :ensure t
-  :config
-    (define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
-    (define-key evil-outer-text-objects-map "a" 'evil-outer-arg)
-)
-#+end_src
-
-*** evil-visualstar
-#+begin_src emacs-lisp
-(use-package evil-visualstar :ensure t
-  :config (global-evil-visualstar-mode))
-#+end_src
-
-*** evil-indent-plus
-#+begin_src emacs-lisp
-(use-package evil-indent-plus :ensure t
-  :config (evil-indent-plus-default-bindings))
-#+end_src
-
-*** evil-anzu
-- config section hack: see [[https://github.com/TheBB/spaceline/issues/69][TheBB/spaceline#69]]
-#+BEGIN_SRC emacs-lisp
-  (use-package evil-anzu :ensure t
-    :config 
-    (setq anzu-cons-mode-line-p nil))
-#+END_SRC
-
-*** evil-numbers
-#+BEGIN_SRC emacs-lisp
-(use-package evil-numbers :ensure t)
-#+END_SRC
-
-*** evil-escape
-#+BEGIN_SRC emacs-lisp
-(use-package evil-escape :ensure t
-  :config 
-  (evil-escape-mode)
-)
-#+END_SRC
-
-*** evil-terminal-cursor-changer
-#+BEGIN_SRC text
-  (use-package evil-terminal-cursor-changer :ensure t
-    :config
-    (setq evil-motion-state-cursor 'box)
-    (setq evil-visual-state-cursor 'box)
-    (setq evil-normal-state-cursor 'box)
-    (setq evil-insert-state-cursor 'bar)
-    (setq evil-emacs-state-cursor  'hbar)
-    (unless (display-graphic-p)
-      (evil-terminal-cursor-changer-activate)))
-#+END_SRC
-
-*** evil-replace-with-register
-#+BEGIN_SRC emacs-lisp
-  (use-package evil-ReplaceWithRegister :load-path "lisp/Dewdrops/evil-ReplaceWithRegister"
-  :config
-  (setq evil-ReplaceWithRegister-key (kbd "gr"))
-  (evil-ReplaceWithRegister-install))
 #+END_SRC
 
 ** expand functionality
