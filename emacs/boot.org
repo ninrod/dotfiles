@@ -415,6 +415,17 @@ the right."
 #+END_SRC
 
 * packages
+** mirrors
+*** elpa-mirror
+#+BEGIN_SRC emacs-lisp
+(use-package elpa-mirror :ensure t
+:init (setq elpamr-default-output-directory "~/.emacs.d/thin-elpa-mirror"))
+#+END_SRC
+
+*** elpa-clone
+#+BEGIN_SRC emacs-lisp
+(use-package elpa-clone :ensure t)
+#+END_SRC
 ** evil corruption
 *** evil
 - emacsify insert state. based on this SO question [[http://stackoverflow.com/a/26573722/4921402][here]].
@@ -547,87 +558,86 @@ the right."
 **** spacemacs
   #+BEGIN_SRC emacs-lisp
     (use-package spacemacs-theme
-      :init (load-theme 'spacemacs-dark t)
+      ;; :init (load-theme 'spacemacs-dark t)
       :defer t
       :ensure t)
   #+END_SRC
 
 **** birds-of-paradise-plus
-  #+BEGIN_SRC text
+  #+BEGIN_SRC emacs-lisp
     (use-package birds-of-paradise-plus-theme
-      :init (load-theme 'birds-of-paradise-plus t)
+      ;; :init (load-theme 'birds-of-paradise-plus t)
       :defer t
       :ensure t)
   #+END_SRC
 
 **** dracula
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package dracula-theme
-    :init (load-theme 'dracula t)
+    ;; :init (load-theme 'dracula t)
     :defer t
     :ensure t)
 #+END_SRC
 
 **** gruvbox
-  #+BEGIN_SRC text
+  #+BEGIN_SRC emacs-lisp
     (use-package gruvbox-theme
-      :init (load-theme 'gruvbox t)
+      ;; :init (load-theme 'gruvbox t)
       :defer t
       :ensure t)
   #+END_SRC
 
 **** darktooth
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package darktooth-theme
-    :init (load-theme 'darktooth t)
+    ;; :init (load-theme 'darktooth t)
     :defer t
     :ensure t)
 #+END_SRC
 
 **** zenburn
-#+BEGIN_SRC text
-(use-package zenburn-theme
-    :init (load-theme 'zenburn t)
-    :defer t
-    :ensure t)
+#+BEGIN_SRC emacs-lisp
+  (use-package zenburn-theme
+      ;; :init (load-theme 'zenburn t)
+      :defer t
+      :ensure t)
 #+END_SRC
 
 **** base16-chalk
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package base16-theme
-    :init (load-theme 'base16-chalk t)
+    ;; :init (load-theme 'base16-chalk t)
     :defer t
     :ensure t)
 #+END_SRC
 
 **** cyberpunk
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package cyberpunk-theme
-    :init (load-theme 'cyberpunk t)
+    ;; :init (load-theme 'cyberpunk t)
     :defer t
     :ensure t)
 #+END_SRC
 
 **** ample-zen
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package ample-zen-theme
-    :init (load-theme 'ample-zen t)
+    ;; :init (load-theme 'ample-zen t)
     :defer t
     :ensure t)
 #+END_SRC
 
 **** ample
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package ample-theme
-    :init (progn (load-theme 'ample t t)
-                 (enable-theme 'ample))
+    ;; :init (progn (load-theme 'ample t t) (enable-theme 'ample))
     :defer t
     :ensure t)
 #+END_SRC
 
 *** light themes
 **** apropospriate
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package apropospriate-theme
     :init
 
@@ -647,33 +657,33 @@ the right."
 #+END_SRC
 
 **** material
-#+BEGIN_SRC text
-(use-package material-theme
-    :init
-    (load-theme 'material t)
-    ;; (load-theme 'material-light t)
-    :defer t
-    :ensure t)
+#+BEGIN_SRC emacs-lisp
+  (use-package material-theme
+      :init
+      ;; (load-theme 'material t)
+      ;; (load-theme 'material-light t)
+      :defer t
+      :ensure t)
 #+END_SRC
 
 **** solarized
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package solarized-theme
     :init
     (setq solarized-high-contrast-mode-line t)
     (setq solarized-use-variable-pitch nil)
-    (load-theme 'solarized-dark t)
+    ;; (load-theme 'solarized-dark t)
     ;; (load-theme 'solarized-light t)
     :defer t
     :ensure t)
 #+END_SRC
 
 **** leuven
-#+BEGIN_SRC text
-    (use-package leuven-theme
-      :init (load-theme 'leuven t)
-      :defer t
-      :ensure t)
+#+BEGIN_SRC emacs-lisp
+  (use-package leuven-theme
+    ;; :init (load-theme 'leuven t)
+    :defer t
+    :ensure t)
 #+END_SRC
 
 *** spaceline
@@ -857,7 +867,7 @@ the right."
 #+END_SRC
 
 *** smart-tab
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (use-package smart-tab :ensure t
     :config (global-smart-tab-mode 1))
 #+END_SRC
@@ -1294,6 +1304,7 @@ the right."
     "mc" 'count-words
     "mr" 'replace-string
     "mf" 'customize-apropos-faces
+    "mm" 'elpamr-create-mirror-for-installed
   )
   (which-key-declare-prefixes "SPC m" "M-x useful functions")
   (which-key-declare-prefixes "SPC mi" "REPL: inferior elisp mode")

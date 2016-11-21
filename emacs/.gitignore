@@ -17,3 +17,4 @@ backups/
 lisp/
 server/
 var/
+thin-elpa-mirror/

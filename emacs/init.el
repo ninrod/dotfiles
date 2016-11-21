@@ -1,10 +1,19 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 
-;; use a local melpa mirror. much faster.
-(setq package-archives '(("melpa" . "~/.emacs.d/mirror-elpa/melpa/")
-                         ("org"   . "~/.emacs.d/mirror-elpa/org/")
-                         ("gnu"   . "~/.emacs.d/mirror-elpa/gnu/")))
+; (setq package-archives
+;       '(("melpa" . "https://melpa.org/packages/")
+;         ("org"   . "http://orgmode.org/elpa/")
+;         ("gnu"   . "https://elpa.gnu.org/packages/")))
+
+;; using elpa-mirror (thin mirror)
+(setq package-archives '(("melpa" . "~/.emacs.d/lisp/ninrod/thin-melpa-mirror")))
+
+; ;; using elpa-clone (fat mirror)
+; (setq package-archives '(("melpa" . "~/.emacs.d/mirror-elpa/melpa/")
+;                          ("org"   . "~/.emacs.d/mirror-elpa/org/")
+;                          ("gnu"   . "~/.emacs.d/mirror-elpa/gnu/")))
+
 (package-initialize)
 
 ;; Bootstrap `use-package'
