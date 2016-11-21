@@ -10,7 +10,7 @@
 * Screenshots
 ** Emacs
 
-[[https://raw.githubusercontent.com/ninrod/dotshots/master/emacs-2016-11-11.png][https://raw.githubusercontent.com/ninrod/dotshots/master/emacs-2016-11-11.png]]
+[[https://raw.githubusercontent.com/ninrod/dotshots/master/emacs-2016-11-21.png][https://raw.githubusercontent.com/ninrod/dotshots/master/emacs-2016-11-21.png]]
 
 ** Vim, tmux and zsh
 
