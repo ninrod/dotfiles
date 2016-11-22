@@ -1459,14 +1459,21 @@ the right."
 #+END_SRC
 
 **** local leader
-***** c: code
+***** b: code
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys org-map
-    "cc" 'org-edit-src-code
-    "cb" 'org-babel-execute-src-block
-    "cp" 'eval-print-last-sexp
-    "ce" 'eval-last-sexp)
+    "bb" 'org-edit-src-code
+    "be" 'org-babel-execute-src-block)
   (which-key-declare-prefixes ", c" "code")
+#+END_SRC
+
+***** c: clock
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys org-map
+    "ci" 'org-clock-in
+    "co" 'org-clock-out
+    "cd" 'org-clock-display)
+  (which-key-declare-prefixes ", c" "clock")
 #+END_SRC
 
 ***** d: dates/schedulling
