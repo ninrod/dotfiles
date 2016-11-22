@@ -1460,6 +1460,7 @@ the right."
 
 **** local leader
 ***** b: code
+
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys org-map
     "bb" 'org-edit-src-code
@@ -1468,6 +1469,7 @@ the right."
 #+END_SRC
 
 ***** c: clock
+
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys org-map
     "ci" 'org-clock-in
@@ -1477,6 +1479,7 @@ the right."
 #+END_SRC
 
 ***** d: dates/schedulling
+
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys org-map
     "dd" 'org-schedule
@@ -1485,28 +1488,31 @@ the right."
 #+END_SRC
 
 ***** i: insertions
+
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
   "ih" 'org-insert-heading
   "ia" 'org-insert-heading-after-current
   "ir" 'org-insert-heading-respect-content
   "is" 'org-insert-subheading
-  "il" 'org-insert-link
-  "io" 'org-open-at-point
-  "iL" 'org-toggle-link-display
+  "it" 'counsel-org-tag
 )
 (which-key-declare-prefixes ", i" "insertions/additions")
 #+END_SRC
 
-***** l: label/tag
+***** l: links
+
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys org-map
-    "ll" 'counsel-org-tag
+  "lo" 'org-open-at-point
+  "ll" 'org-insert-link
+  "lt" 'org-toggle-link-display
   )
-  (which-key-add-major-mode-key-based-replacements 'org-mode ", l" "label/tag")
+  (which-key-add-major-mode-key-based-replacements 'org-mode ", l" "links")
 #+END_SRC
 
 ***** m: meta
+
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys org-map
     "ml" 'org-metaright
@@ -1519,6 +1525,7 @@ the right."
 #+END_SRC
 
 ***** o: interesting org commands
+
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys org-map
 
@@ -1532,6 +1539,7 @@ the right."
 #+END_SRC
 
 ***** s: subtree commands
+
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
   ;; subtree commands
@@ -1548,18 +1556,14 @@ the right."
 #+END_SRC
 
 ***** t: table
-****** ☛ TODO lift more binds from [[http://orgmode.org/manual/Built_002din-table-editor.html][here]]:
+
 #+BEGIN_SRC emacs-lisp
     (bind-map-set-keys org-map
       "ta" 'org-table-align
-      
       "te" 'org-edit-special
-
       "tt" 'org-table-transpose-table-at-point
-
       "th" 'org-backward-sentence
       "tl" 'org-forward-sentence
-
       "tdc" 'org-table-delete-column
 
       ;; from https://www.reddit.com/r/emacs/comments/56oc9c/orgtables_is_there_a_way_to_delete_a_whole_table/
@@ -1568,24 +1572,23 @@ the right."
 
       "tr" 'org-table-insert-row
       "tc" 'org-table-insert-column
-    
+
       "to" 'org-table-toggle-coordinate-overlays
       "t?" 'org-table-field-info
       "t=" 'org-table-eval-formula
 
-      "tf" (lambda () (interactive) 
+      "tf" (lambda () (interactive)
             (let ((current-prefix-arg 4))
-            (call-interactively 'org-table-recalculate))
-           )
+            (call-interactively 'org-table-recalculate)))
 
-      "t RET" 'org-table-copy-down
-    )
+      "t RET" 'org-table-copy-down)
   (which-key-add-major-mode-key-based-replacements 'org-mode ", t" "org-table")
   (which-key-add-major-mode-key-based-replacements 'org-mode ", td" "org-table deletions")
   (which-key-add-major-mode-key-based-replacements 'org-mode ", tf" "recalculate formulas")
 #+END_SRC
 
 ***** z: zoom / visualization
+
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
   "zi" 'org-narrow-to-subtree
@@ -1594,6 +1597,7 @@ the right."
 #+END_SRC
 
 ***** E: exports
+
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
   "Ed" 'org-export-dispatch
@@ -1602,6 +1606,7 @@ the right."
 #+END_SRC
 
 ***** *-=: others
+
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
   ;; cycle
@@ -1614,16 +1619,22 @@ the right."
 
 **** local fixes
 ***** org-mode-map
+
 #+BEGIN_SRC emacs-lisp
   (unbind-key "C-<tab>" org-mode-map)
 #+END_SRC
 
 ***** org-src-code-map
+
 #+BEGIN_SRC emacs-lisp
   (bind-key "C-c C-c" 'org-edit-src-exit org-src-mode-map)
+  (evil-define-key 'normal org-mode-src-map (kbd "<RET>") 'org-edit-src-exit)
+  ;; (bind-key (kbd "RET") 'org-edit-src-exit org-src-mode-map)
+
 #+END_SRC
 
 ***** other
+
 #+BEGIN_SRC emacs-lisp
   ;; (evil-define-key 'normal org-mode-map (kbd "TAB") 'ivy-switch-buffer)
   ;; (when (display-graphic-p)
