@@ -607,7 +607,7 @@ the right."
 *** spacemacs-theme
   #+BEGIN_SRC emacs-lisp
     (use-package spacemacs-theme
-      :init (load-theme 'spacemacs-dark t)
+      :init (load-theme 'spacemacs-light t)
       :defer t
       :ensure t)
   #+END_SRC
@@ -1230,7 +1230,6 @@ the right."
     "is" 'ivy-push-view ; save
     "il" 'ivy-pop-view  ; load
     "ia" 'counsel-ag
-    "ip" 'counsel-yank-pop
   )
   (which-key-declare-prefixes "SPC i" "ivy")
 #+END_SRC
@@ -1244,8 +1243,6 @@ the right."
     "mr" 'replace-string
     "mf" 'customize-apropos-faces
     "mm" 'elpamr-create-mirror-for-installed
-    "mn" 'rectangle-ext-narrow
-    "mw" 'rectangle-ext-widen
   )
   (which-key-declare-prefixes "SPC m" "M-x useful functions")
   (which-key-declare-prefixes "SPC mi" "REPL: inferior elisp mode")
@@ -1708,9 +1705,10 @@ the right."
   ;; quits: file saves, buffer deletes, window exits, you name it...
   (bind-map-set-keys s-map
     "s" 'evil-save-modified-and-close
-    "d" 'spacemacs/kill-this-buffer
-    "o" 'spacemacs/kill-other-buffers
     "r" 'restart-emacs
+
+    "d" 'spacemacs/kill-this-buffer
+    "D" 'spacemacs/kill-other-buffers
 
     "i" 'ivy-switch-buffer
 
@@ -1721,14 +1719,18 @@ the right."
           (interactive)
           (execute-extended-command '(4) "buffer-menu"))
 
+    "n" 'rectangle-ext-narrow
+    "w" 'rectangle-ext-widen
+
+    "p" 'counsel-yank-pop
+
     ;; window manipulation
     "j" 'evil-window-down
     "k" 'evil-window-up
     "h" 'evil-window-left
     "l" 'evil-window-right
     "v" 'split-window-right-and-focus
-    "x" 'split-window-below-and-focus
-    "w" 'delete-other-windows)
+    "x" 'split-window-below-and-focus)
 
   (which-key-add-key-based-replacements "sb" "buffer menu")
 #+END_SRC
