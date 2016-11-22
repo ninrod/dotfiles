@@ -1715,7 +1715,7 @@ the right."
     ;; "b" 'buffer-menu
     ;; "b" 'list-buffers???
     ;; more info here: http://emacs.stackexchange.com/a/21635/12585
-    "b" (lambda ()
+    "o" (lambda ()
           (interactive)
           (execute-extended-command '(4) "buffer-menu"))
 
