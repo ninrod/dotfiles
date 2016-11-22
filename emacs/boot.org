@@ -152,6 +152,12 @@
     (evil-define-key 'normal global-map "t" 'evil-execute-in-god-state))
 #+END_SRC
 
+** evil-rectangle-ex
+
+#+BEGIN_SRC emacs-lisp
+  (use-package rectangle-ext :load-path "lisp/noctuid/rectangle-ext.el")
+#+END_SRC
+
 ** evil-textobj-anyblock
 
 #+BEGIN_SRC text
@@ -1238,6 +1244,8 @@ the right."
     "mr" 'replace-string
     "mf" 'customize-apropos-faces
     "mm" 'elpamr-create-mirror-for-installed
+    "mn" 'rectangle-ext-narrow
+    "mw" 'rectangle-ext-widen
   )
   (which-key-declare-prefixes "SPC m" "M-x useful functions")
   (which-key-declare-prefixes "SPC mi" "REPL: inferior elisp mode")
