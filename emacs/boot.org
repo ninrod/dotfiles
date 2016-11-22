@@ -146,8 +146,25 @@
 #+BEGIN_SRC emacs-lisp
   (use-package evil-god-state :ensure t
     :config
+    (setq evil-god-state-cursor 'bar)
     (evil-define-key 'god global-map [escape] 'evil-god-state-bail)
+    (bind-key (kbd "C-t") 'evil-execute-in-god-state global-map)
     (evil-define-key 'normal global-map "t" 'evil-execute-in-god-state))
+#+END_SRC
+
+** evil-textobj-anyblock
+
+#+BEGIN_SRC text
+    (use-package evil-textobj-anyblock :ensure t
+      :init
+      (setq evil-textobj-anyblock-blocks
+            '(("(" . ")")
+              ("\\|" . "\\|")
+              ("\\[" . "\\]")
+              ))
+      :config
+      (define-key evil-inner-text-objects-map "c" 'evil-textobj-anyblock-inner-block)
+      (define-key evil-outer-text-objects-map "c" 'evil-textobj-anyblock-a-block))
 #+END_SRC
 
 * lisp functions
@@ -1592,7 +1609,7 @@ the right."
 
 #+BEGIN_SRC emacs-lisp
   (bind-key "C-c C-b" 'org-edit-src-exit org-src-mode-map)
-  ;; (evil-define-key 'normal org-src-mode-map (kbd "<RET>") 'org-edit-src-exit)
+  (evil-define-key 'normal org-src-mode-map (kbd "<RET>") 'org-edit-src-exit)
 #+END_SRC
 
 *** lisp-mode
