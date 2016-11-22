@@ -130,8 +130,8 @@
 
 ** evil-lisp-state
 #+BEGIN_SRC emacs-lisp
-(use-package evil-lisp-state :ensure t
-:config (evil-lisp-state-leader "t l"))
+  (use-package evil-lisp-state :ensure t
+  :config (evil-lisp-state-leader "C-c C-l"))
 #+END_SRC
 
 ** evil-textobj-entire
@@ -193,7 +193,7 @@
     (evil-god-state)))
   (evil-echo "Switched to God state for the next command ..."))
 
-(evil-define-key 'normal global-map "gg" 'evil-execute-in-god-state))
+(evil-define-key 'normal global-map "t" 'evil-execute-in-god-state))
 #+END_SRC
 
 * lisp functions
@@ -1621,39 +1621,24 @@ the right."
 ***** org-mode-map
 
 #+BEGIN_SRC emacs-lisp
-  (unbind-key "C-<tab>" org-mode-map)
-#+END_SRC
-
-***** org-src-code-map
-
-#+BEGIN_SRC emacs-lisp
-  (bind-key "C-c C-c" 'org-edit-src-exit org-src-mode-map)
-  (evil-define-key 'normal org-mode-src-map (kbd "<RET>") 'org-edit-src-exit)
-  ;; (bind-key (kbd "RET") 'org-edit-src-exit org-src-mode-map)
-
-#+END_SRC
-
-***** other
-
-#+BEGIN_SRC emacs-lisp
-  ;; (evil-define-key 'normal org-mode-map (kbd "TAB") 'ivy-switch-buffer)
-  ;; (when (display-graphic-p)
-  ;;   (evil-define-key 'normal org-mode-map (kbd "<tab>") 'ivy-switch-buffer))
-
   (evil-define-key 'normal org-mode-map (kbd "RET") 'evil-write)
-
-  ;; movement
   (evil-define-key 'normal org-mode-map "zu" 'outline-up-heading)
   (evil-define-key 'normal org-mode-map "zh" 'outline-previous-visible-heading)
   (evil-define-key 'normal org-mode-map "zj" 'org-forward-heading-same-level)
   (evil-define-key 'normal org-mode-map "zk" 'org-backward-heading-same-level)
   (evil-define-key 'normal org-mode-map "zl" 'outline-next-visible-heading)
-
   (evil-define-key 'normal org-mode-map "<" 'org-do-promote)
   (evil-define-key 'normal org-mode-map ">" 'org-do-demote)
+  (unbind-key "C-<tab>" org-mode-map)
+  (bind-key "C-c C-b" 'org-edit-special org-mode-map)
+#+END_SRC
 
-  ;; (evil-define-key 'normal org-mode-map "t" 'org-todo)
-  #+END_SRC
+***** org-src-code-map
+
+#+BEGIN_SRC emacs-lisp
+  (bind-key "C-c C-b" 'org-edit-src-exit org-src-mode-map)
+  ;; (evil-define-key 'normal org-src-mode-map (kbd "<RET>") 'org-edit-src-exit)
+#+END_SRC
 
 *** lisp-mode
 - with help from [[https://www.reddit.com/r/emacs/comments/56xmvg/properly_editing_a_shell_buffer_with_evilmode/][/r/emacs]]
@@ -1766,18 +1751,6 @@ the right."
     "w" 'delete-other-windows)
 
   (which-key-add-key-based-replacements "sb" "buffer menu")
-#+END_SRC
-
-** t
-#+BEGIN_SRC emacs-lisp
-  (bind-map t-map
-    :evil-keys ("t")
-    :evil-states (normal))
-
-  (bind-map-set-keys t-map
-      "n" 'neotree-toggle
-      "t" 'eshell
-    )
 #+END_SRC
 
 ** awesome available binds
