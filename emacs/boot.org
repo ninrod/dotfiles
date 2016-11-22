@@ -626,30 +626,13 @@ the right."
 
 * packages
 ** cosmetic
-*** themes
-**** spacemacs
+*** spacemacs-theme
   #+BEGIN_SRC emacs-lisp
     (use-package spacemacs-theme
-      :init (load-theme 'spacemacs-light t)
+      :init (load-theme 'spacemacs-dark t)
       :defer t
       :ensure t)
   #+END_SRC
-
-**** apropospriate
-#+BEGIN_SRC emacs-lisp
-  (use-package apropospriate-theme
-    :init
-
-    ;; (load-theme 'apropospriate-light t)
-    ;; (setq evil-insert-state-cursor 'bar)
-    ;; (with-eval-after-load "git-gutter"
-    ;;   (set-face-foreground 'git-gutter:modified "#5C6BC0") ;; indigo
-    ;;   (set-face-foreground 'git-gutter:added    "#42A5F5") ;; blue
-    ;;   (set-face-foreground 'git-gutter:deleted  "#FF1744")) ;; red
-
-    :defer t
-    :ensure t)
-#+END_SRC
 
 *** spaceline
 - to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
@@ -1107,7 +1090,8 @@ the right."
   (yas-minor-mode -1))
 #+END_SRC
 
-** make zsh with bindkey -v and ansi-term be friendly to each other [[https://github.com/syl20bnr/spacemacs/issues/7140][syl20bnr/spacemacs#7140]]
+** make zsh with bindkey -v and ansi-term be friendly to each other [[https
+://github.com/syl20bnr/spacemacs/issues/7140][syl20bnr/spacemacs#7140]]
 *** TheBB's solution
 - shamelessly lifted from github.com/TheBB's config
 - not working though.
