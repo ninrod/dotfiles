@@ -141,59 +141,13 @@
     (define-key evil-outer-text-objects-map evil-textobj-entire-key 'evil-entire-entire-buffer))
 #+END_SRC
 
-** god-mode
+** evil-god-state
+
 #+BEGIN_SRC emacs-lisp
-(use-package god-mode :ensure t
-:config
-(evil-define-state god
-  "God state."
-  :tag " <G> "
-  :message "-- GOD MODE --"
-  :entry-hook (evil-god-start-hook)
-  :exit-hook (evil-god-stop-hook)
-  :input-method t
-  :intercept-esc nil)
-
-(defun evil-god-start-hook ()
-  (diminish 'god-local-mode)
-  (god-local-mode 1))
-
-(defun evil-god-stop-hook ()
-  (god-local-mode -1)
-  (diminish-undo 'god-local-mode))
-
-(defvar evil-execute-in-god-state-buffer nil)
-
-(defun evil-stop-execute-in-god-state ()
-  (when (and (not (eq this-command #'evil-execute-in-god-state))
-             (not (minibufferp)))
-    (remove-hook 'post-command-hook 'evil-stop-execute-in-god-state)
-    (when (buffer-live-p evil-execute-in-god-state-buffer)
-      (with-current-buffer evil-execute-in-god-state-buffer
-        (if (and (eq evil-previous-state 'visual)
-                 (not (use-region-p)))
-            (progn
-              (evil-change-to-previous-state)
-              (evil-exit-visual-state))
-          (evil-change-to-previous-state))))
-    (setq evil-execute-in-god-state-buffer nil)))
-
-(evil-define-command evil-execute-in-god-state ()
-  "Execute the next command in God state."
-  (add-hook 'post-command-hook #'evil-stop-execute-in-god-state t)
-  (setq evil-execute-in-god-state-buffer (current-buffer))
-  (cond
-   ((evil-visual-state-p)
-    (let ((mrk (mark))
-          (pnt (point)))
-      (evil-god-state)
-      (set-mar mrk)
-      (goto-char pnt)))
-   (t
-    (evil-god-state)))
-  (evil-echo "Switched to God state for the next command ..."))
-
-(evil-define-key 'normal global-map "t" 'evil-execute-in-god-state))
+  (use-package evil-god-state :ensure t
+    :config
+    (evil-define-key 'god global-map [escape] 'evil-god-state-bail)
+    (evil-define-key 'normal global-map "t" 'evil-execute-in-god-state))
 #+END_SRC
 
 * lisp functions
@@ -622,6 +576,7 @@ the right."
 (add-hook 'gdb-mode-hook 'no-trailing-whitespace)
 (add-hook 'help-mode-hook 'no-trailing-whitespace)
 (add-hook 'term-mode-hook 'no-trailing-whitespace)
+(add-hook 'Buffer-menu-mode-hook 'no-trailing-whitespace)
 #+END_SRC
 
 * packages
