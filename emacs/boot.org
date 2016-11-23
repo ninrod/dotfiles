@@ -621,10 +621,19 @@ the right."
 #+END_SRC
 
 *** zerodark-theme
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (use-package zerodark-theme
     :init
       (load-theme 'zerodark t)
+    :defer t
+    :ensure t)
+#+END_SRC
+
+*** gruvbox-theme
+#+BEGIN_SRC emacs-lisp
+  (use-package gruvbox-theme
+    :init
+      (load-theme 'gruvbox t)
     :defer t
     :ensure t)
 #+END_SRC
