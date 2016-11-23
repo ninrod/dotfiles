@@ -18,6 +18,7 @@ ningrab wellle/targets.vim
 
 # fetch cosmetic deps
 ningrab ninrod/jellybeans.vim
+ningrab ninrod/gruvbox
 ningrab itchyny/lightline.vim
 ningrab edkolev/tmuxline.vim
 ningrab luochen1990/rainbow
