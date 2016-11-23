@@ -11,12 +11,16 @@
 ;; using ninrod's thin-elpa-mirror
 
 (when (eq system-type 'gnu/linux)
-(setq package-archives '(("melpa" . "~/.emacs.d/lisp/ninrod/thin-melpa-mirror"))))
 
-;; ;; using elpa-clone (fat mirror)
-;; (setq package-archives '(("melpa" . "~/.emacs.d/mirror-elpa/melpa/")
-;;                          ("org"   . "~/.emacs.d/mirror-elpa/org/")
-;;                          ("gnu"   . "~/.emacs.d/mirror-elpa/gnu/")))
+  ;; using thin mirror
+  ;; (setq package-archives '(("melpa" . "~/.emacs.d/lisp/ninrod/thin-melpa-mirror")))
+
+  ;; using elpa-clone (fat mirror)
+  (setq package-archives '(("melpa" . "~/.emacs.d/mirror-elpa/melpa/")
+                           ("org"   . "~/.emacs.d/mirror-elpa/org/")
+                           ("gnu"   . "~/.emacs.d/mirror-elpa/gnu/")))
+
+  )
 
 (package-initialize)
 

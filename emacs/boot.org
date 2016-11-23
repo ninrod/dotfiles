@@ -605,20 +605,29 @@ the right."
 * packages
 ** cosmetic
 *** spacemacs-theme
-  #+BEGIN_SRC emacs-lisp
+  #+BEGIN_SRC text
     (use-package spacemacs-theme
       :init (load-theme 'spacemacs-dark t)
       :defer t
       :ensure t)
   #+END_SRC
 
-*** dracula-theme
-  #+BEGIN_SRC emacs-lisp
-    (use-package dracula-theme
-      ;; :init (load-theme 'dracula t)
-      :defer t
-      :ensure t)
-  #+END_SRC
+*** soothe-theme
+#+BEGIN_SRC text
+  (use-package soothe-theme
+    :init (load-theme 'soothe t)
+    :defer t
+    :ensure t)
+#+END_SRC
+
+*** zerodark-theme
+#+BEGIN_SRC emacs-lisp
+  (use-package zerodark-theme
+    :init
+      (load-theme 'zerodark t)
+    :defer t
+    :ensure t)
+#+END_SRC
 
 *** spaceline
 - to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
