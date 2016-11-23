@@ -3,8 +3,9 @@ execute pathogen#infect('bundle/{}/{}')
 " appearance
 set background=dark
 let g:tmuxline_powerline_separators = 0
-let g:lightline = {'colorscheme': 'Dracula'}
-colorscheme dracula
+let g:lightline = {'colorscheme': 'jellybeans'}
+
+colorscheme jellybeans
 
 " rainbow configs
 let g:rainbow_active = 1
