@@ -607,7 +607,7 @@ the right."
 *** spacemacs-theme
   #+BEGIN_SRC emacs-lisp
     (use-package spacemacs-theme
-      :init (load-theme 'spacemacs-light t)
+      ;; :init (load-theme 'spacemacs-light t)
       :defer t
       :ensure t)
   #+END_SRC
@@ -615,7 +615,7 @@ the right."
 *** zerodark-theme
   #+BEGIN_SRC emacs-lisp
     (use-package zerodark-theme
-      ;; :init (load-theme 'zerodark t)
+      :init (load-theme 'zerodark t)
       :defer t
       :ensure t)
   #+END_SRC
