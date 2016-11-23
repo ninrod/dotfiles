@@ -10,7 +10,7 @@ set background=dark
 colorscheme gruvbox
 
 " for whitespaces at the end of the lines:    
-highlight SpecialKey ctermfg=124 guifg=#8ec07c guibg=#af3a03
+highlight SpecialKey ctermfg=124 guifg=#af3a03
 
 " rainbow configs
 let g:rainbow_active = 1
