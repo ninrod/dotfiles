@@ -17,7 +17,7 @@ ningrab vim-scripts/ReplaceWithRegister
 ningrab wellle/targets.vim
 
 # fetch cosmetic deps
-ningrab nanotech/jellybeans.vim
+ningrab ninrod/jellybeans.vim
 ningrab itchyny/lightline.vim
 ningrab edkolev/tmuxline.vim
 ningrab luochen1990/rainbow
