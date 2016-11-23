@@ -612,6 +612,14 @@ the right."
       :ensure t)
   #+END_SRC
 
+*** zerodark-theme
+  #+BEGIN_SRC emacs-lisp
+    (use-package zerodark-theme
+      ;; :init (load-theme 'zerodark t)
+      :defer t
+      :ensure t)
+  #+END_SRC
+
 *** spaceline
 - to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
 #+BEGIN_SRC emacs-lisp
