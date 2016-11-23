@@ -604,6 +604,15 @@ the right."
 
 * packages
 ** cosmetic
+*** zerodark-theme
+#+BEGIN_SRC emacs-lisp
+  (use-package zerodark-theme
+    :init
+      (load-theme 'zerodark t)
+    :defer t
+    :ensure t)
+#+END_SRC
+
 *** spacemacs-theme
   #+BEGIN_SRC text
     (use-package spacemacs-theme
@@ -612,28 +621,19 @@ the right."
       :ensure t)
   #+END_SRC
 
+*** gruvbox-theme
+#+BEGIN_SRC text
+  (use-package gruvbox-theme
+    :init
+      (load-theme 'gruvbox t)
+    :defer t
+    :ensure t)
+#+END_SRC
+
 *** soothe-theme
 #+BEGIN_SRC text
   (use-package soothe-theme
     :init (load-theme 'soothe t)
-    :defer t
-    :ensure t)
-#+END_SRC
-
-*** zerodark-theme
-#+BEGIN_SRC text
-  (use-package zerodark-theme
-    :init
-      (load-theme 'zerodark t)
-    :defer t
-    :ensure t)
-#+END_SRC
-
-*** gruvbox-theme
-#+BEGIN_SRC emacs-lisp
-  (use-package gruvbox-theme
-    :init
-      (load-theme 'gruvbox t)
     :defer t
     :ensure t)
 #+END_SRC
