@@ -607,7 +607,7 @@ the right."
 *** themes
 **** light
 ***** spacemacs-theme
-  #+BEGIN_SRC emacs-lisp
+  #+BEGIN_SRC text
     (use-package spacemacs-theme
       :init (load-theme 'spacemacs-light t)
       :defer t
@@ -616,10 +616,11 @@ the right."
 
 **** dark
 ***** darktooh-theme
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package darktooth-theme
     :init
     (load-theme 'darktooth t)
+    (setq anzu-cons-mode-line-p t)
     (darktooth-modeline)
     :defer t
     :ensure t)
@@ -653,7 +654,7 @@ the right."
 
 *** spaceline
 - to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (use-package spaceline :ensure t
     :config
     (setq powerline-height 30)
