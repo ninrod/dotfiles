@@ -28,7 +28,7 @@ Feel free to open issues though, if the config did not work for you. I'll try to
 
 - First off, I strongly recommend using [[https://github.com/gnachman/iTerm2.git][iTerm2]] on OSx.
 - Secondly, this is for unix systems: =GNU/Linux=, =OSx=, etc... It should work on theory on windows, but I've faced a lot of configuration issues and ended up abandoning windows support.
-- configure your terminal to use the base16-chalk theme. There's a [[https://github.com/ninrod/themes.git][ninrod/themes]] repo that can help you with that. 
+- configure your terminal to use the gruvbox theme. There's a [[https://github.com/ninrod/themes.git][ninrod/themes]] repo that can help you with that. 
 - *recommendation*: I use and recommend the excelent [[https://github.com/larsenwork/monoid][monoid]] font.
 - now get =vim= 8+ with [[http://vimcasts.org/blog/2013/11/getting-vim-with-clipboard-support][+clipboard]].
 - get [[https://github.com/tmux/tmux.git][tmux]] 2.3+

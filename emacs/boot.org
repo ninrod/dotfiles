@@ -604,7 +604,8 @@ the right."
 
 * packages
 ** cosmetic
-*** zerodark-theme
+*** themes
+**** zerodark-theme
 #+BEGIN_SRC emacs-lisp
   (use-package zerodark-theme
     :init
@@ -613,7 +614,7 @@ the right."
     :ensure t)
 #+END_SRC
 
-*** spacemacs-theme
+**** spacemacs-theme
   #+BEGIN_SRC text
     (use-package spacemacs-theme
       :init (load-theme 'spacemacs-dark t)
@@ -621,7 +622,7 @@ the right."
       :ensure t)
   #+END_SRC
 
-*** gruvbox-theme
+**** gruvbox-theme
 #+BEGIN_SRC text
   (use-package gruvbox-theme
     :init
@@ -630,7 +631,7 @@ the right."
     :ensure t)
 #+END_SRC
 
-*** soothe-theme
+**** soothe-theme
 #+BEGIN_SRC text
   (use-package soothe-theme
     :init (load-theme 'soothe t)
@@ -1203,7 +1204,7 @@ the right."
     "di" 'info
     "dk" 'describe-key
     "dm" 'describe-mode
-    "dt" 'help-with-tutorial
+    "dt" 'counsel-describe-face
     "dv" 'counsel-describe-variable
   )
   (which-key-declare-prefixes "SPC d" "describe/help")
