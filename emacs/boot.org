@@ -605,17 +605,18 @@ the right."
 * packages
 ** cosmetic
 *** themes
-**** zerodark-theme
-#+BEGIN_SRC text
-  (use-package zerodark-theme
-    :init
-      (load-theme 'zerodark t)
-    :defer t
-    :ensure t)
-#+END_SRC
+**** light
+***** spacemacs-theme
+  #+BEGIN_SRC emacs-lisp
+    (use-package spacemacs-theme
+      :init (load-theme 'spacemacs-light t)
+      :defer t
+      :ensure t)
+  #+END_SRC
 
-**** darktooh-theme
-#+BEGIN_SRC emacs-lisp
+**** dark
+***** darktooh-theme
+#+BEGIN_SRC text
   (use-package darktooth-theme
     :init
     (load-theme 'darktooth t)
@@ -624,15 +625,16 @@ the right."
     :ensure t)
 #+END_SRC
 
-**** spacemacs-theme
-  #+BEGIN_SRC text
-    (use-package spacemacs-theme
-      :init (load-theme 'spacemacs-dark t)
-      :defer t
-      :ensure t)
-  #+END_SRC
+***** zerodark-theme
+#+BEGIN_SRC text
+  (use-package zerodark-theme
+    :init
+      (load-theme 'zerodark t)
+    :defer t
+    :ensure t)
+#+END_SRC
 
-**** gruvbox-theme
+***** gruvbox-theme
 #+BEGIN_SRC text
   (use-package gruvbox-theme
     :init
@@ -641,7 +643,7 @@ the right."
     :ensure t)
 #+END_SRC
 
-**** soothe-theme
+***** soothe-theme
 #+BEGIN_SRC text
   (use-package soothe-theme
     :init (load-theme 'soothe t)
@@ -651,7 +653,7 @@ the right."
 
 *** spaceline
 - to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package spaceline :ensure t
     :config
     (setq powerline-height 30)
