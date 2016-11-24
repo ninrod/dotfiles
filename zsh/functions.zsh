@@ -1,4 +1,3 @@
-##### s and sk: get recursive dir size measurements
 # s: get megabytes measurement
 # usage: s [-h] [path]
 s() {
@@ -42,8 +41,7 @@ md() {
   builtin cd $1
 }
 
-##### =: front for the `bc` utility
-# credits: original idea by github.com/arzzen/calc.plugin.zsh
+# =: front for the `bc` utility
 # usage: = '1+1'
 = () {
   bc -l <<< "$@"
