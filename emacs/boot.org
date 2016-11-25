@@ -619,9 +619,15 @@ the right."
 #+BEGIN_SRC emacs-lisp
   (use-package darktooth-theme
     :init
+
     (load-theme 'darktooth t)
     (setq anzu-cons-mode-line-p t)
     (darktooth-modeline)
+    (with-eval-after-load "git-gutter"
+      (set-face-attribute 'git-gutter:added    nil :foreground "#5A790E")
+      (set-face-attribute 'git-gutter:deleted  nil :foreground "#9D0006")
+      (set-face-attribute 'git-gutter:modified nil :foreground "#8F3F71"))
+
     :defer t
     :ensure t)
 #+END_SRC
