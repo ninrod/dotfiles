@@ -1,4 +1,5 @@
-# s: get megabytes measurement
+# s: get megabytes measurement {{{
+
 # usage: s [-h] [path]
 s() {
   if [[ -z ${1+x} ]]; then
@@ -23,7 +24,9 @@ s() {
   fi
 }
 
-# sk: get kilobytes measurement. for human readable output check the s function
+# }}}
+# sk: get kilobytes measurement. for human readable output check the s function {{{
+
 # usage: s [path]
 sk() {
   if [[ -z ${1+x} ]]; then
@@ -35,14 +38,20 @@ sk() {
   du -sk $1 | sort -nr | head -n 20
 }
 
-# md: faster dir creation
+# }}}
+# md: faster dir creation {{{
+
 md() {
   mkdir -p $1
   builtin cd $1
 }
 
-# =: front for the `bc` utility
+# }}}
+# =: front for the `bc` utility {{{
+
 # usage: = '1+1'
 = () {
   bc -l <<< "$@"
 }
+
+# }}}
