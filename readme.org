@@ -9,10 +9,10 @@
 
 * Screenshots
 ** Emacs
-*** light
-[[https://raw.githubusercontent.com/ninrod/dotshots/master/emacs-2016-11-21.png][https://raw.githubusercontent.com/ninrod/dotshots/master/emacs-2016-11-21.png]]
 *** dark
 [[https://raw.githubusercontent.com/ninrod/dotshots/master/emacs-darktooh.png][https://raw.githubusercontent.com/ninrod/dotshots/master/emacs-darktooh.png]]
+*** light
+[[https://raw.githubusercontent.com/ninrod/dotshots/master/emacs-2016-11-21.png][https://raw.githubusercontent.com/ninrod/dotshots/master/emacs-2016-11-21.png]]
 ** Vim, tmux and zsh
 
 [[https://raw.githubusercontent.com/ninrod/dotshots/master/vim-gruvbox.png][https://raw.githubusercontent.com/ninrod/dotshots/master/vim-gruvbox.png]]
