@@ -15,3 +15,5 @@
  ;; If there is more than one, they won't work right.
  '(trailing-whitespace ((t (:background "dark magenta" :foreground "#B3B3B3"))))
  '(whitespace-trailing ((t (:background "red")))))
+
+(put 'narrow-to-region 'disabled nil)

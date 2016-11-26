@@ -1787,22 +1787,8 @@ the right."
 #+END_SRC
 
 ** awesome available binds
-*** normal state
-- t, except in org-mode
-
-*** g prefix
-- gr
-- gt
-- gT
-  
-*** SPC leader
-- TAB
-- / 
-- .
-- ;
-- ,
-- -
-- ?
+*** g prefix: t, T
+*** SPC leader: (TAB / . ; , -)
 ** neotree-evilify
 #+BEGIN_SRC emacs-lisp
   (require 'neotree)
