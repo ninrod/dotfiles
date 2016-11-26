@@ -146,8 +146,10 @@
 #+BEGIN_SRC emacs-lisp
   (use-package evil-god-state :ensure t
     :config
+    (setq evil-emacs-state-cursor 'bar)
     (setq evil-god-state-cursor 'bar)
     (evil-define-key 'god global-map [escape] 'evil-god-state-bail)
+    (evil-define-key 'emacs global-map [escape] 'evil-execute-in-god-state)
     (bind-key (kbd "C-t") 'evil-execute-in-god-state global-map)
     (evil-define-key 'normal global-map "t" 'evil-execute-in-god-state))
 #+END_SRC
@@ -1476,9 +1478,8 @@ the right."
   (bind-key (kbd "C-<tab>") 'dabbrev-expand minibuffer-local-map)
 #+END_SRC
 
-** modes
-*** org
-**** bind-map
+** org
+*** bind-map
 #+BEGIN_SRC emacs-lisp
 (bind-map org-map
     :evil-keys (",")
@@ -1486,56 +1487,46 @@ the right."
     :major-modes (org-mode))
 #+END_SRC
 
-**** local leader
-***** b: block of code
-
+*** local leader directs
+**** r: org-refile
 #+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-map
-    "b" 'org-babel-execute-src-block)
+  (bind-map-set-keys org-map "r" 'org-refile)
 #+END_SRC
 
-***** c: clock
-
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-map
-    "c" 'org-edit-special)
-#+END_SRC
-
-***** d: dates/schedulling
-
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-map
-    "dd" 'org-schedule
-  )
-  (which-key-declare-prefixes ", d" "dates/schedule")
-#+END_SRC
-
-***** i: insertions
+**** *-=: others
 
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
-  "ih" 'org-insert-heading
-  "ia" 'org-insert-heading-after-current
-  "ir" 'org-insert-heading-respect-content
-  "is" 'org-insert-subheading
-  "it" 'counsel-org-tag
+  ;; cycle
+  "TAB" 'org-cycle
+  "*" 'org-ctrl-c-star
+  "-" 'org-ctrl-c-minus
+  "," 'org-todo
 )
-(which-key-declare-prefixes ", i" "insertions/additions")
 #+END_SRC
 
-***** l: links
-
+*** local leader groups
+**** i: insertions
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys org-map
-  "lo" 'org-open-at-point
-  "ll" 'org-insert-link
-  "lt" 'org-toggle-link-display
+    "ih" 'org-insert-heading
+    "ij" 'org-insert-heading-after-current
+    "il" 'org-insert-subheading
+    "it" 'counsel-org-tag
   )
+  (which-key-declare-prefixes ", i" "insertions/additions")
+#+END_SRC
+
+**** l: links
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys org-map
+    "lo" 'org-open-at-point
+    "ll" 'org-insert-link
+    "lt" 'org-toggle-link-display)
   (which-key-add-major-mode-key-based-replacements 'org-mode ", l" "links")
 #+END_SRC
 
-***** m: meta
-
+**** m: meta
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys org-map
     "ml" 'org-metaright
@@ -1547,22 +1538,15 @@ the right."
   (which-key-declare-prefixes ", m" "org-meta")
 #+END_SRC
 
-***** o: interesting org commands
-
+**** o: interesting org commands
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys org-map
-
-
-    ;; from: http://emacsist.com/10284
-    "or" 'org-refile
-
     "ot" 'org-table-convert-region
   )
   (which-key-declare-prefixes ", o" "interesting org commands")
 #+END_SRC
 
-***** s: subtree commands
-
+**** s: subtree commands
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
   ;; subtree commands
@@ -1578,8 +1562,7 @@ the right."
 (which-key-declare-prefixes ", s" "org subtree operations")
 #+END_SRC
 
-***** t: table
-
+**** t: table
 #+BEGIN_SRC emacs-lisp
     (bind-map-set-keys org-map
       "ta" 'org-table-align
@@ -1610,8 +1593,7 @@ the right."
   (which-key-add-major-mode-key-based-replacements 'org-mode ", tf" "recalculate formulas")
 #+END_SRC
 
-***** z: zoom / visualization
-
+**** z: zoom / visualization
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
   "zi" 'org-narrow-to-subtree
@@ -1619,30 +1601,15 @@ the right."
 (which-key-declare-prefixes ", z" "zoom")
 #+END_SRC
 
-***** E: exports
-
+**** E: exports
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
-  "Ed" 'org-export-dispatch
-)
+  "Ed" 'org-export-dispatch)
 (which-key-declare-prefixes ", E" "Exports")
 #+END_SRC
 
-***** *-=: others
-
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys org-map
-  ;; cycle
-  "TAB" 'org-cycle
-  "*" 'org-ctrl-c-star
-  "-" 'org-ctrl-c-minus
-  "," 'org-todo
-)
-#+END_SRC
-
-**** local fixes
-***** org-mode-map
-
+*** local fixes
+**** org-mode-map
 #+BEGIN_SRC emacs-lisp
   (evil-define-key 'normal org-mode-map (kbd "RET") 'evil-write)
   (evil-define-key 'normal org-mode-map "zu" 'outline-up-heading)
@@ -1653,30 +1620,30 @@ the right."
   (evil-define-key 'normal org-mode-map "<" 'org-do-promote)
   (evil-define-key 'normal org-mode-map ">" 'org-do-demote)
   (unbind-key "C-<tab>" org-mode-map)
-  (bind-key "C-c C-b" 'org-edit-special org-mode-map)
+  (bind-key "C-j" 'org-edit-special org-mode-map)
 #+END_SRC
 
-***** org-src-code-map
-
+**** org-src-code-map
 #+BEGIN_SRC emacs-lisp
-  (bind-key "C-c C-b" 'org-edit-src-exit org-src-mode-map)
+  (bind-key "C-j" 'org-edit-src-exit org-src-mode-map)
   (evil-define-key 'normal org-src-mode-map (kbd "<RET>") 'org-edit-src-exit)
 #+END_SRC
 
+** modes
 *** lisp-mode
 - with help from [[https://www.reddit.com/r/emacs/comments/56xmvg/properly_editing_a_shell_buffer_with_evilmode/][/r/emacs]]
 #+BEGIN_SRC emacs-lisp
-(bind-map term-map
-    :evil-keys (",")
-    :evil-states (normal visual)
-    :major-modes (lisp-mode lisp-interaction-mode))
+  (bind-map term-map
+      :evil-keys (",")
+      :evil-states (normal visual)
+      :major-modes (lisp-mode lisp-interaction-mode))
 
-(bind-map-set-keys term-map
-  "e" 'eval-last-sexp
-  "r" 'eval-print-last-sexp
-)
-(which-key-add-major-mode-key-based-replacements 'term-mode ", e" "eval-last-sexp")
-(which-key-add-major-mode-key-based-replacements 'term-mode ", p" "eval-print-last-sexp")
+  (bind-map-set-keys term-map
+    "e" 'eval-last-sexp
+    "r" 'eval-print-last-sexp
+  )
+  (which-key-add-major-mode-key-based-replacements 'term-mode ", e" "eval-last-sexp")
+  (which-key-add-major-mode-key-based-replacements 'term-mode ", p" "eval-print-last-sexp")
 #+END_SRC
 
 *** term
