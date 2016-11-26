@@ -1490,19 +1490,20 @@ the right."
 *** local leader directs
 **** r: org-refile
 #+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-map "r" 'org-refile)
+  (bind-map-set-keys org-map
+    "r" 'org-refile
+    "z" 'org-narrow-to-subtree
+    "o" 'widen)
 #+END_SRC
 
 **** *-=: others
 
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-map
-  ;; cycle
   "TAB" 'org-cycle
   "*" 'org-ctrl-c-star
   "-" 'org-ctrl-c-minus
-  "," 'org-todo
-)
+  "," 'org-todo)
 #+END_SRC
 
 *** local leader groups
@@ -1536,14 +1537,6 @@ the right."
     "m RET"  'org-meta-return
   )
   (which-key-declare-prefixes ", m" "org-meta")
-#+END_SRC
-
-**** o: interesting org commands
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-map
-    "ot" 'org-table-convert-region
-  )
-  (which-key-declare-prefixes ", o" "interesting org commands")
 #+END_SRC
 
 **** s: subtree commands
@@ -1591,14 +1584,6 @@ the right."
   (which-key-add-major-mode-key-based-replacements 'org-mode ", t" "org-table")
   (which-key-add-major-mode-key-based-replacements 'org-mode ", td" "org-table deletions")
   (which-key-add-major-mode-key-based-replacements 'org-mode ", tf" "recalculate formulas")
-#+END_SRC
-
-**** z: zoom / visualization
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys org-map
-  "zi" 'org-narrow-to-subtree
-  "zo" 'widen)
-(which-key-declare-prefixes ", z" "zoom")
 #+END_SRC
 
 **** E: exports
