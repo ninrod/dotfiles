@@ -1493,43 +1493,32 @@ the right."
     "r" 'org-refile
     "z" 'org-narrow-to-subtree
     "o" 'widen
+
+    "l" 'org-metaright
+    "h" 'org-metaleft
+    "j" 'org-metadown
+    "k" 'org-metaup
+
     "TAB" 'org-cycle
+    "RET" 'org-meta-return
+    "." 'org-open-at-point
     "*" 'org-ctrl-c-star
     "-" 'org-ctrl-c-minus
-    "," 'org-todo)
+    "," 'org-todo
+    )
 #+END_SRC
 
 *** local groups
-**** i: insertions
+**** a: additions
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys org-map
-    "ih" 'org-insert-heading
-    "ij" 'org-insert-heading-after-current
-    "il" 'org-insert-subheading
-    "it" 'counsel-org-tag
+    "a RET" 'org-insert-heading
+    "ao" 'org-insert-heading-respect-content
+    "aj" 'org-insert-subheading
+    "at" 'counsel-org-tag
+    "al" 'org-insert-link
   )
-  (which-key-declare-prefixes ", i" "insertions/additions")
-#+END_SRC
-
-**** l: links
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-map
-    "lo" 'org-open-at-point
-    "ll" 'org-insert-link
-    "lt" 'org-toggle-link-display)
-  (which-key-add-major-mode-key-based-replacements 'org-mode ", l" "links")
-#+END_SRC
-
-**** m: meta
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-map
-    "ml" 'org-metaright
-    "mh" 'org-metaleft
-    "mj" 'org-metadown
-    "mk" 'org-metaup
-    "m RET"  'org-meta-return
-  )
-  (which-key-declare-prefixes ", m" "org-meta")
+  (which-key-declare-prefixes ", a" "add")
 #+END_SRC
 
 **** s: subtree commands
@@ -1540,42 +1529,46 @@ the right."
   "sl" 'org-demote-subtree
   "sk" 'org-move-subtree-up
   "sj" 'org-move-subtree-down
+
   "sy" 'org-copy-subtree
   "sd" 'org-cut-subtree
   "sp" 'org-paste-subtree
-  "ss" 'org-show-subtree
   "sc" 'org-clone-subtree-with-time-shift)
 (which-key-declare-prefixes ", s" "org subtree operations")
 #+END_SRC
 
 **** t: table
+|         | alkdfjadjf  | alkdjfalkfj | 
+|         | adflka      | dlfkajd     |
+| dalkdfj | akdlfjadkjf | aldkfjaj    |
+|         |             |             |
 #+BEGIN_SRC emacs-lisp
-    (bind-map-set-keys org-map
-      "ta" 'org-table-align
-      "te" 'org-edit-special
-      "tt" 'org-table-transpose-table-at-point
-      "th" 'org-backward-sentence
-      "tl" 'org-forward-sentence
-      "tdc" 'org-table-delete-column
+  (bind-map-set-keys org-map
+    "tt" 'org-table-transpose-table-at-point
 
-      ;; from https://www.reddit.com/r/emacs/comments/56oc9c/orgtables_is_there_a_way_to_delete_a_whole_table/
-      ;; fist place point in the top left bar (`|')
-      "tm" 'org-mark-element
+    "th" 'org-backward-sentence ;; M-a tga
+    "tl" 'org-forward-sentence ;; M-e tge
 
-      "tr" 'org-table-insert-row
-      "tc" 'org-table-insert-column
+    "td" 'org-table-delete-column
 
-      "to" 'org-table-toggle-coordinate-overlays
-      "t?" 'org-table-field-info
-      "t=" 'org-table-eval-formula
+    ;; from https://www.reddit.com/r/emacs/comments/56oc9c/orgtables_is_there_a_way_to_delete_a_whole_table/
+    ;; fist place point in the top left bar (`|')
+    "tm" 'org-mark-element
 
-      "tf" (lambda () (interactive)
-            (let ((current-prefix-arg 4))
-            (call-interactively 'org-table-recalculate)))
+    "tr" 'org-table-insert-row ; above
+    "tc" 'org-table-insert-column ;before
 
-      "t RET" 'org-table-copy-down)
+    ;; formulas
+    "to" 'org-table-toggle-coordinate-overlays
+    "t?" 'org-table-field-info
+    "t=" 'org-table-eval-formula
+    "tf" (lambda () (interactive)
+           (let ((current-prefix-arg 4))
+             (call-interactively 'org-table-recalculate)))
+
+    "t RET" 'org-table-copy-down
+    )
   (which-key-add-major-mode-key-based-replacements 'org-mode ", t" "org-table")
-  (which-key-add-major-mode-key-based-replacements 'org-mode ", td" "org-table deletions")
   (which-key-add-major-mode-key-based-replacements 'org-mode ", tf" "recalculate formulas")
 #+END_SRC
 
@@ -1584,6 +1577,14 @@ the right."
 (bind-map-set-keys org-map
   "Ed" 'org-export-dispatch)
 (which-key-declare-prefixes ", E" "Exports")
+#+END_SRC
+
+**** T: toggles
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys org-map
+  "Tl" 'org-toggle-link-display
+)
+(which-key-declare-prefixes ", T" "Toggles")
 #+END_SRC
 
 *** local fixes
@@ -1729,6 +1730,9 @@ the right."
 ** awesome available binds
 *** g prefix: t, T
 *** SPC leader: (TAB / . ; , -)
+** emacs native binds
+*** org-mode
+- org-next-link: =C-c C-x C-n=
 ** neotree-evilify
 #+BEGIN_SRC emacs-lisp
   (require 'neotree)
