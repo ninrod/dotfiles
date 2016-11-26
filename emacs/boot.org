@@ -642,8 +642,9 @@ the right."
 #+BEGIN_SRC emacs-lisp
   (use-package zerodark-theme
     :init
-      (load-theme 'zerodark t)
-      ;; (zerodark-setup-modeline-format)
+    (setq anzu-cons-mode-line-p t)
+    (load-theme 'zerodark t)
+    ;; (zerodark-setup-modeline-format)
     :defer t
     :ensure t)
 #+END_SRC
