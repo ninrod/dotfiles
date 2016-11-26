@@ -472,6 +472,18 @@ the right."
   (setq confirm-kill-emacs 'y-or-n-p)
 #+END_SRC
 
+** font
+*** Monoisome
+- get it at [[https://github.com/larsenwork/monoid][larsenwork/monoid]]
+  #+BEGIN_SRC emacs-lisp
+  (add-to-list 'default-frame-alist '(font . "Monoisome-14"))
+  #+END_SRC
+
+*** Monaco
+  #+BEGIN_SRC text
+  (add-to-list 'default-frame-alist '(font . "Monaco-14"))
+  #+END_SRC
+
 ** gui
 #+BEGIN_SRC emacs-lisp
   (when (display-graphic-p)
@@ -492,14 +504,6 @@ the right."
                 sh-indentation 2
                 indent-tabs-mode nil)
 #+END_SRC
-
-** font
-*** Monoisome
-- get it at [[https://github.com/larsenwork/monoid][larsenwork/monoid]]
-  #+BEGIN_SRC emacs-lisp
-  (add-to-list 'default-frame-alist
-               '(font . "Monoisome-14"))
-  #+END_SRC
 
 ** backups
 - partially lifted from [[https://github.com/magnars/.emacs.d/blob/master/init.el][magnar's emacs.d]]
@@ -615,8 +619,8 @@ the right."
   #+END_SRC
 
 **** dark
-***** darktooh-theme
-#+BEGIN_SRC emacs-lisp
+***** darktooth-theme
+#+BEGIN_SRC text
   (use-package darktooth-theme
     :init
 
@@ -633,10 +637,11 @@ the right."
 #+END_SRC
 
 ***** zerodark-theme
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package zerodark-theme
     :init
       (load-theme 'zerodark t)
+      ;; (zerodark-setup-modeline-format)
     :defer t
     :ensure t)
 #+END_SRC
@@ -912,7 +917,7 @@ the right."
       (setq neo-create-file-auto-open t
             neo-auto-indent-point nil
             neo-mode-line-type 'none
-            ;; neo-window-width 50
+            neo-window-fixed-size nil ; or neo-window-width 50
             neo-show-updir-line nil
             neo-smart-open t
             neo-show-hidden-files t
