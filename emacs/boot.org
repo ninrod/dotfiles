@@ -1487,26 +1487,19 @@ the right."
     :major-modes (org-mode))
 #+END_SRC
 
-*** local leader directs
-**** r: org-refile
+*** local directs
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys org-map
     "r" 'org-refile
     "z" 'org-narrow-to-subtree
-    "o" 'widen)
+    "o" 'widen
+    "TAB" 'org-cycle
+    "*" 'org-ctrl-c-star
+    "-" 'org-ctrl-c-minus
+    "," 'org-todo)
 #+END_SRC
 
-**** *-=: others
-
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys org-map
-  "TAB" 'org-cycle
-  "*" 'org-ctrl-c-star
-  "-" 'org-ctrl-c-minus
-  "," 'org-todo)
-#+END_SRC
-
-*** local leader groups
+*** local groups
 **** i: insertions
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys org-map
