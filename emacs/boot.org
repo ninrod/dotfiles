@@ -451,7 +451,7 @@ the right."
   (display-time-mode)
 
   ;;highlight current line
-  ;;(global-hl-line-mode)
+  ;; (global-hl-line-mode)
 
 
   ;; support for camelcase words
@@ -1730,7 +1730,7 @@ the right."
     "k" 'evil-window-up
     "h" 'evil-window-left
     "l" 'evil-window-right
-    "v" 'split-window-right-and-focus
+    "y" 'split-window-right-and-focus
     "x" 'split-window-below-and-focus)
 
   (which-key-add-key-based-replacements "sb" "buffer menu")
