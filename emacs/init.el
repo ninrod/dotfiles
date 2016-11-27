@@ -2,11 +2,22 @@
 (setq package-enable-at-startup nil)
 
 ;; using online archives on OSx
+
 (when (eq system-type 'darwin)
-  (setq package-archives
-        '(("melpa" . "https://melpa.org/packages/")
-          ("org"   . "http://orgmode.org/elpa/")
-          ("gnu"   . "https://elpa.gnu.org/packages/"))))
+
+  ; (setq package-archives
+  ;       '(("melpa" . "https://melpa.org/packages/")
+  ;         ("org"   . "http://orgmode.org/elpa/")
+  ;         ("gnu"   . "https://elpa.gnu.org/packages/")))
+
+  (setq package-archives '(("melpa" . "~/.emacs.d/mirror-elpa/melpa/")
+                           ("org"   . "~/.emacs.d/mirror-elpa/org/")
+                           ("gnu"   . "~/.emacs.d/mirror-elpa/gnu/")))
+
+
+)
+
+
 
 ;; using ninrod's thin-elpa-mirror
 

@@ -640,6 +640,14 @@ the right."
 
 ***** zerodark-theme
 #+BEGIN_SRC emacs-lisp
+  (use-package zerodark-theme :load-path "lisp/ninrod/zerodark-theme"
+    :init
+    (setq anzu-cons-mode-line-p t)
+    :config
+    (load-theme 'zerodark t))
+#+END_SRC
+
+#+BEGIN_SRC text
   (use-package zerodark-theme
     :init
     (setq anzu-cons-mode-line-p t)
