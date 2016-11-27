@@ -643,9 +643,15 @@ the right."
   (use-package zerodark-theme :load-path "lisp/ninrod/zerodark-theme"
     :init
     (setq anzu-cons-mode-line-p t)
+    (use-package modeline-posn :ensure t
+      :init
+      (size-indication-mode))
     :config
     (load-theme 'zerodark t))
 #+END_SRC
+
+#+RESULTS:
+: t
 
 #+BEGIN_SRC text
   (use-package zerodark-theme
