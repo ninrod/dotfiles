@@ -7,7 +7,7 @@ let g:lightline = {'colorscheme': 'molokai'}
 let g:gruvbox_invert_selection=0
 
 set background=dark
-colorscheme gruvbox
+colorscheme jellybeans
 
 " for whitespaces at the end of the lines:    
 highlight SpecialKey ctermfg=124 guifg=#af3a03
