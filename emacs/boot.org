@@ -643,6 +643,7 @@ the right."
   (use-package zerodark-theme :load-path "lisp/ninrod/zerodark-theme"
     :init
 
+    (setq zerodark-use-paddings-in-mode-line nil)
     ;; (setq anzu-cons-mode-line-p t)
     ;; (use-package modeline-posn :ensure t
     ;;   :init
@@ -685,20 +686,20 @@ the right."
 *** spaceline
 - to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
 #+BEGIN_SRC emacs-lisp
-  (use-package spaceline :ensure t
-    :config
-    (setq powerline-height 30)
-    (setq powerline-default-separator 'utf-8) ;customize separators for Powerline: alternate, slant, wave, zigzag, nil.
-    (setq spaceline-separator-dir-left '(right . right))
-    (setq spaceline-separator-dir-right '(right . right))
-    (when (eq system-type 'darwin) (setq ns-use-srgb-colorspace nil))
-    (setq powerline-default-separator 'slant)
-    (setq spaceline-workspace-numbers-unicode t) ;for eyebrowse. nice looking unicode numbers for tagging different layouts
-    (setq spaceline-window-numbers-unicode t)
-    (setq spaceline-highlight-face-func #'spaceline-highlight-face-evil-state) ; set colouring for different evil-states
-    (require 'spaceline-config)
-    (spaceline-spacemacs-theme)
-    (spaceline-compile))
+    (use-package spaceline :ensure t
+      :config
+      (setq powerline-height 30)
+      (setq powerline-default-separator 'utf-8) ;customize separators for Powerline: alternate, slant, wave, zigzag, nil.
+      (setq spaceline-separator-dir-left '(right . right))
+      (setq spaceline-separator-dir-right '(right . right))
+      (when (eq system-type 'darwin) (setq ns-use-srgb-colorspace nil))
+      (setq powerline-default-separator 'slant)
+      (setq spaceline-workspace-numbers-unicode t) ;for eyebrowse. nice looking unicode numbers for tagging different layouts
+      (setq spaceline-window-numbers-unicode t)
+      (setq spaceline-highlight-face-func #'spaceline-highlight-face-evil-state) ; set colouring for different evil-states
+      (require 'spaceline-config)
+      (spaceline-spacemacs-theme)
+      (spaceline-compile))
 #+END_SRC
 
 *** all-the-icons
