@@ -451,7 +451,7 @@ the right."
   (display-time-mode)
 
   ;;highlight current line
-  (global-hl-line-mode)
+  ;; (global-hl-line-mode)
 
 
   ;; support for camelcase words
@@ -621,23 +621,6 @@ the right."
   #+END_SRC
 
 **** dark
-***** darktooth-theme
-#+BEGIN_SRC text
-  (use-package darktooth-theme
-    :init
-
-    (load-theme 'darktooth t)
-    (setq anzu-cons-mode-line-p t)
-    (darktooth-modeline)
-    (with-eval-after-load "git-gutter"
-      (set-face-attribute 'git-gutter:added    nil :foreground "#5A790E")
-      (set-face-attribute 'git-gutter:deleted  nil :foreground "#9D0006")
-      (set-face-attribute 'git-gutter:modified nil :foreground "#8F3F71"))
-
-    :defer t
-    :ensure t)
-#+END_SRC
-
 ***** zerodark-theme
 #+BEGIN_SRC emacs-lisp
   (use-package zerodark-theme :load-path "lisp/ninrod/zerodark-theme"
@@ -662,6 +645,23 @@ the right."
     (setq anzu-cons-mode-line-p t)
     (load-theme 'zerodark t)
     ;; (zerodark-setup-modeline-format)
+    :defer t
+    :ensure t)
+#+END_SRC
+
+***** darktooth-theme
+#+BEGIN_SRC text
+  (use-package darktooth-theme
+    :init
+
+    (load-theme 'darktooth t)
+    (setq anzu-cons-mode-line-p t)
+    (darktooth-modeline)
+    (with-eval-after-load "git-gutter"
+      (set-face-attribute 'git-gutter:added    nil :foreground "#5A790E")
+      (set-face-attribute 'git-gutter:deleted  nil :foreground "#9D0006")
+      (set-face-attribute 'git-gutter:modified nil :foreground "#8F3F71"))
+
     :defer t
     :ensure t)
 #+END_SRC
