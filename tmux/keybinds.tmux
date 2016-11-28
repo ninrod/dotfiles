@@ -84,7 +84,7 @@ bind -n M-Up select-pane -U
 bind -n M-Down select-pane -D
 
 # create panes with <C-arrow> prefix
-bind -n C-Left split-window -h
-bind -n C-Right split-window -h
-bind -n C-Up split-window -v
-bind -n C-Down split-window -v
+bind -n C-M-Left split-window -h
+bind -n C-M-Right split-window -h
+bind -n C-M-Up split-window -v
+bind -n C-M-Down split-window -v
