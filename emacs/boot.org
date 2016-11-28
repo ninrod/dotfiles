@@ -1431,7 +1431,13 @@ the right."
 )
 (which-key-declare-prefixes "SPC E" "evil-mode")
 #+END_SRC
-
+*** T: Toggles
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys spc-map
+    "Tr" 'rainbow-mode
+)
+(which-key-declare-prefixes "SPC T" "toggles")
+#+END_SRC
 ** evil
 *** abusing the g prefix
 #+BEGIN_SRC emacs-lisp
