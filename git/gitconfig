@@ -9,7 +9,7 @@
 [difftool]
   prompt = false
 [core]
-  editor = emacs -nw
+  editor = emacs -nw -q
   autocrlf = input
 [color]
   ui = auto
