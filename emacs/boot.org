@@ -55,7 +55,7 @@
 
 ** evil-surround
 #+BEGIN_SRC emacs-lisp
-(use-package evil-surround :ensure t
+(use-package evil-surround :load-path "lisp/ninrod/evil-surround"
   :config (global-evil-surround-mode 1))
 #+END_SRC
 
@@ -631,7 +631,7 @@ the right."
       :init
       (setq spacemacs-theme-org-height nil)
       :config
-      (load-theme 'spacemacs-light t))
+      (load-theme 'spacemacs-dark t))
 
   #+END_SRC
 
