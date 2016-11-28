@@ -611,7 +611,6 @@ the right."
 * packages
 ** cosmetic
 *** themes
-**** light
 ***** spacemacs-theme
   #+BEGIN_SRC emacs-lisp
 
@@ -628,10 +627,6 @@ the right."
 
   #+END_SRC
 
-  #+RESULTS:
-  : t
-
-**** dark
 ***** zerodark-theme
 #+BEGIN_SRC text
   (use-package zerodark-theme :load-path "lisp/ninrod/zerodark-theme"
