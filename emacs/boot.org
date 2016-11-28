@@ -611,7 +611,7 @@ the right."
 * packages
 ** cosmetic
 *** themes
-***** spacemacs-theme
+**** spacemacs-theme
   #+BEGIN_SRC emacs-lisp
 
     ;; (use-package spacemacs-theme
@@ -627,7 +627,7 @@ the right."
 
   #+END_SRC
 
-***** zerodark-theme
+**** zerodark-theme
 #+BEGIN_SRC text
   (use-package zerodark-theme :load-path "lisp/ninrod/zerodark-theme"
     :init
@@ -655,7 +655,7 @@ the right."
     :ensure t)
 #+END_SRC
 
-***** darktooth-theme
+**** darktooth-theme
 #+BEGIN_SRC text
   (use-package darktooth-theme
     :init
@@ -672,7 +672,7 @@ the right."
     :ensure t)
 #+END_SRC
 
-***** gruvbox-theme
+**** gruvbox-theme
 #+BEGIN_SRC text
   (use-package gruvbox-theme
     :init
@@ -681,7 +681,7 @@ the right."
     :ensure t)
 #+END_SRC
 
-***** soothe-theme
+**** soothe-theme
 #+BEGIN_SRC text
   (use-package soothe-theme
     :init (load-theme 'soothe t)
@@ -720,7 +720,10 @@ the right."
 (use-package rainbow-delimiters :ensure t
   :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 #+END_SRC
-
+*** rainbow-mode
+#+BEGIN_SRC emacs-lisp
+(use-package rainbow-mode :ensure t)
+#+END_SRC
 *** highlight-numbers
 #+BEGIN_SRC emacs-lisp
 (use-package highlight-numbers :ensure t
@@ -1722,6 +1725,7 @@ the right."
   (bind-map-set-keys s-map
     "s" 'evil-save-modified-and-close
     "r" 'restart-emacs
+    "g" 'avy-goto-char-timer
 
     "d" 'spacemacs/kill-this-buffer
     "D" 'spacemacs/kill-other-buffers
