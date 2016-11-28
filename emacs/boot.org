@@ -122,10 +122,18 @@
 
 ** evil-replace-with-register
 #+BEGIN_SRC emacs-lisp
-  (use-package evil-ReplaceWithRegister :load-path "lisp/Dewdrops/evil-ReplaceWithRegister"
-  :config
-  (setq evil-ReplaceWithRegister-key (kbd "gr"))
-  (evil-ReplaceWithRegister-install))
+
+  ;; (use-package evil-ReplaceWithRegister :load-path "lisp/Dewdrops/evil-ReplaceWithRegister"
+  ;;   :config
+  ;;   (setq evil-ReplaceWithRegister-key (kbd "gr"))
+  ;;   (evil-ReplaceWithRegister-install))
+
+  (use-package evil-replace-with-register :ensure t
+    :init
+    (setq evil-replace-with-register-key (kbd "gr"))
+    :config
+    (evil-replace-with-register-install))
+
 #+END_SRC
 
 ** evil-lisp-state
@@ -623,7 +631,7 @@ the right."
       :init
       (setq spacemacs-theme-org-height nil)
       :config
-      (load-theme 'spacemacs-dark t))
+      (load-theme 'spacemacs-light t))
 
   #+END_SRC
 
