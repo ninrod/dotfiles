@@ -26,7 +26,7 @@ bind-key -r k select-pane -U
 bind-key -r l select-pane -R
 
 # vim splits
-bind-key v split-window -h
+bind-key y split-window -h
 bind-key x split-window -v
 
 # moving panes
@@ -61,3 +61,30 @@ bind -n F6 new-window
 # renames tmux window
 # more info here: http://unix.stackexchange.com/a/269542/155613
 bind -n F7 command-prompt "rename-window '%%'"
+
+# reload tmux config
+bind -n F8 source ~/.tmux.conf
+
+# rotate through different pre set layouts
+bind -n F9 next-layout
+
+# rotate through different pre set layouts
+bind -n F10 copy-mode
+
+# mouse support toggle needs tmux 2.2
+bind -n F11 set -g mouse
+
+# toggles tmux bar on/off
+bind-key -n F12 set status
+
+# switch panes using <M-arrow> without prefix
+bind -n M-Left select-pane -L
+bind -n M-Right select-pane -R
+bind -n M-Up select-pane -U
+bind -n M-Down select-pane -D
+
+# create panes with <C-arrow> prefix
+bind -n C-Left split-window -h
+bind -n C-Right split-window -h
+bind -n C-Up split-window -v
+bind -n C-Down split-window -v
