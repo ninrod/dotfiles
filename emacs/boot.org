@@ -621,10 +621,16 @@ the right."
     ;;   :ensure t)
 
     (use-package spacemacs-dark-theme :load-path "lisp/ninrod/spacemacs-theme"
+      :init
+      (setq spacemacs-theme-org-height nil)
       :config
-      (load-theme 'spacemacs-light t))
+      (load-theme 'spacemacs-dark t))
 
   #+END_SRC
+
+  #+RESULTS:
+  : t
+
 **** dark
 ***** zerodark-theme
 #+BEGIN_SRC text
