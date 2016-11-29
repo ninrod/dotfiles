@@ -325,14 +325,27 @@ the right."
       (message "Copied buffer file name '%s' to the clipboard." filename))))
 #+END_SRC
 
-** ninrod/neotree-copy-filepath-to-clipboard
+** ninrod custom functions
+*** ninrod/neotree-copy-filepath-to-clipboard
 - with help from [[http://stackoverflow.com/a/40564951/4921402][/u/lawlist]]
 #+BEGIN_SRC emacs-lisp
-(defun ninrod/neotree-copy-filepath-to-clipboard ()
-(interactive)
-(kill-new (neo-buffer--get-filename-current-line)))
+  (defun ninrod/neotree-copy-path ()
+    (interactive)
+    (message (concat "copied path: \"" (neotree-copy-filepath-to-yank-ring) "\" to the clipboard.")))
 #+END_SRC
 
+*** ninrod/uarg-shell-command
+#+BEGIN_SRC emacs-lisp
+(defun ninrod/uarg-exec-shell-command ()
+      (interactive)
+      (execute-extended-command '(4) "shell-command"))
+#+END_SRC
+*** ninrod/uarg-magit-status
+#+BEGIN_SRC emacs-lisp
+(defun ninrod/uarg-magit-status () (interactive)
+         (magit-status (magit-read-repository
+           (>= (prefix-numeric-value current-prefix-arg) 16))))
+#+END_SRC
 ** clipboard
 #+BEGIN_SRC emacs-lisp
 (defun nin-yank-to-clipboard ()
@@ -1304,12 +1317,8 @@ the right."
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys spc-map
   "gf" 'magit-log-buffer-file
-  "gs" (lambda () (interactive) 
-         (magit-status (magit-read-repository 
-           (>= (prefix-numeric-value current-prefix-arg) 16))))
-)
+  "gs" 'ninrod/uarg-magit-status)
 (which-key-declare-prefixes "SPC g" "[ma]git operations")
-(which-key-add-key-based-replacements "SPC gs" "repo magit status")
 #+END_SRC
 
 *** i: ivy
@@ -1325,12 +1334,13 @@ the right."
 *** m: M-x useful functions
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
-    "mi" 'ielm
-    "ms" 'sort-lines
     "mc" 'count-words
-    "mr" 'replace-string
+    "me" 'ninrod/uarg-exec-shell-command
     "mf" 'customize-apropos-faces
+    "mi" 'ielm
     "mm" 'elpamr-create-mirror-for-installed
+    "mr" 'replace-string
+    "ms" 'sort-lines
   )
   (which-key-declare-prefixes "SPC m" "M-x useful functions")
   (which-key-declare-prefixes "SPC mi" "REPL: inferior elisp mode")
@@ -1378,25 +1388,11 @@ the right."
 
 *** t: terminals
 #+BEGIN_SRC emacs-lisp
+
   (bind-map-set-keys spc-map
-    "ta" 'ansi-term
-    "te" 'eshell
-    "tt" 'eshell
-
-    ;; multi-term
-    "tm"  'multi-term
-    "tn" 'multi-term-next
-    "tp" 'multi-term-prev
-
     ;; shell-commands
-    "ts" 'shell-command
-    "to" (lambda ()
-      (interactive)
-      (execute-extended-command '(4) "shell-command"))
-  )
+    "ts" 'ninrod/uarg-exec-shell-command)
   (which-key-declare-prefixes "SPC t" "terminals")
-  (which-key-declare-prefixes "SPC tm" "multi-term")
-  (which-key-add-key-based-replacements "SPC to" "C-u shell-command")
 #+END_SRC
 
 #+RESULTS:
@@ -1677,9 +1673,13 @@ the right."
 (bind-map-set-keys term-map
   "l" 'term-line-mode
   "c" 'term-char-mode
+  "n" 'multi-term-next
+  "p" 'multi-term-prev
 )
 (which-key-add-major-mode-key-based-replacements 'term-mode ", l" "line mode")
 (which-key-add-major-mode-key-based-replacements 'term-mode ", c" "char mode")
+(which-key-add-major-mode-key-based-replacements 'term-mode ", n" "multi-term-next")
+(which-key-add-major-mode-key-based-replacements 'term-mode ", p" "multi-term-prev")
 #+END_SRC
 
 *** dired
@@ -1740,6 +1740,8 @@ the right."
     "s" 'evil-save-modified-and-close
     "r" 'restart-emacs
     "g" 'avy-goto-char-timer
+    "t" 'multi-term
+    "e" 'eshell
 
     "d" 'spacemacs/kill-this-buffer
     "D" 'spacemacs/kill-other-buffers
@@ -1795,7 +1797,7 @@ the right."
               (evil-make-overriding-map neotree-mode-map 'normal t)
               (evil-define-key 'normal neotree-mode-map
                 "d" 'neotree-change-root
-                "p" 'ninrod/neotree-copy-filepath-to-clipboard
+                "p" 'ninrod/neotree-copy-path
                 "u" 'neotree-select-up-node
                 "zj" 'neotree-select-next-sibling-node
                 "zk" 'neotree-select-previous-sibling-node
