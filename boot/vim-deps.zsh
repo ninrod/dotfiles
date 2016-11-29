@@ -17,8 +17,7 @@ ningrab vim-scripts/ReplaceWithRegister
 ningrab wellle/targets.vim
 
 # fetch cosmetic deps
-ningrab ninrod/jellybeans.vim
-ningrab ninrod/gruvbox
+ningrab ninrod/gruvbox develop # just while I wait for morhetz/gruvbox#150 to merge.
 ningrab itchyny/lightline.vim
 ningrab edkolev/tmuxline.vim
 ningrab luochen1990/rainbow
