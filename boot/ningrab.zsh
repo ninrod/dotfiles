@@ -12,19 +12,19 @@ build_git_url() {
 ningrab() {
   local name="$1"
   local url=$(build_git_url $name)
-  local ref=$3
+  local ref=$2
   echo "" && echo "-------------------"
   if [[ -d $name ]]; then
     echo -e "[${Green}${name}${Rst}] already cloned from ${Blue}${url}${Rst}"
   else
     echo -e "[${Red}${name}${Rst}] not cloned. cloning now from ${Blue}${url}${Rst}"
-    if [[ -n ${3+x} ]]; then
+    if [[ -n ${2+x} ]]; then
       echo -e "the ref: ${Yellow}${ref}${Rst} was passed. Performing ${Blue}full${Rst} clone."
       git clone $url $name
       local cwd=$(readlink -f .)
       cd $name
       git checkout --quiet $ref
-      git branch --no-color --quiet --column=dense
+      echo -e "[${Green}performing checkout${Rst}] ${Yellow}$(git branch --no-color --quiet --column=dense)${Rst}"
       cd $cwd
     else
       echo -e "no ref to checkout. ${Yellow}shallow${Rst} cloning."
