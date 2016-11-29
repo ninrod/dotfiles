@@ -154,7 +154,7 @@
 #+BEGIN_SRC emacs-lisp
   (use-package evil-god-state :ensure t
     :config
-    (setq evil-emacs-state-cursor 'bar)
+    (setq evil-emacs-state-cursor 'box)
     (setq evil-god-state-cursor 'bar)
     (evil-define-key 'god global-map [escape] 'evil-god-state-bail)
     (evil-define-key 'emacs global-map [escape] 'evil-execute-in-god-state)
@@ -1175,7 +1175,7 @@ the right."
 - shamelessly lifted from github.com/TheBB's config
 - not working though.
 #+BEGIN_SRC emacs-lisp
-  ;(evil-set-initial-state 'term-mode 'emacs)
+  (evil-set-initial-state 'term-mode 'emacs)
   ;(push 'term-mode evil-escape-excluded-major-modes)
 #+END_SRC
 
@@ -1385,17 +1385,6 @@ the right."
   "SPC ss" "turn on flyspell mode"
 )
 #+END_SRC
-
-*** t: terminals
-#+BEGIN_SRC emacs-lisp
-
-  (bind-map-set-keys spc-map
-    ;; shell-commands
-    "ts" 'ninrod/uarg-exec-shell-command)
-  (which-key-declare-prefixes "SPC t" "terminals")
-#+END_SRC
-
-#+RESULTS:
 
 *** x: useful M-x commands
 #+BEGIN_SRC emacs-lisp
@@ -1676,10 +1665,12 @@ the right."
   "n" 'multi-term-next
   "p" 'multi-term-prev
 )
-(which-key-add-major-mode-key-based-replacements 'term-mode ", l" "line mode")
-(which-key-add-major-mode-key-based-replacements 'term-mode ", c" "char mode")
-(which-key-add-major-mode-key-based-replacements 'term-mode ", n" "multi-term-next")
-(which-key-add-major-mode-key-based-replacements 'term-mode ", p" "multi-term-prev")
+
+(bind-key "C-c <escape>"  'term-send-esc)
+(bind-key "C-c l"  'term-line-mode)
+(bind-key "C-c c"  'term-char-mode)
+(bind-key "C-c j"  'multi-term-next)
+(bind-key "C-c k"  'multi-term-prev)
 #+END_SRC
 
 *** dired

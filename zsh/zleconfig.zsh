@@ -10,12 +10,8 @@ if [[ -z ${EMACS+x} ]]; then
   # much more complex vi keys configuration
   source ~/.zsh.d/nin-vi-mode.zsh
 else
-  export EDITOR="emacsclient"
-  bindkey -e
-  ## command specific history search
-  ### emacs bindings
-  bindkey "^[[A" history-beginning-search-backward
-  bindkey "^[[B" history-beginning-search-forward
+  export KEYTIMEOUT=1
+  bindkey -v
 fi
 
 source ~/.zsh.d/expand-alias.zsh
