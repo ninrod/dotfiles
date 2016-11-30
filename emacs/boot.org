@@ -441,13 +441,20 @@ the right."
 #+END_SRC
 
 ** evil-new-text-objs
-
 #+BEGIN_SRC emacs-lisp
-(define-and-bind-text-object "pipe" "|" "|" "|")
-(define-and-bind-text-object "pipe" "i" "|" "|")
-(define-and-bind-text-object "comma" "," "," ",")
-(define-and-bind-text-object "square-brackets" "r" "\\[" "\\]")
-(define-and-bind-text-object "curly-brackets" "c" "{" "}")
+  (evil-define-text-object evil-inner-pipe  (count &optional beg end type)
+    (evil-select-quote ?\| beg end type count nil))
+  (evil-define-text-object evil-a-pipe  (count &optional beg end type)
+    (evil-select-quote ?\| beg end type count t))
+
+  (define-key evil-inner-text-objects-map "|" #'evil-inner-pipe)
+  (define-key evil-outer-text-objects-map "|" #'evil-a-pipe)
+  (define-key evil-inner-text-objects-map "i" #'evil-inner-pipe)
+  (define-key evil-outer-text-objects-map "i" #'evil-a-pipe)
+
+  (define-and-bind-text-object "comma" "," "," ",")
+  (define-and-bind-text-object "square-brackets" "r" "\\[" "\\]")
+  (define-and-bind-text-object "curly-brackets" "c" "{" "}")
 #+END_SRC
 
 * tweaks
