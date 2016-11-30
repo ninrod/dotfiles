@@ -1,6 +1,277 @@
 #+STARTUP: indent
 #+STARTUP: overview
 
+* lisp functions
+** spacemacs
+*** spacemacs/buffer operations
+**** spacemacs/alternate-buffer
+SPC TAB
+back and forth between current and last buffer
+#+BEGIN_SRC emacs-lisp
+(defun spacemacs/alternate-buffer (&optional window)
+  "Switch back and forth between current and last buffer in the current window."
+  (interactive)
+  (let ((current-buffer (window-buffer window))
+        (buffer-predicate
+         (frame-parameter (window-frame window) 'buffer-predicate)))
+    ;; switch to first buffer previously shown in this window that matches
+    ;; frame-parameter `buffer-predicate'
+    (switch-to-buffer
+     (or (cl-find-if (lambda (buffer)
+                       (and (not (eq buffer current-buffer))
+                            (or (null buffer-predicate)
+                                (funcall buffer-predicate buffer))))
+                     (mapcar #'car (window-prev-buffers window)))
+         ;; `other-buffer' honors `buffer-predicate' so no need to filter
+         (other-buffer current-buffer t)))))
+#+END_SRC
+
+**** spacemacs/kill-this-buffer
+SPC b d
+#+BEGIN_SRC emacs-lisp
+(defun spacemacs/kill-this-buffer (&optional arg)
+  "Kill the current buffer.
+If the universal prefix argument is used then kill also the window."
+  (interactive "P")
+  (if (window-minibuffer-p)
+      (abort-recursive-edit)
+    (if (equal '(4) arg)
+        (kill-buffer-and-window)
+      (kill-buffer))))
+#+END_SRC
+
+**** spacemacs/kill-other-buffers
+#+BEGIN_SRC emacs-lisp
+;; found at http://emacswiki.org/emacs/KillingBuffers
+(defun spacemacs/kill-other-buffers (&optional arg)
+  "Kill all other buffers.
+If the universal prefix argument is used then will the windows too."
+  (interactive "P")
+  (when (yes-or-no-p (format "Killing all buffers except \"%s\"? "
+                             (buffer-name)))
+    (mapc 'kill-buffer (delq (current-buffer) (buffer-list)))
+    (when (equal '(4) arg) (delete-other-windows))
+    (message "Buffers deleted!")))
+#+END_SRC
+
+*** spacemacs/align functions
+#+BEGIN_SRC emacs-lisp
+;; BEGIN align functions
+
+;; modified function from http://emacswiki.org/emacs/AlignCommands
+(defun spacemacs/align-repeat (start end regexp &optional justify-right after)
+  "Repeat alignment with respect to the given regular expression.
+If JUSTIFY-RIGHT is non nil justify to the right instead of the
+left. If AFTER is non-nil, add whitespace to the left instead of
+the right."
+
+ (interactive "r\nsAlign regexp: ")
+  (let* ((ws-regexp (if (string-empty-p regexp)
+                        "\\(\\s-+\\)"
+                      "\\(\\s-*\\)"))
+         (complete-regexp (if after
+                              (concat regexp ws-regexp)
+                            (concat ws-regexp regexp)))
+         (group (if justify-right -1 1)))
+    (message "%S" complete-regexp)
+    (align-regexp start end complete-regexp group 1 t)))
+
+;; Modified answer from http://emacs.stackexchange.com/questions/47/align-vertical-columns-of-numbers-on-the-decimal-point
+(defun spacemacs/align-repeat-decimal (start end)
+  "Align a table of numbers on decimal points and dollar signs (both optional)"
+  (interactive "r")
+  (require 'align)
+  (align-region start end nil
+                '((nil (regexp . "\\([\t ]*\\)\\$?\\([\t ]+[0-9]+\\)\\.?")
+                       (repeat . t)
+                       (group 1 2)
+                       (spacing 1 1)
+                       (justify nil t)))
+                nil))
+
+(defmacro spacemacs|create-align-repeat-x (name regexp &optional justify-right default-after)
+  (let ((new-func (intern (concat "spacemacs/align-repeat-" name))))
+    `(defun ,new-func (start end switch)
+       (interactive "r\nP")
+       (let ((after (not (eq (if switch t nil) (if ,default-after t nil)))))
+         (spacemacs/align-repeat start end ,regexp ,justify-right after)))))
+
+(spacemacs|create-align-repeat-x "comma" "," nil t)
+(spacemacs|create-align-repeat-x "semicolon" ";" nil t)
+(spacemacs|create-align-repeat-x "colon" ":" nil t)
+(spacemacs|create-align-repeat-x "equal" "=")
+(spacemacs|create-align-repeat-x "math-oper" "[+\\-*/]")
+(spacemacs|create-align-repeat-x "ampersand" "&")
+(spacemacs|create-align-repeat-x "bar" "|")
+(spacemacs|create-align-repeat-x "left-paren" "(")
+(spacemacs|create-align-repeat-x "right-paren" ")" t)
+(spacemacs|create-align-repeat-x "backslash" "\\\\")
+
+;; END align functions
+#+END_SRC
+
+*** spacemacs/window splits
+#+BEGIN_SRC emacs-lisp
+(defun split-window-below-and-focus ()
+  "Split the window vertically and focus the new window."
+  (interactive)
+  (split-window-below)
+  (windmove-down)
+  (when (and (boundp 'golden-ratio-mode)
+             (symbol-value golden-ratio-mode))
+    (golden-ratio)))
+
+(defun split-window-right-and-focus ()
+  "Split the window horizontally and focus the new window."
+  (interactive)
+  (split-window-right)
+  (windmove-right)
+  (when (and (boundp 'golden-ratio-mode)
+             (symbol-value golden-ratio-mode))
+    (golden-ratio)))
+#+END_SRC
+
+** emacs-prelude
+*** copy-file-name-to-clipboard
+#+BEGIN_SRC emacs-lisp
+(defun prelude-copy-file-name-to-clipboard ()
+  "Copy the current buffer file name to the clipboard."
+  (interactive)
+  (let ((filename (if (equal major-mode 'dired-mode)
+                      default-directory
+                    (buffer-file-name))))
+    (when filename
+      (kill-new filename)
+      (message "Copied buffer file name '%s' to the clipboard." filename))))
+#+END_SRC
+
+** ninrod custom functions
+*** ninrod/neotree-copy-filepath-to-clipboard
+- with help from [[http://stackoverflow.com/a/40564951/4921402][/u/lawlist]]
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/neotree-copy-path ()
+    (interactive)
+    (message (concat "copied path: \"" (neotree-copy-filepath-to-yank-ring) "\" to the clipboard.")))
+#+END_SRC
+
+*** ninrod/uarg-shell-command
+#+BEGIN_SRC emacs-lisp
+(defun ninrod/uarg-exec-shell-command ()
+      (interactive)
+      (execute-extended-command '(4) "shell-command"))
+#+END_SRC
+*** ninrod/uarg-magit-status
+#+BEGIN_SRC emacs-lisp
+(defun ninrod/uarg-magit-status () (interactive)
+         (magit-status (magit-read-repository
+           (>= (prefix-numeric-value current-prefix-arg) 16))))
+#+END_SRC
+*** ninrod/yank-to-clipboard
+#+BEGIN_SRC emacs-lisp
+(defun nin-yank-to-clipboard ()
+  "Copies selection to x-clipboard."
+  (interactive)
+  (if (display-graphic-p)
+      (progn
+        (message "Yanked region to x-clipboard!")
+        (call-interactively 'clipboard-kill-ring-save))
+    (if (region-active-p)
+        (progn
+          (shell-command-on-region (region-beginning) (region-end) "pbcopy")
+          (message "Yanked region to clipboard!")
+          (deactivate-mark))
+      (message "No region active; can't yank to clipboard!"))))
+#+END_SRC
+
+*** ninrod/paste-from-clipboard
+#+BEGIN_SRC emacs-lisp
+(defun nin-paste-from-clipboard ()
+  "Pastes from x-clipboard."
+  (interactive)
+  (if (display-graphic-p)
+      (progn
+        (clipboard-yank)
+        (message "graphics active"))
+    (insert (shell-command-to-string "pbpaste"))))
+#+END_SRC
+
+*** ninrod/revert-buffer with no confirmation
+- from [[http://www.emacswiki.org/emacs-en/download/misc-cmds.el][emacswiki]]
+#+BEGIN_SRC emacs-lisp
+(defun nin-revert-buffer-no-confirm ()
+    "Revert buffer without confirmation."
+    (interactive)
+    (revert-buffer :ignore-auto :noconfirm))
+#+END_SRC
+
+*** ninrod/nin-echo
+#+BEGIN_SRC emacs-lisp
+(defun nin-echo ()
+  "just a simple test message for binds"
+  (interactive)
+  (message "the bind worked! yes!!"))
+#+END_SRC
+
+*** ninrod/org-mv-down
+- credits go to [[https://www.reddit.com/r/emacs/comments/583n1x/movecopy_a_cel_to_the_right/][/u/gmfawcett]]
+#+BEGIN_SRC emacs-lisp
+(defun nin-org-mv-down ()           ; moves a value down
+  (interactive)
+  (let ((pos (point))               ; get current pos
+        (f (org-table-get-field)))  ; copy current field
+    (org-table-blank-field)         ; blank current field
+    (org-table-next-row)            ; move cursor down
+    (org-table-blank-field)         ; blank that field too
+    (insert f)                      ; insert the value from above
+    (org-table-align)               ; realign the table
+    (goto-char pos)))               ; move back to original position
+#+END_SRC
+
+*** ninrod/org-swap-down
+- credits go to [[https://www.reddit.com/r/emacs/comments/583n1x/movecopy_a_cel_to_the_right/][/u/gmfawcett]]
+#+BEGIN_SRC emacs-lisp
+(defun nin-org-swap-down ()               ; swap with value below
+  (interactive)
+  (let ((pos (point))                   ; get current pos
+        (v1 (org-table-get-field)))     ; copy current field
+    (org-table-blank-field)             ; blank current field
+    (org-table-next-row)                ; move cursor down
+    (let ((v2 (org-table-get-field)))   ; take copy of that field, too
+      (org-table-blank-field)           ; blank that field too
+      (insert v1)                       ; insert the value from above
+      (goto-char pos)                   ; go to original location
+      (insert v2)                       ; insert the value from below
+      (org-table-align)                 ; realign the table
+      (goto-char pos))))                ; move back to original position
+#+END_SRC
+
+*** ninrod/origami-toggle-node
+- with help from [[https://www.reddit.com/r/emacs/comments/580v30/tweaking_origamiel_lisp_and_regexes/][reddit]]
+#+BEGIN_SRC emacs-lisp
+(defun nin-origami-toggle-node ()
+ (interactive)
+ (save-excursion ;; leave point where it is
+  (goto-char (point-at-eol))             ;; then go to the end of line
+  (origami-toggle-node (current-buffer) (point))))                 ;; and try to fold
+#+END_SRC
+** ninrod custom macros
+*** ninrod/define-and-bind-textobj
+- lifted from [[https://github.com/noctuid/evil-textobj-anyblock/issues/9#issuecomment-263761927][@noctuid]]
+- with help from [[http://stackoverflow.com/q/18102004/4921402][this]] so question
+#+BEGIN_SRC emacs-lisp
+;; modified to be able to specify name and use `function'
+(defmacro define-and-bind-text-object (name key start-regex end-regex)
+  (let ((inner-name (make-symbol (concat "evil-inner-" name)))
+        (outer-name (make-symbol (concat "evil-a-" name))))
+    `(progn
+       (evil-define-text-object ,inner-name (count &optional beg end type)
+         (evil-select-paren ,start-regex ,end-regex beg end type count nil))
+       (evil-define-text-object ,outer-name (count &optional beg end type)
+         (evil-select-paren ,start-regex ,end-regex beg end type count t))
+       (define-key evil-inner-text-objects-map ,key #',inner-name)
+       (define-key evil-outer-text-objects-map ,key #',outer-name))))
+#+END_SRC
+
 * evil corruption
 ** evil
 - emacsify insert state. based on this SO question [[http://stackoverflow.com/a/26573722/4921402][here]].
@@ -169,270 +440,19 @@
   (use-package rectangle-ext :load-path "lisp/noctuid/rectangle-ext.el")
 #+END_SRC
 
-** evil-textobj-anyblock
+** evil-new-text-objs
 
-#+BEGIN_SRC text
-    (use-package evil-textobj-anyblock :ensure t
-      :init
-      (setq evil-textobj-anyblock-blocks
-            '(("(" . ")")
-              ("\\|" . "\\|")
-              ("\\[" . "\\]")
-              ))
-      :config
-      (define-key evil-inner-text-objects-map "c" 'evil-textobj-anyblock-inner-block)
-      (define-key evil-outer-text-objects-map "c" 'evil-textobj-anyblock-a-block))
-#+END_SRC
-
-* lisp functions
-** spacemacs/buffer operations
-*** spacemacs/alternate-buffer
-SPC TAB
-back and forth between current and last buffer
 #+BEGIN_SRC emacs-lisp
-(defun spacemacs/alternate-buffer (&optional window)
-  "Switch back and forth between current and last buffer in the current window."
-  (interactive)
-  (let ((current-buffer (window-buffer window))
-        (buffer-predicate
-         (frame-parameter (window-frame window) 'buffer-predicate)))
-    ;; switch to first buffer previously shown in this window that matches
-    ;; frame-parameter `buffer-predicate'
-    (switch-to-buffer
-     (or (cl-find-if (lambda (buffer)
-                       (and (not (eq buffer current-buffer))
-                            (or (null buffer-predicate)
-                                (funcall buffer-predicate buffer))))
-                     (mapcar #'car (window-prev-buffers window)))
-         ;; `other-buffer' honors `buffer-predicate' so no need to filter
-         (other-buffer current-buffer t)))))
-#+END_SRC
 
-*** spacemacs/kill-this-buffer
-SPC b d
-#+BEGIN_SRC emacs-lisp
-(defun spacemacs/kill-this-buffer (&optional arg)
-  "Kill the current buffer.
-If the universal prefix argument is used then kill also the window."
-  (interactive "P")
-  (if (window-minibuffer-p)
-      (abort-recursive-edit)
-    (if (equal '(4) arg)
-        (kill-buffer-and-window)
-      (kill-buffer))))
-#+END_SRC
+  ;; (evil-define-text-object evil-inner-| (count &optional beg end type)
+  ;;   (evil-select-paren "|" "|" beg end type count nil))
+  ;; (evil-define-text-object evil-a-| (count &optional beg end type)
+  ;;   (evil-select-paren "|" "|" beg end type count t))
+  ;; (define-key evil-inner-text-objects-map "|" #'evil-inner-|)
+  ;; (define-key evil-outer-text-objects-map "|" #'evil-a-|)
 
-*** spacemacs/kill-other-buffers
-#+BEGIN_SRC emacs-lisp
-;; found at http://emacswiki.org/emacs/KillingBuffers
-(defun spacemacs/kill-other-buffers (&optional arg)
-  "Kill all other buffers.
-If the universal prefix argument is used then will the windows too."
-  (interactive "P")
-  (when (yes-or-no-p (format "Killing all buffers except \"%s\"? "
-                             (buffer-name)))
-    (mapc 'kill-buffer (delq (current-buffer) (buffer-list)))
-    (when (equal '(4) arg) (delete-other-windows))
-    (message "Buffers deleted!")))
-#+END_SRC
+(define-and-bind-text-object "pipe" "|" "|" "|")
 
-** spacemacs/align functions
-#+BEGIN_SRC emacs-lisp
-;; BEGIN align functions
-
-;; modified function from http://emacswiki.org/emacs/AlignCommands
-(defun spacemacs/align-repeat (start end regexp &optional justify-right after)
-  "Repeat alignment with respect to the given regular expression.
-If JUSTIFY-RIGHT is non nil justify to the right instead of the
-left. If AFTER is non-nil, add whitespace to the left instead of
-the right."
-
- (interactive "r\nsAlign regexp: ")
-  (let* ((ws-regexp (if (string-empty-p regexp)
-                        "\\(\\s-+\\)"
-                      "\\(\\s-*\\)"))
-         (complete-regexp (if after
-                              (concat regexp ws-regexp)
-                            (concat ws-regexp regexp)))
-         (group (if justify-right -1 1)))
-    (message "%S" complete-regexp)
-    (align-regexp start end complete-regexp group 1 t)))
-
-;; Modified answer from http://emacs.stackexchange.com/questions/47/align-vertical-columns-of-numbers-on-the-decimal-point
-(defun spacemacs/align-repeat-decimal (start end)
-  "Align a table of numbers on decimal points and dollar signs (both optional)"
-  (interactive "r")
-  (require 'align)
-  (align-region start end nil
-                '((nil (regexp . "\\([\t ]*\\)\\$?\\([\t ]+[0-9]+\\)\\.?")
-                       (repeat . t)
-                       (group 1 2)
-                       (spacing 1 1)
-                       (justify nil t)))
-                nil))
-
-(defmacro spacemacs|create-align-repeat-x (name regexp &optional justify-right default-after)
-  (let ((new-func (intern (concat "spacemacs/align-repeat-" name))))
-    `(defun ,new-func (start end switch)
-       (interactive "r\nP")
-       (let ((after (not (eq (if switch t nil) (if ,default-after t nil)))))
-         (spacemacs/align-repeat start end ,regexp ,justify-right after)))))
-
-(spacemacs|create-align-repeat-x "comma" "," nil t)
-(spacemacs|create-align-repeat-x "semicolon" ";" nil t)
-(spacemacs|create-align-repeat-x "colon" ":" nil t)
-(spacemacs|create-align-repeat-x "equal" "=")
-(spacemacs|create-align-repeat-x "math-oper" "[+\\-*/]")
-(spacemacs|create-align-repeat-x "ampersand" "&")
-(spacemacs|create-align-repeat-x "bar" "|")
-(spacemacs|create-align-repeat-x "left-paren" "(")
-(spacemacs|create-align-repeat-x "right-paren" ")" t)
-(spacemacs|create-align-repeat-x "backslash" "\\\\")
-
-;; END align functions
-#+END_SRC
-
-** spacemacs/window splits
-#+BEGIN_SRC emacs-lisp
-(defun split-window-below-and-focus ()
-  "Split the window vertically and focus the new window."
-  (interactive)
-  (split-window-below)
-  (windmove-down)
-  (when (and (boundp 'golden-ratio-mode)
-             (symbol-value golden-ratio-mode))
-    (golden-ratio)))
-
-(defun split-window-right-and-focus ()
-  "Split the window horizontally and focus the new window."
-  (interactive)
-  (split-window-right)
-  (windmove-right)
-  (when (and (boundp 'golden-ratio-mode)
-             (symbol-value golden-ratio-mode))
-    (golden-ratio)))
-#+END_SRC
-
-** emacs-prelude/copy-file-name-to-clipboard
-#+BEGIN_SRC emacs-lisp
-(defun prelude-copy-file-name-to-clipboard ()
-  "Copy the current buffer file name to the clipboard."
-  (interactive)
-  (let ((filename (if (equal major-mode 'dired-mode)
-                      default-directory
-                    (buffer-file-name))))
-    (when filename
-      (kill-new filename)
-      (message "Copied buffer file name '%s' to the clipboard." filename))))
-#+END_SRC
-
-** ninrod custom functions
-*** ninrod/neotree-copy-filepath-to-clipboard
-- with help from [[http://stackoverflow.com/a/40564951/4921402][/u/lawlist]]
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/neotree-copy-path ()
-    (interactive)
-    (message (concat "copied path: \"" (neotree-copy-filepath-to-yank-ring) "\" to the clipboard.")))
-#+END_SRC
-
-*** ninrod/uarg-shell-command
-#+BEGIN_SRC emacs-lisp
-(defun ninrod/uarg-exec-shell-command ()
-      (interactive)
-      (execute-extended-command '(4) "shell-command"))
-#+END_SRC
-*** ninrod/uarg-magit-status
-#+BEGIN_SRC emacs-lisp
-(defun ninrod/uarg-magit-status () (interactive)
-         (magit-status (magit-read-repository
-           (>= (prefix-numeric-value current-prefix-arg) 16))))
-#+END_SRC
-** clipboard
-#+BEGIN_SRC emacs-lisp
-(defun nin-yank-to-clipboard ()
-  "Copies selection to x-clipboard."
-  (interactive)
-  (if (display-graphic-p)
-      (progn
-        (message "Yanked region to x-clipboard!")
-        (call-interactively 'clipboard-kill-ring-save))
-    (if (region-active-p)
-        (progn
-          (shell-command-on-region (region-beginning) (region-end) "pbcopy")
-          (message "Yanked region to clipboard!")
-          (deactivate-mark))
-      (message "No region active; can't yank to clipboard!"))))
-
-(defun nin-paste-from-clipboard ()
-  "Pastes from x-clipboard."
-  (interactive)
-  (if (display-graphic-p)
-      (progn
-        (clipboard-yank)
-        (message "graphics active"))
-    (insert (shell-command-to-string "pbpaste"))))
-#+END_SRC
-
-** revert-buffer with no confirmation
-- from [[http://www.emacswiki.org/emacs-en/download/misc-cmds.el][emacswiki]]
-#+BEGIN_SRC emacs-lisp
-(defun nin-revert-buffer-no-confirm ()
-    "Revert buffer without confirmation."
-    (interactive)
-    (revert-buffer :ignore-auto :noconfirm))
-#+END_SRC
-
-** ninrod's lisp functions
-*** nin-echo
-#+BEGIN_SRC emacs-lisp
-(defun nin-echo ()
-  "just a simple test message for binds"
-  (interactive)
-  (message "the bind worked! yes!!"))
-#+END_SRC
-
-** org functions
-*** move cell down
-- credits go to [[https://www.reddit.com/r/emacs/comments/583n1x/movecopy_a_cel_to_the_right/][/u/gmfawcett]]
-#+BEGIN_SRC emacs-lisp
-(defun nin-org-mv-down ()           ; moves a value down
-  (interactive)
-  (let ((pos (point))               ; get current pos
-        (f (org-table-get-field)))  ; copy current field
-    (org-table-blank-field)         ; blank current field
-    (org-table-next-row)            ; move cursor down
-    (org-table-blank-field)         ; blank that field too
-    (insert f)                      ; insert the value from above
-    (org-table-align)               ; realign the table
-    (goto-char pos)))               ; move back to original position
-#+END_SRC
-
-*** swap cell down
-- credits go to [[https://www.reddit.com/r/emacs/comments/583n1x/movecopy_a_cel_to_the_right/][/u/gmfawcett]]
-#+BEGIN_SRC emacs-lisp
-(defun nin-org-swap-down ()               ; swap with value below
-  (interactive)
-  (let ((pos (point))                   ; get current pos
-        (v1 (org-table-get-field)))     ; copy current field
-    (org-table-blank-field)             ; blank current field
-    (org-table-next-row)                ; move cursor down
-    (let ((v2 (org-table-get-field)))   ; take copy of that field, too
-      (org-table-blank-field)           ; blank that field too
-      (insert v1)                       ; insert the value from above
-      (goto-char pos)                   ; go to original location
-      (insert v2)                       ; insert the value from below
-      (org-table-align)                 ; realign the table
-      (goto-char pos))))                ; move back to original position
-#+END_SRC
-
-** origami functions
-- with help from [[https://www.reddit.com/r/emacs/comments/580v30/tweaking_origamiel_lisp_and_regexes/][reddit]]
-#+BEGIN_SRC emacs-lisp
-(defun nin-origami-toggle-node ()
- (interactive)
- (save-excursion ;; leave point where it is
-  (goto-char (point-at-eol))             ;; then go to the end of line
-  (origami-toggle-node (current-buffer) (point))))                 ;; and try to fold
 #+END_SRC
 
 * tweaks
