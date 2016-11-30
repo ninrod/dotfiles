@@ -1515,8 +1515,7 @@ the right."
     "k" 'org-metaup
 
     "TAB" 'org-cycle
-    "RET" 'org-meta-return
-    "." 'org-open-at-point
+    "RET" 'org-open-at-point
     "*" 'org-ctrl-c-star
     "-" 'org-ctrl-c-minus
     "," 'org-todo
