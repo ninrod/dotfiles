@@ -10,8 +10,9 @@ if [[ -z ${EMACS+x} ]]; then
   # much more complex vi keys configuration
   source ~/.zsh.d/nin-vi-mode.zsh
 else
-  export KEYTIMEOUT=1
-  bindkey -v
+  # export KEYTIMEOUT=1
+  # bindkey -v
+  source ~/.zsh.d/nin-vi-mode.zsh
 fi
 
 source ~/.zsh.d/expand-alias.zsh

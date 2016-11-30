@@ -152,14 +152,15 @@
 ** evil-god-state
 
 #+BEGIN_SRC emacs-lisp
-  (use-package evil-god-state :ensure t
-    :config
-    (setq evil-emacs-state-cursor 'box)
-    (setq evil-god-state-cursor 'bar)
-    (evil-define-key 'god global-map [escape] 'evil-god-state-bail)
-    (evil-define-key 'emacs global-map [escape] 'evil-execute-in-god-state)
-    (bind-key (kbd "C-t") 'evil-execute-in-god-state global-map)
-    (evil-define-key 'normal global-map "t" 'evil-execute-in-god-state))
+    (use-package evil-god-state :ensure t
+      :config
+      (setq evil-emacs-state-cursor 'box)
+      (setq evil-god-state-cursor 'bar)
+      (evil-define-key 'god global-map [escape] 'evil-god-state-bail)
+      (evil-define-key 'emacs global-map [escape] 'evil-execute-in-god-state)
+      (bind-key (kbd "C-t") 'evil-execute-in-god-state global-map)
+      ;; (evil-define-key 'normal global-map "t" 'evil-execute-in-god-state)
+  )
 #+END_SRC
 
 ** evil-rectangle-ex
@@ -626,6 +627,7 @@ the right."
 (add-hook 'gdb-mode-hook 'no-trailing-whitespace)
 (add-hook 'help-mode-hook 'no-trailing-whitespace)
 (add-hook 'term-mode-hook 'no-trailing-whitespace)
+(add-hook 'eshell-load-hook 'no-trailing-whitespace)
 (add-hook 'Buffer-menu-mode-hook 'no-trailing-whitespace)
 #+END_SRC
 
@@ -1172,21 +1174,7 @@ the right."
 ** make zsh with bindkey -v and ansi-term be friendly to each other [[https
 ://github.com/syl20bnr/spacemacs/issues/7140][syl20bnr/spacemacs#7140]]
 *** TheBB's solution
-- shamelessly lifted from github.com/TheBB's config
-- not working though.
 #+BEGIN_SRC emacs-lisp
-  (evil-set-initial-state 'term-mode 'emacs)
-  ;(push 'term-mode evil-escape-excluded-major-modes)
-#+END_SRC
-
-*** @chadhs tip
-#+BEGIN_SRC emacs-lisp
-  ;; (evil-define-key 'normal term-raw-map "p" 'term-paste)
-  ;; (evil-define-key 'normal term-raw-map "j" 'term-send-down)
-  ;; (evil-define-key 'normal term-raw-map "k" 'term-send-up)
-  ;; (evil-define-key 'normal term-raw-map "/" 'term-send-reverse-search-history)
-  ;; (evil-define-key 'normal term-raw-map (kbd "C-c") 'term-send-raw)
-  ;; (evil-define-key 'insert term-raw-map (kbd "C-c") 'term-send-raw)
 #+END_SRC
 
 ** fix $PATH on macosx with exec-path-from-shell
@@ -1463,6 +1451,7 @@ the right."
   (bind-key "Q" 'evil-record-macro evil-normal-state-map)
   (bind-key "(" 'evil-backward-paragraph evil-motion-state-map)
   (bind-key ")" 'evil-forward-paragraph evil-motion-state-map)
+  (bind-key "t" 'avy-goto-line evil-normal-state-map)
 #+END_SRC
 
 *** function keys
@@ -1654,6 +1643,13 @@ the right."
 *** term
 - with help from [[https://www.reddit.com/r/emacs/comments/56xmvg/properly_editing_a_shell_buffer_with_evilmode/][/r/emacs]]
 #+BEGIN_SRC emacs-lisp
+(evil-set-initial-state 'term-mode 'emacs)
+(bind-key "C-c <escape>"  'term-send-esc)
+(bind-key "C-c l"  'term-line-mode)
+(bind-key "C-c c"  'term-char-mode)
+(bind-key "C-c j"  'multi-term-next)
+(bind-key "C-c k"  'multi-term-prev)
+
 (bind-map term-map
     :evil-keys (",")
     :evil-states (normal visual)
@@ -1666,11 +1662,6 @@ the right."
   "p" 'multi-term-prev
 )
 
-(bind-key "C-c <escape>"  'term-send-esc)
-(bind-key "C-c l"  'term-line-mode)
-(bind-key "C-c c"  'term-char-mode)
-(bind-key "C-c j"  'multi-term-next)
-(bind-key "C-c k"  'multi-term-prev)
 #+END_SRC
 
 *** dired
@@ -1730,9 +1721,11 @@ the right."
   (bind-map-set-keys s-map
     "s" 'evil-save-modified-and-close
     "r" 'restart-emacs
-    "g" 'avy-goto-char-timer
+    "g" 'evil-execute-in-god-state
     "t" 'multi-term
     "e" 'eshell
+
+    "f" 'avy-goto-line
 
     "d" 'spacemacs/kill-this-buffer
     "D" 'spacemacs/kill-other-buffers
@@ -1760,6 +1753,21 @@ the right."
     "x" 'split-window-below-and-focus)
 
   (which-key-add-key-based-replacements "sb" "buffer menu")
+#+END_SRC
+
+** t
+#+BEGIN_SRC emacs-lisp
+  (bind-map t-map
+    :evil-keys ("t")
+    :evil-states (normal))
+
+  ;; quits: file saves, buffer deletes, window exits, you name it...
+  (bind-map-set-keys t-map
+    "j" 'avy-goto-line-below
+    "k" 'avy-goto-line-above
+    "l" 'avy-goto-char-in-line
+    "t" 'avy-goto-char-timer
+  )
 #+END_SRC
 
 ** awesome available binds
