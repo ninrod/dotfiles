@@ -807,11 +807,6 @@ the right."
   :config (setq multi-term-program "/bin/zsh"))
 #+END_SRC
 
-*** avy
-  #+BEGIN_SRC emacs-lisp
-(use-package avy :ensure t)
-  #+END_SRC
-
 *** ag: the silver searcher
 #+BEGIN_SRC emacs-lisp
 (use-package ag :ensure t)
@@ -1496,13 +1491,18 @@ the right."
 ** org
 *** bind-map
 #+BEGIN_SRC emacs-lisp
-(bind-map org-map
+  (bind-map org-map
     :evil-keys (",")
     :evil-states (normal visual)
     :major-modes (org-mode))
+
+  (bind-map org-t-map
+    :evil-keys ("t")
+    :evil-states (normal)
+    :major-modes (org-mode))
 #+END_SRC
 
-*** local directs
+*** , local
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys org-map
     "r" 'org-refile
@@ -1523,6 +1523,12 @@ the right."
     )
 #+END_SRC
 
+*** t local
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys org-t-map
+  "RET" 'org-meta-return
+  )
+#+END_SRC
 *** local groups
 **** a: additions
 #+BEGIN_SRC emacs-lisp
@@ -1753,21 +1759,6 @@ the right."
     "x" 'split-window-below-and-focus)
 
   (which-key-add-key-based-replacements "sb" "buffer menu")
-#+END_SRC
-
-** t
-#+BEGIN_SRC emacs-lisp
-  (bind-map t-map
-    :evil-keys ("t")
-    :evil-states (normal))
-
-  ;; quits: file saves, buffer deletes, window exits, you name it...
-  (bind-map-set-keys t-map
-    "j" 'avy-goto-line-below
-    "k" 'avy-goto-line-above
-    "l" 'avy-goto-char-in-line
-    "t" 'avy-goto-char-timer
-  )
 #+END_SRC
 
 ** awesome available binds
