@@ -4,7 +4,7 @@ source ~/.zsh.d/constants.zsh
 mkdir -p $emacs_deps && cd $emacs_deps
 
 ningrab jtbm37/all-the-icons-dired
-ningrab noctuid/rectangle-ext.el
+ningrab noctuid/rect-ext.el
 ningrab supermomonga/evil-textobj-entire
 ningrab syl20bnr/spacemacs-elpa-mirror
 

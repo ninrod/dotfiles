@@ -437,7 +437,7 @@ the right."
 ** evil-rectangle-ex
 
 #+BEGIN_SRC emacs-lisp
-  (use-package rectangle-ext :load-path "lisp/noctuid/rectangle-ext.el")
+  (use-package rect-ext :load-path "lisp/noctuid/rect-ext.el")
 #+END_SRC
 
 ** evil-new-text-objs
@@ -806,7 +806,6 @@ the right."
 
           ))
 #+END_SRC
-
 ** expand functionality
 *** restart-emacs
 #+BEGIN_SRC emacs-lisp
