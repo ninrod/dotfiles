@@ -521,12 +521,12 @@ the right."
 ** font
 *** Monoisome
 - get it at [[https://github.com/larsenwork/monoid][larsenwork/monoid]]
-  #+BEGIN_SRC text
+  #+BEGIN_SRC emacs-lisp
   (add-to-list 'default-frame-alist '(font . "Monoisome-14"))
   #+END_SRC
 
 *** Monaco
-  #+BEGIN_SRC emacs-lisp
+  #+BEGIN_SRC text
   (add-to-list 'default-frame-alist '(font . "Monaco-14"))
   #+END_SRC
 
@@ -1221,7 +1221,7 @@ the right."
   (bind-map-set-keys spc-map
     "<SPC>" 'counsel-M-x
     "DEL" 'neotree-toggle
-    "TAB" 'counsel-bookmark
+    ;; "TAB" 'counsel-bookmark
   )
 #+END_SRC
 
@@ -1278,7 +1278,6 @@ the right."
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
     "fs" 'write-file
-    "fb" 'counsel-bookmark
     "fc" 'make-directory
     "fd" 'cd
     "fj" 'dired-jump
@@ -1728,6 +1727,8 @@ the right."
     "e" 'eshell
 
     "f" 'avy-goto-line
+
+    "m" 'counsel-bookmark
 
     "d" 'spacemacs/kill-this-buffer
     "D" 'spacemacs/kill-other-buffers
