@@ -1220,8 +1220,8 @@ the right."
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
     "<SPC>" 'counsel-M-x
-    "TAB" 'evil-toggle-fold
     "DEL" 'neotree-toggle
+    "TAB" 'counsel-bookmark
   )
 #+END_SRC
 
@@ -1510,7 +1510,8 @@ the right."
     "j" 'org-metadown
     "k" 'org-metaup
 
-    "TAB" 'org-cycle
+    "TAB" 'evil-toggle-fold
+
     "RET" 'org-open-at-point
     "*" 'org-ctrl-c-star
     "-" 'org-ctrl-c-minus
