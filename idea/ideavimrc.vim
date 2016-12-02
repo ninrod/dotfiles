@@ -16,12 +16,14 @@ nnoremap <cr> :w<cr>
 map g; g_
 map gi g;
 
+nnoremap s :action OptimizeImports<cr>
+
+nnoremap gq :action Exit<cr>
 nnoremap gr :action RenameElement<cr>
 nnoremap gh :action RecentFiles<cr>
 nnoremap gb :action ViewBreakpoints<cr>
-nnoremap st :action ActivateTerminalToolWindow<cr>
-nnoremap so :action OptimizeImports<cr>
-nnoremap ss :action FileStructurePopup<cr>
+nnoremap gs :action FileStructurePopup<cr>
+nnoremap gt :action ActivateTerminalToolWindow<cr>
 
 " interesting actions
 " :action InspectCode<cr>
