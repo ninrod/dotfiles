@@ -1411,6 +1411,7 @@ the right."
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys spc-map
     "Tr" 'rainbow-mode
+    "Tt" 'toggle-truncate-lines
 )
 (which-key-declare-prefixes "SPC T" "toggles")
 #+END_SRC
