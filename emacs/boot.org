@@ -1433,6 +1433,9 @@ the right."
   (bind-key "g/" 'swiper evil-motion-state-map)
   (bind-key "gh" 'counsel-recentf evil-motion-state-map)
 
+  (bind-key "gi" 'goto-last-change evil-normal-state-map)
+  (bind-key "g;" 'evil-last-non-blank evil-motion-state-map)
+
   ;; (bind-key "g RET" 'er/expand-region evil-normal-state-map)
 #+END_SRC
 
