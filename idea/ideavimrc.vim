@@ -1,69 +1,27 @@
-" plugins
-set surround
-
-" better search
 set hlsearch
 set ignorecase
 set smartcase
 set incsearch
 set showmode
-
-" line numbers on
-set nu
-set rnu
-
-" clipboard integration
 set clipboard+=unnamed
+set surround
 
-nnoremap ' "
-vnoremap ' "
-
-" turn off search highlighting
 nnoremap - :noh<cr>
-
-" adding backspace
-nnoremap X hx
-
 map gl G
-
-" easier quiting
 nnoremap q ZQ
-
-" move macro to safer place
 nnoremap Q q
-
-" faster paragraph navigation
 nnoremap ( {
 nnoremap ) }
-
-" enter writes current buffer
 nnoremap <cr> :w<cr>
+map g; g_
+map gi g;
 
-" space is a better leader key
-nmap <Space> <Leader>
-
-" windows splits
-" map <leader>v <C-W>v
-" map <leader>x <C-W>s
-
-" window movement
-" map <leader>h <C-W>h
-" map <leader>j <C-W>j
-" map <leader>k <C-W>k
-" map <leader>l <C-W>l
-
-" custom pagedown, pageup
-" nmap <leader>d LztM
-" nmap <leader>u HzbM
-
-nnoremap <leader>b :action ViewBreakpoints<cr>
-nnoremap <leader>f :action FindUsages<cr>
-nnoremap <leader>i :action GotoImplementation<cr>
-nnoremap <leader>k :action FileStructurePopup<cr>
-nnoremap <leader>o :action OptimizeImports<cr>
-nnoremap <leader>r :action RenameElement<cr>
-nnoremap <leader>t :action ActivateTerminalToolWindow<cr>
-nnoremap <leader>u :action RecentFiles<cr>
+nnoremap gr :action RenameElement<cr>
+nnoremap gh :action RecentFiles<cr>
+nnoremap gb :action ViewBreakpoints<cr>
+nnoremap st :action ActivateTerminalToolWindow<cr>
+nnoremap so :action OptimizeImports<cr>
+nnoremap ss :action FileStructurePopup<cr>
 
 " interesting actions
 " :action InspectCode<cr>
