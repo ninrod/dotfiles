@@ -676,7 +676,7 @@ the right."
 #+BEGIN_SRC emacs-lisp
   (use-package zerodark-theme :load-path "lisp/ninrod/zerodark-theme"
     :init
-    (setq zerodark-use-paddings-in-mode-line t)
+    (setq zerodark-use-paddings-in-mode-line nil)
     (setq anzu-cons-mode-line-p t)
 
     ;; (use-package modeline-posn :ensure t
@@ -723,7 +723,7 @@ the right."
 
 *** spaceline
 - to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
     (use-package spaceline :ensure t
       :config
       (setq powerline-height 30)
