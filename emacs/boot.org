@@ -1530,6 +1530,8 @@ the right."
 *** t local
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-t-map
+  "i" 'org-timer-item
+  "t" 'org-timer
   "RET" 'org-meta-return
   )
 #+END_SRC
