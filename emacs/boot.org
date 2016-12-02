@@ -655,6 +655,13 @@ the right."
 
 * packages
 ** cosmetic
+*** all-the-icons
+#+BEGIN_SRC emacs-lisp
+  (use-package all-the-icons :ensure t
+    :config
+    (use-package all-the-icons-dired :load-path "lisp/jtbm37/all-the-icons-dired"))
+#+END_SRC
+
 *** themes
 **** spacemacs-theme
   #+BEGIN_SRC text
@@ -731,13 +738,6 @@ the right."
       (require 'spaceline-config)
       (spaceline-spacemacs-theme)
       (spaceline-compile))
-#+END_SRC
-
-*** all-the-icons
-#+BEGIN_SRC emacs-lisp
-  (use-package all-the-icons :ensure t
-    :config
-    (use-package all-the-icons-dired :load-path "lisp/jtbm37/all-the-icons-dired"))
 #+END_SRC
 
 *** rainbow-delimiters
