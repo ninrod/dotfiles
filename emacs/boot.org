@@ -671,6 +671,11 @@ the right."
     :init
     (setq zerodark-use-paddings-in-mode-line t)
     (setq anzu-cons-mode-line-p t)
+
+    ;; (use-package modeline-posn :ensure t
+    ;;   :config
+    ;;   (size-indication-mode))
+
     :config
     (load-theme 'zerodark t))
 #+END_SRC
