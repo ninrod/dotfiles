@@ -1463,6 +1463,52 @@ the right."
 )
 (which-key-declare-prefixes "SPC T" "toggles")
 #+END_SRC
+** s
+#+BEGIN_SRC emacs-lisp
+  (bind-map s-map
+    :evil-keys ("s")
+    :evil-states (normal visual motion))
+
+  ;; quits: file saves, buffer deletes, window exits, you name it...
+  (bind-map-set-keys s-map
+    "s" 'evil-save-modified-and-close
+    "r" 'restart-emacs
+    "g" 'evil-execute-in-god-state
+    "t" 'multi-term
+    "e" 'eshell
+
+    "f" 'avy-goto-line
+
+    "m" 'counsel-bookmark
+
+    "d" 'spacemacs/kill-this-buffer
+    "D" 'spacemacs/kill-other-buffers
+
+    "i" 'ivy-switch-buffer
+
+    ;; "b" 'buffer-menu
+    ;; "b" 'list-buffers???
+    ;; more info here: http://emacs.stackexchange.com/a/21635/12585
+    "o" (lambda ()
+          (interactive)
+          (execute-extended-command '(4) "buffer-menu"))
+
+    "n" 'rectangle-ext-narrow
+    "w" 'rectangle-ext-widen
+
+    "p" 'counsel-yank-pop
+
+    ;; window manipulation
+    "j" 'evil-window-down
+    "k" 'evil-window-up
+    "h" 'evil-window-left
+    "l" 'evil-window-right
+    "y" 'split-window-right-and-focus
+    "x" 'split-window-below-and-focus)
+
+  (which-key-add-key-based-replacements "sb" "buffer menu")
+#+END_SRC
+
 ** evil
 *** abusing the g prefix
 #+BEGIN_SRC emacs-lisp
@@ -1592,9 +1638,6 @@ the right."
 **** a: additions
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys org-map
-    "a RET" 'org-insert-heading
-    "ao" 'org-insert-heading-respect-content
-    "aj" 'org-insert-subheading
     "at" 'counsel-org-tag
     "al" 'org-insert-link
   )
@@ -1627,10 +1670,6 @@ the right."
 #+END_SRC
 
 **** t: table
-|         | alkdfjadjf  | alkdjfalkfj | 
-|         | adflka      | dlfkajd     |
-| dalkdfj | akdlfjadkjf | aldkfjaj    |
-|         |             |             |
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys org-map
     "tt" 'org-table-transpose-table-at-point
@@ -1783,52 +1822,6 @@ the right."
 
   (unbind-key "<SPC>" ag-mode-map)
   ;; (define-key ag-mode-map (kbd "SPC") nil)
-#+END_SRC
-
-** s
-#+BEGIN_SRC emacs-lisp
-  (bind-map s-map
-    :evil-keys ("s")
-    :evil-states (normal visual motion))
-
-  ;; quits: file saves, buffer deletes, window exits, you name it...
-  (bind-map-set-keys s-map
-    "s" 'evil-save-modified-and-close
-    "r" 'restart-emacs
-    "g" 'evil-execute-in-god-state
-    "t" 'multi-term
-    "e" 'eshell
-
-    "f" 'avy-goto-line
-
-    "m" 'counsel-bookmark
-
-    "d" 'spacemacs/kill-this-buffer
-    "D" 'spacemacs/kill-other-buffers
-
-    "i" 'ivy-switch-buffer
-
-    ;; "b" 'buffer-menu
-    ;; "b" 'list-buffers???
-    ;; more info here: http://emacs.stackexchange.com/a/21635/12585
-    "o" (lambda ()
-          (interactive)
-          (execute-extended-command '(4) "buffer-menu"))
-
-    "n" 'rectangle-ext-narrow
-    "w" 'rectangle-ext-widen
-
-    "p" 'counsel-yank-pop
-
-    ;; window manipulation
-    "j" 'evil-window-down
-    "k" 'evil-window-up
-    "h" 'evil-window-left
-    "l" 'evil-window-right
-    "y" 'split-window-right-and-focus
-    "x" 'split-window-below-and-focus)
-
-  (which-key-add-key-based-replacements "sb" "buffer menu")
 #+END_SRC
 
 ** awesome available binds
