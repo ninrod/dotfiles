@@ -146,7 +146,21 @@ the right."
 #+END_SRC
 
 ** ninrod custom functions
-*** ninrod/neotree-copy-filepath-to-clipboard
+*** uargs
+**** ninrod/uarg-shell-command
+#+BEGIN_SRC emacs-lisp
+(defun ninrod/uarg-exec-shell-command ()
+      (interactive)
+      (execute-extended-command '(4) "shell-command"))
+#+END_SRC
+**** ninrod/uarg-magit-status
+#+BEGIN_SRC emacs-lisp
+(defun ninrod/uarg-magit-status () (interactive)
+         (magit-status (magit-read-repository
+           (>= (prefix-numeric-value current-prefix-arg) 16))))
+#+END_SRC
+*** clipboard
+**** ninrod/neotree-copy-filepath-to-clipboard
 - with help from [[http://stackoverflow.com/a/40564951/4921402][/u/lawlist]]
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/neotree-copy-path ()
@@ -154,21 +168,9 @@ the right."
     (message (concat "copied path: \"" (neotree-copy-filepath-to-yank-ring) "\" to the clipboard.")))
 #+END_SRC
 
-*** ninrod/uarg-shell-command
+**** ninrod/yank-to-clipboard
 #+BEGIN_SRC emacs-lisp
-(defun ninrod/uarg-exec-shell-command ()
-      (interactive)
-      (execute-extended-command '(4) "shell-command"))
-#+END_SRC
-*** ninrod/uarg-magit-status
-#+BEGIN_SRC emacs-lisp
-(defun ninrod/uarg-magit-status () (interactive)
-         (magit-status (magit-read-repository
-           (>= (prefix-numeric-value current-prefix-arg) 16))))
-#+END_SRC
-*** ninrod/yank-to-clipboard
-#+BEGIN_SRC emacs-lisp
-(defun nin-yank-to-clipboard ()
+(defun ninrod/yank-to-clipboard ()
   "Copies selection to x-clipboard."
   (interactive)
   (if (display-graphic-p)
@@ -183,9 +185,9 @@ the right."
       (message "No region active; can't yank to clipboard!"))))
 #+END_SRC
 
-*** ninrod/paste-from-clipboard
+**** ninrod/paste-from-clipboard
 #+BEGIN_SRC emacs-lisp
-(defun nin-paste-from-clipboard ()
+(defun ninrod/paste-from-clipboard ()
   "Pastes from x-clipboard."
   (interactive)
   (if (display-graphic-p)
@@ -195,27 +197,11 @@ the right."
     (insert (shell-command-to-string "pbpaste"))))
 #+END_SRC
 
-*** ninrod/revert-buffer with no confirmation
-- from [[http://www.emacswiki.org/emacs-en/download/misc-cmds.el][emacswiki]]
-#+BEGIN_SRC emacs-lisp
-(defun nin-revert-buffer-no-confirm ()
-    "Revert buffer without confirmation."
-    (interactive)
-    (revert-buffer :ignore-auto :noconfirm))
-#+END_SRC
-
-*** ninrod/nin-echo
-#+BEGIN_SRC emacs-lisp
-(defun nin-echo ()
-  "just a simple test message for binds"
-  (interactive)
-  (message "the bind worked! yes!!"))
-#+END_SRC
-
-*** ninrod/org-mv-down
+*** org
+**** ninrod/org-mv-down
 - credits go to [[https://www.reddit.com/r/emacs/comments/583n1x/movecopy_a_cel_to_the_right/][/u/gmfawcett]]
 #+BEGIN_SRC emacs-lisp
-(defun nin-org-mv-down ()           ; moves a value down
+(defun ninrod/org-mv-down ()           ; moves a value down
   (interactive)
   (let ((pos (point))               ; get current pos
         (f (org-table-get-field)))  ; copy current field
@@ -227,10 +213,10 @@ the right."
     (goto-char pos)))               ; move back to original position
 #+END_SRC
 
-*** ninrod/org-swap-down
+**** ninrod/org-swap-down
 - credits go to [[https://www.reddit.com/r/emacs/comments/583n1x/movecopy_a_cel_to_the_right/][/u/gmfawcett]]
 #+BEGIN_SRC emacs-lisp
-(defun nin-org-swap-down ()               ; swap with value below
+(defun ninrod/org-swap-down ()               ; swap with value below
   (interactive)
   (let ((pos (point))                   ; get current pos
         (v1 (org-table-get-field)))     ; copy current field
@@ -245,15 +231,43 @@ the right."
       (goto-char pos))))                ; move back to original position
 #+END_SRC
 
-*** ninrod/origami-toggle-node
+**** ninrod/org-m-ret
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/org-m-ret ()
+    "evil m-ret function"
+    (interactive)
+    (save-excursion)
+    (goto-char (point-at-eol))
+    (org-meta-return)
+    (evil-insert-state))
+#+END_SRC
+*** misc
+**** ninrod/revert-buffer with no confirmation
+- from [[http://www.emacswiki.org/emacs-en/download/misc-cmds.el][emacswiki]]
+#+BEGIN_SRC emacs-lisp
+(defun ninrod/revert-buffer-no-confirm ()
+    "Revert buffer without confirmation."
+    (interactive)
+    (revert-buffer :ignore-auto :noconfirm))
+#+END_SRC
+
+**** ninrod/origami-toggle-node
 - with help from [[https://www.reddit.com/r/emacs/comments/580v30/tweaking_origamiel_lisp_and_regexes/][reddit]]
 #+BEGIN_SRC emacs-lisp
-(defun nin-origami-toggle-node ()
+(defun ninrod/origami-toggle-node ()
  (interactive)
  (save-excursion ;; leave point where it is
   (goto-char (point-at-eol))             ;; then go to the end of line
   (origami-toggle-node (current-buffer) (point))))                 ;; and try to fold
 #+END_SRC
+**** ninrod/nin-echo
+#+BEGIN_SRC emacs-lisp
+(defun ninrod/nin-echo ()
+  "just a simple test message for binds"
+  (interactive)
+  (message "the bind worked! yes!!"))
+#+END_SRC
+
 ** ninrod custom macros
 *** ninrod/define-and-bind-textobj
 - lifted from [[https://github.com/noctuid/evil-textobj-anyblock/issues/9#issuecomment-263761927][@noctuid]]
@@ -1290,7 +1304,7 @@ the right."
     "fm" 'bookmark-set
     "fn" 'neotree-toggle
     "fy" 'prelude-copy-file-name-to-clipboard
-    "fr" 'nin-revert-buffer-no-confirm
+    "fr" 'ninrod/revert-buffer-no-confirm
   )
   (which-key-declare-prefixes "SPC f" "file/dir operations")
 #+END_SRC
@@ -1381,8 +1395,8 @@ the right."
 *** y: clipboard/yank/paste operations
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys spc-map
-  "yy" 'nin-yank-to-clipboard
-  "yp" 'nin-paste-from-clipboard
+  "yy" 'ninrod/yank-to-clipboard
+  "yp" 'ninrod/paste-from-clipboard
 )
 (which-key-add-key-based-replacements "SPC y" "clipboard/yank/paste")
 #+END_SRC
@@ -1522,18 +1536,19 @@ the right."
 
     "RET" 'org-open-at-point
     "*" 'org-ctrl-c-star
-    "-" 'org-ctrl-c-minus
     "," 'org-todo
     )
 #+END_SRC
 
 *** t local
 #+BEGIN_SRC emacs-lisp
-(bind-map-set-keys org-t-map
-  "i" 'org-timer-item
-  "t" 'org-timer
-  "RET" 'org-meta-return
-  )
+  (bind-map-set-keys org-t-map
+    "i" 'org-timer-item
+    "t" 'org-timer
+    "-" 'org-ctrl-c-minus
+    ;; "RET" 'org-meta-return
+    "RET" 'ninrod/org-m-ret
+    )
 #+END_SRC
 *** local groups
 **** a: additions
@@ -1702,7 +1717,7 @@ the right."
 
 *** prog-mode
 #+BEGIN_SRC emacs-lisp
-(evil-define-key 'normal prog-mode-map (kbd "TAB") 'nin-origami-toggle-node)
+(evil-define-key 'normal prog-mode-map (kbd "TAB") 'ninrod/origami-toggle-node)
 #+END_SRC
 
 *** ivy minibuffer
