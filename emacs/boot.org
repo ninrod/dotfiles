@@ -1,7 +1,7 @@
 #+STARTUP: indent
 #+STARTUP: overview
 
-* lisp functions
+* lifted lisp functions
 ** spacemacs
 *** spacemacs/buffer operations
 **** spacemacs/alternate-buffer
@@ -145,60 +145,19 @@ the right."
       (message "Copied buffer file name '%s' to the clipboard." filename))))
 #+END_SRC
 
-** ninrod custom functions
-*** uargs
-**** ninrod/uarg-shell-command
+* ninrod functions
+** org
+*** ninrod/org-eol-m-ret
 #+BEGIN_SRC emacs-lisp
-(defun ninrod/uarg-exec-shell-command ()
-      (interactive)
-      (execute-extended-command '(4) "shell-command"))
-#+END_SRC
-**** ninrod/uarg-magit-status
-#+BEGIN_SRC emacs-lisp
-(defun ninrod/uarg-magit-status () (interactive)
-         (magit-status (magit-read-repository
-           (>= (prefix-numeric-value current-prefix-arg) 16))))
-#+END_SRC
-*** clipboard
-**** ninrod/neotree-copy-filepath-to-clipboard
-- with help from [[http://stackoverflow.com/a/40564951/4921402][/u/lawlist]]
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/neotree-copy-path ()
+  (defun ninrod/org-eol-m-ret ()
+    "moves point to the end of the line and applies m-ret and enters insert state"
     (interactive)
-    (message (concat "copied path: \"" (neotree-copy-filepath-to-yank-ring) "\" to the clipboard.")))
+    (save-excursion)
+    (goto-char (point-at-eol))
+    (org-meta-return)
+    (evil-insert-state))
 #+END_SRC
-
-**** ninrod/yank-to-clipboard
-#+BEGIN_SRC emacs-lisp
-(defun ninrod/yank-to-clipboard ()
-  "Copies selection to x-clipboard."
-  (interactive)
-  (if (display-graphic-p)
-      (progn
-        (message "Yanked region to x-clipboard!")
-        (call-interactively 'clipboard-kill-ring-save))
-    (if (region-active-p)
-        (progn
-          (shell-command-on-region (region-beginning) (region-end) "pbcopy")
-          (message "Yanked region to clipboard!")
-          (deactivate-mark))
-      (message "No region active; can't yank to clipboard!"))))
-#+END_SRC
-
-**** ninrod/paste-from-clipboard
-#+BEGIN_SRC emacs-lisp
-(defun ninrod/paste-from-clipboard ()
-  "Pastes from x-clipboard."
-  (interactive)
-  (if (display-graphic-p)
-      (progn
-        (clipboard-yank)
-        (message "graphics active"))
-    (insert (shell-command-to-string "pbpaste"))))
-#+END_SRC
-
-*** org
-**** ninrod/org-mv-down
+*** ninrod/org-mv-down
 - credits go to [[https://www.reddit.com/r/emacs/comments/583n1x/movecopy_a_cel_to_the_right/][/u/gmfawcett]]
 #+BEGIN_SRC emacs-lisp
 (defun ninrod/org-mv-down ()           ; moves a value down
@@ -213,7 +172,7 @@ the right."
     (goto-char pos)))               ; move back to original position
 #+END_SRC
 
-**** ninrod/org-swap-down
+*** ninrod/org-swap-down
 - credits go to [[https://www.reddit.com/r/emacs/comments/583n1x/movecopy_a_cel_to_the_right/][/u/gmfawcett]]
 #+BEGIN_SRC emacs-lisp
 (defun ninrod/org-swap-down ()               ; swap with value below
@@ -231,18 +190,59 @@ the right."
       (goto-char pos))))                ; move back to original position
 #+END_SRC
 
-**** ninrod/org-m-ret
+** uargs
+*** ninrod/uarg-shell-command
 #+BEGIN_SRC emacs-lisp
-  (defun ninrod/org-m-ret ()
-    "evil m-ret function"
-    (interactive)
-    (save-excursion)
-    (goto-char (point-at-eol))
-    (org-meta-return)
-    (evil-insert-state))
+(defun ninrod/uarg-exec-shell-command ()
+      (interactive)
+      (execute-extended-command '(4) "shell-command"))
 #+END_SRC
-*** misc
-**** ninrod/revert-buffer with no confirmation
+*** ninrod/uarg-magit-status
+#+BEGIN_SRC emacs-lisp
+(defun ninrod/uarg-magit-status () (interactive)
+         (magit-status (magit-read-repository
+           (>= (prefix-numeric-value current-prefix-arg) 16))))
+#+END_SRC
+** clipboard
+*** ninrod/neotree-copy-filepath-to-clipboard
+- with help from [[http://stackoverflow.com/a/40564951/4921402][/u/lawlist]]
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/neotree-copy-path ()
+    (interactive)
+    (message (concat "copied path: \"" (neotree-copy-filepath-to-yank-ring) "\" to the clipboard.")))
+#+END_SRC
+
+*** ninrod/yank-to-clipboard
+#+BEGIN_SRC emacs-lisp
+(defun ninrod/yank-to-clipboard ()
+  "Copies selection to x-clipboard."
+  (interactive)
+  (if (display-graphic-p)
+      (progn
+        (message "Yanked region to x-clipboard!")
+        (call-interactively 'clipboard-kill-ring-save))
+    (if (region-active-p)
+        (progn
+          (shell-command-on-region (region-beginning) (region-end) "pbcopy")
+          (message "Yanked region to clipboard!")
+          (deactivate-mark))
+      (message "No region active; can't yank to clipboard!"))))
+#+END_SRC
+
+*** ninrod/paste-from-clipboard
+#+BEGIN_SRC emacs-lisp
+(defun ninrod/paste-from-clipboard ()
+  "Pastes from x-clipboard."
+  (interactive)
+  (if (display-graphic-p)
+      (progn
+        (clipboard-yank)
+        (message "graphics active"))
+    (insert (shell-command-to-string "pbpaste"))))
+#+END_SRC
+
+** misc
+*** ninrod/revert-buffer with no confirmation
 - from [[http://www.emacswiki.org/emacs-en/download/misc-cmds.el][emacswiki]]
 #+BEGIN_SRC emacs-lisp
 (defun ninrod/revert-buffer-no-confirm ()
@@ -251,7 +251,7 @@ the right."
     (revert-buffer :ignore-auto :noconfirm))
 #+END_SRC
 
-**** ninrod/origami-toggle-node
+*** ninrod/origami-toggle-node
 - with help from [[https://www.reddit.com/r/emacs/comments/580v30/tweaking_origamiel_lisp_and_regexes/][reddit]]
 #+BEGIN_SRC emacs-lisp
 (defun ninrod/origami-toggle-node ()
@@ -260,7 +260,7 @@ the right."
   (goto-char (point-at-eol))             ;; then go to the end of line
   (origami-toggle-node (current-buffer) (point))))                 ;; and try to fold
 #+END_SRC
-**** ninrod/nin-echo
+*** ninrod/nin-echo
 #+BEGIN_SRC emacs-lisp
 (defun ninrod/nin-echo ()
   "just a simple test message for binds"
@@ -268,7 +268,7 @@ the right."
   (message "the bind worked! yes!!"))
 #+END_SRC
 
-** ninrod custom macros
+* ninrod macros
 *** ninrod/define-and-bind-textobj
 - lifted from [[https://github.com/noctuid/evil-textobj-anyblock/issues/9#issuecomment-263761927][@noctuid]]
 - with help from [[http://stackoverflow.com/q/18102004/4921402][this]] so question
@@ -1547,7 +1547,7 @@ the right."
     "t" 'org-timer
     "-" 'org-ctrl-c-minus
     ;; "RET" 'org-meta-return
-    "RET" 'ninrod/org-m-ret
+    "RET" 'ninrod/org-eol-m-ret
     )
 #+END_SRC
 *** local groups
