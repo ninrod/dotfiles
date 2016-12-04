@@ -1286,19 +1286,15 @@ the right."
 *** fast
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
-    "b" 'ivy-switch-buffer
+    "s" 'ivy-switch-buffer
     "d" 'spacemacs/kill-this-buffer ; Delete buffer
-    "s" 'write-file ; Save as
+    "w" 'write-file ; Save as
 
     "m" 'bookmark-set
     "<SPC>" 'counsel-bookmark
     "DEL" 'neotree-toggle
     "TAB" 'counsel-projectile-switch-project
     "RET" 'evil-save-modified-and-close
-
-    ;; ** window manipulations **
-    "n" 'rect-ext-narrow
-    "w" 'rect-ext-widen
 
     "j" 'evil-window-down
     "k" 'evil-window-up
@@ -1420,6 +1416,14 @@ the right."
 (which-key-declare-prefixes "SPC P" "Projectile")
 #+END_SRC
 
+**** R: Rectangle operations
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys spc-map
+    ;; ** window manipulations **
+    "Rn" 'rect-ext-narrow
+    "Rw" 'rect-ext-widen
+)
+#+END_SRC
 **** S: Spelling
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys spc-map
