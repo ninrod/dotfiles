@@ -1648,8 +1648,11 @@ the right."
 **** c: clock/timer
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys org-map
-    "ai" 'org-timer-item
-    "at" 'org-timer
+    "ci" 'org-clock-in
+    "co" 'org-clock-out
+    "c-" 'org-timer-item
+    "ct" 'org-timer
+    "cs" 'org-timer-stop
     )
   (which-key-declare-prefixes ", c" "clock/timer")
 #+END_SRC
