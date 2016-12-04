@@ -712,7 +712,7 @@ the right."
 
 *** themes
 **** spacemacs-theme
-  #+BEGIN_SRC text
+  #+BEGIN_SRC emacs-lisp
     (use-package spacemacs-dark-theme :load-path "lisp/ninrod/spacemacs-theme"
       :init
       (setq spacemacs-theme-org-height nil)
@@ -721,7 +721,7 @@ the right."
   #+END_SRC
 
 **** zerodark-theme
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (use-package zerodark-theme :load-path "lisp/ninrod/zerodark-theme"
     :init
     (setq zerodark-use-paddings-in-mode-line nil)
@@ -1269,7 +1269,8 @@ the right."
     :evil-states (normal visual motion))
 #+END_SRC
 
-*** core/directs
+*** fast
+**** single
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
     "<SPC>" 'counsel-M-x
@@ -1278,56 +1279,8 @@ the right."
   )
 #+END_SRC
 
-*** a: align
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys spc-map
-  "aa" 'align
-  "ac" 'align-current
-  "am" 'spacemacs/align-repeat-math-oper
-  "ar" 'spacemacs/align-repeat
-
-  "a&" 'spacemacs/align-repeat-ampersand
-  "a(" 'spacemacs/align-repeat-left-paren
-  "a)" 'spacemacs/align-repeat-right-paren
-  "a," 'spacemacs/align-repeat-comma
-  "a." 'spacemacs/align-repeat-decimal
-  "a:" 'spacemacs/align-repeat-colon
-  "a;" 'spacemacs/align-repeat-semicolon
-  "a=" 'spacemacs/align-repeat-equal
-  "a\\" 'spacemacs/align-repeat-backslash
-  "a|" 'spacemacs/align-repeat-bar
-)
-(which-key-declare-prefixes "SPC a" "align")
-
-#+END_SRC
-
-*** d: describe/help
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys spc-map
-    "db" 'counsel-descbinds
-    "dc" 'describe-char
-    "df" 'counsel-describe-function
-    "di" 'info
-    "dk" 'describe-key
-    "dm" 'describe-mode
-    "dt" 'counsel-describe-face
-    "dv" 'counsel-describe-variable
-  )
-  (which-key-declare-prefixes "SPC d" "describe/help")
-#+END_SRC
-
-*** e: eyebrowse
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys spc-map
-    "ec" 'eyebrowse-create-window-config
-    "en" 'eyebrowse-next-window-config
-    "er" 'eyebrowse-rename-window-config
-    "es" 'eyebrowse-switch-to-window-config
-)
-(which-key-declare-prefixes "SPC e" "eyebrowse")
-#+END_SRC
-
-*** f: files and directories
+**** groups
+***** f: files and directories
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
     "fs" 'write-file
@@ -1343,100 +1296,148 @@ the right."
   (which-key-declare-prefixes "SPC f" "file/dir operations")
 #+END_SRC
 
-*** g: git
+*** caps
+**** A: Align
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys spc-map
+  "Aa" 'align
+  "Ac" 'align-current
+  "Am" 'spacemacs/align-repeat-math-oper
+  "Ar" 'spacemacs/align-repeat
+
+  "A&" 'spacemacs/align-repeat-ampersand
+  "A(" 'spacemacs/align-repeat-left-paren
+  "A)" 'spacemacs/align-repeat-right-paren
+  "A," 'spacemacs/align-repeat-comma
+  "A." 'spacemacs/align-repeat-decimal
+  "A:" 'spacemacs/align-repeat-colon
+  "A;" 'spacemacs/align-repeat-semicolon
+  "A=" 'spacemacs/align-repeat-equal
+  "A\\" 'spacemacs/align-repeat-backslash
+  "A|" 'spacemacs/align-repeat-bar
+)
+(which-key-declare-prefixes "SPC A" "Align")
+
+#+END_SRC
+
+**** G: maGit
 - *lift*: the below magit SPC gs bind hack was lifted from [[http://emacs.stackexchange.com/a/27623/12585][this]] SO answer.
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys spc-map
-  "gf" 'magit-log-buffer-file
-  "gs" 'ninrod/uarg-magit-status)
-(which-key-declare-prefixes "SPC g" "[ma]git operations")
+  "Gf" 'magit-log-buffer-file
+  "Gs" 'ninrod/uarg-magit-status)
+(which-key-declare-prefixes "SPC G" "maGit operations")
 #+END_SRC
 
-*** i: ivy
+**** I: ivy
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
-    "is" 'ivy-push-view ; save
-    "il" 'ivy-pop-view  ; load
-    "ia" 'counsel-ag
+    "Ia" 'counsel-ag
+    "Ib" 'counsel-descbinds
+    "If" 'counsel-describe-function
+    "Il" 'ivy-pop-view  ; load
+    "Is" 'ivy-push-view ; save
+    "It" 'counsel-describe-face
+    "Iv" 'counsel-describe-variable
   )
-  (which-key-declare-prefixes "SPC i" "ivy")
+  (which-key-declare-prefixes "SPC I" "Ivy")
 #+END_SRC
 
-*** m: M-x useful functions
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys spc-map
-    "mc" 'count-words
-    "me" 'ninrod/uarg-exec-shell-command
-    "mf" 'customize-apropos-faces
-    "mi" 'ielm
-    "mm" 'elpamr-create-mirror-for-installed
-    "mr" 'replace-string
-    "ms" 'sort-lines
-  )
-  (which-key-declare-prefixes "SPC m" "M-x useful functions")
-  (which-key-declare-prefixes "SPC mi" "REPL: inferior elisp mode")
-#+END_SRC
-
-*** o: org-mode
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys spc-map
-    "oc" 'air-org-task-capture
-    "oa" 'air-pop-to-org-agenda
-    "ot" 'org-table-convert-region
-    "ob" 'org-bullets-mode
-  )
-  (which-key-declare-prefixes "SPC o" "org-mode")
-#+END_SRC
-
-*** p: projectile
+**** B: eyeBrowse
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys spc-map
-  "pa" 'projectile-ag
-  "ps" 'counsel-projectile-switch-project
-  "po" 'projectile-switch-open-project
+    "Bc" 'eyebrowse-create-window-config
+    "Bn" 'eyebrowse-next-window-config
+    "Br" 'eyebrowse-rename-window-config
+    "Bs" 'eyebrowse-switch-to-window-config
 )
-(which-key-declare-prefixes "SPC p" "projectile")
+(which-key-declare-prefixes "SPC B" "eyeBrowse")
 #+END_SRC
 
-*** s: spelling
+**** M: M-x useful functions
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys spc-map
+    "Mc" 'count-words
+    "Me" 'ninrod/uarg-exec-shell-command
+    "Mf" 'customize-apropos-faces
+    "Mi" 'ielm
+    "Mm" 'elpamr-create-mirror-for-installed
+    "Mr" 'replace-string
+    "Ms" 'sort-lines
+  )
+  (which-key-declare-prefixes "SPC M" "M-x useful functions")
+  (which-key-declare-prefixes "SPC Mi" "REPL: inferior elisp mode")
+#+END_SRC
+
+**** O: org-mode
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys spc-map
+    "Oc" 'air-org-task-capture
+    "Oa" 'air-pop-to-org-agenda
+    "Ot" 'org-table-convert-region
+    "Ob" 'org-bullets-mode
+  )
+  (which-key-declare-prefixes "SPC O" "Org-mode")
+#+END_SRC
+
+**** P: projectile
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys spc-map
-  "sw" 'ispell-word
-  "se" (lambda () (interactive) (ispell-change-dictionary "english"))
-  "sp" (lambda () (interactive) (ispell-change-dictionary "pt_BR"))
-  "sk" (lambda () (interactive) (flyspell-mode -1))
-  "ss" (lambda () (interactive) (flyspell-mode 1))
+  "Pa" 'projectile-ag
+  "Ps" 'counsel-projectile-switch-project
+  "Po" 'projectile-switch-open-project
 )
-(which-key-declare-prefixes "SPC s" "spelling")
+(which-key-declare-prefixes "SPC P" "Projectile")
+#+END_SRC
+
+**** S: Spelling
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys spc-map
+  "Sw" 'ispell-word
+  "Se" (lambda () (interactive) (ispell-change-dictionary "english"))
+  "Sp" (lambda () (interactive) (ispell-change-dictionary "pt_BR"))
+  "Sk" (lambda () (interactive) (flyspell-mode -1))
+  "Ss" (lambda () (interactive) (flyspell-mode 1))
+)
+(which-key-declare-prefixes "SPC S" "Spelling")
 (which-key-add-key-based-replacements
-  "SPC sw" "ispell: check word"
-  "SPC se" "ispell: use english dictionary"
-  "SPC sp" "ispell: use pt_BR dictionary"
-  "SPC sk" "turn off flyspell mode"
-  "SPC ss" "turn on flyspell mode"
+  "SPC Sw" "ispell: check word"
+  "SPC Se" "ispell: use english dictionary"
+  "SPC Sp" "ispell: use pt_BR dictionary"
+  "SPC Sk" "turn off flyspell mode"
+  "SPC Ss" "turn on flyspell mode"
 )
 #+END_SRC
 
-*** x: useful M-x commands
+**** X: useful M-x commands
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
-    "xm" 'man
-    "xw" 'woman
+    "Xm" 'man
+    "Xw" 'woman
   )
   (which-key-declare-prefixes "SPC x" "useful M-x commands")
 #+END_SRC
 
-*** y: clipboard/yank/paste operations
+**** E: evil
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys spc-map
-  "yy" 'ninrod/yank-to-clipboard
-  "yp" 'ninrod/paste-from-clipboard
+    "Eu" 'undo-tree-visualize
+    "E+" 'evil-numbers/inc-at-pt
+    "E-" 'evil-numbers/dec-at-pt
 )
-(which-key-add-key-based-replacements "SPC y" "clipboard/yank/paste")
+(which-key-declare-prefixes "SPC E" "evil-mode")
+#+END_SRC
+**** Y: clipboard/yank/paste operations
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys spc-map
+  "Yy" 'ninrod/yank-to-clipboard
+  "Yp" 'ninrod/paste-from-clipboard
+)
+(which-key-add-key-based-replacements "SPC Y" "clipboard/yank/paste")
 #+END_SRC
 
-*** H: hydras
-**** z: zoom
+**** H: hydras
+***** z: zoom
 #+BEGIN_SRC emacs-lisp
 (defhydra hydra-zoom (spc-map "Hz")
   "zoom"
@@ -1446,16 +1447,7 @@ the right."
 (which-key-add-key-based-replacements "SPC Hz" "zooming hydra")
 #+END_SRC
 
-*** E: evil
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys spc-map
-    "Eu" 'undo-tree-visualize
-    "E+" 'evil-numbers/inc-at-pt
-    "E-" 'evil-numbers/dec-at-pt
-)
-(which-key-declare-prefixes "SPC E" "evil-mode")
-#+END_SRC
-*** T: Toggles
+**** T: Toggles
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys spc-map
     "Tr" 'rainbow-mode
@@ -1477,7 +1469,15 @@ the right."
     "t" 'multi-term
     "e" 'eshell
 
-    "f" 'avy-goto-line
+    "fs" 'write-file
+    "fc" 'make-directory
+    "fd" 'cd
+    "fj" 'dired-jump
+    "fk" 'bookmark-delete
+    "fm" 'bookmark-set
+    "fn" 'neotree-toggle
+    "fy" 'prelude-copy-file-name-to-clipboard
+    "fr" 'ninrod/revert-buffer-no-confirm
 
     "m" 'counsel-bookmark
 
@@ -1493,8 +1493,8 @@ the right."
           (interactive)
           (execute-extended-command '(4) "buffer-menu"))
 
-    "n" 'rectangle-ext-narrow
-    "w" 'rectangle-ext-widen
+    "n" 'rect-ext-narrow
+    "w" 'rect-ext-widen
 
     "p" 'counsel-yank-pop
 
@@ -1505,8 +1505,8 @@ the right."
     "l" 'evil-window-right
     "y" 'split-window-right-and-focus
     "x" 'split-window-below-and-focus)
-
   (which-key-add-key-based-replacements "sb" "buffer menu")
+  (which-key-declare-prefixes "sf" "file/dir operations")
 #+END_SRC
 
 ** evil
@@ -1544,7 +1544,6 @@ the right."
   (bind-key "Q" 'evil-record-macro evil-normal-state-map)
   (bind-key "(" 'evil-backward-paragraph evil-motion-state-map)
   (bind-key ")" 'evil-forward-paragraph evil-motion-state-map)
-  (bind-key "t" 'avy-goto-line evil-normal-state-map)
 #+END_SRC
 
 *** function keys
