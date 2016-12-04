@@ -1499,6 +1499,7 @@ the right."
     "<SPC>" 'counsel-M-x
     ;; terminal
     "$" 'multi-term
+    "(" 'eshell
     "g" 'evil-execute-in-god-state
     "r" 'restart-emacs
     "p" 'counsel-yank-pop
