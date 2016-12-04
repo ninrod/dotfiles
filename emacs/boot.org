@@ -1286,25 +1286,27 @@ the right."
 *** fast
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
+    "b" 'ivy-switch-buffer
+    "d" 'spacemacs/kill-this-buffer ; Delete buffer
+    "s" 'write-file ; Save as
+
+    "m" 'bookmark-set
     "<SPC>" 'counsel-bookmark
     "DEL" 'neotree-toggle
     "TAB" 'counsel-projectile-switch-project
     "RET" 'evil-save-modified-and-close
 
-    "b" 'ivy-switch-buffer
-    "d" 'spacemacs/kill-this-buffer ; Delete buffer
-
+    ;; ** window manipulations **
     "n" 'rect-ext-narrow
     "w" 'rect-ext-widen
 
-    ;; window manipulation
     "j" 'evil-window-down
     "k" 'evil-window-up
     "h" 'evil-window-left
     "l" 'evil-window-right
+
     "y" 'split-window-right-and-focus
-    "x" 'split-window-below-and-focus
-  )
+    "x" 'split-window-below-and-focus)
 #+END_SRC
 
 *** caps
@@ -1336,6 +1338,7 @@ the right."
 (bind-map-set-keys spc-map
   "Bo" 'spacemacs/kill-other-buffers
   "Bu" 'ninrod/extended-buffer-menu ; mnemonic: Uargs M-x buffer-menu
+  "Br" 'ninrod/revert-buffer-no-confirm
 )
 #+END_SRC
 **** E: Eyebrowse
@@ -1349,6 +1352,15 @@ the right."
 (which-key-declare-prefixes "SPC E" "Eyebrowse")
 #+END_SRC
 
+**** F: File/Dir operations
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys spc-map
+    "Fy" 'prelude-copy-file-name-to-clipboard
+    "Fd" 'make-directory
+    "Fm" 'bookmark-delete
+  )
+  (which-key-declare-prefixes "SPC F" "File/Dir operations")
+#+END_SRC
 **** G: maGit
 - *lift*: the below magit SPC gs bind hack was lifted from [[http://emacs.stackexchange.com/a/27623/12585][this]] SO answer.
 #+BEGIN_SRC emacs-lisp
@@ -1486,27 +1498,10 @@ the right."
     "g" 'evil-execute-in-god-state
     "r" 'restart-emacs
     "p" 'counsel-yank-pop
+    "c" 'cd
   )
 #+END_SRC
 
-*** groups
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys s-map
-    "fs" 'write-file
-    "fc" 'make-directory
-    "fd" 'cd
-    "fj" 'dired-jump
-    "fk" 'bookmark-delete
-    "fm" 'bookmark-set
-    "fn" 'neotree-toggle
-    "fy" 'prelude-copy-file-name-to-clipboard
-    "fr" 'ninrod/revert-buffer-no-confirm)
-(which-key-declare-prefixes "sf" "file/dir operations")
-#+END_SRC
-
-*** caps
-#+BEGIN_SRC emacs-lisp
-#+END_SRC
 ** evil
 *** abusing the g prefix
 #+BEGIN_SRC emacs-lisp
