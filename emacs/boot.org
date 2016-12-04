@@ -227,16 +227,26 @@ the right."
 ** uargs
 *** ninrod/uarg-shell-command
 #+BEGIN_SRC emacs-lisp
-(defun ninrod/uarg-exec-shell-command ()
-      (interactive)
-      (execute-extended-command '(4) "shell-command"))
+  (defun ninrod/uarg-exec-shell-command ()
+    (interactive)
+    (execute-extended-command '(4) "shell-command"))
 #+END_SRC
 *** ninrod/uarg-magit-status
 #+BEGIN_SRC emacs-lisp
-(defun ninrod/uarg-magit-status () (interactive)
-         (magit-status (magit-read-repository
-           (>= (prefix-numeric-value current-prefix-arg) 16))))
+  (defun ninrod/uarg-magit-status ()
+    (interactive)
+    (magit-status (magit-read-repository
+                   (>= (prefix-numeric-value current-prefix-arg) 16))))
 #+END_SRC
+*** ninrod/extended-buffer-menu
+- more info here: http://emacs.stackexchange.com/a/21635/12585
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/extended-buffer-menu ()
+    (interactive)
+    ;; M-x list-buffers???
+    (execute-extended-command '(4) "buffer-menu"))
+#+END_SRC
+
 ** clipboard
 *** ninrod/neotree-copy-filepath-to-clipboard
 - with help from [[http://stackoverflow.com/a/40564951/4921402][/u/lawlist]]
@@ -1260,7 +1270,11 @@ the right."
 #+END_SRC
 
 * keybinds
-** SPC
+** SPC-map
+*** design
+- buffer switch/opening and overall manipulations
+- file openings, manipulations: dired, neotree, bookmarks
+- window splits/movements
 *** bind-map
 #+BEGIN_SRC emacs-lisp
 (bind-map spc-map
@@ -1272,10 +1286,24 @@ the right."
 *** fast
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
-    "<SPC>" 'counsel-M-x
+    "<SPC>" 'counsel-bookmark
     "DEL" 'neotree-toggle
-    "TAB" 'ninrod/nin-echo
-    "RET" 'ninrod/nin-echo
+    "TAB" 'counsel-projectile-switch-project
+    "RET" 'evil-save-modified-and-close
+
+    "b" 'ivy-switch-buffer
+    "d" 'spacemacs/kill-this-buffer ; Delete buffer
+
+    "n" 'rect-ext-narrow
+    "w" 'rect-ext-widen
+
+    ;; window manipulation
+    "j" 'evil-window-down
+    "k" 'evil-window-up
+    "h" 'evil-window-left
+    "l" 'evil-window-right
+    "y" 'split-window-right-and-focus
+    "x" 'split-window-below-and-focus
   )
 #+END_SRC
 
@@ -1303,6 +1331,24 @@ the right."
 
 #+END_SRC
 
+**** B: Buffer operations
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys spc-map
+  "Bo" 'spacemacs/kill-other-buffers
+  "Bu" 'ninrod/extended-buffer-menu ; mnemonic: Uargs M-x buffer-menu
+)
+#+END_SRC
+**** E: Eyebrowse
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys spc-map
+    "Ec" 'eyebrowse-create-window-config
+    "En" 'eyebrowse-next-window-config
+    "Er" 'eyebrowse-rename-window-config
+    "Es" 'eyebrowse-switch-to-window-config
+)
+(which-key-declare-prefixes "SPC E" "Eyebrowse")
+#+END_SRC
+
 **** G: maGit
 - *lift*: the below magit SPC gs bind hack was lifted from [[http://emacs.stackexchange.com/a/27623/12585][this]] SO answer.
 #+BEGIN_SRC emacs-lisp
@@ -1324,17 +1370,6 @@ the right."
     "Iv" 'counsel-describe-variable
   )
   (which-key-declare-prefixes "SPC I" "Ivy")
-#+END_SRC
-
-**** B: eyeBrowse
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys spc-map
-    "Bc" 'eyebrowse-create-window-config
-    "Bn" 'eyebrowse-next-window-config
-    "Br" 'eyebrowse-rename-window-config
-    "Bs" 'eyebrowse-switch-to-window-config
-)
-(which-key-declare-prefixes "SPC B" "eyeBrowse")
 #+END_SRC
 
 **** M: M-x useful functions
@@ -1397,19 +1432,14 @@ the right."
   (bind-map-set-keys spc-map
     "Xm" 'man
     "Xw" 'woman
+    ;; evil
+    "Xeu" 'undo-tree-visualize
+    "Xe+" 'evil-numbers/inc-at-pt
+    "Xe-" 'evil-numbers/dec-at-pt
   )
   (which-key-declare-prefixes "SPC x" "useful M-x commands")
 #+END_SRC
 
-**** E: evil
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys spc-map
-    "Eu" 'undo-tree-visualize
-    "E+" 'evil-numbers/inc-at-pt
-    "E-" 'evil-numbers/dec-at-pt
-)
-(which-key-declare-prefixes "SPC E" "evil-mode")
-#+END_SRC
 **** Y: clipboard/yank/paste operations
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys spc-map
@@ -1438,20 +1468,30 @@ the right."
 )
 (which-key-declare-prefixes "SPC T" "toggles")
 #+END_SRC
-** s
+** s-map
+*** idea
+- other fast and reoccurring operations
+*** bind-map
 #+BEGIN_SRC emacs-lisp
   (bind-map s-map
     :evil-keys ("s")
     :evil-states (normal visual motion))
-
-  ;; quits: file saves, buffer deletes, window exits, you name it...
+#+END_SRC
+*** fast
+#+BEGIN_SRC emacs-lisp
   (bind-map-set-keys s-map
-    "s" 'evil-save-modified-and-close
-    "r" 'restart-emacs
+    "<SPC>" 'counsel-M-x
+    ;; terminal
+    "$" 'multi-term
     "g" 'evil-execute-in-god-state
-    "t" 'multi-term
-    "e" 'eshell
+    "r" 'restart-emacs
+    "p" 'counsel-yank-pop
+  )
+#+END_SRC
 
+*** groups
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys s-map
     "fs" 'write-file
     "fc" 'make-directory
     "fd" 'cd
@@ -1460,38 +1500,13 @@ the right."
     "fm" 'bookmark-set
     "fn" 'neotree-toggle
     "fy" 'prelude-copy-file-name-to-clipboard
-    "fr" 'ninrod/revert-buffer-no-confirm
-
-    "m" 'counsel-bookmark
-
-    "d" 'spacemacs/kill-this-buffer
-    "D" 'spacemacs/kill-other-buffers
-
-    "i" 'ivy-switch-buffer
-
-    ;; "b" 'buffer-menu
-    ;; "b" 'list-buffers???
-    ;; more info here: http://emacs.stackexchange.com/a/21635/12585
-    "o" (lambda ()
-          (interactive)
-          (execute-extended-command '(4) "buffer-menu"))
-
-    "n" 'rect-ext-narrow
-    "w" 'rect-ext-widen
-
-    "p" 'counsel-yank-pop
-
-    ;; window manipulation
-    "j" 'evil-window-down
-    "k" 'evil-window-up
-    "h" 'evil-window-left
-    "l" 'evil-window-right
-    "y" 'split-window-right-and-focus
-    "x" 'split-window-below-and-focus)
-  (which-key-add-key-based-replacements "sb" "buffer menu")
-  (which-key-declare-prefixes "sf" "file/dir operations")
+    "fr" 'ninrod/revert-buffer-no-confirm)
+(which-key-declare-prefixes "sf" "file/dir operations")
 #+END_SRC
 
+*** caps
+#+BEGIN_SRC emacs-lisp
+#+END_SRC
 ** evil
 *** abusing the g prefix
 #+BEGIN_SRC emacs-lisp
