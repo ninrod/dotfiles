@@ -1496,10 +1496,13 @@ the right."
 *** fast
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys s-map
-    "<SPC>" 'counsel-M-x
+    ;; "<SPC>" 'counsel-M-x
+
     ;; terminal
     "$" 'multi-term
     "(" 'eshell
+
+    "m" 'counsel-M-x
     "g" 'evil-execute-in-god-state
     "r" 'restart-emacs
     "p" 'counsel-yank-pop
@@ -1586,7 +1589,7 @@ the right."
 ** org
 *** bind-map
 #+BEGIN_SRC emacs-lisp
-  (bind-map org-map
+  (bind-map org-comma-map
     :evil-keys (",")
     :evil-states (normal visual)
     :major-modes (org-mode))
@@ -1598,16 +1601,13 @@ the right."
 #+END_SRC
 
 *** , local
+**** directs
 #+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-map
+  (bind-map-set-keys org-comma-map
     "r" 'org-refile
-    "z" 'org-narrow-to-subtree
-    "o" 'widen
+    "n" 'org-narrow-to-subtree
+    "w" 'widen
 
-    "l" 'org-metaright
-    "h" 'org-metaleft
-    "j" 'org-metadown
-    "k" 'org-metaup
 
     "TAB" 'evil-toggle-fold
 
@@ -1616,25 +1616,10 @@ the right."
     "," 'org-todo
     )
 #+END_SRC
-
-*** t local
+**** local groups
+***** a: additions
 #+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-t-map
-    "k" 'ninrod/org-bol-m-ret ; open new heading above
-    "j" 'ninrod/org-insert-heading-respect-content ; open new heading below, respecting content
-    "o" 'ninrod/org-insert-subheading ; open new subheading
-
-    "-" 'org-ctrl-c-minus
-
-    "RET" 'ninrod/org-eol-m-ret
-    "DEL" 'ninrod/org-bol-m-ret
-    )
-#+END_SRC
-
-*** local groups
-**** a: additions
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-map
+  (bind-map-set-keys org-comma-map
     "at" 'counsel-org-tag
     "al" 'org-insert-link
   )
@@ -1642,9 +1627,9 @@ the right."
 #+END_SRC
 
 #+RESULTS:
-**** c: clock/timer
+***** c: clock/timer
 #+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-map
+  (bind-map-set-keys org-comma-map
     "ci" 'org-clock-in
     "co" 'org-clock-out
     "c-" 'org-timer-item
@@ -1653,9 +1638,9 @@ the right."
     )
   (which-key-declare-prefixes ", c" "clock/timer")
 #+END_SRC
-**** s: subtree commands
+***** s: subtree commands
 #+BEGIN_SRC emacs-lisp
-(bind-map-set-keys org-map
+(bind-map-set-keys org-comma-map
   ;; subtree commands
   "sh" 'org-promote-subtree
   "sl" 'org-demote-subtree
@@ -1669,9 +1654,9 @@ the right."
 (which-key-declare-prefixes ", s" "org subtree operations")
 #+END_SRC
 
-**** t: table
+***** t: table
 #+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-map
+  (bind-map-set-keys org-comma-map
     "tt" 'org-table-transpose-table-at-point
 
     "th" 'org-backward-sentence ;; M-a tga
@@ -1700,19 +1685,37 @@ the right."
   (which-key-add-major-mode-key-based-replacements 'org-mode ", tf" "recalculate formulas")
 #+END_SRC
 
-**** E: exports
+**** caps
+***** E: exports
 #+BEGIN_SRC emacs-lisp
-(bind-map-set-keys org-map
+(bind-map-set-keys org-comma-map
   "Ed" 'org-export-dispatch)
 (which-key-declare-prefixes ", E" "Exports")
 #+END_SRC
 
-**** T: toggles
+***** T: toggles
 #+BEGIN_SRC emacs-lisp
-(bind-map-set-keys org-map
+(bind-map-set-keys org-comma-map
   "Tl" 'org-toggle-link-display
 )
 (which-key-declare-prefixes ", T" "Toggles")
+#+END_SRC
+
+*** t local
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys org-t-map
+    "l" 'org-metaright
+    "h" 'org-metaleft
+    "j" 'org-metadown
+    "k" 'org-metaup
+
+    "-" 'org-ctrl-c-minus
+
+    "TAB" 'ninrod/org-insert-heading-respect-content ; open new heading below, respecting content
+    "<SPC>" 'ninrod/org-insert-subheading ; open new subheading
+    "RET" 'ninrod/org-eol-m-ret
+    "DEL" 'ninrod/org-bol-m-ret
+    )
 #+END_SRC
 
 *** local fixes
