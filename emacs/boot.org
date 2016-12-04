@@ -1713,8 +1713,8 @@ the right."
 
     "TAB" 'ninrod/org-insert-heading-respect-content ; open new heading below, respecting content
     "<SPC>" 'ninrod/org-insert-subheading ; open new subheading
-    "RET" 'ninrod/org-eol-m-ret
-    "DEL" 'ninrod/org-bol-m-ret
+    "RET" 'ninrod/org-eol-m-ret ; open new heading below, not respecting content
+    "DEL" 'ninrod/org-bol-m-ret ; open new heading above
     )
 #+END_SRC
 
