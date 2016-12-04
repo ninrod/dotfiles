@@ -1517,6 +1517,7 @@ the right."
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys s-map
     ;; "<SPC>" 'counsel-M-x
+    "o" 'air-org-task-capture
 
     ;; terminal
     "$" 'multi-term
@@ -1621,19 +1622,16 @@ the right."
 #+END_SRC
 
 *** , local
-**** directs
+**** fast
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys org-comma-map
     "r" 'org-refile
     "n" 'org-narrow-to-subtree
     "w" 'widen
 
-
     "TAB" 'evil-toggle-fold
 
     "RET" 'org-open-at-point
-    "*" 'org-ctrl-c-star
-    "," 'org-todo
     )
 #+END_SRC
 **** local groups
@@ -1729,7 +1727,10 @@ the right."
     "j" 'org-metadown
     "k" 'org-metaup
 
+    "t" 'org-todo
+
     "-" 'org-ctrl-c-minus
+    "*" 'org-ctrl-c-star
 
     "TAB" 'ninrod/org-insert-heading-respect-content ; open new heading below, respecting content
     "<SPC>" 'ninrod/org-insert-subheading ; open new subheading
