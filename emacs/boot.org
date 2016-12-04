@@ -1270,30 +1270,13 @@ the right."
 #+END_SRC
 
 *** fast
-**** single
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
     "<SPC>" 'counsel-M-x
     "DEL" 'neotree-toggle
-    ;; "TAB" 'counsel-bookmark
+    "TAB" 'ninrod/nin-echo
+    "RET" 'ninrod/nin-echo
   )
-#+END_SRC
-
-**** groups
-***** f: files and directories
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys spc-map
-    "fs" 'write-file
-    "fc" 'make-directory
-    "fd" 'cd
-    "fj" 'dired-jump
-    "fk" 'bookmark-delete
-    "fm" 'bookmark-set
-    "fn" 'neotree-toggle
-    "fy" 'prelude-copy-file-name-to-clipboard
-    "fr" 'ninrod/revert-buffer-no-confirm
-  )
-  (which-key-declare-prefixes "SPC f" "file/dir operations")
 #+END_SRC
 
 *** caps
