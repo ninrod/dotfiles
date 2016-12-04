@@ -223,6 +223,26 @@ the right."
       (org-table-align)                 ; realign the table
       (goto-char pos))))                ; move back to original position
 #+END_SRC
+** lisp
+*** ninrod/eval-print-last-sexp
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/eval-print-last-sexp ()
+      "Move point to the end of the line and eval-prints last sexp."
+      (interactive)
+      (save-excursion)
+      (goto-char (point-at-eol))
+      (eval-print-last-sexp))
+#+END_SRC
+
+*** ninrod/eval-last-sexp
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/eval-last-sexp ()
+      "Move point to the end of the line and eval last sexp."
+      (interactive)
+      (save-excursion)
+      (goto-char (point-at-eol))
+      (eval-last-sexp nil))
+#+END_SRC
 
 ** uargs
 *** ninrod/uarg-shell-command
@@ -1586,7 +1606,7 @@ the right."
   (bind-key (kbd "C-<tab>") 'dabbrev-expand minibuffer-local-map)
 #+END_SRC
 
-** org
+** org-mode
 *** bind-map
 #+BEGIN_SRC emacs-lisp
   (bind-map org-comma-map
@@ -1739,23 +1759,31 @@ the right."
   (evil-define-key 'normal org-src-mode-map (kbd "<RET>") 'org-edit-src-exit)
 #+END_SRC
 
-** modes
+** other modes
 *** lisp-mode
-- with help from [[https://www.reddit.com/r/emacs/comments/56xmvg/properly_editing_a_shell_buffer_with_evilmode/][/r/emacs]]
+**** bind-map
 #+BEGIN_SRC emacs-lisp
-  (bind-map term-map
+  (bind-map lisp-comma-map
       :evil-keys (",")
       :evil-states (normal visual)
       :major-modes (lisp-mode lisp-interaction-mode))
 
-  (bind-map-set-keys term-map
-    "e" 'eval-last-sexp
-    "r" 'eval-print-last-sexp
-  )
-  (which-key-add-major-mode-key-based-replacements 'term-mode ", e" "eval-last-sexp")
-  (which-key-add-major-mode-key-based-replacements 'term-mode ", p" "eval-print-last-sexp")
-#+END_SRC
+  (bind-map lisp-t-map
+    :evil-keys ("t")
+    :evil-states (normal)
+    :major-modes (lisp-mode lisp-interaction-mode))
 
+#+END_SRC
+**** t-map
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys lisp-t-map
+    "l" 'ninrod/eval-last-sexp
+    "o" 'ninrod/eval-print-last-sexp ;mnemonic: output to current buffer
+  )
+
+  (which-key-add-major-mode-key-based-replacements 'lisp-mode "t l" "eval-last-sexp")
+  (which-key-add-major-mode-key-based-replacements 'lisp-mode "t p" "eval-print-last-sexp")
+#+END_SRC
 *** term
 - with help from [[https://www.reddit.com/r/emacs/comments/56xmvg/properly_editing_a_shell_buffer_with_evilmode/][/r/emacs]]
 #+BEGIN_SRC emacs-lisp
