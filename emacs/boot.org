@@ -1624,51 +1624,26 @@ the right."
     "w" 'widen
 
     "l" 'org-insert-link
+    "t" 'counsel-org-tag
 
     "TAB" 'evil-toggle-fold
 
     "RET" 'org-open-at-point
     )
 #+END_SRC
-**** local groups
-***** a: additions
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-comma-map
-    "at" 'counsel-org-tag
-    "al" 'org-insert-link
-  )
-  (which-key-declare-prefixes ", a" "add")
-#+END_SRC
-
-#+RESULTS:
-***** c: clock/timer
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-comma-map
-    "ci" 'org-clock-in
-    "co" 'org-clock-out
-    "c-" 'org-timer-item
-    "ct" 'org-timer
-    "cs" 'org-timer-stop
-    )
-  (which-key-declare-prefixes ", c" "clock/timer")
-#+END_SRC
-***** s: subtree commands
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys org-comma-map
-  ;; subtree commands
-  "sh" 'org-promote-subtree
-  "sl" 'org-demote-subtree
-  "sk" 'org-move-subtree-up
-  "sj" 'org-move-subtree-down
-
-  "sy" 'org-copy-subtree
-  "sd" 'org-cut-subtree
-  "sp" 'org-paste-subtree
-  "sc" 'org-clone-subtree-with-time-shift)
-(which-key-declare-prefixes ", s" "org subtree operations")
-#+END_SRC
-
 **** caps
+***** C: clock/timer
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys org-comma-map
+    "Ci" 'org-clock-in
+    "Co" 'org-clock-out
+    "C-" 'org-timer-item
+    "Ct" 'org-timer
+    "Cs" 'org-timer-stop
+    )
+  (which-key-declare-prefixes ", C" "clock/timer")
+#+END_SRC
+
 ***** E: exports
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys org-comma-map
