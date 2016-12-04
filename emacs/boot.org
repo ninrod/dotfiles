@@ -1608,26 +1608,22 @@ the right."
 #+END_SRC
 
 ** org-mode
-*** bind-map
+*** , local
+**** bind
 #+BEGIN_SRC emacs-lisp
   (bind-map org-comma-map
     :evil-keys (",")
     :evil-states (normal visual)
     :major-modes (org-mode))
-
-  (bind-map org-t-map
-    :evil-keys ("t")
-    :evil-states (normal)
-    :major-modes (org-mode))
 #+END_SRC
-
-*** , local
 **** fast
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys org-comma-map
     "r" 'org-refile
     "n" 'org-narrow-to-subtree
     "w" 'widen
+
+    "l" 'org-insert-link
 
     "TAB" 'evil-toggle-fold
 
@@ -1672,37 +1668,6 @@ the right."
 (which-key-declare-prefixes ", s" "org subtree operations")
 #+END_SRC
 
-***** t: table
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-comma-map
-    "tt" 'org-table-transpose-table-at-point
-
-    "th" 'org-backward-sentence ;; M-a tga
-    "tl" 'org-forward-sentence ;; M-e tge
-
-    "td" 'org-table-delete-column
-
-    ;; from https://www.reddit.com/r/emacs/comments/56oc9c/orgtables_is_there_a_way_to_delete_a_whole_table/
-    ;; fist place point in the top left bar (`|')
-    "tm" 'org-mark-element
-
-    "tr" 'org-table-insert-row ; above
-    "tc" 'org-table-insert-column ;before
-
-    ;; formulas
-    "to" 'org-table-toggle-coordinate-overlays
-    "t?" 'org-table-field-info
-    "t=" 'org-table-eval-formula
-    "tf" (lambda () (interactive)
-           (let ((current-prefix-arg 4))
-             (call-interactively 'org-table-recalculate)))
-
-    "t RET" 'org-table-copy-down
-    )
-  (which-key-add-major-mode-key-based-replacements 'org-mode ", t" "org-table")
-  (which-key-add-major-mode-key-based-replacements 'org-mode ", tf" "recalculate formulas")
-#+END_SRC
-
 **** caps
 ***** E: exports
 #+BEGIN_SRC emacs-lisp
@@ -1720,6 +1685,16 @@ the right."
 #+END_SRC
 
 *** t local
+**** bind-map
+#+BEGIN_SRC emacs-lisp
+
+  (bind-map org-t-map
+    :evil-keys ("t")
+    :evil-states (normal)
+    :major-modes (org-mode))
+#+END_SRC
+
+**** fast
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys org-t-map
     "l" 'org-metaright
@@ -1737,6 +1712,68 @@ the right."
     "RET" 'ninrod/org-eol-m-ret ; open new heading below, not respecting content
     "DEL" 'ninrod/org-bol-m-ret ; open new heading above
     )
+#+END_SRC
+
+*** T local (tables)
+**** bind-map
+#+BEGIN_SRC emacs-lisp
+  (bind-map org-T-map
+    :evil-keys ("T")
+    :evil-states (normal)
+    :major-modes (org-mode))
+#+END_SRC
+
+**** fast
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys org-T-map
+    "t" 'org-table-transpose-table-at-point
+    "h" 'org-backward-sentence ;; M-a tga
+    "l" 'org-forward-sentence ;; M-e tge
+    "d" 'org-table-delete-column
+
+    ;; from https://www.reddit.com/r/emacs/comments/56oc9c/orgtables_is_there_a_way_to_delete_a_whole_table/
+    ;; fist place point in the top left bar (`|')
+    "m" 'org-mark-element
+
+    "r" 'org-table-insert-row ; above
+    "c" 'org-table-insert-column ;before
+
+    ;; formulas
+    "o" 'org-table-toggle-coordinate-overlays
+    "?" 'org-table-field-info
+    "=" 'org-table-eval-formula
+    "f" (lambda () (interactive)
+           (let ((current-prefix-arg 4))
+             (call-interactively 'org-table-recalculate)))
+
+    "RET" 'org-table-copy-down
+  )
+  (which-key-add-major-mode-key-based-replacements 'org-mode "T f" "recalculate formulas")
+#+END_SRC
+
+*** S local (subtrees)
+**** bind-map
+#+BEGIN_SRC emacs-lisp
+  (bind-map org-S-map
+    :evil-keys ("S")
+    :evil-states (normal)
+    :major-modes (org-mode))
+#+END_SRC
+
+**** fast
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys org-S-map
+  ;; subtree commands
+  "h" 'org-promote-subtree
+  "l" 'org-demote-subtree
+  "k" 'org-move-subtree-up
+  "j" 'org-move-subtree-down
+
+  "y" 'org-copy-subtree
+  "d" 'org-cut-subtree
+  "p" 'org-paste-subtree
+  "c" 'org-clone-subtree-with-time-shift
+  )
 #+END_SRC
 
 *** local fixes
