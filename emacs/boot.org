@@ -742,7 +742,7 @@ the right."
 
 *** themes
 **** spacemacs-theme
-  #+BEGIN_SRC emacs-lisp
+  #+BEGIN_SRC text
     (use-package spacemacs-dark-theme :load-path "lisp/ninrod/spacemacs-theme"
       :init
       (setq spacemacs-theme-org-height nil)
@@ -751,7 +751,7 @@ the right."
   #+END_SRC
 
 **** zerodark-theme
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package zerodark-theme :load-path "lisp/ninrod/zerodark-theme"
     :init
     (setq zerodark-use-paddings-in-mode-line nil)
@@ -1306,14 +1306,15 @@ the right."
 *** fast
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
+    ;; "TAB" 'counsel-projectile-switch-project
+
     "s" 'ivy-switch-buffer
     "d" 'spacemacs/kill-this-buffer ; Delete buffer
     "w" 'write-file ; Save as
+    "p" 'counsel-projectile-switch-project
 
-    "m" 'bookmark-set
     "<SPC>" 'counsel-bookmark
     "DEL" 'neotree-toggle
-    "TAB" 'counsel-projectile-switch-project
     "RET" 'evil-save-modified-and-close
 
     "j" 'evil-window-down
@@ -1372,8 +1373,9 @@ the right."
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
     "Fy" 'prelude-copy-file-name-to-clipboard
-    "Fd" 'make-directory
-    "Fm" 'bookmark-delete
+    "Fm" 'make-directory
+    "Fd" 'bookmark-delete
+    "Fs" 'bookmark-set
   )
   (which-key-declare-prefixes "SPC F" "File/Dir operations")
 #+END_SRC
@@ -1525,7 +1527,7 @@ the right."
     "(" 'eshell
 
     "m" 'counsel-M-x
-    "g" 'evil-execute-in-god-state
+    "g" 'ninrod/uarg-magit-status
     "r" 'restart-emacs
     "p" 'counsel-yank-pop
     "c" 'cd
@@ -1576,6 +1578,7 @@ the right."
   (bind-key "Q" 'evil-record-macro evil-normal-state-map)
   (bind-key "(" 'evil-backward-paragraph evil-motion-state-map)
   (bind-key ")" 'evil-forward-paragraph evil-motion-state-map)
+  (bind-key "G" 'evil-execute-in-god-state evil-normal-state-map)
 #+END_SRC
 
 *** function keys
