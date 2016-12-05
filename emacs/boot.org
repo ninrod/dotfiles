@@ -1541,6 +1541,7 @@ the right."
     "dt" 'counsel-describe-face
     "dv" 'counsel-describe-variable
     )
+  (which-key-declare-prefixes "s d " "describe/help")
 #+END_SRC
 
 ** evil
@@ -1911,7 +1912,6 @@ the right."
                 "u" 'neotree-select-up-node
                 "zj" 'neotree-select-next-sibling-node
                 "zk" 'neotree-select-previous-sibling-node
-                "gr" 'neotree-refresh
                 "q" 'neotree-toggle
                 "i" 'neotree-enter-horizontal-split
                 "c" 'neotree-create-node
@@ -1921,6 +1921,7 @@ the right."
                 "gg" 'evil-goto-first-line
                 "go" 'evil-goto-first-line
                 "gl" 'evil-goto-line
+                "gr" 'neotree-refresh
                 (kbd "<DEL>") 'neotree-select-up-node
                 (kbd "<return>") 'neotree-enter)
               neotree-mode-map))
