@@ -1519,6 +1519,7 @@ the right."
     ;; "<SPC>" 'counsel-M-x
     "o" 'air-org-task-capture
 
+
     ;; terminal
     "$" 'multi-term
     "(" 'eshell
@@ -1528,7 +1529,16 @@ the right."
     "r" 'restart-emacs
     "p" 'counsel-yank-pop
     "c" 'cd
-  )
+
+    "db" 'counsel-descbinds
+    "dc" 'describe-char
+    "df" 'counsel-describe-function
+    "di" 'info
+    "dk" 'describe-key
+    "dm" 'describe-mode
+    "dt" 'counsel-describe-face
+    "dv" 'counsel-describe-variable
+    )
 #+END_SRC
 
 ** evil
