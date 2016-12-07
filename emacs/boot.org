@@ -791,15 +791,12 @@ the right."
       (load-theme 'gruvbox t))
   #+END_SRC
 
-  #+RESULTS:
-  : t
-
 *** spaceline
 - to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
 #+BEGIN_SRC emacs-lisp
   (use-package spaceline :ensure t
     :config
-    (setq powerline-height 25)
+    (setq powerline-height 30)
     (setq powerline-default-separator 'utf-8)
     (setq spaceline-separator-dir-left '(right . right))
     (setq spaceline-separator-dir-right '(right . right))
@@ -812,7 +809,22 @@ the right."
     (spaceline-spacemacs-theme)
     (spaceline-compile))
 #+END_SRC
+*** smartmodeline
+#+BEGIN_SRC text
+  (use-package smart-mode-line :ensure t
+    :init
+    (setq sml/theme 'respectful)
+    (setq sml/no-confirm-load-theme t)
 
+
+    :config
+    (sml/setup)
+
+    (use-package modeline-posn :ensure t
+      :config
+      (size-indication-mode))
+    )
+#+END_SRC
 *** rainbow-delimiters
 #+BEGIN_SRC emacs-lisp
 (use-package rainbow-delimiters :ensure t
@@ -1300,25 +1312,27 @@ the right."
 
 *** fast
 #+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys spc-map
-    ;; "TAB" 'counsel-projectile-switch-project
+    (bind-map-set-keys spc-map
+      "<SPC>" 'counsel-M-x
 
-    "s" 'ivy-switch-buffer
-    "d" 'spacemacs/kill-this-buffer ; Delete buffer
-    "w" 'write-file ; Save as
-    "p" 'counsel-projectile-switch-project
+      ;; terminal
+      "t" 'multi-term
+      "$" 'eshell
 
-    "<SPC>" 'counsel-bookmark
-    "DEL" 'neotree-toggle
-    "RET" 'evil-save-modified-and-close
+      "g" 'ninrod/uarg-magit-status
+      "p" 'counsel-yank-pop
+      "c" 'cd
 
-    "j" 'evil-window-down
-    "k" 'evil-window-up
-    "h" 'evil-window-left
-    "l" 'evil-window-right
-
-    "y" 'split-window-right-and-focus
-    "x" 'split-window-below-and-focus)
+      "db" 'counsel-descbinds
+      "dc" 'describe-char
+      "df" 'counsel-describe-function
+      "di" 'info
+      "dk" 'describe-key
+      "dm" 'describe-mode
+      "dt" 'counsel-describe-face
+      "dv" 'counsel-describe-variable
+  )
+  (which-key-declare-prefixes "<SPC> d " "describe/help")
 #+END_SRC
 
 *** caps
@@ -1513,30 +1527,27 @@ the right."
 *** fast
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys s-map
-    ;; "<SPC>" 'counsel-M-x
-    "o" 'air-org-task-capture
+    ;; "TAB" 'counsel-projectile-switch-project
 
-
-    ;; terminal
-    "$" 'multi-term
-    "(" 'eshell
-
-    "m" 'counsel-M-x
-    "g" 'ninrod/uarg-magit-status
     "r" 'restart-emacs
-    "p" 'counsel-yank-pop
-    "c" 'cd
+    "o" 'air-org-task-capture
+    "s" 'ivy-switch-buffer
+    "d" 'spacemacs/kill-this-buffer ; Delete buffer
+    "w" 'write-file ; Save as
+    "p" 'counsel-projectile-switch-project
 
-    "db" 'counsel-descbinds
-    "dc" 'describe-char
-    "df" 'counsel-describe-function
-    "di" 'info
-    "dk" 'describe-key
-    "dm" 'describe-mode
-    "dt" 'counsel-describe-face
-    "dv" 'counsel-describe-variable
+    "<SPC>" 'counsel-bookmark
+    "DEL" 'neotree-toggle
+    "RET" 'evil-save-modified-and-close
+
+    "j" 'evil-window-down
+    "k" 'evil-window-up
+    "h" 'evil-window-left
+    "l" 'evil-window-right
+
+    "y" 'split-window-right-and-focus
+    "x" 'split-window-below-and-focus
     )
-  (which-key-declare-prefixes "s d " "describe/help")
 #+END_SRC
 
 ** evil
@@ -1681,6 +1692,8 @@ the right."
 **** fast
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys org-t-map
+    ;; "TAB" 'ninrod/org-insert-heading-respect-content ; open new heading below, respecting content
+
     "l" 'org-metaright
     "h" 'org-metaleft
     "j" 'org-metadown
@@ -1691,7 +1704,7 @@ the right."
     "-" 'org-ctrl-c-minus
     "*" 'org-ctrl-c-star
 
-    "TAB" 'ninrod/org-insert-heading-respect-content ; open new heading below, respecting content
+    "o" 'ninrod/org-insert-heading-respect-content ; open new heading below, respecting content
     "<SPC>" 'ninrod/org-insert-subheading ; open new subheading
     "RET" 'ninrod/org-eol-m-ret ; open new heading below, not respecting content
     "DEL" 'ninrod/org-bol-m-ret ; open new heading above
