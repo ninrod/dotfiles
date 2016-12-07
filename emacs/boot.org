@@ -827,10 +827,12 @@ the right."
         (add-hook 'prog-mode-hook #'highlight-parentheses-mode)
         (add-hook 'org-mode-hook #'highlight-parentheses-mode)
         (setq hl-paren-delay 0.2)
-        (setq hl-paren-colors '("Springgreen3"
-                                "IndianRed1"
-                                "IndianRed3"
-                                "IndianRed4"))
+
+        ;; (setq hl-paren-colors '("firebrick1"
+        ;;                         "IndianRed1"
+        ;;                         "IndianRed3"
+        ;;                         "IndianRed4"))
+
         (set-face-attribute 'hl-paren-face nil :weight 'ultra-bold))
 #+END_SRC
 
@@ -1502,8 +1504,8 @@ the right."
   (bind-map-set-keys s-map
     ;; "TAB" 'counsel-projectile-switch-project
 
+    "c" 'air-org-task-capture
     "r" 'restart-emacs
-    "o" 'air-org-task-capture
     "s" 'ivy-switch-buffer
     "d" 'spacemacs/kill-this-buffer ; Delete buffer
     "w" 'write-file ; Save as
