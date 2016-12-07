@@ -589,17 +589,16 @@ the right."
 #+END_SRC
 
 ** font
-*** Monoisome
-- get it at [[https://github.com/larsenwork/monoid][larsenwork/monoid]]
+- Monoid: [[https://github.com/larsenwork/monoid][larsenwork/monoid]]
   #+BEGIN_SRC emacs-lisp
-  (add-to-list 'default-frame-alist '(font . "Monoisome-14"))
-  #+END_SRC
+    (when (eq system-type 'darwin)
+      (add-to-list 'default-frame-alist '(font . "Monaco-14"))
+      ;; (add-to-list 'default-frame-alist '(font . "Monoisome-14"))
+      )
 
-*** Monaco
-  #+BEGIN_SRC text
-  (add-to-list 'default-frame-alist '(font . "Monaco-14"))
+    (when (eq system-type 'gnu/linux)
+      (add-to-list 'default-frame-alist '(font . "Monoisome-14")))
   #+END_SRC
-
 ** gui
 #+BEGIN_SRC emacs-lisp
   (when (display-graphic-p)
@@ -726,9 +725,7 @@ the right."
 ** cosmetic
 *** all-the-icons
 #+BEGIN_SRC emacs-lisp
-  (use-package all-the-icons :ensure t
-    :config
-    (use-package all-the-icons-dired :ensure t))
+  (use-package all-the-icons :ensure t)
 #+END_SRC
 
 *** themes
