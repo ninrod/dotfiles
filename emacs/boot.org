@@ -555,10 +555,6 @@ the right."
   (menu-bar-mode -1)
   (fset 'yes-or-no-p 'y-or-n-p)
 
-
-  ;; silence, please.
-  ;; (setq visible-bell t)
-
   ;; save last cursor position
   (save-place-mode 1)
   ;; (setq save-place-file (locate-user-emacs-file "places" "emacs-places"))
@@ -571,10 +567,6 @@ the right."
   (setq display-time-default-load-average nil)
   (setq display-time-day-and-date t)
   (display-time-mode)
-
-  ;;highlight current line
-  ;; (global-hl-line-mode)
-
 
   ;; support for camelcase words
   ;; (global-subword-mode)
@@ -638,7 +630,6 @@ the right."
                  (concat user-emacs-directory "backups")))))
 ;; Make backups of files, even when they're in version control
 (setq vc-make-backup-files t)
-
 
 (setq auto-save-default nil) ; stop creating those #auto-save# files
 
@@ -737,7 +728,7 @@ the right."
 #+BEGIN_SRC emacs-lisp
   (use-package all-the-icons :ensure t
     :config
-    (use-package all-the-icons-dired :load-path "lisp/jtbm37/all-the-icons-dired"))
+    (use-package all-the-icons-dired :ensure t))
 #+END_SRC
 
 *** themes
@@ -800,30 +791,22 @@ the right."
     (setq powerline-default-separator 'utf-8)
     (setq spaceline-separator-dir-left '(right . right))
     (setq spaceline-separator-dir-right '(right . right))
-    ;; (when (eq system-type 'darwin) (setq ns-use-srgb-colorspace nil))
-    (setq powerline-default-separator 'alternate) ;customize separators for Powerline: alternate, slant, wave, zigzag, nil.
+
+    (when (eq system-type 'darwin)
+      ;; (setq ns-use-srgb-colorspace nil)
+      (setq powerline-default-separator 'alternate) ;customize separators for Powerline: alternate, slant, wave, zigzag, nil.
+      )
+
+    (when (eq system-type 'gnu/linux)
+      (setq powerline-default-separator 'slant) ;customize separators for Powerline: alternate, slant, wave, zigzag, nil.
+      )
+
     (setq spaceline-workspace-numbers-unicode t) ;for eyebrowse. nice looking unicode numbers for tagging different layouts
     (setq spaceline-window-numbers-unicode t)
     (setq spaceline-highlight-face-func #'spaceline-highlight-face-evil-state) ; set colouring for different evil-states
     (require 'spaceline-config)
     (spaceline-spacemacs-theme)
     (spaceline-compile))
-#+END_SRC
-*** smartmodeline
-#+BEGIN_SRC text
-  (use-package smart-mode-line :ensure t
-    :init
-    (setq sml/theme 'respectful)
-    (setq sml/no-confirm-load-theme t)
-
-
-    :config
-    (sml/setup)
-
-    (use-package modeline-posn :ensure t
-      :config
-      (size-indication-mode))
-    )
 #+END_SRC
 *** rainbow-delimiters
 #+BEGIN_SRC emacs-lisp
@@ -1139,7 +1122,7 @@ the right."
   (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
   (setq org-reveal-mathjax t)
 
-  (use-package htmlize 
+  (use-package htmlize
   :ensure t)
   #+END_SRC
 
