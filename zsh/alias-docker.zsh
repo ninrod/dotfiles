@@ -22,6 +22,9 @@ alias drm='docker_alias_remove_all_containers'
 # Stop and Remove all containers
 alias drmf='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 
+# stop and remove all Exited containers
+alias drsc='docker rm $(docker ps -aq --filter status=exited)'
+
 # Docker remove image
 alias dri='docker rmi'
 
