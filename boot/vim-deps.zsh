@@ -15,6 +15,8 @@ ningrab tpope/vim-repeat
 ningrab tpope/vim-surround
 ningrab vim-scripts/ReplaceWithRegister
 ningrab wellle/targets.vim
+ningrab kana/vim-textobj-user
+ningrab kana/vim-textobj-entire
 
 # fetch cosmetic deps
 ningrab ninrod/gruvbox develop # just while I wait for morhetz/gruvbox#150 to merge.
