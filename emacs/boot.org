@@ -730,7 +730,7 @@ the right."
 
 *** themes
 **** spacemacs-theme
-  #+BEGIN_SRC emacs-lisp
+  #+BEGIN_SRC text
     (use-package spacemacs-dark-theme :load-path "lisp/ninrod/spacemacs-theme"
       :init
       (setq spacemacs-theme-org-height nil)
@@ -739,7 +739,7 @@ the right."
   #+END_SRC
 
 **** zerodark-theme
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package zerodark-theme :load-path "lisp/ninrod/zerodark-theme"
     :init
     (setq zerodark-use-paddings-in-mode-line nil)
@@ -1232,12 +1232,6 @@ the right."
   (yas-minor-mode -1))
 #+END_SRC
 
-** make zsh with bindkey -v and ansi-term be friendly to each other [[https
-://github.com/syl20bnr/spacemacs/issues/7140][syl20bnr/spacemacs#7140]]
-*** TheBB's solution
-#+BEGIN_SRC emacs-lisp
-#+END_SRC
-
 ** fix $PATH on macosx with exec-path-from-shell
 #+BEGIN_SRC emacs-lisp
   (when (eq system-type 'darwin)
@@ -1262,10 +1256,10 @@ the right."
 #+END_SRC
 
 ** M-x man
-- [[http://emacs.stackexchange.com/a/10669/12585][list]] of evil states: 
-- with [[https://github.com/syl20bnr/spacemacs/issues/7346][help]] from @TheBB 
+- [[http://emacs.stackexchange.com/a/10669/12585][list]] of evil states:
+- with [[https://github.com/syl20bnr/spacemacs/issues/7346][help]] from @TheBB
 #+BEGIN_SRC emacs-lisp
-  (with-eval-after-load "man" 
+  (with-eval-after-load "man"
       (evil-set-initial-state 'Man-mode 'normal)
       (setq Man-notify-method 'pushy)
   )
