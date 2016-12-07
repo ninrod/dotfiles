@@ -17,6 +17,7 @@ ningrab vim-scripts/ReplaceWithRegister
 ningrab wellle/targets.vim
 ningrab kana/vim-textobj-user
 ningrab kana/vim-textobj-entire
+ningrab whatyouhide/vim-textobj-xmlattr
 
 # fetch cosmetic deps
 ningrab ninrod/gruvbox develop # just while I wait for morhetz/gruvbox#150 to merge.
