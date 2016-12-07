@@ -591,8 +591,8 @@ the right."
 - Monoid: [[https://github.com/larsenwork/monoid][larsenwork/monoid]]
   #+BEGIN_SRC emacs-lisp
     (when (eq system-type 'darwin)
-      (add-to-list 'default-frame-alist '(font . "Monaco-14"))
-      ;; (add-to-list 'default-frame-alist '(font . "Monoisome-14"))
+      ;; (add-to-list 'default-frame-alist '(font . "Monaco-14"))
+      (add-to-list 'default-frame-alist '(font . "Monoisome-14"))
       )
 
     (when (eq system-type 'gnu/linux)
