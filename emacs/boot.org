@@ -742,7 +742,7 @@ the right."
 
 *** themes
 **** spacemacs-theme
-  #+BEGIN_SRC emacs-lisp
+  #+BEGIN_SRC text
     (use-package spacemacs-dark-theme :load-path "lisp/ninrod/spacemacs-theme"
       :init
       (setq spacemacs-theme-org-height nil)
@@ -783,31 +783,34 @@ the right."
 #+END_SRC
 
 **** gruvbox-theme
-#+BEGIN_SRC text
-  (use-package gruvbox-theme
-    :init
-      (load-theme 'gruvbox t)
-    :defer t
-    :ensure t)
-#+END_SRC
+  #+BEGIN_SRC emacs-lisp
+    (use-package gruvbox-theme :load-path "lisp/ninrod/gruvbox-theme"
+      :init
+      (setq gruvbox-contrast 'hard)
+      :config
+      (load-theme 'gruvbox t))
+  #+END_SRC
+
+  #+RESULTS:
+  : t
 
 *** spaceline
 - to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
 #+BEGIN_SRC emacs-lisp
-    (use-package spaceline :ensure t
-      :config
-      (setq powerline-height 30)
-      (setq powerline-default-separator 'utf-8) ;customize separators for Powerline: alternate, slant, wave, zigzag, nil.
-      (setq spaceline-separator-dir-left '(right . right))
-      (setq spaceline-separator-dir-right '(right . right))
-      (when (eq system-type 'darwin) (setq ns-use-srgb-colorspace nil))
-      (setq powerline-default-separator 'slant)
-      (setq spaceline-workspace-numbers-unicode t) ;for eyebrowse. nice looking unicode numbers for tagging different layouts
-      (setq spaceline-window-numbers-unicode t)
-      (setq spaceline-highlight-face-func #'spaceline-highlight-face-evil-state) ; set colouring for different evil-states
-      (require 'spaceline-config)
-      (spaceline-spacemacs-theme)
-      (spaceline-compile))
+  (use-package spaceline :ensure t
+    :config
+    (setq powerline-height 25)
+    (setq powerline-default-separator 'utf-8)
+    (setq spaceline-separator-dir-left '(right . right))
+    (setq spaceline-separator-dir-right '(right . right))
+    ;; (when (eq system-type 'darwin) (setq ns-use-srgb-colorspace nil))
+    (setq powerline-default-separator 'alternate) ;customize separators for Powerline: alternate, slant, wave, zigzag, nil.
+    (setq spaceline-workspace-numbers-unicode t) ;for eyebrowse. nice looking unicode numbers for tagging different layouts
+    (setq spaceline-window-numbers-unicode t)
+    (setq spaceline-highlight-face-func #'spaceline-highlight-face-evil-state) ; set colouring for different evil-states
+    (require 'spaceline-config)
+    (spaceline-spacemacs-theme)
+    (spaceline-compile))
 #+END_SRC
 
 *** rainbow-delimiters
