@@ -1773,6 +1773,37 @@ the right."
 #+END_SRC
 
 ** other modes
+*** info-mode
+**** unbinds
+#+BEGIN_SRC emacs-lisp
+  (unbind-key "g" Info-mode-map)
+  (unbind-key "H" Info-mode-map)
+  (unbind-key "L" Info-mode-map)
+  (unbind-key "M" Info-mode-map)
+#+END_SRC
+**** bind-map
+#+BEGIN_SRC emacs-lisp
+  (bind-map info-g-map
+      :evil-keys ("g")
+      :evil-states (normal)
+      :major-modes (Info-mode))
+#+END_SRC
+**** g-map
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys info-g-map
+    "o" 'evil-goto-first-line
+    "l" 'evil-goto-line
+    "g9" (kbd "Hz-M")
+    "g0" (kbd "LztM")
+    )
+  (which-key-add-major-mode-key-based-replacements 'Info-mode "g o" "beggining of buffer")
+  (which-key-add-major-mode-key-based-replacements 'Info-mode "g l" "end of buffer")
+#+END_SRC
+**** non-prefix keys
+#+BEGIN_SRC emacs-lisp
+  (bind-key "-" 'evil-ex-nohighlight Info-mode-map)
+  (unbind-key "s" Info-mode-map)
+#+END_SRC
 *** lisp-mode
 **** bind-map
 #+BEGIN_SRC emacs-lisp
