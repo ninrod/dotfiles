@@ -827,12 +827,6 @@ the right."
         (add-hook 'prog-mode-hook #'highlight-parentheses-mode)
         (add-hook 'org-mode-hook #'highlight-parentheses-mode)
         (setq hl-paren-delay 0.2)
-
-        ;; (setq hl-paren-colors '("firebrick1"
-        ;;                         "IndianRed1"
-        ;;                         "IndianRed3"
-        ;;                         "IndianRed4"))
-
         (set-face-attribute 'hl-paren-face nil :weight 'ultra-bold))
 #+END_SRC
 
