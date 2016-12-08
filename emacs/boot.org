@@ -904,7 +904,6 @@ the right."
 :config
 (evil-define-key 'normal vdiff-mode-map "," vdiff-mode-prefix-map)))
 #+END_SRC
-
 ** completions
 *** ivy/counsel
 #+BEGIN_SRC emacs-lisp
@@ -1218,7 +1217,15 @@ the right."
 #+BEGIN_SRC emacs-lisp
 (use-package elpa-clone :ensure t)
 #+END_SRC
-
+** info
+*** info+
+#+BEGIN_SRC emacs-lisp
+(use-package info+ :ensure t)
+#+END_SRC
+*** sicp
+#+BEGIN_SRC emacs-lisp
+(use-package sicp :ensure t)
+#+END_SRC
 * fixes/patches
 ** yasnippet hijacks TAB key in term mode
 #+BEGIN_SRC emacs-lisp
@@ -1519,83 +1526,6 @@ the right."
     )
 #+END_SRC
 
-** evil
-*** abusing the g prefix
-#+BEGIN_SRC emacs-lisp
-  (bind-key "go" 'evil-goto-first-line evil-motion-state-map)
-  (bind-key "gl" 'evil-goto-line evil-motion-state-map)
-  (bind-key "gp" 'pop-global-mark evil-motion-state-map)
-  (bind-key "g9" (kbd "Hz-M") evil-motion-state-map)
-  (bind-key "g0" (kbd "LztM") evil-motion-state-map)
-
-  (bind-key "g1" 'eyebrowse-switch-to-window-config-1 evil-motion-state-map)
-  (bind-key "g2" 'eyebrowse-switch-to-window-config-2 evil-motion-state-map)
-  (bind-key "g3" 'eyebrowse-switch-to-window-config-3 evil-motion-state-map)
-  (bind-key "g4" 'eyebrowse-switch-to-window-config-4 evil-motion-state-map)
-
-  (bind-key "gs" 'magit-status evil-motion-state-map)
-  (bind-key "g." 'counsel-projectile evil-motion-state-map)
-  (bind-key "g/" 'swiper evil-motion-state-map)
-  (bind-key "gh" 'counsel-recentf evil-motion-state-map)
-
-  (bind-key "gi" 'goto-last-change evil-normal-state-map)
-  (bind-key "g;" 'evil-last-non-blank evil-motion-state-map)
-
-  ;; (bind-key "g RET" 'er/expand-region evil-normal-state-map)
-#+END_SRC
-
-*** comfort improvements
-#+BEGIN_SRC emacs-lisp
-  (bind-key (kbd "RET") 'evil-write evil-normal-state-map)
-  (bind-key (kbd "TAB") 'evil-toggle-fold evil-normal-state-map)
-  (bind-key (kbd "DEL") 'counsel-find-file evil-normal-state-map)
-  (bind-key "q" 'evil-quit evil-normal-state-map)
-  (bind-key "-" 'evil-ex-nohighlight evil-normal-state-map)
-  (bind-key "Q" 'evil-record-macro evil-normal-state-map)
-  (bind-key "(" 'evil-backward-paragraph evil-motion-state-map)
-  (bind-key ")" 'evil-forward-paragraph evil-motion-state-map)
-  (bind-key "G" 'evil-execute-in-god-state evil-normal-state-map)
-#+END_SRC
-
-*** function keys
-#+BEGIN_SRC emacs-lisp
-  (bind-key (kbd "<f1>") 'eyebrowse-switch-to-window-config-1 evil-motion-state-map)
-  (bind-key (kbd "<f2>") 'eyebrowse-switch-to-window-config-2 evil-motion-state-map)
-  (bind-key (kbd "<f3>") 'eyebrowse-switch-to-window-config-3 evil-motion-state-map)
-  (bind-key (kbd "<f4>") 'eyebrowse-switch-to-window-config-4 evil-motion-state-map)
-
-  (bind-key (kbd "<f5>") 'eyebrowse-switch-to-window-config-5 evil-motion-state-map)
-  (bind-key (kbd "<f6>") 'eyebrowse-switch-to-window-config-6 evil-motion-state-map)
-  (bind-key (kbd "<f7>") 'eyebrowse-switch-to-window-config-7 evil-motion-state-map)
-  (bind-key (kbd "<f8>") 'eyebrowse-switch-to-window-config-8 evil-motion-state-map)
-#+END_SRC
-
-*** fixes
-#+BEGIN_SRC emacs-lisp
-  ;; As I've sequestered < and > when in org mode, we need a workaround.
-  (bind-key "g>" 'evil-shift-right evil-motion-state-map)
-  (bind-key "g<" 'evil-shift-left evil-motion-state-map)
-
-  ;; `z.' fix
-  (bind-key "z." 'evil-scroll-line-to-center evil-normal-state-map)
-
-  ;; `z-' fix
-  (bind-key "z-" 'evil-scroll-line-to-bottom evil-normal-state-map)
-
-  ;; make / and ? behave like vim
-  (bind-key (kbd "<escape>") 'isearch-cancel isearch-mode-map)
-  (bind-key (kbd "<escape>") 'minibuffer-keyboard-quit evil-ex-search-keymap)
-
-  ;; auto-indent on RET
-  (bind-key (kbd "RET") 'newline-and-indent global-map)
-#+END_SRC
-
-*** insert state
-#+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-<tab>") 'dabbrev-expand)
-  (bind-key (kbd "C-<tab>") 'dabbrev-expand minibuffer-local-map)
-#+END_SRC
-
 ** org-mode
 *** , local
 **** bind
@@ -1661,7 +1591,7 @@ the right."
 **** fast
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys org-t-map
-    ;; "TAB" 'ninrod/org-insert-heading-respect-content ; open new heading below, respecting content
+    ;; "<SPC>" 'ninrod/org-insert-subheading ; open new subheading
 
     "l" 'org-metaright
     "h" 'org-metaleft
@@ -1673,9 +1603,10 @@ the right."
     "-" 'org-ctrl-c-minus
     "*" 'org-ctrl-c-star
 
-    "o" 'ninrod/org-insert-heading-respect-content ; open new heading below, respecting content
-    "<SPC>" 'ninrod/org-insert-subheading ; open new subheading
-    "RET" 'ninrod/org-eol-m-ret ; open new heading below, not respecting content
+    "TAB" 'ninrod/org-insert-subheading ; open new subheading
+
+    "o" 'ninrod/org-eol-m-ret ; open new heading below, not respecting content
+    "RET" 'ninrod/org-insert-heading-respect-content ; open new heading below, respecting content
     "DEL" 'ninrod/org-bol-m-ret ; open new heading above
     )
 #+END_SRC
@@ -1761,6 +1692,83 @@ the right."
 #+BEGIN_SRC emacs-lisp
   (bind-key "C-j" 'org-edit-src-exit org-src-mode-map)
   (evil-define-key 'normal org-src-mode-map (kbd "<RET>") 'org-edit-src-exit)
+#+END_SRC
+
+** evil
+*** abusing the g prefix
+#+BEGIN_SRC emacs-lisp
+  (bind-key "go" 'evil-goto-first-line evil-motion-state-map)
+  (bind-key "gl" 'evil-goto-line evil-motion-state-map)
+  (bind-key "gp" 'pop-global-mark evil-motion-state-map)
+  (bind-key "g9" (kbd "Hz-M") evil-motion-state-map)
+  (bind-key "g0" (kbd "LztM") evil-motion-state-map)
+
+  (bind-key "g1" 'eyebrowse-switch-to-window-config-1 evil-motion-state-map)
+  (bind-key "g2" 'eyebrowse-switch-to-window-config-2 evil-motion-state-map)
+  (bind-key "g3" 'eyebrowse-switch-to-window-config-3 evil-motion-state-map)
+  (bind-key "g4" 'eyebrowse-switch-to-window-config-4 evil-motion-state-map)
+
+  (bind-key "gs" 'magit-status evil-motion-state-map)
+  (bind-key "g." 'counsel-projectile evil-motion-state-map)
+  (bind-key "g/" 'swiper evil-motion-state-map)
+  (bind-key "gh" 'counsel-recentf evil-motion-state-map)
+
+  (bind-key "gi" 'goto-last-change evil-normal-state-map)
+  (bind-key "g;" 'evil-last-non-blank evil-motion-state-map)
+
+  ;; (bind-key "g RET" 'er/expand-region evil-normal-state-map)
+#+END_SRC
+
+*** comfort improvements
+#+BEGIN_SRC emacs-lisp
+  (bind-key (kbd "RET") 'evil-write evil-normal-state-map)
+  (bind-key (kbd "TAB") 'evil-toggle-fold evil-normal-state-map)
+  (bind-key (kbd "DEL") 'counsel-find-file evil-normal-state-map)
+  (bind-key "q" 'evil-quit evil-normal-state-map)
+  (bind-key "-" 'evil-ex-nohighlight evil-normal-state-map)
+  (bind-key "Q" 'evil-record-macro evil-normal-state-map)
+  (bind-key "(" 'evil-backward-paragraph evil-motion-state-map)
+  (bind-key ")" 'evil-forward-paragraph evil-motion-state-map)
+  (bind-key "G" 'evil-execute-in-god-state evil-normal-state-map)
+#+END_SRC
+
+*** function keys
+#+BEGIN_SRC emacs-lisp
+  (bind-key (kbd "<f1>") 'eyebrowse-switch-to-window-config-1 evil-motion-state-map)
+  (bind-key (kbd "<f2>") 'eyebrowse-switch-to-window-config-2 evil-motion-state-map)
+  (bind-key (kbd "<f3>") 'eyebrowse-switch-to-window-config-3 evil-motion-state-map)
+  (bind-key (kbd "<f4>") 'eyebrowse-switch-to-window-config-4 evil-motion-state-map)
+
+  (bind-key (kbd "<f5>") 'eyebrowse-switch-to-window-config-5 evil-motion-state-map)
+  (bind-key (kbd "<f6>") 'eyebrowse-switch-to-window-config-6 evil-motion-state-map)
+  (bind-key (kbd "<f7>") 'eyebrowse-switch-to-window-config-7 evil-motion-state-map)
+  (bind-key (kbd "<f8>") 'eyebrowse-switch-to-window-config-8 evil-motion-state-map)
+#+END_SRC
+
+*** fixes
+#+BEGIN_SRC emacs-lisp
+  ;; As I've sequestered < and > when in org mode, we need a workaround.
+  (bind-key "g>" 'evil-shift-right evil-motion-state-map)
+  (bind-key "g<" 'evil-shift-left evil-motion-state-map)
+
+  ;; `z.' fix
+  (bind-key "z." 'evil-scroll-line-to-center evil-normal-state-map)
+
+  ;; `z-' fix
+  (bind-key "z-" 'evil-scroll-line-to-bottom evil-normal-state-map)
+
+  ;; make / and ? behave like vim
+  (bind-key (kbd "<escape>") 'isearch-cancel isearch-mode-map)
+  (bind-key (kbd "<escape>") 'minibuffer-keyboard-quit evil-ex-search-keymap)
+
+  ;; auto-indent on RET
+  (bind-key (kbd "RET") 'newline-and-indent global-map)
+#+END_SRC
+
+*** insert state
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-<tab>") 'dabbrev-expand)
+  (bind-key (kbd "C-<tab>") 'dabbrev-expand minibuffer-local-map)
 #+END_SRC
 
 ** other modes
