@@ -146,6 +146,28 @@ the right."
 #+END_SRC
 
 * ninrod functions
+** lisp-intro-tutorial-exercises
+*** CH04. Writing defuns
+**** Ex 01
++ Write a non-interactive function that doubles the value of its argument, a number.
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/double-number (number)
+    "Doubles the NUMBER passed in as argument."
+    (* 2 number))
+
+  (ninrod/double-number 2)
+#+END_SRC
+**** Ex 02
++ Make the above function interactive
+#+BEGIN_SRC emacs-lisp
+#+END_SRC
+**** Ex 03
++ Write a function that tests whether the current value of `fill-column'
+is greater than the argument passed to the function, and if so, prints
+an appropriate message.
+#+BEGIN_SRC emacs-lisp
+#+END_SRC
+
 ** org
 - boy, will I refactor these atrocities when I properly learn elisp.
 *** ninrod/org-eol-m-ret
@@ -223,7 +245,7 @@ the right."
       (org-table-align)                 ; realign the table
       (goto-char pos))))                ; move back to original position
 #+END_SRC
-** lisp
+** lisp-mode
 *** ninrod/eval-print-last-sexp
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/eval-print-last-sexp ()
@@ -331,7 +353,6 @@ the right."
   (interactive)
   (message "the bind worked! yes!!"))
 #+END_SRC
-
 * ninrod macros
 *** ninrod/define-and-bind-textobj
 - lifted from [[https://github.com/noctuid/evil-textobj-anyblock/issues/9#issuecomment-263761927][@noctuid]]
@@ -1309,7 +1330,7 @@ the right."
       "dt" 'counsel-describe-face
       "dv" 'counsel-describe-variable
   )
-  (which-key-declare-prefixes "<SPC> d " "describe/help")
+  (which-key-declare-prefixes "SPC d" "describe/help")
 #+END_SRC
 
 *** caps
@@ -1343,6 +1364,7 @@ the right."
   "Bu" 'ninrod/extended-buffer-menu ; mnemonic: Uargs M-x buffer-menu
   "Br" 'ninrod/revert-buffer-no-confirm
 )
+(which-key-declare-prefixes "SPC B" "Buffers")
 #+END_SRC
 **** E: Eyebrowse
 #+BEGIN_SRC emacs-lisp
@@ -1777,9 +1799,19 @@ the right."
 **** unbinds
 #+BEGIN_SRC emacs-lisp
   (unbind-key "g" Info-mode-map)
+
+  (unbind-key "v" Info-mode-map)
+  (unbind-key "w" Info-mode-map)
+  (unbind-key "e" Info-mode-map)
+  (unbind-key "b" Info-mode-map)
+
+
   (unbind-key "H" Info-mode-map)
   (unbind-key "L" Info-mode-map)
   (unbind-key "M" Info-mode-map)
+
+  (unbind-key (kbd "<SPC>") Info-mode-map)
+  (unbind-key (kbd "SPC") Info-mode-map)
 #+END_SRC
 **** bind-map
 #+BEGIN_SRC emacs-lisp
