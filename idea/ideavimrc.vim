@@ -22,7 +22,8 @@ nnoremap gq :action Exit<cr>
 nnoremap gr :action RenameElement<cr>
 nnoremap gh :action RecentFiles<cr>
 nnoremap gb :action ViewBreakpoints<cr>
-nnoremap gf :action FileStructurePopup<cr>
+nnoremap gs :action FileStructurePopup<cr>
+nnoremap gf :action FindUsages<cr>
 nnoremap gt :action ActivateTerminalToolWindow<cr>
 
 " interesting actions
