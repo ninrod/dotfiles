@@ -1,5 +1,6 @@
 #+STARTUP: indent
 #+STARTUP: overview
+
 * lisp functions
 ** lifted lisp functions
 *** spacemacs
@@ -920,17 +921,16 @@ an appropriate message.
 
 *** company
 #+BEGIN_SRC emacs-lisp
-(use-package company :ensure t
-  :config
+  (use-package company :ensure t
+    :config
     (add-hook 'after-init-hook 'global-company-mode)
-    ;; TODO: could we use TAB?
     (define-key company-mode-map (kbd "C-SPC") 'company-complete))
 #+END_SRC
 
 *** yasnippet
   #+BEGIN_SRC emacs-lisp
-(use-package yasnippet :ensure t
-  :config (yas-global-mode 1))
+    (use-package yasnippet :ensure t
+      :config (yas-global-mode 1))
   #+END_SRC
 
 *** flycheck
@@ -952,34 +952,28 @@ an appropriate message.
     :ensure t)
 #+END_SRC
 
-*** smart-tab
-#+BEGIN_SRC text
-  (use-package smart-tab :ensure t
-    :config (global-smart-tab-mode 1))
-#+END_SRC
-
 ** keybinds
 *** which key
   #+BEGIN_SRC emacs-lisp
-  (use-package which-key :ensure t
-    :diminish which-key-mode
-	:config (which-key-mode))
+    (use-package which-key :ensure t
+      :diminish which-key-mode
+      :config (which-key-mode))
   #+END_SRC
 
 *** bind-map
 #+BEGIN_SRC emacs-lisp
-(use-package bind-map :ensure t)
+  (use-package bind-map :ensure t)
 #+END_SRC
 
 *** bind-key
 #+BEGIN_SRC emacs-lisp
-(use-package bind-key :ensure t)
+  (use-package bind-key :ensure t)
 #+END_SRC
 
 *** hydra
 #+BEGIN_SRC emacs-lisp
-(use-package hydra :ensure t
-  :config
+  (use-package hydra :ensure t
+    :config
     (use-package ivy-hydra :ensure t))
 #+END_SRC
 
@@ -990,33 +984,22 @@ an appropriate message.
   (use-package projectile :ensure t
     :diminish projectile-mode
     :init
-      ;; (add-hook 'after-init-hook 'projectile-mode)
-      (use-package counsel-projectile :ensure t)
+    ;; (add-hook 'after-init-hook 'projectile-mode)
+    (use-package counsel-projectile :ensure t)
 
-      ;; use ivy
-      (setq projectile-completion-system 'ivy)
+    ;; use ivy
+    (setq projectile-completion-system 'ivy)
 
-      ;; make projectile usable for every directory
-      (setq projectile-require-project-root nil)
+    ;; make projectile usable for every directory
+    (setq projectile-require-project-root nil)
 
-      ;; cd into dir i want, including git-root
-      ;; (defun cd-dwim ()
-      ;;     (cd (projectile-project-root)))
-      ;; (setq projectile-switch-project-action 'cd-dwim)
+    ;; cd into dir i want, including git-root
+    ;; (defun cd-dwim ()
+    ;;     (cd (projectile-project-root)))
+    ;; (setq projectile-switch-project-action 'cd-dwim)
 
     :config
-      (projectile-global-mode)
-  )
-#+END_SRC
-
-*** ranger
-#+BEGIN_SRC emacs-lisp
-  (use-package ranger :ensure t
-    :config
-        ;; (ranger-override-dired-mode t)
-        (setq ranger-cleanup-on-disable t)
-        (setq ranger-show-dotfiles t)
-        (setq ranger-hide-cursor nil))
+    (projectile-global-mode))
 #+END_SRC
 
 *** neotree
@@ -1052,11 +1035,6 @@ an appropriate message.
     :config
     (add-hook 'dired-initial-position-hook 'dired-k))
 
-#+END_SRC
-
-*** dired-sort
-#+BEGIN_SRC emacs-lisp
-(use-package dired-sort :ensure t)
 #+END_SRC
 
 ** git
@@ -1144,7 +1122,7 @@ an appropriate message.
 #+BEGIN_SRC emacs-lisp
 (use-package web-mode
   :ensure t
-  :init 
+  :init
   (setq web-mode-enable-current-element-highlight t)
   :config
       (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
@@ -1159,7 +1137,7 @@ an appropriate message.
       (defun my-web-mode-hook ()
         "Hooks for Web mode."
 
-        ;; config auto closing: http://stackoverflow.com/a/23407052/4921402 
+        ;; config auto closing: http://stackoverflow.com/a/23407052/4921402
         (setq web-mode-tag-auto-close-style 2)
         (setq web-mode-auto-close-style 2)
         (setq web-mode-enable-auto-closing t)
@@ -1170,7 +1148,7 @@ an appropriate message.
       (add-hook 'web-mode-hook 'my-web-mode-hook))
 #+END_SRC
 
-*** css/less: 
+*** css/less:
 #+BEGIN_SRC emacs-lisp
   (use-package less-css-mode :ensure t)
 #+END_SRC
@@ -1239,24 +1217,24 @@ an appropriate message.
 ** fix $PATH on macosx with exec-path-from-shell
 #+BEGIN_SRC emacs-lisp
   (when (eq system-type 'darwin)
-      (use-package exec-path-from-shell
-        :ensure t
-        :config
-          (exec-path-from-shell-initialize)))
+    (use-package exec-path-from-shell
+      :ensure t
+      :config
+      (exec-path-from-shell-initialize)))
 #+END_SRC
 
 ** diminishes
 #+BEGIN_SRC emacs-lisp
-(diminish 'undo-tree-mode)
-(diminish 'auto-revert-mode)
-(diminish 'org-indent-mode)
-(diminish 'smartparens-mode)
-(diminish 'git-gutter-mode)
-(diminish 'evil-escape-mode)
-(diminish 'subword-mode)
-(diminish 'smart-tab-mode)
-(diminish 'flyspell-mode "FlyS")
-(diminish 'flycheck-mode "FlyC")
+  (diminish 'undo-tree-mode)
+  (diminish 'auto-revert-mode)
+  (diminish 'org-indent-mode)
+  (diminish 'smartparens-mode)
+  (diminish 'git-gutter-mode)
+  (diminish 'evil-escape-mode)
+  (diminish 'subword-mode)
+  (diminish 'smart-tab-mode)
+  (diminish 'flyspell-mode "FlyS")
+  (diminish 'flycheck-mode "FlyC")
 #+END_SRC
 
 ** M-x man
@@ -1264,9 +1242,8 @@ an appropriate message.
 - with [[https://github.com/syl20bnr/spacemacs/issues/7346][help]] from @TheBB
 #+BEGIN_SRC emacs-lisp
   (with-eval-after-load "man"
-      (evil-set-initial-state 'Man-mode 'normal)
-      (setq Man-notify-method 'pushy)
-  )
+    (evil-set-initial-state 'Man-mode 'normal)
+    (setq Man-notify-method 'pushy))
 #+END_SRC
 
 ** dabbrev-expand case fix
