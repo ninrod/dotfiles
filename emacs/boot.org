@@ -1,10 +1,10 @@
 #+STARTUP: indent
 #+STARTUP: overview
-
-* lifted lisp functions
-** spacemacs
-*** spacemacs/buffer operations
-**** spacemacs/alternate-buffer
+* lisp functions
+** lifted lisp functions
+*** spacemacs
+**** spacemacs/buffer operations
+***** spacemacs/alternate-buffer
 SPC TAB
 back and forth between current and last buffer
 #+BEGIN_SRC emacs-lisp
@@ -26,7 +26,7 @@ back and forth between current and last buffer
          (other-buffer current-buffer t)))))
 #+END_SRC
 
-**** spacemacs/kill-this-buffer
+***** spacemacs/kill-this-buffer
 SPC b d
 #+BEGIN_SRC emacs-lisp
 (defun spacemacs/kill-this-buffer (&optional arg)
@@ -40,7 +40,7 @@ If the universal prefix argument is used then kill also the window."
       (kill-buffer))))
 #+END_SRC
 
-**** spacemacs/kill-other-buffers
+***** spacemacs/kill-other-buffers
 #+BEGIN_SRC emacs-lisp
 ;; found at http://emacswiki.org/emacs/KillingBuffers
 (defun spacemacs/kill-other-buffers (&optional arg)
@@ -54,7 +54,7 @@ If the universal prefix argument is used then will the windows too."
     (message "Buffers deleted!")))
 #+END_SRC
 
-*** spacemacs/align functions
+**** spacemacs/align functions
 #+BEGIN_SRC emacs-lisp
 ;; BEGIN align functions
 
@@ -110,7 +110,7 @@ the right."
 ;; END align functions
 #+END_SRC
 
-*** spacemacs/window splits
+**** spacemacs/window splits
 #+BEGIN_SRC emacs-lisp
 (defun split-window-below-and-focus ()
   "Split the window vertically and focus the new window."
@@ -131,8 +131,8 @@ the right."
     (golden-ratio)))
 #+END_SRC
 
-** emacs-prelude
-*** copy-file-name-to-clipboard
+*** emacs-prelude
+**** copy-file-name-to-clipboard
 #+BEGIN_SRC emacs-lisp
 (defun prelude-copy-file-name-to-clipboard ()
   "Copy the current buffer file name to the clipboard."
@@ -145,32 +145,32 @@ the right."
       (message "Copied buffer file name '%s' to the clipboard." filename))))
 #+END_SRC
 
-* ninrod functions
-** lisp-intro-tutorial-exercises
-*** CH04. Writing defuns
-**** Ex 01
-+ Write a non-interactive function that doubles the value of its argument, a number.
+** ninrod functions
+*** lisp-intro-tutorial-exercises
+**** CH04. Writing defuns
+***** Write a function that doubles a number
+1. Write a non-interactive function that doubles the value of its argument, a number.
+2. Make the above function interactive
 #+BEGIN_SRC emacs-lisp
-  (defun ninrod/double-number (number)
+  (defun ninrod/lisp-intro/double-number (number)
     "Doubles the NUMBER passed in as argument."
-    (* 2 number))
-
-  (ninrod/double-number 2)
+    (interactive "p")
+    (message "if I double this number it will became %d" (* 2 number)))
 #+END_SRC
-**** Ex 02
-+ Make the above function interactive
-#+BEGIN_SRC emacs-lisp
-#+END_SRC
-**** Ex 03
+***** fill-column test
 + Write a function that tests whether the current value of `fill-column'
 is greater than the argument passed to the function, and if so, prints
 an appropriate message.
 #+BEGIN_SRC emacs-lisp
+  (defun ninrod/lisp-intro/fill-test (test)
+    "Tests if the argument is greater than fill-column."
+    (interactive "p")
+    )
 #+END_SRC
 
-** org
+*** org
 - boy, will I refactor these atrocities when I properly learn elisp.
-*** ninrod/org-eol-m-ret
+**** ninrod/org-eol-m-ret
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/org-eol-m-ret ()
     "Moves point to the end of the line and applies m-ret and enters insert state."
@@ -180,7 +180,7 @@ an appropriate message.
     (org-meta-return)
     (evil-insert-state))
 #+END_SRC
-*** ninrod/org-bol-m-ret
+**** ninrod/org-bol-m-ret
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/org-bol-m-ret ()
     "Same as ninrod/org-eol-m-ret, but now at beggining of the line.
@@ -191,7 +191,7 @@ an appropriate message.
     (org-meta-return)
     (evil-insert-state))
 #+END_SRC
-*** ninrod/org-insert-subheading
+**** ninrod/org-insert-subheading
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/org-insert-subheading ()
     "evil style org-insert-subheading"
@@ -202,7 +202,7 @@ an appropriate message.
     (evil-insert-state))
 #+END_SRC
 
-*** ninrod/org-insert-heading-respect-content
+**** ninrod/org-insert-heading-respect-content
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/org-insert-heading-respect-content ()
     "evil style org-insert-subheading"
@@ -213,7 +213,7 @@ an appropriate message.
     (evil-insert-state))
 #+END_SRC
 
-*** ninrod/org-mv-down
+**** ninrod/org-mv-down
 - credits go to [[https://www.reddit.com/r/emacs/comments/583n1x/movecopy_a_cel_to_the_right/][/u/gmfawcett]]
 #+BEGIN_SRC emacs-lisp
 (defun ninrod/org-mv-down ()           ; moves a value down
@@ -228,7 +228,7 @@ an appropriate message.
     (goto-char pos)))               ; move back to original position
 #+END_SRC
 
-*** ninrod/org-swap-down
+**** ninrod/org-swap-down
 - credits go to [[https://www.reddit.com/r/emacs/comments/583n1x/movecopy_a_cel_to_the_right/][/u/gmfawcett]]
 #+BEGIN_SRC emacs-lisp
 (defun ninrod/org-swap-down ()               ; swap with value below
@@ -245,8 +245,8 @@ an appropriate message.
       (org-table-align)                 ; realign the table
       (goto-char pos))))                ; move back to original position
 #+END_SRC
-** lisp-mode
-*** ninrod/eval-print-last-sexp
+*** lisp-mode
+**** ninrod/eval-print-last-sexp
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/eval-print-last-sexp ()
       "Move point to the end of the line and eval-prints last sexp."
@@ -256,7 +256,7 @@ an appropriate message.
       (eval-print-last-sexp))
 #+END_SRC
 
-*** ninrod/eval-last-sexp
+**** ninrod/eval-last-sexp
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/eval-last-sexp ()
       "Move point to the end of the line and eval last sexp."
@@ -266,21 +266,21 @@ an appropriate message.
       (eval-last-sexp nil))
 #+END_SRC
 
-** uargs
-*** ninrod/uarg-shell-command
+*** uargs
+**** ninrod/uarg-shell-command
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/uarg-exec-shell-command ()
     (interactive)
     (execute-extended-command '(4) "shell-command"))
 #+END_SRC
-*** ninrod/uarg-magit-status
+**** ninrod/uarg-magit-status
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/uarg-magit-status ()
     (interactive)
     (magit-status (magit-read-repository
                    (>= (prefix-numeric-value current-prefix-arg) 16))))
 #+END_SRC
-*** ninrod/extended-buffer-menu
+**** ninrod/extended-buffer-menu
 - more info here: http://emacs.stackexchange.com/a/21635/12585
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/extended-buffer-menu ()
@@ -289,8 +289,8 @@ an appropriate message.
     (execute-extended-command '(4) "buffer-menu"))
 #+END_SRC
 
-** clipboard
-*** ninrod/neotree-copy-filepath-to-clipboard
+*** clipboard
+**** ninrod/neotree-copy-filepath-to-clipboard
 - with help from [[http://stackoverflow.com/a/40564951/4921402][/u/lawlist]]
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/neotree-copy-path ()
@@ -298,7 +298,7 @@ an appropriate message.
     (message (concat "copied path: \"" (neotree-copy-filepath-to-yank-ring) "\" to the clipboard.")))
 #+END_SRC
 
-*** ninrod/yank-to-clipboard
+**** ninrod/yank-to-clipboard
 #+BEGIN_SRC emacs-lisp
 (defun ninrod/yank-to-clipboard ()
   "Copies selection to x-clipboard."
@@ -315,7 +315,7 @@ an appropriate message.
       (message "No region active; can't yank to clipboard!"))))
 #+END_SRC
 
-*** ninrod/paste-from-clipboard
+**** ninrod/paste-from-clipboard
 #+BEGIN_SRC emacs-lisp
 (defun ninrod/paste-from-clipboard ()
   "Pastes from x-clipboard."
@@ -327,8 +327,8 @@ an appropriate message.
     (insert (shell-command-to-string "pbpaste"))))
 #+END_SRC
 
-** misc
-*** ninrod/revert-buffer with no confirmation
+*** misc
+**** ninrod/revert-buffer with no confirmation
 - from [[http://www.emacswiki.org/emacs-en/download/misc-cmds.el][emacswiki]]
 #+BEGIN_SRC emacs-lisp
 (defun ninrod/revert-buffer-no-confirm ()
@@ -337,7 +337,7 @@ an appropriate message.
     (revert-buffer :ignore-auto :noconfirm))
 #+END_SRC
 
-*** ninrod/origami-toggle-node
+**** ninrod/origami-toggle-node
 - with help from [[https://www.reddit.com/r/emacs/comments/580v30/tweaking_origamiel_lisp_and_regexes/][reddit]]
 #+BEGIN_SRC emacs-lisp
 (defun ninrod/origami-toggle-node ()
@@ -346,14 +346,14 @@ an appropriate message.
   (goto-char (point-at-eol))             ;; then go to the end of line
   (origami-toggle-node (current-buffer) (point))))                 ;; and try to fold
 #+END_SRC
-*** ninrod/nin-echo
+**** ninrod/nin-echo
 #+BEGIN_SRC emacs-lisp
 (defun ninrod/nin-echo ()
   "just a simple test message for binds"
   (interactive)
   (message "the bind worked! yes!!"))
 #+END_SRC
-* ninrod macros
+** ninrod macros
 *** ninrod/define-and-bind-textobj
 - lifted from [[https://github.com/noctuid/evil-textobj-anyblock/issues/9#issuecomment-263761927][@noctuid]]
 - with help from [[http://stackoverflow.com/q/18102004/4921402][this]] so question
@@ -563,49 +563,29 @@ an appropriate message.
   ;; (setq server-use-tcp t)
 #+END_SRC
 
-** ui
+** misc options
 #+BEGIN_SRC emacs-lisp
-  (setq default-directory "~/code/sources/dotfiles")
-  (setq inhibit-startup-message t)
-
-  ;; careful with emacs compiled with `nox'
-  (if (fboundp 'scroll-bar-mode)
-      (scroll-bar-mode -1))
-
-  (tool-bar-mode -1)
-  (menu-bar-mode -1)
   (fset 'yes-or-no-p 'y-or-n-p)
 
-  ;; save last cursor position
-  (save-place-mode 1)
-  ;; (setq save-place-file (locate-user-emacs-file "places" "emacs-places"))
+  (setq recentf-max-menu-items 200                  ;MRU configs
+        recentf-max-saved-items 200
+        default-directory "~/code/sources/dotfiles"
+        inhibit-startup-message t
+        display-time-default-load-average nil
+        display-time-day-and-date t
+        save-interprogram-paste-before-kill t       ;Save whatever’s in the clipboard before replacing it with the Emacs’ text.
+        yank-pop-change-selection t                 ;https://github.com/dakrone/eos/blob/master/eos.org
+        confirm-kill-emacs 'y-or-n-p                ;ask before killing emacs
+        echo-keystrokes 0.02)                       ;instantly display current keystrokes in mini buffer
 
-  ;; save minibuffer history
-  (savehist-mode 1)
-
-  ;; hack: customize display time in modeline.
-  ;; lifted from https://www.reddit.com/r/emacs/comments/2ziinn/displaytimemode_but_not_system_load/
-  (setq display-time-default-load-average nil)
-  (setq display-time-day-and-date t)
-  (display-time-mode)
-
-  ;; support for camelcase words
-  ;; (global-subword-mode)
-
-  ;; instantly display current keystrokes in mini buffer
-  (setq echo-keystrokes 0.02)
-
-  ;; Save whatever’s in the current (system) clipboard before ;; replacing it with the Emacs’ text.
-  ;; https://github.com/dakrone/eos/blob/master/eos.org
-  (setq save-interprogram-paste-before-kill t)
-  (setq yank-pop-change-selection t)
-
-  ;; MRU configs
-  (setq recentf-max-menu-items 200
-        recentf-max-saved-items 200)
-
-  ;; ask before killing emacs
-  (setq confirm-kill-emacs 'y-or-n-p)
+  (display-time-mode) ;hack: customize display time in modeline.
+  (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1)) ;for emacs compiled with `nox'
+  (save-place-mode 1) ;save last cursor position
+  (savehist-mode 1) ;save minibuffer history
+  (tool-bar-mode -1)
+  (menu-bar-mode -1)
+  (electric-pair-mode 1)
+  ;; (global-subword-mode) ;support for camelcase words
 #+END_SRC
 
 ** font
@@ -1800,6 +1780,9 @@ an appropriate message.
 #+BEGIN_SRC emacs-lisp
   (unbind-key "g" Info-mode-map)
   (unbind-key "s" Info-mode-map)
+
+  (unbind-key "n" Info-mode-map)
+  (unbind-key "N" Info-mode-map)
 
   (unbind-key "v" Info-mode-map)
   (unbind-key "w" Info-mode-map)
