@@ -608,6 +608,24 @@ an appropriate message.
   (electric-pair-mode 1)
   ;; (global-subword-mode) ;support for camelcase words
 #+END_SRC
+** better defaults
+#+BEGIN_SRC emacs-lisp
+  (require 'uniquify)
+  (setq uniquify-buffer-name-style 'forward
+        apropos-do-all t
+        require-final-newline nil
+        )
+#+END_SRC
+** backups
+- partially lifted from [[https://github.com/magnars/.emacs.d/blob/master/init.el][magnar's emacs.d]]
+#+BEGIN_SRC emacs-lisp
+(setq backup-directory-alist
+      `(("." . ,(expand-file-name
+                 (concat user-emacs-directory "backups")))))
+(setq vc-make-backup-files t) ;Make backups of files, even when they're in version control
+(setq auto-save-default nil)  ;stop creating those #auto-save# files
+(global-auto-revert-mode)
+#+END_SRC
 
 ** font
 - Monoid: [[https://github.com/larsenwork/monoid][larsenwork/monoid]]
@@ -639,21 +657,6 @@ an appropriate message.
                 sh-basic-offset 2
                 sh-indentation 2
                 indent-tabs-mode nil)
-#+END_SRC
-
-** backups
-- partially lifted from [[https://github.com/magnars/.emacs.d/blob/master/init.el][magnar's emacs.d]]
-#+BEGIN_SRC emacs-lisp
-;; Write backup files to own directory
-(setq backup-directory-alist
-      `(("." . ,(expand-file-name
-                 (concat user-emacs-directory "backups")))))
-;; Make backups of files, even when they're in version control
-(setq vc-make-backup-files t)
-
-(setq auto-save-default nil) ; stop creating those #auto-save# files
-
-(global-auto-revert-mode)
 #+END_SRC
 
 ** garbage collection tuning

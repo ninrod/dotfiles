@@ -7,17 +7,16 @@ set clipboard+=unnamed
 set surround
 
 nnoremap - :noh<cr>
-map gl G
 nnoremap q ZQ
 nnoremap Q q
 nnoremap ( {
 nnoremap ) }
 nnoremap <cr> :w<cr>
-map g; g_
-map gi g;
 
 nnoremap s :action OptimizeImports<cr>
 
+map gl G
+map g; g_
 nnoremap gq :action Exit<cr>
 nnoremap gr :action RenameElement<cr>
 nnoremap gh :action RecentFiles<cr>
