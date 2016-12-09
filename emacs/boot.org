@@ -1799,29 +1799,26 @@ an appropriate message.
 **** unbinds
 #+BEGIN_SRC emacs-lisp
   (unbind-key "g" Info-mode-map)
+  (unbind-key "s" Info-mode-map)
 
   (unbind-key "v" Info-mode-map)
   (unbind-key "w" Info-mode-map)
   (unbind-key "e" Info-mode-map)
   (unbind-key "b" Info-mode-map)
-
-
-  (unbind-key "H" Info-mode-map)
-  (unbind-key "L" Info-mode-map)
-  (unbind-key "M" Info-mode-map)
-
-  (unbind-key (kbd "<SPC>") Info-mode-map)
-  (unbind-key (kbd "SPC") Info-mode-map)
 #+END_SRC
-**** bind-map
+**** binds
+#+BEGIN_SRC emacs-lisp
+  (bind-key "-" 'evil-ex-nohighlight Info-mode-map)
+#+END_SRC
+**** g-prefix
 #+BEGIN_SRC emacs-lisp
   (bind-map info-g-map
       :evil-keys ("g")
       :evil-states (normal)
       :major-modes (Info-mode))
-#+END_SRC
-**** g-map
-#+BEGIN_SRC emacs-lisp
+  (unbind-key "H" Info-mode-map)
+  (unbind-key "L" Info-mode-map)
+  (unbind-key "M" Info-mode-map)
   (bind-map-set-keys info-g-map
     "o" 'evil-goto-first-line
     "l" 'evil-goto-line
@@ -1830,11 +1827,6 @@ an appropriate message.
     )
   (which-key-add-major-mode-key-based-replacements 'Info-mode "g o" "beggining of buffer")
   (which-key-add-major-mode-key-based-replacements 'Info-mode "g l" "end of buffer")
-#+END_SRC
-**** non-prefix keys
-#+BEGIN_SRC emacs-lisp
-  (bind-key "-" 'evil-ex-nohighlight Info-mode-map)
-  (unbind-key "s" Info-mode-map)
 #+END_SRC
 *** lisp-mode
 **** bind-map
