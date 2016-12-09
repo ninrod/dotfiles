@@ -148,7 +148,12 @@ the right."
 
 ** ninrod functions
 *** lisp-intro-tutorial-exercises
-**** CH04. Writing defuns
+**** CH02. Evaluation
+1. Find a file with which you are working and move towards its middle.
+2. Find its buffer name, file name, length, and your position in the file.
+#+BEGIN_SRC emacs-lisp
+#+END_SRC
+**** CH03. Writing defuns
 ***** Write a function that doubles a number
 1. Write a non-interactive function that doubles the value of its argument, a number.
 2. Make the above function interactive
@@ -166,7 +171,9 @@ an appropriate message.
   (defun ninrod/lisp-intro/fill-test (test)
     "Tests if the argument is greater than fill-column."
     (interactive "p")
-    )
+    (if (> test fill-column)
+        (message "the passed argument, %d is greater than fill-column, %d" test fill-column)
+      (message "fill-column (%d) is equal or greater than the argument (%d)" fill-column test)))
 #+END_SRC
 
 *** org
