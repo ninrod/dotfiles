@@ -1302,6 +1302,7 @@ an appropriate message.
       "p" 'counsel-yank-pop
       "c" 'cd
 
+      "da" 'apropos
       "db" 'counsel-descbinds
       "dc" 'describe-char
       "df" 'counsel-describe-function
