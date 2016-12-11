@@ -613,6 +613,7 @@ an appropriate message.
   (require 'uniquify)
   (setq uniquify-buffer-name-style 'forward
         apropos-do-all t
+        mode-require-final-newline nil
         require-final-newline nil
         )
 #+END_SRC
@@ -1274,7 +1275,6 @@ an appropriate message.
 #+BEGIN_SRC emacs-lisp
   (setq dabbrev-case-fold-search nil)
 #+END_SRC
-
 * keybinds
 ** SPC-map
 *** design
@@ -1952,4 +1952,3 @@ an appropriate message.
                 (kbd "<return>") 'neotree-enter)
               neotree-mode-map))
 #+END_SRC
-
