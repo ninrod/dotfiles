@@ -1,17 +1,11 @@
 # -*- mode: sh -*-
 
-# main
-alias e="background-connect-gui.sh"
+# standard
+alias emacs="emacs.sh"
 alias em="background-emacs.sh"
 
-# emacs
-alias emacs="emacs.sh"
-
-# start daemon
+# daemon
+alias e="connect-emacs-gui-daemon.sh"
 alias ed="up-gui-emacs-daemon.sh"
-
-# kill deamon
 alias ek="kill-gui-emacs-server.sh"
-
-# inspect daemon state
-alias eu="ps -ef | ag 'macs.*\-\-daemon'"
+alias eu="ps aux | ag 'macs.*\-\-old\-daemon'"

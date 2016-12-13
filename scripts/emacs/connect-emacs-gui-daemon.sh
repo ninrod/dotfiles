@@ -1,4 +1,4 @@
 #!/bin/sh
 
 up-gui-emacs-daemon.sh
-emacsclient.sh -c "$@"
+emacsclient.sh --server-file=gui -c -n "$@"
