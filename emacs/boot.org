@@ -188,7 +188,33 @@ an appropriate message.
         (message "the passed argument, %d is greater than fill-column, %d" test fill-column)
       (message "fill-column (%d) is equal or greater than the argument (%d)" fill-column test)))
 #+end_src
-
+**** CH04. Buffer walk through
+***** Write your own `simplified-end-of-buffer' function definition; then test it to see whether it works.
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/lisp-intro/buffer-end ()
+    "Move point to the end of the buffer."
+    (interactive)
+    (push-mark)
+    (goto-char (point-max)))
+#+END_SRC
+***** Use `if' and `get-buffer' to write a function that prints a message telling you whether a buffer exists.
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/lisp-intro/buffer-exists (bufstr)
+    "Print something if BUFSTR exists as a buffer."
+    (interactive (list (read-buffer
+                        "Buffer to check: "
+                        (other-buffer (current-buffer) t))))
+    (if (get-buffer bufstr)
+        (message "BUFSTR %s is a valid buffer." bufstr)
+      (message "BUFSTR %s does not exist." bufstr)))
+#+END_SRC
+***** TODO Using `find-tag', find the source for the `copy-to-buffer' function.
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/lisp-intro/find-src ()
+    "Find source for the copy-to-buffer function."
+    (interactive)
+    (xref-find-definitions "copy-to-buffer"))
+#+END_SRC
 *** org
 - boy, will I refactor these atrocities when I properly learn elisp.
 **** ninrod/org-eol-m-ret
@@ -1783,6 +1809,7 @@ an appropriate message.
 #+BEGIN_SRC emacs-lisp
   (unbind-key "g" Info-mode-map)
   (unbind-key "s" Info-mode-map)
+  (unbind-key "." Info-mode-map)
 
   (unbind-key "n" Info-mode-map)
   (unbind-key "N" Info-mode-map)
