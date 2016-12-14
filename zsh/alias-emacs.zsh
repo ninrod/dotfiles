@@ -5,7 +5,8 @@ alias emacs="emacs.sh"
 alias em="background-emacs.sh"
 
 # daemon
-alias e="connect-emacs-gui-daemon.sh"
-alias ed="up-gui-emacs-daemon.sh"
-alias ek="kill-gui-emacs-server.sh"
+alias e="connect-emacs-tty-daemon.sh"
+alias ed="up-tty-emacs-daemon.sh"
+alias ek="kill-tty-emacs-server.sh"
+alias er="ek && ed"
 alias eu="ps aux | ag 'macs.*\-\-old\-daemon'"

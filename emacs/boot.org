@@ -761,7 +761,8 @@ an appropriate message.
       (setq spacemacs-theme-org-height nil)
       (setq spacemacs-theme-comment-bg nil)
       :config
-      (load-theme 'spacemacs-dark t))
+      (load-theme 'spacemacs-dark t)
+      )
   #+END_SRC
 
 **** zerodark-theme
