@@ -208,13 +208,6 @@ an appropriate message.
         (message "BUFSTR %s is a valid buffer." bufstr)
       (message "BUFSTR %s does not exist." bufstr)))
 #+END_SRC
-***** TODO Using `find-tag', find the source for the `copy-to-buffer' function.
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/lisp-intro/find-src ()
-    "Find source for the copy-to-buffer function."
-    (interactive)
-    (xref-find-definitions "copy-to-buffer"))
-#+END_SRC
 *** org
 - boy, will I refactor these atrocities when I properly learn elisp.
 **** ninrod/org-eol-m-ret
@@ -422,39 +415,39 @@ an appropriate message.
 ** evil
 - emacsify insert state. based on this SO question [[http://stackoverflow.com/a/26573722/4921402][here]].
 #+BEGIN_SRC emacs-lisp
-    (use-package evil :ensure t
-      :config
+  (use-package evil :ensure t
+    :config
 
-      ;; remove all keybindings from insert-state keymap just
-      ;; because I want to use emacs keybindings in insert state.
-      (setcdr evil-insert-state-map nil)
+    ;; remove all keybindings from insert-state keymap just
+    ;; because I want to use emacs keybindings in insert state.
+    (setcdr evil-insert-state-map nil)
 
-      ;; but [escape] should switch back to normal state, obviously.
-      (define-key evil-insert-state-map [escape] 'evil-normal-state)
+    ;; but [escape] should switch back to normal state, obviously.
+    (define-key evil-insert-state-map [escape] 'evil-normal-state)
 
-      ;; Amazing hack lifted from: http://emacs.stackexchange.com/a/15054/12585
-      ;; Imagine the following scenario.  One wants to paste some previously copied
-      ;; (from application other than Emacs) text to the system's clipboard in place
-      ;; of some contiguous block of text in a buffer.  Hence, one switches to
-      ;; `evil-visual-state' and selects the corresponding block of text to be
-      ;; replaced.  However, one either pastes some (previously killed) text from
-      ;; `kill-ring' or (if `kill-ring' is empty) receives the error: "Kill ring is
-      ;; empty"; see `evil-visual-paste' and `current-kill' respectively.  The
-      ;; reason why `current-kill' does not return the desired text from the
-      ;; system's clipboard is because `evil-visual-update-x-selection' is being run
-      ;; by `evil-visual-pre-command' before `evil-visual-paste'.  That is
-      ;; `x-select-text' is being run (by `evil-visual-update-x-selection') before
-      ;; `evil-visual-paste'.  As a result, `x-select-text' copies the selected
-      ;; block of text to the system's clipboard as long as
-      ;; `x-select-enable-clipboard' is non-nil (and in this scenario we assume that
-      ;; it is).  According to the documentation of `interprogram-paste-function',
-      ;; it should not return the text from the system's clipboard if it was last
-      ;; provided by Emacs (e.g. with `x-select-text').  Thus, one ends up with the
-      ;; problem described above.  To solve it, simply make
-      ;; `evil-visual-update-x-selection' do nothing:
-      (fset 'evil-visual-update-x-selection 'ignore)
+    ;; Amazing hack lifted from: http://emacs.stackexchange.com/a/15054/12585
+    ;; Imagine the following scenario.  One wants to paste some previously copied
+    ;; (from application other than Emacs) text to the system's clipboard in place
+    ;; of some contiguous block of text in a buffer.  Hence, one switches to
+    ;; `evil-visual-state' and selects the corresponding block of text to be
+    ;; replaced.  However, one either pastes some (previously killed) text from
+    ;; `kill-ring' or (if `kill-ring' is empty) receives the error: "Kill ring is
+    ;; empty"; see `evil-visual-paste' and `current-kill' respectively.  The
+    ;; reason why `current-kill' does not return the desired text from the
+    ;; system's clipboard is because `evil-visual-update-x-selection' is being run
+    ;; by `evil-visual-pre-command' before `evil-visual-paste'.  That is
+    ;; `x-select-text' is being run (by `evil-visual-update-x-selection') before
+    ;; `evil-visual-paste'.  As a result, `x-select-text' copies the selected
+    ;; block of text to the system's clipboard as long as
+    ;; `x-select-enable-clipboard' is non-nil (and in this scenario we assume that
+    ;; it is).  According to the documentation of `interprogram-paste-function',
+    ;; it should not return the text from the system's clipboard if it was last
+    ;; provided by Emacs (e.g. with `x-select-text').  Thus, one ends up with the
+    ;; problem described above.  To solve it, simply make
+    ;; `evil-visual-update-x-selection' do nothing:
+    (fset 'evil-visual-update-x-selection 'ignore)
 
-      (evil-mode))
+    (evil-mode))
 #+END_SRC
 
 ** evil-commentary
@@ -781,7 +774,7 @@ an appropriate message.
 
 *** themes
 **** spacemacs-theme
-  #+BEGIN_SRC emacs-lisp
+  #+BEGIN_SRC text
     (use-package spacemacs-dark-theme :load-path "lisp/ninrod/spacemacs-theme"
       :init
       (setq spacemacs-theme-org-height nil)
@@ -792,7 +785,7 @@ an appropriate message.
   #+END_SRC
 
 **** zerodark-theme
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package zerodark-theme :load-path "lisp/ninrod/zerodark-theme"
     :init
     (setq zerodark-use-paddings-in-mode-line nil)
@@ -805,6 +798,15 @@ an appropriate message.
     :config
     (load-theme 'zerodark t))
 #+END_SRC
+
+**** gruvbox-theme
+  #+BEGIN_SRC text
+    (use-package gruvbox-theme :load-path "lisp/ninrod/gruvbox-theme"
+      :init
+      (setq gruvbox-contrast 'hard)
+      :config
+      (load-theme 'gruvbox t))
+  #+END_SRC
 
 **** darktooth-theme
 #+BEGIN_SRC text
@@ -822,15 +824,6 @@ an appropriate message.
     :defer t
     :ensure t)
 #+END_SRC
-
-**** gruvbox-theme
-  #+BEGIN_SRC text
-    (use-package gruvbox-theme :load-path "lisp/ninrod/gruvbox-theme"
-      :init
-      (setq gruvbox-contrast 'hard)
-      :config
-      (load-theme 'gruvbox t))
-  #+END_SRC
 
 *** spaceline
 - to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
