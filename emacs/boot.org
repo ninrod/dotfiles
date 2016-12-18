@@ -1255,6 +1255,11 @@ an appropriate message.
 #+BEGIN_SRC emacs-lisp
 (use-package sicp :ensure t)
 #+END_SRC
+** toys
+*** speed-type
+#+BEGIN_SRC emacs-lisp
+  (use-package speed-type :load-path "lisp/parkouss/speed-type")
+#+END_SRC
 * fixes/patches
 ** yasnippet hijacks TAB key in term mode
 #+BEGIN_SRC emacs-lisp

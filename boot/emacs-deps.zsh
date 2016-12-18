@@ -14,3 +14,6 @@ ningrab ninrod/evil-surround
 ningrab ninrod/spacemacs-theme
 ningrab ninrod/zerodark-theme
 ningrab ninrod/gruvbox-theme
+
+# toys
+ningrab parkouss/speed-type
