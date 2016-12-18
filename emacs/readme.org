@@ -7,8 +7,8 @@
 - ivy instead of helm
 * List of emacs paint points comming from vim
 ** basic editing operations
-- `diw` in a sequence of spaces eats `\n` if applied in a line break.
 - [[https://bitbucket.org/lyro/evil/issues/726/vt-vf-vt-vf-vt-vf-vt-vf-do-not-work][`vt'` and `vt"` do not work with us-internationl keyboard deadkeys]]
+- `diw` in a sequence of spaces eats `\n` if applied in a line break.
 - `yiw` does not move cursor to beggining of text object.
 - does emacs have virtual columns?
 - the star operator is broken when subword-mode is active.
