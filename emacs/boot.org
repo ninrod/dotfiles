@@ -579,8 +579,16 @@ an appropriate message.
   (use-package rect-ext :load-path "lisp/noctuid/rect-ext.el")
 #+END_SRC
 
-** evil-new-text-objs
+** evil-targets
+
 #+BEGIN_SRC emacs-lisp
+  (use-package targets :load-path "lisp/noctuid/targets.el"
+    :config
+    (targets-setup t))
+#+END_SRC
+
+** evil-new-text-objs
+#+BEGIN_SRC text
   (evil-define-text-object evil-inner-pipe  (count &optional beg end type)
     (evil-select-quote ?\| beg end type count nil))
   (evil-define-text-object evil-a-pipe  (count &optional beg end type)
