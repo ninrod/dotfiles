@@ -1781,14 +1781,19 @@ an appropriate message.
 *** function keys
 #+BEGIN_SRC emacs-lisp
   (bind-key (kbd "<f1>") 'eyebrowse-switch-to-window-config-1 evil-motion-state-map)
+  (bind-key (kbd "<f1>") 'eyebrowse-switch-to-window-config-1 global-map)
+
   (bind-key (kbd "<f2>") 'eyebrowse-switch-to-window-config-2 evil-motion-state-map)
+  (bind-key (kbd "<f2>") 'eyebrowse-switch-to-window-config-2 global-map)
+
   (bind-key (kbd "<f3>") 'eyebrowse-switch-to-window-config-3 evil-motion-state-map)
+  (bind-key (kbd "<f3>") 'eyebrowse-switch-to-window-config-3 global-map)
+
   (bind-key (kbd "<f4>") 'eyebrowse-switch-to-window-config-4 evil-motion-state-map)
+  (bind-key (kbd "<f4>") 'eyebrowse-switch-to-window-config-4 global-map)
 
   (bind-key (kbd "<f5>") 'eyebrowse-switch-to-window-config-5 evil-motion-state-map)
-  (bind-key (kbd "<f6>") 'eyebrowse-switch-to-window-config-6 evil-motion-state-map)
-  (bind-key (kbd "<f7>") 'eyebrowse-switch-to-window-config-7 evil-motion-state-map)
-  (bind-key (kbd "<f8>") 'eyebrowse-switch-to-window-config-8 evil-motion-state-map)
+  (bind-key (kbd "<f5>") 'eyebrowse-switch-to-window-config-5 global-map)
 #+END_SRC
 
 *** fixes
