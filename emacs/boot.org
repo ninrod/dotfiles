@@ -633,6 +633,7 @@ an appropriate message.
   (tool-bar-mode -1)
   (menu-bar-mode -1)
   (electric-pair-mode 1)
+  (column-number-mode t)
   ;; (global-subword-mode) ;support for camelcase words
 #+END_SRC
 ** better defaults
@@ -1242,7 +1243,10 @@ an appropriate message.
 #+BEGIN_SRC emacs-lisp
 (use-package gitconfig-mode :ensure t)
 #+END_SRC
-
+*** elixir
+#+BEGIN_SRC emacs-lisp
+(use-package alchemist :ensure t)
+#+END_SRC
 ** mirrors
 *** elpa-mirror
 #+BEGIN_SRC emacs-lisp
