@@ -1176,6 +1176,31 @@ an appropriate message.
       :init (setq markdown-command "multimarkdown"))
 #+END_SRC
 
+*** json: json-mode, json-reformat
+#+BEGIN_SRC emacs-lisp
+  (use-package json-reformat :ensure t
+    :config
+    (setq json-reformat:indent-width 2))
+
+  (use-package json-mode :ensure t)
+#+END_SRC
+
+*** vimrc: vimrc mode
+#+BEGIN_SRC emacs-lisp
+(use-package vimrc-mode :ensure t)
+#+END_SRC
+
+*** docker: dockerfile
+#+BEGIN_SRC emacs-lisp
+(use-package dockerfile-mode :ensure t
+  :config (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
+#+END_SRC
+
+*** gitconfig-mode
+#+BEGIN_SRC emacs-lisp
+(use-package gitconfig-mode :ensure t)
+#+END_SRC
+** languages
 *** html: web-mode
 #+BEGIN_SRC emacs-lisp
 (use-package web-mode
@@ -1219,38 +1244,15 @@ an appropriate message.
     (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2))))
 #+END_SRC
 
-*** json: json-mode, json-reformat
+*** elm
 #+BEGIN_SRC emacs-lisp
-  (use-package json-reformat :ensure t
-    :config
-    (setq json-reformat:indent-width 2))
-
-  (use-package json-mode :ensure t)
-#+END_SRC
-
-*** vimrc: vimrc mode
-#+BEGIN_SRC emacs-lisp
-(use-package vimrc-mode :ensure t)
-#+END_SRC
-
-*** docker: dockerfile
-#+BEGIN_SRC emacs-lisp
-(use-package dockerfile-mode :ensure t
-  :config (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
-#+END_SRC
-
-*** gitconfig-mode
-#+BEGIN_SRC emacs-lisp
-(use-package gitconfig-mode :ensure t)
+(use-package elm-mode :ensure t)
 #+END_SRC
 *** elixir
 #+BEGIN_SRC emacs-lisp
 (use-package alchemist :ensure t)
 #+END_SRC
-*** elm
-#+BEGIN_SRC emacs-lisp
-(use-package elm-mode :ensure t)
-#+END_SRC
+
 ** mirrors
 *** elpa-mirror
 #+BEGIN_SRC emacs-lisp
