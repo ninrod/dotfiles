@@ -1248,11 +1248,18 @@ an appropriate message.
 #+BEGIN_SRC emacs-lisp
 (use-package elm-mode :ensure t)
 #+END_SRC
+*** haskell
+#+BEGIN_SRC emacs-lisp
+  (use-package haskell-mode :ensure t)
+  (use-package flycheck-haskell :ensure t
+    :config
+    (eval-after-load 'flycheck
+      '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup)))
+#+END_SRC
 *** elixir
 #+BEGIN_SRC emacs-lisp
 (use-package alchemist :ensure t)
 #+END_SRC
-
 ** mirrors
 *** elpa-mirror
 #+BEGIN_SRC emacs-lisp
