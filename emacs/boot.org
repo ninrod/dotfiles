@@ -1250,11 +1250,17 @@ an appropriate message.
 #+END_SRC
 *** haskell
 #+BEGIN_SRC emacs-lisp
-  (use-package haskell-mode :ensure t)
+  (use-package haskell-mode :ensure t
+    :config
+    (use-package intero :ensure t
+      :config
+      (add-hook 'haskell-mode-hook 'intero-mode)))
+
   (use-package flycheck-haskell :ensure t
     :config
     (eval-after-load 'flycheck
       '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup)))
+
 #+END_SRC
 *** elixir
 #+BEGIN_SRC emacs-lisp
