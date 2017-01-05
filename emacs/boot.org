@@ -1573,6 +1573,7 @@ an appropriate message.
     "c" 'air-org-task-capture
     "r" 'restart-emacs
     "s" 'ivy-switch-buffer
+    "b" 'ninrod/extended-buffer-menu
     "d" 'spacemacs/kill-this-buffer ; Delete buffer
     "w" 'write-file ; Save as
     "p" 'counsel-projectile-switch-project
