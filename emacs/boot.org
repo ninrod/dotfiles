@@ -1199,6 +1199,8 @@ an appropriate message.
 *** gitconfig-mode
 #+BEGIN_SRC emacs-lisp
 (use-package gitconfig-mode :ensure t)
+(use-package gitignore-mode :ensure t)
+(use-package gitattributes-mode :ensure t)
 #+END_SRC
 ** languages
 *** html: web-mode
