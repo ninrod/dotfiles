@@ -8,7 +8,7 @@ ningrab ninrod/thin-melpa-mirror
 # core editing
 ningrab supermomonga/evil-textobj-entire
 ningrab noctuid/rect-ext.el
-ningrab ninrod/targets.el
+ningrab noctuid/targets.el
 ningrab ninrod/evil-surround
 
 # forked themes
