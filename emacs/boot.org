@@ -1268,6 +1268,11 @@ an appropriate message.
 #+BEGIN_SRC emacs-lisp
 (use-package alchemist :ensure t)
 #+END_SRC
+*** rust
+#+BEGIN_SRC emacs-lisp
+(use-package rust-mode :ensure t)
+#+END_SRC
+
 ** mirrors
 *** elpa-mirror
 #+BEGIN_SRC emacs-lisp
