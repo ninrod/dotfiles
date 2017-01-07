@@ -6,9 +6,9 @@ ningrab syl20bnr/spacemacs-elpa-mirror
 ningrab ninrod/thin-melpa-mirror
 
 # core editing
-ningrab noctuid/rect-ext.el
-ningrab noctuid/targets.el
 ningrab supermomonga/evil-textobj-entire
+ningrab noctuid/rect-ext.el
+ningrab ninrod/targets.el
 ningrab ninrod/evil-surround
 
 # forked themes

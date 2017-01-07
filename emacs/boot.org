@@ -582,7 +582,7 @@ an appropriate message.
 ** evil-targets
 
 #+BEGIN_SRC emacs-lisp
-  (use-package targets :load-path "lisp/noctuid/targets.el"
+  (use-package targets :load-path "lisp/ninrod/targets.el"
     :config
     (targets-setup t))
 #+END_SRC
