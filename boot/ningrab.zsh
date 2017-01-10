@@ -27,10 +27,11 @@ ningrab() {
   echo -e "${Yellow}Performing git status${Rst} on [${Green}${name}${Rst}]."
 
   git fetch -v
+
+  # hack lifted from http://stackoverflow.com/a/3278427/4921402
   LOCAL=$(git rev-parse @)
   REMOTE=$(git rev-parse @{u})
   BASE=$(git merge-base @ @{u})
-
   if [[ $LOCAL = $REMOTE ]]; then
     echo "${Cyan}${name}${Rst} is already ${Blue}Up-to-date${Rst}."
   elif [[ $LOCAL = $BASE ]]; then
