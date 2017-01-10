@@ -61,6 +61,7 @@ $ exec zsh
 #+END_SRC
 
 - That's it, your're all set.
+- =protip=: =~/.dotfiles/install.zsh update= will update all depencies
 
 * Emacs: the timeless and infinitely powerful editor
 I maintain my configuration using an org-mode file, trough org-babel. 
