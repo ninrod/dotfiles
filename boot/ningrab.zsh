@@ -17,6 +17,43 @@ git_clone_error_msg() {
 }
 
 # simplest dependency fetcher known to mankind
+if [[ "$1" == "update" ]]; then
+
+ningrab() {
+  local name="$1"
+  local cwd=$(readlink -f .)
+  cd $name
+  echo -e "-------------------"
+  echo -e "${Yellow}Performing git status${Rst} on [${Green}${name}${Rst}]."
+
+  git fetch -v
+  LOCAL=$(git rev-parse @)
+  REMOTE=$(git rev-parse @{u})
+  BASE=$(git merge-base @ @{u})
+
+  if [[ $LOCAL = $REMOTE ]]; then
+    echo "${Cyan}${name}${Rst} is already ${Blue}Up-to-date${Rst}."
+  elif [[ $LOCAL = $BASE ]]; then
+    echo "${Cyan}${name}${Rst}  ${Yellow}needs a pull${Rst} Performing git pull..."
+    git pull --rebase; rc=$?
+    if [[ ! $rc = 0 ]]; then
+      echo -e "${Red}[ERROR]${Rst} git pull returned code: ${Red}${rc}${Rst}. ${Yellow}aborting...${Rst}"
+      echo -e "-------------------"
+      return $rc
+    fi
+    echo -e "${Blue}[Success]${Rst} ${Green}$name${Rst} successfully ${Cyan}updated${Rst}."
+  elif [[ $REMOTE = $BASE ]]; then
+    echo "${name} needs to be ${Red}pushed${Rst}. Wait, What? You should not be commiting here."
+  else
+    echo "${name} needs to be ${Red}rebased and pushed${Rst}. Wait, What? You should not be commiting here."
+  fi
+
+  cd $cwd
+  echo -e "-------------------"
+}
+
+else
+
 ningrab() {
   local name="$1"
   local url=$(build_git_url $name)
@@ -50,3 +87,5 @@ ningrab() {
   fi
   echo -e "-------------------"
 }
+fi
+
