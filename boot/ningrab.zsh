@@ -8,6 +8,14 @@ build_git_url() {
   echo $url
 }
 
+git_clone_error_msg() {
+  if [[ ! $1 = 0 ]]; then
+    echo -e "${Red}[ERROR]${Rst} git clone finished with return code: ${Red}${1}${Rst}. ${Yellow}aborting...${Rst}"
+    echo -e "-------------------"
+    return $1
+  fi
+}
+
 # simplest dependency fetcher known to mankind
 ningrab() {
   local name="$1"
@@ -20,7 +28,12 @@ ningrab() {
     echo -e "[${Red}${name}${Rst}] not cloned. cloning now from ${Blue}${url}${Rst}"
     if [[ -n ${2+x} ]]; then
       echo -e "the ref: ${Yellow}${ref}${Rst} was passed. Performing ${Blue}full${Rst} clone."
-      git clone $url $name
+
+      git clone $url $name; rc=$?; git_clone_error_msg $rc
+      if [[ ! $rc = 0 ]]; then
+        return $rc
+      fi
+
       local cwd=$(readlink -f .)
       cd $name
       git checkout --quiet $ref
@@ -28,7 +41,10 @@ ningrab() {
       cd $cwd
     else
       echo -e "no ref to checkout. ${Yellow}shallow${Rst} cloning."
-      git clone --depth 1 $url $name
+      git clone --depth 1 $url $name; rc=$?; git_clone_error_msg $rc
+      if [[ ! $rc = 0 ]]; then
+        return $rc
+      fi
     fi
     echo -e "[${Green}${name}${Rst}] sucessfully cloned."
   fi
