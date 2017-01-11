@@ -42,8 +42,10 @@
 
 ;; fetch latest version of `org-mode'
 (use-package org
+  :pin org
   :ensure org-plus-contrib
-  :defer 7)
+  :defer 7
+  )
 
 ;; org-babel-load my config which is written in `org-mode' format
 (org-babel-load-file (expand-file-name "~/.emacs.d/boot.org"))

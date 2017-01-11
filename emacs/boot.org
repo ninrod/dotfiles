@@ -974,10 +974,16 @@ an appropriate message.
 
 *** vidff
 #+BEGIN_SRC emacs-lisp
-(when (display-graphic-p)
-(use-package vdiff :ensure t
-:config
-(evil-define-key 'normal vdiff-mode-map "," vdiff-mode-prefix-map)))
+  (when (display-graphic-p)
+    (use-package vdiff :ensure t
+      :config
+      (evil-define-key 'normal vdiff-mode-map "," vdiff-mode-prefix-map)))
+#+END_SRC
+*** nhxel-mode
+#+BEGIN_SRC emacs-lisp
+  (use-package nhexl-mode
+    :ensure t
+    :pin gnu)
 #+END_SRC
 ** completions
 *** ivy/counsel
