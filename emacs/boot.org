@@ -1010,6 +1010,11 @@ an appropriate message.
 *** company
 #+BEGIN_SRC emacs-lisp
   (use-package company :ensure t
+    :init
+
+    ;; http://emacs.stackexchange.com/a/10838/12585
+    (setq company-dabbrev-downcase nil)
+
     :config
     (add-hook 'after-init-hook 'global-company-mode)
     (define-key company-mode-map (kbd "C-SPC") 'company-complete))
@@ -1382,7 +1387,7 @@ an appropriate message.
 
 ** dabbrev-expand case fix
 #+BEGIN_SRC emacs-lisp
-  (setq dabbrev-case-fold-search nil)
+  ;; (setq dabbrev-case-fold-search nil)
 #+END_SRC
 * keybinds
 ** SPC-map
