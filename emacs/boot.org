@@ -145,7 +145,6 @@ the right."
       (kill-new filename)
       (message "Copied buffer file name '%s' to the clipboard." filename))))
 #+END_SRC
-
 ** ninrod functions
 *** lisp-intro-tutorial-exercises
 **** CH02. Evaluation
@@ -385,6 +384,14 @@ an appropriate message.
  (save-excursion ;; leave point where it is
   (goto-char (point-at-eol))             ;; then go to the end of line
   (origami-toggle-node (current-buffer) (point))))                 ;; and try to fold
+#+END_SRC
+**** ninrod/display-ansi-colors
+- credits: [[http://stackoverflow.com/a/23382008/4921402][this]] SO question
+#+BEGIN_SRC emacs-lisp
+(require 'ansi-color)
+(defun ninrod/display-ansi-colors ()
+  (interactive)
+  (ansi-color-apply-on-region (point-min) (point-max)))
 #+END_SRC
 **** ninrod/nin-echo
 #+BEGIN_SRC emacs-lisp

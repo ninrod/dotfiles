@@ -1,1 +1,1 @@
-boot/boot.zsh
+boot/logboot.zsh
