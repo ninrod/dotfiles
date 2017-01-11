@@ -1119,6 +1119,10 @@ an appropriate message.
 #+BEGIN_SRC emacs-lisp
 (use-package dired-sort :ensure t)
 #+END_SRC
+*** dired-detais
+#+BEGIN_SRC emacs-lisp
+(use-package dired-details :ensure t)
+#+END_SRC
 ** git
 *** git-gutter-fringe
 #+BEGIN_SRC emacs-lisp
@@ -1879,13 +1883,15 @@ an appropriate message.
 #+END_SRC
 
 ** dired
-- lifted from this [[http://stackoverflow.com/a/10672548/4921402][SO question]]
-- lifted from magnar's [[https://github.com/magnars/.emacs.d/blob/master/site-lisp/evil/evil-integration.el][magnars config]]
+*** unbinds
 #+BEGIN_SRC emacs-lisp
-  (with-eval-after-load 'dired
-    ;; use the standard Dired bindings as a base
+  (defun ninrod/dired--unbinds ()
     (define-key dired-mode-map (kbd "SPC") nil)
     (define-key dired-mode-map "s" nil)
+    (define-key dired-mode-map "-" nil)
+    (define-key dired-mode-map "n" nil)
+    (define-key dired-mode-map "N" nil)
+    (define-key dired-mode-map "y" nil)
     (define-key dired-mode-map "M" nil)
     (define-key dired-mode-map "L" nil)
     (define-key dired-mode-map "H" nil)
@@ -1905,9 +1911,13 @@ an appropriate message.
     (define-key dired-mode-map "F" nil)
     (define-key dired-mode-map "v" nil)
     (define-key dired-mode-map "V" nil)
+    )
+#+END_SRC
+*** binds
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/dired--binds ()
+    "my dired rebinds"
 
-    ;; (define-key dired-mode-map "t" nil)
-    (evil-make-overriding-map dired-mode-map 'normal t)
     (evil-define-key 'normal dired-mode-map
       "h" 'evil-backward-char
       "j" 'evil-next-line
@@ -1917,8 +1927,11 @@ an appropriate message.
       "c" 'find-file
       "m" 'dired-create-directory ;*-m is dired-mark
       "r" 'dired-do-rename
+      "p" 'dired-do-chmod
+      "t" 'dired-mark
 
       ",s" 'dired-sort-extension
+      ",t" 'dired-details-toggle
 
       (kbd "DEL") 'dired-up-directory
       "go" 'evil-goto-first-line
@@ -1927,10 +1940,19 @@ an appropriate message.
 
       "R" 'dired-do-redisplay
       "T" 'dired-toggle-marks
-      "t" 'dired-mark
       ))
 #+END_SRC
-
+*** setup
+- lifted from this [[http://stackoverflow.com/a/10672548/4921402][SO question]]
+- lifted from magnar's [[https://github.com/magnars/.emacs.d/blob/master/site-lisp/evil/evil-integration.el][magnars config]]
+#+BEGIN_SRC emacs-lisp
+  ;; (setq dired-listing-switches "-lhXA --group-directories-first")
+  (with-eval-after-load 'dired
+    (ninrod/dired--unbinds)
+    (evil-make-overriding-map dired-mode-map 'normal t); use the standard Dired bindings as a base
+    (ninrod/dired--binds)
+    )
+#+END_SRC
 ** other modes
 *** info-mode
 **** unbinds
