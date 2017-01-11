@@ -1613,7 +1613,7 @@ an appropriate message.
     "c" 'air-org-task-capture
     "r" 'restart-emacs
     "s" 'ivy-switch-buffer
-    "b" 'ninrod/extended-buffer-menu
+    "m" 'ninrod/extended-buffer-menu
     "d" 'spacemacs/kill-this-buffer ; Delete buffer
     "w" 'write-file ; Save as
     "p" 'counsel-projectile-switch-project
@@ -2078,7 +2078,13 @@ an appropriate message.
   (unbind-key "<SPC>" ag-mode-map)
   ;; (define-key ag-mode-map (kbd "SPC") nil)
 #+END_SRC
-
+*** buffer-menu
+#+BEGIN_SRC emacs-lisp
+  (with-eval-after-load 'tabulated-list
+    (define-key Buffer-menu-mode-map (kbd "SPC") nil)
+    (define-key Buffer-menu-mode-map "s" nil)
+    )
+#+END_SRC
 ** awesome available binds
 *** g prefix: t, T
 *** SPC leader: (TAB / . ; , -)
