@@ -1964,8 +1964,19 @@ an appropriate message.
 *** dired
 **** fix: unhijack my precious SPC leader key.
 - lifted from this [[http://stackoverflow.com/a/10672548/4921402][SO question]]
+- lifted from magnar's [[https://github.com/magnars/.emacs.d/blob/master/site-lisp/evil/evil-integration.el][magnars config]]
 #+BEGIN_SRC emacs-lisp
-(define-key dired-mode-map (kbd "SPC") nil)
+  (with-eval-after-load 'dired
+    ;; use the standard Dired bindings as a base
+    (define-key dired-mode-map (kbd "SPC") nil)
+    (evil-make-overriding-map dired-mode-map 'normal t)
+    (evil-define-key 'normal dired-mode-map
+      "h" 'evil-backward-char
+      "j" 'evil-next-line
+      "k" 'evil-previous-line
+      "l" 'evil-forward-char
+      (kbd "DEL") 'dired-up-directory
+      "r" 'dired-do-redisplay))
 #+END_SRC
 
 *** magit
