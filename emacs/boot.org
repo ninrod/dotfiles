@@ -457,6 +457,12 @@ an appropriate message.
     (evil-mode))
 #+END_SRC
 
+** evil-surround
+#+BEGIN_SRC emacs-lisp
+(use-package evil-surround :load-path "lisp/ninrod/evil-surround"
+  :config (global-evil-surround-mode 1))
+#+END_SRC
+
 ** evil-commentary
 #+BEGIN_SRC emacs-lisp
 (use-package evil-commentary :ensure t
@@ -468,12 +474,6 @@ an appropriate message.
 #+BEGIN_SRC emacs-lisp
 (use-package evil-matchit :ensure t
   :config (global-evil-matchit-mode 1))
-#+END_SRC
-
-** evil-surround
-#+BEGIN_SRC emacs-lisp
-(use-package evil-surround :load-path "lisp/ninrod/evil-surround"
-  :config (global-evil-surround-mode 1))
 #+END_SRC
 
 ** evil-exchange
