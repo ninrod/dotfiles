@@ -482,15 +482,6 @@ an appropriate message.
   :config (evil-exchange-install))
 #+END_SRC
 
-** evil-args
-#+begin_src emacs-lisp
-(use-package evil-args :ensure t
-  :config
-    (define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
-    (define-key evil-outer-text-objects-map "a" 'evil-outer-arg)
-)
-#+end_src
-
 ** evil-visualstar
 #+begin_src emacs-lisp
 (use-package evil-visualstar :ensure t
@@ -559,13 +550,6 @@ an appropriate message.
   :config (evil-lisp-state-leader "C-c C-l"))
 #+END_SRC
 
-** evil-textobj-entire
-#+BEGIN_SRC emacs-lisp
-  (use-package evil-textobj-entire :load-path "lisp/supermomonga/evil-textobj-entire"
-    :config
-    (define-key evil-outer-text-objects-map evil-textobj-entire-key 'evil-entire-entire-buffer))
-#+END_SRC
-
 ** evil-god-state
 
 #+BEGIN_SRC emacs-lisp
@@ -600,6 +584,22 @@ an appropriate message.
     :config
     (targets-setup t)
     )
+#+END_SRC
+
+** evil-args
+#+begin_src emacs-lisp
+(use-package evil-args :ensure t
+  :config
+    (define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
+    (define-key evil-outer-text-objects-map "a" 'evil-outer-arg)
+)
+#+end_src
+
+** evil-textobj-entire
+#+BEGIN_SRC emacs-lisp
+  (use-package evil-textobj-entire :load-path "lisp/supermomonga/evil-textobj-entire"
+    :config
+    (define-key evil-outer-text-objects-map evil-textobj-entire-key 'evil-entire-entire-buffer))
 #+END_SRC
 
 ** evil-new-text-objs
