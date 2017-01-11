@@ -1962,20 +1962,25 @@ an appropriate message.
 #+END_SRC
 
 *** dired
-**** fix: unhijack my precious SPC leader key.
 - lifted from this [[http://stackoverflow.com/a/10672548/4921402][SO question]]
 - lifted from magnar's [[https://github.com/magnars/.emacs.d/blob/master/site-lisp/evil/evil-integration.el][magnars config]]
 #+BEGIN_SRC emacs-lisp
   (with-eval-after-load 'dired
     ;; use the standard Dired bindings as a base
     (define-key dired-mode-map (kbd "SPC") nil)
+    (define-key dired-mode-map "c" nil)
+    (define-key dired-mode-map "s" nil)
+    (define-key dired-mode-map "m" nil)
     (evil-make-overriding-map dired-mode-map 'normal t)
     (evil-define-key 'normal dired-mode-map
       "h" 'evil-backward-char
       "j" 'evil-next-line
       "k" 'evil-previous-line
       "l" 'evil-forward-char
+      "c" 'find-file
+      "m" 'dired-create-directory ;*-m is dired-mark
       (kbd "DEL") 'dired-up-directory
+      (kbd "go") 'evil-goto-first-line
       "r" 'dired-do-redisplay))
 #+END_SRC
 
