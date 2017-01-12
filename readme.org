@@ -3,7 +3,7 @@
 
 * Ninrod's emacs, vim, zsh and tmux dotfiles
 
-[[http://opensource.org/licenses/GPL-3.0][http://img.shields.io/:license-gpl-blue.svg]]
+[[http://opensource.org/licenses/GPL-3.0][https://img.shields.io/badge/license-GPLv3-blue.svg]]
 
 - Simplicity, speed and power while working inside the shell.
 
