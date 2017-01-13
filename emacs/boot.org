@@ -998,6 +998,7 @@ an appropriate message.
       (add-to-list 'ivy-ignore-buffers "\\*Help\\*")
       (add-to-list 'ivy-ignore-buffers "\\*Messages\\*")
       (add-to-list 'ivy-ignore-buffers "\\*Buffer List\\*")
+      (add-to-list 'ivy-ignore-buffers "\\*terminal")
 
       (setq ivy-count-format "(%d/%d) ")
       (setq ivy-height 15)
