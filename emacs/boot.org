@@ -1,7 +1,7 @@
 #+STARTUP: indent
 #+STARTUP: overview
 
-* lisp functions
+* lisp
 ** lifted lisp functions
 *** spacemacs
 **** spacemacs/buffer operations
@@ -418,7 +418,7 @@ an appropriate message.
        (define-key evil-outer-text-objects-map ,key #',outer-name))))
 #+END_SRC
 
-* evil corruption
+* evil
 ** evil
 - emacsify insert state. based on this SO question [[http://stackoverflow.com/a/26573722/4921402][here]].
 #+BEGIN_SRC emacs-lisp
@@ -1346,7 +1346,7 @@ an appropriate message.
 #+BEGIN_SRC emacs-lisp
   (use-package speed-type :load-path "lisp/parkouss/speed-type")
 #+END_SRC
-* fixes/patches
+* fixes
 ** yasnippet hijacks TAB key in term mode
 #+BEGIN_SRC emacs-lisp
 (add-hook 'term-mode-hook 'my-term-mode-hook)
