@@ -1579,7 +1579,8 @@ an appropriate message.
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys s-map
     ; buffer operations
-    "TAB" 'ninrod/revert-buffer-no-confirm
+    ;; "TAB" 'reserved
+    "u" 'ninrod/revert-buffer-no-confirm
     "d" 'spacemacs/kill-this-buffer
     "m" 'ninrod/extended-buffer-menu
     "o" 'air-org-task-capture
@@ -1591,7 +1592,6 @@ an appropriate message.
     "-" 'bookmark-delete
     "=" 'bookmark-set
     "Y" 'prelude-copy-file-name-to-clipboard
-
     ; directory operations
     "g" 'ninrod/uarg-magit-status
     "DEL" 'neotree-toggle
@@ -1599,7 +1599,6 @@ an appropriate message.
     "a" 'projectile-switch-open-project; projeto [A]berto
     "c" 'cd
     "C" 'make-directory
-
     ; window operations
     "j" 'evil-window-down
     "k" 'evil-window-up
@@ -1607,7 +1606,6 @@ an appropriate message.
     "l" 'evil-window-right
     "y" 'split-window-right-and-focus
     "x" 'split-window-below-and-focus
-
     ; quit operations
     "r" 'restart-emacs
     "w" 'write-file ; Save as
