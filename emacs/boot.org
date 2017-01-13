@@ -1365,6 +1365,9 @@ an appropriate message.
 
 ** diminishes
 #+BEGIN_SRC emacs-lisp
+  (diminish 'flycheck-mode)
+  (diminish 'company-mode)
+  (diminish 'ivy-mode)
   (diminish 'undo-tree-mode)
   (diminish 'auto-revert-mode)
   (diminish 'org-indent-mode)
@@ -1409,14 +1412,15 @@ an appropriate message.
     (bind-map-set-keys spc-map
       "<SPC>" 'counsel-M-x
 
-      ;; terminal
-      "t" 'multi-term
-      "$" 'eshell
-
-      "g" 'ninrod/uarg-magit-status
+      "n" 'rect-ext-narrow
+      "w" 'rect-ext-widen
       "p" 'counsel-yank-pop
-      "c" 'cd
+      "o" 'sort-lines
 
+      ; file searching
+      "sp" 'projectile-ag
+
+      ; emacs help searching
       "da" 'apropos
       "db" 'counsel-descbinds
       "dc" 'describe-char
@@ -1451,18 +1455,8 @@ an appropriate message.
   "A|" 'spacemacs/align-repeat-bar
 )
 (which-key-declare-prefixes "SPC A" "Align")
-
 #+END_SRC
 
-**** B: Buffer operations
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys spc-map
-  "Bo" 'spacemacs/kill-other-buffers
-  "Bu" 'ninrod/extended-buffer-menu ; mnemonic: Uargs M-x buffer-menu
-  "Br" 'ninrod/revert-buffer-no-confirm
-)
-(which-key-declare-prefixes "SPC B" "Buffers")
-#+END_SRC
 **** E: Eyebrowse
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys spc-map
@@ -1474,22 +1468,12 @@ an appropriate message.
 (which-key-declare-prefixes "SPC E" "Eyebrowse")
 #+END_SRC
 
-**** F: File/Dir operations
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys spc-map
-    "Fy" 'prelude-copy-file-name-to-clipboard
-    "Fm" 'make-directory
-    "Fd" 'bookmark-delete
-    "Fs" 'bookmark-set
-  )
-  (which-key-declare-prefixes "SPC F" "File/Dir operations")
-#+END_SRC
 **** G: maGit
 - *lift*: the below magit SPC gs bind hack was lifted from [[http://emacs.stackexchange.com/a/27623/12585][this]] SO answer.
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys spc-map
   "Gf" 'magit-log-buffer-file
-  "Gs" 'ninrod/uarg-magit-status)
+)
 (which-key-declare-prefixes "SPC G" "maGit operations")
 #+END_SRC
 
@@ -1517,6 +1501,8 @@ an appropriate message.
     "Mm" 'elpamr-create-mirror-for-installed
     "Mr" 'replace-string
     "Ms" 'sort-lines
+    "Mu" 'undo-tree-visualize
+    "Mw" 'woman
   )
   (which-key-declare-prefixes "SPC M" "M-x useful functions")
   (which-key-declare-prefixes "SPC Mi" "REPL: inferior elisp mode")
@@ -1533,24 +1519,6 @@ an appropriate message.
   (which-key-declare-prefixes "SPC O" "Org-mode")
 #+END_SRC
 
-**** P: projectile
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys spc-map
-  "Pa" 'projectile-ag
-  "Ps" 'counsel-projectile-switch-project
-  "Po" 'projectile-switch-open-project
-)
-(which-key-declare-prefixes "SPC P" "Projectile")
-#+END_SRC
-
-**** R: Rectangle operations
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys spc-map
-    ;; ** window manipulations **
-    "Rn" 'rect-ext-narrow
-    "Rw" 'rect-ext-widen
-)
-#+END_SRC
 **** S: Spelling
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys spc-map
@@ -1568,19 +1536,6 @@ an appropriate message.
   "SPC Sk" "turn off flyspell mode"
   "SPC Ss" "turn on flyspell mode"
 )
-#+END_SRC
-
-**** X: useful M-x commands
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys spc-map
-    "Xm" 'man
-    "Xw" 'woman
-    ;; evil
-    "Xeu" 'undo-tree-visualize
-    "Xe+" 'evil-numbers/inc-at-pt
-    "Xe-" 'evil-numbers/dec-at-pt
-  )
-  (which-key-declare-prefixes "SPC x" "useful M-x commands")
 #+END_SRC
 
 **** Y: clipboard/yank/paste operations
@@ -1623,27 +1578,40 @@ an appropriate message.
 *** fast
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys s-map
-    ;; "TAB" 'counsel-projectile-switch-project
-
-    "c" 'air-org-task-capture
-    "r" 'restart-emacs
-    "s" 'ivy-switch-buffer
+    ; buffer operations
+    "TAB" 'ninrod/revert-buffer-no-confirm
+    "d" 'spacemacs/kill-this-buffer
     "m" 'ninrod/extended-buffer-menu
-    "d" 'spacemacs/kill-this-buffer ; Delete buffer
-    "w" 'write-file ; Save as
-    "p" 'counsel-projectile-switch-project
+    "o" 'air-org-task-capture
+    "i" 'ivy-switch-buffer
+    "b" 'spacemacs/kill-other-buffers
+    "s" 'multi-term
+    "$" 'eshell
+    "<SPC>" 'counsel-bookmark; jump to bookmark
+    "-" 'bookmark-delete
+    "=" 'bookmark-set
+    "Y" 'prelude-copy-file-name-to-clipboard
 
-    "<SPC>" 'counsel-bookmark
+    ; directory operations
+    "g" 'ninrod/uarg-magit-status
     "DEL" 'neotree-toggle
-    "RET" 'evil-save-modified-and-close
+    "p" 'counsel-projectile-switch-project
+    "a" 'projectile-switch-open-project; projeto [A]berto
+    "c" 'cd
+    "C" 'make-directory
 
+    ; window operations
     "j" 'evil-window-down
     "k" 'evil-window-up
     "h" 'evil-window-left
     "l" 'evil-window-right
-
     "y" 'split-window-right-and-focus
     "x" 'split-window-below-and-focus
+
+    ; quit operations
+    "r" 'restart-emacs
+    "w" 'write-file ; Save as
+    "RET" 'evil-save-modified-and-close; save and close
     )
 #+END_SRC
 
@@ -1836,6 +1804,9 @@ an appropriate message.
 
   (bind-key "gi" 'goto-last-change evil-normal-state-map)
   (bind-key "g;" 'evil-last-non-blank evil-motion-state-map)
+
+  (bind-key "g+" 'evil-numbers/inc-at-pt evil-motion-state-map)
+  (bind-key "g-" 'evil-numbers/dec-at-pt evil-motion-state-map)
 
   ;; (bind-key "g RET" 'er/expand-region evil-normal-state-map)
 #+END_SRC
