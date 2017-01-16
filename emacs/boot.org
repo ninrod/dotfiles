@@ -461,6 +461,20 @@ an appropriate message.
 #+BEGIN_SRC emacs-lisp
   (use-package evil-surround
     :ensure t
+    :init
+
+    ;; use non-spaced pairs when surrounding with an opening brace
+    ;; see evil-surround/issues/86
+    (with-eval-after-load 'evil-surround
+    (evil-add-to-alist
+     'evil-surround-pairs-alist
+     ?\( '("(" . ")")
+     ?\[ '("[" . "]")
+     ?\{ '("{" . "}")
+     ?\) '("( " . " )")
+     ?\] '("[ " . " ]")
+     ?\} '("{ " . " }")))
+
     :config (global-evil-surround-mode 1))
 #+END_SRC
 
