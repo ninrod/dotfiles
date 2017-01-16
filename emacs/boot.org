@@ -1386,10 +1386,17 @@ an appropriate message.
 ** M-x man
 - [[http://emacs.stackexchange.com/a/10669/12585][list]] of evil states:
 - with [[https://github.com/syl20bnr/spacemacs/issues/7346][help]] from @TheBB
+- gnu/linux completion hack stolen from [[https://www.emacswiki.org/emacs/ManMode#toc2][EmacsWiki]]
 #+BEGIN_SRC emacs-lisp
   (with-eval-after-load "man"
     (evil-set-initial-state 'Man-mode 'normal)
-    (setq Man-notify-method 'pushy))
+    (setq Man-notify-method 'pushy)
+
+    (when (eq system-type 'gnu/linux)
+      (defadvice man (before my-woman-prompt activate)
+        (interactive (progn
+                       (require 'woman)
+                       (list (woman-file-name nil)))))))
 #+END_SRC
 
 ** dabbrev-expand case fix
