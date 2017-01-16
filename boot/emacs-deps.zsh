@@ -9,7 +9,6 @@ ningrab ninrod/thin-melpa-mirror
 ningrab supermomonga/evil-textobj-entire
 ningrab noctuid/rect-ext.el
 ningrab noctuid/targets.el
-ningrab ninrod/evil-surround
 
 # forked themes
 ningrab ninrod/spacemacs-theme
