@@ -1426,6 +1426,7 @@ an appropriate message.
         "w" 'rect-ext-widen
         "p" 'counsel-yank-pop
         "o" 'sort-lines
+        "m" 'man
 
         ; file searching
         "sp" 'projectile-ag
