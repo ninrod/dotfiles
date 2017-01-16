@@ -2072,6 +2072,10 @@ an appropriate message.
   (with-eval-after-load 'tabulated-list
     (define-key Buffer-menu-mode-map (kbd "SPC") nil)
     (define-key Buffer-menu-mode-map "s" nil)
+    (define-key Buffer-menu-mode-map "n" nil)
+    (define-key Buffer-menu-mode-map "N" nil)
+    (define-key Buffer-menu-mode-map "*" nil)
+    (define-key Buffer-menu-mode-map "-" 'evil-ex-nohighlight)
     )
 #+END_SRC
 ** awesome available binds
