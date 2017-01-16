@@ -1412,29 +1412,31 @@ an appropriate message.
 
 *** fast
 #+BEGIN_SRC emacs-lisp
-    (bind-map-set-keys spc-map
-      "<SPC>" 'counsel-M-x
+      (bind-map-set-keys spc-map
+        "<SPC>" 'counsel-M-x
 
-      "n" 'rect-ext-narrow
-      "w" 'rect-ext-widen
-      "p" 'counsel-yank-pop
-      "o" 'sort-lines
+        "n" 'rect-ext-narrow
+        "w" 'rect-ext-widen
+        "p" 'counsel-yank-pop
+        "o" 'sort-lines
 
-      ; file searching
-      "sp" 'projectile-ag
+        ; file searching
+        "sp" 'projectile-ag
 
-      ; emacs help searching
-      "da" 'apropos
-      "db" 'counsel-descbinds
-      "dc" 'describe-char
-      "df" 'counsel-describe-function
-      "di" 'info
-      "dk" 'describe-key
-      "dm" 'describe-mode
-      "dt" 'counsel-describe-face
-      "dv" 'counsel-describe-variable
-  )
-  (which-key-declare-prefixes "SPC d" "describe/help")
+        "gc" 'magit-clone
+
+        ; emacs help searching
+        "da" 'apropos
+        "db" 'counsel-descbinds
+        "dc" 'describe-char
+        "df" 'counsel-describe-function
+        "di" 'info
+        "dk" 'describe-key
+        "dm" 'describe-mode
+        "dt" 'counsel-describe-face
+        "dv" 'counsel-describe-variable
+    )
+    (which-key-declare-prefixes "SPC d" "describe/help")
 #+END_SRC
 
 *** caps
