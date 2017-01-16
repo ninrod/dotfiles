@@ -1051,6 +1051,9 @@ an appropriate message.
   #+BEGIN_SRC emacs-lisp
     (use-package which-key :ensure t
       :diminish which-key-mode
+      :init
+      (setq which-key-allow-evil-operators t)
+      (setq which-key-show-operator-state-maps t)
       :config (which-key-mode))
   #+END_SRC
 
