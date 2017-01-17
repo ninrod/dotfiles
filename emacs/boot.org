@@ -596,6 +596,22 @@ an appropriate message.
             (curly "{" "}" pair :more-keys "c")
             (angle "<" ">" pair)))
 
+    (defvar targets-separator-text-objects
+      '((semi-colon ";" nil separator)
+        (colon ":" nil separator)
+        (colon "|" nil separator)
+        (plus "+" nil separator)
+        (hyphen "-" nil separator)
+        (equal "=" nil separator)
+        (tilde "~" nil separator)
+        (underscore "_" nil separator)
+        (asterisk "*" nil separator)
+        (hash "#" nil separator)
+        (slash "/" nil separator)
+        (backslash "\\" nil separator)
+        (ampersand "&" nil separator)
+        (dollar "$" nil separator)))
+
     :config
     (targets-setup t)
     )
@@ -1749,20 +1765,20 @@ an appropriate message.
     ;; fist place point in the top left bar (`|')
     "m" 'org-mark-element
 
-    "r" 'org-table-insert-row ; above
-    "c" 'org-table-insert-column ;before
+    "o" 'org-table-insert-row ; above
+    "i" 'org-table-insert-column ;before
 
     ;; formulas
-    "o" 'org-table-toggle-coordinate-overlays
+    "@" 'org-table-toggle-coordinate-overlays
     "?" 'org-table-field-info
     "=" 'org-table-eval-formula
-    "f" (lambda () (interactive)
+    "e" (lambda () (interactive) ; [E]val formulas
            (let ((current-prefix-arg 4))
              (call-interactively 'org-table-recalculate)))
 
     "RET" 'org-table-copy-down
   )
-  (which-key-add-major-mode-key-based-replacements 'org-mode "T f" "recalculate formulas")
+  (which-key-add-major-mode-key-based-replacements 'org-mode "T e" "eval formulas")
 #+END_SRC
 
 *** S local (subtrees)
