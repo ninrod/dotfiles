@@ -1013,6 +1013,8 @@ an appropriate message.
       (add-to-list 'ivy-ignore-buffers "\\*Help\\*")
       (add-to-list 'ivy-ignore-buffers "\\*Messages\\*")
       (add-to-list 'ivy-ignore-buffers "\\*Buffer List\\*")
+      (add-to-list 'ivy-ignore-buffers "\\*Compile-Log\\*")
+      (add-to-list 'ivy-ignore-buffers "\\*Flycheck")
       (add-to-list 'ivy-ignore-buffers "\\*terminal")
 
       (setq ivy-count-format "(%d/%d) ")
