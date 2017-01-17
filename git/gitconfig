@@ -6,6 +6,8 @@
   tool = vimdiff
   defaultToUpstream = true
   conflictstyle = diff3
+[mergetool]
+  keepBackup = false
 [difftool]
   prompt = false
 [core]
