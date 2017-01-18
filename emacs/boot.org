@@ -654,7 +654,7 @@ an appropriate message.
   (use-package evil-mc
     :ensure t
     :config
-    (global-evil-mc-mode  1)
+    (global-evil-mc-mode  1))
 #+END_SRC
 *** vip -> C-n: @quicknir's take
 #+BEGIN_SRC emacs-lisp
@@ -711,6 +711,15 @@ an appropriate message.
       (move-to-column (evil-mc-column-number (if (> end beg)
                                                  beg
                                                end))))
+#+END_SRC
+** evil-embrace
+#+BEGIN_SRC emacs-lisp
+  (use-package evil-embrace
+    :ensure t
+    :config
+    (add-hook 'org-mode-hook 'embrace-org-mode-hook)
+    (evil-embrace-enable-evil-surround-integration)
+    )
 #+END_SRC
 * tweaks
 ** daemon configuration
@@ -1146,12 +1155,8 @@ an appropriate message.
   #+BEGIN_SRC emacs-lisp
     (use-package which-key :ensure t
       :diminish which-key-mode
-      :init
-      (setq which-key-allow-evil-operators t)
-      (setq which-key-show-operator-state-maps t)
       :config (which-key-mode))
   #+END_SRC
-
 *** bind-map
 #+BEGIN_SRC emacs-lisp
   (use-package bind-map :ensure t)
