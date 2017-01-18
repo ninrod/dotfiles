@@ -523,10 +523,9 @@ an appropriate message.
 
 ** evil-escape
 #+BEGIN_SRC emacs-lisp
-(use-package evil-escape :ensure t
-  :config 
-  (evil-escape-mode)
-)
+  (use-package evil-escape :ensure t
+    :config
+    (evil-escape-mode))
 #+END_SRC
 
 ** evil-terminal-cursor-changer
@@ -589,30 +588,19 @@ an appropriate message.
 #+BEGIN_SRC emacs-lisp
   (use-package targets :load-path "lisp/noctuid/targets.el"
     :init
+    (setq targets-separator-text-objects '())
+
+    (add-to-list 'targets-separator-text-objects
+                 '(pipe "|" nil separator))
+
     (setq targets-pair-text-objects
           '((paren "(" ")" pair :more-keys "b")
             (bracket "[" "]" pair :more-keys "r")
             (curly "{" "}" pair :more-keys "c")
             (angle "<" ">" pair)))
-
-    (defvar targets-separator-text-objects
-      '((semi-colon ";" nil separator)
-        (colon ":" nil separator)
-        (colon "|" nil separator)
-        (plus "+" nil separator)
-        (hyphen "-" nil separator)
-        (equal "=" nil separator)
-        (tilde "~" nil separator)
-        (underscore "_" nil separator)
-        (asterisk "*" nil separator)
-        (hash "#" nil separator)
-        (slash "/" nil separator)
-        (backslash "\\" nil separator)
-        (ampersand "&" nil separator)
-        (dollar "$" nil separator)))
-
     :config
     (targets-setup t)
+
     )
 #+END_SRC
 
