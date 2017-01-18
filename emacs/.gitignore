@@ -2,6 +2,9 @@
 *.dat
 *.cache
 
+keyfreq.el
+keyfreq.lock
+
 recentf*
 
 bookmarks

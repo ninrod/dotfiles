@@ -1449,6 +1449,19 @@ an appropriate message.
 #+BEGIN_SRC emacs-lisp
   (use-package speed-type :load-path "lisp/parkouss/speed-type")
 #+END_SRC
+*** keyfreq
+#+BEGIN_SRC emacs-lisp
+  (use-package keyfreq
+    :ensure t
+    :init
+
+    (setq keyfreq-file "~/.emacs.d/keyfreq.el")
+    (setq keyfreq-file-lock "~/.emacs.d/keyfreq.lock")
+
+    :config
+    (keyfreq-mode 1)
+    (keyfreq-autosave-mode 1))
+#+END_SRC
 * fixes
 ** yasnippet hijacks TAB key in term mode
 #+BEGIN_SRC emacs-lisp
