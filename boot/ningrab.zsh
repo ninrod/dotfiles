@@ -44,7 +44,7 @@ ningrab() {
     fi
     echo -e "${Blue}[Success]${Rst} ${Green}$name${Rst} successfully ${Cyan}updated${Rst}."
   elif [[ $REMOTE = $BASE ]]; then
-    echo "${name} needs to be ${Red}pushed${Rst}. Wait, What? You should not be commiting here."
+    echo "${name} needs to be ${Red}pushed${Rst}. Wait, What? You should not be commiting here. Or perhaps history was rewritten in upstream. You may have to issue a ${Yellow}git reset --hard origin/master.${Rst}"
   else
     echo "${name} needs to be ${Red}rebased and pushed${Rst}. Wait, What? You should not be commiting here."
   fi

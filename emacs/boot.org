@@ -900,7 +900,7 @@ an appropriate message.
 
 *** themes
 **** spacemacs-theme
-  #+BEGIN_SRC emacs-lisp
+  #+BEGIN_SRC text
     (use-package spacemacs-dark-theme :load-path "lisp/ninrod/spacemacs-theme"
       :init
       (setq spacemacs-theme-org-height nil)
@@ -911,7 +911,7 @@ an appropriate message.
   #+END_SRC
 
 **** zerodark-theme
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package zerodark-theme :load-path "lisp/ninrod/zerodark-theme"
     :init
     (setq zerodark-use-paddings-in-mode-line nil)
@@ -1689,6 +1689,7 @@ an appropriate message.
 (bind-map-set-keys spc-map
     "Tr" 'rainbow-mode
     "Tt" 'toggle-truncate-lines
+    "Tc" 'ninrod/display-ansi-colors
 )
 (which-key-declare-prefixes "SPC T" "toggles")
 #+END_SRC
