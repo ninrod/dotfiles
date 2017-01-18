@@ -417,7 +417,6 @@ an appropriate message.
        (define-key evil-inner-text-objects-map ,key #',inner-name)
        (define-key evil-outer-text-objects-map ,key #',outer-name))))
 #+END_SRC
-
 * evil
 ** evil
 - emacsify insert state. based on this SO question [[http://stackoverflow.com/a/26573722/4921402][here]].
@@ -553,7 +552,7 @@ an appropriate message.
 
   (use-package evil-replace-with-register :ensure t
     :init
-    (setq evil-replace-with-register-key (kbd "gr"))
+    (setq evil-replace-with-register-key (kbd "gp"))
     :config
     (evil-replace-with-register-install))
 
@@ -649,7 +648,29 @@ an appropriate message.
   (define-and-bind-text-object "square-brackets" "r" "\\[" "\\]")
   (define-and-bind-text-object "curly-brackets" "c" "{" "}")
 #+END_SRC
+** evil-mc
+- stolen from @noctuid's comment on [[https://github.com/gabesoft/evil-mc/issues/22#issuecomment-267682745][gabesoft/evil-mc#22]]
+#+BEGIN_SRC emacs-lisp
+  (use-package evil-mc
+    :ensure t
+    :config
+    (global-evil-mc-mode  1)
 
+    (defun evil--mc-make-cursor-at-col (startcol _endcol orig-line)
+      (move-to-column startcol)
+      (unless (= (line-number-at-pos) orig-line)
+        (evil-mc-make-cursor-here)))
+    (defun evil-mc-make-vertical-cursors (beg end)
+      (interactive (list (region-beginning) (region-end)))
+      (evil-mc-pause-cursors)
+      (apply-on-rectangle #'evil--mc-make-cursor-at-col
+                          beg end (line-number-at-pos (point)))
+      (evil-mc-resume-cursors)
+      (evil-normal-state)
+      (move-to-column (evil-mc-column-number (if (> end beg)
+                                                 beg
+                                               end)))))
+#+END_SRC
 * tweaks
 ** daemon configuration
 - more info [[http://www.tychoish.com/posts/running-multiple-emacs-daemons-on-a-single-system/][here]]
@@ -1832,7 +1853,6 @@ an appropriate message.
 #+BEGIN_SRC emacs-lisp
   (bind-key "go" 'evil-goto-first-line evil-motion-state-map)
   (bind-key "gl" 'evil-goto-line evil-motion-state-map)
-  (bind-key "gp" 'pop-global-mark evil-motion-state-map)
   (bind-key "g9" (kbd "Hz-M") evil-motion-state-map)
   (bind-key "g0" (kbd "LztM") evil-motion-state-map)
 
@@ -1911,7 +1931,11 @@ an appropriate message.
   (global-set-key (kbd "C-<tab>") 'dabbrev-expand)
   (bind-key (kbd "C-<tab>") 'dabbrev-expand minibuffer-local-map)
 #+END_SRC
-
+*** evil-mc
+#+BEGIN_SRC emacs-lisp
+  (with-eval-after-load 'evil-mc
+    (evil-define-key 'visual evil-mc-key-map (kbd "C-n") 'evil-mc-make-vertical-cursors))
+#+END_SRC
 ** dired
 *** unbinds
 #+BEGIN_SRC emacs-lisp
