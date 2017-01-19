@@ -458,10 +458,8 @@ an appropriate message.
 
 ** evil-surround
 #+BEGIN_SRC emacs-lisp
-  (use-package evil-surround
-    :ensure t
+  (use-package evil-surround :load-path "lisp/ninrod/evil-surround"
     :init
-
     ;; use non-spaced pairs when surrounding with an opening brace
     ;; see evil-surround/issues/86
     (with-eval-after-load 'evil-surround
@@ -473,8 +471,28 @@ an appropriate message.
      ?\) '("( " . " )")
      ?\] '("[ " . " ]")
      ?\} '("{ " . " }")))
-
     :config (global-evil-surround-mode 1))
+#+END_SRC
+
+** evil-targets
+
+#+BEGIN_SRC emacs-lisp
+  (use-package targets :load-path "lisp/noctuid/targets.el"
+    :init
+    (setq targets-separator-text-objects '())
+
+    (add-to-list 'targets-separator-text-objects
+                 '(pipe "|" nil separator))
+
+    (setq targets-pair-text-objects
+          '((paren "(" ")" pair :more-keys "b")
+            (bracket "[" "]" pair :more-keys "r")
+            (curly "{" "}" pair :more-keys "c")
+            (angle "<" ">" pair)))
+    :config
+    (targets-setup t)
+
+    )
 #+END_SRC
 
 ** evil-commentary
@@ -581,27 +599,6 @@ an appropriate message.
 
 #+BEGIN_SRC emacs-lisp
   (use-package rect-ext :load-path "lisp/noctuid/rect-ext.el")
-#+END_SRC
-
-** evil-targets
-
-#+BEGIN_SRC emacs-lisp
-  (use-package targets :load-path "lisp/noctuid/targets.el"
-    :init
-    (setq targets-separator-text-objects '())
-
-    (add-to-list 'targets-separator-text-objects
-                 '(pipe "|" nil separator))
-
-    (setq targets-pair-text-objects
-          '((paren "(" ")" pair :more-keys "b")
-            (bracket "[" "]" pair :more-keys "r")
-            (curly "{" "}" pair :more-keys "c")
-            (angle "<" ">" pair)))
-    :config
-    (targets-setup t)
-
-    )
 #+END_SRC
 
 ** evil-args
