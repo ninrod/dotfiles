@@ -475,9 +475,7 @@ an appropriate message.
     :config
     (targets-setup t)
     (bind-key "I" 'evil-insert evil-visual-state-map)
-    (bind-key "A" 'evil-append evil-visual-state-map)
-
-    )
+    (bind-key "A" 'evil-append evil-visual-state-map))
 #+END_SRC
 
 *** evil-rect-ext
