@@ -2110,7 +2110,7 @@ an appropriate message.
 **** t-map
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys lisp-t-map
-    "l" 'ninrod/eval-last-sexp
+    "e" 'ninrod/eval-last-sexp
     "o" 'ninrod/eval-print-last-sexp ;mnemonic: output to current buffer
   )
 
