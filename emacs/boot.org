@@ -418,7 +418,8 @@ an appropriate message.
        (define-key evil-outer-text-objects-map ,key #',outer-name))))
 #+END_SRC
 * evil
-** evil
+** bootstrap
+*** evil
 - emacsify insert state. based on this SO question [[http://stackoverflow.com/a/26573722/4921402][here]].
 #+BEGIN_SRC emacs-lisp
   (use-package evil :ensure t
@@ -455,26 +456,8 @@ an appropriate message.
 
     (evil-mode))
 #+END_SRC
-
-** evil-surround
-#+BEGIN_SRC emacs-lisp
-  (use-package evil-surround :load-path "lisp/ninrod/evil-surround"
-    :init
-    ;; use non-spaced pairs when surrounding with an opening brace
-    ;; see evil-surround/issues/86
-    (with-eval-after-load 'evil-surround
-    (evil-add-to-alist
-     'evil-surround-pairs-alist
-     ?\( '("(" . ")")
-     ?\[ '("[" . "]")
-     ?\{ '("{" . "}")
-     ?\) '("( " . " )")
-     ?\] '("[ " . " ]")
-     ?\} '("{ " . " }")))
-    :config (global-evil-surround-mode 1))
-#+END_SRC
-
-** evil-targets
+** babysited packages
+*** evil-targets
 
 #+BEGIN_SRC emacs-lisp
   (use-package targets :load-path "lisp/noctuid/targets.el"
@@ -495,145 +478,20 @@ an appropriate message.
     )
 #+END_SRC
 
-** evil-commentary
-#+BEGIN_SRC emacs-lisp
-(use-package evil-commentary :ensure t
-  :diminish evil-commentary-mode
-  :config (evil-commentary-mode))
-#+END_SRC
-
-** evil-matchit
-#+BEGIN_SRC emacs-lisp
-(use-package evil-matchit :ensure t
-  :config (global-evil-matchit-mode 1))
-#+END_SRC
-
-** evil-exchange
-#+BEGIN_SRC emacs-lisp
-(use-package evil-exchange :ensure t
-  :config (evil-exchange-install))
-#+END_SRC
-
-** evil-visualstar
-#+begin_src emacs-lisp
-(use-package evil-visualstar :ensure t
-  :config (global-evil-visualstar-mode))
-#+end_src
-
-** evil-indent-plus
-#+begin_src emacs-lisp
-(use-package evil-indent-plus :ensure t
-  :config (evil-indent-plus-default-bindings))
-#+end_src
-
-** evil-anzu
-- config section hack: see [[https://github.com/TheBB/spaceline/issues/69][TheBB/spaceline#69]]
-#+BEGIN_SRC emacs-lisp
-  (use-package evil-anzu :ensure t
-    :config 
-    (setq anzu-cons-mode-line-p nil))
-#+END_SRC
-
-** evil-numbers
-#+BEGIN_SRC emacs-lisp
-(use-package evil-numbers :ensure t)
-#+END_SRC
-
-** evil-escape
-#+BEGIN_SRC emacs-lisp
-  (use-package evil-escape :ensure t
-    :config
-    (evil-escape-mode))
-#+END_SRC
-
-** evil-terminal-cursor-changer
-#+BEGIN_SRC text
-  (use-package evil-terminal-cursor-changer :ensure t
-    :config
-    (setq evil-motion-state-cursor 'box)
-    (setq evil-visual-state-cursor 'box)
-    (setq evil-normal-state-cursor 'box)
-    (setq evil-insert-state-cursor 'bar)
-    (setq evil-emacs-state-cursor  'hbar)
-    (unless (display-graphic-p)
-      (evil-terminal-cursor-changer-activate)))
-#+END_SRC
-
-** evil-replace-with-register
-#+BEGIN_SRC emacs-lisp
-
-  ;; (use-package evil-ReplaceWithRegister :load-path "lisp/Dewdrops/evil-ReplaceWithRegister"
-  ;;   :config
-  ;;   (setq evil-ReplaceWithRegister-key (kbd "gr"))
-  ;;   (evil-ReplaceWithRegister-install))
-
-  (use-package evil-replace-with-register :ensure t
-    :init
-    (setq evil-replace-with-register-key (kbd "gp"))
-    :config
-    (evil-replace-with-register-install))
-
-#+END_SRC
-
-** evil-lisp-state
-#+BEGIN_SRC emacs-lisp
-  (use-package evil-lisp-state :ensure t
-  :config (evil-lisp-state-leader "C-c C-l"))
-#+END_SRC
-
-** evil-god-state
-
-#+BEGIN_SRC emacs-lisp
-    (use-package evil-god-state :ensure t
-      :config
-      (setq evil-emacs-state-cursor 'box)
-      (setq evil-god-state-cursor 'bar)
-      (evil-define-key 'god global-map [escape] 'evil-god-state-bail)
-      (evil-define-key 'emacs global-map [escape] 'evil-execute-in-god-state)
-      (bind-key (kbd "C-t") 'evil-execute-in-god-state global-map)
-      ;; (evil-define-key 'normal global-map "t" 'evil-execute-in-god-state)
-  )
-#+END_SRC
-
-** evil-rectangle-ex
+*** evil-rect-ext
 
 #+BEGIN_SRC emacs-lisp
   (use-package rect-ext :load-path "lisp/noctuid/rect-ext.el")
 #+END_SRC
 
-** evil-args
-#+begin_src emacs-lisp
-(use-package evil-args :ensure t
-  :config
-    (define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
-    (define-key evil-outer-text-objects-map "a" 'evil-outer-arg)
-)
-#+end_src
-
-** evil-textobj-entire
+*** evil-textobj-entire
 #+BEGIN_SRC emacs-lisp
   (use-package evil-textobj-entire :load-path "lisp/supermomonga/evil-textobj-entire"
     :config
     (define-key evil-outer-text-objects-map evil-textobj-entire-key 'evil-entire-entire-buffer))
 #+END_SRC
 
-** evil-new-text-objs
-#+BEGIN_SRC text
-  (evil-define-text-object evil-inner-pipe  (count &optional beg end type)
-    (evil-select-quote ?\| beg end type count nil))
-  (evil-define-text-object evil-a-pipe  (count &optional beg end type)
-    (evil-select-quote ?\| beg end type count t))
-
-  (define-key evil-inner-text-objects-map "|" #'evil-inner-pipe)
-  (define-key evil-outer-text-objects-map "|" #'evil-a-pipe)
-  (define-key evil-inner-text-objects-map "i" #'evil-inner-pipe)
-  (define-key evil-outer-text-objects-map "i" #'evil-a-pipe)
-
-  (define-and-bind-text-object "comma" "," "," ",")
-  (define-and-bind-text-object "square-brackets" "r" "\\[" "\\]")
-  (define-and-bind-text-object "curly-brackets" "c" "{" "}")
-#+END_SRC
-** evil-mc
+*** evil-mc
 - stolen from @noctuid's comment on [[https://github.com/gabesoft/evil-mc/issues/22#issuecomment-267682745][gabesoft/evil-mc#22]]
 #+BEGIN_SRC emacs-lisp
   (use-package evil-mc
@@ -641,7 +499,7 @@ an appropriate message.
     :config
     (global-evil-mc-mode  1))
 #+END_SRC
-*** vip -> C-n: @quicknir's take
+**** vip -> C-n: @quicknir's take
 #+BEGIN_SRC emacs-lisp
 (defun col-at-point (point)
     (save-excursion (goto-char point) (current-column)))
@@ -680,7 +538,7 @@ an appropriate message.
   (evil-define-key 'visual global-map "gI" 'evil-mc-insert-vertical-cursors)
   (evil-define-key 'visual global-map "gA" 'evil-mc-append-vertical-cursors)
 #+END_SRC
-*** vip -> C-n: @noctuid's take
+**** vip -> C-n: @noctuid's take
 #+BEGIN_SRC emacs-lisp
     (defun evil--mc-make-cursor-at-col (startcol _endcol orig-line)
       (move-to-column startcol)
@@ -697,7 +555,25 @@ an appropriate message.
                                                  beg
                                                end))))
 #+END_SRC
-** evil-embrace
+*** evil-surround
+#+BEGIN_SRC emacs-lisp
+  (use-package evil-surround :load-path "lisp/ninrod/evil-surround"
+    :init
+    ;; use non-spaced pairs when surrounding with an opening brace
+    ;; see evil-surround/issues/86
+    (with-eval-after-load 'evil-surround
+    (evil-add-to-alist
+     'evil-surround-pairs-alist
+     ?\( '("(" . ")")
+     ?\[ '("[" . "]")
+     ?\{ '("{" . "}")
+     ?\) '("( " . " )")
+     ?\] '("[ " . " ]")
+     ?\} '("{ " . " }")))
+    :config (global-evil-surround-mode 1))
+#+END_SRC
+** melpa packages
+*** evil-embrace
 #+BEGIN_SRC emacs-lisp
   (use-package evil-embrace
     :ensure t
@@ -706,6 +582,102 @@ an appropriate message.
     (evil-embrace-enable-evil-surround-integration)
     )
 #+END_SRC
+*** evil-commentary
+#+BEGIN_SRC emacs-lisp
+(use-package evil-commentary :ensure t
+  :diminish evil-commentary-mode
+  :config (evil-commentary-mode))
+#+END_SRC
+
+*** evil-matchit
+#+BEGIN_SRC emacs-lisp
+(use-package evil-matchit :ensure t
+  :config (global-evil-matchit-mode 1))
+#+END_SRC
+
+*** evil-exchange
+#+BEGIN_SRC emacs-lisp
+(use-package evil-exchange :ensure t
+  :config (evil-exchange-install))
+#+END_SRC
+
+*** evil-visualstar
+#+begin_src emacs-lisp
+(use-package evil-visualstar :ensure t
+  :config (global-evil-visualstar-mode))
+#+end_src
+
+*** evil-indent-plus
+#+begin_src emacs-lisp
+(use-package evil-indent-plus :ensure t
+  :config (evil-indent-plus-default-bindings))
+#+end_src
+
+*** evil-anzu
+- config section hack: see [[https://github.com/TheBB/spaceline/issues/69][TheBB/spaceline#69]]
+#+BEGIN_SRC emacs-lisp
+  (use-package evil-anzu :ensure t
+    :config 
+    (setq anzu-cons-mode-line-p nil))
+#+END_SRC
+
+*** evil-numbers
+#+BEGIN_SRC emacs-lisp
+(use-package evil-numbers :ensure t)
+#+END_SRC
+
+*** evil-escape
+#+BEGIN_SRC emacs-lisp
+  (use-package evil-escape :ensure t
+    :config
+    (evil-escape-mode))
+#+END_SRC
+
+*** evil-replace-with-register
+#+BEGIN_SRC emacs-lisp
+
+  ;; (use-package evil-ReplaceWithRegister :load-path "lisp/Dewdrops/evil-ReplaceWithRegister"
+  ;;   :config
+  ;;   (setq evil-ReplaceWithRegister-key (kbd "gr"))
+  ;;   (evil-ReplaceWithRegister-install))
+
+  (use-package evil-replace-with-register :ensure t
+    :init
+    (setq evil-replace-with-register-key (kbd "gp"))
+    :config
+    (evil-replace-with-register-install))
+
+#+END_SRC
+
+*** evil-lisp-state
+#+BEGIN_SRC emacs-lisp
+  (use-package evil-lisp-state :ensure t
+  :config (evil-lisp-state-leader "C-c C-l"))
+#+END_SRC
+
+*** evil-god-state
+
+#+BEGIN_SRC emacs-lisp
+    (use-package evil-god-state :ensure t
+      :config
+      (setq evil-emacs-state-cursor 'box)
+      (setq evil-god-state-cursor 'bar)
+      (evil-define-key 'god global-map [escape] 'evil-god-state-bail)
+      (evil-define-key 'emacs global-map [escape] 'evil-execute-in-god-state)
+      (bind-key (kbd "C-t") 'evil-execute-in-god-state global-map)
+      ;; (evil-define-key 'normal global-map "t" 'evil-execute-in-god-state)
+  )
+#+END_SRC
+
+*** evil-args
+#+begin_src emacs-lisp
+(use-package evil-args :ensure t
+  :config
+    (define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
+    (define-key evil-outer-text-objects-map "a" 'evil-outer-arg)
+)
+#+end_src
+
 * tweaks
 ** daemon configuration
 - more info [[http://www.tychoish.com/posts/running-multiple-emacs-daemons-on-a-single-system/][here]]
