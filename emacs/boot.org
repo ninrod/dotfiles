@@ -1498,7 +1498,7 @@ an appropriate message.
     :evil-states (normal visual motion))
 #+END_SRC
 
-*** fast
+*** binds
 **** core
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
@@ -1524,6 +1524,8 @@ an appropriate message.
     "a\\" 'spacemacs/align-repeat-backslash
     "a|" 'spacemacs/align-repeat-bar
   )
+  (which-key-declare-prefixes "SPC a" "align")
+#+END_SRC
 #+END_SRC
 **** (d) emacs help
 #+BEGIN_SRC emacs-lisp
@@ -1540,23 +1542,23 @@ an appropriate message.
     )
   (which-key-declare-prefixes "SPC d" "describe/help")
 #+END_SRC
-**** (e) edit operations
+**** (e) edit
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
     "er" 'replace-string
     "ep" 'counsel-yank-pop
     "es" 'sort-lines
     )
-  (which-key-declare-prefixes "SPC e" "edit operations")
+  (which-key-declare-prefixes "SPC e" "edit")
 #+END_SRC
-**** (f) file/dir operations
+**** (f) file/dir
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
     "fc" 'make-directory
     "fd" 'cd
     "fy" 'prelude-copy-file-name-to-clipboard
     )
-  (which-key-declare-prefixes "SPC f" "file/dir operations")
+  (which-key-declare-prefixes "SPC f" "file/dir")
 #+END_SRC
 **** (i) ivy
 #+BEGIN_SRC emacs-lisp
@@ -1571,7 +1573,7 @@ an appropriate message.
   )
   (which-key-declare-prefixes "SPC i" "Ivy")
 #+END_SRC
-**** (g) ma[g]it operations
+**** (g) ma[g]it
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
     "gi" 'magit-init
@@ -1591,7 +1593,7 @@ an appropriate message.
 (which-key-add-key-based-replacements "SPC hz" "zooming hydra")
 #+END_SRC
 
-**** (m) useful functions
+**** (m) M-x functions
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys spc-map
     "ma" 'projectile-ag
@@ -1604,7 +1606,7 @@ an appropriate message.
     "mu" 'undo-tree-visualize
     "m$" 'eshell
   )
-  (which-key-declare-prefixes "SPC m" "M-x useful functions")
+  (which-key-declare-prefixes "SPC m" "M-x functions")
   (which-key-declare-prefixes "SPC mi" "REPL: inferior elisp mode")
 #+END_SRC
 **** (o) org-mode
@@ -1656,7 +1658,7 @@ an appropriate message.
     :evil-keys ("s")
     :evil-states (normal visual motion))
 #+END_SRC
-*** fast
+*** binds
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys s-map
     ; buffer operations
