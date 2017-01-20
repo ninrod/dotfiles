@@ -1579,6 +1579,7 @@ an appropriate message.
     "gi" 'magit-init
     "gc" 'magit-clone
     "gl" 'magit-log-buffer-file; commits in master touching current buffer
+    "gs" 'ninrod/uarg-magit-status
     )
   (which-key-declare-prefixes "SPC g" "ma[git]")
 #+END_SRC
@@ -1680,7 +1681,6 @@ an appropriate message.
     "b" 'spacemacs/kill-other-buffers
     "s" 'multi-term
     ; directory operations
-    "g" 'ninrod/uarg-magit-status
     "p" 'counsel-projectile-switch-project
     "a" 'projectile-switch-open-project; projeto [A]berto
     ; window operations
