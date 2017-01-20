@@ -1499,168 +1499,144 @@ an appropriate message.
 #+END_SRC
 
 *** fast
+**** core
 #+BEGIN_SRC emacs-lisp
-      (bind-map-set-keys spc-map
-        "<SPC>" 'counsel-M-x
-
-        "n" 'rect-ext-narrow
-        "w" 'rect-ext-widen
-        "p" 'counsel-yank-pop
-        "o" 'sort-lines
-        "m" 'man
-
-        ; file searching
-        "sp" 'projectile-ag
-
-        "gc" 'magit-clone
-
-        ; emacs help searching
-        "da" 'apropos
-        "db" 'counsel-descbinds
-        "dc" 'describe-char
-        "df" 'counsel-describe-function
-        "di" 'info
-        "dk" 'describe-key
-        "dm" 'describe-mode
-        "dt" 'counsel-describe-face
-        "dv" 'counsel-describe-variable
+  (bind-map-set-keys spc-map
+    "<SPC>" 'counsel-M-x
+    "RET" 'write-file
     )
-    (which-key-declare-prefixes "SPC d" "describe/help")
 #+END_SRC
-
-*** caps
-**** A: Align
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys spc-map
-  "Aa" 'align-regexp
-  "Ac" 'align-current
-  "Am" 'spacemacs/align-repeat-math-oper
-  "Ar" 'spacemacs/align-repeat
-
-  "A&" 'spacemacs/align-repeat-ampersand
-  "A(" 'spacemacs/align-repeat-left-paren
-  "A)" 'spacemacs/align-repeat-right-paren
-  "A," 'spacemacs/align-repeat-comma
-  "A." 'spacemacs/align-repeat-decimal
-  "A:" 'spacemacs/align-repeat-colon
-  "A;" 'spacemacs/align-repeat-semicolon
-  "A=" 'spacemacs/align-repeat-equal
-  "A\\" 'spacemacs/align-repeat-backslash
-  "A|" 'spacemacs/align-repeat-bar
-)
-(which-key-declare-prefixes "SPC A" "Align")
-#+END_SRC
-
-**** E: Eyebrowse
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys spc-map
-    "Ec" 'eyebrowse-create-window-config
-    "En" 'eyebrowse-next-window-config
-    "Er" 'eyebrowse-rename-window-config
-    "Es" 'eyebrowse-switch-to-window-config
-)
-(which-key-declare-prefixes "SPC E" "Eyebrowse")
-#+END_SRC
-
-**** G: maGit
-- *lift*: the below magit SPC gs bind hack was lifted from [[http://emacs.stackexchange.com/a/27623/12585][this]] SO answer.
-#+BEGIN_SRC emacs-lisp
-(bind-map-set-keys spc-map
-  "Gf" 'magit-log-buffer-file
-)
-(which-key-declare-prefixes "SPC G" "maGit operations")
-#+END_SRC
-
-**** I: ivy
+**** (a) align
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
-    "Ia" 'counsel-ag
-    "Ib" 'counsel-descbinds
-    "If" 'counsel-describe-function
-    "Il" 'ivy-pop-view  ; load
-    "Is" 'ivy-push-view ; save
-    "It" 'counsel-describe-face
-    "Iv" 'counsel-describe-variable
+    "aa" 'align-regexp
+    "ac" 'align-current
+    "am" 'spacemacs/align-repeat-math-oper
+    "ar" 'spacemacs/align-repeat
+    "a&" 'spacemacs/align-repeat-ampersand
+    "a(" 'spacemacs/align-repeat-left-paren
+    "a)" 'spacemacs/align-repeat-right-paren
+    "a," 'spacemacs/align-repeat-comma
+    "a." 'spacemacs/align-repeat-decimal
+    "a:" 'spacemacs/align-repeat-colon
+    "a;" 'spacemacs/align-repeat-semicolon
+    "a=" 'spacemacs/align-repeat-equal
+    "a\\" 'spacemacs/align-repeat-backslash
+    "a|" 'spacemacs/align-repeat-bar
   )
-  (which-key-declare-prefixes "SPC I" "Ivy")
 #+END_SRC
-
-**** M: M-x useful functions
+**** (d) emacs help
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
-    "Mc" 'count-words
-    "Me" 'ninrod/uarg-exec-shell-command
-    "Mf" 'customize-apropos-faces
-    "Mi" 'ielm
-    "Mm" 'elpamr-create-mirror-for-installed
-    "Mr" 'replace-string
-    "Ms" 'sort-lines
-    "Mu" 'undo-tree-visualize
-    "Mw" 'woman
-  )
-  (which-key-declare-prefixes "SPC M" "M-x useful functions")
-  (which-key-declare-prefixes "SPC Mi" "REPL: inferior elisp mode")
+    "da" 'apropos
+    "db" 'counsel-descbinds
+    "dc" 'describe-char
+    "df" 'counsel-describe-function
+    "di" 'info
+    "dk" 'describe-key
+    "dm" 'describe-mode
+    "dt" 'counsel-describe-face
+    "dv" 'counsel-describe-variable
+    )
+  (which-key-declare-prefixes "SPC d" "describe/help")
 #+END_SRC
-
-**** O: org-mode
+**** (e) edit operations
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
-    "Oc" 'air-org-task-capture
-    "Oa" 'air-pop-to-org-agenda
-    "Ot" 'org-table-convert-region
-    "Ob" 'org-bullets-mode
+    "er" 'replace-string
+    "ep" 'counsel-yank-pop
+    "es" 'sort-lines
+    )
+  (which-key-declare-prefixes "SPC e" "edit operations")
+#+END_SRC
+**** (i) ivy
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys spc-map
+    "ia" 'counsel-ag
+    "ib" 'counsel-descbinds
+    "if" 'counsel-describe-function
+    "il" 'ivy-pop-view  ; load
+    "is" 'ivy-push-view ; save
+    "it" 'counsel-describe-face
+    "iv" 'counsel-describe-variable
   )
-  (which-key-declare-prefixes "SPC O" "Org-mode")
+  (which-key-declare-prefixes "SPC i" "Ivy")
 #+END_SRC
-
-**** S: Spelling
+**** (g) ma[g]it operations
 #+BEGIN_SRC emacs-lisp
-(bind-map-set-keys spc-map
-  "Sw" 'ispell-word
-  "Se" (lambda () (interactive) (ispell-change-dictionary "english"))
-  "Sp" (lambda () (interactive) (ispell-change-dictionary "pt_BR"))
-  "Sk" (lambda () (interactive) (flyspell-mode -1))
-  "Ss" (lambda () (interactive) (flyspell-mode 1))
-)
-(which-key-declare-prefixes "SPC S" "Spelling")
-(which-key-add-key-based-replacements
-  "SPC Sw" "ispell: check word"
-  "SPC Se" "ispell: use english dictionary"
-  "SPC Sp" "ispell: use pt_BR dictionary"
-  "SPC Sk" "turn off flyspell mode"
-  "SPC Ss" "turn on flyspell mode"
-)
+  (bind-map-set-keys spc-map
+    "gi" 'magit-init
+    "gc" 'magit-clone
+    "gl" 'magit-log-buffer-file; commits in master touching current buffer
+    )
+  (which-key-declare-prefixes "SPC g" "ma[git]")
 #+END_SRC
-
-**** Y: clipboard/yank/paste operations
+**** (h) hydras
+***** (z) zoom
 #+BEGIN_SRC emacs-lisp
-(bind-map-set-keys spc-map
-  "Yy" 'ninrod/yank-to-clipboard
-  "Yp" 'ninrod/paste-from-clipboard
-)
-(which-key-add-key-based-replacements "SPC Y" "clipboard/yank/paste")
-#+END_SRC
-
-**** H: hydras
-***** z: zoom
-#+BEGIN_SRC emacs-lisp
-(defhydra hydra-zoom (spc-map "Hz")
+(defhydra hydra-zoom (spc-map "hz")
   "zoom"
   ("i" text-scale-increase "in")
   ("o" text-scale-decrease "out"))
-(which-key-declare-prefixes "SPC H" "hydras")
-(which-key-add-key-based-replacements "SPC Hz" "zooming hydra")
+(which-key-declare-prefixes "SPC h" "hydras")
+(which-key-add-key-based-replacements "SPC hz" "zooming hydra")
 #+END_SRC
 
-**** T: Toggles
+**** (m) useful functions
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys spc-map
-    "Tr" 'rainbow-mode
-    "Tt" 'toggle-truncate-lines
-    "Tc" 'ninrod/display-ansi-colors
-)
-(which-key-declare-prefixes "SPC T" "toggles")
+    "ma" 'projectile-ag
+    "mc" 'count-words
+    "me" 'ninrod/uarg-exec-shell-command
+    "mf" 'customize-apropos-faces
+    "mi" 'ielm
+    "mm" 'man
+    "mt" 'elpamr-create-mirror-for-installed; mnemonic: create [t]hin mirror
+    "mu" 'undo-tree-visualize
+  )
+  (which-key-declare-prefixes "SPC m" "M-x useful functions")
+  (which-key-declare-prefixes "SPC mi" "REPL: inferior elisp mode")
 #+END_SRC
+**** (o) org-mode
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys spc-map
+    "oc" 'air-org-task-capture
+    "oa" 'air-pop-to-org-agenda
+    "ot" 'org-table-convert-region
+    "ob" 'org-bullets-mode
+  )
+  (which-key-declare-prefixes "SPC o" "Org-mode")
+#+END_SRC
+
+**** (s) spelling
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys spc-map
+  "sw" 'ispell-word
+  "se" (lambda () (interactive) (ispell-change-dictionary "english"))
+  "sp" (lambda () (interactive) (ispell-change-dictionary "pt_BR"))
+  "sk" (lambda () (interactive) (flyspell-mode -1))
+  "ss" (lambda () (interactive) (flyspell-mode 1))
+)
+(which-key-declare-prefixes "SPC s" "Spelling")
+(which-key-add-key-based-replacements
+  "SPC sw" "ispell: check word"
+  "SPC se" "ispell: use english dictionary"
+  "SPC sp" "ispell: use pt_BR dictionary"
+  "SPC sk" "turn off flyspell mode"
+  "SPC ss" "turn on flyspell mode"
+)
+#+END_SRC
+
+**** (t): Toggles
+#+BEGIN_SRC emacs-lisp
+(bind-map-set-keys spc-map
+    "tr" 'rainbow-mode
+    "tt" 'toggle-truncate-lines
+    "tc" 'ninrod/display-ansi-colors
+)
+(which-key-declare-prefixes "SPC t" "toggles")
+#+END_SRC
+
 ** s-map
 *** idea
 - other fast and reoccurring operations
@@ -1675,6 +1651,11 @@ an appropriate message.
   (bind-map-set-keys s-map
     ; buffer operations
     ;; "TAB" 'reserved
+    "RET" 'evil-save-modified-and-close; save and close
+
+    "n" 'rect-ext-narrow
+    "w" 'rect-ext-widen
+
     "q" 'evil-record-macro
     "u" 'ninrod/revert-buffer-no-confirm
     "d" 'spacemacs/kill-this-buffer
@@ -1702,10 +1683,7 @@ an appropriate message.
     "l" 'evil-window-right
     "y" 'split-window-right-and-focus
     "x" 'split-window-below-and-focus
-    ; quit operations
-    "r" 'restart-emacs
-    "w" 'write-file ; Save as
-    "RET" 'evil-save-modified-and-close; save and close
+
     )
 #+END_SRC
 
@@ -1919,20 +1897,20 @@ an appropriate message.
 
 *** function keys
 #+BEGIN_SRC emacs-lisp
-  (bind-key (kbd "<f1>") 'eyebrowse-switch-to-window-config-1 evil-motion-state-map)
   (bind-key (kbd "<f1>") 'eyebrowse-switch-to-window-config-1 global-map)
-
-  (bind-key (kbd "<f2>") 'eyebrowse-switch-to-window-config-2 evil-motion-state-map)
   (bind-key (kbd "<f2>") 'eyebrowse-switch-to-window-config-2 global-map)
-
-  (bind-key (kbd "<f3>") 'eyebrowse-switch-to-window-config-3 evil-motion-state-map)
   (bind-key (kbd "<f3>") 'eyebrowse-switch-to-window-config-3 global-map)
-
-  (bind-key (kbd "<f4>") 'eyebrowse-switch-to-window-config-4 evil-motion-state-map)
   (bind-key (kbd "<f4>") 'eyebrowse-switch-to-window-config-4 global-map)
+  (bind-key (kbd "<f5>") 'eyebrowse-rename-window-config global-map)
 
-  (bind-key (kbd "<f5>") 'eyebrowse-switch-to-window-config-5 evil-motion-state-map)
-  (bind-key (kbd "<f5>") 'eyebrowse-switch-to-window-config-5 global-map)
+  ;; (bind-key (kbd "<f6>") 'restart-emacs global-map)
+  ;; (bind-key (kbd "<f7>") 'restart-emacs global-map)
+  ;; (bind-key (kbd "<f8>") 'restart-emacs global-map)
+  ;; (bind-key (kbd "<f9>") 'restart-emacs global-map)
+  ;; (bind-key (kbd "<f10>") 'restart-emacs global-map)
+  ;; (bind-key (kbd "<f11>") 'restart-emacs global-map)
+
+  (bind-key (kbd "<f12>") 'restart-emacs global-map)
 #+END_SRC
 
 *** fixes
