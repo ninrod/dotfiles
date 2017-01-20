@@ -682,7 +682,7 @@ an appropriate message.
 ** daemon configuration
 - more info [[http://www.tychoish.com/posts/running-multiple-emacs-daemons-on-a-single-system/][here]]
 #+BEGIN_SRC emacs-lisp
-  (setq server-use-tcp t)
+  ;; (setq server-use-tcp t)
 #+END_SRC
 
 ** misc options
