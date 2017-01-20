@@ -43,7 +43,7 @@ alias dbash='docker_alias_bash_into_running_container'
 # Get latest container ID
 alias dl="docker ps -l -q"
 
-alias dp='docker ps --format="table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Command}}\t{{.Status}}"'
+alias dp='docker ps --format="table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Status}}"'
 
 alias dclean='drmf && drei'
 
