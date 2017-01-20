@@ -1532,7 +1532,7 @@ an appropriate message.
 **** A: Align
 #+BEGIN_SRC emacs-lisp
 (bind-map-set-keys spc-map
-  "Aa" 'align
+  "Aa" 'align-regexp
   "Ac" 'align-current
   "Am" 'spacemacs/align-repeat-math-oper
   "Ar" 'spacemacs/align-repeat
