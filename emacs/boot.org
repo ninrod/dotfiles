@@ -1044,6 +1044,13 @@ an appropriate message.
     :ensure t
     :pin gnu)
 #+END_SRC
+*** editorconfig
+#+BEGIN_SRC emacs-lisp
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
+#+END_SRC
 ** completions
 *** ivy/counsel
 #+BEGIN_SRC emacs-lisp
