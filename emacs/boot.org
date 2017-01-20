@@ -1682,7 +1682,6 @@ an appropriate message.
     "s" 'multi-term
     ; directory operations
     "p" 'counsel-projectile-switch-project
-    "a" 'projectile-switch-open-project; projeto [A]berto
     ; window operations
     "j" 'evil-window-down
     "k" 'evil-window-up
