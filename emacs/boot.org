@@ -1546,7 +1546,6 @@ an appropriate message.
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys spc-map
     "er" 'replace-string
-    "ep" 'counsel-yank-pop
     "es" 'sort-lines
     )
   (which-key-declare-prefixes "SPC e" "edit")
@@ -1679,9 +1678,11 @@ an appropriate message.
     "o" 'air-org-task-capture
     "i" 'ivy-switch-buffer
     "b" 'spacemacs/kill-other-buffers
-    "s" 'multi-term
+    "t" 'multi-term
+    ; edit operations
+    "p" 'counsel-yank-pop
     ; directory operations
-    "p" 'counsel-projectile-switch-project
+    "s" 'counsel-projectile-switch-project
     ; window operations
     "j" 'evil-window-down
     "k" 'evil-window-up
