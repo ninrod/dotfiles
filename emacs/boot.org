@@ -496,6 +496,7 @@ an appropriate message.
 #+BEGIN_SRC emacs-lisp
   (use-package evil-mc
     :ensure t
+    :diminish ""
     :config
     (global-evil-mc-mode  1))
 #+END_SRC
@@ -989,7 +990,7 @@ an appropriate message.
 ** expand functionality
 *** restart-emacs
 #+BEGIN_SRC emacs-lisp
-(use-package restart-emacs :ensure t)
+  (use-package restart-emacs :ensure t)
 #+END_SRC
 
 *** eyebrowse
@@ -1052,6 +1053,7 @@ an appropriate message.
 #+BEGIN_SRC emacs-lisp
 (use-package editorconfig
   :ensure t
+  :diminish ""
   :config
   (editorconfig-mode 1))
 #+END_SRC
@@ -1095,13 +1097,16 @@ an appropriate message.
 
 *** yasnippet
   #+BEGIN_SRC emacs-lisp
-    (use-package yasnippet :ensure t
+    (use-package yasnippet
+      :ensure t
       :config (yas-global-mode 1))
   #+END_SRC
 
 *** flycheck
   #+BEGIN_SRC emacs-lisp
-    (use-package flycheck :ensure t
+    (use-package flycheck
+      :ensure t
+      :diminish ""
       :config (global-flycheck-mode t))
   #+END_SRC
 
@@ -1461,7 +1466,6 @@ an appropriate message.
   (diminish 'subword-mode)
   (diminish 'smart-tab-mode)
   (diminish 'flyspell-mode "FlyS")
-  (diminish 'flycheck-mode "FlyC")
 #+END_SRC
 
 ** M-x man
@@ -1909,12 +1913,12 @@ an appropriate message.
   (bind-key (kbd "<f4>") 'eyebrowse-switch-to-window-config-4 global-map)
   (bind-key (kbd "<f5>") 'eyebrowse-rename-window-config global-map)
 
-  ;; (bind-key (kbd "<f6>") 'restart-emacs global-map)
-  ;; (bind-key (kbd "<f7>") 'restart-emacs global-map)
-  ;; (bind-key (kbd "<f8>") 'restart-emacs global-map)
-  ;; (bind-key (kbd "<f9>") 'restart-emacs global-map)
-  ;; (bind-key (kbd "<f10>") 'restart-emacs global-map)
-  ;; (bind-key (kbd "<f11>") 'restart-emacs global-map)
+  (define-key global-map (kbd "<f6>") nil)
+  (define-key global-map (kbd "<f7>") nil)
+  (define-key global-map (kbd "<f8>") nil)
+  (define-key global-map (kbd "<f9>") nil)
+  (define-key global-map (kbd "<f10>") nil)
+  (define-key global-map (kbd "<f11>") nil)
 
   (bind-key (kbd "<f12>") 'restart-emacs global-map)
 #+END_SRC
