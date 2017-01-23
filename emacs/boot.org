@@ -460,22 +460,26 @@ an appropriate message.
 *** evil-targets
 
 #+BEGIN_SRC emacs-lisp
-  (use-package targets :load-path "lisp/noctuid/targets.el"
-    :init
-    (setq targets-separator-text-objects '())
+  (use-package avy :ensure t)
+  (with-eval-after-load "avy"
+    (use-package targets :load-path "lisp/noctuid/targets.el"
+      :init
+      (setq targets-separator-text-objects '())
 
-    (add-to-list 'targets-separator-text-objects
-                 '(pipe "|" nil separator))
+      (add-to-list 'targets-separator-text-objects
+                   '(pipe "|" nil separator))
 
-    (setq targets-pair-text-objects
-          '((paren "(" ")" pair :more-keys "b")
-            (bracket "[" "]" pair :more-keys "r")
-            (curly "{" "}" pair :more-keys "c")
-            (angle "<" ">" pair)))
-    :config
-    (targets-setup t)
-    (bind-key "I" 'evil-insert evil-visual-state-map)
-    (bind-key "A" 'evil-append evil-visual-state-map))
+      (setq targets-pair-text-objects
+            '((paren "(" ")" pair :more-keys "b")
+              (bracket "[" "]" pair :more-keys "r")
+              (curly "{" "}" pair :more-keys "c")
+              (angle "<" ">" pair)))
+      :config
+
+      (targets-setup t
+                     :inside-key nil
+                     :around-key nil
+                     :remote-key nil)))
 #+END_SRC
 
 *** evil-rect-ext
