@@ -59,7 +59,7 @@ $ exec zsh
 - =protip=: =~/.dotfiles/install.zsh update= will update all depencies
 
 * Emacs: the timeless and infinitely powerful editor
-I maintain my configuration using an org-mode file, trough org-babel. 
+I maintain my configuration using an org-mode file, through org-babel.
 So you can see it in it's full glory [[https://github.com/ninrod/dotfiles/blob/master/emacs/boot.org][here]].
 * VIM: Powerful shell text editor. Tweaked with plugins.
 To check out what binds and plugins I use in this config, my [[https://github.com/ninrod/dotfiles/blob/master/vim/][vim directory]] is authoritative.
