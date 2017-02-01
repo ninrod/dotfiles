@@ -2,7 +2,7 @@ source ~/.zsh.d/constants.zsh
 mkdir -p $emacs_deps && cd $emacs_deps
 
 # mirrors
-ningrab syl20bnr/spacemacs-elpa-mirror
+ningrab ninrod/zipped-melpa-mirror
 ningrab ninrod/thin-melpa-mirror
 
 # core editing
