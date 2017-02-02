@@ -284,6 +284,26 @@ an appropriate message.
       (org-table-align)                 ; realign the table
       (goto-char pos))))                ; move back to original position
 #+END_SRC
+**** ninrod/org-retrieve-url-from-point
+- stolen from [[http://emacs.stackexchange.com/a/3990/12585][here]] and modified.
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod--grab-link (text)
+    (string-match org-bracket-link-regexp text)
+    (substring text (match-beginning 1) (match-end 1)))
+  (defun ninrod/org-retrieve-url-from-point ()
+    (interactive)
+    (let* ((link-info (assoc :link (org-context)))
+           (text (when link-info
+                   ;; org-context seems to return nil if the current element
+                   ;; starts at buffer-start or ends at buffer-end
+                   (buffer-substring-no-properties (or (cadr link-info) (point-min))
+                                                   (or (caddr link-info) (point-max)))))
+           (extracted-text (ninrod--grab-link text)))
+      (when extracted-text
+        (message "Extracted and yanked org-link: %s" extracted-text)
+        (kill-new extracted-text))))
+#+END_SRC
+
 *** lisp-mode
 **** ninrod/eval-print-last-sexp
 #+BEGIN_SRC emacs-lisp
@@ -365,7 +385,6 @@ an appropriate message.
         (message "graphics active"))
     (insert (shell-command-to-string "pbpaste"))))
 #+END_SRC
-
 *** misc
 **** ninrod/revert-buffer with no confirmation
 - from [[http://www.emacswiki.org/emacs-en/download/misc-cmds.el][emacswiki]]
@@ -1765,6 +1784,8 @@ an appropriate message.
     "h" 'org-metaleft
     "j" 'org-metadown
     "k" 'org-metaup
+
+    "y" 'ninrod/org-retrieve-url-from-point
 
     "t" 'org-todo
 
