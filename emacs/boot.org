@@ -716,6 +716,7 @@ an appropriate message.
         apropos-do-all t
         mode-require-final-newline nil
         require-final-newline nil
+        search-whitespace-regexp nil
         )
 #+END_SRC
 ** backups
@@ -1851,6 +1852,7 @@ an appropriate message.
   (evil-define-key 'normal org-mode-map "zl" 'outline-next-visible-heading)
   (evil-define-key 'normal org-mode-map "<" 'org-do-promote)
   (evil-define-key 'normal org-mode-map ">" 'org-do-demote)
+  (evil-define-key 'visual org-mode-map "-" 'org-ctrl-c-minus)
   (unbind-key "C-<tab>" org-mode-map)
   (bind-key "C-j" 'org-edit-special org-mode-map)
 #+END_SRC
