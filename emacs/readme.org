@@ -8,26 +8,22 @@
 the same way that the noonday sun does the stars. It is not
 just bigger and brighter; it simply makes everything else
 vanish."
-
 (Neal Stephenson, "In the Beginning was the Command Line")
 #+END_QUOTE
 
 #+BEGIN_QUOTE
 "Show me your ~/.emacs and I will tell you who you are."
-
 (Bogdan Maryniuk)
 #+END_QUOTE
 
 #+BEGIN_QUOTE
 "Emacs is like a laser guided missile. It only has to be
 slightly mis-configured to ruin your whole day."
-
 (Sean McGrathi)
 #+END_QUOTE
 
 #+BEGIN_QUOTE
 "Lisp isn't a language, it's a building material."
-
 (Alan Kay)
 #+END_QUOTE
 
@@ -39,7 +35,6 @@ pretty dialogs that you can't interact with properly, and
 gives newbies a nice comfortable sense of control. But that
 control is extremely crude, and all serious programmers
 prefer something that gives them more power."
-
 (Steve Yegge)
 #+END_QUOTE
 
@@ -52,7 +47,6 @@ phone.
 #+BEGIN_QUOTE
 While any text editor can save your files, only Emacs can save your
 soul.
-
 (Per Abrahamsen)
 #+END_QUOTE
 
@@ -60,7 +54,6 @@ soul.
 The reasonable man adapts himself to Emacs; the unreasonable one
 persists in trying to adapt Emacs to himself. Therefore all progress
 depends on the unreasonable man.
-
 (G.B. Shaw)
 #+END_QUOTE
 
