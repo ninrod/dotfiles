@@ -735,7 +735,6 @@ an appropriate message.
         apropos-do-all t
         mode-require-final-newline nil
         require-final-newline nil
-        search-whitespace-regexp nil
         )
 #+END_SRC
 ** backups
