@@ -2,6 +2,22 @@
 #+STARTUP: overview
 
 * Ninrod's emacs configuration
+
+#+BEGIN_QUOTE
+Saying that Emacs is just a text editor is like calling iPhone just a
+phone. [[http://www.terminally-incoherent.com/blog/2007/12/13/emacs-with-auctex-as-a-latex-ide/][Luke - Terminally Incoherent]]
+
+While any text editor can save your files, only Emacs can save your
+soul. (Per Abrahamsen)
+
+Show me your ~/.emacs and I will tell you who you are. (Bogdan
+Maryniuk)
+
+The reasonable man adapts himself to Emacs; the unreasonable one
+persists in trying to adapt Emacs to himself. Therefore all progress
+depends on the unreasonable man. (G.B. Shaw)
+#+END_QUOTE
+
 - use-package for managing dependencies
 - org-babel to keep the init.el organized as an org-mode file.
 - ivy instead of helm
