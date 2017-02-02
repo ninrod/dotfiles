@@ -23,22 +23,8 @@ slightly mis-configured to ruin your whole day."
 #+END_QUOTE
 
 #+BEGIN_QUOTE
-"While any text editor can save your files, only Emacs can
-save your soul."
--Per Abrahamseni
-#+END_QUOTE
-
-#+BEGIN_QUOTE
 "Lisp isn't a language, it's a building material."
 -Alan Kay
-#+END_QUOTE
-
-#+BEGIN_QUOTE
-"The reasonable man adapts himself to Emacs; the
-unreasonable one persists in trying to adapt Emacs to
-himself. Therefore all progress depends on the unreasonable
-man."
--G.B. Shaw
 #+END_QUOTE
 
 #+BEGIN_QUOTE
@@ -60,11 +46,6 @@ phone. [[http://www.terminally-incoherent.com/blog/2007/12/13/emacs-with-auctex-
 #+BEGIN_QUOTE
 While any text editor can save your files, only Emacs can save your
 soul. (Per Abrahamsen)
-#+END_QUOTE
-
-#+BEGIN_QUOTE
-Show me your ~/.emacs and I will tell you who you are. (Bogdan
-Maryniuk)
 #+END_QUOTE
 
 #+BEGIN_QUOTE
