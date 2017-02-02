@@ -1698,8 +1698,11 @@ an appropriate message.
     "i" 'ivy-switch-buffer
     "b" 'spacemacs/kill-other-buffers
     "t" 'multi-term
+
     ; edit operations
     "p" 'counsel-yank-pop
+    "r" 'anzu-query-replace-regexp
+
     ; directory operations
     "s" 'counsel-projectile-switch-project
     ; window operations
