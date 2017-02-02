@@ -765,9 +765,8 @@ an appropriate message.
                 indent-tabs-mode nil)
 #+END_SRC
 
-** garbage collection tuning
+** gnutls tuning
 #+BEGIN_SRC emacs-lisp
-(setq gc-cons-threshold 50000000)
 (setq gnutls-min-prime-bits 4096)
 #+END_SRC
 
