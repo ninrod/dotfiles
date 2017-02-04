@@ -1208,7 +1208,9 @@ an appropriate message.
 #+BEGIN_SRC emacs-lisp
   (use-package dired+ :ensure t
     :init
-    (setq diredp-hide-details-initially-flag nil))
+    (setq
+     diredp-hide-details-initially-flag nil
+     dired-omit-files "^\\.?#\\|^\\.[^.].*"))
 #+END_SRC
 
 *** dired-k
@@ -1329,7 +1331,13 @@ an appropriate message.
 (use-package dockerfile-mode :ensure t
   :config (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
 #+END_SRC
-
+*** yaml
+#+BEGIN_SRC emacs-lisp
+  (use-package yaml-mode
+    :ensure t
+    :init
+    (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
+#+END_SRC
 *** gitconfig-mode
 #+BEGIN_SRC emacs-lisp
 (use-package gitconfig-mode :ensure t)
