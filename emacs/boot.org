@@ -2053,6 +2053,30 @@ an appropriate message.
     (ninrod/dired--binds)
     )
 #+END_SRC
+** lisp-mode
+*** bind-map
+#+BEGIN_SRC emacs-lisp
+  (bind-map lisp-comma-map
+      :evil-keys (",")
+      :evil-states (normal visual)
+      :major-modes (lisp-mode lisp-interaction-mode))
+
+  (bind-map lisp-t-map
+    :evil-keys ("t")
+    :evil-states (normal)
+    :major-modes (lisp-mode lisp-interaction-mode))
+
+#+END_SRC
+*** t-map
+#+BEGIN_SRC emacs-lisp
+  (bind-map-set-keys lisp-t-map
+    "o" 'ninrod/eval-print-last-sexp ;mnemonic: output to current buffer
+    )
+  (bind-map-set-keys lisp-comma-map
+    "e" 'ninrod/eval-last-sexp
+    "d" 'eval-defun
+    )
+#+END_SRC
 ** other modes
 *** info-mode
 **** unbinds
@@ -2090,30 +2114,6 @@ an appropriate message.
     )
   (which-key-add-major-mode-key-based-replacements 'Info-mode "g o" "beggining of buffer")
   (which-key-add-major-mode-key-based-replacements 'Info-mode "g l" "end of buffer")
-#+END_SRC
-*** lisp-mode
-**** bind-map
-#+BEGIN_SRC emacs-lisp
-  (bind-map lisp-comma-map
-      :evil-keys (",")
-      :evil-states (normal visual)
-      :major-modes (lisp-mode lisp-interaction-mode))
-
-  (bind-map lisp-t-map
-    :evil-keys ("t")
-    :evil-states (normal)
-    :major-modes (lisp-mode lisp-interaction-mode))
-
-#+END_SRC
-**** t-map
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys lisp-t-map
-    "e" 'ninrod/eval-last-sexp
-    "o" 'ninrod/eval-print-last-sexp ;mnemonic: output to current buffer
-  )
-
-  (which-key-add-major-mode-key-based-replacements 'lisp-mode "t l" "eval-last-sexp")
-  (which-key-add-major-mode-key-based-replacements 'lisp-mode "t p" "eval-print-last-sexp")
 #+END_SRC
 *** term
 - with help from [[https://www.reddit.com/r/emacs/comments/56xmvg/properly_editing_a_shell_buffer_with_evilmode/][/r/emacs]]
