@@ -1458,11 +1458,6 @@ an appropriate message.
     (keyfreq-mode 1)
     (keyfreq-autosave-mode 1))
 #+END_SRC
-*** hacker-typer
-#+BEGIN_SRC emacs-lisp
-(use-package hacker-typer
-  :ensure t)
-#+END_SRC
 * fixes
 ** yasnippet hijacks TAB key in term mode
 #+BEGIN_SRC emacs-lisp
