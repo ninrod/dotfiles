@@ -1458,6 +1458,11 @@ an appropriate message.
     (keyfreq-mode 1)
     (keyfreq-autosave-mode 1))
 #+END_SRC
+*** hacker-typer
+#+BEGIN_SRC emacs-lisp
+(use-package hacker-typer
+  :ensure t)
+#+END_SRC
 * fixes
 ** yasnippet hijacks TAB key in term mode
 #+BEGIN_SRC emacs-lisp
@@ -2067,14 +2072,15 @@ an appropriate message.
     :major-modes (lisp-mode lisp-interaction-mode))
 
 #+END_SRC
-*** t-map
+*** maps
 #+BEGIN_SRC emacs-lisp
   (bind-map-set-keys lisp-t-map
     "o" 'ninrod/eval-print-last-sexp ;mnemonic: output to current buffer
+    "l" 'ninrod/eval-last-sexp
     )
   (bind-map-set-keys lisp-comma-map
-    "e" 'ninrod/eval-last-sexp
     "d" 'eval-defun
+    "e" 'edebug-defun
     )
 #+END_SRC
 ** other modes
