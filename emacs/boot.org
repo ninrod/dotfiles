@@ -1467,7 +1467,7 @@ an appropriate message.
    :prefix "SPC")
 
   (spc-map
-   ;; "TAB" 'reserved
+   "TAB" 'evil-emacs-state
    "SPC" 'counsel-M-x
    "RET" 'write-file)
 #+END_SRC
