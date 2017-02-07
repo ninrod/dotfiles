@@ -1963,61 +1963,58 @@ an appropriate message.
 *** unbinds
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/dired--unbinds ()
-    (define-key dired-mode-map (kbd "SPC") nil)
-    (define-key dired-mode-map "s" nil)
-    (define-key dired-mode-map "-" nil)
-    (define-key dired-mode-map "n" nil)
-    (define-key dired-mode-map "N" nil)
-    (define-key dired-mode-map "y" nil)
-    (define-key dired-mode-map "M" nil)
-    (define-key dired-mode-map "L" nil)
-    (define-key dired-mode-map "H" nil)
-    (define-key dired-mode-map "$" nil)
-    (define-key dired-mode-map "0" nil)
-
-    (define-key dired-mode-map "w" nil)
-    (define-key dired-mode-map "e" nil)
-    (define-key dired-mode-map "b" nil)
-
-    (define-key dired-mode-map "W" nil)
-    (define-key dired-mode-map "E" nil)
-    (define-key dired-mode-map "B" nil)
-
-    (define-key dired-mode-map "." nil)
-    (define-key dired-mode-map "f" nil)
-    (define-key dired-mode-map "F" nil)
-    (define-key dired-mode-map "v" nil)
-    (define-key dired-mode-map "V" nil)
-    )
+    (general-define-key
+     :keymaps 'dired-mode-map
+     "s" nil
+     "-" nil
+     "n" nil
+     "N" nil
+     "y" nil
+     "M" nil
+     "L" nil
+     "H" nil
+     "$" nil
+     "0" nil
+     "w" nil
+     "e" nil
+     "b" nil
+     "W" nil
+     "E" nil
+     "B" nil
+     "." nil
+     "f" nil
+     "F" nil
+     "v" nil
+     "V" nil))
 #+END_SRC
 *** binds
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/dired--binds ()
     "my dired rebinds"
+    (general-define-key
+     :keymaps 'dired-mode-map
+     :states 'normal
+     "h" 'evil-backward-char
+     "j" 'evil-next-line
+     "k" 'evil-previous-line
+     "l" 'evil-forward-char
 
-    (evil-define-key 'normal dired-mode-map
-      "h" 'evil-backward-char
-      "j" 'evil-next-line
-      "k" 'evil-previous-line
-      "l" 'evil-forward-char
+     "c" 'find-file
+     "m" 'dired-create-directory ;*-m is dired-mark
+     "r" 'dired-do-rename
+     "p" 'dired-do-chmod
+     "t" 'dired-mark
 
-      "c" 'find-file
-      "m" 'dired-create-directory ;*-m is dired-mark
-      "r" 'dired-do-rename
-      "p" 'dired-do-chmod
-      "t" 'dired-mark
+     ",s" 'dired-sort-extension
+     ",t" 'dired-details-toggle
 
-      ",s" 'dired-sort-extension
-      ",t" 'dired-details-toggle
+     "DEL" 'dired-up-directory
+     "go" 'evil-goto-first-line
+     "gl" 'evil-goto-line
+     "ge" 'evil-backward-word-end
 
-      (kbd "DEL") 'dired-up-directory
-      "go" 'evil-goto-first-line
-      "gl" 'evil-goto-line
-      "ge" 'evil-backward-word-end
-
-      "R" 'dired-do-redisplay
-      "T" 'dired-toggle-marks
-      ))
+     "R" 'dired-do-redisplay
+     "T" 'dired-toggle-marks))
 #+END_SRC
 *** setup
 - lifted from this [[http://stackoverflow.com/a/10672548/4921402][SO question]]
@@ -2027,8 +2024,7 @@ an appropriate message.
   (with-eval-after-load 'dired
     (ninrod/dired--unbinds)
     (evil-make-overriding-map dired-mode-map 'normal t); use the standard Dired bindings as a base
-    (ninrod/dired--binds)
-    )
+    (ninrod/dired--binds))
 #+END_SRC
 ** lisp-mode
 *** bind-map
