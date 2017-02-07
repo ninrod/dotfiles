@@ -2079,48 +2079,58 @@ an appropriate message.
    "-" 'evil-ex-nohighlight)
 #+END_SRC
 
-** TODO magit-mode
+** magit-mode
 *** magit-status-mode-map fixes
 #+BEGIN_SRC emacs-lisp
-(define-key magit-status-mode-map (kbd "SPC") nil)
-(define-key magit-status-mode-map "go" 'evil-goto-first-line)
+  (general-define-key
+   :keymaps 'magit-status-mode-map
+   "SPC" nil
+   "go" 'evil-goto-first-line ;; I don't know how, but this also fixes the gl bind.
+   )
 #+END_SRC
 
 *** magit-hunk-section-map fixes
 #+BEGIN_SRC emacs-lisp
-(unbind-key "s" magit-hunk-section-map)
+  (general-define-key
+   :keymaps 'magit-hunk-section-map
+   "s" nil)
 #+END_SRC
 
 *** magit-file-section-map
 #+BEGIN_SRC emacs-lisp
-(unbind-key "s" magit-file-section-map)
+(general-define-key
+   :keymaps 'magit-file-section-map
+   "s" nil)
+#+END_SRC
+
+** term-mode
+- with help from [[https://www.reddit.com/r/emacs/comments/56xmvg/properly_editing_a_shell_buffer_with_evilmode/][/r/emacs]]
+#+BEGIN_SRC emacs-lisp
+  (evil-set-initial-state 'term-mode 'emacs)
+
+  (general-create-definer
+   ninrod--term-mode
+   :keymaps '(term-raw-map term-mode-map))
+
+  (ninrod--term-mode
+   :states 'emacs
+   :prefix "C-c"
+   "<escape>" 'term-send-esc
+   "l"        'term-line-mode
+   "c"        'term-char-mode
+   "j"        'multi-term-next
+   "k"        'multi-term-prev)
+
+  (ninrod--term-mode
+   :states '(normal visual)
+   :prefix ","
+   "l" 'term-line-mode
+   "c" 'term-char-mode
+   "n" 'multi-term-next
+   "p" 'multi-term-prev)
 #+END_SRC
 
 ** other modes
-*** term-mode
-- with help from [[https://www.reddit.com/r/emacs/comments/56xmvg/properly_editing_a_shell_buffer_with_evilmode/][/r/emacs]]
-#+BEGIN_SRC emacs-lisp
-(evil-set-initial-state 'term-mode 'emacs)
-(bind-key "C-c <escape>"  'term-send-esc)
-(bind-key "C-c l"  'term-line-mode)
-(bind-key "C-c c"  'term-char-mode)
-(bind-key "C-c j"  'multi-term-next)
-(bind-key "C-c k"  'multi-term-prev)
-
-(bind-map term-map
-    :evil-keys (",")
-    :evil-states (normal visual)
-    :major-modes (term-mode))
-
-(bind-map-set-keys term-map
-  "l" 'term-line-mode
-  "c" 'term-char-mode
-  "n" 'multi-term-next
-  "p" 'multi-term-prev
-)
-
-#+END_SRC
-
 *** prog-mode
 #+BEGIN_SRC emacs-lisp
 (evil-define-key 'normal prog-mode-map (kbd "TAB") 'ninrod/origami-toggle-node)
