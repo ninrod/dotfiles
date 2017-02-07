@@ -1517,22 +1517,20 @@ an appropriate message.
 #+END_SRC
 * keybinds
 ** SPC-map
-*** binds
-**** core
+*** core
 #+BEGIN_SRC emacs-lisp
-  (general-define-key
+  (general-create-definer spc-map
    :states '(normal visual motion)
-   :prefix "SPC"
+   :prefix "SPC")
+
+  (spc-map
    ;; "TAB" 'reserved
    "SPC" 'counsel-M-x
    "RET" 'write-file)
 #+END_SRC
-**** (a) align
+*** (a) align
 #+BEGIN_SRC emacs-lisp
-  (general-define-key
-   :states '(normal visual motion)
-   :prefix "SPC"
-
+  (spc-map
     "aa" 'align-regexp
     "ac" 'align-current
     "am" 'spacemacs/align-repeat-math-oper
@@ -1550,9 +1548,9 @@ an appropriate message.
   )
 #+END_SRC
 #+END_SRC
-**** (d) emacs help
-#+BEGIN_SRC text
-  (bind-map-set-keys spc-map
+*** (d) emacs help
+#+BEGIN_SRC emacs-lisp
+  (spc-map
     "da" 'apropos
     "db" 'counsel-descbinds
     "dc" 'describe-char
@@ -1563,28 +1561,26 @@ an appropriate message.
     "dt" 'counsel-describe-face
     "dv" 'counsel-describe-variable
     )
-  (which-key-declare-prefixes "SPC d" "describe/help")
 #+END_SRC
-**** (e) edit
-#+BEGIN_SRC text
-  (bind-map-set-keys spc-map
+*** (e) edit
+#+BEGIN_SRC emacs-lisp
+  (spc-map
     "er" 'replace-string
     "es" 'sort-lines
     )
-  (which-key-declare-prefixes "SPC e" "edit")
 #+END_SRC
-**** (f) file/dir
-#+BEGIN_SRC text
-  (bind-map-set-keys spc-map
+*** (f) file/dir
+#+BEGIN_SRC emacs-lisp
+  (spc-map
     "fc" 'make-directory
     "fd" 'cd
     "fy" 'prelude-copy-file-name-to-clipboard
     )
   (which-key-declare-prefixes "SPC f" "file/dir")
 #+END_SRC
-**** (i) ivy
-#+BEGIN_SRC text
-(bind-map-set-keys spc-map
+*** (i) ivy
+#+BEGIN_SRC emacs-lisp
+(spc-map
     "ia" 'counsel-ag
     "ib" 'counsel-descbinds
     "if" 'counsel-describe-function
@@ -1595,9 +1591,9 @@ an appropriate message.
   )
   (which-key-declare-prefixes "SPC i" "Ivy")
 #+END_SRC
-**** (g) ma[g]it
-#+BEGIN_SRC text
-  (bind-map-set-keys spc-map
+*** (g) ma[g]it
+#+BEGIN_SRC emacs-lisp
+  (spc-map
     "gi" 'magit-init
     "gc" 'magit-clone
     "gl" 'magit-log-buffer-file; commits in master touching current buffer
@@ -1605,18 +1601,23 @@ an appropriate message.
     )
   (which-key-declare-prefixes "SPC g" "ma[git]")
 #+END_SRC
-**** (h) hydras
-***** (z) zoom
-#+BEGIN_SRC text
-(defhydra hydra-zoom (spc-map "hz")
-  "zoom"
-  ("i" text-scale-increase "in")
-  ("o" text-scale-decrease "out"))
-(which-key-declare-prefixes "SPC h" "hydras")
-(which-key-add-key-based-replacements "SPC hz" "zooming hydra")
+*** (h) hydras
+**** (z) zoom
+#+BEGIN_SRC emacs-lisp
+  (defhydra hydra-zoom ()
+    "zoom"
+    ("i" text-scale-increase "in")
+    ("o" text-scale-decrease "out"))
+
+  (spc-map
+   "hz" 'hydra-zoom/body
+   )
+
+  (which-key-declare-prefixes "SPC h" "hydras")
+  (which-key-add-key-based-replacements "SPC hz" "zooming hydra")
 #+END_SRC
 
-**** (m) M-x functions
+*** (m) M-x functions
 #+BEGIN_SRC text
 (bind-map-set-keys spc-map
     "ma" 'projectile-ag
@@ -1632,7 +1633,7 @@ an appropriate message.
   (which-key-declare-prefixes "SPC m" "M-x functions")
   (which-key-declare-prefixes "SPC mi" "REPL: inferior elisp mode")
 #+END_SRC
-**** (o) org-mode
+*** (o) org-mode
 #+BEGIN_SRC text
   (bind-map-set-keys spc-map
     "oc" 'air-org-task-capture
@@ -1643,7 +1644,7 @@ an appropriate message.
   (which-key-declare-prefixes "SPC o" "Org-mode")
 #+END_SRC
 
-**** (s) spelling
+*** (s) spelling
 #+BEGIN_SRC text
 (bind-map-set-keys spc-map
   "sw" 'ispell-word
@@ -1662,7 +1663,7 @@ an appropriate message.
 )
 #+END_SRC
 
-**** (t): Toggles
+*** (t): Toggles
 #+BEGIN_SRC text
 (bind-map-set-keys spc-map
     "tr" 'rainbow-mode
