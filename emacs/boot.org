@@ -1894,6 +1894,10 @@ an appropriate message.
 
    "+" 'evil-numbers/inc-at-pt
    "-" 'evil-numbers/dec-at-pt
+
+  ;; As I've sequestered < and > when in org mode, we need a workaround.
+  ">" 'evil-shift-right
+  "<" 'evil-shift-left
    )
 
 #+END_SRC
@@ -1935,33 +1939,25 @@ an appropriate message.
 
 *** fixes
 #+BEGIN_SRC emacs-lisp
-  ;; As I've sequestered < and > when in org mode, we need a workaround.
-  (bind-key "g>" 'evil-shift-right evil-motion-state-map)
-  (bind-key "g<" 'evil-shift-left evil-motion-state-map)
-
-  ;; `z.' fix
-  (bind-key "z." 'evil-scroll-line-to-center evil-normal-state-map)
-
-  ;; `z-' fix
-  (bind-key "z-" 'evil-scroll-line-to-bottom evil-normal-state-map)
+  (general-define-key :keymaps '(normal visual) "z." 'evil-scroll-line-to-center) ;; `z.' fix
+  (general-define-key :keymaps '(normal visual) "z-" 'evil-scroll-line-to-bottom) ;; `z-' fix
 
   ;; make / and ? behave like vim
-  (bind-key (kbd "<escape>") 'isearch-cancel isearch-mode-map)
-  (bind-key (kbd "<escape>") 'minibuffer-keyboard-quit evil-ex-search-keymap)
+  (general-define-key :keymaps 'isearch-mode-map "<escape>" 'isearch-cancel)
+  (general-define-key :keymaps 'evil-ex-search-keymap "<escape>" 'minibuffer-keyboard-quit)
 
   ;; auto-indent on RET
-  (bind-key (kbd "RET") 'newline-and-indent global-map)
+  (general-define-key "RET" 'newline-and-indent)
 #+END_SRC
 
 *** insert state
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-<tab>") 'dabbrev-expand)
-  (bind-key (kbd "C-<tab>") 'dabbrev-expand minibuffer-local-map)
+  (general-define-key "C-<tab>" 'dabbrev-expand)
+  (general-define-key :keymaps 'minibuffer-local-map "C-<tab>" 'dabbrev-expand)
 #+END_SRC
 *** evil-mc
 #+BEGIN_SRC emacs-lisp
-  (with-eval-after-load 'evil-mc
-    (evil-define-key 'visual evil-mc-key-map (kbd "C-n") 'evil-mc-make-vertical-cursors))
+  (general-define-key :keymaps 'evil-mc-key-map :states 'visual "C-n" 'evil-mc-make-vertical-cursors)
 #+END_SRC
 ** dired
 *** unbinds
