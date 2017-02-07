@@ -1517,29 +1517,22 @@ an appropriate message.
 #+END_SRC
 * keybinds
 ** SPC-map
-*** design
-- buffer switch/opening and overall manipulations
-- file openings, manipulations: dired, neotree, bookmarks
-- window splits/movements
-*** bind-map
-#+BEGIN_SRC emacs-lisp
-(bind-map spc-map
-    :keys ("M-SPC")
-    :evil-keys ("SPC")
-    :evil-states (normal visual motion))
-#+END_SRC
-
 *** binds
 **** core
 #+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys spc-map
-    "<SPC>" 'counsel-M-x
-    "RET" 'write-file
-    )
+  (general-define-key
+   :states '(normal visual motion)
+   :prefix "SPC"
+   ;; "TAB" 'reserved
+   "SPC" 'counsel-M-x
+   "RET" 'write-file)
 #+END_SRC
 **** (a) align
 #+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys spc-map
+  (general-define-key
+   :states '(normal visual motion)
+   :prefix "SPC"
+
     "aa" 'align-regexp
     "ac" 'align-current
     "am" 'spacemacs/align-repeat-math-oper
@@ -1555,11 +1548,10 @@ an appropriate message.
     "a\\" 'spacemacs/align-repeat-backslash
     "a|" 'spacemacs/align-repeat-bar
   )
-  (which-key-declare-prefixes "SPC a" "align")
 #+END_SRC
 #+END_SRC
 **** (d) emacs help
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (bind-map-set-keys spc-map
     "da" 'apropos
     "db" 'counsel-descbinds
@@ -1574,7 +1566,7 @@ an appropriate message.
   (which-key-declare-prefixes "SPC d" "describe/help")
 #+END_SRC
 **** (e) edit
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (bind-map-set-keys spc-map
     "er" 'replace-string
     "es" 'sort-lines
@@ -1582,7 +1574,7 @@ an appropriate message.
   (which-key-declare-prefixes "SPC e" "edit")
 #+END_SRC
 **** (f) file/dir
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (bind-map-set-keys spc-map
     "fc" 'make-directory
     "fd" 'cd
@@ -1591,7 +1583,7 @@ an appropriate message.
   (which-key-declare-prefixes "SPC f" "file/dir")
 #+END_SRC
 **** (i) ivy
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
 (bind-map-set-keys spc-map
     "ia" 'counsel-ag
     "ib" 'counsel-descbinds
@@ -1604,7 +1596,7 @@ an appropriate message.
   (which-key-declare-prefixes "SPC i" "Ivy")
 #+END_SRC
 **** (g) ma[g]it
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (bind-map-set-keys spc-map
     "gi" 'magit-init
     "gc" 'magit-clone
@@ -1615,7 +1607,7 @@ an appropriate message.
 #+END_SRC
 **** (h) hydras
 ***** (z) zoom
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
 (defhydra hydra-zoom (spc-map "hz")
   "zoom"
   ("i" text-scale-increase "in")
@@ -1625,7 +1617,7 @@ an appropriate message.
 #+END_SRC
 
 **** (m) M-x functions
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
 (bind-map-set-keys spc-map
     "ma" 'projectile-ag
     "mc" 'count-words
@@ -1641,7 +1633,7 @@ an appropriate message.
   (which-key-declare-prefixes "SPC mi" "REPL: inferior elisp mode")
 #+END_SRC
 **** (o) org-mode
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (bind-map-set-keys spc-map
     "oc" 'air-org-task-capture
     "oa" 'air-pop-to-org-agenda
@@ -1652,7 +1644,7 @@ an appropriate message.
 #+END_SRC
 
 **** (s) spelling
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
 (bind-map-set-keys spc-map
   "sw" 'ispell-word
   "se" (lambda () (interactive) (ispell-change-dictionary "english"))
@@ -1671,7 +1663,7 @@ an appropriate message.
 #+END_SRC
 
 **** (t): Toggles
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
 (bind-map-set-keys spc-map
     "tr" 'rainbow-mode
     "tt" 'toggle-truncate-lines
@@ -1683,7 +1675,6 @@ an appropriate message.
 ** s-map
 #+BEGIN_SRC emacs-lisp
   (general-define-key :keymaps '(normal visual motion) "s" nil) ; see https://github.com/noctuid/general.el/issues/46
-
   (general-define-key
    :keymaps '(normal visual motion)
    :prefix "s"
