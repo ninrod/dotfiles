@@ -878,7 +878,7 @@ an appropriate message.
 
 *** themes
 **** spacemacs-theme
-  #+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp
     (use-package spacemacs-dark-theme :load-path "lisp/ninrod/spacemacs-theme"
       :init
       (setq spacemacs-theme-org-height nil)
@@ -886,7 +886,7 @@ an appropriate message.
       :config
       (load-theme 'spacemacs-dark t)
       )
-  #+END_SRC
+#+END_SRC
 
 **** zerodark-theme
 #+BEGIN_SRC text
@@ -904,13 +904,13 @@ an appropriate message.
 #+END_SRC
 
 **** gruvbox-theme
-  #+BEGIN_SRC text
+#+BEGIN_SRC text
     (use-package gruvbox-theme :load-path "lisp/ninrod/gruvbox-theme"
       :init
       (setq gruvbox-contrast 'hard)
       :config
       (load-theme 'gruvbox t))
-  #+END_SRC
+#+END_SRC
 
 **** darktooth-theme
 #+BEGIN_SRC text
@@ -1050,7 +1050,7 @@ an appropriate message.
     (use-package atomic-chrome :ensure t
       :init
       (atomic-chrome-start-server)))
-  #+END_SRC
+#+END_SRC
 
 *** vidff
 #+BEGIN_SRC emacs-lisp
@@ -1111,19 +1111,19 @@ an appropriate message.
 #+END_SRC
 
 *** yasnippet
-  #+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp
     (use-package yasnippet
       :ensure t
       :config (yas-global-mode 1))
-  #+END_SRC
+#+END_SRC
 
 *** flycheck
-  #+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp
     (use-package flycheck
       :ensure t
       :diminish ""
       :config (global-flycheck-mode t))
-  #+END_SRC
+#+END_SRC
 
 *** emmet
 #+BEGIN_SRC emacs-lisp
@@ -1140,11 +1140,11 @@ an appropriate message.
 
 ** keybinds
 *** which key
-  #+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp
     (use-package which-key :ensure t
       :diminish which-key-mode
       :config (which-key-mode))
-  #+END_SRC
+#+END_SRC
 *** bind-key
 #+BEGIN_SRC emacs-lisp
   (use-package bind-key :ensure t)
@@ -1262,7 +1262,7 @@ an appropriate message.
 
 ** org
 *** Org Bullets
-  #+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp
     (use-package org-bullets
       :ensure t
       :init
@@ -1281,10 +1281,10 @@ an appropriate message.
       (add-hook 'org-mode-hook 
                 (lambda () 
                   (org-bullets-mode 1))))
-  #+END_SRC
+#+END_SRC
 
 *** Reveal.js
-  #+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp
   (use-package ox-reveal
   :ensure t)
 
@@ -1293,7 +1293,7 @@ an appropriate message.
 
   (use-package htmlize
   :ensure t)
-  #+END_SRC
+#+END_SRC
 
 *** ob-http
 #+BEGIN_SRC emacs-lisp
@@ -1701,17 +1701,14 @@ an appropriate message.
 *** , local
 **** bind
 #+BEGIN_SRC emacs-lisp
-  (bind-map org-comma-map
-    :evil-keys (",")
-    :evil-states (normal visual)
-    :major-modes (org-mode))
+(general-create-definer org-comma-map
+   :keymaps 'org-mode-map
+   :states '(normal visual)
+   :prefix ",")
 #+END_SRC
 **** fast
 #+BEGIN_SRC emacs-lisp
-  (general-define-key
-   :keymaps 'org-mode-map
-   :states '(normal visual)
-   :prefix ","
+  (org-comma-map
    "" 'nil
 
    "r" 'org-refile
@@ -1729,29 +1726,26 @@ an appropriate message.
 **** caps
 ***** C: clock/timer
 #+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-comma-map
+  (org-comma-map "C" '(:ignore t :which-key "clock/timer")
     "Ci" 'org-clock-in
     "Co" 'org-clock-out
     "C-" 'org-timer-item
     "Ct" 'org-timer
     "Cs" 'org-timer-stop
     )
-  (which-key-declare-prefixes ", C" "clock/timer")
 #+END_SRC
 
 ***** E: exports
 #+BEGIN_SRC emacs-lisp
-(bind-map-set-keys org-comma-map
+  (org-comma-map "E" '(:ignore t :which-key "Exports")
   "Ed" 'org-export-dispatch)
-(which-key-declare-prefixes ", E" "Exports")
 #+END_SRC
 
 ***** T: toggles
 #+BEGIN_SRC emacs-lisp
-(bind-map-set-keys org-comma-map
+  (org-comma-map "T" '(:ignore t :which-key "Toggles")
   "Tl" 'org-toggle-link-display
 )
-(which-key-declare-prefixes ", T" "Toggles")
 #+END_SRC
 
 *** t local
