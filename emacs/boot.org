@@ -2182,14 +2182,11 @@ an appropriate message.
 
 ** man
 #+BEGIN_SRC emacs-lisp
-(bind-map man-local-map
-    :evil-keys (",")
-    :evil-states (normal)
-    :major-modes (Man-mode))
-
-(bind-map-set-keys man-local-map
-  "f" 'man-follow
-)
+  (general-define-key
+   :keymaps 'Man-mode-map
+   :states 'normal
+    "RET" 'man-follow
+   )
 #+END_SRC
 
 ** neotree
