@@ -1915,20 +1915,22 @@ an appropriate message.
 
 *** function keys
 #+BEGIN_SRC emacs-lisp
-  (bind-key (kbd "<f1>") 'eyebrowse-switch-to-window-config-1 global-map)
-  (bind-key (kbd "<f2>") 'eyebrowse-switch-to-window-config-2 global-map)
-  (bind-key (kbd "<f3>") 'eyebrowse-switch-to-window-config-3 global-map)
-  (bind-key (kbd "<f4>") 'eyebrowse-switch-to-window-config-4 global-map)
-  (bind-key (kbd "<f5>") 'eyebrowse-rename-window-config global-map)
+  (general-define-key
+   "<f1>" 'eyebrowse-switch-to-window-config-1
+   "<f2>" 'eyebrowse-switch-to-window-config-2
+   "<f3>" 'eyebrowse-switch-to-window-config-3
+   "<f4>" 'eyebrowse-switch-to-window-config-4
+   "<f5>" 'eyebrowse-rename-window-config
 
-  (define-key global-map (kbd "<f6>") nil)
-  (define-key global-map (kbd "<f7>") nil)
-  (define-key global-map (kbd "<f8>") nil)
-  (define-key global-map (kbd "<f9>") nil)
-  (define-key global-map (kbd "<f10>") nil)
-  (define-key global-map (kbd "<f11>") nil)
+   "<f6>" nil
+   "<f7>" nil
+   "<f8>" nil
+   "<f9>" nil
+   "<f10>" nil
+   "<f11>" nil
 
-  (bind-key (kbd "<f12>") 'restart-emacs global-map)
+   "<f12>" 'restart-emacs
+   )
 #+END_SRC
 
 *** fixes
