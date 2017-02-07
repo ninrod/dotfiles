@@ -1699,7 +1699,7 @@ an appropriate message.
 
 ** org-mode
 *** , local
-**** bind
+**** definer
 #+BEGIN_SRC emacs-lisp
 (general-create-definer org-comma-map
    :keymaps 'org-mode-map
@@ -1749,18 +1749,17 @@ an appropriate message.
 #+END_SRC
 
 *** t local
-**** bind-map
+**** definer
 #+BEGIN_SRC emacs-lisp
-
-  (bind-map org-t-map
-    :evil-keys ("t")
-    :evil-states (normal)
-    :major-modes (org-mode))
+(general-create-definer org-t-map
+   :keymaps 'org-mode-map
+   :states '(normal)
+   :prefix "t")
 #+END_SRC
 
 **** fast
 #+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-t-map
+  (org-t-map
     ;; "<SPC>" 'ninrod/org-insert-subheading ; open new subheading
 
     "l" 'org-metaright
@@ -1786,15 +1785,15 @@ an appropriate message.
 *** T local (tables)
 **** bind-map
 #+BEGIN_SRC emacs-lisp
-  (bind-map org-T-map
-    :evil-keys ("T")
-    :evil-states (normal)
-    :major-modes (org-mode))
+(general-create-definer org-T-map
+   :keymaps 'org-mode-map
+   :states '(normal)
+   :prefix "T")
 #+END_SRC
 
 **** fast
 #+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-T-map
+  (org-T-map
     "t" 'org-table-transpose-table-at-point
     "h" 'org-backward-sentence ;; M-a tga
     "l" 'org-forward-sentence ;; M-e tge
@@ -1811,13 +1810,12 @@ an appropriate message.
     "@" 'org-table-toggle-coordinate-overlays
     "?" 'org-table-field-info
     "=" 'org-table-eval-formula
-    "e" (lambda () (interactive) ; [E]val formulas
+    "e" '((lambda () (interactive) ; [E]val formulas
            (let ((current-prefix-arg 4))
-             (call-interactively 'org-table-recalculate)))
+             (call-interactively 'org-table-recalculate))) :which-key "eval formulas")
 
     "RET" 'org-table-copy-down
   )
-  (which-key-add-major-mode-key-based-replacements 'org-mode "T e" "eval formulas")
 #+END_SRC
 
 *** S local (subtrees)
