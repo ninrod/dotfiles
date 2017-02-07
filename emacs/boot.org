@@ -1164,7 +1164,9 @@ an appropriate message.
 *** general.el
 #+BEGIN_SRC emacs-lisp
   (use-package general
-    :ensure t)
+    :ensure t
+    :config
+    (general-evil-setup))
 #+END_SRC
 ** file browsing
 *** projectile
@@ -1898,15 +1900,17 @@ an appropriate message.
 
 *** comfort improvements
 #+BEGIN_SRC emacs-lisp
-  (bind-key (kbd "RET") 'evil-write evil-normal-state-map)
-  (bind-key (kbd "TAB") 'evil-toggle-fold evil-normal-state-map)
-  (bind-key (kbd "DEL") 'counsel-find-file evil-normal-state-map)
-  (bind-key "q" 'evil-quit evil-normal-state-map)
-  (bind-key "-" 'evil-ex-nohighlight evil-normal-state-map)
-  (bind-key "Q" 'evil-record-macro evil-normal-state-map)
-  (bind-key "(" 'evil-backward-paragraph evil-motion-state-map)
-  (bind-key ")" 'evil-forward-paragraph evil-motion-state-map)
-  (bind-key "G" 'evil-execute-in-god-state evil-normal-state-map)
+  (general-nmap
+   "RET" 'evil-write
+   "TAB" 'evil-toggle-fold
+   "DEL" 'counsel-find-file
+   "q"   'evil-quit
+   "-"   'evil-ex-nohighlight
+   "Q"   'evil-record-macro
+   "G"   'evil-execute-in-god-state)
+  (general-mmap
+   "(" 'evil-backward-paragraph
+   ")" 'evil-forward-paragraph)
 #+END_SRC
 
 *** function keys
