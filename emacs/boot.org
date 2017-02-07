@@ -2163,23 +2163,24 @@ an appropriate message.
    "<escape>" 'evil-escape)
 #+END_SRC
 
-** other modes
-*** buffer-menu
+** buffer-menu
 #+BEGIN_SRC emacs-lisp
-  (with-eval-after-load 'tabulated-list
-    (define-key Buffer-menu-mode-map (kbd "SPC") nil)
-    (define-key Buffer-menu-mode-map "k" nil)
-    (define-key Buffer-menu-mode-map "j" nil)
-    (define-key Buffer-menu-mode-map "l" nil)
-    (define-key Buffer-menu-mode-map "h" nil)
-    (define-key Buffer-menu-mode-map "s" nil)
-    (define-key Buffer-menu-mode-map "n" nil)
-    (define-key Buffer-menu-mode-map "N" nil)
-    (define-key Buffer-menu-mode-map "*" nil)
-    (define-key Buffer-menu-mode-map "-" 'evil-ex-nohighlight)
-    )
+  (general-define-key
+   :keymaps 'Buffer-menu-mode-map
+   "SPC" nil
+   "k" nil
+   "j" nil
+   "l" nil
+   "h" nil
+   "s" nil
+   "n" nil
+   "N" nil
+   "*" nil
+   "-" 'evil-ex-nohighlight
+   )
 #+END_SRC
-*** man
+
+** man
 #+BEGIN_SRC emacs-lisp
 (bind-map man-local-map
     :evil-keys (",")
@@ -2190,6 +2191,7 @@ an appropriate message.
   "f" 'man-follow
 )
 #+END_SRC
+
 ** neotree
 #+BEGIN_SRC emacs-lisp
   (require 'neotree)
