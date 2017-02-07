@@ -1844,27 +1844,25 @@ an appropriate message.
 #+END_SRC
 
 *** local fixes
-**** org-mode-map
 #+BEGIN_SRC emacs-lisp
-  (evil-define-key 'normal org-mode-map (kbd "RET") 'evil-write)
-  (evil-define-key 'normal org-mode-map "zu" 'outline-up-heading)
-  (evil-define-key 'normal org-mode-map "zh" 'outline-previous-visible-heading)
-  (evil-define-key 'normal org-mode-map "zj" 'org-forward-heading-same-level)
-  (evil-define-key 'normal org-mode-map "zk" 'org-backward-heading-same-level)
-  (evil-define-key 'normal org-mode-map "zl" 'outline-next-visible-heading)
-  (evil-define-key 'normal org-mode-map "<" 'org-do-promote)
-  (evil-define-key 'normal org-mode-map ">" 'org-do-demote)
-  (evil-define-key 'visual org-mode-map "-" 'org-ctrl-c-minus)
-  (unbind-key "C-<tab>" org-mode-map)
-  (bind-key "C-j" 'org-edit-special org-mode-map)
+  (general-define-key
+   :keymaps 'org-mode-map
+   :states 'normal
+   "RET" 'evil-write
+   "zu" 'outline-up-heading
+   "zh" 'outline-previous-visible-heading
+   "zj" 'org-forward-heading-same-level
+   "zk" 'org-backward-heading-same-level
+   "zl" 'outline-next-visible-heading
+   "<" 'org-do-promote
+   ">" 'org-do-demote
+   "-" 'org-ctrl-c-minus
+   )
+  (general-define-key :keymaps 'org-mode-map "C-j" 'org-edit-special)
+  (general-define-key :keymaps 'org-src-mode-map "C-j" 'org-edit-src-exit)
+  (general-define-key :keymaps 'org-src-mode-map :states 'normal "RET" 'org-edit-src-exit)
+  (general-define-key :keymaps 'org-mode-map "C-<tab>" nil)
 #+END_SRC
-
-**** org-src-code-map
-#+BEGIN_SRC emacs-lisp
-  (bind-key "C-j" 'org-edit-src-exit org-src-mode-map)
-  (evil-define-key 'normal org-src-mode-map (kbd "<RET>") 'org-edit-src-exit)
-#+END_SRC
-
 ** evil
 *** abusing the g prefix
 #+BEGIN_SRC emacs-lisp
