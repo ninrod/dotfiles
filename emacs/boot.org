@@ -1681,52 +1681,6 @@ an appropriate message.
 #+END_SRC
 
 ** s-map
-*** idea
-- other fast and reoccurring operations
-*** bind-map
-#+BEGIN_SRC text
-  (bind-map s-map
-    :evil-keys ("s")
-    :evil-states (normal visual motion))
-#+END_SRC
-*** binds
-#+BEGIN_SRC text
-  (bind-map-set-keys s-map
-    ; buffer operations
-    ;; "TAB" 'reserved
-    "DEL" 'neotree-toggle
-    "RET" 'evil-save-modified-and-close; save and close
-    "<SPC>" 'counsel-bookmark; jump to bookmark
-    "-" 'bookmark-delete
-    "=" 'bookmark-set
-    ;; buffer operations
-    "n" 'rect-ext-narrow
-    "w" 'rect-ext-widen
-    "q" 'evil-record-macro
-    "u" 'ninrod/revert-buffer-no-confirm
-    "d" 'spacemacs/kill-this-buffer
-    "m" 'ninrod/extended-buffer-menu
-    "o" 'air-org-task-capture
-    "i" 'ivy-switch-buffer
-    "b" 'spacemacs/kill-other-buffers
-    "t" 'multi-term
-
-    ; edit operations
-    "p" 'counsel-yank-pop
-    "r" 'anzu-query-replace-regexp
-
-    ; directory operations
-    "s" 'counsel-projectile-switch-project
-    ; window operations
-    "j" 'evil-window-down
-    "k" 'evil-window-up
-    "h" 'evil-window-left
-    "l" 'evil-window-right
-    "y" 'split-window-right-and-focus
-    "x" 'split-window-below-and-focus
-    )
-#+END_SRC
-** general-s-map
 #+BEGIN_SRC emacs-lisp
   (general-define-key :keymaps '(normal visual motion) "s" nil) ; see https://github.com/noctuid/general.el/issues/46
 
