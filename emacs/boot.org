@@ -1182,23 +1182,6 @@ an appropriate message.
     (projectile-global-mode))
 #+END_SRC
 
-*** neotree
-#+BEGIN_SRC emacs-lisp
-    (use-package neotree :ensure t
-      :init
-      (setq neo-create-file-auto-open t
-            neo-auto-indent-point nil
-            neo-mode-line-type 'none
-            neo-window-fixed-size nil ; or neo-window-width 50
-            neo-show-updir-line nil
-            neo-smart-open t
-            neo-show-hidden-files t
-            neo-theme (if (display-graphic-p) 'icons 'nerd) ; fallback
-            ;; neo-theme 'nerd ; fallback
-            neo-banner-message nil
-  ))
-#+END_SRC
-
 *** dired+
 #+BEGIN_SRC emacs-lisp
   (use-package dired+ :ensure t
@@ -1226,6 +1209,23 @@ an appropriate message.
 #+BEGIN_SRC emacs-lisp
 (use-package dired-details :ensure t)
 #+END_SRC
+*** neotree
+#+BEGIN_SRC emacs-lisp
+    (use-package neotree :ensure t
+      :init
+      (setq neo-create-file-auto-open t
+            neo-auto-indent-point nil
+            neo-mode-line-type 'none
+            neo-window-fixed-size nil ; or neo-window-width 50
+            neo-show-updir-line nil
+            neo-smart-open t
+            neo-show-hidden-files t
+            neo-theme (if (display-graphic-p) 'icons 'nerd) ; fallback
+            ;; neo-theme 'nerd ; fallback
+            neo-banner-message nil
+  ))
+#+END_SRC
+
 ** git
 *** git-gutter-fringe
 #+BEGIN_SRC emacs-lisp
@@ -1381,38 +1381,6 @@ an appropriate message.
   :config
     (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
     (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2))))
-#+END_SRC
-
-*** elm
-#+BEGIN_SRC emacs-lisp
-(use-package elm-mode :ensure t)
-#+END_SRC
-*** haskell
-#+BEGIN_SRC emacs-lisp
-  (use-package haskell-mode :ensure t
-    :config
-    (use-package intero :ensure t
-      :config
-      (add-hook 'haskell-mode-hook 'intero-mode)))
-
-  (use-package flycheck-haskell :ensure t
-    :config
-    (eval-after-load 'flycheck
-      '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup)))
-
-#+END_SRC
-*** elixir
-#+BEGIN_SRC emacs-lisp
-(use-package alchemist :ensure t)
-#+END_SRC
-*** clojure
-#+BEGIN_SRC emacs-lisp
-(use-package cider :ensure t)
-#+END_SRC
-
-*** rust
-#+BEGIN_SRC emacs-lisp
-(use-package rust-mode :ensure t)
 #+END_SRC
 
 ** mirrors
