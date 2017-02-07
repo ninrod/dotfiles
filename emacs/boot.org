@@ -2027,26 +2027,27 @@ an appropriate message.
     (ninrod/dired--binds))
 #+END_SRC
 ** lisp-mode
-*** bind-map
+*** definers
 #+BEGIN_SRC emacs-lisp
-  (bind-map lisp-comma-map
-      :evil-keys (",")
-      :evil-states (normal visual)
-      :major-modes (lisp-mode lisp-interaction-mode))
+  (general-create-definer
+   lisp-comma-map
+   :keymaps '(lisp-mode-map lisp-interaction-mode-map)
+   :states '(normal visual)
+   :prefix ",")
 
-  (bind-map lisp-t-map
-    :evil-keys ("t")
-    :evil-states (normal)
-    :major-modes (lisp-mode lisp-interaction-mode))
-
+  (general-create-definer
+   lisp-t-map
+   :keymaps '(lisp-mode-map lisp-interaction-mode-map)
+   :states 'normal
+   :prefix "t")
 #+END_SRC
-*** maps
+*** binds
 #+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys lisp-t-map
+  (lisp-t-map
     "o" 'ninrod/eval-print-last-sexp ;mnemonic: output to current buffer
     "l" 'ninrod/eval-last-sexp
     )
-  (bind-map-set-keys lisp-comma-map
+  (lisp-comma-map
     "d" 'eval-defun
     "e" 'edebug-defun
     )
@@ -2089,7 +2090,7 @@ an appropriate message.
   (which-key-add-major-mode-key-based-replacements 'Info-mode "g o" "beggining of buffer")
   (which-key-add-major-mode-key-based-replacements 'Info-mode "g l" "end of buffer")
 #+END_SRC
-*** term
+*** term-mode
 - with help from [[https://www.reddit.com/r/emacs/comments/56xmvg/properly_editing_a_shell_buffer_with_evilmode/][/r/emacs]]
 #+BEGIN_SRC emacs-lisp
 (evil-set-initial-state 'term-mode 'emacs)
@@ -2113,7 +2114,7 @@ an appropriate message.
 
 #+END_SRC
 
-*** magit
+*** magit-mode
 **** magit-status-mode-map fixes
 #+BEGIN_SRC emacs-lisp
 (define-key magit-status-mode-map (kbd "SPC") nil)
@@ -2178,12 +2179,6 @@ an appropriate message.
   "f" 'man-follow
 )
 #+END_SRC
-** awesome available binds
-*** g prefix: t, T
-*** SPC leader: (TAB / . ; , -)
-** emacs native binds
-*** org-mode
-- org-next-link: =C-c C-x C-n=
 ** neotree-evilify
 #+BEGIN_SRC emacs-lisp
   (require 'neotree)
