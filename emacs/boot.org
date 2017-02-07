@@ -1661,7 +1661,7 @@ an appropriate message.
   (general-define-key
    :keymaps '(normal visual motion)
    :prefix "s"
-   "" 'nil
+   "" nil
 
    ;; "TAB" 'reserved
    "DEL" 'neotree-toggle
@@ -1866,28 +1866,34 @@ an appropriate message.
 ** evil
 *** abusing the g prefix
 #+BEGIN_SRC emacs-lisp
-  (bind-key "go" 'evil-goto-first-line evil-motion-state-map)
-  (bind-key "gl" 'evil-goto-line evil-motion-state-map)
-  (bind-key "g9" (kbd "Hz-M") evil-motion-state-map)
-  (bind-key "g0" (kbd "LztM") evil-motion-state-map)
+  (general-define-key
+   :keymaps 'motion
+   :prefix "g"
 
-  (bind-key "g1" 'eyebrowse-switch-to-window-config-1 evil-motion-state-map)
-  (bind-key "g2" 'eyebrowse-switch-to-window-config-2 evil-motion-state-map)
-  (bind-key "g3" 'eyebrowse-switch-to-window-config-3 evil-motion-state-map)
-  (bind-key "g4" 'eyebrowse-switch-to-window-config-4 evil-motion-state-map)
+   "o" 'evil-goto-first-line
+   "l" 'evil-goto-line
+   "9" (kbd "Hz-M")
+   "0" (kbd "LztM")
 
-  (bind-key "gs" 'magit-status evil-motion-state-map)
-  (bind-key "g." 'counsel-projectile evil-motion-state-map)
-  (bind-key "g/" 'swiper evil-motion-state-map)
-  (bind-key "gh" 'counsel-recentf evil-motion-state-map)
+   ;; "1" 'reserved
+   ;; "2" 'reserved
+   ;; "3" 'reserved
+   ;; "4" 'reserved
 
-  (bind-key "gi" 'goto-last-change evil-normal-state-map)
-  (bind-key "g;" 'evil-last-non-blank evil-motion-state-map)
+   ;; "RET" 'reserved
 
-  (bind-key "g+" 'evil-numbers/inc-at-pt evil-motion-state-map)
-  (bind-key "g-" 'evil-numbers/dec-at-pt evil-motion-state-map)
+   "s" 'magit-status
+   "." 'counsel-projectile
+   "/" 'swiper
+   "h" 'counsel-recentf
 
-  ;; (bind-key "g RET" 'er/expand-region evil-normal-state-map)
+   "i" 'goto-last-change
+   ";" 'evil-last-non-blank
+
+   "+" 'evil-numbers/inc-at-pt
+   "-" 'evil-numbers/dec-at-pt
+   )
+
 #+END_SRC
 
 *** comfort improvements
