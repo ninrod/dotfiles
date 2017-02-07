@@ -2130,12 +2130,16 @@ an appropriate message.
    "p" 'multi-term-prev)
 #+END_SRC
 
-** other modes
-*** prog-mode
+** prog-mode
 #+BEGIN_SRC emacs-lisp
-(evil-define-key 'normal prog-mode-map (kbd "TAB") 'ninrod/origami-toggle-node)
+  (general-define-key
+   :keymaps 'prog-mode-map
+   :states 'normal
+   "TAB" 'ninrod/origami-toggle-node
+   )
 #+END_SRC
 
+** other modes
 *** ivy minibuffer
 #+BEGIN_SRC emacs-lisp
 (bind-key "<escape>"  'evil-escape ivy-minibuffer-map)
