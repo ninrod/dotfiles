@@ -1658,10 +1658,10 @@ an appropriate message.
 
 ** s-map
 #+BEGIN_SRC emacs-lisp
-  (general-define-key :keymaps '(normal visual motion) "s" nil) ; see https://github.com/noctuid/general.el/issues/46
   (general-define-key
    :keymaps '(normal visual motion)
    :prefix "s"
+   "" 'nil
 
    ;; "TAB" 'reserved
    "DEL" 'neotree-toggle
@@ -1708,18 +1708,23 @@ an appropriate message.
 #+END_SRC
 **** fast
 #+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-comma-map
-    "r" 'org-refile
-    "n" 'org-narrow-to-subtree
-    "w" 'widen
+  (general-define-key
+   :keymaps 'org-mode-map
+   :states '(normal visual)
+   :prefix ","
+   "" 'nil
 
-    "l" 'org-insert-link
-    "t" 'counsel-org-tag
+   "r" 'org-refile
+   "n" 'org-narrow-to-subtree
+   "w" 'widen
 
-    "TAB" 'evil-toggle-fold
+   "l" 'org-insert-link
+   "t" 'counsel-org-tag
 
-    "RET" 'org-open-at-point
-    )
+   "TAB" 'evil-toggle-fold
+
+   "RET" 'org-open-at-point
+   )
 #+END_SRC
 **** caps
 ***** C: clock/timer
