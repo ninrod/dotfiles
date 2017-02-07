@@ -1158,10 +1158,6 @@ an appropriate message.
     (use-package ivy-hydra :ensure t))
 #+END_SRC
 
-*** bind-map
-#+BEGIN_SRC emacs-lisp
-  (use-package bind-map :ensure t)
-#+END_SRC
 *** general.el
 #+BEGIN_SRC emacs-lisp
   (use-package general
@@ -2195,35 +2191,44 @@ an appropriate message.
   (require 'evil)
   (require 'dired)
 
-  (unbind-key "s" neotree-mode-map)
-  (unbind-key "d" neotree-mode-map)
-  (unbind-key "n" neotree-mode-map)
-  (unbind-key "-" neotree-mode-map)
-  (unbind-key "N" neotree-mode-map)
-  (unbind-key "<SPC>" neotree-mode-map)
-
   (define-minor-mode neotree-evil
     "Use NERDTree bindings on neotree."
     :lighter " NT"
-    :keymap (progn
-              (evil-make-overriding-map neotree-mode-map 'normal t)
-              (evil-define-key 'normal neotree-mode-map
-                "d" 'neotree-change-root
-                "p" 'ninrod/neotree-copy-path
-                "u" 'neotree-select-up-node
-                "zj" 'neotree-select-next-sibling-node
-                "zk" 'neotree-select-previous-sibling-node
-                "q" 'neotree-toggle
-                "i" 'neotree-enter-horizontal-split
-                "c" 'neotree-create-node
-                "y" 'neotree-copy-node
-                "x" 'neotree-delete-node
-                "r" 'neotree-rename-node
-                "gg" 'evil-goto-first-line
-                "go" 'evil-goto-first-line
-                "gl" 'evil-goto-line
-                "gr" 'neotree-refresh
-                (kbd "<DEL>") 'neotree-select-up-node
-                (kbd "<return>") 'neotree-enter)
-              neotree-mode-map))
+    :keymap
+    (progn
+      (general-create-definer
+       ninrod--neotree-map
+       :keymaps 'neotree-mode-map)
+
+      (ninrod--neotree-map
+       "s"      nil
+       "d"      nil
+       "n"      nil
+       "-"      nil
+       "N"      nil
+       "<SPC>"  nil)
+
+      (evil-make-overriding-map neotree-mode-map 'normal t)
+
+      (ninrod--neotree-map
+       :states  'normal
+       "d" 'neotree-change-root
+       "p" 'ninrod/neotree-copy-path
+       "u" 'neotree-select-up-node
+       "zj" 'neotree-select-next-sibling-node
+       "zk" 'neotree-select-previous-sibling-node
+       "q" 'neotree-toggle
+       "i" 'neotree-enter-horizontal-split
+       "c" 'neotree-create-node
+       "y" 'neotree-copy-node
+       "x" 'neotree-delete-node
+       "r" 'neotree-rename-node
+       "gg" 'evil-goto-first-line
+       "go" 'evil-goto-first-line
+       "gl" 'evil-goto-line
+       "gr" 'neotree-refresh
+       "DEL" 'neotree-select-up-node
+       "RET" 'neotree-enter)
+
+      neotree-mode-map))
 #+END_SRC
