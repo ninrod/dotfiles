@@ -1597,7 +1597,7 @@ an appropriate message.
     ("i" text-scale-increase "in")
     ("o" text-scale-decrease "out"))
 
-  (spc-map "z" '(:ignore t :which-key "ma[g]it")
+  (spc-map "h" '(:ignore t :which-key "hydras")
    "hz" 'hydra-zoom/body
    )
 #+END_SRC
