@@ -2142,11 +2142,13 @@ an appropriate message.
 ** other modes
 *** ivy minibuffer
 #+BEGIN_SRC emacs-lisp
-(bind-key "<escape>"  'evil-escape ivy-minibuffer-map)
-(bind-key "<escape>"  'evil-escape ivy-switch-buffer-map)
-(bind-key "<escape>"  'evil-escape ivy-mode-map)
-(bind-key "<escape>"  'evil-escape ivy-occur-mode-map)
-(bind-key "<escape>"  'evil-escape ivy-occur-grep-mode-map)
+  (general-define-key
+   :keymaps '(ivy-minibuffer-map
+              ivy-switch-buffer-map
+              ivy-mode-map
+              ivy-occur-mode-map
+              ivy-occur-grep-mode-map)
+   "<escape>" 'evil-escape)
 #+END_SRC
 
 *** ag-mode
