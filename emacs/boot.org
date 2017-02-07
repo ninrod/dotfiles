@@ -1297,31 +1297,7 @@ an appropriate message.
 #+END_SRC
 
 ** filetypes
-*** md: markdown
-#+BEGIN_SRC emacs-lisp
-(use-package markdown-mode :ensure t
-      :commands (markdown-mode gfm-mode)
-      :mode (("README\\.md\\'" . gfm-mode)
-             ("\\.md\\'" . markdown-mode)
-             ("\\.markdown\\'" . markdown-mode))
-      :init (setq markdown-command "multimarkdown"))
-#+END_SRC
-
-*** json: json-mode, json-reformat
-#+BEGIN_SRC emacs-lisp
-  (use-package json-reformat :ensure t
-    :config
-    (setq json-reformat:indent-width 2))
-
-  (use-package json-mode :ensure t)
-#+END_SRC
-
-*** vimrc: vimrc mode
-#+BEGIN_SRC emacs-lisp
-(use-package vimrc-mode :ensure t)
-#+END_SRC
-
-*** docker: dockerfile
+*** Dockerfile
 #+BEGIN_SRC emacs-lisp
 (use-package dockerfile-mode :ensure t
   :config (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
@@ -1333,13 +1309,29 @@ an appropriate message.
     :init
     (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 #+END_SRC
-*** gitconfig-mode
+*** gitconfig
 #+BEGIN_SRC emacs-lisp
 (use-package gitconfig-mode :ensure t)
 (use-package gitignore-mode :ensure t)
 (use-package gitattributes-mode :ensure t)
 #+END_SRC
 ** languages
+*** viml
+#+BEGIN_SRC emacs-lisp
+(use-package vimrc-mode :ensure t)
+#+END_SRC
+
+*** md: markdown
+#+BEGIN_SRC emacs-lisp
+(use-package markdown-mode :ensure t
+      :commands (markdown-mode gfm-mode)
+      :mode (("README\\.md\\'" . gfm-mode)
+             ("\\.md\\'" . markdown-mode)
+             ("\\.markdown\\'" . markdown-mode))
+      :init (setq markdown-command "multimarkdown"))
+#+END_SRC
+
+
 *** html: web-mode
 #+BEGIN_SRC emacs-lisp
 (use-package web-mode
@@ -1381,6 +1373,15 @@ an appropriate message.
   :config
     (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
     (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2))))
+#+END_SRC
+
+*** json: json-mode, json-reformat
+#+BEGIN_SRC emacs-lisp
+  (use-package json-reformat :ensure t
+    :config
+    (setq json-reformat:indent-width 2))
+
+  (use-package json-mode :ensure t)
 #+END_SRC
 
 ** mirrors
