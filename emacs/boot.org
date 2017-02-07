@@ -681,10 +681,7 @@ an appropriate message.
       (setq evil-emacs-state-cursor 'box)
       (setq evil-god-state-cursor 'bar)
       (evil-define-key 'god global-map [escape] 'evil-god-state-bail)
-      (evil-define-key 'emacs global-map [escape] 'evil-execute-in-god-state)
-      (bind-key (kbd "C-t") 'evil-execute-in-god-state global-map)
-      ;; (evil-define-key 'normal global-map "t" 'evil-execute-in-god-state)
-  )
+      (evil-define-key 'emacs global-map [escape] 'evil-execute-in-god-state))
 #+END_SRC
 
 *** evil-args
@@ -1146,11 +1143,6 @@ an appropriate message.
       :diminish which-key-mode
       :config (which-key-mode))
 #+END_SRC
-*** bind-key
-#+BEGIN_SRC emacs-lisp
-  (use-package bind-key :ensure t)
-#+END_SRC
-
 *** hydra
 #+BEGIN_SRC emacs-lisp
   (use-package hydra :ensure t
