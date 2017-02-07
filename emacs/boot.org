@@ -2139,8 +2139,20 @@ an appropriate message.
    )
 #+END_SRC
 
-** other modes
-*** ivy minibuffer
+** ag-mode
+#+BEGIN_SRC emacs-lisp
+  (general-define-key
+   :keymaps 'ag-mode-map
+   "s"      nil
+   "g"      nil
+   "n"      nil
+   "N"      nil
+   "r"      'recompile
+   "DEL"    'compilation-previous-error ;; TAB is already bound to compilation-next-error
+   "<SPC>"  nil)
+#+END_SRC
+
+** ivy minibuffer
 #+BEGIN_SRC emacs-lisp
   (general-define-key
    :keymaps '(ivy-minibuffer-map
@@ -2151,14 +2163,7 @@ an appropriate message.
    "<escape>" 'evil-escape)
 #+END_SRC
 
-*** ag-mode
-#+BEGIN_SRC emacs-lisp
-  (unbind-key "s" ag-mode-map)
-  (unbind-key "g" ag-mode-map)
-
-  (unbind-key "<SPC>" ag-mode-map)
-  ;; (define-key ag-mode-map (kbd "SPC") nil)
-#+END_SRC
+** other modes
 *** buffer-menu
 #+BEGIN_SRC emacs-lisp
   (with-eval-after-load 'tabulated-list
@@ -2185,7 +2190,7 @@ an appropriate message.
   "f" 'man-follow
 )
 #+END_SRC
-** neotree-evilify
+** neotree
 #+BEGIN_SRC emacs-lisp
   (require 'neotree)
   (require 'evil)
