@@ -1783,7 +1783,7 @@ an appropriate message.
 #+END_SRC
 
 *** T local (tables)
-**** bind-map
+**** definer
 #+BEGIN_SRC emacs-lisp
 (general-create-definer org-T-map
    :keymaps 'org-mode-map
@@ -1819,17 +1819,17 @@ an appropriate message.
 #+END_SRC
 
 *** S local (subtrees)
-**** bind-map
+**** definer
 #+BEGIN_SRC emacs-lisp
-  (bind-map org-S-map
-    :evil-keys ("S")
-    :evil-states (normal)
-    :major-modes (org-mode))
+(general-create-definer org-S-map
+   :keymaps 'org-mode-map
+   :states '(normal)
+   :prefix "S")
 #+END_SRC
 
 **** fast
 #+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-S-map
+  (org-S-map
   ;; subtree commands
   "h" 'org-promote-subtree
   "l" 'org-demote-subtree
