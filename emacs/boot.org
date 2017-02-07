@@ -412,29 +412,12 @@ an appropriate message.
   (interactive)
   (ansi-color-apply-on-region (point-min) (point-max)))
 #+END_SRC
-**** ninrod/nin-echo
+**** ninrod/echo
 #+BEGIN_SRC emacs-lisp
-(defun ninrod/nin-echo ()
+(defun ninrod/echo ()
   "just a simple test message for binds"
   (interactive)
   (message "the bind worked! yes!!"))
-#+END_SRC
-** ninrod macros
-*** ninrod/define-and-bind-textobj
-- lifted from [[https://github.com/noctuid/evil-textobj-anyblock/issues/9#issuecomment-263761927][@noctuid]]
-- with help from [[http://stackoverflow.com/q/18102004/4921402][this]] so question
-#+BEGIN_SRC emacs-lisp
-;; modified to be able to specify name and use `function'
-(defmacro define-and-bind-text-object (name key start-regex end-regex)
-  (let ((inner-name (make-symbol (concat "evil-inner-" name)))
-        (outer-name (make-symbol (concat "evil-a-" name))))
-    `(progn
-       (evil-define-text-object ,inner-name (count &optional beg end type)
-         (evil-select-paren ,start-regex ,end-regex beg end type count nil))
-       (evil-define-text-object ,outer-name (count &optional beg end type)
-         (evil-select-paren ,start-regex ,end-regex beg end type count t))
-       (define-key evil-inner-text-objects-map ,key #',inner-name)
-       (define-key evil-outer-text-objects-map ,key #',outer-name))))
 #+END_SRC
 * evil
 ** bootstrap
@@ -681,10 +664,7 @@ an appropriate message.
       (setq evil-emacs-state-cursor 'box)
       (setq evil-god-state-cursor 'bar)
       (evil-define-key 'god global-map [escape] 'evil-god-state-bail)
-      (evil-define-key 'emacs global-map [escape] 'evil-execute-in-god-state)
-      (bind-key (kbd "C-t") 'evil-execute-in-god-state global-map)
-      ;; (evil-define-key 'normal global-map "t" 'evil-execute-in-god-state)
-  )
+      (evil-define-key 'emacs global-map [escape] 'evil-execute-in-god-state))
 #+END_SRC
 
 *** evil-args
@@ -867,6 +847,7 @@ an appropriate message.
 (add-hook 'term-mode-hook 'no-trailing-whitespace)
 (add-hook 'eshell-load-hook 'no-trailing-whitespace)
 (add-hook 'Buffer-menu-mode-hook 'no-trailing-whitespace)
+(add-hook 'Info-mode-hook 'no-trailing-whitespace)
 #+END_SRC
 
 * packages
@@ -878,7 +859,7 @@ an appropriate message.
 
 *** themes
 **** spacemacs-theme
-  #+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp
     (use-package spacemacs-dark-theme :load-path "lisp/ninrod/spacemacs-theme"
       :init
       (setq spacemacs-theme-org-height nil)
@@ -886,7 +867,7 @@ an appropriate message.
       :config
       (load-theme 'spacemacs-dark t)
       )
-  #+END_SRC
+#+END_SRC
 
 **** zerodark-theme
 #+BEGIN_SRC text
@@ -904,13 +885,13 @@ an appropriate message.
 #+END_SRC
 
 **** gruvbox-theme
-  #+BEGIN_SRC text
+#+BEGIN_SRC text
     (use-package gruvbox-theme :load-path "lisp/ninrod/gruvbox-theme"
       :init
       (setq gruvbox-contrast 'hard)
       :config
       (load-theme 'gruvbox t))
-  #+END_SRC
+#+END_SRC
 
 **** darktooth-theme
 #+BEGIN_SRC text
@@ -1050,7 +1031,7 @@ an appropriate message.
     (use-package atomic-chrome :ensure t
       :init
       (atomic-chrome-start-server)))
-  #+END_SRC
+#+END_SRC
 
 *** vidff
 #+BEGIN_SRC emacs-lisp
@@ -1111,19 +1092,19 @@ an appropriate message.
 #+END_SRC
 
 *** yasnippet
-  #+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp
     (use-package yasnippet
       :ensure t
       :config (yas-global-mode 1))
-  #+END_SRC
+#+END_SRC
 
 *** flycheck
-  #+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp
     (use-package flycheck
       :ensure t
       :diminish ""
       :config (global-flycheck-mode t))
-  #+END_SRC
+#+END_SRC
 
 *** emmet
 #+BEGIN_SRC emacs-lisp
@@ -1140,21 +1121,11 @@ an appropriate message.
 
 ** keybinds
 *** which key
-  #+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp
     (use-package which-key :ensure t
       :diminish which-key-mode
       :config (which-key-mode))
-  #+END_SRC
-*** bind-map
-#+BEGIN_SRC emacs-lisp
-  (use-package bind-map :ensure t)
 #+END_SRC
-
-*** bind-key
-#+BEGIN_SRC emacs-lisp
-  (use-package bind-key :ensure t)
-#+END_SRC
-
 *** hydra
 #+BEGIN_SRC emacs-lisp
   (use-package hydra :ensure t
@@ -1162,6 +1133,13 @@ an appropriate message.
     (use-package ivy-hydra :ensure t))
 #+END_SRC
 
+*** general.el
+#+BEGIN_SRC emacs-lisp
+  (use-package general
+    :ensure t
+    :config
+    (general-evil-setup))
+#+END_SRC
 ** file browsing
 *** projectile
 - the projectile-switch-project-action hack was lifted from [[projectile-switch-project-action][here]].
@@ -1185,23 +1163,6 @@ an appropriate message.
 
     :config
     (projectile-global-mode))
-#+END_SRC
-
-*** neotree
-#+BEGIN_SRC emacs-lisp
-    (use-package neotree :ensure t
-      :init
-      (setq neo-create-file-auto-open t
-            neo-auto-indent-point nil
-            neo-mode-line-type 'none
-            neo-window-fixed-size nil ; or neo-window-width 50
-            neo-show-updir-line nil
-            neo-smart-open t
-            neo-show-hidden-files t
-            neo-theme (if (display-graphic-p) 'icons 'nerd) ; fallback
-            ;; neo-theme 'nerd ; fallback
-            neo-banner-message nil
-  ))
 #+END_SRC
 
 *** dired+
@@ -1231,6 +1192,23 @@ an appropriate message.
 #+BEGIN_SRC emacs-lisp
 (use-package dired-details :ensure t)
 #+END_SRC
+*** neotree
+#+BEGIN_SRC emacs-lisp
+    (use-package neotree :ensure t
+      :init
+      (setq neo-create-file-auto-open t
+            neo-auto-indent-point nil
+            neo-mode-line-type 'none
+            neo-window-fixed-size nil ; or neo-window-width 50
+            neo-show-updir-line nil
+            neo-smart-open t
+            neo-show-hidden-files t
+            neo-theme (if (display-graphic-p) 'icons 'nerd) ; fallback
+            ;; neo-theme 'nerd ; fallback
+            neo-banner-message nil
+  ))
+#+END_SRC
+
 ** git
 *** git-gutter-fringe
 #+BEGIN_SRC emacs-lisp
@@ -1258,7 +1236,7 @@ an appropriate message.
 
 ** org
 *** Org Bullets
-  #+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp
     (use-package org-bullets
       :ensure t
       :init
@@ -1277,10 +1255,10 @@ an appropriate message.
       (add-hook 'org-mode-hook 
                 (lambda () 
                   (org-bullets-mode 1))))
-  #+END_SRC
+#+END_SRC
 
 *** Reveal.js
-  #+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp
   (use-package ox-reveal
   :ensure t)
 
@@ -1289,7 +1267,7 @@ an appropriate message.
 
   (use-package htmlize
   :ensure t)
-  #+END_SRC
+#+END_SRC
 
 *** ob-http
 #+BEGIN_SRC emacs-lisp
@@ -1302,31 +1280,7 @@ an appropriate message.
 #+END_SRC
 
 ** filetypes
-*** md: markdown
-#+BEGIN_SRC emacs-lisp
-(use-package markdown-mode :ensure t
-      :commands (markdown-mode gfm-mode)
-      :mode (("README\\.md\\'" . gfm-mode)
-             ("\\.md\\'" . markdown-mode)
-             ("\\.markdown\\'" . markdown-mode))
-      :init (setq markdown-command "multimarkdown"))
-#+END_SRC
-
-*** json: json-mode, json-reformat
-#+BEGIN_SRC emacs-lisp
-  (use-package json-reformat :ensure t
-    :config
-    (setq json-reformat:indent-width 2))
-
-  (use-package json-mode :ensure t)
-#+END_SRC
-
-*** vimrc: vimrc mode
-#+BEGIN_SRC emacs-lisp
-(use-package vimrc-mode :ensure t)
-#+END_SRC
-
-*** docker: dockerfile
+*** Dockerfile
 #+BEGIN_SRC emacs-lisp
 (use-package dockerfile-mode :ensure t
   :config (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
@@ -1338,13 +1292,29 @@ an appropriate message.
     :init
     (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 #+END_SRC
-*** gitconfig-mode
+*** gitconfig
 #+BEGIN_SRC emacs-lisp
 (use-package gitconfig-mode :ensure t)
 (use-package gitignore-mode :ensure t)
 (use-package gitattributes-mode :ensure t)
 #+END_SRC
 ** languages
+*** viml
+#+BEGIN_SRC emacs-lisp
+(use-package vimrc-mode :ensure t)
+#+END_SRC
+
+*** md: markdown
+#+BEGIN_SRC emacs-lisp
+(use-package markdown-mode :ensure t
+      :commands (markdown-mode gfm-mode)
+      :mode (("README\\.md\\'" . gfm-mode)
+             ("\\.md\\'" . markdown-mode)
+             ("\\.markdown\\'" . markdown-mode))
+      :init (setq markdown-command "multimarkdown"))
+#+END_SRC
+
+
 *** html: web-mode
 #+BEGIN_SRC emacs-lisp
 (use-package web-mode
@@ -1388,36 +1358,13 @@ an appropriate message.
     (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2))))
 #+END_SRC
 
-*** elm
+*** json: json-mode, json-reformat
 #+BEGIN_SRC emacs-lisp
-(use-package elm-mode :ensure t)
-#+END_SRC
-*** haskell
-#+BEGIN_SRC emacs-lisp
-  (use-package haskell-mode :ensure t
+  (use-package json-reformat :ensure t
     :config
-    (use-package intero :ensure t
-      :config
-      (add-hook 'haskell-mode-hook 'intero-mode)))
+    (setq json-reformat:indent-width 2))
 
-  (use-package flycheck-haskell :ensure t
-    :config
-    (eval-after-load 'flycheck
-      '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup)))
-
-#+END_SRC
-*** elixir
-#+BEGIN_SRC emacs-lisp
-(use-package alchemist :ensure t)
-#+END_SRC
-*** clojure
-#+BEGIN_SRC emacs-lisp
-(use-package cider :ensure t)
-#+END_SRC
-
-*** rust
-#+BEGIN_SRC emacs-lisp
-(use-package rust-mode :ensure t)
+  (use-package json-mode :ensure t)
 #+END_SRC
 
 ** mirrors
@@ -1513,29 +1460,20 @@ an appropriate message.
 #+END_SRC
 * keybinds
 ** SPC-map
-*** design
-- buffer switch/opening and overall manipulations
-- file openings, manipulations: dired, neotree, bookmarks
-- window splits/movements
-*** bind-map
+*** core
 #+BEGIN_SRC emacs-lisp
-(bind-map spc-map
-    :keys ("M-SPC")
-    :evil-keys ("SPC")
-    :evil-states (normal visual motion))
-#+END_SRC
+  (general-create-definer spc-map
+   :states '(normal visual motion)
+   :prefix "SPC")
 
-*** binds
-**** core
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys spc-map
-    "<SPC>" 'counsel-M-x
-    "RET" 'write-file
-    )
+  (spc-map
+   ;; "TAB" 'reserved
+   "SPC" 'counsel-M-x
+   "RET" 'write-file)
 #+END_SRC
-**** (a) align
+*** (a) align
 #+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys spc-map
+  (spc-map "a" '(:ignore t :which-key "align")
     "aa" 'align-regexp
     "ac" 'align-current
     "am" 'spacemacs/align-repeat-math-oper
@@ -1551,12 +1489,11 @@ an appropriate message.
     "a\\" 'spacemacs/align-repeat-backslash
     "a|" 'spacemacs/align-repeat-bar
   )
-  (which-key-declare-prefixes "SPC a" "align")
 #+END_SRC
 #+END_SRC
-**** (d) emacs help
+*** (d) emacs help
 #+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys spc-map
+  (spc-map "d" '(:ignore t :which-key "describe/help")
     "da" 'apropos
     "db" 'counsel-descbinds
     "dc" 'describe-char
@@ -1567,28 +1504,25 @@ an appropriate message.
     "dt" 'counsel-describe-face
     "dv" 'counsel-describe-variable
     )
-  (which-key-declare-prefixes "SPC d" "describe/help")
 #+END_SRC
-**** (e) edit
+*** (e) edit
 #+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys spc-map
+  (spc-map "e" '(:ignore t :which-key "edit")
     "er" 'replace-string
     "es" 'sort-lines
     )
-  (which-key-declare-prefixes "SPC e" "edit")
 #+END_SRC
-**** (f) file/dir
+*** (f) file/dir
 #+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys spc-map
+  (spc-map "f" '(:ignore t :which-key "file/dir ops")
     "fc" 'make-directory
     "fd" 'cd
     "fy" 'prelude-copy-file-name-to-clipboard
     )
-  (which-key-declare-prefixes "SPC f" "file/dir")
 #+END_SRC
-**** (i) ivy
+*** (i) ivy
 #+BEGIN_SRC emacs-lisp
-(bind-map-set-keys spc-map
+  (spc-map "i" '(:ignore t :which-key "ivy")
     "ia" 'counsel-ag
     "ib" 'counsel-descbinds
     "if" 'counsel-describe-function
@@ -1597,48 +1531,46 @@ an appropriate message.
     "it" 'counsel-describe-face
     "iv" 'counsel-describe-variable
   )
-  (which-key-declare-prefixes "SPC i" "Ivy")
 #+END_SRC
-**** (g) ma[g]it
+*** (g) ma[g]it
 #+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys spc-map
+  (spc-map "g" '(:ignore t :which-key "ma[g]it")
     "gi" 'magit-init
     "gc" 'magit-clone
     "gl" 'magit-log-buffer-file; commits in master touching current buffer
     "gs" 'ninrod/uarg-magit-status
     )
-  (which-key-declare-prefixes "SPC g" "ma[git]")
 #+END_SRC
-**** (h) hydras
-***** (z) zoom
+*** (h) hydras
+**** (z) zoom
 #+BEGIN_SRC emacs-lisp
-(defhydra hydra-zoom (spc-map "hz")
-  "zoom"
-  ("i" text-scale-increase "in")
-  ("o" text-scale-decrease "out"))
-(which-key-declare-prefixes "SPC h" "hydras")
-(which-key-add-key-based-replacements "SPC hz" "zooming hydra")
+  (defhydra hydra-zoom ()
+    "zoom"
+    ("i" text-scale-increase "in")
+    ("o" text-scale-decrease "out"))
+
+  (spc-map "h" '(:ignore t :which-key "hydras")
+   "hz" 'hydra-zoom/body
+   )
 #+END_SRC
 
-**** (m) M-x functions
+*** (m) M-x functions
 #+BEGIN_SRC emacs-lisp
-(bind-map-set-keys spc-map
-    "ma" 'projectile-ag
-    "mc" 'count-words
-    "me" 'ninrod/uarg-exec-shell-command
-    "mf" 'customize-apropos-faces
-    "mi" 'ielm
-    "mm" 'man
-    "mt" 'elpamr-create-mirror-for-installed; mnemonic: create [t]hin mirror
-    "mu" 'undo-tree-visualize
-    "m$" 'eshell
-  )
-  (which-key-declare-prefixes "SPC m" "M-x functions")
-  (which-key-declare-prefixes "SPC mi" "REPL: inferior elisp mode")
+  (spc-map "m" '(:ignore t :which-key "M-x functions")
+           "ma" 'projectile-ag
+           "mc" 'count-words
+           "me" 'ninrod/uarg-exec-shell-command
+           "mf" 'customize-apropos-faces
+           "mi" 'ielm
+           "mm" 'man
+           "mt" 'elpamr-create-mirror-for-installed; mnemonic: create [t]hin mirror
+           "mu" 'undo-tree-visualize
+           "m$" 'eshell
+           )
 #+END_SRC
-**** (o) org-mode
+*** (o) org-mode
 #+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys spc-map
+  (spc-map "o" '(:ignore t :which-key "org-mode")
     "oc" 'air-org-task-capture
     "oa" 'air-pop-to-org-agenda
     "ot" 'org-table-convert-region
@@ -1647,147 +1579,130 @@ an appropriate message.
   (which-key-declare-prefixes "SPC o" "Org-mode")
 #+END_SRC
 
-**** (s) spelling
+*** (s) spelling
 #+BEGIN_SRC emacs-lisp
-(bind-map-set-keys spc-map
-  "sw" 'ispell-word
-  "se" (lambda () (interactive) (ispell-change-dictionary "english"))
-  "sp" (lambda () (interactive) (ispell-change-dictionary "pt_BR"))
-  "sk" (lambda () (interactive) (flyspell-mode -1))
-  "ss" (lambda () (interactive) (flyspell-mode 1))
-)
-(which-key-declare-prefixes "SPC s" "Spelling")
-(which-key-add-key-based-replacements
-  "SPC sw" "ispell: check word"
-  "SPC se" "ispell: use english dictionary"
-  "SPC sp" "ispell: use pt_BR dictionary"
-  "SPC sk" "turn off flyspell mode"
-  "SPC ss" "turn on flyspell mode"
-)
+  (spc-map "s" '(:ignore t :which-key "spelling")
+           "sw" '(ispell-word :which-key "ispell: check word")
+           "se" '((lambda () (interactive) (ispell-change-dictionary "english")) :which-key "ispell: use english dictionary")
+           "sp" '((lambda () (interactive) (ispell-change-dictionary "pt_BR")) :which-key "ispell: use pt_BR dictionary")
+           "sk" '((lambda () (interactive) (flyspell-mode -1)) :which-key "turn off flyspell mode")
+           "ss" '((lambda () (interactive) (flyspell-mode 1)) :which-key "turn on flyspell mode")
+           )
 #+END_SRC
 
-**** (t): Toggles
+*** (t): Toggles
 #+BEGIN_SRC emacs-lisp
-(bind-map-set-keys spc-map
-    "tr" 'rainbow-mode
-    "tt" 'toggle-truncate-lines
-    "tc" 'ninrod/display-ansi-colors
-)
-(which-key-declare-prefixes "SPC t" "toggles")
+  (spc-map "t" '(:ignore t :which-key "toggles")
+           "tr" 'rainbow-mode
+           "tt" 'toggle-truncate-lines
+           "tc" 'ninrod/display-ansi-colors
+           )
 #+END_SRC
 
 ** s-map
-*** idea
-- other fast and reoccurring operations
-*** bind-map
 #+BEGIN_SRC emacs-lisp
-  (bind-map s-map
-    :evil-keys ("s")
-    :evil-states (normal visual motion))
-#+END_SRC
-*** binds
-#+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys s-map
-    ; buffer operations
-    ;; "TAB" 'reserved
-    "DEL" 'neotree-toggle
-    "RET" 'evil-save-modified-and-close; save and close
-    "<SPC>" 'counsel-bookmark; jump to bookmark
-    "-" 'bookmark-delete
-    "=" 'bookmark-set
-    ;; buffer operations
-    "n" 'rect-ext-narrow
-    "w" 'rect-ext-widen
-    "q" 'evil-record-macro
-    "u" 'ninrod/revert-buffer-no-confirm
-    "d" 'spacemacs/kill-this-buffer
-    "m" 'ninrod/extended-buffer-menu
-    "o" 'air-org-task-capture
-    "i" 'ivy-switch-buffer
-    "b" 'spacemacs/kill-other-buffers
-    "t" 'multi-term
+  (general-define-key
+   :keymaps '(normal visual motion)
+   :prefix "s"
+   "" nil
 
-    ; edit operations
-    "p" 'counsel-yank-pop
-    "r" 'anzu-query-replace-regexp
+   ;; "TAB" 'reserved
+   "DEL" 'neotree-toggle
+   "RET" 'evil-save-modified-and-close; save and close
+   "<SPC>" 'counsel-bookmark; jump to bookmark
+   "-" 'bookmark-delete
+   "=" 'bookmark-set
+   ;; buffer operations
+   "n" 'rect-ext-narrow
+   "w" 'rect-ext-widen
+   "q" 'evil-record-macro
+   "u" 'ninrod/revert-buffer-no-confirm
+   "d" 'spacemacs/kill-this-buffer
+   "m" 'ninrod/extended-buffer-menu
+   "o" 'air-org-task-capture
+   "i" 'ivy-switch-buffer
+   "b" 'spacemacs/kill-other-buffers
+   "t" 'multi-term
 
-    ; directory operations
-    "s" 'counsel-projectile-switch-project
-    ; window operations
-    "j" 'evil-window-down
-    "k" 'evil-window-up
-    "h" 'evil-window-left
-    "l" 'evil-window-right
-    "y" 'split-window-right-and-focus
-    "x" 'split-window-below-and-focus
-    )
+                                          ; edit operations
+   "p" 'counsel-yank-pop
+   "r" 'anzu-query-replace-regexp
+
+                                          ; directory operations
+   "s" 'counsel-projectile-switch-project
+                                          ; window operations
+   "j" 'evil-window-down
+   "k" 'evil-window-up
+   "h" 'evil-window-left
+   "l" 'evil-window-right
+   "y" 'split-window-right-and-focus
+   "x" 'split-window-below-and-focus
+   )
 #+END_SRC
 
 ** org-mode
 *** , local
-**** bind
+**** definer
 #+BEGIN_SRC emacs-lisp
-  (bind-map org-comma-map
-    :evil-keys (",")
-    :evil-states (normal visual)
-    :major-modes (org-mode))
+(general-create-definer org-comma-map
+   :keymaps 'org-mode-map
+   :states '(normal visual)
+   :prefix ",")
 #+END_SRC
 **** fast
 #+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-comma-map
-    "r" 'org-refile
-    "n" 'org-narrow-to-subtree
-    "w" 'widen
+  (org-comma-map
+   "" 'nil
 
-    "l" 'org-insert-link
-    "t" 'counsel-org-tag
+   "r" 'org-refile
+   "n" 'org-narrow-to-subtree
+   "w" 'widen
 
-    "TAB" 'evil-toggle-fold
+   "l" 'org-insert-link
+   "t" 'counsel-org-tag
 
-    "RET" 'org-open-at-point
-    )
+   "TAB" 'evil-toggle-fold
+
+   "RET" 'org-open-at-point
+   )
 #+END_SRC
 **** caps
 ***** C: clock/timer
 #+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-comma-map
+  (org-comma-map "C" '(:ignore t :which-key "clock/timer")
     "Ci" 'org-clock-in
     "Co" 'org-clock-out
     "C-" 'org-timer-item
     "Ct" 'org-timer
     "Cs" 'org-timer-stop
     )
-  (which-key-declare-prefixes ", C" "clock/timer")
 #+END_SRC
 
 ***** E: exports
 #+BEGIN_SRC emacs-lisp
-(bind-map-set-keys org-comma-map
+  (org-comma-map "E" '(:ignore t :which-key "Exports")
   "Ed" 'org-export-dispatch)
-(which-key-declare-prefixes ", E" "Exports")
 #+END_SRC
 
 ***** T: toggles
 #+BEGIN_SRC emacs-lisp
-(bind-map-set-keys org-comma-map
+  (org-comma-map "T" '(:ignore t :which-key "Toggles")
   "Tl" 'org-toggle-link-display
 )
-(which-key-declare-prefixes ", T" "Toggles")
 #+END_SRC
 
 *** t local
-**** bind-map
+**** definer
 #+BEGIN_SRC emacs-lisp
-
-  (bind-map org-t-map
-    :evil-keys ("t")
-    :evil-states (normal)
-    :major-modes (org-mode))
+(general-create-definer org-t-map
+   :keymaps 'org-mode-map
+   :states '(normal)
+   :prefix "t")
 #+END_SRC
 
 **** fast
 #+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-t-map
+  (org-t-map
     ;; "<SPC>" 'ninrod/org-insert-subheading ; open new subheading
 
     "l" 'org-metaright
@@ -1811,17 +1726,17 @@ an appropriate message.
 #+END_SRC
 
 *** T local (tables)
-**** bind-map
+**** definer
 #+BEGIN_SRC emacs-lisp
-  (bind-map org-T-map
-    :evil-keys ("T")
-    :evil-states (normal)
-    :major-modes (org-mode))
+(general-create-definer org-T-map
+   :keymaps 'org-mode-map
+   :states '(normal)
+   :prefix "T")
 #+END_SRC
 
 **** fast
 #+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-T-map
+  (org-T-map
     "t" 'org-table-transpose-table-at-point
     "h" 'org-backward-sentence ;; M-a tga
     "l" 'org-forward-sentence ;; M-e tge
@@ -1838,27 +1753,26 @@ an appropriate message.
     "@" 'org-table-toggle-coordinate-overlays
     "?" 'org-table-field-info
     "=" 'org-table-eval-formula
-    "e" (lambda () (interactive) ; [E]val formulas
+    "e" '((lambda () (interactive) ; [E]val formulas
            (let ((current-prefix-arg 4))
-             (call-interactively 'org-table-recalculate)))
+             (call-interactively 'org-table-recalculate))) :which-key "eval formulas")
 
     "RET" 'org-table-copy-down
   )
-  (which-key-add-major-mode-key-based-replacements 'org-mode "T e" "eval formulas")
 #+END_SRC
 
 *** S local (subtrees)
-**** bind-map
+**** definer
 #+BEGIN_SRC emacs-lisp
-  (bind-map org-S-map
-    :evil-keys ("S")
-    :evil-states (normal)
-    :major-modes (org-mode))
+(general-create-definer org-S-map
+   :keymaps 'org-mode-map
+   :states '(normal)
+   :prefix "S")
 #+END_SRC
 
 **** fast
 #+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys org-S-map
+  (org-S-map
   ;; subtree commands
   "h" 'org-promote-subtree
   "l" 'org-demote-subtree
@@ -1873,174 +1787,178 @@ an appropriate message.
 #+END_SRC
 
 *** local fixes
-**** org-mode-map
 #+BEGIN_SRC emacs-lisp
-  (evil-define-key 'normal org-mode-map (kbd "RET") 'evil-write)
-  (evil-define-key 'normal org-mode-map "zu" 'outline-up-heading)
-  (evil-define-key 'normal org-mode-map "zh" 'outline-previous-visible-heading)
-  (evil-define-key 'normal org-mode-map "zj" 'org-forward-heading-same-level)
-  (evil-define-key 'normal org-mode-map "zk" 'org-backward-heading-same-level)
-  (evil-define-key 'normal org-mode-map "zl" 'outline-next-visible-heading)
-  (evil-define-key 'normal org-mode-map "<" 'org-do-promote)
-  (evil-define-key 'normal org-mode-map ">" 'org-do-demote)
-  (evil-define-key 'visual org-mode-map "-" 'org-ctrl-c-minus)
-  (unbind-key "C-<tab>" org-mode-map)
-  (bind-key "C-j" 'org-edit-special org-mode-map)
-#+END_SRC
+  (general-nmap
+   :keymaps 'org-mode-map
+   "RET" 'evil-write
+   "zu" 'outline-up-heading
+   "zh" 'outline-previous-visible-heading
+   "zj" 'org-forward-heading-same-level
+   "zk" 'org-backward-heading-same-level
+   "zl" 'outline-next-visible-heading
+   "<" 'org-do-promote
+   ">" 'org-do-demote
+   )
 
-**** org-src-code-map
-#+BEGIN_SRC emacs-lisp
-  (bind-key "C-j" 'org-edit-src-exit org-src-mode-map)
-  (evil-define-key 'normal org-src-mode-map (kbd "<RET>") 'org-edit-src-exit)
-#+END_SRC
+  (general-vmap
+   "-" 'org-ctrl-c-minus
+   )
 
+  (general-define-key :keymaps 'org-mode-map "C-j" 'org-edit-special)
+  (general-define-key :keymaps 'org-src-mode-map "C-j" 'org-edit-src-exit)
+  (general-define-key :keymaps 'org-src-mode-map :states 'normal "RET" 'org-edit-src-exit)
+  (general-define-key :keymaps 'org-mode-map "C-<tab>" nil)
+#+END_SRC
 ** evil
 *** abusing the g prefix
 #+BEGIN_SRC emacs-lisp
-  (bind-key "go" 'evil-goto-first-line evil-motion-state-map)
-  (bind-key "gl" 'evil-goto-line evil-motion-state-map)
-  (bind-key "g9" (kbd "Hz-M") evil-motion-state-map)
-  (bind-key "g0" (kbd "LztM") evil-motion-state-map)
+  (general-define-key
+   :keymaps 'motion
+   :prefix "g"
 
-  (bind-key "g1" 'eyebrowse-switch-to-window-config-1 evil-motion-state-map)
-  (bind-key "g2" 'eyebrowse-switch-to-window-config-2 evil-motion-state-map)
-  (bind-key "g3" 'eyebrowse-switch-to-window-config-3 evil-motion-state-map)
-  (bind-key "g4" 'eyebrowse-switch-to-window-config-4 evil-motion-state-map)
+   "o" 'evil-goto-first-line
+   "l" 'evil-goto-line
+   "9" (kbd "Hz-M")
+   "0" (kbd "LztM")
 
-  (bind-key "gs" 'magit-status evil-motion-state-map)
-  (bind-key "g." 'counsel-projectile evil-motion-state-map)
-  (bind-key "g/" 'swiper evil-motion-state-map)
-  (bind-key "gh" 'counsel-recentf evil-motion-state-map)
+   ;; "1" 'reserved
+   ;; "2" 'reserved
+   ;; "3" 'reserved
+   ;; "4" 'reserved
 
-  (bind-key "gi" 'goto-last-change evil-normal-state-map)
-  (bind-key "g;" 'evil-last-non-blank evil-motion-state-map)
+   ;; "RET" 'reserved
 
-  (bind-key "g+" 'evil-numbers/inc-at-pt evil-motion-state-map)
-  (bind-key "g-" 'evil-numbers/dec-at-pt evil-motion-state-map)
+   "s" 'magit-status
+   "." 'counsel-projectile
+   "/" 'swiper
+   "h" 'counsel-recentf
 
-  ;; (bind-key "g RET" 'er/expand-region evil-normal-state-map)
+   "i" 'goto-last-change
+   ";" 'evil-last-non-blank
+
+   "+" 'evil-numbers/inc-at-pt
+   "-" 'evil-numbers/dec-at-pt
+
+  ;; As I've sequestered < and > when in org mode, we need a workaround.
+  ">" 'evil-shift-right
+  "<" 'evil-shift-left
+   )
+
 #+END_SRC
 
 *** comfort improvements
 #+BEGIN_SRC emacs-lisp
-  (bind-key (kbd "RET") 'evil-write evil-normal-state-map)
-  (bind-key (kbd "TAB") 'evil-toggle-fold evil-normal-state-map)
-  (bind-key (kbd "DEL") 'counsel-find-file evil-normal-state-map)
-  (bind-key "q" 'evil-quit evil-normal-state-map)
-  (bind-key "-" 'evil-ex-nohighlight evil-normal-state-map)
-  (bind-key "Q" 'evil-record-macro evil-normal-state-map)
-  (bind-key "(" 'evil-backward-paragraph evil-motion-state-map)
-  (bind-key ")" 'evil-forward-paragraph evil-motion-state-map)
-  (bind-key "G" 'evil-execute-in-god-state evil-normal-state-map)
+  (general-nmap
+   "RET" 'evil-write
+   "TAB" 'evil-toggle-fold
+   "DEL" 'counsel-find-file
+   "q"   'evil-quit
+   "-"   'evil-ex-nohighlight
+   "Q"   'evil-record-macro
+   "G"   'evil-execute-in-god-state)
+  (general-mmap
+   "(" 'evil-backward-paragraph
+   ")" 'evil-forward-paragraph)
 #+END_SRC
 
 *** function keys
 #+BEGIN_SRC emacs-lisp
-  (bind-key (kbd "<f1>") 'eyebrowse-switch-to-window-config-1 global-map)
-  (bind-key (kbd "<f2>") 'eyebrowse-switch-to-window-config-2 global-map)
-  (bind-key (kbd "<f3>") 'eyebrowse-switch-to-window-config-3 global-map)
-  (bind-key (kbd "<f4>") 'eyebrowse-switch-to-window-config-4 global-map)
-  (bind-key (kbd "<f5>") 'eyebrowse-rename-window-config global-map)
+  (general-define-key
+   "<f1>" 'eyebrowse-switch-to-window-config-1
+   "<f2>" 'eyebrowse-switch-to-window-config-2
+   "<f3>" 'eyebrowse-switch-to-window-config-3
+   "<f4>" 'eyebrowse-switch-to-window-config-4
+   "<f5>" 'eyebrowse-rename-window-config
 
-  (define-key global-map (kbd "<f6>") nil)
-  (define-key global-map (kbd "<f7>") nil)
-  (define-key global-map (kbd "<f8>") nil)
-  (define-key global-map (kbd "<f9>") nil)
-  (define-key global-map (kbd "<f10>") nil)
-  (define-key global-map (kbd "<f11>") nil)
+   "<f6>" nil
+   "<f7>" nil
+   "<f8>" nil
+   "<f9>" nil
+   "<f10>" nil
+   "<f11>" nil
 
-  (bind-key (kbd "<f12>") 'restart-emacs global-map)
+   "<f12>" 'restart-emacs
+   )
 #+END_SRC
 
 *** fixes
 #+BEGIN_SRC emacs-lisp
-  ;; As I've sequestered < and > when in org mode, we need a workaround.
-  (bind-key "g>" 'evil-shift-right evil-motion-state-map)
-  (bind-key "g<" 'evil-shift-left evil-motion-state-map)
-
-  ;; `z.' fix
-  (bind-key "z." 'evil-scroll-line-to-center evil-normal-state-map)
-
-  ;; `z-' fix
-  (bind-key "z-" 'evil-scroll-line-to-bottom evil-normal-state-map)
+  (general-define-key :keymaps '(normal visual) "z." 'evil-scroll-line-to-center) ;; `z.' fix
+  (general-define-key :keymaps '(normal visual) "z-" 'evil-scroll-line-to-bottom) ;; `z-' fix
 
   ;; make / and ? behave like vim
-  (bind-key (kbd "<escape>") 'isearch-cancel isearch-mode-map)
-  (bind-key (kbd "<escape>") 'minibuffer-keyboard-quit evil-ex-search-keymap)
+  (general-define-key :keymaps 'isearch-mode-map "<escape>" 'isearch-cancel)
+  (general-define-key :keymaps 'evil-ex-search-keymap "<escape>" 'minibuffer-keyboard-quit)
 
   ;; auto-indent on RET
-  (bind-key (kbd "RET") 'newline-and-indent global-map)
+  (general-define-key "RET" 'newline-and-indent)
 #+END_SRC
 
 *** insert state
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-<tab>") 'dabbrev-expand)
-  (bind-key (kbd "C-<tab>") 'dabbrev-expand minibuffer-local-map)
+  (general-define-key "C-<tab>" 'dabbrev-expand)
+  (general-define-key :keymaps 'minibuffer-local-map "C-<tab>" 'dabbrev-expand)
 #+END_SRC
 *** evil-mc
 #+BEGIN_SRC emacs-lisp
-  (with-eval-after-load 'evil-mc
-    (evil-define-key 'visual evil-mc-key-map (kbd "C-n") 'evil-mc-make-vertical-cursors))
+  (general-define-key :keymaps 'evil-mc-key-map :states 'visual "C-n" 'evil-mc-make-vertical-cursors)
 #+END_SRC
 ** dired
 *** unbinds
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/dired--unbinds ()
-    (define-key dired-mode-map (kbd "SPC") nil)
-    (define-key dired-mode-map "s" nil)
-    (define-key dired-mode-map "-" nil)
-    (define-key dired-mode-map "n" nil)
-    (define-key dired-mode-map "N" nil)
-    (define-key dired-mode-map "y" nil)
-    (define-key dired-mode-map "M" nil)
-    (define-key dired-mode-map "L" nil)
-    (define-key dired-mode-map "H" nil)
-    (define-key dired-mode-map "$" nil)
-    (define-key dired-mode-map "0" nil)
-
-    (define-key dired-mode-map "w" nil)
-    (define-key dired-mode-map "e" nil)
-    (define-key dired-mode-map "b" nil)
-
-    (define-key dired-mode-map "W" nil)
-    (define-key dired-mode-map "E" nil)
-    (define-key dired-mode-map "B" nil)
-
-    (define-key dired-mode-map "." nil)
-    (define-key dired-mode-map "f" nil)
-    (define-key dired-mode-map "F" nil)
-    (define-key dired-mode-map "v" nil)
-    (define-key dired-mode-map "V" nil)
-    )
+    (general-define-key
+     :keymaps 'dired-mode-map
+     "s" nil
+     "-" nil
+     "n" nil
+     "N" nil
+     "y" nil
+     "M" nil
+     "L" nil
+     "H" nil
+     "$" nil
+     "0" nil
+     "w" nil
+     "e" nil
+     "b" nil
+     "W" nil
+     "E" nil
+     "B" nil
+     "." nil
+     "f" nil
+     "F" nil
+     "v" nil
+     "V" nil))
 #+END_SRC
 *** binds
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/dired--binds ()
     "my dired rebinds"
+    (general-define-key
+     :keymaps 'dired-mode-map
+     :states 'normal
+     "h" 'evil-backward-char
+     "j" 'evil-next-line
+     "k" 'evil-previous-line
+     "l" 'evil-forward-char
 
-    (evil-define-key 'normal dired-mode-map
-      "h" 'evil-backward-char
-      "j" 'evil-next-line
-      "k" 'evil-previous-line
-      "l" 'evil-forward-char
+     "c" 'find-file
+     "m" 'dired-create-directory ;*-m is dired-mark
+     "r" 'dired-do-rename
+     "p" 'dired-do-chmod
+     "t" 'dired-mark
 
-      "c" 'find-file
-      "m" 'dired-create-directory ;*-m is dired-mark
-      "r" 'dired-do-rename
-      "p" 'dired-do-chmod
-      "t" 'dired-mark
+     ",s" 'dired-sort-extension
+     ",t" 'dired-details-toggle
 
-      ",s" 'dired-sort-extension
-      ",t" 'dired-details-toggle
+     "DEL" 'dired-up-directory
+     "go" 'evil-goto-first-line
+     "gl" 'evil-goto-line
+     "ge" 'evil-backward-word-end
 
-      (kbd "DEL") 'dired-up-directory
-      "go" 'evil-goto-first-line
-      "gl" 'evil-goto-line
-      "ge" 'evil-backward-word-end
-
-      "R" 'dired-do-redisplay
-      "T" 'dired-toggle-marks
-      ))
+     "R" 'dired-do-redisplay
+     "T" 'dired-toggle-marks))
 #+END_SRC
 *** setup
 - lifted from this [[http://stackoverflow.com/a/10672548/4921402][SO question]]
@@ -2050,202 +1968,214 @@ an appropriate message.
   (with-eval-after-load 'dired
     (ninrod/dired--unbinds)
     (evil-make-overriding-map dired-mode-map 'normal t); use the standard Dired bindings as a base
-    (ninrod/dired--binds)
-    )
+    (ninrod/dired--binds))
 #+END_SRC
 ** lisp-mode
-*** bind-map
+*** definers
 #+BEGIN_SRC emacs-lisp
-  (bind-map lisp-comma-map
-      :evil-keys (",")
-      :evil-states (normal visual)
-      :major-modes (lisp-mode lisp-interaction-mode))
+  (general-create-definer
+   lisp-comma-map
+   :keymaps '(lisp-mode-map lisp-interaction-mode-map)
+   :states '(normal visual)
+   :prefix ",")
 
-  (bind-map lisp-t-map
-    :evil-keys ("t")
-    :evil-states (normal)
-    :major-modes (lisp-mode lisp-interaction-mode))
-
+  (general-create-definer
+   lisp-t-map
+   :keymaps '(lisp-mode-map lisp-interaction-mode-map)
+   :states 'normal
+   :prefix "t")
 #+END_SRC
-*** maps
+*** binds
 #+BEGIN_SRC emacs-lisp
-  (bind-map-set-keys lisp-t-map
+  (lisp-t-map
     "o" 'ninrod/eval-print-last-sexp ;mnemonic: output to current buffer
     "l" 'ninrod/eval-last-sexp
     )
-  (bind-map-set-keys lisp-comma-map
+  (lisp-comma-map
     "d" 'eval-defun
     "e" 'edebug-defun
     )
 #+END_SRC
-** other modes
-*** info-mode
-**** unbinds
+** info-mode
+*** unbinds
 #+BEGIN_SRC emacs-lisp
-  (unbind-key "g" Info-mode-map)
-  (unbind-key "s" Info-mode-map)
-  (unbind-key "." Info-mode-map)
+  (general-define-key
+   :keymaps 'Info-mode-map
+   "H" nil
+   "L" nil
+   "M" nil
+   "s" nil
+   "g" nil
+   "." nil
+   "n" nil
+   "N" nil
+   "v" nil
+   "w" nil
+   "e" nil
+   "b" nil)
+#+END_SRC
+*** binds
+#+BEGIN_SRC emacs-lisp
+  (general-define-key
+   :keymaps 'Info-mode-map
+   :states 'normal
+   "-" 'evil-ex-nohighlight)
+#+END_SRC
 
-  (unbind-key "n" Info-mode-map)
-  (unbind-key "N" Info-mode-map)
+** magit-mode
+*** magit-status-mode-map fixes
+#+BEGIN_SRC emacs-lisp
+  (general-define-key
+   :keymaps 'magit-status-mode-map
+   "SPC" nil
+   "go" 'evil-goto-first-line ;; I don't know how, but this also fixes the gl bind.
+   )
+#+END_SRC
 
-  (unbind-key "v" Info-mode-map)
-  (unbind-key "w" Info-mode-map)
-  (unbind-key "e" Info-mode-map)
-  (unbind-key "b" Info-mode-map)
-#+END_SRC
-**** binds
+*** magit-hunk-section-map fixes
 #+BEGIN_SRC emacs-lisp
-  (bind-key "-" 'evil-ex-nohighlight Info-mode-map)
+  (general-define-key
+   :keymaps 'magit-hunk-section-map
+   "s" nil)
 #+END_SRC
-**** g-prefix
+
+*** magit-file-section-map
 #+BEGIN_SRC emacs-lisp
-  (bind-map info-g-map
-      :evil-keys ("g")
-      :evil-states (normal)
-      :major-modes (Info-mode))
-  (unbind-key "H" Info-mode-map)
-  (unbind-key "L" Info-mode-map)
-  (unbind-key "M" Info-mode-map)
-  (bind-map-set-keys info-g-map
-    "o" 'evil-goto-first-line
-    "l" 'evil-goto-line
-    "g9" (kbd "Hz-M")
-    "g0" (kbd "LztM")
-    )
-  (which-key-add-major-mode-key-based-replacements 'Info-mode "g o" "beggining of buffer")
-  (which-key-add-major-mode-key-based-replacements 'Info-mode "g l" "end of buffer")
+(general-define-key
+   :keymaps 'magit-file-section-map
+   "s" nil)
 #+END_SRC
-*** term
+
+** term-mode
 - with help from [[https://www.reddit.com/r/emacs/comments/56xmvg/properly_editing_a_shell_buffer_with_evilmode/][/r/emacs]]
 #+BEGIN_SRC emacs-lisp
-(evil-set-initial-state 'term-mode 'emacs)
-(bind-key "C-c <escape>"  'term-send-esc)
-(bind-key "C-c l"  'term-line-mode)
-(bind-key "C-c c"  'term-char-mode)
-(bind-key "C-c j"  'multi-term-next)
-(bind-key "C-c k"  'multi-term-prev)
+  (evil-set-initial-state 'term-mode 'emacs)
 
-(bind-map term-map
-    :evil-keys (",")
-    :evil-states (normal visual)
-    :major-modes (term-mode))
+  (general-create-definer
+   ninrod--term-mode
+   :keymaps '(term-raw-map term-mode-map))
 
-(bind-map-set-keys term-map
-  "l" 'term-line-mode
-  "c" 'term-char-mode
-  "n" 'multi-term-next
-  "p" 'multi-term-prev
-)
+  (ninrod--term-mode
+   :states 'emacs
+   :prefix "C-c"
+   "<escape>" 'term-send-esc
+   "l"        'term-line-mode
+   "c"        'term-char-mode
+   "j"        'multi-term-next
+   "k"        'multi-term-prev)
 
+  (ninrod--term-mode
+   :states '(normal visual)
+   :prefix ","
+   "l" 'term-line-mode
+   "c" 'term-char-mode
+   "n" 'multi-term-next
+   "p" 'multi-term-prev)
 #+END_SRC
 
-*** magit
-**** magit-status-mode-map fixes
+** prog-mode
 #+BEGIN_SRC emacs-lisp
-(define-key magit-status-mode-map (kbd "SPC") nil)
-(define-key magit-status-mode-map "go" 'evil-goto-first-line)
+  (general-define-key
+   :keymaps 'prog-mode-map
+   :states 'normal
+   "TAB" 'ninrod/origami-toggle-node
+   )
 #+END_SRC
 
-**** magit-hunk-section-map fixes
+** ag-mode
 #+BEGIN_SRC emacs-lisp
-(unbind-key "s" magit-hunk-section-map)
+  (general-define-key
+   :keymaps 'ag-mode-map
+   "s"      nil
+   "g"      nil
+   "n"      nil
+   "N"      nil
+   "r"      'recompile
+   "DEL"    'compilation-previous-error ;; TAB is already bound to compilation-next-error
+   "<SPC>"  nil)
 #+END_SRC
 
-**** magit-file-section-map
+** ivy minibuffer
 #+BEGIN_SRC emacs-lisp
-(unbind-key "s" magit-file-section-map)
+  (general-define-key
+   :keymaps '(ivy-minibuffer-map
+              ivy-switch-buffer-map
+              ivy-mode-map
+              ivy-occur-mode-map
+              ivy-occur-grep-mode-map)
+   "<escape>" 'evil-escape)
 #+END_SRC
 
-*** prog-mode
+** buffer-menu
 #+BEGIN_SRC emacs-lisp
-(evil-define-key 'normal prog-mode-map (kbd "TAB") 'ninrod/origami-toggle-node)
+  (general-define-key
+   :keymaps 'Buffer-menu-mode-map
+   "SPC" nil
+   "k" nil
+   "j" nil
+   "l" nil
+   "h" nil
+   "s" nil
+   "n" nil
+   "N" nil
+   "*" nil
+   "-" 'evil-ex-nohighlight
+   )
 #+END_SRC
 
-*** ivy minibuffer
+** man
 #+BEGIN_SRC emacs-lisp
-(bind-key "<escape>"  'evil-escape ivy-minibuffer-map)
-(bind-key "<escape>"  'evil-escape ivy-switch-buffer-map)
-(bind-key "<escape>"  'evil-escape ivy-mode-map)
-(bind-key "<escape>"  'evil-escape ivy-occur-mode-map)
-(bind-key "<escape>"  'evil-escape ivy-occur-grep-mode-map)
+  (general-define-key
+   :keymaps 'Man-mode-map
+   :states 'normal
+    "RET" 'man-follow
+   )
 #+END_SRC
 
-*** ag-mode
-#+BEGIN_SRC emacs-lisp
-  (unbind-key "s" ag-mode-map)
-  (unbind-key "g" ag-mode-map)
-
-  (unbind-key "<SPC>" ag-mode-map)
-  ;; (define-key ag-mode-map (kbd "SPC") nil)
-#+END_SRC
-*** buffer-menu
-#+BEGIN_SRC emacs-lisp
-  (with-eval-after-load 'tabulated-list
-    (define-key Buffer-menu-mode-map (kbd "SPC") nil)
-    (define-key Buffer-menu-mode-map "k" nil)
-    (define-key Buffer-menu-mode-map "j" nil)
-    (define-key Buffer-menu-mode-map "l" nil)
-    (define-key Buffer-menu-mode-map "h" nil)
-    (define-key Buffer-menu-mode-map "s" nil)
-    (define-key Buffer-menu-mode-map "n" nil)
-    (define-key Buffer-menu-mode-map "N" nil)
-    (define-key Buffer-menu-mode-map "*" nil)
-    (define-key Buffer-menu-mode-map "-" 'evil-ex-nohighlight)
-    )
-#+END_SRC
-*** man
-#+BEGIN_SRC emacs-lisp
-(bind-map man-local-map
-    :evil-keys (",")
-    :evil-states (normal)
-    :major-modes (Man-mode))
-
-(bind-map-set-keys man-local-map
-  "f" 'man-follow
-)
-#+END_SRC
-** awesome available binds
-*** g prefix: t, T
-*** SPC leader: (TAB / . ; , -)
-** emacs native binds
-*** org-mode
-- org-next-link: =C-c C-x C-n=
-** neotree-evilify
+** neotree
 #+BEGIN_SRC emacs-lisp
   (require 'neotree)
   (require 'evil)
   (require 'dired)
 
-  (unbind-key "s" neotree-mode-map)
-  (unbind-key "d" neotree-mode-map)
-  (unbind-key "n" neotree-mode-map)
-  (unbind-key "-" neotree-mode-map)
-  (unbind-key "N" neotree-mode-map)
-  (unbind-key "<SPC>" neotree-mode-map)
-
   (define-minor-mode neotree-evil
     "Use NERDTree bindings on neotree."
     :lighter " NT"
-    :keymap (progn
-              (evil-make-overriding-map neotree-mode-map 'normal t)
-              (evil-define-key 'normal neotree-mode-map
-                "d" 'neotree-change-root
-                "p" 'ninrod/neotree-copy-path
-                "u" 'neotree-select-up-node
-                "zj" 'neotree-select-next-sibling-node
-                "zk" 'neotree-select-previous-sibling-node
-                "q" 'neotree-toggle
-                "i" 'neotree-enter-horizontal-split
-                "c" 'neotree-create-node
-                "y" 'neotree-copy-node
-                "x" 'neotree-delete-node
-                "r" 'neotree-rename-node
-                "gg" 'evil-goto-first-line
-                "go" 'evil-goto-first-line
-                "gl" 'evil-goto-line
-                "gr" 'neotree-refresh
-                (kbd "<DEL>") 'neotree-select-up-node
-                (kbd "<return>") 'neotree-enter)
-              neotree-mode-map))
+    :keymap
+    (progn
+      (general-create-definer
+       ninrod--neotree-map
+       :keymaps 'neotree-mode-map)
+
+      (ninrod--neotree-map
+       "s"      nil
+       "d"      nil
+       "n"      nil
+       "-"      nil
+       "N"      nil
+       "<SPC>"  nil)
+
+      (evil-make-overriding-map neotree-mode-map 'normal t)
+
+      (ninrod--neotree-map
+       :states  'normal
+       "d" 'neotree-change-root
+       "p" 'ninrod/neotree-copy-path
+       "u" 'neotree-select-up-node
+       "zj" 'neotree-select-next-sibling-node
+       "zk" 'neotree-select-previous-sibling-node
+       "q" 'neotree-toggle
+       "i" 'neotree-enter-horizontal-split
+       "c" 'neotree-create-node
+       "y" 'neotree-copy-node
+       "x" 'neotree-delete-node
+       "r" 'neotree-rename-node
+       "gg" 'evil-goto-first-line
+       "go" 'evil-goto-first-line
+       "gl" 'evil-goto-line
+       "gr" 'neotree-refresh
+       "DEL" 'neotree-select-up-node
+       "RET" 'neotree-enter)
+
+      neotree-mode-map))
 #+END_SRC
