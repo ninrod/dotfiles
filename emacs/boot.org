@@ -419,23 +419,6 @@ an appropriate message.
   (interactive)
   (message "the bind worked! yes!!"))
 #+END_SRC
-** ninrod macros
-*** ninrod/define-and-bind-textobj
-- lifted from [[https://github.com/noctuid/evil-textobj-anyblock/issues/9#issuecomment-263761927][@noctuid]]
-- with help from [[http://stackoverflow.com/q/18102004/4921402][this]] so question
-#+BEGIN_SRC emacs-lisp
-;; modified to be able to specify name and use `function'
-(defmacro define-and-bind-text-object (name key start-regex end-regex)
-  (let ((inner-name (make-symbol (concat "evil-inner-" name)))
-        (outer-name (make-symbol (concat "evil-a-" name))))
-    `(progn
-       (evil-define-text-object ,inner-name (count &optional beg end type)
-         (evil-select-paren ,start-regex ,end-regex beg end type count nil))
-       (evil-define-text-object ,outer-name (count &optional beg end type)
-         (evil-select-paren ,start-regex ,end-regex beg end type count t))
-       (define-key evil-inner-text-objects-map ,key #',inner-name)
-       (define-key evil-outer-text-objects-map ,key #',outer-name))))
-#+END_SRC
 * evil
 ** bootstrap
 *** evil
@@ -1805,9 +1788,8 @@ an appropriate message.
 
 *** local fixes
 #+BEGIN_SRC emacs-lisp
-  (general-define-key
+  (general-nmap
    :keymaps 'org-mode-map
-   :states 'normal
    "RET" 'evil-write
    "zu" 'outline-up-heading
    "zh" 'outline-previous-visible-heading
@@ -1816,8 +1798,12 @@ an appropriate message.
    "zl" 'outline-next-visible-heading
    "<" 'org-do-promote
    ">" 'org-do-demote
+   )
+
+  (general-vmap
    "-" 'org-ctrl-c-minus
    )
+
   (general-define-key :keymaps 'org-mode-map "C-j" 'org-edit-special)
   (general-define-key :keymaps 'org-src-mode-map "C-j" 'org-edit-src-exit)
   (general-define-key :keymaps 'org-src-mode-map :states 'normal "RET" 'org-edit-src-exit)
