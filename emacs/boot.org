@@ -120,7 +120,7 @@ the right."
 #+END_SRC
 
 ** org
-*** bullet operation atrocity-functions that need to be refactored
+*** horrendous org heading manipulation commands
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/org-eol-m-ret ()
     "Moves point to the end of the line and applies m-ret and enters insert state."
