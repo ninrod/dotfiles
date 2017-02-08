@@ -748,12 +748,15 @@ the right."
 #+END_SRC
 *** rainbow-mode
 #+BEGIN_SRC emacs-lisp
-(use-package rainbow-mode :ensure t)
+  (use-package rainbow-mode
+    :ensure t)
 #+END_SRC
 *** highlight-numbers
 #+BEGIN_SRC emacs-lisp
-(use-package highlight-numbers :ensure t
-:config (add-hook 'prog-mode-hook 'highlight-numbers-mode))
+  (use-package highlight-numbers
+    :ensure t
+    :config
+    (add-hook 'prog-mode-hook 'highlight-numbers-mode))
 #+END_SRC
 
 *** highlight-parentheses
@@ -770,24 +773,16 @@ the right."
 *** smartparens
 #+BEGIN_SRC emacs-lisp
   (use-package smartparens :ensure t
-    :config
-    (show-smartparens-global-mode +1)
-
     :init
-    ;; settings
     (setq sp-show-pair-delay 0.1
-          sp-show-pair-from-inside t
-
-          ;; fix paren highlighting in normal mode
-          ;; sp-highlight-pair-overlay nil
-          ;; sp-highlight-wrap-overlay nil
-          ;; sp-highlight-wrap-tag-overlay nil
-
-          ))
+          sp-show-pair-from-inside t)
+    :config
+    (show-smartparens-global-mode +1))
 #+END_SRC
 *** kurecolor
 #+BEGIN_SRC emacs-lisp
-(use-package kurecolor :ensure t)
+  (use-package kurecolor
+    :ensure t)
 #+END_SRC
 ** expand functionality
 *** restart-emacs
