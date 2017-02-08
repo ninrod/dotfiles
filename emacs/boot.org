@@ -320,11 +320,10 @@ the right."
 
 * evil
 ** bootstrap
-- emacsify insert state. based on this SO question [[http://stackoverflow.com/a/26573722/4921402][here]].
 #+BEGIN_SRC emacs-lisp
   (use-package evil :ensure t
     :config
-    (setcdr evil-insert-state-map nil) ;; emacsify insert state
+    (setcdr evil-insert-state-map nil) ;; emacsify insert state: http://stackoverflow.com/a/26573722/4921402
     (define-key evil-insert-state-map [escape] 'evil-normal-state);; but [escape] should switch back to normal state, obviously.
     (fset 'evil-visual-update-x-selection 'ignore);; Amazing hack lifted from: http://emacs.stackexchange.com/a/15054/12585
 
