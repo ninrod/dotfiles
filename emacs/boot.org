@@ -120,50 +120,37 @@ the right."
 #+END_SRC
 
 ** org
-- boy, will I refactor these atrocities when I properly learn elisp.
-*** ninrod/org-eol-m-ret
+*** bullet operation atrocity-functions that need to be refactored
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/org-eol-m-ret ()
     "Moves point to the end of the line and applies m-ret and enters insert state."
     (interactive)
-    (save-excursion)
     (goto-char (point-at-eol))
     (org-meta-return)
     (evil-insert-state))
-#+END_SRC
-*** ninrod/org-bol-m-ret
-#+BEGIN_SRC emacs-lisp
+
   (defun ninrod/org-bol-m-ret ()
     "Same as ninrod/org-eol-m-ret, but now at beggining of the line.
-  This could be a single parameterized function if I weren't such a piece of crap Lisp programmer."
+    This two could be a single parameterized function if I weren't such a piece of shit elisp programmer."
     (interactive)
-    (save-excursion)
     (goto-char (point-at-bol))
     (org-meta-return)
     (evil-insert-state))
-#+END_SRC
-*** ninrod/org-insert-subheading
-#+BEGIN_SRC emacs-lisp
+
   (defun ninrod/org-insert-subheading ()
     "evil style org-insert-subheading"
     (interactive)
-    (save-excursion)
     (goto-char (point-at-eol))
     (org-insert-subheading nil)
     (evil-insert-state))
-#+END_SRC
 
-*** ninrod/org-insert-heading-respect-content
-#+BEGIN_SRC emacs-lisp
   (defun ninrod/org-insert-heading-respect-content ()
     "evil style org-insert-subheading"
     (interactive)
-    (save-excursion)
     (goto-char (point-at-eol))
     (org-insert-heading-respect-content)
     (evil-insert-state))
 #+END_SRC
-
 *** ninrod/org-mv-down
 - credits go to [[https://www.reddit.com/r/emacs/comments/583n1x/movecopy_a_cel_to_the_right/][/u/gmfawcett]]
 #+BEGIN_SRC emacs-lisp
