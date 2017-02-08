@@ -327,7 +327,6 @@ the right."
     ;; remove all keybindings from insert-state keymap just because I want to use emacs keybindings in insert state.
     (setcdr evil-insert-state-map nil)
 
-    
     (define-key evil-insert-state-map [escape] 'evil-normal-state);; but [escape] should switch back to normal state, obviously.
 
     ;; Amazing hack lifted from: http://emacs.stackexchange.com/a/15054/12585
@@ -463,18 +462,11 @@ the right."
 ** melpa packages
 *** evil-replace-with-register
 #+BEGIN_SRC emacs-lisp
-
-  ;; (use-package evil-ReplaceWithRegister :load-path "lisp/Dewdrops/evil-ReplaceWithRegister"
-  ;;   :config
-  ;;   (setq evil-ReplaceWithRegister-key (kbd "gr"))
-  ;;   (evil-ReplaceWithRegister-install))
-
   (use-package evil-replace-with-register :ensure t
     :init
     (setq evil-replace-with-register-key (kbd "gp"))
     :config
     (evil-replace-with-register-install))
-
 #+END_SRC
 
 *** evil-commentary
