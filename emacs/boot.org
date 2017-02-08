@@ -2,100 +2,7 @@
 #+STARTUP: overview
 
 * lisp
-** lifted lisp functions
-*** spacemacs
-**** spacemacs/align functions
-#+BEGIN_SRC emacs-lisp
-;; BEGIN align functions
-
-;; modified function from http://emacswiki.org/emacs/AlignCommands
-(defun spacemacs/align-repeat (start end regexp &optional justify-right after)
-  "Repeat alignment with respect to the given regular expression.
-If JUSTIFY-RIGHT is non nil justify to the right instead of the
-left. If AFTER is non-nil, add whitespace to the left instead of
-the right."
-
- (interactive "r\nsAlign regexp: ")
-  (let* ((ws-regexp (if (string-empty-p regexp)
-                        "\\(\\s-+\\)"
-                      "\\(\\s-*\\)"))
-         (complete-regexp (if after
-                              (concat regexp ws-regexp)
-                            (concat ws-regexp regexp)))
-         (group (if justify-right -1 1)))
-    (message "%S" complete-regexp)
-    (align-regexp start end complete-regexp group 1 t)))
-
-;; Modified answer from http://emacs.stackexchange.com/questions/47/align-vertical-columns-of-numbers-on-the-decimal-point
-(defun spacemacs/align-repeat-decimal (start end)
-  "Align a table of numbers on decimal points and dollar signs (both optional)"
-  (interactive "r")
-  (require 'align)
-  (align-region start end nil
-                '((nil (regexp . "\\([\t ]*\\)\\$?\\([\t ]+[0-9]+\\)\\.?")
-                       (repeat . t)
-                       (group 1 2)
-                       (spacing 1 1)
-                       (justify nil t)))
-                nil))
-
-(defmacro spacemacs|create-align-repeat-x (name regexp &optional justify-right default-after)
-  (let ((new-func (intern (concat "spacemacs/align-repeat-" name))))
-    `(defun ,new-func (start end switch)
-       (interactive "r\nP")
-       (let ((after (not (eq (if switch t nil) (if ,default-after t nil)))))
-         (spacemacs/align-repeat start end ,regexp ,justify-right after)))))
-
-(spacemacs|create-align-repeat-x "comma" "," nil t)
-(spacemacs|create-align-repeat-x "semicolon" ";" nil t)
-(spacemacs|create-align-repeat-x "colon" ":" nil t)
-(spacemacs|create-align-repeat-x "equal" "=")
-(spacemacs|create-align-repeat-x "math-oper" "[+\\-*/]")
-(spacemacs|create-align-repeat-x "ampersand" "&")
-(spacemacs|create-align-repeat-x "bar" "|")
-(spacemacs|create-align-repeat-x "left-paren" "(")
-(spacemacs|create-align-repeat-x "right-paren" ")" t)
-(spacemacs|create-align-repeat-x "backslash" "\\\\")
-
-;; END align functions
-#+END_SRC
-
-**** spacemacs/window splits
-#+BEGIN_SRC emacs-lisp
-(defun split-window-below-and-focus ()
-  "Split the window vertically and focus the new window."
-  (interactive)
-  (split-window-below)
-  (windmove-down)
-  (when (and (boundp 'golden-ratio-mode)
-             (symbol-value golden-ratio-mode))
-    (golden-ratio)))
-
-(defun split-window-right-and-focus ()
-  "Split the window horizontally and focus the new window."
-  (interactive)
-  (split-window-right)
-  (windmove-right)
-  (when (and (boundp 'golden-ratio-mode)
-             (symbol-value golden-ratio-mode))
-    (golden-ratio)))
-#+END_SRC
-
-*** emacs-prelude
-**** copy-file-name-to-clipboard
-#+BEGIN_SRC emacs-lisp
-(defun prelude-copy-file-name-to-clipboard ()
-  "Copy the current buffer file name to the clipboard."
-  (interactive)
-  (let ((filename (if (equal major-mode 'dired-mode)
-                      default-directory
-                    (buffer-file-name))))
-    (when filename
-      (kill-new filename)
-      (message "Copied buffer file name '%s' to the clipboard." filename))))
-#+END_SRC
-** ninrod functions
-*** lisp-intro-tutorial-exercises
+** lisp-intro-tutorial-exercises
 **** CH02. Evaluation
 1. Find a file with which you are working and move towards its middle.
 2. Find its buffer name, file name, length, and your position in the file.
@@ -156,9 +63,65 @@ an appropriate message.
         (message "BUFSTR %s is a valid buffer." bufstr)
       (message "BUFSTR %s does not exist." bufstr)))
 #+END_SRC
-*** org
+** spacemacs/aligns
+#+BEGIN_SRC emacs-lisp
+;; BEGIN align functions
+
+;; modified function from http://emacswiki.org/emacs/AlignCommands
+(defun spacemacs/align-repeat (start end regexp &optional justify-right after)
+  "Repeat alignment with respect to the given regular expression.
+If JUSTIFY-RIGHT is non nil justify to the right instead of the
+left. If AFTER is non-nil, add whitespace to the left instead of
+the right."
+
+ (interactive "r\nsAlign regexp: ")
+  (let* ((ws-regexp (if (string-empty-p regexp)
+                        "\\(\\s-+\\)"
+                      "\\(\\s-*\\)"))
+         (complete-regexp (if after
+                              (concat regexp ws-regexp)
+                            (concat ws-regexp regexp)))
+         (group (if justify-right -1 1)))
+    (message "%S" complete-regexp)
+    (align-regexp start end complete-regexp group 1 t)))
+
+;; Modified answer from http://emacs.stackexchange.com/questions/47/align-vertical-columns-of-numbers-on-the-decimal-point
+(defun spacemacs/align-repeat-decimal (start end)
+  "Align a table of numbers on decimal points and dollar signs (both optional)"
+  (interactive "r")
+  (require 'align)
+  (align-region start end nil
+                '((nil (regexp . "\\([\t ]*\\)\\$?\\([\t ]+[0-9]+\\)\\.?")
+                       (repeat . t)
+                       (group 1 2)
+                       (spacing 1 1)
+                       (justify nil t)))
+                nil))
+
+(defmacro spacemacs|create-align-repeat-x (name regexp &optional justify-right default-after)
+  (let ((new-func (intern (concat "spacemacs/align-repeat-" name))))
+    `(defun ,new-func (start end switch)
+       (interactive "r\nP")
+       (let ((after (not (eq (if switch t nil) (if ,default-after t nil)))))
+         (spacemacs/align-repeat start end ,regexp ,justify-right after)))))
+
+(spacemacs|create-align-repeat-x "comma" "," nil t)
+(spacemacs|create-align-repeat-x "semicolon" ";" nil t)
+(spacemacs|create-align-repeat-x "colon" ":" nil t)
+(spacemacs|create-align-repeat-x "equal" "=")
+(spacemacs|create-align-repeat-x "math-oper" "[+\\-*/]")
+(spacemacs|create-align-repeat-x "ampersand" "&")
+(spacemacs|create-align-repeat-x "bar" "|")
+(spacemacs|create-align-repeat-x "left-paren" "(")
+(spacemacs|create-align-repeat-x "right-paren" ")" t)
+(spacemacs|create-align-repeat-x "backslash" "\\\\")
+
+;; END align functions
+#+END_SRC
+
+** org
 - boy, will I refactor these atrocities when I properly learn elisp.
-**** ninrod/org-eol-m-ret
+*** ninrod/org-eol-m-ret
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/org-eol-m-ret ()
     "Moves point to the end of the line and applies m-ret and enters insert state."
@@ -168,7 +131,7 @@ an appropriate message.
     (org-meta-return)
     (evil-insert-state))
 #+END_SRC
-**** ninrod/org-bol-m-ret
+*** ninrod/org-bol-m-ret
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/org-bol-m-ret ()
     "Same as ninrod/org-eol-m-ret, but now at beggining of the line.
@@ -179,7 +142,7 @@ an appropriate message.
     (org-meta-return)
     (evil-insert-state))
 #+END_SRC
-**** ninrod/org-insert-subheading
+*** ninrod/org-insert-subheading
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/org-insert-subheading ()
     "evil style org-insert-subheading"
@@ -190,7 +153,7 @@ an appropriate message.
     (evil-insert-state))
 #+END_SRC
 
-**** ninrod/org-insert-heading-respect-content
+*** ninrod/org-insert-heading-respect-content
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/org-insert-heading-respect-content ()
     "evil style org-insert-subheading"
@@ -201,7 +164,7 @@ an appropriate message.
     (evil-insert-state))
 #+END_SRC
 
-**** ninrod/org-mv-down
+*** ninrod/org-mv-down
 - credits go to [[https://www.reddit.com/r/emacs/comments/583n1x/movecopy_a_cel_to_the_right/][/u/gmfawcett]]
 #+BEGIN_SRC emacs-lisp
 (defun ninrod/org-mv-down ()           ; moves a value down
@@ -216,7 +179,7 @@ an appropriate message.
     (goto-char pos)))               ; move back to original position
 #+END_SRC
 
-**** ninrod/org-swap-down
+*** ninrod/org-swap-down
 - credits go to [[https://www.reddit.com/r/emacs/comments/583n1x/movecopy_a_cel_to_the_right/][/u/gmfawcett]]
 #+BEGIN_SRC emacs-lisp
 (defun ninrod/org-swap-down ()               ; swap with value below
@@ -233,7 +196,7 @@ an appropriate message.
       (org-table-align)                 ; realign the table
       (goto-char pos))))                ; move back to original position
 #+END_SRC
-**** ninrod/org-retrieve-url-from-point
+*** ninrod/org-retrieve-url-from-point
 - stolen from [[http://emacs.stackexchange.com/a/3990/12585][here]] and modified.
 #+BEGIN_SRC emacs-lisp
   (defun ninrod--grab-link (text)
@@ -253,8 +216,8 @@ an appropriate message.
         (kill-new extracted-text))))
 #+END_SRC
 
-*** lisp-mode
-**** ninrod/eval-print-last-sexp
+** lisp-mode
+*** ninrod/eval-print-last-sexp
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/eval-print-last-sexp ()
       "Move point to the end of the line and eval-prints last sexp."
@@ -264,7 +227,7 @@ an appropriate message.
       (eval-print-last-sexp))
 #+END_SRC
 
-**** ninrod/eval-last-sexp
+*** ninrod/eval-last-sexp
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/eval-last-sexp ()
       "Move point to the end of the line and eval last sexp."
@@ -274,21 +237,21 @@ an appropriate message.
       (eval-last-sexp nil))
 #+END_SRC
 
-*** uargs
-**** ninrod/uarg-shell-command
+** uargs
+*** ninrod/uarg-shell-command
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/uarg-exec-shell-command ()
     (interactive)
     (execute-extended-command '(4) "shell-command"))
 #+END_SRC
-**** ninrod/uarg-magit-status
+*** ninrod/uarg-magit-status
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/uarg-magit-status ()
     (interactive)
     (magit-status (magit-read-repository
                    (>= (prefix-numeric-value current-prefix-arg) 16))))
 #+END_SRC
-**** ninrod/extended-buffer-menu
+*** ninrod/extended-buffer-menu
 - more info here: http://emacs.stackexchange.com/a/21635/12585
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/extended-buffer-menu ()
@@ -297,8 +260,8 @@ an appropriate message.
     (execute-extended-command '(4) "buffer-menu"))
 #+END_SRC
 
-*** clipboard
-**** ninrod/neotree-copy-filepath-to-clipboard
+** clipboard
+*** ninrod/neotree-copy-filepath-to-clipboard
 - with help from [[http://stackoverflow.com/a/40564951/4921402][/u/lawlist]]
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/neotree-copy-path ()
@@ -306,7 +269,7 @@ an appropriate message.
     (message (concat "copied path: \"" (neotree-copy-filepath-to-yank-ring) "\" to the clipboard.")))
 #+END_SRC
 
-**** ninrod/yank-to-clipboard
+*** ninrod/yank-to-clipboard
 #+BEGIN_SRC emacs-lisp
 (defun ninrod/yank-to-clipboard ()
   "Copies selection to x-clipboard."
@@ -323,7 +286,7 @@ an appropriate message.
       (message "No region active; can't yank to clipboard!"))))
 #+END_SRC
 
-**** ninrod/paste-from-clipboard
+*** ninrod/paste-from-clipboard
 #+BEGIN_SRC emacs-lisp
 (defun ninrod/paste-from-clipboard ()
   "Pastes from x-clipboard."
@@ -334,8 +297,34 @@ an appropriate message.
         (message "graphics active"))
     (insert (shell-command-to-string "pbpaste"))))
 #+END_SRC
-*** misc
-**** ninrod/revert-buffer with no confirmation
+** better windows splits
+#+BEGIN_SRC emacs-lisp
+(defun ninrod/split-window-below-and-focus ()
+  "Split the window vertically and focus the new window."
+  (interactive)
+  (split-window-below)
+  (windmove-down))
+
+(defun ninrod/split-window-right-and-focus ()
+  "Split the window horizontally and focus the new window."
+  (interactive)
+  (split-window-right)
+  (windmove-right))
+#+END_SRC
+
+** buffers
+*** ninrod/add-filename-to-kill-ring
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/add-filename-to-kill-ring ()
+    "Add current buffer filename to the kill-ring."
+    (interactive)
+    (let ((filename (buffer-file-name)))
+      (when filename
+        (kill-new filename)
+        (message "Added buffer filename '%s' to the kill-ring." filename))))
+#+END_SRC
+
+*** ninrod/revert-buffer with no confirmation
 - from [[http://www.emacswiki.org/emacs-en/download/misc-cmds.el][emacswiki]]
 #+BEGIN_SRC emacs-lisp
 (defun ninrod/revert-buffer-no-confirm ()
@@ -344,7 +333,8 @@ an appropriate message.
     (revert-buffer :ignore-auto :noconfirm))
 #+END_SRC
 
-**** ninrod/origami-toggle-node
+** misc
+*** ninrod/origami-toggle-node
 - with help from [[https://www.reddit.com/r/emacs/comments/580v30/tweaking_origamiel_lisp_and_regexes/][reddit]]
 #+BEGIN_SRC emacs-lisp
 (defun ninrod/origami-toggle-node ()
@@ -353,7 +343,7 @@ an appropriate message.
   (goto-char (point-at-eol))             ;; then go to the end of line
   (origami-toggle-node (current-buffer) (point))))                 ;; and try to fold
 #+END_SRC
-**** ninrod/display-ansi-colors
+*** ninrod/display-ansi-colors
 - credits: [[http://stackoverflow.com/a/23382008/4921402][this]] SO question
 #+BEGIN_SRC emacs-lisp
 (require 'ansi-color)
@@ -361,7 +351,7 @@ an appropriate message.
   (interactive)
   (ansi-color-apply-on-region (point-min) (point-max)))
 #+END_SRC
-**** ninrod/echo
+*** ninrod/echo
 #+BEGIN_SRC emacs-lisp
 (defun ninrod/echo ()
   "just a simple test message for binds"
@@ -1467,7 +1457,7 @@ an appropriate message.
   (spc-map "f" '(:ignore t :which-key "file/dir ops")
     "fc" 'make-directory
     "fd" 'cd
-    "fy" 'prelude-copy-file-name-to-clipboard
+    "fy" 'ninrod/add-filename-to-kill-ring
     )
 #+END_SRC
 *** (i) ivy
@@ -1584,8 +1574,8 @@ an appropriate message.
    "k" 'evil-window-up
    "h" 'evil-window-left
    "l" 'evil-window-right
-   "y" 'split-window-right-and-focus
-   "x" 'split-window-below-and-focus
+   "y" 'ninrod/split-window-right-and-focus
+   "x" 'ninrod/split-window-below-and-focus
    )
 #+END_SRC
 
