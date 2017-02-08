@@ -256,34 +256,6 @@ the right."
     (message (concat "copied path: \"" (neotree-copy-filepath-to-yank-ring) "\" to the clipboard.")))
 #+END_SRC
 
-*** ninrod/yank-to-clipboard
-#+BEGIN_SRC emacs-lisp
-(defun ninrod/yank-to-clipboard ()
-  "Copies selection to x-clipboard."
-  (interactive)
-  (if (display-graphic-p)
-      (progn
-        (message "Yanked region to x-clipboard!")
-        (call-interactively 'clipboard-kill-ring-save))
-    (if (region-active-p)
-        (progn
-          (shell-command-on-region (region-beginning) (region-end) "pbcopy")
-          (message "Yanked region to clipboard!")
-          (deactivate-mark))
-      (message "No region active; can't yank to clipboard!"))))
-#+END_SRC
-
-*** ninrod/paste-from-clipboard
-#+BEGIN_SRC emacs-lisp
-(defun ninrod/paste-from-clipboard ()
-  "Pastes from x-clipboard."
-  (interactive)
-  (if (display-graphic-p)
-      (progn
-        (clipboard-yank)
-        (message "graphics active"))
-    (insert (shell-command-to-string "pbpaste"))))
-#+END_SRC
 ** better windows splits
 #+BEGIN_SRC emacs-lisp
 (defun ninrod/split-window-below-and-focus ()
@@ -324,11 +296,11 @@ the right."
 *** ninrod/origami-toggle-node
 - with help from [[https://www.reddit.com/r/emacs/comments/580v30/tweaking_origamiel_lisp_and_regexes/][reddit]]
 #+BEGIN_SRC emacs-lisp
-(defun ninrod/origami-toggle-node ()
- (interactive)
- (save-excursion ;; leave point where it is
-  (goto-char (point-at-eol))             ;; then go to the end of line
-  (origami-toggle-node (current-buffer) (point))))                 ;; and try to fold
+  (defun ninrod/origami-toggle-node ()
+    (interactive)
+    (save-excursion
+      (goto-char (point-at-eol))
+      (origami-toggle-node (current-buffer) (point))))
 #+END_SRC
 *** ninrod/display-ansi-colors
 - credits: [[http://stackoverflow.com/a/23382008/4921402][this]] SO question
@@ -341,9 +313,9 @@ the right."
 *** ninrod/echo
 #+BEGIN_SRC emacs-lisp
 (defun ninrod/echo ()
-  "just a simple test message for binds"
+  "just a simple test message for use within bind setups"
   (interactive)
-  (message "the bind worked! yes!!"))
+  (message "The new bind *WORKED*! Yes!!11!"))
 #+END_SRC
 
 * evil
@@ -352,13 +324,11 @@ the right."
 #+BEGIN_SRC emacs-lisp
   (use-package evil :ensure t
     :config
-
-    ;; remove all keybindings from insert-state keymap just
-    ;; because I want to use emacs keybindings in insert state.
+    ;; remove all keybindings from insert-state keymap just because I want to use emacs keybindings in insert state.
     (setcdr evil-insert-state-map nil)
 
-    ;; but [escape] should switch back to normal state, obviously.
-    (define-key evil-insert-state-map [escape] 'evil-normal-state)
+    
+    (define-key evil-insert-state-map [escape] 'evil-normal-state);; but [escape] should switch back to normal state, obviously.
 
     ;; Amazing hack lifted from: http://emacs.stackexchange.com/a/15054/12585
     ;; Imagine the following scenario.  One wants to paste some previously copied
@@ -384,11 +354,9 @@ the right."
 
     (evil-mode)
 
-    ;; here is a simulation of kana's textobj-entire
     (evil-define-text-object ninrod/textobj-entire (count &optional beg end type)
-      "Matches the entire buffer"
       (evil-range (point-min) (point-max)))
-    (define-key evil-outer-text-objects-map "e" 'ninrod/textobj-entire))
+    (define-key evil-outer-text-objects-map "e" 'ninrod/textobj-entire));; simulation of kana's textobj-entire
 #+END_SRC
 ** babysited packages
 *** evil-targets
@@ -493,15 +461,22 @@ the right."
     :config (global-evil-surround-mode 1))
 #+END_SRC
 ** melpa packages
-*** evil-embrace
+*** evil-replace-with-register
 #+BEGIN_SRC emacs-lisp
-  (use-package evil-embrace
-    :ensure t
+
+  ;; (use-package evil-ReplaceWithRegister :load-path "lisp/Dewdrops/evil-ReplaceWithRegister"
+  ;;   :config
+  ;;   (setq evil-ReplaceWithRegister-key (kbd "gr"))
+  ;;   (evil-ReplaceWithRegister-install))
+
+  (use-package evil-replace-with-register :ensure t
+    :init
+    (setq evil-replace-with-register-key (kbd "gp"))
     :config
-    (add-hook 'org-mode-hook 'embrace-org-mode-hook)
-    (evil-embrace-enable-evil-surround-integration)
-    )
+    (evil-replace-with-register-install))
+
 #+END_SRC
+
 *** evil-commentary
 #+BEGIN_SRC emacs-lisp
 (use-package evil-commentary :ensure t
@@ -527,25 +502,15 @@ the right."
   :config (global-evil-visualstar-mode))
 #+end_src
 
-*** evil-indent-plus
-#+begin_src emacs-lisp
-(use-package evil-indent-plus :ensure t
-  :config (evil-indent-plus-default-bindings))
-#+end_src
-
-*** evil-anzu
-- config section hack: see [[https://github.com/TheBB/spaceline/issues/69][TheBB/spaceline#69]]
+*** evil-embrace
 #+BEGIN_SRC emacs-lisp
-  (use-package evil-anzu :ensure t
-    :config 
-    (setq anzu-cons-mode-line-p nil))
+  (use-package evil-embrace
+    :ensure t
+    :config
+    (add-hook 'org-mode-hook 'embrace-org-mode-hook)
+    (evil-embrace-enable-evil-surround-integration)
+    )
 #+END_SRC
-
-*** evil-numbers
-#+BEGIN_SRC emacs-lisp
-(use-package evil-numbers :ensure t)
-#+END_SRC
-
 *** evil-escape
 #+BEGIN_SRC emacs-lisp
   (use-package evil-escape :ensure t
@@ -553,26 +518,12 @@ the right."
     (evil-escape-mode))
 #+END_SRC
 
-*** evil-replace-with-register
+*** evil-anzu
+- config section hack: see [[https://github.com/TheBB/spaceline/issues/69][TheBB/spaceline#69]]
 #+BEGIN_SRC emacs-lisp
-
-  ;; (use-package evil-ReplaceWithRegister :load-path "lisp/Dewdrops/evil-ReplaceWithRegister"
-  ;;   :config
-  ;;   (setq evil-ReplaceWithRegister-key (kbd "gr"))
-  ;;   (evil-ReplaceWithRegister-install))
-
-  (use-package evil-replace-with-register :ensure t
-    :init
-    (setq evil-replace-with-register-key (kbd "gp"))
+  (use-package evil-anzu :ensure t
     :config
-    (evil-replace-with-register-install))
-
-#+END_SRC
-
-*** evil-lisp-state
-#+BEGIN_SRC emacs-lisp
-  (use-package evil-lisp-state :ensure t
-  :config (evil-lisp-state-leader "C-c C-l"))
+    (setq anzu-cons-mode-line-p nil))
 #+END_SRC
 
 *** evil-god-state
@@ -593,6 +544,17 @@ the right."
     (define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
     (define-key evil-outer-text-objects-map "a" 'evil-outer-arg)
 )
+#+end_src
+
+*** evil-numbers
+#+BEGIN_SRC emacs-lisp
+(use-package evil-numbers :ensure t)
+#+END_SRC
+
+*** evil-indent-plus
+#+begin_src emacs-lisp
+(use-package evil-indent-plus :ensure t
+  :config (evil-indent-plus-default-bindings))
 #+end_src
 
 * tweaks
