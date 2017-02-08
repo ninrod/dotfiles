@@ -339,17 +339,17 @@ the right."
   (use-package avy
     :ensure t
     :config
-      (use-package targets :load-path "lisp/ninrod/targets.el"
-        :init
-        (setq targets-user-text-objects '((pipe "|" nil separator)
-                                          (paren "(" ")" pair :more-keys "b")
-                                          (bracket "[" "]" pair :more-keys "r")
-                                          (curly "{" "}" pair :more-keys "c")))
-        :config
-        (targets-setup t
-                       :inside-key nil
-                       :around-key nil
-                       :remote-key nil)))
+    (use-package targets :load-path "lisp/ninrod/targets.el"
+      :init
+      (setq targets-user-text-objects '((pipe "|" nil separator)
+                                        (paren "(" ")" pair :more-keys "b")
+                                        (bracket "[" "]" pair :more-keys "r")
+                                        (curly "{" "}" pair :more-keys "c")))
+      :config
+      (targets-setup t
+                     :inside-key nil
+                     :around-key nil
+                     :remote-key nil)))
 #+END_SRC
 *** evil-rect-ext
 #+BEGIN_SRC emacs-lisp
