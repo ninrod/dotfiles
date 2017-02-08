@@ -348,7 +348,6 @@ the right."
 
 * evil
 ** bootstrap
-*** evil
 - emacsify insert state. based on this SO question [[http://stackoverflow.com/a/26573722/4921402][here]].
 #+BEGIN_SRC emacs-lisp
   (use-package evil :ensure t
@@ -383,11 +382,16 @@ the right."
     ;; `evil-visual-update-x-selection' do nothing:
     (fset 'evil-visual-update-x-selection 'ignore)
 
-    (evil-mode))
+    (evil-mode)
+
+    ;; here is a simulation of kana's textobj-entire
+    (evil-define-text-object ninrod/textobj-entire (count &optional beg end type)
+      "Matches the entire buffer"
+      (evil-range (point-min) (point-max)))
+    (define-key evil-outer-text-objects-map "e" 'ninrod/textobj-entire))
 #+END_SRC
 ** babysited packages
 *** evil-targets
-
 #+BEGIN_SRC emacs-lisp
   (use-package avy
     :ensure t
@@ -404,20 +408,10 @@ the right."
                        :around-key nil
                        :remote-key nil)))
 #+END_SRC
-
 *** evil-rect-ext
-
 #+BEGIN_SRC emacs-lisp
   (use-package rect-ext :load-path "lisp/noctuid/rect-ext.el")
 #+END_SRC
-
-*** evil-textobj-entire
-#+BEGIN_SRC emacs-lisp
-  (use-package evil-textobj-entire :load-path "lisp/supermomonga/evil-textobj-entire"
-    :config
-    (define-key evil-outer-text-objects-map evil-textobj-entire-key 'evil-entire-entire-buffer))
-#+END_SRC
-
 *** evil-mc
 - stolen from @noctuid's comment on [[https://github.com/gabesoft/evil-mc/issues/22#issuecomment-267682745][gabesoft/evil-mc#22]]
 #+BEGIN_SRC emacs-lisp
@@ -485,19 +479,17 @@ the right."
 #+END_SRC
 *** evil-surround
 #+BEGIN_SRC emacs-lisp
-  (use-package evil-surround :load-path "lisp/ninrod/evil-surround"
+  (use-package evil-surround :load-path "lisp/timcharper/evil-surround"
     :init
-    ;; use non-spaced pairs when surrounding with an opening brace
-    ;; see evil-surround/issues/86
     (with-eval-after-load 'evil-surround
-    (evil-add-to-alist
-     'evil-surround-pairs-alist
-     ?\( '("(" . ")")
-     ?\[ '("[" . "]")
-     ?\{ '("{" . "}")
-     ?\) '("( " . " )")
-     ?\] '("[ " . " ]")
-     ?\} '("{ " . " }")))
+      (evil-add-to-alist
+       'evil-surround-pairs-alist ;; use non-spaced pairs when surrounding with an opening brace evil-surround/issues/86
+       ?\( '("(" . ")")
+       ?\[ '("[" . "]")
+       ?\{ '("{" . "}")
+       ?\) '("( " . " )")
+       ?\] '("[ " . " ]")
+       ?\} '("{ " . " }")))
     :config (global-evil-surround-mode 1))
 #+END_SRC
 ** melpa packages
