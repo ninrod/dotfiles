@@ -500,8 +500,7 @@ the right."
     :ensure t
     :config
     (add-hook 'org-mode-hook 'embrace-org-mode-hook)
-    (evil-embrace-enable-evil-surround-integration)
-    )
+    (evil-embrace-enable-evil-surround-integration))
 #+END_SRC
 *** evil-escape
 #+BEGIN_SRC emacs-lisp
@@ -534,8 +533,7 @@ the right."
 (use-package evil-args :ensure t
   :config
     (define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
-    (define-key evil-outer-text-objects-map "a" 'evil-outer-arg)
-)
+    (define-key evil-outer-text-objects-map "a" 'evil-outer-arg))
 #+end_src
 
 *** evil-numbers
@@ -587,8 +585,7 @@ the right."
   (setq uniquify-buffer-name-style 'forward
         apropos-do-all t
         mode-require-final-newline nil
-        require-final-newline nil
-        )
+        require-final-newline nil)
 #+END_SRC
 ** backups
 - partially lifted from [[https://github.com/magnars/.emacs.d/blob/master/init.el][magnar's emacs.d]]
@@ -606,15 +603,12 @@ the right."
   #+BEGIN_SRC emacs-lisp
     (when (eq system-type 'darwin)
       ;; (add-to-list 'default-frame-alist '(font . "Monaco-14"))
-      (add-to-list 'default-frame-alist '(font . "Monoisome-14"))
-      )
+      (add-to-list 'default-frame-alist '(font . "Monoisome-14")))
 
     (when (eq system-type 'gnu/linux)
-
       ;; (add-to-list 'default-frame-alist '(font . "Monaco-14"))
       ;; (add-to-list 'default-frame-alist '(font . "FiraCode-14"))
-      (add-to-list 'default-frame-alist '(font . "Monoisome-14"))
-      )
+      (add-to-list 'default-frame-alist '(font . "Monoisome-14")))
   #+END_SRC
 ** gui
 #+BEGIN_SRC emacs-lisp
@@ -733,13 +727,12 @@ the right."
 *** themes
 **** spacemacs-theme
 #+BEGIN_SRC emacs-lisp
-    (use-package spacemacs-dark-theme :load-path "lisp/ninrod/spacemacs-theme"
-      :init
-      (setq spacemacs-theme-org-height nil)
-      (setq spacemacs-theme-comment-bg nil)
-      :config
-      (load-theme 'spacemacs-dark t)
-      )
+  (use-package spacemacs-dark-theme :load-path "lisp/ninrod/spacemacs-theme"
+    :init
+    (setq spacemacs-theme-org-height nil)
+    (setq spacemacs-theme-comment-bg nil)
+    :config
+    (load-theme 'spacemacs-dark t))
 #+END_SRC
 
 **** zerodark-theme
@@ -1067,19 +1060,18 @@ the right."
 #+END_SRC
 *** neotree
 #+BEGIN_SRC emacs-lisp
-    (use-package neotree :ensure t
-      :init
-      (setq neo-create-file-auto-open t
-            neo-auto-indent-point nil
-            neo-mode-line-type 'none
-            neo-window-fixed-size nil ; or neo-window-width 50
-            neo-show-updir-line nil
-            neo-smart-open t
-            neo-show-hidden-files t
-            neo-theme (if (display-graphic-p) 'icons 'nerd) ; fallback
-            ;; neo-theme 'nerd ; fallback
-            neo-banner-message nil
-  ))
+  (use-package neotree :ensure t
+    :init
+    (setq neo-create-file-auto-open t
+          neo-auto-indent-point nil
+          neo-mode-line-type 'none
+          neo-window-fixed-size nil ; or neo-window-width 50
+          neo-show-updir-line nil
+          neo-smart-open t
+          neo-show-hidden-files t
+          neo-theme (if (display-graphic-p) 'icons 'nerd) ; fallback
+          ;; neo-theme 'nerd ; fallback
+          neo-banner-message nil))
 #+END_SRC
 
 ** git
