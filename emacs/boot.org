@@ -419,6 +419,7 @@ an appropriate message.
   (interactive)
   (message "the bind worked! yes!!"))
 #+END_SRC
+
 * evil
 ** bootstrap
 *** evil
@@ -1640,6 +1641,100 @@ an appropriate message.
    )
 #+END_SRC
 
+** evil
+*** abusing the g prefix
+#+BEGIN_SRC emacs-lisp
+  (general-define-key
+   :keymaps 'motion
+   :prefix "g"
+
+   "o" 'evil-goto-first-line
+   "l" 'evil-goto-line
+   "9" (kbd "Hz-M")
+   "0" (kbd "LztM")
+
+   ;; "1" 'reserved
+   ;; "2" 'reserved
+   ;; "3" 'reserved
+   ;; "4" 'reserved
+
+   ;; "RET" 'reserved
+
+   "s" 'magit-status
+   "." 'counsel-projectile
+   "/" 'swiper
+   "h" 'counsel-recentf
+
+   "i" 'goto-last-change
+   ";" 'evil-last-non-blank
+
+   "+" 'evil-numbers/inc-at-pt
+   "-" 'evil-numbers/dec-at-pt
+
+  ;; As I've sequestered < and > when in org mode, we need a workaround.
+  ">" 'evil-shift-right
+  "<" 'evil-shift-left
+   )
+
+#+END_SRC
+
+*** comfort improvements
+#+BEGIN_SRC emacs-lisp
+  (general-nmap
+   "RET" 'evil-write
+   "TAB" 'evil-toggle-fold
+   "DEL" 'counsel-find-file
+   "q"   'evil-quit
+   "-"   'evil-ex-nohighlight
+   "Q"   'evil-record-macro
+   "G"   'evil-execute-in-god-state)
+  (general-mmap
+   "(" 'evil-backward-paragraph
+   ")" 'evil-forward-paragraph)
+#+END_SRC
+
+*** function keys
+#+BEGIN_SRC emacs-lisp
+  (general-define-key
+   "<f1>" 'eyebrowse-switch-to-window-config-1
+   "<f2>" 'eyebrowse-switch-to-window-config-2
+   "<f3>" 'eyebrowse-switch-to-window-config-3
+   "<f4>" 'eyebrowse-switch-to-window-config-4
+   "<f5>" 'eyebrowse-rename-window-config
+
+   "<f6>" nil
+   "<f7>" nil
+   "<f8>" nil
+   "<f9>" nil
+   "<f10>" nil
+   "<f11>" nil
+
+   "<f12>" 'restart-emacs
+   )
+#+END_SRC
+
+*** fixes
+#+BEGIN_SRC emacs-lisp
+  (general-define-key :keymaps '(normal visual) "z." 'evil-scroll-line-to-center) ;; `z.' fix
+  (general-define-key :keymaps '(normal visual) "z-" 'evil-scroll-line-to-bottom) ;; `z-' fix
+
+  ;; make / and ? behave like vim
+  (general-define-key :keymaps 'isearch-mode-map "<escape>" 'isearch-cancel)
+  (general-define-key :keymaps 'evil-ex-search-keymap "<escape>" 'minibuffer-keyboard-quit)
+
+  ;; auto-indent on RET
+  (general-define-key "RET" 'newline-and-indent)
+#+END_SRC
+
+*** insert state
+#+BEGIN_SRC emacs-lisp
+  (general-define-key "C-<tab>" 'dabbrev-expand)
+  (general-define-key :keymaps 'minibuffer-local-map "C-<tab>" 'dabbrev-expand)
+#+END_SRC
+*** evil-mc
+#+BEGIN_SRC emacs-lisp
+  (general-define-key :keymaps 'evil-mc-key-map :states 'visual "C-n" 'evil-mc-make-vertical-cursors)
+#+END_SRC
 ** org-mode
 *** , local
 **** definer
@@ -1788,8 +1883,9 @@ an appropriate message.
 
 *** local fixes
 #+BEGIN_SRC emacs-lisp
-  (general-nmap
+  (general-define-key
    :keymaps 'org-mode-map
+   :states 'normal
    "RET" 'evil-write
    "zu" 'outline-up-heading
    "zh" 'outline-previous-visible-heading
@@ -1800,108 +1896,15 @@ an appropriate message.
    ">" 'org-do-demote
    )
 
-  (general-vmap
-   "-" 'org-ctrl-c-minus
-   )
+  (general-define-key
+   :keymaps 'org-mode-map
+   :states 'visual
+   "-" 'org-ctrl-c-minus)
 
   (general-define-key :keymaps 'org-mode-map "C-j" 'org-edit-special)
   (general-define-key :keymaps 'org-src-mode-map "C-j" 'org-edit-src-exit)
   (general-define-key :keymaps 'org-src-mode-map :states 'normal "RET" 'org-edit-src-exit)
   (general-define-key :keymaps 'org-mode-map "C-<tab>" nil)
-#+END_SRC
-** evil
-*** abusing the g prefix
-#+BEGIN_SRC emacs-lisp
-  (general-define-key
-   :keymaps 'motion
-   :prefix "g"
-
-   "o" 'evil-goto-first-line
-   "l" 'evil-goto-line
-   "9" (kbd "Hz-M")
-   "0" (kbd "LztM")
-
-   ;; "1" 'reserved
-   ;; "2" 'reserved
-   ;; "3" 'reserved
-   ;; "4" 'reserved
-
-   ;; "RET" 'reserved
-
-   "s" 'magit-status
-   "." 'counsel-projectile
-   "/" 'swiper
-   "h" 'counsel-recentf
-
-   "i" 'goto-last-change
-   ";" 'evil-last-non-blank
-
-   "+" 'evil-numbers/inc-at-pt
-   "-" 'evil-numbers/dec-at-pt
-
-  ;; As I've sequestered < and > when in org mode, we need a workaround.
-  ">" 'evil-shift-right
-  "<" 'evil-shift-left
-   )
-
-#+END_SRC
-
-*** comfort improvements
-#+BEGIN_SRC emacs-lisp
-  (general-nmap
-   "RET" 'evil-write
-   "TAB" 'evil-toggle-fold
-   "DEL" 'counsel-find-file
-   "q"   'evil-quit
-   "-"   'evil-ex-nohighlight
-   "Q"   'evil-record-macro
-   "G"   'evil-execute-in-god-state)
-  (general-mmap
-   "(" 'evil-backward-paragraph
-   ")" 'evil-forward-paragraph)
-#+END_SRC
-
-*** function keys
-#+BEGIN_SRC emacs-lisp
-  (general-define-key
-   "<f1>" 'eyebrowse-switch-to-window-config-1
-   "<f2>" 'eyebrowse-switch-to-window-config-2
-   "<f3>" 'eyebrowse-switch-to-window-config-3
-   "<f4>" 'eyebrowse-switch-to-window-config-4
-   "<f5>" 'eyebrowse-rename-window-config
-
-   "<f6>" nil
-   "<f7>" nil
-   "<f8>" nil
-   "<f9>" nil
-   "<f10>" nil
-   "<f11>" nil
-
-   "<f12>" 'restart-emacs
-   )
-#+END_SRC
-
-*** fixes
-#+BEGIN_SRC emacs-lisp
-  (general-define-key :keymaps '(normal visual) "z." 'evil-scroll-line-to-center) ;; `z.' fix
-  (general-define-key :keymaps '(normal visual) "z-" 'evil-scroll-line-to-bottom) ;; `z-' fix
-
-  ;; make / and ? behave like vim
-  (general-define-key :keymaps 'isearch-mode-map "<escape>" 'isearch-cancel)
-  (general-define-key :keymaps 'evil-ex-search-keymap "<escape>" 'minibuffer-keyboard-quit)
-
-  ;; auto-indent on RET
-  (general-define-key "RET" 'newline-and-indent)
-#+END_SRC
-
-*** insert state
-#+BEGIN_SRC emacs-lisp
-  (general-define-key "C-<tab>" 'dabbrev-expand)
-  (general-define-key :keymaps 'minibuffer-local-map "C-<tab>" 'dabbrev-expand)
-#+END_SRC
-*** evil-mc
-#+BEGIN_SRC emacs-lisp
-  (general-define-key :keymaps 'evil-mc-key-map :states 'visual "C-n" 'evil-mc-make-vertical-cursors)
 #+END_SRC
 ** dired
 *** unbinds
