@@ -3,7 +3,7 @@
 
 * lisp
 ** lisp-intro-tutorial-exercises
-**** CH02. Evaluation
+*** CH02. Evaluation
 1. Find a file with which you are working and move towards its middle.
 2. Find its buffer name, file name, length, and your position in the file.
 #+BEGIN_SRC emacs-lisp
@@ -21,7 +21,7 @@
            (bpos  (point)))
       (message "bname: %s, fname: %s, bsize: %d, bpos: %d" bname fname bsize bpos)))
 #+END_SRC
-**** CH03. Writing defuns
+*** CH03. Writing defuns
 ***** write a function that doubles a number
 1. write a non-interactive function that doubles the value of its argument, a number.
 2. make the above function interactive
@@ -43,7 +43,7 @@ an appropriate message.
         (message "the passed argument, %d is greater than fill-column, %d" test fill-column)
       (message "fill-column (%d) is equal or greater than the argument (%d)" fill-column test)))
 #+end_src
-**** CH04. Buffer walk through
+*** CH04. Buffer walk through
 ***** Write your own `simplified-end-of-buffer' function definition; then test it to see whether it works.
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/lisp-intro/buffer-end ()
@@ -1688,7 +1688,6 @@ the right."
    "" 'nil
 
    "r" 'org-refile
-   "n" 'org-narrow-to-subtree
    "w" 'widen
 
    "l" 'org-insert-link
@@ -1736,26 +1735,28 @@ the right."
 **** fast
 #+BEGIN_SRC emacs-lisp
   (org-t-map
-    ;; "<SPC>" 'ninrod/org-insert-subheading ; open new subheading
+   ;; "<SPC>" 'ninrod/org-insert-subheading ; open new subheading
 
-    "l" 'org-metaright
-    "h" 'org-metaleft
-    "j" 'org-metadown
-    "k" 'org-metaup
+   "l" 'org-metaright
+   "h" 'org-metaleft
+   "j" 'org-metadown
+   "k" 'org-metaup
 
-    "y" 'ninrod/org-retrieve-url-from-point
+   "y" 'ninrod/org-retrieve-url-from-point
 
-    "t" 'org-todo
+   "n" 'org-narrow-to-subtree
 
-    "-" 'org-ctrl-c-minus
-    "*" 'org-ctrl-c-star
+   "t" 'org-todo
 
-    "TAB" 'ninrod/org-insert-subheading ; open new subheading
+   "-" 'org-ctrl-c-minus
+   "*" 'org-ctrl-c-star
 
-    "o" 'ninrod/org-eol-m-ret ; open new heading below, not respecting content
-    "RET" 'ninrod/org-insert-heading-respect-content ; open new heading below, respecting content
-    "DEL" 'ninrod/org-bol-m-ret ; open new heading above
-    )
+   "TAB" 'ninrod/org-insert-subheading ; open new subheading
+
+   "o" 'ninrod/org-eol-m-ret ; open new heading below, not respecting content
+   "RET" 'ninrod/org-insert-heading-respect-content ; open new heading below, respecting content
+   "DEL" 'ninrod/org-bol-m-ret ; open new heading above
+   )
 #+END_SRC
 
 *** T local (tables)
