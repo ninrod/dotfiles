@@ -1441,7 +1441,6 @@ the right."
     "ot" 'org-table-convert-region
     "ob" 'org-bullets-mode
   )
-  (which-key-declare-prefixes "SPC o" "Org-mode")
 #+END_SRC
 
 *** (s) spelling
