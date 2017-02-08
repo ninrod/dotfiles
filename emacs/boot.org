@@ -4,57 +4,6 @@
 * lisp
 ** lifted lisp functions
 *** spacemacs
-**** spacemacs/buffer operations
-***** spacemacs/alternate-buffer
-SPC TAB
-back and forth between current and last buffer
-#+BEGIN_SRC emacs-lisp
-(defun spacemacs/alternate-buffer (&optional window)
-  "Switch back and forth between current and last buffer in the current window."
-  (interactive)
-  (let ((current-buffer (window-buffer window))
-        (buffer-predicate
-         (frame-parameter (window-frame window) 'buffer-predicate)))
-    ;; switch to first buffer previously shown in this window that matches
-    ;; frame-parameter `buffer-predicate'
-    (switch-to-buffer
-     (or (cl-find-if (lambda (buffer)
-                       (and (not (eq buffer current-buffer))
-                            (or (null buffer-predicate)
-                                (funcall buffer-predicate buffer))))
-                     (mapcar #'car (window-prev-buffers window)))
-         ;; `other-buffer' honors `buffer-predicate' so no need to filter
-         (other-buffer current-buffer t)))))
-#+END_SRC
-
-***** spacemacs/kill-this-buffer
-SPC b d
-#+BEGIN_SRC emacs-lisp
-(defun spacemacs/kill-this-buffer (&optional arg)
-  "Kill the current buffer.
-If the universal prefix argument is used then kill also the window."
-  (interactive "P")
-  (if (window-minibuffer-p)
-      (abort-recursive-edit)
-    (if (equal '(4) arg)
-        (kill-buffer-and-window)
-      (kill-buffer))))
-#+END_SRC
-
-***** spacemacs/kill-other-buffers
-#+BEGIN_SRC emacs-lisp
-;; found at http://emacswiki.org/emacs/KillingBuffers
-(defun spacemacs/kill-other-buffers (&optional arg)
-  "Kill all other buffers.
-If the universal prefix argument is used then will the windows too."
-  (interactive "P")
-  (when (yes-or-no-p (format "Killing all buffers except \"%s\"? "
-                             (buffer-name)))
-    (mapc 'kill-buffer (delq (current-buffer) (buffer-list)))
-    (when (equal '(4) arg) (delete-other-windows))
-    (message "Buffers deleted!")))
-#+END_SRC
-
 **** spacemacs/align functions
 #+BEGIN_SRC emacs-lisp
 ;; BEGIN align functions
@@ -1618,11 +1567,10 @@ an appropriate message.
    "w" 'rect-ext-widen
    "q" 'evil-record-macro
    "u" 'ninrod/revert-buffer-no-confirm
-   "d" 'spacemacs/kill-this-buffer
+   "d" 'kill-this-buffer
    "m" 'ninrod/extended-buffer-menu
    "o" 'air-org-task-capture
    "i" 'ivy-switch-buffer
-   "b" 'spacemacs/kill-other-buffers
    "t" 'multi-term
 
                                           ; edit operations
