@@ -321,7 +321,8 @@ the right."
 * evil
 ** bootstrap
 #+BEGIN_SRC emacs-lisp
-  (use-package evil :ensure t
+  (use-package evil
+    :ensure t
     :config
     (setcdr evil-insert-state-map nil) ;; emacsify insert state: http://stackoverflow.com/a/26573722/4921402
     (define-key evil-insert-state-map [escape] 'evil-normal-state);; but [escape] should switch back to normal state, obviously.
@@ -339,7 +340,8 @@ the right."
   (use-package avy
     :ensure t
     :config
-    (use-package targets :load-path "lisp/ninrod/targets.el"
+    (use-package targets
+      :load-path "lisp/ninrod/targets.el"
       :init
       (setq targets-user-text-objects '((pipe "|" nil separator)
                                         (paren "(" ")" pair :more-keys "b")
@@ -353,58 +355,18 @@ the right."
 #+END_SRC
 *** evil-rect-ext
 #+BEGIN_SRC emacs-lisp
-  (use-package rect-ext :load-path "lisp/noctuid/rect-ext.el")
+  (use-package rect-ext
+    :load-path "lisp/noctuid/rect-ext.el")
 #+END_SRC
 *** evil-mc
-- stolen from @noctuid's comment on [[https://github.com/gabesoft/evil-mc/issues/22#issuecomment-267682745][gabesoft/evil-mc#22]]
 #+BEGIN_SRC emacs-lisp
   (use-package evil-mc
     :ensure t
     :diminish ""
     :config
-    (global-evil-mc-mode  1))
-#+END_SRC
-**** vip -> C-n: @quicknir's take
-#+BEGIN_SRC emacs-lisp
-(defun col-at-point (point)
-    (save-excursion (goto-char point) (current-column)))
+    (global-evil-mc-mode  1)
 
-  (defun evil--mc-make-cursor-at-col-append (_startcol endcol orig-line)
-    (end-of-line)
-    (when (> endcol (current-column))
-      (insert-char ?\s (- endcol (current-column))))
-    (move-to-column (- endcol 1))
-    (unless (= (line-number-at-pos) orig-line)
-      (evil-mc-make-cursor-here)))
-
-  (defun evil--mc-make-cursor-at-col-insert (startcol _endcol orig-line)
-    (end-of-line)
-    (move-to-column startcol)
-    (unless (or (= (line-number-at-pos) orig-line) (> startcol (current-column)))
-      (evil-mc-make-cursor-here)))
-
-  (defun evil--mc-make-vertical-cursors (beg end func)
-    (evil-mc-pause-cursors)
-    (apply-on-rectangle func
-                        beg end (line-number-at-pos (point)))
-    (evil-mc-resume-cursors)
-    (evil-normal-state))
-
-  (defun evil-mc-insert-vertical-cursors (beg end)
-    (interactive (list (region-beginning) (region-end)))
-    (evil--mc-make-vertical-cursors beg end 'evil--mc-make-cursor-at-col-insert)
-    (move-to-column (min (col-at-point beg) (col-at-point end))))
-
-  (defun evil-mc-append-vertical-cursors (beg end)
-    (interactive (list (region-beginning) (region-end)))
-    (evil--mc-make-vertical-cursors beg end 'evil--mc-make-cursor-at-col-append)
-    (move-to-column (- (max (col-at-point beg) (col-at-point end)) 1)))
-
-  (evil-define-key 'visual global-map "gI" 'evil-mc-insert-vertical-cursors)
-  (evil-define-key 'visual global-map "gA" 'evil-mc-append-vertical-cursors)
-#+END_SRC
-**** vip -> C-n: @noctuid's take
-#+BEGIN_SRC emacs-lisp
+    ;; stolen from @noctuid's comment on: https://github.com/gabesoft/evil-mc/issues/22#issuecomment-267682745
     (defun evil--mc-make-cursor-at-col (startcol _endcol orig-line)
       (move-to-column startcol)
       (unless (= (line-number-at-pos) orig-line)
@@ -418,11 +380,12 @@ the right."
       (evil-normal-state)
       (move-to-column (evil-mc-column-number (if (> end beg)
                                                  beg
-                                               end))))
+                                               end)))))
 #+END_SRC
 *** evil-surround
 #+BEGIN_SRC emacs-lisp
-  (use-package evil-surround :load-path "lisp/timcharper/evil-surround"
+  (use-package evil-surround
+    :load-path "lisp/timcharper/evil-surround"
     :init
     (with-eval-after-load 'evil-surround
       (evil-add-to-alist
