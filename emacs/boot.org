@@ -888,7 +888,7 @@ the right."
   (use-package smex
         :ensure t
         :init
-        (setq smex-history-length 50)
+        (setq smex-history-length 20)
         :config
         (smex-initialize))
 #+END_SRC
