@@ -1562,6 +1562,7 @@ the right."
   (org-comma-map
    "" 'nil
 
+   "s" 'org-sort
    "r" 'org-refile
    "w" 'widen
 
