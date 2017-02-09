@@ -1731,6 +1731,18 @@ the right."
   (defun ninrod/dired--unbinds ()
     (general-define-key
      :keymaps 'dired-mode-map
+     "<f1>" nil
+     "<f2>" nil
+     "<f3>" nil
+     "<f4>" nil
+     "<f5>" nil
+     "<f6>" nil
+     "<f7>" nil
+     "<f8>" nil
+     "<f9>" nil
+     "<f10>" nil
+     "<f11>" nil
+     "<f12>" nil
      "s" nil
      "-" nil
      "n" nil
