@@ -1845,22 +1845,26 @@ the right."
    "E" nil
    "B" nil
 
-   "s" nil
-   )
+   "s" nil)
 #+END_SRC
 *** binds
 #+BEGIN_SRC emacs-lisp
   (info-keybind-war
    :states 'motion
    "-" 'evil-ex-nohighlight
-   "DEL" 'Info-history-back
-   )
+   "DEL" 'Info-history-back)
 
   (info-keybind-war
    :states 'motion
    :prefix "SPC"
-   "" nil
-   )
+   "" nil)
+
+  (info-keybind-war
+   :states 'motion
+   :prefix "z"
+   "<return>" 'evil-scroll-line-to-top
+   "-" 'evil-scroll-line-to-bottom
+   "." 'evil-scroll-line-to-center)
 #+END_SRC
 ** magit-mode
 *** magit-status-mode-map fixes
