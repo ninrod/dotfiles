@@ -12,6 +12,7 @@ ealias gc='git commit -m'
 # sync
 alias gf='git fetch'
 alias gp='git push'
+alias gpf='git push --force-with-lease'
 alias gm='git merge'
 ealias gr='git rebase'
 

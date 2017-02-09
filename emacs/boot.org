@@ -322,7 +322,7 @@ the right."
 ** bootstrap
 #+BEGIN_SRC emacs-lisp
   (use-package evil
-    :ensure t
+    :load-path "lisp/ninrod/evil"
     :config
     (setcdr evil-insert-state-map nil) ;; emacsify insert state: http://stackoverflow.com/a/26573722/4921402
     (define-key evil-insert-state-map [escape] 'evil-normal-state);; but [escape] should switch back to normal state, obviously.
