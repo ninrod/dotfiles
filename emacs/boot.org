@@ -1421,6 +1421,7 @@ the right."
    "" nil
 
    "/" 'swiper
+   "." counsel-projectile
 
 
    ;; "TAB" 'reserved
@@ -1463,6 +1464,9 @@ the right."
    :keymaps 'motion
    :prefix "g"
 
+   ;; "." 'reserved
+   ;; "/" 'reserved
+
    "o" 'evil-goto-first-line
    "l" 'evil-goto-line
    "9" (kbd "Hz-M")
@@ -1476,8 +1480,6 @@ the right."
    ;; "RET" 'reserved
 
    "s" 'magit-status
-   "." 'counsel-projectile
-   "/" 'swiper
    "h" 'counsel-recentf
 
    "i" 'goto-last-change
