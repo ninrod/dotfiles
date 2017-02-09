@@ -1534,7 +1534,7 @@ the right."
 #+BEGIN_SRC emacs-lisp
   (general-define-key :keymaps 'evil-mc-key-map :states 'visual "C-n" 'evil-mc-make-vertical-cursors)
 #+END_SRC
-** org-mode
+** org
 *** , local
 **** definer
 #+BEGIN_SRC emacs-lisp
@@ -1773,7 +1773,7 @@ the right."
     (evil-make-overriding-map dired-mode-map 'normal t); use the standard Dired bindings as a base
     (ninrod/dired--binds))
 #+END_SRC
-** lisp-mode
+** lisp
 *** definers
 #+BEGIN_SRC emacs-lisp
   (general-create-definer
@@ -1799,19 +1799,12 @@ the right."
     "e" 'edebug-defun
     )
 #+END_SRC
-** info-mode
+** info
 *** definer
 #+BEGIN_SRC emacs-lisp
 (general-create-definer
    info-keybind-war
-   :keymaps '(Info-edit-map
-              Info-edit-mode-map
-              Info-link-keymap
-              Info-merged-map
-              Info-mode-line-node-keymap
-              Info-mode-map
-              Info-speedbar-key-map
-              Info-tool-bar-map))
+   :keymaps 'Info-mode-map)
 #+END_SRC
 *** unbinds
 #+BEGIN_SRC emacs-lisp
@@ -1866,7 +1859,7 @@ the right."
    "-" 'evil-scroll-line-to-bottom
    "." 'evil-scroll-line-to-center)
 #+END_SRC
-** magit-mode
+** magit
 *** magit-status-mode-map fixes
 #+BEGIN_SRC emacs-lisp
   (general-define-key
@@ -1890,7 +1883,7 @@ the right."
    "s" nil)
 #+END_SRC
 
-** term-mode
+** term
 - with help from [[https://www.reddit.com/r/emacs/comments/56xmvg/properly_editing_a_shell_buffer_with_evilmode/][/r/emacs]]
 #+BEGIN_SRC emacs-lisp
   (evil-set-initial-state 'term-mode 'emacs)
@@ -1917,7 +1910,7 @@ the right."
    "p" 'multi-term-prev)
 #+END_SRC
 
-** prog-mode
+** prog
 #+BEGIN_SRC emacs-lisp
   (general-define-key
    :keymaps 'prog-mode-map
@@ -1926,7 +1919,7 @@ the right."
    )
 #+END_SRC
 
-** ag-mode
+** ag
 #+BEGIN_SRC emacs-lisp
   (general-define-key
    :keymaps 'ag-mode-map
@@ -1939,7 +1932,7 @@ the right."
    "<SPC>"  nil)
 #+END_SRC
 
-** ivy minibuffer
+** ivy
 #+BEGIN_SRC emacs-lisp
   (general-define-key
    :keymaps '(ivy-minibuffer-map
