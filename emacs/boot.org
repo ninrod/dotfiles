@@ -1418,6 +1418,9 @@ the right."
    :prefix "s"
    "" nil
 
+   "/" 'swiper
+
+
    ;; "TAB" 'reserved
    "DEL" 'neotree-toggle
    "RET" 'evil-save-modified-and-close; save and close
