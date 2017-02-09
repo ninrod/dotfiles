@@ -1800,7 +1800,25 @@ the right."
 *** unbinds
 #+BEGIN_SRC emacs-lisp
   (general-define-key
-   :keymaps 'Info-mode-map
+   :keymaps '(Info-edit-map
+              Info-edit-mode-map
+              Info-link-keymap
+              Info-merged-map
+              Info-mode-line-node-keymap
+              Info-mode-map
+              Info-speedbar-key-map
+              Info-tool-bar-map)
+   "1" nil
+   "2" nil
+   "3" nil
+   "4" nil
+   "5" nil
+   "6" nil
+   "7" nil
+   "8" nil
+   "9" nil
+   "-" nil
+   "SPC" nil
    "H" nil
    "L" nil
    "M" nil
@@ -1810,6 +1828,8 @@ the right."
    "n" nil
    "N" nil
    "v" nil
+   "f" nil
+   "F" nil
    "w" nil
    "e" nil
    "b" nil)
@@ -1817,8 +1837,16 @@ the right."
 *** binds
 #+BEGIN_SRC emacs-lisp
   (general-define-key
-   :keymaps 'Info-mode-map
-   :states 'normal
+   :keymaps '(Info-edit-map
+              Info-edit-mode-map
+              Info-link-keymap
+              Info-merged-map
+              Info-mode-line-node-keymap
+              Info-mode-map
+              Info-speedbar-key-map
+              Info-tool-bar-map)
+   "DEL" 'Info-history-back
+   "SPC" 'counsel-M-x
    "-" 'evil-ex-nohighlight)
 #+END_SRC
 
