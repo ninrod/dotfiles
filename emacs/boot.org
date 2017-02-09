@@ -1800,8 +1800,9 @@ the right."
     )
 #+END_SRC
 ** info-mode
+*** definer
 #+BEGIN_SRC emacs-lisp
-  (general-create-definer
+(general-create-definer
    info-keybind-war
    :keymaps '(Info-edit-map
               Info-edit-mode-map
@@ -1811,6 +1812,9 @@ the right."
               Info-mode-map
               Info-speedbar-key-map
               Info-tool-bar-map))
+#+END_SRC
+*** unbinds
+#+BEGIN_SRC emacs-lisp
   (info-keybind-war
    "1" nil
    "2" nil
@@ -1821,26 +1825,42 @@ the right."
    "7" nil
    "8" nil
    "9" nil
+
    "H" nil
    "L" nil
    "M" nil
-   "s" nil
+
    "g" nil
+   "v" nil
+   "V" nil
    "n" nil
    "N" nil
-   "v" nil
+
    "f" nil
    "F" nil
    "w" nil
    "e" nil
    "b" nil
+   "W" nil
+   "E" nil
+   "B" nil
+
+   "s" nil
+   )
+#+END_SRC
+*** binds
+#+BEGIN_SRC emacs-lisp
+  (info-keybind-war
+   :states 'motion
+   "-" 'evil-ex-nohighlight
+   "DEL" 'Info-history-back
    )
 
   (info-keybind-war
    :states 'motion
-   "DEL" 'Info-history-back
-   "SPC" 'counsel-M-x
-   "-" 'evil-ex-nohighlight)
+   :prefix "SPC"
+   "" nil
+   )
 #+END_SRC
 ** magit-mode
 *** magit-status-mode-map fixes
