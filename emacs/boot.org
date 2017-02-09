@@ -1421,7 +1421,7 @@ the right."
    "" nil
 
    "/" 'swiper
-   "." counsel-projectile
+   "." 'counsel-projectile
 
 
    ;; "TAB" 'reserved
@@ -1655,6 +1655,7 @@ the right."
     "h" 'org-backward-sentence ;; M-a tga
     "l" 'org-forward-sentence ;; M-e tge
     "d" 'org-table-delete-column
+    "f" 'org-table-edit-formulas
 
     ;; from https://www.reddit.com/r/emacs/comments/56oc9c/orgtables_is_there_a_way_to_delete_a_whole_table/
     ;; fist place point in the top left bar (`|')
