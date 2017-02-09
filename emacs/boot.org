@@ -855,27 +855,30 @@ the right."
   (editorconfig-mode 1))
 #+END_SRC
 ** completions
-*** ivy/counsel
+*** ivy
 #+BEGIN_SRC emacs-lisp
-    (use-package ivy
-      :ensure t
-      :init
+  (use-package ivy
+    :ensure t
+    :init
 
-      ;; see https://github.com/abo-abo/swiper/issues/644
-      (setq ivy-ignore-buffers '())
-      (add-to-list 'ivy-ignore-buffers "\\*magit")
-      (add-to-list 'ivy-ignore-buffers "\\*Help\\*")
-      (add-to-list 'ivy-ignore-buffers "\\*Buffer List\\*")
-      (add-to-list 'ivy-ignore-buffers "\\*Compile-Log\\*")
-      (add-to-list 'ivy-ignore-buffers "\\*Flycheck")
-      (add-to-list 'ivy-ignore-buffers "\\*terminal")
+    ;; see https://github.com/abo-abo/swiper/issues/644
+    (setq ivy-ignore-buffers '())
+    (add-to-list 'ivy-ignore-buffers "\\*magit")
+    (add-to-list 'ivy-ignore-buffers "\\*Help\\*")
+    (add-to-list 'ivy-ignore-buffers "\\*Buffer List\\*")
+    (add-to-list 'ivy-ignore-buffers "\\*Compile-Log\\*")
+    (add-to-list 'ivy-ignore-buffers "\\*Flycheck")
+    (add-to-list 'ivy-ignore-buffers "\\*terminal")
 
-      (setq ivy-count-format "(%d/%d) ")
-      (setq ivy-height 15)
-      :config
-      ;; (setq ivy-use-virtual-buffers t)
-      (ivy-mode 1)
-      (use-package counsel :ensure t))
+    (setq ivy-count-format "(%d/%d) ")
+    (setq ivy-height 15)
+
+    (setq ivy-extra-directories nil)
+
+    :config
+    ;; (setq ivy-use-virtual-buffers t)
+    (ivy-mode 1)
+    (use-package counsel :ensure t))
 #+END_SRC
 
 *** company
