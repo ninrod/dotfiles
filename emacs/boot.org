@@ -873,7 +873,7 @@ the right."
     (setq ivy-count-format "(%d/%d) ")
     (setq ivy-height 15)
 
-    (setq ivy-extra-directories nil)
+    (setq ivy-extra-directories '("./"))
 
     :config
     ;; (setq ivy-use-virtual-buffers t)
@@ -1349,6 +1349,8 @@ the right."
 #+BEGIN_SRC emacs-lisp
   (spc-map "g" '(:ignore t :which-key "ma[g]it")
     "gi" 'magit-init
+    "gf" 'magit-find-file
+    "gh" 'magit-log-buffer-file
     "gc" 'magit-clone
     "gl" 'magit-log-buffer-file; commits in master touching current buffer
     "gs" 'ninrod/uarg-magit-status
