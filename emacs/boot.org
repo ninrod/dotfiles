@@ -880,15 +880,18 @@ the right."
     (ivy-mode 1)
 
     (use-package counsel
-      :ensure t)
-
-    (use-package smex
-      :ensure t
-      :config
-      (smex-initialize)))
+      :ensure t))
 
 #+END_SRC
-
+*** smex
+#+BEGIN_SRC emacs-lisp
+  (use-package smex
+        :ensure t
+        :init
+        (setq smex-history-length 50)
+        :config
+        (smex-initialize))
+#+END_SRC
 *** company
 #+BEGIN_SRC emacs-lisp
   (use-package company :ensure t
