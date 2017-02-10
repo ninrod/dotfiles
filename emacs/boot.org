@@ -292,11 +292,21 @@ the right."
     (revert-buffer :ignore-auto :noconfirm))
 #+END_SRC
 ** advices
+*** always return t
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/return-t-advice (old-function &rest arguments)
     "Make the old-function return t in any case."
     (apply old-function arguments)
     t)
+#+END_SRC
+*** please don't kill my precious scratch buffer
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/scratch-bodyguard (buffer-assassin &rest arguments)
+    (let ((buffer-to-kill (buffer-name (current-buffer))))
+      (if (equal buffer-to-kill "*scratch*")
+          (message "DENIED! don't kill my precious *scratch*!!")
+        (apply buffer-assassin arguments))))
+  (advice-add #'kill-this-buffer :around #'ninrod/scratch-bodyguard) ;; make it work in daemon mode
 #+END_SRC
 ** misc
 *** ninrod/origami-toggle-node
