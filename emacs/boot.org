@@ -301,21 +301,12 @@ the right."
 #+END_SRC
 *** please don't kill my precious scratch buffer
 #+BEGIN_SRC emacs-lisp
-  (defun ninrod--protection-func (buffer-assassin-func buffer-to-kill arguments)
-    (if (equal buffer-to-kill "*scratch*")
-        (message "DENIED! Don't kill my precious *scratch*!!")
-      (apply buffer-assassin-func arguments)))
-
-  (defun ninrod/advice-kill-this-buffer (kill-this-buffer-func &rest arguments)
-    (let ((buffer-to-kill (buffer-name (current-buffer))))
-      (ninrod--protection-func kill-this-buffer-func buffer-to-kill arguments)))
-
-  (defun ninrod/advice-kill-buffer (kill-buffer-func &rest arguments)
-    (let ((buffer-to-kill (car arguments)))
-      (ninrod--protection-func kill-buffer-func buffer-to-kill arguments)))
-
-  (advice-add #'kill-this-buffer :around #'ninrod/advice-kill-this-buffer)
-  (advice-add #'kill-buffer      :around #'ninrod/advice-kill-buffer)
+  ;; credits to stefan monier (GNU Emacs mantainer)
+  ;; http://lists.gnu.org/archive/html/help-gnu-emacs/2017-02/msg00074.html
+  (with-current-buffer (get-buffer "*scratch*")
+    (add-hook 'kill-buffer-hook
+              (lambda () (error "DENIED! don't kill my precious *scratch*!!"))
+              nil t)) ;; Append at the end of the hook list? no. Buffer-local? yes.
 #+END_SRC
 ** misc
 *** ninrod/origami-toggle-node
