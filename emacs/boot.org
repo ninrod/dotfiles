@@ -1,7 +1,7 @@
 #+STARTUP: indent
 #+STARTUP: overview
 
-* lisp
+* functions
 ** lisp-intro-tutorial-exercises
 *** CH02. Evaluation
 1. Find a file with which you are working and move towards its middle.
@@ -301,12 +301,21 @@ the right."
 #+END_SRC
 *** please don't kill my precious scratch buffer
 #+BEGIN_SRC emacs-lisp
-  (defun ninrod/scratch-bodyguard (buffer-assassin &rest arguments)
+  (defun ninrod--protection-func (buffer-assassin-func buffer-to-kill arguments)
+    (if (equal buffer-to-kill "*scratch*")
+        (message "DENIED! Don't kill my precious *scratch*!!")
+      (apply buffer-assassin-func arguments)))
+
+  (defun ninrod/advice-kill-this-buffer (kill-this-buffer-func &rest arguments)
     (let ((buffer-to-kill (buffer-name (current-buffer))))
-      (if (equal buffer-to-kill "*scratch*")
-          (message "DENIED! don't kill my precious *scratch*!!")
-        (apply buffer-assassin arguments))))
-  (advice-add #'kill-this-buffer :around #'ninrod/scratch-bodyguard) ;; make it work in daemon mode
+      (ninrod--protection-func kill-this-buffer-func buffer-to-kill arguments)))
+
+  (defun ninrod/advice-kill-buffer (kill-buffer-func &rest arguments)
+    (let ((buffer-to-kill (car arguments)))
+      (ninrod--protection-func kill-buffer-func buffer-to-kill arguments)))
+
+  (advice-add #'kill-this-buffer :around #'ninrod/advice-kill-this-buffer)
+  (advice-add #'kill-buffer      :around #'ninrod/advice-kill-buffer)
 #+END_SRC
 ** misc
 *** ninrod/origami-toggle-node
@@ -511,28 +520,30 @@ the right."
 
 ** misc options
 #+BEGIN_SRC emacs-lisp
-  (fset 'yes-or-no-p 'y-or-n-p)
+    (fset 'yes-or-no-p 'y-or-n-p)
 
-  (setq recentf-max-menu-items 200                  ;MRU configs
-        recentf-max-saved-items 200
-        default-directory "~/code/sources/dotfiles"
-        inhibit-startup-message t
-        display-time-default-load-average nil
-        display-time-day-and-date t
-        save-interprogram-paste-before-kill t       ;Save whatever’s in the clipboard before replacing it with the Emacs’ text.
-        yank-pop-change-selection t                 ;https://github.com/dakrone/eos/blob/master/eos.org
-        confirm-kill-emacs 'y-or-n-p                ;ask before killing emacs
-        echo-keystrokes 0.02)                       ;instantly display current keystrokes in mini buffer
+    (setq initial-scratch-message ";; -*- lexical-binding: t -*-\n;; This buffer is for text that is not saved, and for Lisp evaluation.\n;; To create a file, visit it with \\[find-file] and enter text in its buffer.\n\n")
 
-  (display-time-mode) ;hack: customize display time in modeline.
-  (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1)) ;for emacs compiled with `nox'
-  (save-place-mode 1) ;save last cursor position
-  (savehist-mode 1) ;save minibuffer history
-  (tool-bar-mode -1)
-  (menu-bar-mode -1)
-  (electric-pair-mode 1)
-  (column-number-mode t)
-  ;; (global-subword-mode) ;support for camelcase words
+    (setq recentf-max-menu-items 200                  ;MRU configs
+          recentf-max-saved-items 200
+          default-directory "~/code/sources/dotfiles"
+          inhibit-startup-message t
+          display-time-default-load-average nil
+          display-time-day-and-date t
+          save-interprogram-paste-before-kill t       ;Save whatever’s in the clipboard before replacing it with the Emacs’ text.
+          yank-pop-change-selection t                 ;https://github.com/dakrone/eos/blob/master/eos.org
+          confirm-kill-emacs 'y-or-n-p                ;ask before killing emacs
+          echo-keystrokes 0.02)                       ;instantly display current keystrokes in mini buffer
+
+    (display-time-mode) ;hack: customize display time in modeline.
+    (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1)) ;for emacs compiled with `nox'
+    (save-place-mode 1) ;save last cursor position
+    (savehist-mode 1) ;save minibuffer history
+    (tool-bar-mode -1)
+    (menu-bar-mode -1)
+    (electric-pair-mode 1)
+    (column-number-mode t)
+    ;; (global-subword-mode) ;support for camelcase words
 #+END_SRC
 ** better defaults
 #+BEGIN_SRC emacs-lisp
@@ -1836,6 +1847,7 @@ the right."
   (lisp-comma-map
     "d" 'eval-defun
     "e" 'edebug-defun
+    "b" 'eval-buffer
     )
 #+END_SRC
 ** info
