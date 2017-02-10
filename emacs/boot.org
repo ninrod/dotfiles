@@ -317,6 +317,20 @@ the right."
   (advice-add #'kill-this-buffer :around #'ninrod/advice-kill-this-buffer)
   (advice-add #'kill-buffer      :around #'ninrod/advice-kill-buffer)
 #+END_SRC
+** marks
+#+BEGIN_SRC emacs-lisp
+(defun unpop-to-mark-command ()
+        "Unpop off mark ring. Does nothing if mark ring is empty."
+        (interactive)
+        (when mark-ring
+          (let ((pos (marker-position (car (last mark-ring)))))
+            (if (not (= (point) pos))
+                (goto-char pos)
+              (setq mark-ring (cons (copy-marker (mark-marker)) mark-ring))
+              (set-marker (mark-marker) pos)
+              (setq mark-ring (nbutlast mark-ring))
+              (goto-char (marker-position (car (last mark-ring))))))))
+#+END_SRC
 ** misc
 *** ninrod/origami-toggle-node
 - with help from [[https://www.reddit.com/r/emacs/comments/580v30/tweaking_origamiel_lisp_and_regexes/][reddit]]
@@ -824,6 +838,17 @@ the right."
 #+BEGIN_SRC emacs-lisp
   (use-package kurecolor
     :ensure t)
+#+END_SRC
+*** visible mark
+#+BEGIN_SRC emacs-lisp
+  (use-package visible-mark
+    :ensure t
+    :init
+    (defface visible-mark-active ;; put this before (require 'visible-mark)
+      '((((type tty) (class mono)))
+        (t (:background "magenta"))) "")
+    (setq visible-mark-max 2)
+    (setq visible-mark-faces `(visible-mark-face1 visible-mark-face2)))
 #+END_SRC
 ** expand functionality
 *** restart-emacs
@@ -1479,7 +1504,8 @@ the right."
    "r" 'anzu-query-replace-regexp
    "q" 'evil-record-macro
    "/" 'swiper
-   "," 'pop-global-mark
+   "," 'pop-to-mark-command
+   ";" 'unpop-to-mark-command
 
    ;; directory operations
    "DEL" 'neotree-toggle
