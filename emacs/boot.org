@@ -517,7 +517,21 @@ the right."
 #+BEGIN_SRC emacs-lisp
   ;; (setq server-use-tcp t)
 #+END_SRC
+** garbage collection hacks
+#+BEGIN_SRC emacs-lisp
+  (setq ninrod/default-gc-threshold (* 800 1024))
 
+  (setq gc-cons-threshold ninrod/default-gc-threshold)
+
+  (defun my-minibuffer-setup-hook ()
+    (setq gc-cons-threshold most-positive-fixnum))
+
+  (defun my-minibuffer-exit-hook ()
+    (setq gc-cons-threshold ninrod/default-gc-threshold))
+
+  (add-hook 'minibuffer-setup-hook #'my-minibuffer-setup-hook)
+  (add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook)
+#+END_SRC
 ** misc options
 #+BEGIN_SRC emacs-lisp
     (fset 'yes-or-no-p 'y-or-n-p)
