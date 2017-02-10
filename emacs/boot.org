@@ -291,7 +291,13 @@ the right."
     (interactive)
     (revert-buffer :ignore-auto :noconfirm))
 #+END_SRC
-
+** advices
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/return-t-advice (old-function &rest arguments)
+    "Make the old-function return t in any case."
+    (apply old-function arguments)
+    t)
+#+END_SRC
 ** misc
 *** ninrod/origami-toggle-node
 - with help from [[https://www.reddit.com/r/emacs/comments/580v30/tweaking_origamiel_lisp_and_regexes/][reddit]]
@@ -666,6 +672,7 @@ the right."
     (setq spacemacs-theme-org-height nil)
     (setq spacemacs-theme-comment-bg nil)
     :config
+    (advice-add #'true-color-p :around #'ninrod/return-t-advice) ;; make it work in daemon mode
     (load-theme 'spacemacs-dark t))
 #+END_SRC
 
@@ -681,6 +688,7 @@ the right."
     ;;   (size-indication-mode))
 
     :config
+    (advice-add #'true-color-p :around #'ninrod/return-t-advice) ;; make it work in daemon mode
     (load-theme 'zerodark t))
 #+END_SRC
 
