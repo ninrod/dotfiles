@@ -17,6 +17,6 @@
     :defer 7); fetch latest version of `org-mode'
 
   (setq vc-follow-symlinks "t") ; prevent prompt when loading org file
-  (org-babel-load-file "~/.emacs.d/boot.org")
+  (org-babel-load-file (expand-file-name "boot.org" user-emacs-directory))
 
   (garbage-collect))

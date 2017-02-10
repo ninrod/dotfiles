@@ -570,17 +570,12 @@ the right."
                 indent-tabs-mode nil)
 #+END_SRC
 
-** gnutls tuning
-#+BEGIN_SRC emacs-lisp
-(setq gnutls-min-prime-bits 4096)
-#+END_SRC
-
 ** move custom data out of init.el
 - more info [[http://irreal.org/blog/?p=3765][here]]
 - and [[http://emacsblog.org/2008/12/06/quick-tip-detaching-the-custom-file/][here (M-x all-things-emacs)]]
   #+BEGIN_SRC emacs-lisp
-(setq custom-file "~/.emacs.d/emacs-customizations.el")
-(load custom-file 'noerror)
+    (setq custom-file "~/.emacs.d/emacs-customizations.el")
+    (load custom-file 'noerror)
   #+END_SRC
 
 ** org-mode
@@ -820,11 +815,6 @@ the right."
         (origami-close-all-nodes (current-buffer)))))
 #+END_SRC
 
-*** restclient
-#+BEGIN_SRC emacs-lisp
-(use-package restclient :ensure t)
-#+END_SRC
-
 *** atomic-chrome
 #+BEGIN_SRC emacs-lisp
   (when (eq system-type 'darwin)
@@ -1039,12 +1029,11 @@ the right."
 #+BEGIN_SRC emacs-lisp
   (use-package magit :ensure t
     :config
-      ;;(setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
-      (setq magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
-      (setq magit-repository-directories '("~/code/sources"))
-      (use-package evil-magit :ensure t)
-      (setq magit-completing-read-function 'ivy-completing-read)
-  )
+    ;;(setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
+    (setq magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
+    (setq magit-repository-directories '("~/code/sources"))
+    (use-package evil-magit :ensure t)
+    (setq magit-completing-read-function 'ivy-completing-read))
 #+END_SRC
 
 ** org
@@ -1127,7 +1116,6 @@ the right."
       :init (setq markdown-command "multimarkdown"))
 #+END_SRC
 
-
 *** html: web-mode
 #+BEGIN_SRC emacs-lisp
 (use-package web-mode
@@ -1182,13 +1170,15 @@ the right."
 
 ** mirrors
 *** elpa-mirror
-#+BEGIN_SRC emacs-lisp
-(use-package elpa-mirror :ensure t
-:init (setq elpamr-default-output-directory "~/.emacs.d/thin-elpa-mirror"))
+#+BEGIN_SRC text
+  (use-package elpa-mirror
+    :ensure t
+    :init
+    (setq elpamr-default-output-directory "~/.emacs.d/thin-elpa-mirror"))
 #+END_SRC
 
 *** elpa-clone
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
 (use-package elpa-clone :ensure t)
 #+END_SRC
 ** info
@@ -1202,11 +1192,11 @@ the right."
 #+END_SRC
 ** toys
 *** speed-type
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (use-package speed-type :load-path "lisp/parkouss/speed-type")
 #+END_SRC
 *** keyfreq
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (use-package keyfreq
     :ensure t
     :init
