@@ -1479,6 +1479,7 @@ the right."
    "r" 'anzu-query-replace-regexp
    "q" 'evil-record-macro
    "/" 'swiper
+   "," 'pop-global-mark
 
    ;; directory operations
    "DEL" 'neotree-toggle
@@ -1513,9 +1514,9 @@ the right."
 
    ;; "." 'reserved
    ;; "/" 'reserved
+   ;; "m" 'reserved
 
    "TAB" 'counsel-mark-ring
-   "m" 'pop-global-mark
 
    "o" 'evil-goto-first-line
    "l" 'evil-goto-line
