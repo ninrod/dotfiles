@@ -825,17 +825,6 @@ the right."
   (use-package kurecolor
     :ensure t)
 #+END_SRC
-*** visible mark
-#+BEGIN_SRC emacs-lisp
-  (use-package visible-mark
-    :ensure t
-    :init
-    (defface visible-mark-active ;; put this before (require 'visible-mark)
-      '((((type tty) (class mono)))
-        (t (:background "magenta"))) "")
-    (setq visible-mark-max 2)
-    (setq visible-mark-faces `(visible-mark-face1 visible-mark-face2)))
-#+END_SRC
 ** expand functionality
 *** restart-emacs
 #+BEGIN_SRC emacs-lisp
