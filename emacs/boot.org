@@ -317,20 +317,6 @@ the right."
   (advice-add #'kill-this-buffer :around #'ninrod/advice-kill-this-buffer)
   (advice-add #'kill-buffer      :around #'ninrod/advice-kill-buffer)
 #+END_SRC
-** marks
-#+BEGIN_SRC emacs-lisp
-(defun unpop-to-mark-command ()
-        "Unpop off mark ring. Does nothing if mark ring is empty."
-        (interactive)
-        (when mark-ring
-          (let ((pos (marker-position (car (last mark-ring)))))
-            (if (not (= (point) pos))
-                (goto-char pos)
-              (setq mark-ring (cons (copy-marker (mark-marker)) mark-ring))
-              (set-marker (mark-marker) pos)
-              (setq mark-ring (nbutlast mark-ring))
-              (goto-char (marker-position (car (last mark-ring))))))))
-#+END_SRC
 ** misc
 *** ninrod/origami-toggle-node
 - with help from [[https://www.reddit.com/r/emacs/comments/580v30/tweaking_origamiel_lisp_and_regexes/][reddit]]
@@ -1337,13 +1323,16 @@ the right."
 *** core
 #+BEGIN_SRC emacs-lisp
   (general-create-definer spc-map
-   :states '(normal visual motion)
-   :prefix "SPC")
+                          :states '(normal visual motion)
+                          :prefix "SPC")
 
   (spc-map
    "TAB" 'evil-emacs-state
    "SPC" 'counsel-M-x
-   "RET" 'write-file)
+   "RET" 'write-file
+
+   "," 'pop-global-mark
+   )
 #+END_SRC
 *** (a) align
 #+BEGIN_SRC emacs-lisp
@@ -1504,8 +1493,9 @@ the right."
    "r" 'anzu-query-replace-regexp
    "q" 'evil-record-macro
    "/" 'swiper
-   "," 'pop-to-mark-command
-   ";" 'unpop-to-mark-command
+
+   "," 'evil-jump-backward
+   ";" 'evil-jump-forward
 
    ;; directory operations
    "DEL" 'neotree-toggle
