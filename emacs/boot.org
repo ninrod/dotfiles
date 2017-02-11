@@ -1400,14 +1400,12 @@ the right."
 #+BEGIN_SRC emacs-lisp
   (spc-map "d" '(:ignore t :which-key "describe/help")
     "da" 'apropos
-    "db" 'counsel-descbinds
+    "db" 'emaps-describe-keymap-bindings
     "dc" 'describe-char
     "df" 'counsel-describe-function
     "di" 'info
     "dk" 'describe-key
     "dm" 'describe-mode
-    "dt" 'counsel-describe-face
-    "dv" 'counsel-describe-variable
     )
 #+END_SRC
 *** (e) edit
@@ -1681,37 +1679,22 @@ the right."
 #+END_SRC
 **** fast
 #+BEGIN_SRC emacs-lisp
-    (org-comma-map
-     "" 'nil
+  (org-comma-map
+   "" 'nil
 
-     "s" 'org-sort
-     "r" 'org-refile
-     "w" 'widen
-     "e" 'org-edit-special
+   "s" 'org-sort
+   "r" 'org-refile
+   "w" 'widen
+   "e" 'org-edit-special
 
-     "l" 'org-insert-link
-     "t" 'counsel-org-tag
+   "l" 'org-insert-link
+   "t" 'counsel-org-tag
 
-     "TAB" 'evil-toggle-fold
+   "TAB" 'evil-toggle-fold
 
-     "RET" 'org-open-at-point
-     )
+   "RET" 'org-open-at-point
+   )
 
-    ;; (general-define-key :keymaps 'org-mode-map "C-j" 'org-edit-special)
-    ;; (general-define-key :keymaps 'org-src-mode-map "C-j" 'org-edit-src-exit)
-    (general-define-key :keymaps 'org-src-mode-map :states 'normal "RET" 'org-edit-src-exit)
-
-    ;; (general-define-key :keymaps 'org-src-mode-map :states 'normal "," 'org-edit-special)
-    (general-define-key
-     :keymaps 'org-src-mode-map
-     :states '(normal motion)
-     "," 'org-edit-src-exit
-     "q" 'org-edit-src-abort)
-  (defun my-test-hook ()
-    "test"
-    (message "the local file buffer is %s" buffer-file-name)
-    )
-  (add-hook 'org-src-mode-hook #'my-test-hook)
 #+END_SRC
 **** caps
 ***** C: clock/timer
@@ -1856,6 +1839,13 @@ the right."
    "-" 'org-ctrl-c-minus)
 
   (general-define-key :keymaps 'org-mode-map "C-<tab>" nil)
+
+  ;; finally!
+  (general-define-key
+   :keymaps '(org-src-mode-map emacs-lisp-mode-map)
+   :states '(normal motion)
+   "RET" 'org-edit-src-exit
+   "q" 'org-edit-src-abort)
 #+END_SRC
 ** dired
 *** unbinds
