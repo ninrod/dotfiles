@@ -733,7 +733,7 @@ the right."
 
 *** themes
 **** spacemacs-theme
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package spacemacs-dark-theme :load-path "lisp/ninrod/spacemacs-theme"
     :init
     (setq spacemacs-theme-org-height nil)
@@ -744,7 +744,7 @@ the right."
 #+END_SRC
 
 **** zerodark-theme
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (use-package zerodark-theme :load-path "lisp/ninrod/zerodark-theme"
     :init
     ;; (setq zerodark-use-paddings-in-mode-line nil)
@@ -787,7 +787,7 @@ the right."
 
 *** spaceline
 - to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package spaceline :ensure t
     :config
     (setq powerline-height 30)
@@ -1573,7 +1573,7 @@ the right."
    ;; "TAB" 'reserved
 
    "w" 'widen
-   "b" 'ibuffer
+   "s" 'ibuffer
    "a" 'align-regexp
    )
 #+END_SRC
@@ -1858,7 +1858,7 @@ the right."
   (general-define-key
    :keymaps '(org-src-mode-map emacs-lisp-mode-map)
    :states '(normal motion)
-   "RET" 'org-edit-src-exit
+   "t" 'org-edit-src-exit
    "q" 'org-edit-src-abort)
 #+END_SRC
 ** dired
