@@ -924,6 +924,14 @@ the right."
        (unless (eq ibuffer-sorting-mode 'alphabetic)
          (ibuffer-do-sort-by-alphabetic)))))
 #+END_SRC
+*** disable-mouse
+#+BEGIN_SRC emacs-lisp
+  (use-package disable-mouse
+    :ensure t
+    :diminish global-disable-mouse-mode
+    :config
+    (global-disable-mouse-mode))
+#+END_SRC
 ** completions
 *** ivy
 #+BEGIN_SRC emacs-lisp
@@ -1307,6 +1315,7 @@ the right."
 #+BEGIN_SRC emacs-lisp
   ;; had to put this on because of use package's :defer t
   (diminish 'git-gutter-mode)
+  (diminish 'org-indent-mode)
 
   ;; built-in modes
   (diminish 'auto-revert-mode)

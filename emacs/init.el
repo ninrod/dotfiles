@@ -14,7 +14,6 @@
   (use-package org
     :pin org
     :ensure org-plus-contrib
-    :diminish org-indent-mode
     :defer 7); fetch latest version of `org-mode'
 
   (setq vc-follow-symlinks "t") ; prevent prompt when loading org file
