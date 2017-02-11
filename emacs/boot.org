@@ -526,18 +526,18 @@ the right."
 #+END_SRC
 ** garbage collection hacks
 #+BEGIN_SRC emacs-lisp
-  (setq ninrod/default-gc-threshold (* 800 1024))
+  ;; (setq ninrod/default-gc-threshold (* 800 1024))
 
-  (setq gc-cons-threshold ninrod/default-gc-threshold)
+  ;; (setq gc-cons-threshold ninrod/default-gc-threshold)
 
-  (defun my-minibuffer-setup-hook ()
-    (setq gc-cons-threshold most-positive-fixnum))
+  ;; (defun my-minibuffer-setup-hook ()
+  ;;   (setq gc-cons-threshold most-positive-fixnum))
 
-  (defun my-minibuffer-exit-hook ()
-    (setq gc-cons-threshold ninrod/default-gc-threshold))
+  ;; (defun my-minibuffer-exit-hook ()
+  ;;   (setq gc-cons-threshold ninrod/default-gc-threshold))
 
-  (add-hook 'minibuffer-setup-hook #'my-minibuffer-setup-hook)
-  (add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook)
+  ;; (add-hook 'minibuffer-setup-hook #'my-minibuffer-setup-hook)
+  ;; (add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook)
 #+END_SRC
 ** misc options
 #+BEGIN_SRC emacs-lisp
@@ -1368,11 +1368,18 @@ the right."
   (general-create-definer spc-map
                           :states '(normal visual motion)
                           :prefix "SPC")
+  (defun ninrod/mkdir ()
+    "Create directory."
+    (interactive)
+    (if (equal major-mode 'dired-mode)
+        (call-interactively 'dired-create-directory)
+      (call-interactively 'make-directory)))
 
   (spc-map
    "TAB" 'evil-emacs-state
    "SPC" 'counsel-M-x
    "RET" 'write-file
+   "DEL" 'ninrod/mkdir
 
    "," 'pop-global-mark
    )
@@ -1405,6 +1412,7 @@ the right."
     "df" 'counsel-describe-function
     "di" 'info
     "dk" 'describe-key
+    "dv" 'counsel-describe-variable
     "dm" 'describe-mode
     )
 #+END_SRC
