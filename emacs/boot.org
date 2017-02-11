@@ -340,8 +340,11 @@ the right."
   (use-package evil
     :load-path "lisp/ninrod/evil"
     :init
-    (use-package goto-chg :ensure t)
-    (use-package undo-tree :ensure t)
+    (use-package goto-chg
+      :ensure t)
+    (use-package undo-tree
+      :diminish ""
+      :ensure t)
     :config
     (setcdr evil-insert-state-map nil) ;; emacsify insert state: http://stackoverflow.com/a/26573722/4921402
     (define-key evil-insert-state-map [escape] 'evil-normal-state);; but [escape] should switch back to normal state, obviously.
@@ -463,6 +466,7 @@ the right."
 *** evil-escape
 #+BEGIN_SRC emacs-lisp
   (use-package evil-escape :ensure t
+    :diminish ""
     :config
     (evil-escape-mode))
 #+END_SRC
@@ -822,6 +826,7 @@ the right."
     :init
     (setq sp-show-pair-delay 0.1
           sp-show-pair-from-inside t)
+    :diminish ""
     :config
     (show-smartparens-global-mode +1))
 #+END_SRC
@@ -919,14 +924,6 @@ the right."
        (unless (eq ibuffer-sorting-mode 'alphabetic)
          (ibuffer-do-sort-by-alphabetic)))))
 #+END_SRC
-*** disable-mouse
-#+BEGIN_SRC emacs-lisp
-  (use-package disable-mouse
-    :ensure t
-    :diminish global-disable-mouse-mode
-    :config
-    (global-disable-mouse-mode))
-#+END_SRC
 ** completions
 *** ivy
 #+BEGIN_SRC emacs-lisp
@@ -948,6 +945,7 @@ the right."
 
     (setq ivy-extra-directories '("./"))
 
+    :diminish ""
     :config
     ;; (setq ivy-use-virtual-buffers t)
     (ivy-mode 1)
@@ -969,10 +967,9 @@ the right."
 #+BEGIN_SRC emacs-lisp
   (use-package company :ensure t
     :init
-
     ;; http://emacs.stackexchange.com/a/10838/12585
     (setq company-dabbrev-downcase nil)
-
+    :diminish ""
     :config
     (add-hook 'after-init-hook 'global-company-mode)
     (define-key company-mode-map (kbd "C-SPC") 'company-complete))
@@ -1098,13 +1095,11 @@ the right."
 ** git
 *** git-gutter-fringe
 #+BEGIN_SRC emacs-lisp
-  (when (display-graphic-p)
-    (message "using git-gutter-fringe")
-    (use-package git-gutter-fringe
-      :init
-      (global-git-gutter-mode t)
-      :defer t
-      :ensure t))
+  (use-package git-gutter-fringe
+    :init
+    (global-git-gutter-mode t)
+    :defer t
+    :ensure t)
 #+END_SRC
 
 *** magit
@@ -1310,17 +1305,12 @@ the right."
 
 ** diminishes
 #+BEGIN_SRC emacs-lisp
-  (diminish 'flycheck-mode)
-  (diminish 'company-mode)
-  (diminish 'ivy-mode)
-  (diminish 'undo-tree-mode)
-  (diminish 'auto-revert-mode)
-  (diminish 'org-indent-mode)
-  (diminish 'smartparens-mode)
+  ;; had to put this on because of use package's :defer t
   (diminish 'git-gutter-mode)
-  (diminish 'evil-escape-mode)
+
+  ;; built-in modes
+  (diminish 'auto-revert-mode)
   (diminish 'subword-mode)
-  (diminish 'smart-tab-mode)
   (diminish 'flyspell-mode "FlyS")
 #+END_SRC
 
