@@ -291,6 +291,17 @@ the right."
     (interactive)
     (revert-buffer :ignore-auto :noconfirm))
 #+END_SRC
+** file/dir commands
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/mkdir ()
+    "Create directory."
+    (interactive)
+    (if (equal major-mode 'dired-mode)
+        (call-interactively 'dired-create-directory)
+      (if (equal major-mode 'neotree-mode)
+          (call-interactively 'neotree-create-node)
+        (call-interactively 'make-directory))))
+#+END_SRC
 ** advices
 *** always return t
 #+BEGIN_SRC emacs-lisp
@@ -1109,7 +1120,8 @@ the right."
     (setq neo-create-file-auto-open t
           neo-auto-indent-point nil
           neo-mode-line-type 'none
-          neo-window-fixed-size nil ; or neo-window-width 50
+          neo-window-fixed-size nil
+          neo-window-width 50
           neo-show-updir-line nil
           neo-smart-open t
           neo-show-hidden-files t
@@ -1368,13 +1380,6 @@ the right."
   (general-create-definer spc-map
                           :states '(normal visual motion)
                           :prefix "SPC")
-  (defun ninrod/mkdir ()
-    "Create directory."
-    (interactive)
-    (if (equal major-mode 'dired-mode)
-        (call-interactively 'dired-create-directory)
-      (call-interactively 'make-directory)))
-
   (spc-map
    "TAB" 'evil-emacs-state
    "SPC" 'counsel-M-x
@@ -1567,6 +1572,7 @@ the right."
    "" nil
    ;; "TAB" 'reserved
 
+   "w" 'widen
    "b" 'ibuffer
    "a" 'align-regexp
    )
@@ -1689,10 +1695,10 @@ the right."
 #+BEGIN_SRC emacs-lisp
   (org-comma-map
    "" 'nil
+   ;; "w" 'reserved
 
    "s" 'org-sort
    "r" 'org-refile
-   "w" 'widen
    "e" 'org-edit-special
 
    "l" 'org-insert-link
@@ -1933,6 +1939,64 @@ the right."
     (ninrod/dired--unbinds)
     (evil-make-overriding-map dired-mode-map 'normal t); use the standard Dired bindings as a base
     (ninrod/dired--binds))
+#+END_SRC
+** neotree
+#+BEGIN_SRC emacs-lisp
+  (require 'neotree)
+  (require 'evil)
+  (require 'dired)
+
+  (define-minor-mode neotree-evil
+    "Use NERDTree bindings on neotree."
+    :lighter " NT"
+    :keymap
+    (progn
+      (general-create-definer
+       ninrod--neotree-map
+       :keymaps 'neotree-mode-map)
+
+      (ninrod--neotree-map
+       "s"      nil
+       "d"      nil
+       "n"      nil
+       "-"      nil
+       "N"      nil
+       "<SPC>"  nil)
+
+      (evil-make-overriding-map neotree-mode-map 'normal t)
+
+      (ninrod--neotree-map
+       :states  'normal
+       ;; "c" 'reserved (generally, confirmation)
+
+       ;; crud ops
+       "DEL" 'ninrod/mkdir
+       "d" 'neotree-delete-node
+       "y" 'neotree-copy-node
+       "r" 'neotree-rename-node
+
+       ;; info retrieval
+       "p" 'ninrod/neotree-copy-path
+       "gr" 'neotree-refresh
+
+       ;; navigation
+       "u" 'neotree-select-up-node
+       "." 'neotree-change-root
+       "zj" 'neotree-select-next-sibling-node
+       "zk" 'neotree-select-previous-sibling-node
+       "gg" 'evil-goto-first-line
+       "go" 'evil-goto-first-line
+       "gl" 'evil-goto-line
+
+       ;; file selection
+       "x" 'neotree-enter-horizontal-split
+       "RET" 'neotree-enter
+
+       ;;exiting
+       "q" 'neotree-toggle
+       )
+
+      neotree-mode-map))
 #+END_SRC
 ** lisp
 *** definers
@@ -2245,50 +2309,3 @@ the right."
    )
 #+END_SRC
 
-** neotree
-#+BEGIN_SRC emacs-lisp
-  (require 'neotree)
-  (require 'evil)
-  (require 'dired)
-
-  (define-minor-mode neotree-evil
-    "Use NERDTree bindings on neotree."
-    :lighter " NT"
-    :keymap
-    (progn
-      (general-create-definer
-       ninrod--neotree-map
-       :keymaps 'neotree-mode-map)
-
-      (ninrod--neotree-map
-       "s"      nil
-       "d"      nil
-       "n"      nil
-       "-"      nil
-       "N"      nil
-       "<SPC>"  nil)
-
-      (evil-make-overriding-map neotree-mode-map 'normal t)
-
-      (ninrod--neotree-map
-       :states  'normal
-       "d" 'neotree-change-root
-       "p" 'ninrod/neotree-copy-path
-       "u" 'neotree-select-up-node
-       "zj" 'neotree-select-next-sibling-node
-       "zk" 'neotree-select-previous-sibling-node
-       "q" 'neotree-toggle
-       "i" 'neotree-enter-horizontal-split
-       "c" 'neotree-create-node
-       "y" 'neotree-copy-node
-       "x" 'neotree-delete-node
-       "r" 'neotree-rename-node
-       "gg" 'evil-goto-first-line
-       "go" 'evil-goto-first-line
-       "gl" 'evil-goto-line
-       "gr" 'neotree-refresh
-       "DEL" 'neotree-select-up-node
-       "RET" 'neotree-enter)
-
-      neotree-mode-map))
-#+END_SRC
