@@ -308,6 +308,15 @@ the right."
               (lambda () (error "DENIED! don't kill my precious *scratch*!!"))
               nil t)) ;; Append at the end of the hook list? no. Buffer-local? yes.
 #+END_SRC
+*** daemon-p evil-quit
+- [[https://github.com/ninrod/dotfiles/issues/40][ninrod/dotfiles#40]]
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/advice-evil-quit (dumb-evil-quit &rest arguments)
+    "Ask for confirmation before quitting the last window."
+    (message "it worked bitch!")
+    (apply dumb-evil-quit arguments))
+  (advice-add #'evil-quit :around #'ninrod/advice-evil-quit)
+#+END_SRC
 ** misc
 *** ninrod/origami-toggle-node
 - with help from [[https://www.reddit.com/r/emacs/comments/580v30/tweaking_origamiel_lisp_and_regexes/][reddit]]
