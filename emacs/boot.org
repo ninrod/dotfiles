@@ -945,6 +945,11 @@ the right."
     (define-key evil-motion-state-map [mouse-1] 'ignore);; also avoid any '<mouse-1> is undefined' when setting to 'undefined
     )
 #+END_SRC
+*** emaps
+#+BEGIN_SRC emacs-lisp
+  (use-package emaps
+    :ensure t)
+#+END_SRC
 ** completions
 *** ivy
 #+BEGIN_SRC emacs-lisp
@@ -1666,23 +1671,47 @@ the right."
    :keymaps 'org-mode-map
    :states '(normal visual)
    :prefix ",")
+
+(general-create-definer org-src-comma-map
+   :keymaps 'org-src-mode-map
+   :states 'motion
+   :prefix ","
+   "" nil
+)
 #+END_SRC
 **** fast
 #+BEGIN_SRC emacs-lisp
-  (org-comma-map
-   "" 'nil
+    (org-comma-map
+     "" 'nil
 
-   "s" 'org-sort
-   "r" 'org-refile
-   "w" 'widen
+     "s" 'org-sort
+     "r" 'org-refile
+     "w" 'widen
+     "e" 'org-edit-special
 
-   "l" 'org-insert-link
-   "t" 'counsel-org-tag
+     "l" 'org-insert-link
+     "t" 'counsel-org-tag
 
-   "TAB" 'evil-toggle-fold
+     "TAB" 'evil-toggle-fold
 
-   "RET" 'org-open-at-point
-   )
+     "RET" 'org-open-at-point
+     )
+
+    ;; (general-define-key :keymaps 'org-mode-map "C-j" 'org-edit-special)
+    ;; (general-define-key :keymaps 'org-src-mode-map "C-j" 'org-edit-src-exit)
+    (general-define-key :keymaps 'org-src-mode-map :states 'normal "RET" 'org-edit-src-exit)
+
+    ;; (general-define-key :keymaps 'org-src-mode-map :states 'normal "," 'org-edit-special)
+    (general-define-key
+     :keymaps 'org-src-mode-map
+     :states '(normal motion)
+     "," 'org-edit-src-exit
+     "q" 'org-edit-src-abort)
+  (defun my-test-hook ()
+    "test"
+    (message "the local file buffer is %s" buffer-file-name)
+    )
+  (add-hook 'org-src-mode-hook #'my-test-hook)
 #+END_SRC
 **** caps
 ***** C: clock/timer
@@ -1826,9 +1855,6 @@ the right."
    :states 'visual
    "-" 'org-ctrl-c-minus)
 
-  (general-define-key :keymaps 'org-mode-map "C-j" 'org-edit-special)
-  (general-define-key :keymaps 'org-src-mode-map "C-j" 'org-edit-src-exit)
-  (general-define-key :keymaps 'org-src-mode-map :states 'normal "RET" 'org-edit-src-exit)
   (general-define-key :keymaps 'org-mode-map "C-<tab>" nil)
 #+END_SRC
 ** dired
