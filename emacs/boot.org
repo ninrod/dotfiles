@@ -930,7 +930,11 @@ the right."
     :ensure t
     :diminish global-disable-mouse-mode
     :config
-    (global-disable-mouse-mode))
+    (global-disable-mouse-mode)
+
+    (define-key evil-motion-state-map [down-mouse-1] 'ignore);; don't jump the cursor around in the window on clicking
+    (define-key evil-motion-state-map [mouse-1] 'ignore);; also avoid any '<mouse-1> is undefined' when setting to 'undefined
+    )
 #+END_SRC
 ** completions
 *** ivy
