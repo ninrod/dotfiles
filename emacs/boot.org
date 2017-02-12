@@ -1403,11 +1403,9 @@ the right."
   (spc-map "i" '(:ignore t :which-key "ivy")
     "ia" 'counsel-ag
     "ib" 'counsel-descbinds
-    "if" 'counsel-describe-function
-    "il" 'ivy-pop-view  ; load
-    "is" 'ivy-push-view ; save
-    "it" 'counsel-describe-face
-    "iv" 'counsel-describe-variable
+    "io" 'ivy-pop-view  ; load
+    "iu" 'ivy-push-view ; save
+    "if" 'counsel-describe-face
   )
 #+END_SRC
 *** (g) ma[g]it
