@@ -615,9 +615,10 @@ the right."
 #+BEGIN_SRC emacs-lisp
   (when (display-graphic-p)
     (when (eq system-type 'darwin)
+
         ;; start maximized
+        (set-frame-parameter nil 'fullscreen 'fullboth)
         ;; (toggle-frame-maximized)
-        ;; (set-frame-parameter nil 'fullscreen 'fullboth)
 
         ;; osx does not lose screen real state with menu bar mode on
         (menu-bar-mode 1)))
@@ -746,7 +747,7 @@ the right."
 #+END_SRC
 *** themes
 **** spacemacs-theme
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package spacemacs-dark-theme :load-path "lisp/ninrod/spacemacs-theme"
     :init
     (setq spacemacs-theme-org-height nil)
@@ -782,7 +783,7 @@ the right."
     (darktooth-modeline-three))
 #+END_SRC
 **** leuven
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (use-package leuven-theme :load-path "lisp/ninrod/emacs-leuven-theme"
     :init
     (setq leuven-scale-outline-headlines nil)
