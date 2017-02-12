@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if ps aux | ag 'macs.*\-\-old\-daemon' > /dev/null; then
+if emacsclient.sh -e "(daemonp)" > /dev/null; then
   echo "emacs daemon is already up, nothing to do."
   exit 0
 fi
