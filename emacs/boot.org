@@ -709,6 +709,10 @@ the right."
   ;;   (evil-define-key 'normal ibuffer-mode-map "k" 'ibuffer-backward-line)
   ;;   (evil-define-key 'normal ibuffer-mode-map "J" 'ibuffer-jump-to-buffer))
 #+END_SRC
+** dired
+#+BEGIN_SRC emacs-lisp
+(setq dired-omit-files "^\\.?#\\|^\\.[^.].*")
+#+END_SRC
 ** show trailing whitespaces
 #+BEGIN_SRC emacs-lisp
 (require 'whitespace) 
@@ -850,12 +854,33 @@ the right."
     :config
     (show-smartparens-global-mode +1))
 #+END_SRC
-*** kurecolor
+*** Org Bullets
 #+BEGIN_SRC emacs-lisp
-  (use-package kurecolor
+  (use-package org-bullets
+    :ensure t
+    :init
+
+    ;; org-bullets-bullet-list
+    ;; default: "◉ ○ ✸ ✿"
+    ;; large: ♥ ● ◇ ✚ ✜ ☯ ◆ ♠ ♣ ♦ ☢ ❀ ◆ ◖ ▶
+    ;; Small: ► • ★ ▸
+    (setq org-bullets-bullet-list '("•"))
+
+    ;; others: ▼, ↴, ⬎, ⤷,…, and ⋱.
+    ;; (setq org-ellipsis "⤵")
+    (setq org-ellipsis "…")
+
+    :config
+    (add-hook 'org-mode-hook #'org-bullets-mode))
+#+END_SRC
+
+*** info+
+#+BEGIN_SRC emacs-lisp
+  (use-package info+
     :ensure t)
 #+END_SRC
-** expand functionality
+
+** core
 *** restart-emacs
 #+BEGIN_SRC emacs-lisp
   (use-package restart-emacs :ensure t)
@@ -891,27 +916,6 @@ the right."
         (origami-close-all-nodes (current-buffer)))))
 #+END_SRC
 
-*** atomic-chrome
-#+BEGIN_SRC emacs-lisp
-  (when (eq system-type 'darwin)
-    (use-package atomic-chrome :ensure t
-      :init
-      (atomic-chrome-start-server)))
-#+END_SRC
-
-*** vidff
-#+BEGIN_SRC emacs-lisp
-  (when (display-graphic-p)
-    (use-package vdiff :ensure t
-      :config
-      (evil-define-key 'normal vdiff-mode-map "," vdiff-mode-prefix-map)))
-#+END_SRC
-*** nhxel-mode
-#+BEGIN_SRC emacs-lisp
-  (use-package nhexl-mode
-    :ensure t
-    :pin gnu)
-#+END_SRC
 *** editorconfig
 #+BEGIN_SRC emacs-lisp
 (use-package editorconfig
@@ -921,7 +925,7 @@ the right."
   (editorconfig-mode 1))
 #+END_SRC
 *** ibuffer-vc
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package ibuffer-vc
     :ensure t
     :init
@@ -931,18 +935,6 @@ the right."
                 (ibuffer-vc-set-filter-groups-by-vc-root)
                 (unless (eq ibuffer-sorting-mode 'alphabetic)
                   (ibuffer-do-sort-by-alphabetic)))))
-#+END_SRC
-*** ibuffer-projectile
-#+BEGIN_SRC emacs-lisp
-  (use-package ibuffer-projectile
-    :ensure t
-    :config
-    (add-hook
-     'ibuffer-hook
-     (lambda ()
-       (ibuffer-projectile-set-filter-groups)
-       (unless (eq ibuffer-sorting-mode 'alphabetic)
-         (ibuffer-do-sort-by-alphabetic)))))
 #+END_SRC
 *** disable-mouse
 #+BEGIN_SRC emacs-lisp
@@ -956,10 +948,170 @@ the right."
     (define-key evil-motion-state-map [mouse-1] 'ignore);; also avoid any '<mouse-1> is undefined' when setting to 'undefined
     )
 #+END_SRC
-*** emaps
+*** atomic-chrome
 #+BEGIN_SRC emacs-lisp
-  (use-package emaps
+  (when (eq system-type 'darwin)
+    (use-package atomic-chrome :ensure t
+      :init
+      (atomic-chrome-start-server)))
+#+END_SRC
+
+*** git-gutter-fringe
+#+BEGIN_SRC emacs-lisp
+  (use-package git-gutter-fringe
+    :init
+    (global-git-gutter-mode t)
+    :defer t
     :ensure t)
+#+END_SRC
+*** magit
+- for more info about magit-display-buffer-function, see [[http://stackoverflow.com/q/39933868/4921402][here]].
+#+BEGIN_SRC emacs-lisp
+  (use-package magit :ensure t
+    :config
+    ;;(setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
+    (setq magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
+    (setq magit-repository-directories '("~/code/sources"))
+    (use-package evil-magit :ensure t)
+    (setq magit-completing-read-function 'ivy-completing-read))
+#+END_SRC
+
+*** projectile
+- the projectile-switch-project-action hack was lifted from [[projectile-switch-project-action][here]].
+#+BEGIN_SRC emacs-lisp
+  (use-package projectile :ensure t
+    :diminish projectile-mode
+    :init
+    ;; (add-hook 'after-init-hook 'projectile-mode)
+    (use-package counsel-projectile :ensure t)
+
+    ;; use ivy
+    (setq projectile-completion-system 'ivy)
+
+    ;; make projectile usable for every directory
+    (setq projectile-require-project-root nil)
+
+    ;; cd into dir i want, including git-root
+    ;; (defun cd-dwim ()
+    ;;     (cd (projectile-project-root)))
+    ;; (setq projectile-switch-project-action 'cd-dwim)
+
+    :config
+    (projectile-global-mode))
+#+END_SRC
+
+*** dired-sort
+#+BEGIN_SRC emacs-lisp
+  (use-package dired-sort
+    :ensure t)
+#+END_SRC
+*** neotree
+#+BEGIN_SRC emacs-lisp
+  (use-package neotree :ensure t
+    :init
+    (setq neo-create-file-auto-open t
+          neo-auto-indent-point nil
+          neo-mode-line-type 'none
+          neo-window-fixed-size nil
+          neo-window-width 50
+          neo-show-updir-line nil
+          neo-smart-open t
+          neo-show-hidden-files t
+          neo-theme (if (display-graphic-p) 'icons 'nerd) ; fallback
+          ;; neo-theme 'nerd ; fallback
+          neo-banner-message nil))
+#+END_SRC
+
+** filetypes
+*** md: markdown
+#+BEGIN_SRC emacs-lisp
+  (use-package markdown-mode
+    :ensure t
+    :commands (markdown-mode gfm-mode)
+    :mode (("README\\.md\\'" . gfm-mode)
+           ("\\.md\\'" . markdown-mode)
+           ("\\.markdown\\'" . markdown-mode))
+    :init (setq markdown-command "multimarkdown"))
+#+END_SRC
+
+*** html: web-mode
+#+BEGIN_SRC emacs-lisp
+  (use-package web-mode
+    :ensure t
+    :init
+    (setq web-mode-enable-current-element-highlight t)
+    :config
+    (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+
+    (defun my-web-mode-hook ()
+      "Hooks for Web mode."
+
+      ;; config auto closing: http://stackoverflow.com/a/23407052/4921402
+      (setq web-mode-tag-auto-close-style 2)
+      (setq web-mode-auto-close-style 2)
+      (setq web-mode-enable-auto-closing t)
+
+      (setq web-mode-markup-indent-offset 2)
+      (setq web-mode-css-indent-offset    2)
+      (setq web-mode-code-indent-offset   2))
+    (add-hook 'web-mode-hook 'my-web-mode-hook))
+#+END_SRC
+
+*** css/less:
+#+BEGIN_SRC emacs-lisp
+  (use-package less-css-mode
+    :ensure t)
+#+END_SRC
+
+*** js: js2-mode
+#+BEGIN_SRC emacs-lisp
+  (use-package js2-mode
+    :ensure t
+    :config
+    (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+    (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2))))
+#+END_SRC
+
+*** json: json-mode, json-reformat
+#+BEGIN_SRC emacs-lisp
+  (use-package json-reformat
+    :ensure t
+    :config
+    (setq json-reformat:indent-width 2))
+
+  (use-package json-mode :ensure t)
+#+END_SRC
+
+*** viml
+#+BEGIN_SRC emacs-lisp
+  (use-package vimrc-mode
+    :ensure t)
+#+END_SRC
+
+*** gitconfig
+#+BEGIN_SRC emacs-lisp
+(use-package gitconfig-mode :ensure t)
+(use-package gitignore-mode :ensure t)
+(use-package gitattributes-mode :ensure t)
+#+END_SRC
+*** Dockerfile
+#+BEGIN_SRC emacs-lisp
+(use-package dockerfile-mode :ensure t
+  :config (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
+#+END_SRC
+*** yaml
+#+BEGIN_SRC emacs-lisp
+  (use-package yaml-mode
+    :ensure t
+    :init
+    (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 #+END_SRC
 ** completions
 *** ivy
@@ -1000,6 +1152,13 @@ the right."
         :config
         (smex-initialize))
 #+END_SRC
+*** yasnippet
+#+BEGIN_SRC emacs-lisp
+    (use-package yasnippet
+      :ensure t
+      :config (yas-global-mode 1))
+#+END_SRC
+
 *** company
 #+BEGIN_SRC emacs-lisp
   (use-package company :ensure t
@@ -1010,13 +1169,6 @@ the right."
     :config
     (add-hook 'after-init-hook 'global-company-mode)
     (define-key company-mode-map (kbd "C-SPC") 'company-complete))
-#+END_SRC
-
-*** yasnippet
-#+BEGIN_SRC emacs-lisp
-    (use-package yasnippet
-      :ensure t
-      :config (yas-global-mode 1))
 #+END_SRC
 
 *** flycheck
@@ -1061,122 +1213,31 @@ the right."
     :config
     (general-evil-setup))
 #+END_SRC
-** file browsing
-*** projectile
-- the projectile-switch-project-action hack was lifted from [[projectile-switch-project-action][here]].
-#+BEGIN_SRC emacs-lisp
-  (use-package projectile :ensure t
-    :diminish projectile-mode
-    :init
-    ;; (add-hook 'after-init-hook 'projectile-mode)
-    (use-package counsel-projectile :ensure t)
-
-    ;; use ivy
-    (setq projectile-completion-system 'ivy)
-
-    ;; make projectile usable for every directory
-    (setq projectile-require-project-root nil)
-
-    ;; cd into dir i want, including git-root
-    ;; (defun cd-dwim ()
-    ;;     (cd (projectile-project-root)))
-    ;; (setq projectile-switch-project-action 'cd-dwim)
-
-    :config
-    (projectile-global-mode))
-#+END_SRC
-
-*** dired+
-#+BEGIN_SRC emacs-lisp
-  (use-package dired+ :ensure t
-    :init
-    (setq
-     diredp-hide-details-initially-flag nil
-     dired-omit-files "^\\.?#\\|^\\.[^.].*"))
-#+END_SRC
-
-*** dired-k
-#+BEGIN_SRC emacs-lisp
-  (use-package dired-k :ensure t
-    :init
-      (setq dired-k-human-readable t)
-      (setq dired-k-style 'git)
-    :config
-    (add-hook 'dired-initial-position-hook 'dired-k))
-
-#+END_SRC
-*** dired-sort
-#+BEGIN_SRC emacs-lisp
-(use-package dired-sort :ensure t)
-#+END_SRC
-*** dired-detais
-#+BEGIN_SRC emacs-lisp
-(use-package dired-details :ensure t)
-#+END_SRC
-*** neotree
-#+BEGIN_SRC emacs-lisp
-  (use-package neotree :ensure t
-    :init
-    (setq neo-create-file-auto-open t
-          neo-auto-indent-point nil
-          neo-mode-line-type 'none
-          neo-window-fixed-size nil
-          neo-window-width 50
-          neo-show-updir-line nil
-          neo-smart-open t
-          neo-show-hidden-files t
-          neo-theme (if (display-graphic-p) 'icons 'nerd) ; fallback
-          ;; neo-theme 'nerd ; fallback
-          neo-banner-message nil))
-#+END_SRC
-
-** git
-*** git-gutter-fringe
-#+BEGIN_SRC emacs-lisp
-  (use-package git-gutter-fringe
-    :init
-    (global-git-gutter-mode t)
-    :defer t
+** disabled
+*** emaps
+#+BEGIN_SRC text
+  (use-package emaps
     :ensure t)
 #+END_SRC
 
-*** magit
-- for more info about magit-display-buffer-function, see [[http://stackoverflow.com/q/39933868/4921402][here]].
-#+BEGIN_SRC emacs-lisp
-  (use-package magit :ensure t
-    :config
-    ;;(setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
-    (setq magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
-    (setq magit-repository-directories '("~/code/sources"))
-    (use-package evil-magit :ensure t)
-    (setq magit-completing-read-function 'ivy-completing-read))
+*** kurecolor
+#+BEGIN_SRC text
+  (use-package kurecolor
+    :ensure t)
 #+END_SRC
 
-** org
-*** Org Bullets
-#+BEGIN_SRC emacs-lisp
-    (use-package org-bullets
-      :ensure t
-      :init
-
-      ;; org-bullets-bullet-list
-      ;; default: "◉ ○ ✸ ✿"
-      ;; large: ♥ ● ◇ ✚ ✜ ☯ ◆ ♠ ♣ ♦ ☢ ❀ ◆ ◖ ▶
-      ;; Small: ► • ★ ▸
-      (setq org-bullets-bullet-list '("•"))
-
-      ;; others: ▼, ↴, ⬎, ⤷,…, and ⋱.
-      ;; (setq org-ellipsis "⤵")
-      (setq org-ellipsis "…")
-
-      :config
-      (add-hook 'org-mode-hook 
-                (lambda () 
-                  (org-bullets-mode 1))))
+*** ob-http
+#+BEGIN_SRC text
+(use-package ob-http :ensure t
+:config
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . t)
+   (http . t))))
 #+END_SRC
 
 *** Reveal.js
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (use-package ox-reveal
   :ensure t)
 
@@ -1187,104 +1248,6 @@ the right."
   :ensure t)
 #+END_SRC
 
-*** ob-http
-#+BEGIN_SRC emacs-lisp
-(use-package ob-http :ensure t
-:config
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((emacs-lisp . t)
-   (http . t))))
-#+END_SRC
-
-** filetypes
-*** Dockerfile
-#+BEGIN_SRC emacs-lisp
-(use-package dockerfile-mode :ensure t
-  :config (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
-#+END_SRC
-*** yaml
-#+BEGIN_SRC emacs-lisp
-  (use-package yaml-mode
-    :ensure t
-    :init
-    (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
-#+END_SRC
-*** gitconfig
-#+BEGIN_SRC emacs-lisp
-(use-package gitconfig-mode :ensure t)
-(use-package gitignore-mode :ensure t)
-(use-package gitattributes-mode :ensure t)
-#+END_SRC
-** languages
-*** viml
-#+BEGIN_SRC emacs-lisp
-(use-package vimrc-mode :ensure t)
-#+END_SRC
-
-*** md: markdown
-#+BEGIN_SRC emacs-lisp
-(use-package markdown-mode :ensure t
-      :commands (markdown-mode gfm-mode)
-      :mode (("README\\.md\\'" . gfm-mode)
-             ("\\.md\\'" . markdown-mode)
-             ("\\.markdown\\'" . markdown-mode))
-      :init (setq markdown-command "multimarkdown"))
-#+END_SRC
-
-*** html: web-mode
-#+BEGIN_SRC emacs-lisp
-(use-package web-mode
-  :ensure t
-  :init
-  (setq web-mode-enable-current-element-highlight t)
-  :config
-      (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-      (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-      (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-      (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
-      (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-      (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-      (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-      (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-
-      (defun my-web-mode-hook ()
-        "Hooks for Web mode."
-
-        ;; config auto closing: http://stackoverflow.com/a/23407052/4921402
-        (setq web-mode-tag-auto-close-style 2)
-        (setq web-mode-auto-close-style 2)
-        (setq web-mode-enable-auto-closing t)
-
-        (setq web-mode-markup-indent-offset 2)
-        (setq web-mode-css-indent-offset    2)
-        (setq web-mode-code-indent-offset   2))
-      (add-hook 'web-mode-hook 'my-web-mode-hook))
-#+END_SRC
-
-*** css/less:
-#+BEGIN_SRC emacs-lisp
-  (use-package less-css-mode :ensure t)
-#+END_SRC
-
-*** js: js2-mode
-#+BEGIN_SRC emacs-lisp
-(use-package js2-mode :ensure t
-  :config
-    (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-    (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2))))
-#+END_SRC
-
-*** json: json-mode, json-reformat
-#+BEGIN_SRC emacs-lisp
-  (use-package json-reformat :ensure t
-    :config
-    (setq json-reformat:indent-width 2))
-
-  (use-package json-mode :ensure t)
-#+END_SRC
-
-** mirrors
 *** elpa-mirror
 #+BEGIN_SRC text
   (use-package elpa-mirror
@@ -1297,20 +1260,13 @@ the right."
 #+BEGIN_SRC text
 (use-package elpa-clone :ensure t)
 #+END_SRC
-** info
-*** info+
-#+BEGIN_SRC emacs-lisp
-(use-package info+ :ensure t)
-#+END_SRC
+
 *** sicp
-#+BEGIN_SRC emacs-lisp
-(use-package sicp :ensure t)
-#+END_SRC
-** toys
-*** speed-type
 #+BEGIN_SRC text
-  (use-package speed-type :load-path "lisp/parkouss/speed-type")
+  (use-package sicp
+    :ensure t)
 #+END_SRC
+
 *** keyfreq
 #+BEGIN_SRC text
   (use-package keyfreq
@@ -1324,6 +1280,12 @@ the right."
     (keyfreq-mode 1)
     (keyfreq-autosave-mode 1))
 #+END_SRC
+
+*** speed-type
+#+BEGIN_SRC text
+  (use-package speed-type :load-path "lisp/parkouss/speed-type")
+#+END_SRC
+
 * fixes
 ** yasnippet hijacks TAB key in term mode
 #+BEGIN_SRC emacs-lisp
