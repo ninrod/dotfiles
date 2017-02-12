@@ -16,6 +16,7 @@ ningrab ninrod/spacemacs-theme
 ningrab ninrod/zerodark-theme
 ningrab ninrod/gruvbox-theme
 ningrab ninrod/emacs-theme-darktooth
+ningrab ninrod/emacs-leuven-theme
 
 # toys
 ningrab parkouss/speed-type

@@ -773,7 +773,7 @@ the right."
 #+END_SRC
 
 **** darktooth-theme
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (use-package darktooth-theme :load-path "lisp/ninrod/emacs-theme-darktooth"
     :init
     (setq anzu-cons-mode-line-p t)
@@ -781,7 +781,14 @@ the right."
     (load-theme 'darktooth t)
     (darktooth-modeline-three))
 #+END_SRC
-
+**** leuven
+#+BEGIN_SRC emacs-lisp
+  (use-package leuven-theme :load-path "lisp/ninrod/emacs-leuven-theme"
+    :init
+    (setq leuven-scale-outline-headlines nil)
+    :config
+    (load-theme 'leuven t))
+#+END_SRC
 *** spaceline
 - to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
 #+BEGIN_SRC text
