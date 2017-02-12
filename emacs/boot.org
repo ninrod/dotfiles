@@ -737,7 +737,7 @@ the right."
 
 *** themes
 **** spacemacs-theme
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (use-package spacemacs-dark-theme :load-path "lisp/ninrod/spacemacs-theme"
     :init
     (setq spacemacs-theme-org-height nil)
@@ -763,35 +763,20 @@ the right."
     (load-theme 'zerodark t))
 #+END_SRC
 
-**** gruvbox-theme
-#+BEGIN_SRC text
-    (use-package gruvbox-theme :load-path "lisp/ninrod/gruvbox-theme"
-      :init
-      (setq gruvbox-contrast 'hard)
-      :config
-      (load-theme 'gruvbox t))
-#+END_SRC
-
 **** darktooth-theme
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package darktooth-theme
+    :ensure t
     :init
-
-    (load-theme 'darktooth t)
     (setq anzu-cons-mode-line-p t)
-    (darktooth-modeline)
-    (with-eval-after-load "git-gutter"
-      (set-face-attribute 'git-gutter:added    nil :foreground "#5A790E")
-      (set-face-attribute 'git-gutter:deleted  nil :foreground "#9D0006")
-      (set-face-attribute 'git-gutter:modified nil :foreground "#8F3F71"))
-
-    :defer t
-    :ensure t)
+    :config
+    (load-theme 'darktooth t)
+    (darktooth-modeline))
 #+END_SRC
 
 *** spaceline
 - to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (use-package spaceline :ensure t
     :config
     (setq powerline-height 30)
@@ -1819,9 +1804,9 @@ the right."
   ;; finally!
   (general-define-key
    :keymaps '(org-src-mode-map emacs-lisp-mode-map)
-   :states '(normal motion)
+   :states '(normal)
    "t" 'org-edit-src-exit
-   "q" 'org-edit-src-abort)
+   "," 'org-edit-src-abort)
 #+END_SRC
 ** dired
 *** unbinds
