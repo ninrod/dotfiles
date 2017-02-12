@@ -15,6 +15,7 @@ ningrab timcharper/evil-surround develop
 ningrab ninrod/spacemacs-theme
 ningrab ninrod/zerodark-theme
 ningrab ninrod/gruvbox-theme
+ningrab ninrod/emacs-theme-darktooth
 
 # toys
 ningrab parkouss/speed-type
