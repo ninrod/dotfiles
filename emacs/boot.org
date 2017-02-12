@@ -1611,7 +1611,7 @@ the right."
    "<f10>" nil
    "<f11>" nil
 
-   "<f12>" 'restart-emacs
+   "<f12>" nil
    )
 #+END_SRC
 
