@@ -1,8 +1,10 @@
 # -*- mode: sh -*-
 
-# standard
-# alias emacs="emacs.sh"
+# gui
 alias emacs="background-emacs.sh"
+
+# terminal
+alias et="emacsclient.sh --tty"
 
 # daemon
 alias e="background-connect-emacs-daemon.sh"
