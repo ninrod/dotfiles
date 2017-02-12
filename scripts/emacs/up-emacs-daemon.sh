@@ -14,8 +14,12 @@ else
 fi
 
 emacs.sh --daemon; rc=$?
-if [[ $rc = 0 ]]; then
-  echo -e "emacs daemon ${Blue}started${Rst}. success."
-else
+if [[ ! $rc = 0 ]]; then
   echo -e "there was a ${Red}problem${Rst} starting emacs daemon: $rc"
+  exit $rc
+else
+  echo -e "emacs daemon ${Blue}started${Rst}. success."
 fi
+
+boostrap_time=$(emacsclient.sh -e "(emacs-init-time)")
+echo -e "emacs daemon boostrap time: ${Cyan}${boostrap_time}${Rst}"
