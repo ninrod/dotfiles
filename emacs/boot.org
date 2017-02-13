@@ -601,7 +601,8 @@ the right."
   #+BEGIN_SRC emacs-lisp
     (when (eq system-type 'darwin)
       ;; (add-to-list 'default-frame-alist '(font . "Monaco-14"))
-      (add-to-list 'default-frame-alist '(font . "Meslo LG L DZ-14"));; from: https://github.com/andreberg/Meslo-Font.git
+      ;; (add-to-list 'default-frame-alist '(font . "Meslo LG L DZ-14"));; from: https://github.com/andreberg/Meslo-Font.git
+      (add-to-list 'default-frame-alist '(font . "Source Code Pro-16"));; from: https://github.com/adobe-fonts/source-code-pro
       ;; (add-to-list 'default-frame-alist '(font . "Monoisome-14"))
       )
 
@@ -747,7 +748,7 @@ the right."
 #+END_SRC
 *** themes
 **** spacemacs-theme
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (use-package spacemacs-dark-theme :load-path "lisp/ninrod/spacemacs-theme"
     :init
     (setq spacemacs-theme-org-height nil)
@@ -783,7 +784,7 @@ the right."
     (darktooth-modeline-three))
 #+END_SRC
 **** leuven
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package leuven-theme :load-path "lisp/ninrod/emacs-leuven-theme"
     :init
     (setq leuven-scale-outline-headlines nil)
