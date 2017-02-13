@@ -773,7 +773,7 @@ the right."
 #+END_SRC
 
 **** darktooth-theme
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package darktooth-theme :load-path "lisp/ninrod/emacs-theme-darktooth"
     :init
     (setq anzu-cons-mode-line-p t)
@@ -782,7 +782,7 @@ the right."
     (darktooth-modeline-three))
 #+END_SRC
 **** leuven
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (use-package leuven-theme :load-path "lisp/ninrod/emacs-leuven-theme"
     :init
     (setq leuven-scale-outline-headlines nil)
