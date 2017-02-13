@@ -564,7 +564,7 @@ the right."
           display-time-day-and-date t
           save-interprogram-paste-before-kill t       ;Save whatever’s in the clipboard before replacing it with the Emacs’ text.
           yank-pop-change-selection t                 ;https://github.com/dakrone/eos/blob/master/eos.org
-          confirm-kill-emacs 'y-or-n-p                ;ask before killing emacs
+          confirm-kill-emacs nil                ;ask before killing emacs
           echo-keystrokes 0.02)                       ;instantly display current keystrokes in mini buffer
 
     (display-time-mode) ;hack: customize display time in modeline.
@@ -764,11 +764,9 @@ the right."
     :init
     ;; (setq zerodark-use-paddings-in-mode-line nil)
     (setq anzu-cons-mode-line-p t)
-
     ;; (use-package modeline-posn :ensure t
     ;;   :config
     ;;   (size-indication-mode))
-
     :config
     (advice-add #'true-color-p :around #'ninrod/return-t-advice) ;; make it work in daemon mode
     (load-theme 'zerodark t))
