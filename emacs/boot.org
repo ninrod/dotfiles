@@ -748,7 +748,7 @@ the right."
     :ensure t)
 #+END_SRC
 *** themes
-**** spacemacs-theme
+**** spacemacs
 #+BEGIN_SRC text
   (use-package spacemacs-dark-theme :load-path "lisp/ninrod/spacemacs-theme"
     :init
@@ -759,7 +759,7 @@ the right."
     (load-theme 'spacemacs-dark t))
 #+END_SRC
 
-**** zerodark-theme
+**** zerodark
 #+BEGIN_SRC text
   (use-package zerodark-theme :load-path "lisp/ninrod/zerodark-theme"
     :init
@@ -773,14 +773,24 @@ the right."
     (load-theme 'zerodark t))
 #+END_SRC
 
-**** darktooth-theme
-#+BEGIN_SRC emacs-lisp
+**** darktooth
+#+BEGIN_SRC text
   (use-package darktooth-theme :load-path "lisp/ninrod/emacs-theme-darktooth"
     :init
     (setq anzu-cons-mode-line-p t)
     :config
     (load-theme 'darktooth t)
     (darktooth-modeline-three))
+#+END_SRC
+**** gruvbox
+#+BEGIN_SRC emacs-lisp
+  (use-package gruvbox-theme :load-path "lisp/ninrod/gruvbox-theme"
+    :init
+    (setq anzu-cons-mode-line-p t)
+    (setq gruvbox-contrast 'hard)
+    :config
+    (load-theme 'gruvbox t)
+    (gruvbox-modeline-three))
 #+END_SRC
 **** leuven
 #+BEGIN_SRC text
