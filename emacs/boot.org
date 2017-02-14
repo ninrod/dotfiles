@@ -1551,6 +1551,8 @@ the right."
    "" nil
    ;; "TAB" 'reserved
 
+   "r" 'counsel-recentf
+   "g" 'magit-status
    "w" 'widen
    "s" 'ibuffer
    "a" 'align-regexp
@@ -1565,7 +1567,14 @@ the right."
 
    ;; "." 'reserved
    ;; "/" 'reserved
+   ;; "RET" 'reserved
    ;; "m" 'reserved
+   ;; "h" 'reserved
+   ;; "s" 'reserved
+   ;; "1" 'reserved
+   ;; "2" 'reserved
+   ;; "3" 'reserved
+   ;; "4" 'reserved
 
    "TAB" 'counsel-mark-ring
 
@@ -1573,16 +1582,6 @@ the right."
    "l" 'evil-goto-line
    "9" (kbd "Hz-M")
    "0" (kbd "LztM")
-
-   ;; "1" 'reserved
-   ;; "2" 'reserved
-   ;; "3" 'reserved
-   ;; "4" 'reserved
-
-   ;; "RET" 'reserved
-
-   "s" 'magit-status
-   "h" 'counsel-recentf
 
    "i" 'goto-last-change
    ";" 'evil-last-non-blank
@@ -1594,7 +1593,6 @@ the right."
   ">" 'evil-shift-right
   "<" 'evil-shift-left
    )
-
 #+END_SRC
 
 *** comfort improvements
