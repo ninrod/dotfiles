@@ -556,26 +556,26 @@ the right."
 
     (setq initial-scratch-message ";; -*- lexical-binding: t -*-\n;; This buffer is for text that is not saved, and for Lisp evaluation.\n;; To create a file, visit it with \\[find-file] and enter text in its buffer.\n\n")
 
-    (setq recentf-max-menu-items 200                  ;MRU configs
+    (setq recentf-max-menu-items 200 ;; MRU configs
           recentf-max-saved-items 200
           default-directory "~/code/sources/dotfiles"
           inhibit-startup-message t
           display-time-default-load-average nil
           display-time-day-and-date t
-          save-interprogram-paste-before-kill t       ;Save whatever’s in the clipboard before replacing it with the Emacs’ text.
-          yank-pop-change-selection t                 ;https://github.com/dakrone/eos/blob/master/eos.org
-          confirm-kill-emacs nil                ;ask before killing emacs
-          echo-keystrokes 0.02)                       ;instantly display current keystrokes in mini buffer
+          save-interprogram-paste-before-kill t ;; Save whatever’s in the clipboard before replacing it with the Emacs’ text.
+          yank-pop-change-selection t ;; https://github.com/dakrone/eos/blob/master/eos.org
+          confirm-kill-emacs nil ;; ask before killing emacs
+          echo-keystrokes 0.02) ;; instantly display current keystrokes in mini buffer
 
-    (display-time-mode) ;hack: customize display time in modeline.
-    (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1)) ;for emacs compiled with `nox'
-    (save-place-mode 1) ;save last cursor position
-    (savehist-mode 1) ;save minibuffer history
+    (display-time-mode) ;; hack: customize display time in modeline.
+    (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1)) ;; for emacs compiled with `nox'
+    (save-place-mode 1) ;; save last cursor position
+    (savehist-mode 1) ;; save minibuffer history
     (tool-bar-mode -1)
     (menu-bar-mode -1)
     (electric-pair-mode 1)
     (column-number-mode t)
-    ;; (global-subword-mode) ;support for camelcase words
+    ;; (global-subword-mode) ;; support for camelcase words
 #+END_SRC
 ** better defaults
 #+BEGIN_SRC emacs-lisp
