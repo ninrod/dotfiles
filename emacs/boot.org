@@ -812,16 +812,7 @@ the right."
     (setq powerline-default-separator 'utf-8)
     (setq spaceline-separator-dir-left '(right . right))
     (setq spaceline-separator-dir-right '(right . right))
-
-    (when (eq system-type 'darwin)
-      ;; (setq ns-use-srgb-colorspace nil)
-      (setq powerline-default-separator 'alternate) ;customize separators for Powerline: alternate, slant, wave, zigzag, nil.
-      )
-
-    (when (eq system-type 'gnu/linux)
-      (setq powerline-default-separator 'slant) ;customize separators for Powerline: alternate, slant, wave, zigzag, nil.
-      )
-
+    (setq powerline-default-separator 'alternate) ;; alternate, slant, wave, zigzag, nil.
     (setq spaceline-workspace-numbers-unicode t) ;for eyebrowse. nice looking unicode numbers for tagging different layouts
     (setq spaceline-window-numbers-unicode t)
     (setq spaceline-highlight-face-func #'spaceline-highlight-face-evil-state) ; set colouring for different evil-states
