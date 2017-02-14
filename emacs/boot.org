@@ -363,7 +363,6 @@ the right."
     (use-package goto-chg
       :ensure t)
     (use-package undo-tree
-      :diminish ""
       :ensure t)
     :config
     (setcdr evil-insert-state-map nil) ;; emacsify insert state: http://stackoverflow.com/a/26573722/4921402
@@ -404,7 +403,6 @@ the right."
 #+BEGIN_SRC emacs-lisp
   (use-package evil-mc
     :ensure t
-    :diminish ""
     :config
     (global-evil-mc-mode  1)
 
@@ -422,7 +420,9 @@ the right."
       (evil-normal-state)
       (move-to-column (evil-mc-column-number (if (> end beg)
                                                  beg
-                                               end)))))
+                                               end))))
+
+    :diminish "")
 #+END_SRC
 *** evil-surround
 #+BEGIN_SRC emacs-lisp
@@ -453,8 +453,8 @@ the right."
 *** evil-commentary
 #+BEGIN_SRC emacs-lisp
 (use-package evil-commentary :ensure t
-  :diminish evil-commentary-mode
-  :config (evil-commentary-mode))
+  :config (evil-commentary-mode)
+  :diminish "")
 #+END_SRC
 
 *** evil-matchit
@@ -486,9 +486,9 @@ the right."
 *** evil-escape
 #+BEGIN_SRC emacs-lisp
   (use-package evil-escape :ensure t
-    :diminish evil-escape ""
     :config
-    (evil-escape-mode))
+    (evil-escape-mode)
+    :diminish evil-escape "")
 #+END_SRC
 
 *** evil-anzu
@@ -583,7 +583,7 @@ the right."
   (setq uniquify-buffer-name-style 'forward
         apropos-do-all t
         mode-require-final-newline nil
-        sentence-end-double-space nil
+        ;; sentence-end-double-space nil
         require-final-newline nil)
 #+END_SRC
 ** backups
@@ -848,12 +848,13 @@ the right."
 *** highlight-parentheses
 #+BEGIN_SRC emacs-lisp
   (use-package highlight-parentheses :ensure t
-    :diminish ""
     :config
-        (add-hook 'prog-mode-hook #'highlight-parentheses-mode)
-        (add-hook 'org-mode-hook #'highlight-parentheses-mode)
-        (setq hl-paren-delay 0.2)
-        (set-face-attribute 'hl-paren-face nil :weight 'ultra-bold))
+    (add-hook 'prog-mode-hook #'highlight-parentheses-mode)
+    (add-hook 'org-mode-hook #'highlight-parentheses-mode)
+    (setq hl-paren-delay 0.2)
+    (set-face-attribute 'hl-paren-face nil :weight 'ultra-bold)
+
+    :diminish "")
 #+END_SRC
 
 *** smartparens
@@ -862,9 +863,10 @@ the right."
     :init
     (setq sp-show-pair-delay 0.1
           sp-show-pair-from-inside t)
-    :diminish ""
     :config
-    (show-smartparens-global-mode +1))
+    (show-smartparens-global-mode +1)
+
+    :diminish "")
 #+END_SRC
 *** Org Bullets
 #+BEGIN_SRC emacs-lisp
@@ -930,11 +932,12 @@ the right."
 
 *** editorconfig
 #+BEGIN_SRC emacs-lisp
-(use-package editorconfig
-  :ensure t
-  :diminish editorconfig ""
-  :config
-  (editorconfig-mode 1))
+  (use-package editorconfig
+    :ensure t
+    :config
+    (editorconfig-mode 1)
+
+    :diminish editorconfig "")
 #+END_SRC
 *** ibuffer-vc
 #+BEGIN_SRC emacs-lisp
@@ -952,13 +955,13 @@ the right."
 #+BEGIN_SRC emacs-lisp
   (use-package disable-mouse
     :ensure t
-    :diminish global-disable-mouse-mode ""
     :config
     (global-disable-mouse-mode)
 
     (define-key evil-motion-state-map [down-mouse-1] 'ignore);; don't jump the cursor around in the window on clicking
     (define-key evil-motion-state-map [mouse-1] 'ignore);; also avoid any '<mouse-1> is undefined' when setting to 'undefined
-    )
+
+    :diminish global-disable-mouse-mode "")
 #+END_SRC
 *** atomic-chrome
 #+BEGIN_SRC emacs-lisp
@@ -991,7 +994,6 @@ the right."
 - the projectile-switch-project-action hack was lifted from [[projectile-switch-project-action][here]].
 #+BEGIN_SRC emacs-lisp
   (use-package projectile :ensure t
-    :diminish global-projectile-mode ""
     :init
     ;; (add-hook 'after-init-hook 'projectile-mode)
     (use-package counsel-projectile :ensure t)
@@ -1008,7 +1010,9 @@ the right."
     ;; (setq projectile-switch-project-action 'cd-dwim)
 
     :config
-    (projectile-global-mode))
+    (projectile-global-mode)
+
+    :diminish global-projectile-mode "")
 #+END_SRC
 
 *** dired-sort
@@ -1165,10 +1169,10 @@ the right."
 #+END_SRC
 *** yasnippet
 #+BEGIN_SRC emacs-lisp
-    (use-package yasnippet
-      :ensure t
-      :diminish yas-minor-mode ""
-      :config (yas-global-mode 1))
+  (use-package yasnippet
+    :ensure t
+    :config (yas-global-mode 1)
+    :diminish yas-minor-mode "")
 #+END_SRC
 
 *** company
@@ -1177,18 +1181,19 @@ the right."
     :init
     ;; http://emacs.stackexchange.com/a/10838/12585
     (setq company-dabbrev-downcase nil)
-    :diminish global-company-mode ""
     :config
     (add-hook 'after-init-hook 'global-company-mode)
-    (define-key company-mode-map (kbd "C-SPC") 'company-complete))
+    (define-key company-mode-map (kbd "C-SPC") 'company-complete)
+
+    :diminish global-company-mode "")
 #+END_SRC
 
 *** flycheck
 #+BEGIN_SRC emacs-lisp
-    (use-package flycheck
-      :ensure t
-      :diminish global-flycheck-mode ""
-      :config (global-flycheck-mode t))
+  (use-package flycheck
+    :ensure t
+    :config (global-flycheck-mode t)
+    :diminish global-flycheck-mode "")
 #+END_SRC
 
 *** emmet
@@ -1207,9 +1212,10 @@ the right."
 ** keybinds
 *** which key
 #+BEGIN_SRC emacs-lisp
-    (use-package which-key :ensure t
-      :diminish ""
-      :config (which-key-mode))
+  (use-package which-key :ensure t
+    :config (which-key-mode)
+    :diminish ""
+    )
 #+END_SRC
 *** hydra
 #+BEGIN_SRC emacs-lisp
@@ -1320,6 +1326,7 @@ the right."
   ;; had to put this on because of use package's :defer t
   (diminish 'git-gutter-mode)
   (diminish 'org-indent-mode)
+  (diminish 'undo-tree-mode)
 
   ;; built-in modes
   (diminish 'auto-revert-mode)
