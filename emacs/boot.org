@@ -755,9 +755,11 @@ the right."
     :init
     (setq anzu-cons-mode-line-p t)
     (setq gruvbox-contrast 'hard)
+
     :config
     (load-theme 'gruvbox t)
-    (gruvbox-modeline-three))
+    ;; (gruvbox-modeline-three)
+    )
 #+END_SRC
 **** spacemacs
 #+BEGIN_SRC text
@@ -803,7 +805,7 @@ the right."
 #+END_SRC
 *** spaceline
 - to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package spaceline :ensure t
     :config
     (setq powerline-height 30)
@@ -1321,19 +1323,6 @@ the right."
       (exec-path-from-shell-initialize)))
 #+END_SRC
 
-** diminishes
-#+BEGIN_SRC emacs-lisp
-  ;; had to put this on because of use package's :defer t
-  (diminish 'git-gutter-mode)
-  (diminish 'org-indent-mode)
-  (diminish 'undo-tree-mode)
-
-  ;; built-in modes
-  (diminish 'auto-revert-mode)
-  (diminish 'subword-mode)
-  (diminish 'flyspell-mode "FlyS")
-#+END_SRC
-
 ** M-x man
 - [[http://emacs.stackexchange.com/a/10669/12585][list]] of evil states:
 - with [[https://github.com/syl20bnr/spacemacs/issues/7346][help]] from @TheBB
@@ -1354,6 +1343,25 @@ the right."
 #+BEGIN_SRC emacs-lisp
   ;; (setq dabbrev-case-fold-search nil)
 #+END_SRC
+** diminishes
+#+BEGIN_SRC emacs-lisp
+  ;; had to put this on because of use package's :defer t
+  (diminish 'git-gutter-mode)
+  (diminish 'undo-tree-mode)
+
+  ;; built-in modes
+  (diminish 'auto-revert-mode)
+  (diminish 'subword-mode)
+  (diminish 'flyspell-mode "FlyS")
+  (diminish 'org-indent-mode)
+
+
+
+  (add-hook 'org-mode-hook
+            '(lambda ()
+               (diminish 'org-indent-mode)))
+#+END_SRC
+
 * keybinds
 ** SPC-map
 *** core
