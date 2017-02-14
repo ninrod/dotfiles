@@ -1395,6 +1395,7 @@ the right."
     "da" 'apropos
     "db" 'emaps-describe-keymap-bindings
     "dc" 'describe-char
+    "dd" 'list-faces-display
     "df" 'counsel-describe-function
     "di" 'info
     "dk" 'describe-key
