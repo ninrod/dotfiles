@@ -583,7 +583,7 @@ the right."
   (setq uniquify-buffer-name-style 'forward
         apropos-do-all t
         mode-require-final-newline nil
-        ;; sentence-end-double-space nil
+        sentence-end-double-space nil
         require-final-newline nil)
 #+END_SRC
 ** backups
@@ -1395,7 +1395,7 @@ the right."
     "da" 'apropos
     "db" 'emaps-describe-keymap-bindings
     "dc" 'describe-char
-    "dd" 'list-faces-display
+    "dd" 'list-faces-display ;; list-colors-display is also useful
     "df" 'counsel-describe-function
     "di" 'info
     "dk" 'describe-key
