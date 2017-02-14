@@ -486,7 +486,7 @@ the right."
 *** evil-escape
 #+BEGIN_SRC emacs-lisp
   (use-package evil-escape :ensure t
-    :diminish ""
+    :diminish evil-escape ""
     :config
     (evil-escape-mode))
 #+END_SRC
@@ -583,6 +583,7 @@ the right."
   (setq uniquify-buffer-name-style 'forward
         apropos-do-all t
         mode-require-final-newline nil
+        sentence-end-double-space nil
         require-final-newline nil)
 #+END_SRC
 ** backups
@@ -847,7 +848,7 @@ the right."
 *** highlight-parentheses
 #+BEGIN_SRC emacs-lisp
   (use-package highlight-parentheses :ensure t
-    :diminish highlight-parentheses-mode
+    :diminish ""
     :config
         (add-hook 'prog-mode-hook #'highlight-parentheses-mode)
         (add-hook 'org-mode-hook #'highlight-parentheses-mode)
@@ -931,7 +932,7 @@ the right."
 #+BEGIN_SRC emacs-lisp
 (use-package editorconfig
   :ensure t
-  :diminish ""
+  :diminish editorconfig ""
   :config
   (editorconfig-mode 1))
 #+END_SRC
@@ -951,7 +952,7 @@ the right."
 #+BEGIN_SRC emacs-lisp
   (use-package disable-mouse
     :ensure t
-    :diminish global-disable-mouse-mode
+    :diminish global-disable-mouse-mode ""
     :config
     (global-disable-mouse-mode)
 
@@ -970,10 +971,9 @@ the right."
 *** git-gutter-fringe
 #+BEGIN_SRC emacs-lisp
   (use-package git-gutter-fringe
+    :ensure t
     :init
-    (global-git-gutter-mode t)
-    :defer t
-    :ensure t)
+    (global-git-gutter-mode t))
 #+END_SRC
 *** magit
 - for more info about magit-display-buffer-function, see [[http://stackoverflow.com/q/39933868/4921402][here]].
@@ -991,7 +991,7 @@ the right."
 - the projectile-switch-project-action hack was lifted from [[projectile-switch-project-action][here]].
 #+BEGIN_SRC emacs-lisp
   (use-package projectile :ensure t
-    :diminish projectile-mode
+    :diminish global-projectile-mode ""
     :init
     ;; (add-hook 'after-init-hook 'projectile-mode)
     (use-package counsel-projectile :ensure t)
@@ -1167,6 +1167,7 @@ the right."
 #+BEGIN_SRC emacs-lisp
     (use-package yasnippet
       :ensure t
+      :diminish yas-minor-mode ""
       :config (yas-global-mode 1))
 #+END_SRC
 
@@ -1176,7 +1177,7 @@ the right."
     :init
     ;; http://emacs.stackexchange.com/a/10838/12585
     (setq company-dabbrev-downcase nil)
-    :diminish ""
+    :diminish global-company-mode ""
     :config
     (add-hook 'after-init-hook 'global-company-mode)
     (define-key company-mode-map (kbd "C-SPC") 'company-complete))
@@ -1186,7 +1187,7 @@ the right."
 #+BEGIN_SRC emacs-lisp
     (use-package flycheck
       :ensure t
-      :diminish ""
+      :diminish global-flycheck-mode ""
       :config (global-flycheck-mode t))
 #+END_SRC
 
@@ -1207,7 +1208,7 @@ the right."
 *** which key
 #+BEGIN_SRC emacs-lisp
     (use-package which-key :ensure t
-      :diminish which-key-mode
+      :diminish ""
       :config (which-key-mode))
 #+END_SRC
 *** hydra
