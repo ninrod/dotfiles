@@ -22,7 +22,7 @@
       (message "bname: %s, fname: %s, bsize: %d, bpos: %d" bname fname bsize bpos)))
 #+END_SRC
 *** CH03. Writing defuns
-***** write a function that doubles a number
+**** write a function that doubles a number
 1. write a non-interactive function that doubles the value of its argument, a number.
 2. make the above function interactive
 #+begin_src emacs-lisp
@@ -31,7 +31,7 @@
     (interactive "p")
     (message "if i double this number it will became %d" (* 2 number)))
 #+end_src
-***** fill-column test
+**** fill-column test
 + write a function that tests whether the current value of `fill-column'
 is greater than the argument passed to the function, and if so, prints
 an appropriate message.
@@ -1402,14 +1402,6 @@ the right."
     "dm" 'describe-mode
     )
 #+END_SRC
-*** (f) file/dir
-#+BEGIN_SRC emacs-lisp
-  (spc-map "f" '(:ignore t :which-key "file/dir ops")
-    "fc" 'make-directory
-    "fd" 'cd
-    "fy" 'ninrod/add-filename-to-kill-ring
-    )
-#+END_SRC
 *** (i) ivy
 #+BEGIN_SRC emacs-lisp
   (spc-map "i" '(:ignore t :which-key "ivy")
@@ -1543,7 +1535,10 @@ the right."
    :prefix "m"
    "" nil
    ;; "TAB" 'reserved
+   ;; "d"   'reserved
+   "DEL" 'cd
 
+   "y" 'ninrod/add-filename-to-kill-ring
    "w" 'widen
    "b" 'ibuffer
    "s" 'sort-lines
