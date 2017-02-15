@@ -1869,7 +1869,9 @@ the right."
      "f" nil
      "F" nil
      "v" nil
-     "V" nil))
+     "V" nil
+     "i" nil
+     ))
 #+END_SRC
 *** binds
 #+BEGIN_SRC emacs-lisp
@@ -1886,13 +1888,15 @@ the right."
      "p" 'ninrod/add-filename-to-kill-ring
      "m" 'dired-create-directory ;*-m is dired-mark
      "r" 'dired-do-rename
-     "c" 'dired-do-chmod
+     "o" 'dired-do-chmod
      "t" 'dired-mark
 
      ",s" 'dired-sort-extension
      ",t" 'dired-details-toggle
 
-     "DEL" 'dired-up-directory
+     "DEL" 'find-file
+     "c" 'dired-do-copy
+     "u" 'dired-up-directory
      "go" 'evil-goto-first-line
      "gl" 'evil-goto-line
      "ge" 'evil-backward-word-end
@@ -1942,7 +1946,7 @@ the right."
        ;; crud ops
        "DEL" 'ninrod/mkdir
        "d" 'neotree-delete-node
-       "y" 'neotree-copy-node
+       "c" 'neotree-copy-node
        "r" 'neotree-rename-node
 
        ;; info retrieval
