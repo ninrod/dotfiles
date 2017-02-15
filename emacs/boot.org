@@ -16,9 +16,9 @@
     "Echo information about the current buffer."
     (interactive)
     (let ((bname (buffer-name))
-           (fname (buffer-file-name))
-           (bsize (buffer-size))
-           (bpos  (point)))
+          (fname (buffer-file-name))
+          (bsize (buffer-size))
+          (bpos  (point)))
       (message "bname: %s, fname: %s, bsize: %d, bpos: %d" bname fname bsize bpos)))
 #+END_SRC
 *** CH03. Writing defuns
