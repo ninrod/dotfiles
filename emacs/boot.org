@@ -1361,7 +1361,7 @@ the right."
                           :states '(normal visual motion)
                           :prefix "SPC")
   (spc-map
-   "TAB" 'evil-emacs-state
+   ;; "TAB" 'reserved
    "SPC" 'counsel-M-x
    "RET" 'write-file
    "DEL" 'ninrod/mkdir
@@ -1516,7 +1516,7 @@ the right."
    ";" 'evil-jump-forward
 
    ;; directory operations
-   "DEL" 'neotree-toggle
+   "DEL" 'cd
 
    ;; window operations
    "j" 'evil-window-down
@@ -1534,10 +1534,13 @@ the right."
    :keymaps '(normal visual motion)
    :prefix "m"
    "" nil
+
    ;; "TAB" 'reserved
    ;; "d"   'reserved
-   "DEL" 'cd
+   ;; "DEL" 'cd
 
+   "t" 'neotree-toggle
+   "e" 'evil-emacs-state
    "y" 'ninrod/add-filename-to-kill-ring
    "w" 'widen
    "b" 'ibuffer
