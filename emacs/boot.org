@@ -271,13 +271,15 @@ the right."
   (windmove-right))
 #+END_SRC
 
-** buffers
+** file/dir/buffer commands
 *** ninrod/add-filename-to-kill-ring
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/add-filename-to-kill-ring ()
     "Add current buffer filename to the kill-ring."
     (interactive)
-    (let ((filename (buffer-file-name)))
+    (let ((filename (if (equal major-mode 'dired-mode)
+                        (expand-file-name (dired-copy-filename-as-kill))
+                      (buffer-file-name))))
       (when filename
         (kill-new filename)
         (message "Added buffer filename '%s' to the kill-ring." filename))))
@@ -291,7 +293,7 @@ the right."
     (interactive)
     (revert-buffer :ignore-auto :noconfirm))
 #+END_SRC
-** file/dir commands
+*** ninrod/mkdir
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/mkdir ()
     "Create directory."
@@ -1881,10 +1883,10 @@ the right."
      "k" 'evil-previous-line
      "l" 'evil-forward-char
 
-     "c" 'find-file
+     "p" 'ninrod/add-filename-to-kill-ring
      "m" 'dired-create-directory ;*-m is dired-mark
      "r" 'dired-do-rename
-     "p" 'dired-do-chmod
+     "c" 'dired-do-chmod
      "t" 'dired-mark
 
      ",s" 'dired-sort-extension
