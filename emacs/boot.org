@@ -348,6 +348,11 @@ these two go well together:
 M-x magit-find-file
 M-x magit-log-buffer-file: commits in master touching current buffer
 #+END_SRC
+*** faces
+#+BEGIN_SRC
+M-x or list-faces-display
+M-x list-colors-display
+#+END_SRC
 * evil
 ** bootstrap
 #+BEGIN_SRC emacs-lisp
@@ -1376,7 +1381,7 @@ M-x magit-log-buffer-file: commits in master touching current buffer
     "da" 'apropos
     "db" 'emaps-describe-keymap-bindings
     "dc" 'describe-char
-    "dd" 'counsel-describe-face ;; or list-faces-display ;; list-colors-display is also useful
+    "dd" 'counsel-describe-face
     "df" 'counsel-describe-function
     "di" 'info
     "dk" 'describe-key
