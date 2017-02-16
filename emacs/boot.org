@@ -1428,7 +1428,8 @@ M-x list-colors-display
    "n" 'rect-ext-narrow
    "w" 'rect-ext-widen
    "o" 'air-org-task-capture
-   "b" 'ninrod/extended-buffer-menu
+   "e" 'ninrod/extended-buffer-menu
+   "b" 'ibuffer
    "m" 'evil-set-marker
    "i" 'ivy-switch-buffer
    "t" 'multi-term
@@ -1478,7 +1479,6 @@ M-x list-colors-display
    "e" 'evil-emacs-state
    "y" 'ninrod/add-filename-to-kill-ring
    "w" 'widen
-   "b" 'ibuffer
    "s" 'sort-lines
    "a" 'align-regexp
    "r" 'spacemacs/align-repeat
