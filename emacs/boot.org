@@ -585,6 +585,16 @@ M-x list-colors-display
         sentence-end-double-space nil
         require-final-newline nil)
 #+END_SRC
+** scroll
+#+BEGIN_SRC emacs-lisp
+  (setq
+   redisplay-dont-pause t
+   scroll-margin 1
+   scroll-step 1
+   scroll-conservatively 10000
+   scroll-preserve-screen-position 1
+   )
+#+END_SRC
 ** backups
 - partially lifted from [[https://github.com/magnars/.emacs.d/blob/master/init.el][magnar's emacs.d]]
 #+BEGIN_SRC emacs-lisp
@@ -1029,6 +1039,14 @@ M-x list-colors-display
           neo-banner-message nil))
 #+END_SRC
 
+*** smooth-scrolling
+#+BEGIN_SRC text
+  (use-package smooth-scrolling
+    :ensure t
+    :config
+    (smooth-scrolling-mode 1))
+#+END_SRC
+
 ** filetypes
 *** md: markdown
 #+BEGIN_SRC emacs-lisp
@@ -1371,6 +1389,9 @@ M-x list-colors-display
    "SPC" 'counsel-M-x
    "RET" 'write-file
    "DEL" 'ninrod/mkdir
+
+   "j" (kbd "LztM")
+   "k" (kbd "Hz-M")
 
    "," 'pop-global-mark
    )
