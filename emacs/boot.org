@@ -1449,14 +1449,13 @@ M-x list-colors-display
    "d" 'kill-this-buffer
    "n" 'rect-ext-narrow
    "w" 'rect-ext-widen
-   "o" 'air-org-task-capture
    "e" 'ninrod/extended-buffer-menu
    "b" 'ibuffer
    "m" 'evil-set-marker
    "i" 'ivy-switch-buffer
-   "t" 'multi-term
+   "s" 'multi-term
    "." 'counsel-projectile
-   "s" 'counsel-projectile-switch-project
+   "o" 'counsel-projectile-switch-project
    "RET" 'evil-save-modified-and-close; save and close
    "<SPC>" 'counsel-bookmark; jump to bookmark
    "-" 'bookmark-delete
@@ -1496,6 +1495,8 @@ M-x list-colors-display
    ;; "TAB" 'reserved
    ;; "d"   'reserved
    ;; "DEL" 'cd
+
+   "c" 'air-org-task-capture
    "o" 'org-table-convert-region
    "t" 'neotree-toggle
    "e" 'evil-emacs-state
