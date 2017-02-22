@@ -409,7 +409,7 @@ M-x list-colors-display
   (use-package evil-mc
     :ensure t
     :config
-    (global-evil-mc-mode  1)
+    ;; (global-evil-mc-mode  1)
 
     ;; stolen from @noctuid's comment on: https://github.com/gabesoft/evil-mc/issues/22#issuecomment-267682745
     (defun evil--mc-make-cursor-at-col (startcol _endcol orig-line)
@@ -1400,7 +1400,7 @@ M-x list-colors-display
 *** function keys
 #+BEGIN_SRC emacs-lisp
   (spc-map
-   "<f1>" '(lambda ()
+   "<f12>" '(lambda ()
              (interactive)
              (ninrod/open-file "~/.emacs.d/boot.org")))
 #+END_SRC
@@ -2032,7 +2032,6 @@ M-x list-colors-display
    "go" 'evil-goto-first-line ;; I don't know how, but this also fixes the gl bind.
    )
 #+END_SRC
-
 *** magit-hunk-section-map fixes
 #+BEGIN_SRC emacs-lisp
   (general-define-key
