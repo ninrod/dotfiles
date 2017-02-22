@@ -610,18 +610,12 @@ M-x list-colors-display
 - Monoid: [[https://github.com/larsenwork/monoid][larsenwork/monoid]]
   #+BEGIN_SRC emacs-lisp
     (when (eq system-type 'darwin)
-      ;; (add-to-list 'default-frame-alist '(font . "Monaco-14"))
-      ;; (add-to-list 'default-frame-alist '(font . "Meslo LG L DZ-14"));; from: https://github.com/andreberg/Meslo-Font.git
-      (add-to-list 'default-frame-alist '(font . "Source Code Pro-16"));; from: https://github.com/adobe-fonts/source-code-pro
-      ;; (add-to-list 'default-frame-alist '(font . "Monoisome-14"))
-      )
+      ;; from: https://github.com/adobe-fonts/source-code-pro
+      (add-to-list 'default-frame-alist '(font . "Source Code Pro-15")))
 
     (when (eq system-type 'gnu/linux)
-      ;; (add-to-list 'default-frame-alist '(font . "Monaco-14"))
-      ;; (add-to-list 'default-frame-alist '(font . "FiraCode-14"))
-      (add-to-list 'default-frame-alist '(font . "Source Code Pro-15"));; from: https://github.com/adobe-fonts/source-code-pro
-      ;; (add-to-list 'default-frame-alist '(font . "Monoisome-14"))
-      )
+      ;; from: https://github.com/adobe-fonts/source-code-pro
+      (add-to-list 'default-frame-alist '(font . "Source Code Pro-15")))
   #+END_SRC
 ** gui
 #+BEGIN_SRC emacs-lisp
