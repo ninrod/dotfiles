@@ -269,6 +269,12 @@ an appropriate message.
           (call-interactively 'neotree-create-node)
         (call-interactively 'make-directory))))
 #+END_SRC
+*** ninrod/open-file
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/open-file (filename)
+    (interactive)
+    (switch-to-buffer (find-file-noselect (expand-file-name filename))))
+#+END_SRC
 ** advices
 *** always return t
 #+BEGIN_SRC emacs-lisp
@@ -1390,6 +1396,13 @@ M-x list-colors-display
 
    "," 'pop-global-mark
    )
+#+END_SRC
+*** function keys
+#+BEGIN_SRC emacs-lisp
+  (spc-map
+   "<f1>" '(lambda ()
+             (interactive)
+             (ninrod/open-file "~/.emacs.d/boot.org")))
 #+END_SRC
 *** (d) emacs help
 #+BEGIN_SRC emacs-lisp
