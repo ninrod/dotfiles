@@ -275,6 +275,18 @@ an appropriate message.
     (interactive)
     (switch-to-buffer (find-file-noselect (expand-file-name filename))))
 #+END_SRC
+*** ninrod/open-boot
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/open-inbox ()
+    "Open inbox.org."
+    (interactive)
+    (ninrod/open-file "~/code/sources/life/gtd/inbox.org"))
+
+  (defun ninrod/open-boot ()
+    "Open boot.org."
+    (interactive)
+    (ninrod/open-file "~/.emacs.d/boot.org"))
+#+END_SRC
 ** advices
 *** always return t
 #+BEGIN_SRC emacs-lisp
@@ -1392,14 +1404,8 @@ M-x org-table-convert-region
   (spc-map
    ;; "TAB" 'reserved
 
-
-   "9" '(lambda ()
-          (interactive)
-          (ninrod/open-file "~/code/sources/life/gtd/inbox.org"))
-
-   "0" '(lambda ()
-          (interactive)
-          (ninrod/open-file "~/.emacs.d/boot.org"))
+   "9" 'ninrod/open-inbox
+   "0" 'ninrod/open-boot
 
    "," 'pop-global-mark
    "<escape>" 'ninrod/echo ;; in test
