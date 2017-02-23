@@ -8,7 +8,7 @@
 2. Find its buffer name, file name, length, and your position in the file.
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/lisp-intro/move-to-middle ()
-    "Move point to the middle of the file "
+    "Move point to the middle of the file."
     (interactive)
     (goto-char (/ (buffer-size) 2)))
 
@@ -1203,6 +1203,9 @@ M-x list-colors-display
 #+BEGIN_SRC emacs-lisp
   (use-package flycheck
     :ensure t
+    :init
+    (with-eval-after-load 'flycheck
+      (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
     :config (global-flycheck-mode t)
     :diminish global-flycheck-mode "")
 #+END_SRC
@@ -1562,7 +1565,9 @@ M-x list-colors-display
    "-"   'evil-ex-nohighlight
    "Q"   'evil-record-macro
    "G"   'evil-execute-in-god-state)
+
   (general-mmap
+   "\\" 'ninrod/echo;; reserved
    "(" 'evil-backward-paragraph
    ")" 'evil-forward-paragraph)
 #+END_SRC
