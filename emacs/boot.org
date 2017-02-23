@@ -359,6 +359,11 @@ M-x magit-log-buffer-file: commits in master touching current buffer
 M-x or list-faces-display
 M-x list-colors-display
 #+END_SRC
+*** org
+#+BEGIN_SRC text
+M-x org-table-convert-region
+
+#+END_SRC
 * evil
 ** bootstrap
 #+BEGIN_SRC emacs-lisp
@@ -1387,6 +1392,15 @@ M-x list-colors-display
   (spc-map
    ;; "TAB" 'reserved
 
+
+   "9" '(lambda ()
+          (interactive)
+          (ninrod/open-file "~/code/sources/life/gtd/inbox.org"))
+
+   "0" '(lambda ()
+          (interactive)
+          (ninrod/open-file "~/.emacs.d/boot.org"))
+
    "," 'pop-global-mark
    "<escape>" 'ninrod/echo ;; in test
 
@@ -1451,12 +1465,14 @@ M-x list-colors-display
    :keymaps '(normal visual motion)
    :prefix "s"
    "" nil
-   ;; "TAB" 'reserved
-   ;; "a" 'reserved
+
+   ;; "TAB" 'ninrod/echo
+   ;; "a" 'ninrod/echo
+   ;; "d" 'ninrod/echo
+   ;; "g" 'ninrod/echo
 
    ;; buffer operations
    "u" 'ninrod/revert-buffer-no-confirm
-   "d" 'kill-this-buffer
    "n" 'rect-ext-narrow
    "w" 'rect-ext-widen
    "e" 'ninrod/extended-buffer-menu
@@ -1470,8 +1486,6 @@ M-x list-colors-display
    "<SPC>" 'counsel-bookmark; jump to bookmark
    "-" 'bookmark-delete
    "=" 'bookmark-set
-
-   "g"   'ninrod/uarg-magit-status
 
    ;; edit operations
    "p" 'counsel-yank-pop
@@ -1503,22 +1517,27 @@ M-x list-colors-display
    "" nil
 
    ;; "TAB" 'reserved
-   ;; "d"   'reserved
    ;; "DEL" 'cd
+   ;; "d"   'reserved
 
+   ;; important modes
    "c" 'air-org-task-capture
-   "o" 'org-table-convert-region
+   "g" 'ninrod/uarg-magit-status
    "t" 'neotree-toggle
-   "e" 'evil-emacs-state
+
+   ;; buffer ops
    "y" 'ninrod/add-filename-to-kill-ring
+   "k" 'kill-this-buffer
    "w" 'widen
-   "s" 'sort-lines
+
+   ;; editing ops
    "a" 'align-regexp
    "r" 'spacemacs/align-repeat
+   "s" 'sort-lines
+   "e" 'evil-emacs-state
    )
 #+END_SRC
-** evil
-*** abusing the g prefix
+** g prefix
 #+BEGIN_SRC emacs-lisp
   (general-define-key
    :keymaps 'motion
@@ -1528,17 +1547,13 @@ M-x list-colors-display
    ;; "/" 'reserved
    ;; "RET" 'reserved
    ;; "m" 'reserved
-   ;; "1" 'reserved
-   ;; "2" 'reserved
-   ;; "3" 'reserved
-   ;; "4" 'reserved
+   ;; "0" 'reserved
 
    "TAB" 'counsel-mark-ring
 
    "o" 'evil-goto-first-line
    "l" 'evil-goto-line
-   "9" (kbd "Hz-M")
-   "0" (kbd "LztM")
+
 
    "h" 'counsel-recentf
    "s" 'magit-status
@@ -1549,12 +1564,13 @@ M-x list-colors-display
    "+" 'evil-numbers/inc-at-pt
    "-" 'evil-numbers/dec-at-pt
 
-  ;; As I've sequestered < and > when in org mode, we need a workaround.
-  ">" 'evil-shift-right
-  "<" 'evil-shift-left
+   ;; As I've sequestered < and > when in org mode, we need a workaround.
+   ">" 'evil-shift-right
+   "<" 'evil-shift-left
    )
 #+END_SRC
 
+** evil
 *** comfort improvements
 #+BEGIN_SRC emacs-lisp
   (general-nmap
