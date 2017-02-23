@@ -288,7 +288,7 @@ an appropriate message.
     (ninrod/open-file "~/.emacs.d/boot.org"))
 #+END_SRC
 ** evil shortcuts
-*** ninrod's evil*marker shortcuts
+*** ninrod's evil*marker
 #+BEGIN_SRC emacs-lisp
     (defun ninrod/evil-set-marker-z ()
       "Set marker z."
@@ -299,6 +299,13 @@ an appropriate message.
       "Goto marker z."
       (interactive)
       (evil-goto-mark ?z))
+#+END_SRC
+*** ninrod's evil macro
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/evil-record-macro-z ()
+    "Record macro on register z."
+    (interactive)
+    (evil-record-macro ?z))
 #+END_SRC
 ** advices
 *** always return t
@@ -1554,6 +1561,7 @@ M-x org-table-convert-region
    "r" 'spacemacs/align-repeat
    "s" 'sort-lines
    "e" 'evil-emacs-state
+   "m" 'ninrod/evil-record-macro-z
    )
 #+END_SRC
 ** g prefix
