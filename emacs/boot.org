@@ -1516,7 +1516,6 @@ M-x org-table-convert-region
    ;; edit operations
    "p" 'counsel-yank-pop
    "r" 'anzu-query-replace-regexp
-   "q" 'evil-record-macro
    "/" 'swiper
 
    "," 'evil-jump-backward
