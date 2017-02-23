@@ -68,7 +68,11 @@ That said, it is worth noting that I've remapped =<space>= to be an alias to the
 checkout the [[https://github.com/ninrod/dotfiles/blob/master/tmux/keybinds.tmux][keybinds.tmux]] file for binding setup.
 
 * LICENSE
-[[https://www.gnu.org/licenses/gpl-3.0.en.html][GNU General Public License v3]]
+- [[https://www.gnu.org/licenses/gpl-3.0.en.html][GNU General Public License v3]]
+#+BEGIN_SRC text
+GNU General Public License v3
+Copyright (c) 2015-2017 Filipe Correa Lima da Silva
+#+END_SRC
 
 * LINKS
 [[https://github.com/ninrod/dotfiles/tree/212d09fb3859ca03d98aefbcd2c03c4e7d43b68e][first commit]]
