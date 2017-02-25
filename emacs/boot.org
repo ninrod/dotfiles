@@ -697,7 +697,7 @@ M-x ninrod/extended-buffer-menu
 
         ;; start maximized
         (set-frame-parameter nil 'fullscreen 'fullboth)
-        ;; (toggle-frame-maximized)
+        (toggle-frame-maximized)
 
         ;; osx does not lose screen real state with menu bar mode on
         (menu-bar-mode 1)))
