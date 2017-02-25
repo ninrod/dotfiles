@@ -682,15 +682,9 @@ M-x align-regexp
 #+END_SRC
 
 ** font
-- Monoid: [[https://github.com/larsenwork/monoid][larsenwork/monoid]]
+- Source Code Pro: [[https://github.com/adobe-fonts/source-code-pro][adobe-fonts/source-code-pro]]
   #+BEGIN_SRC emacs-lisp
-    (when (eq system-type 'darwin)
-      ;; from: https://github.com/adobe-fonts/source-code-pro
-      (add-to-list 'default-frame-alist '(font . "Source Code Pro-15")))
-
-    (when (eq system-type 'gnu/linux)
-      ;; from: https://github.com/adobe-fonts/source-code-pro
-      (add-to-list 'default-frame-alist '(font . "Source Code Pro-15")))
+    (add-to-list 'default-frame-alist '(font . "Source Code Pro-15"))
   #+END_SRC
 ** gui
 #+BEGIN_SRC emacs-lisp
