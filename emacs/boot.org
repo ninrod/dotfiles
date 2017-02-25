@@ -83,6 +83,41 @@ an appropriate message.
       (message "complete-regexp: %S" complete-regexp)
       (align-regexp start end complete-regexp group 1 t)))
 #+END_SRC
+** advices
+*** always return t
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/return-t-advice (old-function &rest arguments)
+    "Make the old-function return t in any case."
+    (apply old-function arguments)
+    t)
+#+END_SRC
+*** please don't kill my precious scratch buffer
+#+BEGIN_SRC emacs-lisp
+  ;; credits to stefan monier (GNU Emacs mantainer)
+  ;; http://lists.gnu.org/archive/html/help-gnu-emacs/2017-02/msg00074.html
+  (with-current-buffer (get-buffer "*scratch*")
+    (add-hook 'kill-buffer-hook
+              (lambda () (error "DENIED! don't kill my precious *scratch*!!"))
+              nil t)) ;; Append at the end of the hook list? no. Buffer-local? yes.
+#+END_SRC
+*** daemon-p evil-quit
+- [[https://github.com/ninrod/dotfiles/issues/40][ninrod/dotfiles#40]]
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/advice-evil-quit (dumb-evil-quit &rest arguments)
+    "Ask for confirmation before quitting the last window."
+    (message "it worked bitch!")
+    (apply dumb-evil-quit arguments))
+  (advice-add #'evil-quit :around #'ninrod/advice-evil-quit)
+#+END_SRC
+*** iBuffer
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/ibuffer-recent-buffer (old-ibuffer &rest arguments) ()
+         "Open ibuffer with cursor pointed to most recent buffer name"
+         (let ((recent-buffer-name (buffer-name)))
+           (apply old-ibuffer arguments)
+           (ibuffer-jump-to-buffer recent-buffer-name)))
+  (advice-add #'ibuffer :around #'ninrod/ibuffer-recent-buffer)
+#+END_SRC
 ** evil shortcuts
 *** ninrod's evil*marker
 #+BEGIN_SRC emacs-lisp
@@ -281,9 +316,9 @@ an appropriate message.
     (interactive)
     (revert-buffer :ignore-auto :noconfirm))
 #+END_SRC
-*** ninrod/switch-to-previous-buffer
+*** ninrod/alternate-buffer
 #+BEGIN_SRC emacs-lisp
-  (defun ninrod/switch-to-previous-buffer ()
+  (defun ninrod/alternate-buffer ()
     "Switch to previously open buffer.
   Repeated invocations toggle between the two most recently open buffers."
     (interactive)
@@ -323,41 +358,6 @@ an appropriate message.
     "Open oficina.org."
     (interactive)
     (ninrod/open-file "~/code/sources/gtd/projects/oficina.org"))
-#+END_SRC
-** advices
-*** always return t
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/return-t-advice (old-function &rest arguments)
-    "Make the old-function return t in any case."
-    (apply old-function arguments)
-    t)
-#+END_SRC
-*** please don't kill my precious scratch buffer
-#+BEGIN_SRC emacs-lisp
-  ;; credits to stefan monier (GNU Emacs mantainer)
-  ;; http://lists.gnu.org/archive/html/help-gnu-emacs/2017-02/msg00074.html
-  (with-current-buffer (get-buffer "*scratch*")
-    (add-hook 'kill-buffer-hook
-              (lambda () (error "DENIED! don't kill my precious *scratch*!!"))
-              nil t)) ;; Append at the end of the hook list? no. Buffer-local? yes.
-#+END_SRC
-*** daemon-p evil-quit
-- [[https://github.com/ninrod/dotfiles/issues/40][ninrod/dotfiles#40]]
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/advice-evil-quit (dumb-evil-quit &rest arguments)
-    "Ask for confirmation before quitting the last window."
-    (message "it worked bitch!")
-    (apply dumb-evil-quit arguments))
-  (advice-add #'evil-quit :around #'ninrod/advice-evil-quit)
-#+END_SRC
-*** iBuffer
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/ibuffer-recent-buffer (old-ibuffer &rest arguments) ()
-         "Open ibuffer with cursor pointed to most recent buffer name"
-         (let ((recent-buffer-name (buffer-name)))
-           (apply old-ibuffer arguments)
-           (ibuffer-jump-to-buffer recent-buffer-name)))
-  (advice-add #'ibuffer :around #'ninrod/ibuffer-recent-buffer)
 #+END_SRC
 ** misc
 *** ninrod/origami-toggle-node
@@ -1468,7 +1468,7 @@ M-x ninrod/extended-buffer-menu
 *** core
 #+BEGIN_SRC emacs-lisp
   (spc-map
-   "TAB" 'ninrod/switch-to-previous-buffer
+   "TAB" 'ninrod/alternate-buffer
 
    "," 'pop-global-mark
    "<escape>" 'ninrod/echo ;; in test
