@@ -1504,13 +1504,13 @@ M-x align-regexp
    ;; "a" 'ninrod/echo
    ;; "d" 'ninrod/echo
    ;; "g" 'ninrod/echo
+   ;; "e" 'ninrod/echo
 
    ;; buffer operations
+   "b" 'ninrod/extended-buffer-menu
    "u" 'ninrod/revert-buffer-no-confirm
    "n" 'rect-ext-narrow
    "w" 'rect-ext-widen
-   "e" 'ninrod/extended-buffer-menu
-   "b" 'ibuffer
    "m" 'ninrod/evil-set-marker-z
    "i" 'ivy-switch-buffer
    "s" 'multi-term
@@ -1562,6 +1562,7 @@ M-x align-regexp
    "y" 'ninrod/add-filename-to-kill-ring
    "k" 'kill-this-buffer
    "w" 'widen
+   "i" 'ibuffer
 
    ;; editing ops
    "a" 'ninrod/apply-z-macro
