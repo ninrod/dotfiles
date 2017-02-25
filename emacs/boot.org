@@ -361,6 +361,15 @@ an appropriate message.
     (apply dumb-evil-quit arguments))
   (advice-add #'evil-quit :around #'ninrod/advice-evil-quit)
 #+END_SRC
+*** iBuffer
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/ibuffer-recent-buffer (old-ibuffer &rest arguments) ()
+         "Open ibuffer with cursor pointed to most recent buffer name"
+         (let ((recent-buffer-name (buffer-name)))
+           (apply old-ibuffer arguments)
+           (ibuffer-jump-to-buffer recent-buffer-name)))
+  (advice-add #'ibuffer :around #'ninrod/ibuffer-recent-buffer)
+#+END_SRC
 ** misc
 *** ninrod/origami-toggle-node
 - with help from [[https://www.reddit.com/r/emacs/comments/580v30/tweaking_origamiel_lisp_and_regexes/][reddit]]
