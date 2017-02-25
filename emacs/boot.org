@@ -428,6 +428,10 @@ M-x org-table-convert-region
 #+BEGIN_SRC text
 M-x align-regexp
 #+END_SRC
+*** buffers
+#+BEGIN_SRC text
+M-x ninrod/extended-buffer-menu
+#+END_SRC
 * evil
 ** bootstrap
 #+BEGIN_SRC emacs-lisp
@@ -1546,9 +1550,9 @@ M-x align-regexp
    ;; "d" 'ninrod/echo
    ;; "g" 'ninrod/echo
    ;; "e" 'ninrod/echo
+   ;; "b" 'ninrod/echo
 
    ;; buffer operations
-   "b" 'ninrod/extended-buffer-menu
    "u" 'ninrod/revert-buffer-no-confirm
    "n" 'rect-ext-narrow
    "w" 'rect-ext-widen
