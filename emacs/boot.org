@@ -626,30 +626,30 @@ M-x align-regexp
 #+END_SRC
 ** misc options
 #+BEGIN_SRC emacs-lisp
-    (fset 'yes-or-no-p 'y-or-n-p)
+  (fset 'yes-or-no-p 'y-or-n-p)
 
-    (setq initial-scratch-message ";; -*- lexical-binding: t -*-\n;; This buffer is for text that is not saved, and for Lisp evaluation.\n;; To create a file, visit it with \\[find-file] and enter text in its buffer.\n\n")
+  (setq initial-scratch-message ";; -*- lexical-binding: t -*-\n;; This buffer is for text that is not saved, and for Lisp evaluation.\n;; To create a file, visit it with \\[find-file] and enter text in its buffer.\n\n")
 
-    (setq recentf-max-menu-items 200 ;; MRU configs
-          recentf-max-saved-items 200
-          default-directory "~/code/sources/dotfiles"
-          inhibit-startup-message t
-          display-time-default-load-average nil
-          display-time-day-and-date t
-          save-interprogram-paste-before-kill t ;; Save whatever’s in the clipboard before replacing it with the Emacs’ text.
-          yank-pop-change-selection t ;; https://github.com/dakrone/eos/blob/master/eos.org
-          confirm-kill-emacs t ;; ask before killing emacs
-          echo-keystrokes 0.02) ;; instantly display current keystrokes in mini buffer
+  (setq recentf-max-menu-items 200 ;; MRU configs
+        recentf-max-saved-items 200
+        default-directory "~/code/sources/dotfiles"
+        inhibit-startup-message t
+        display-time-default-load-average nil
+        display-time-day-and-date t
+        save-interprogram-paste-before-kill t ;; Save whatever’s in the clipboard before replacing it with the Emacs’ text.
+        yank-pop-change-selection t ;; https://github.com/dakrone/eos/blob/master/eos.org
+        ;; confirm-kill-emacs #'y-or-n-p ;; ask before killing emacs
+        echo-keystrokes 0.02) ;; instantly display current keystrokes in mini buffer
 
-    (display-time-mode) ;; hack: customize display time in modeline.
-    (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1)) ;; for emacs compiled with `nox'
-    (save-place-mode 1) ;; save last cursor position
-    (savehist-mode 1) ;; save minibuffer history
-    (tool-bar-mode -1)
-    (menu-bar-mode -1)
-    (electric-pair-mode 1)
-    (column-number-mode t)
-    ;; (global-subword-mode) ;; support for camelcase words
+  (display-time-mode) ;; hack: customize display time in modeline.
+  (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1)) ;; for emacs compiled with `nox'
+  (save-place-mode 1) ;; save last cursor position
+  (savehist-mode 1) ;; save minibuffer history
+  (tool-bar-mode -1)
+  (menu-bar-mode -1)
+  (electric-pair-mode 1)
+  (column-number-mode t)
+  ;; (global-subword-mode) ;; support for camelcase words
 #+END_SRC
 ** better defaults
 #+BEGIN_SRC emacs-lisp
@@ -778,9 +778,8 @@ M-x align-regexp
   (setq ibuffer-expert t)
   (setq-default ibuffer-show-empty-filter-groups nil)
 
-  (setq ibuffer-filter-group-name-face 'org-level-1)
+  (setq ibuffer-filter-group-name-face 'org-level-4)
   (setq ibuffer-deletion-face 'font-lock-warning-face)
-
 
   (setq evil-emacs-state-modes (delq 'ibuffer-mode evil-emacs-state-modes))
 
@@ -806,7 +805,6 @@ M-x align-regexp
                   (mode 16 16 :left :elide)
                   " "
                   filename-and-process))))
-
 #+END_SRC
 ** dired
 #+BEGIN_SRC emacs-lisp
