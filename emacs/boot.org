@@ -299,17 +299,22 @@ an appropriate message.
     (interactive)
     (switch-to-buffer (find-file-noselect (expand-file-name filename))))
 #+END_SRC
-*** ninrod/open-boot
+*** ninrod/open-*
 #+BEGIN_SRC emacs-lisp
+  (defun ninrod/open-boot ()
+    "Open boot.org."
+    (interactive)
+    (ninrod/open-file "~/.emacs.d/boot.org"))
+
   (defun ninrod/open-inbox ()
     "Open inbox.org."
     (interactive)
     (ninrod/open-file "~/code/sources/gtd/inbox.org"))
 
-  (defun ninrod/open-boot ()
-    "Open boot.org."
+  (defun ninrod/open-oficina ()
+    "Open oficina.org."
     (interactive)
-    (ninrod/open-file "~/.emacs.d/boot.org"))
+    (ninrod/open-file "~/code/sources/gtd/projects/oficina.org"))
 #+END_SRC
 ** advices
 *** always return t
@@ -1432,9 +1437,6 @@ M-x align-regexp
   (spc-map
    ;; "TAB" 'reserved
 
-   "9" 'ninrod/open-inbox
-   "0" 'ninrod/open-boot
-
    "," 'pop-global-mark
    "<escape>" 'ninrod/echo ;; in test
 
@@ -1446,6 +1448,14 @@ M-x align-regexp
    "k" (kbd "Hz-M")
 
    "," 'pop-global-mark
+   )
+#+END_SRC
+*** numbers
+#+BEGIN_SRC emacs-lisp
+  (spc-map
+   "0" 'ninrod/open-boot
+   "9" 'ninrod/open-inbox
+   "4" 'ninrod/open-oficina
    )
 #+END_SRC
 *** function keys
