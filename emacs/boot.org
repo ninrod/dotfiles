@@ -638,7 +638,7 @@ M-x align-regexp
           display-time-day-and-date t
           save-interprogram-paste-before-kill t ;; Save whatever’s in the clipboard before replacing it with the Emacs’ text.
           yank-pop-change-selection t ;; https://github.com/dakrone/eos/blob/master/eos.org
-          confirm-kill-emacs nil ;; ask before killing emacs
+          confirm-kill-emacs t ;; ask before killing emacs
           echo-keystrokes 0.02) ;; instantly display current keystrokes in mini buffer
 
     (display-time-mode) ;; hack: customize display time in modeline.
@@ -775,18 +775,38 @@ M-x align-regexp
 #+END_SRC
 ** ibuffer
 #+BEGIN_SRC emacs-lisp
-  (setq evil-emacs-state-modes (delq 'ibuffer-mode evil-emacs-state-modes))
   (setq ibuffer-expert t)
+  (setq-default ibuffer-show-empty-filter-groups nil)
 
-  ;; (with-eval-after-load 'ibuffer
-  ;;   ;; use the standard ibuffer bindings as a base
-  ;;   (set-keymap-parent
-  ;;    (evil-get-auxiliary-keymap ibuffer-mode-map 'normal t)
-  ;;    (assq-delete-all 'menu-bar (copy-keymap ibuffer-mode-map)))
+  (setq ibuffer-filter-group-name-face 'org-level-1)
+  (setq ibuffer-deletion-face 'font-lock-warning-face)
 
-  ;;   (evil-define-key 'normal ibuffer-mode-map "j" 'ibuffer-forward-line)
-  ;;   (evil-define-key 'normal ibuffer-mode-map "k" 'ibuffer-backward-line)
-  ;;   (evil-define-key 'normal ibuffer-mode-map "J" 'ibuffer-jump-to-buffer))
+
+  (setq evil-emacs-state-modes (delq 'ibuffer-mode evil-emacs-state-modes))
+
+  (with-eval-after-load 'ibuffer
+    (require 'ibuffer-vc)
+
+    ;; Use human readable Size column instead of original one
+    (define-ibuffer-column size-h
+      (:name "Size" :inline t)
+      (cond
+       ((> (buffer-size) 1000000) (format "%7.1fM" (/ (buffer-size) 1000000.0)))
+       ((> (buffer-size) 100000) (format "%7.0fk" (/ (buffer-size) 1000.0)))
+       ((> (buffer-size) 1000) (format "%7.1fk" (/ (buffer-size) 1000.0)))
+       (t (format "%8d" (buffer-size)))))
+
+    ;; Modify the default ibuffer-formats
+    (setq ibuffer-formats
+          '((mark modified read-only " "
+                  (name 18 18 :left :elide)
+                  " "
+                  (size-h 9 -1 :right)
+                  " "
+                  (mode 16 16 :left :elide)
+                  " "
+                  filename-and-process))))
+
 #+END_SRC
 ** dired
 #+BEGIN_SRC emacs-lisp
@@ -2308,6 +2328,8 @@ M-x align-regexp
   (ninrod/ibuffer-map
    "/" nil
    "DEL" nil
+   "l" nil
+   "0" nil
    )
 #+END_SRC
 *** binds
