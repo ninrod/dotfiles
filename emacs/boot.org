@@ -83,26 +83,6 @@ an appropriate message.
       (message "complete-regexp: %S" complete-regexp)
       (align-regexp start end complete-regexp group 1 t)))
 #+END_SRC
-** spacemacs/alternate-buffer
-#+BEGIN_SRC emacs-lisp
-  (defun spacemacs/alternate-buffer (&optional window)
-    "Switch back and forth between current and last buffer in the
-  current window."
-    (interactive)
-    (let ((current-buffer (window-buffer window))
-          (buffer-predicate
-           (frame-parameter (window-frame window) 'buffer-predicate)))
-      ;; switch to first buffer previously shown in this window that matches
-      ;; frame-parameter `buffer-predicate'
-      (switch-to-buffer
-       (or (cl-find-if (lambda (buffer)
-                         (and (not (eq buffer current-buffer))
-                              (or (null buffer-predicate)
-                                  (funcall buffer-predicate buffer))))
-                       (mapcar #'car (window-prev-buffers window)))
-           ;; `other-buffer' honors `buffer-predicate' so no need to filter
-           (other-buffer current-buffer t)))))
-#+END_SRC
 ** evil shortcuts
 *** ninrod's evil*marker
 #+BEGIN_SRC emacs-lisp
@@ -301,6 +281,15 @@ an appropriate message.
     (interactive)
     (revert-buffer :ignore-auto :noconfirm))
 #+END_SRC
+*** ninrod/switch-to-previous-buffer
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/switch-to-previous-buffer ()
+    "Switch to previously open buffer.
+  Repeated invocations toggle between the two most recently open buffers."
+    (interactive)
+    (switch-to-buffer (other-buffer (current-buffer) 1)))
+#+END_SRC
+
 *** ninrod/mkdir
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/mkdir ()
@@ -1479,7 +1468,7 @@ M-x ninrod/extended-buffer-menu
 *** core
 #+BEGIN_SRC emacs-lisp
   (spc-map
-   "TAB" 'spacemacs/alternate-buffer
+   "TAB" 'ninrod/switch-to-previous-buffer
 
    "," 'pop-global-mark
    "<escape>" 'ninrod/echo ;; in test
