@@ -304,7 +304,7 @@ an appropriate message.
   (defun ninrod/open-inbox ()
     "Open inbox.org."
     (interactive)
-    (ninrod/open-file "~/code/sources/life/gtd/inbox.org"))
+    (ninrod/open-file "~/code/sources/gtd/inbox.org"))
 
   (defun ninrod/open-boot ()
     "Open boot.org."
@@ -717,7 +717,7 @@ M-x align-regexp
 #+BEGIN_SRC emacs-lisp
 (setq org-capture-templates
       '(("a" "My TODO task format." entry
-         (file "~/code/sources/life/gtd/inbox.org")
+         (file "~/code/sources/gtd/inbox.org")
          "* TODO %? ")))
 (defun air-org-task-capture ()
   "Capture a task with my default template."
@@ -728,7 +728,7 @@ M-x align-regexp
 *** org agenda
 - lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
 #+BEGIN_SRC emacs-lisp
-  (setq org-agenda-files '("~/code/sources/life/"))
+  (setq org-agenda-files '("~/code/sources/gtd/"))
 
   (defun air-pop-to-org-agenda (split)
     "Visit the org agenda, in the current window or a SPLIT."
@@ -744,12 +744,12 @@ M-x align-regexp
 - with help from [[http://stackoverflow.com/a/22200624/4921402][so]]
 #+BEGIN_SRC emacs-lisp
   (setq org-agenda-files
-        '("~/code/sources/life/gtd/archives/done.org"
-          "~/code/sources/life/gtd/archives/canceled.org"
-          "~/code/sources/life/gtd/projects/oficina.org"
-          "~/code/sources/life/gtd/inbox.org"
-          "~/code/sources/life/gtd/next.org"
-          "~/code/sources/life/gtd/maybe.org"))
+        '("~/code/sources/gtd/archives/done.org"
+          "~/code/sources/gtd/archives/canceled.org"
+          "~/code/sources/gtd/projects/oficina.org"
+          "~/code/sources/gtd/inbox.org"
+          "~/code/sources/gtd/next.org"
+          "~/code/sources/gtd/maybe.org"))
 
   (setq org-refile-targets
         '((nil :maxlevel . 1)
@@ -1076,7 +1076,7 @@ M-x align-regexp
           neo-auto-indent-point nil
           neo-mode-line-type 'none
           neo-window-fixed-size nil
-          neo-window-width 50
+          neo-window-width 90
           neo-show-updir-line nil
           neo-smart-open t
           neo-show-hidden-files t
