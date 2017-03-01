@@ -359,10 +359,12 @@ an appropriate message.
     (interactive)
     (ninrod/open-file "~/code/sources/gtd/projects/oficina.org"))
 
-  (defun ninrod/open-orf ()
+  (defun ninrod/open-project-4 ()
     "Open orf."
     (interactive)
-    (ninrod/open-file "~/code/sources/orf/pom.xml"))
+    (if (eq system-type 'gnu/linux)
+        (ninrod/open-file "~/code/sources/orf/pom.xml")
+      (message "we're on OSx, slot 4 available.")))
 #+END_SRC
 ** misc
 *** ninrod/origami-toggle-node
@@ -1495,7 +1497,7 @@ M-x ninrod/extended-buffer-menu
    "0" 'ninrod/open-boot
    "9" 'ninrod/open-inbox
    "8" 'ninrod/open-oficina
-   "4" 'ninrod/open-orf
+   "4" 'ninrod/open-project-4
    )
 #+END_SRC
 *** function keys
