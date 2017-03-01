@@ -2336,7 +2336,13 @@ M-x ninrod/extended-buffer-menu
 #+BEGIN_SRC emacs-lisp
   (ninrod/ibuffer-map
    :states 'normal
-   "." 'hydra-ibuffer-main/body)
+   "." 'hydra-ibuffer-main/body
+   "t" 'ibuffer-mark-forward
+   "m" 'ibuffer-toggle-marks
+   "U" '(lambda ()
+          (interactive)
+          (ibuffer-unmark-all ?\s))
+   )
 #+END_SRC
 ** man
 #+BEGIN_SRC emacs-lisp
