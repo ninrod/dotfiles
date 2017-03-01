@@ -358,6 +358,11 @@ an appropriate message.
     "Open oficina.org."
     (interactive)
     (ninrod/open-file "~/code/sources/gtd/projects/oficina.org"))
+
+  (defun ninrod/open-orf ()
+    "Open orf."
+    (interactive)
+    (ninrod/open-file "~/code/sources/orf/pom.xml"))
 #+END_SRC
 ** misc
 *** ninrod/origami-toggle-node
@@ -1489,7 +1494,8 @@ M-x ninrod/extended-buffer-menu
   (spc-map
    "0" 'ninrod/open-boot
    "9" 'ninrod/open-inbox
-   "4" 'ninrod/open-oficina
+   "8" 'ninrod/open-oficina
+   "4" 'ninrod/open-orf
    )
 #+END_SRC
 *** function keys
