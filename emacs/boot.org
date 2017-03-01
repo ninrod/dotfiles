@@ -779,6 +779,7 @@ M-x ninrod/extended-buffer-menu
 #+BEGIN_SRC emacs-lisp
   (setq ibuffer-expert t)
   (setq-default ibuffer-show-empty-filter-groups nil)
+  (setq ibuffer-default-sorting-mode 'recency)
 
   (setq ibuffer-filter-group-name-face 'org-level-4)
   (setq ibuffer-deletion-face 'font-lock-warning-face)
