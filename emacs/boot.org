@@ -360,11 +360,16 @@ an appropriate message.
     (ninrod/open-file "~/code/sources/gtd/projects/oficina.org"))
 
   (defun ninrod/open-project-4 ()
-    "Open orf."
+    "Open project-4."
     (interactive)
     (if (eq system-type 'gnu/linux)
         (ninrod/open-file "~/code/sources/orf/pom.xml")
       (message "we're on OSx, slot 4 available.")))
+
+  (defun ninrod/open-project-1 ()
+    "Open project 1."
+    (interactive)
+    (ninrod/open-file "~/code/sources/gtd/info/owshit.org"))
 #+END_SRC
 ** misc
 *** ninrod/origami-toggle-node
@@ -1495,9 +1500,10 @@ M-x ninrod/extended-buffer-menu
 #+BEGIN_SRC emacs-lisp
   (spc-map
    "0" 'ninrod/open-boot
-   "9" 'ninrod/open-inbox
-   "8" 'ninrod/open-oficina
+   "9" 'ninrod/open-oficina
+   "8" 'ninrod/open-inbox
    "4" 'ninrod/open-project-4
+   "1" 'ninrod/open-project-1
    )
 #+END_SRC
 *** function keys
