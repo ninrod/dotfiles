@@ -225,7 +225,39 @@ an appropriate message.
         (message "Extracted and yanked org-link: %s" extracted-text)
         (kill-new extracted-text))))
 #+END_SRC
+*** agenda functions
+- stolen from aaron bieber [[https://blog.aaronbieber.com/2016/09/25/agenda-interactions-primer.html][agenda interactions primer]]
+#+BEGIN_SRC emacs-lisp
+(defun ninrod/org-agenda-next-header ()
+  "Jump to the next header in an agenda series."
+  (interactive)
+  (ninrod/org-agenda-goto-header))
 
+(defun ninrod/org-agenda-previous-header ()
+  "Jump to the previous header in an agenda series."
+  (interactive)
+  (ninrod/org-agenda-goto-header t))
+
+(defun ninrod/org-agenda-goto-header (&optional backwards)
+  "Find the next agenda series header forwards or BACKWARDS."
+  (let ((pos (save-excursion
+               (goto-char (if backwards
+                              (line-beginning-position)
+                            (line-end-position)))
+               (let* ((find-func (if backwards
+                                     'previous-single-property-change
+                                   'next-single-property-change))
+                      (end-func (if backwards
+                                    'max
+                                  'min))
+                      (all-pos-raw (list (funcall find-func (point) 'org-agenda-structural-header)
+                                         (funcall find-func (point) 'org-agenda-date-header)))
+                      (all-pos (cl-remove-if-not 'numberp all-pos-raw))
+                      (prop-pos (if all-pos (apply end-func all-pos) nil)))
+                 prop-pos))))
+    (if pos (goto-char pos))
+    (if backwards (goto-char (line-beginning-position)))))
+#+END_SRC
 ** lisp-mode
 *** ninrod/eval-print-last-sexp
 #+BEGIN_SRC emacs-lisp
@@ -648,20 +680,47 @@ M-x ninrod/extended-buffer-menu
 
 *** org agenda
 - lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
+- also lifted from aaron bieber's post: [[https://blog.aaronbieber.com/2016/09/24/an-agenda-for-life-with-org-mode.html][An agenda for life with org-mode]]
 #+BEGIN_SRC emacs-lisp
   (setq org-agenda-files '("~/code/sources/gtd/"))
 
-  (defun ninrod/pop-to-org-agenda (split)
+  (defun ninrod/pop-to-org-agenda (&optional split)
     "Visit the org agenda, in the current window or a SPLIT."
     (interactive "P")
-    (org-agenda-list)
+    (org-agenda nil "d")
     (when (not split)
       (delete-other-windows)))
 
+  (defun ninrod/org-skip-subtree-if-priority (priority)
+    "Skip an agenda subtree if it has a priority of PRIORITY.
+
+  PRIORITY may be one of the characters ?A, ?B, or ?C."
+    (let ((subtree-end (save-excursion (org-end-of-subtree t)))
+          (pri-value (* 1000 (- org-lowest-priority priority)))
+          (pri-current (org-get-priority (thing-at-point 'line t))))
+      (if (= pri-value pri-current)
+          subtree-end
+        nil)))
+
+  (defun ninrod/org-skip-subtree-if-habit ()
+    "Skip an agenda entry if it has a STYLE property equal to \"habit\"."
+    (let ((subtree-end (save-excursion (org-end-of-subtree t))))
+      (if (string= (org-entry-get nil "STYLE") "habit")
+          subtree-end
+        nil)))
+
   (setq org-agenda-custom-commands
-        '(("c" "Simple agenda view"
-           ((agenda "")
-            (alltodo "")))))
+        '(("d" "Daily agenda and all TODOs"
+           ((tags "PRIORITY=\"A\""
+                  ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                   (org-agenda-overriding-header "High-priority unfinished tasks:")))
+            (agenda "" ((org-agenda-ndays 1)))
+            (alltodo ""
+                     ((org-agenda-skip-function '(or (ninrod/org-skip-subtree-if-habit)
+                                                     (ninrod/org-skip-subtree-if-priority ?A)
+                                                     (org-agenda-skip-if nil '(scheduled deadline))))
+                      (org-agenda-overriding-header "ALL normal priority tasks:"))))
+           ((org-agenda-compact-blocks t)))))
 
   (setq org-agenda-text-search-extra-files '(agenda-archives))
 #+END_SRC
@@ -1619,9 +1678,9 @@ M-x ninrod/extended-buffer-menu
 
    ;; important modes
    "c" 'ninrod/org-task-capture
-   "o" 'ninrod/pop-to-org-agenda
    "g" 'ninrod/uarg-magit-status
    "t" 'neotree-toggle
+   "o" 'ninrod/pop-to-org-agenda
 
    ;; buffer ops
    "y" 'ninrod/add-filename-to-kill-ring
@@ -1818,6 +1877,8 @@ M-x ninrod/extended-buffer-menu
    "-" 'org-ctrl-c-minus
    "*" 'org-ctrl-c-star
 
+   "p" 'org-priority-up
+
    "TAB" 'ninrod/org-insert-subheading ; open new subheading
 
    "o" 'ninrod/org-eol-m-ret ; open new heading below, not respecting content
@@ -1915,6 +1976,16 @@ M-x ninrod/extended-buffer-menu
    :states '(normal)
    "t" 'org-edit-src-exit
    "," 'org-edit-src-abort)
+#+END_SRC
+*** agenda
+#+BEGIN_SRC emacs-lisp
+  (general-define-key
+   :keymaps 'org-agenda-mode-map
+   "j" 'org-agenda-next-item
+   "k" 'org-agenda-previous-item
+   "J" 'ninrod/-org-agenda-next-header
+   "K" 'ninrod/-org-agenda-previous-header
+   )
 #+END_SRC
 ** dired
 *** unbinds
