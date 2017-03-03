@@ -775,7 +775,7 @@ M-x ninrod/extended-buffer-menu
 *** org refile
 - with help from [[http://stackoverflow.com/a/22200624/4921402][so]]
 #+BEGIN_SRC emacs-lisp
-  (setq org-agenda-files
+  (setq ninrod-refile-targets
         '("~/code/sources/gtd/archives/done.org"
           "~/code/sources/gtd/archives/canceled.org"
           "~/code/sources/gtd/projects/oficina.org"
@@ -785,7 +785,7 @@ M-x ninrod/extended-buffer-menu
 
   (setq org-refile-targets
         '((nil :maxlevel . 1)
-          (org-agenda-files :maxlevel . 1)))
+          (ninrod-refile-targets :maxlevel . 1)))
 #+END_SRC
 ** ibuffer
 #+BEGIN_SRC emacs-lisp
