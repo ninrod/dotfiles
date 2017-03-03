@@ -618,6 +618,69 @@ M-x ninrod/extended-buffer-menu
 #+end_src
 
 * tweaks
+** org-mode
+*** general configs
+- somewhat lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
+#+BEGIN_SRC emacs-lisp
+
+  (setq org-todo-keywords
+        '((sequence "TODO" "IN-PROGRESS" "WAITING" "|" "DONE" "CANCELED")))
+  (setq org-blank-before-new-entry (quote ((heading) (plain-list-item))))
+  (setq org-log-done (quote time))
+  (setq org-log-redeadline (quote time))
+  (setq org-log-reschedule (quote time))
+  (setq org-src-window-setup 'current-window)
+#+END_SRC
+
+*** org capture
+- lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
+#+BEGIN_SRC emacs-lisp
+  (setq org-capture-templates
+        '(("a" "My TODO task format." entry
+           (file "~/code/sources/gtd/inbox.org")
+           "* TODO %? ")))
+
+  (defun ninrod/org-task-capture ()
+    "Capture a task with my default template."
+    (interactive)
+    (org-capture nil "a"))
+#+END_SRC
+
+*** org agenda
+- lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
+#+BEGIN_SRC emacs-lisp
+  (setq org-agenda-files '("~/code/sources/gtd/"))
+
+  (defun ninrod/pop-to-org-agenda (split)
+    "Visit the org agenda, in the current window or a SPLIT."
+    (interactive "P")
+    (org-agenda-list)
+    (when (not split)
+      (delete-other-windows)))
+
+  (setq org-agenda-custom-commands
+        '(("c" "Simple agenda view"
+           ((agenda "")
+            (alltodo "")))))
+
+  (setq org-agenda-text-search-extra-files '(agenda-archives))
+#+END_SRC
+
+*** org refile
+- with help from [[http://stackoverflow.com/a/22200624/4921402][so]]
+#+BEGIN_SRC emacs-lisp
+  (setq ninrod-refile-targets
+        '("~/code/sources/gtd/archives/done.org"
+          "~/code/sources/gtd/archives/canceled.org"
+          "~/code/sources/gtd/projects/oficina.org"
+          "~/code/sources/gtd/inbox.org"
+          "~/code/sources/gtd/next.org"
+          "~/code/sources/gtd/maybe.org"))
+
+  (setq org-refile-targets
+        '((nil :maxlevel . 1)
+          (ninrod-refile-targets :maxlevel . 1)))
+#+END_SRC
 ** daemon configuration
 - more info [[http://www.tychoish.com/posts/running-multiple-emacs-daemons-on-a-single-system/][here]]
 #+BEGIN_SRC emacs-lisp
@@ -730,63 +793,6 @@ M-x ninrod/extended-buffer-menu
     (load custom-file 'noerror)
   #+END_SRC
 
-** org-mode
-*** general configs
-- somewhat lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
-#+BEGIN_SRC emacs-lisp
-
-  (setq org-todo-keywords
-        '((sequence "TODO" "IN-PROGRESS" "WAITING" "|" "DONE" "CANCELED")))
-  (setq org-blank-before-new-entry (quote ((heading) (plain-list-item))))
-  (setq org-log-done (quote time))
-  (setq org-log-redeadline (quote time))
-  (setq org-log-reschedule (quote time))
-  (setq org-src-window-setup 'current-window)
-#+END_SRC
-
-*** org capture
-- lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
-#+BEGIN_SRC emacs-lisp
-(setq org-capture-templates
-      '(("a" "My TODO task format." entry
-         (file "~/code/sources/gtd/inbox.org")
-         "* TODO %? ")))
-(defun air-org-task-capture ()
-  "Capture a task with my default template."
-  (interactive)
-  (org-capture nil "a"))
-#+END_SRC
-
-*** org agenda
-- lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
-#+BEGIN_SRC emacs-lisp
-  (setq org-agenda-files '("~/code/sources/gtd/"))
-
-  (defun air-pop-to-org-agenda (split)
-    "Visit the org agenda, in the current window or a SPLIT."
-    (interactive "P")
-    (org-agenda-list)
-    (when (not split)
-      (delete-other-windows)))
-
-  (setq org-agenda-text-search-extra-files '(agenda-archives))
-#+END_SRC
-
-*** org refile
-- with help from [[http://stackoverflow.com/a/22200624/4921402][so]]
-#+BEGIN_SRC emacs-lisp
-  (setq ninrod-refile-targets
-        '("~/code/sources/gtd/archives/done.org"
-          "~/code/sources/gtd/archives/canceled.org"
-          "~/code/sources/gtd/projects/oficina.org"
-          "~/code/sources/gtd/inbox.org"
-          "~/code/sources/gtd/next.org"
-          "~/code/sources/gtd/maybe.org"))
-
-  (setq org-refile-targets
-        '((nil :maxlevel . 1)
-          (ninrod-refile-targets :maxlevel . 1)))
-#+END_SRC
 ** ibuffer
 #+BEGIN_SRC emacs-lisp
   (setq ibuffer-expert t)
@@ -1612,7 +1618,8 @@ M-x ninrod/extended-buffer-menu
    ;; "d"   'reserved
 
    ;; important modes
-   "c" 'air-org-task-capture
+   "c" 'ninrod/org-task-capture
+   "o" 'ninrod/pop-to-org-agenda
    "g" 'ninrod/uarg-magit-status
    "t" 'neotree-toggle
 
