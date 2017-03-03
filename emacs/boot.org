@@ -734,6 +734,7 @@ M-x ninrod/extended-buffer-menu
           "~/code/sources/gtd/projects/oficina.org"
           "~/code/sources/gtd/inbox.org"
           "~/code/sources/gtd/next.org"
+          "~/code/sources/gtd/agenda.org"
           "~/code/sources/gtd/maybe.org"))
 
   (setq org-refile-targets
