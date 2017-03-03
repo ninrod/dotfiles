@@ -1566,8 +1566,9 @@ M-x ninrod/extended-buffer-menu
 #+BEGIN_SRC emacs-lisp
   (spc-map
    "0" 'ninrod/open-boot
-   "9" 'ninrod/open-oficina
-   "8" 'ninrod/open-inbox
+   "8" 'ninrod/open-oficina
+   "9" 'ninrod/open-inbox
+
    "4" 'ninrod/open-project-4
    "1" 'ninrod/open-project-1
    )
