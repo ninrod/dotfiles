@@ -327,6 +327,35 @@ an appropriate message.
 #+END_SRC
 
 ** file/dir/buffer commands
+*** ninrod/open-*
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/open-slot-0 ()
+    "Open boot.org."
+    (interactive)
+    (ninrod/open-file "~/.emacs.d/boot.org"))
+
+  (defun ninrod/open-slot-9 ()
+    "Open inbox.org."
+    (interactive)
+    (ninrod/open-file "~/code/sources/gtd/inbox.org"))
+
+  (defun ninrod/open-slot-8 ()
+    "Open oficina.org."
+    (interactive)
+    (ninrod/open-file "~/code/sources/gtd/projects/oficina.org"))
+
+  (defun ninrod/open-slot-4 ()
+    "Open project-4."
+    (interactive)
+    (if (eq system-type 'gnu/linux)
+        (ninrod/open-file "~/code/sources/orf/pom.xml")
+      (message "we're on OSx, slot 4 available.")))
+
+  (defun ninrod/open-slot-1 ()
+    "Open project 1."
+    (interactive)
+    (ninrod/open-file "~/code/sources/gtd/info/owshit.org"))
+#+END_SRC
 *** ninrod/add-filename-to-kill-ring
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/add-filename-to-kill-ring ()
@@ -373,35 +402,6 @@ an appropriate message.
   (defun ninrod/open-file (filename)
     (interactive)
     (switch-to-buffer (find-file-noselect (expand-file-name filename))))
-#+END_SRC
-*** ninrod/open-*
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/open-slot-0 ()
-    "Open boot.org."
-    (interactive)
-    (ninrod/open-file "~/.emacs.d/boot.org"))
-
-  (defun ninrod/open-slot-9 ()
-    "Open inbox.org."
-    (interactive)
-    (ninrod/open-file "~/code/sources/gtd/inbox.org"))
-
-  (defun ninrod/open-slot-4 ()
-    "Open project-4."
-    (interactive)
-    (if (eq system-type 'gnu/linux)
-        (ninrod/open-file "~/code/sources/orf/pom.xml")
-      (message "we're on OSx, slot 4 available.")))
-
-  (defun ninrod/open-slot-8 ()
-    "Open oficina.org."
-    (interactive)
-    (message "slot 8 available."))
-
-  (defun ninrod/open-slot-1 ()
-    "Open project 1."
-    (interactive)
-    (message "slot 1 available"))
 #+END_SRC
 ** misc
 *** ninrod/origami-toggle-node
