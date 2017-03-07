@@ -1579,6 +1579,7 @@ M-x ninrod/extended-buffer-menu
    "9" 'ninrod/open-slot-9
    "8" 'ninrod/open-slot-8
 
+   "5" 'ninrod/open-slot-5
    "4" 'ninrod/open-slot-4
    "3" 'ninrod/open-slot-3
    "1" 'ninrod/open-slot-1
