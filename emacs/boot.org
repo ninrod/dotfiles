@@ -1891,7 +1891,7 @@ M-x ninrod/extended-buffer-menu
    "-" 'org-ctrl-c-minus
    "*" 'org-ctrl-c-star
 
-   "p" 'org-priority-up
+   "p" 'org-priority
 
    "TAB" 'ninrod/org-insert-subheading ; open new subheading
 
@@ -1997,8 +1997,8 @@ M-x ninrod/extended-buffer-menu
    :keymaps 'org-agenda-mode-map
    "j" 'org-agenda-next-item
    "k" 'org-agenda-previous-item
-   "J" 'ninrod/-org-agenda-next-header
-   "K" 'ninrod/-org-agenda-previous-header
+   "J" 'ninrod/org-agenda-next-header
+   "K" 'ninrod/org-agenda-previous-header
    )
 #+END_SRC
 ** dired
