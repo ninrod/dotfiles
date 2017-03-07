@@ -83,6 +83,88 @@ an appropriate message.
       (message "complete-regexp: %S" complete-regexp)
       (align-regexp start end complete-regexp group 1 t)))
 #+END_SRC
+** file/dir/buffer commands
+*** ninrod/open-*
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/open-slot-0 ()
+    "Open boot.org."
+    (interactive)
+    (ninrod/open-file "~/.emacs.d/boot.org"))
+
+  (defun ninrod/open-slot-9 ()
+    "Open inbox.org."
+    (interactive)
+    (ninrod/open-file "~/code/sources/gtd/inbox.org"))
+
+  (defun ninrod/open-slot-8 ()
+    "Open next.org."
+    (interactive)
+    (ninrod/open-file "~/code/sources/gtd/next.org"))
+
+  (defun ninrod/open-slot-4 ()
+    "Open project 4."
+    (interactive)
+    (if (eq system-type 'gnu/linux)
+        (ninrod/open-file "~/code/sources/orf/pom.xml")
+      (message "we're on OSx, slot 4 available.")))
+
+  (defun ninrod/open-slot-3 ()
+    "Open project 3."
+    (interactive)
+    (ninrod/open-file "~/code/sources/gtd/projects/oficina.org"))
+
+  (defun ninrod/open-slot-1 ()
+    "Open project 1."
+    (interactive)
+    (ninrod/open-file "~/code/sources/gtd/info/owshit.org"))
+#+END_SRC
+*** ninrod/open-file
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/open-file (filename)
+    (interactive)
+    (switch-to-buffer (find-file-noselect (expand-file-name filename))))
+#+END_SRC
+*** ninrod/add-filename-to-kill-ring
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/add-filename-to-kill-ring ()
+    "Add current buffer filename to the kill-ring."
+    (interactive)
+    (let ((filename (if (equal major-mode 'dired-mode)
+                        (expand-file-name (dired-copy-filename-as-kill))
+                      (buffer-file-name))))
+      (when filename
+        (kill-new filename)
+        (message "Added buffer filename '%s' to the kill-ring." filename))))
+#+END_SRC
+
+*** ninrod/revert-buffer with no confirmation
+- from [[http://www.emacswiki.org/emacs-en/download/misc-cmds.el][emacswiki]]
+#+BEGIN_SRC emacs-lisp
+(defun ninrod/revert-buffer-no-confirm ()
+    "Revert buffer without confirmation."
+    (interactive)
+    (revert-buffer :ignore-auto :noconfirm))
+#+END_SRC
+*** ninrod/alternate-buffer
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/alternate-buffer ()
+    "Switch to previously open buffer.
+  Repeated invocations toggle between the two most recently open buffers."
+    (interactive)
+    (switch-to-buffer (other-buffer (current-buffer) 1)))
+#+END_SRC
+
+*** ninrod/mkdir
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/mkdir ()
+    "Create directory."
+    (interactive)
+    (if (equal major-mode 'dired-mode)
+        (call-interactively 'dired-create-directory)
+      (if (equal major-mode 'neotree-mode)
+          (call-interactively 'neotree-create-node)
+        (call-interactively 'make-directory))))
+#+END_SRC
 ** advices
 *** always return t
 #+BEGIN_SRC emacs-lisp
@@ -326,83 +408,6 @@ an appropriate message.
   (windmove-right))
 #+END_SRC
 
-** file/dir/buffer commands
-*** ninrod/open-*
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/open-slot-0 ()
-    "Open boot.org."
-    (interactive)
-    (ninrod/open-file "~/.emacs.d/boot.org"))
-
-  (defun ninrod/open-slot-9 ()
-    "Open inbox.org."
-    (interactive)
-    (ninrod/open-file "~/code/sources/gtd/inbox.org"))
-
-  (defun ninrod/open-slot-8 ()
-    "Open oficina.org."
-    (interactive)
-    (ninrod/open-file "~/code/sources/gtd/projects/oficina.org"))
-
-  (defun ninrod/open-slot-4 ()
-    "Open project-4."
-    (interactive)
-    (if (eq system-type 'gnu/linux)
-        (ninrod/open-file "~/code/sources/orf/pom.xml")
-      (message "we're on OSx, slot 4 available.")))
-
-  (defun ninrod/open-slot-1 ()
-    "Open project 1."
-    (interactive)
-    (ninrod/open-file "~/code/sources/gtd/info/owshit.org"))
-#+END_SRC
-*** ninrod/add-filename-to-kill-ring
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/add-filename-to-kill-ring ()
-    "Add current buffer filename to the kill-ring."
-    (interactive)
-    (let ((filename (if (equal major-mode 'dired-mode)
-                        (expand-file-name (dired-copy-filename-as-kill))
-                      (buffer-file-name))))
-      (when filename
-        (kill-new filename)
-        (message "Added buffer filename '%s' to the kill-ring." filename))))
-#+END_SRC
-
-*** ninrod/revert-buffer with no confirmation
-- from [[http://www.emacswiki.org/emacs-en/download/misc-cmds.el][emacswiki]]
-#+BEGIN_SRC emacs-lisp
-(defun ninrod/revert-buffer-no-confirm ()
-    "Revert buffer without confirmation."
-    (interactive)
-    (revert-buffer :ignore-auto :noconfirm))
-#+END_SRC
-*** ninrod/alternate-buffer
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/alternate-buffer ()
-    "Switch to previously open buffer.
-  Repeated invocations toggle between the two most recently open buffers."
-    (interactive)
-    (switch-to-buffer (other-buffer (current-buffer) 1)))
-#+END_SRC
-
-*** ninrod/mkdir
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/mkdir ()
-    "Create directory."
-    (interactive)
-    (if (equal major-mode 'dired-mode)
-        (call-interactively 'dired-create-directory)
-      (if (equal major-mode 'neotree-mode)
-          (call-interactively 'neotree-create-node)
-        (call-interactively 'make-directory))))
-#+END_SRC
-*** ninrod/open-file
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/open-file (filename)
-    (interactive)
-    (switch-to-buffer (find-file-noselect (expand-file-name filename))))
-#+END_SRC
 ** misc
 *** ninrod/origami-toggle-node
 - with help from [[https://www.reddit.com/r/emacs/comments/580v30/tweaking_origamiel_lisp_and_regexes/][reddit]]
@@ -1570,6 +1575,7 @@ M-x ninrod/extended-buffer-menu
    "8" 'ninrod/open-slot-8
 
    "4" 'ninrod/open-slot-4
+   "3" 'ninrod/open-slot-3
    "1" 'ninrod/open-slot-1
    )
 #+END_SRC
