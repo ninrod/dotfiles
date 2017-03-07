@@ -484,6 +484,11 @@ M-x align-regexp
 #+BEGIN_SRC text
 M-x ninrod/extended-buffer-menu
 #+END_SRC
+*** edit
+#+BEGIN_SRC text
+M-x superword-mode
+M-x subword-mode
+#+END_SRC
 * evil
 ** bootstrap
 #+BEGIN_SRC emacs-lisp
