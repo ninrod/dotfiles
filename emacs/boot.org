@@ -442,7 +442,7 @@ an appropriate message.
 #+BEGIN_SRC emacs-lisp
 ;; from https://github.com/cofi/dotfiles/blob/master/emacs.d/config/cofi-util.el#L38
 (defun ninrod/add-to-hooks (fun hooks)
-  "Add function to hooks"
+  "Add function to hooks."
   (dolist (hook hooks)
     (add-hook hook fun)))
 #+END_SRC
@@ -1081,9 +1081,10 @@ M-x subword-mode
   (use-package info+
     :ensure t)
 #+END_SRC
-*** vim-tild-fringe
+*** vim empty lines mode
 #+BEGIN_SRC emacs-lisp
   (use-package vim-empty-lines-mode
+    :ensure t
     :init
     (ninrod/add-to-hooks (lambda () (vim-empty-lines-mode -1))
                          '(comint-mode-hook
