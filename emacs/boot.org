@@ -91,12 +91,12 @@ an appropriate message.
     (interactive)
     (ninrod/open-file "~/.emacs.d/boot.org"))
 
-  (defun ninrod/open-slot-9 ()
+  (defun ninrod/open-slot-8 ()
     "Open inbox.org."
     (interactive)
     (ninrod/open-file "~/code/sources/gtd/inbox.org"))
 
-  (defun ninrod/open-slot-8 ()
+  (defun ninrod/open-slot-9 ()
     "Open next.org."
     (interactive)
     (ninrod/open-file "~/code/sources/gtd/next.org"))
