@@ -24,6 +24,7 @@ nnoremap gb :action ViewBreakpoints<cr>
 nnoremap gs :action FileStructurePopup<cr>
 nnoremap gf :action FindUsages<cr>
 nnoremap gt :action ActivateTerminalToolWindow<cr>
+nnoremap gv :action Refactorings.QuickListPopupAction<cr>
 
 " interesting actions
 " :action InspectCode<cr>
