@@ -608,9 +608,7 @@ M-x subword-mode
     (add-hook 'after-change-major-mode-hook
               (lambda ()
                 (when buffer-read-only
-                  (vim-empty-lines-mode -1))))
-
-    )
+                  (vim-empty-lines-mode -1)))))
 #+END_SRC
 
 ** melpa packages
@@ -1571,17 +1569,15 @@ M-x subword-mode
 #+END_SRC
 ** diminishes
 #+BEGIN_SRC emacs-lisp
-  ;; had to put this on because of use package's :defer t
   (diminish 'git-gutter-mode)
   (diminish 'undo-tree-mode)
+  (diminish 'vim-empty-lines-mode)
 
   ;; built-in modes
   (diminish 'auto-revert-mode)
   (diminish 'subword-mode)
   (diminish 'flyspell-mode "FlyS")
   (diminish 'org-indent-mode)
-
-
 
   (add-hook 'org-mode-hook
             '(lambda ()
