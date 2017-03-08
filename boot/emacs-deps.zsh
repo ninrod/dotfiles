@@ -18,5 +18,8 @@ ningrab ninrod/gruvbox-theme
 ningrab ninrod/emacs-theme-darktooth
 ningrab ninrod/emacs-leuven-theme
 
+# appearance
+ningrab ninrod/vim-empty-lines-mode
+
 # toys
 ningrab parkouss/speed-type
