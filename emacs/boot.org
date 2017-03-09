@@ -483,7 +483,7 @@ M-x list-colors-display
 *** org
 #+BEGIN_SRC text
 M-x org-table-convert-region
-
+M-x org-sort
 #+END_SRC
 *** align
 #+BEGIN_SRC text
@@ -1865,7 +1865,8 @@ M-x subword-mode
    "" 'nil
    ;; "w" 'reserved
 
-   "s" 'org-sort
+   "s" 'org-schedule
+   "d" 'org-deadline
    "r" 'org-refile
    "e" 'org-edit-special
 
