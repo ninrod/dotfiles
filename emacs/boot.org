@@ -2,6 +2,57 @@
 #+STARTUP: overview
 
 * functions
+** interesting M-x commands
+*** misc
+#+BEGIN_SRC
+M-x projectile-ag
+M-x count-words
+M-x ninrod/uarg-exec-shell-command
+M-x customize-apropos-faces
+M-x ielm
+M-x man
+M-x elpamr-create-mirror-for-installed; mnemonic: create [t]hin mirror
+M-x undo-tree-visualize
+M-x eshell
+#+END_SRC
+*** toggles
+#+BEGIN_SRC
+M-x toggle-truncate-lines
+M-x ninrod/display-ansi-colors
+M-x rainbow-mode
+#+END_SRC
+*** magit
+#+BEGIN_SRC
+M-x magit-init
+M-x magit-clone
+
+these two go well together:
+M-x magit-find-file
+M-x magit-log-buffer-file: commits in master touching current buffer
+#+END_SRC
+*** faces
+#+BEGIN_SRC
+M-x or list-faces-display
+M-x list-colors-display
+#+END_SRC
+*** org
+#+BEGIN_SRC text
+M-x org-table-convert-region
+M-x org-sort
+#+END_SRC
+*** align
+#+BEGIN_SRC text
+M-x align-regexp
+#+END_SRC
+*** buffers
+#+BEGIN_SRC text
+M-x ninrod/extended-buffer-menu
+#+END_SRC
+*** edit
+#+BEGIN_SRC text
+M-x superword-mode
+M-x subword-mode
+#+END_SRC
 ** lisp-intro-tutorial-exercises
 *** CH02. Evaluation
 1. Find a file with which you are working and move towards its middle.
@@ -447,57 +498,6 @@ an appropriate message.
     (add-hook hook fun)))
 #+END_SRC
 
-** interesting M-x commands
-*** misc
-#+BEGIN_SRC
-M-x projectile-ag
-M-x count-words
-M-x ninrod/uarg-exec-shell-command
-M-x customize-apropos-faces
-M-x ielm
-M-x man
-M-x elpamr-create-mirror-for-installed; mnemonic: create [t]hin mirror
-M-x undo-tree-visualize
-M-x eshell
-#+END_SRC
-*** toggles
-#+BEGIN_SRC
-M-x toggle-truncate-lines
-M-x ninrod/display-ansi-colors
-M-x rainbow-mode
-#+END_SRC
-*** magit
-#+BEGIN_SRC
-M-x magit-init
-M-x magit-clone
-
-these two go well together:
-M-x magit-find-file
-M-x magit-log-buffer-file: commits in master touching current buffer
-#+END_SRC
-*** faces
-#+BEGIN_SRC
-M-x or list-faces-display
-M-x list-colors-display
-#+END_SRC
-*** org
-#+BEGIN_SRC text
-M-x org-table-convert-region
-M-x org-sort
-#+END_SRC
-*** align
-#+BEGIN_SRC text
-M-x align-regexp
-#+END_SRC
-*** buffers
-#+BEGIN_SRC text
-M-x ninrod/extended-buffer-menu
-#+END_SRC
-*** edit
-#+BEGIN_SRC text
-M-x superword-mode
-M-x subword-mode
-#+END_SRC
 * evil
 ** bootstrap
 #+BEGIN_SRC emacs-lisp
