@@ -2490,6 +2490,8 @@ M-x subword-mode
    "U" '(lambda ()
           (interactive)
           (ibuffer-unmark-all ?\s))
+   "go" 'evil-goto-first-line
+   "gl" 'evil-goto-line
    )
 #+END_SRC
 ** man
