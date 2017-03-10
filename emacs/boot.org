@@ -708,7 +708,7 @@ an appropriate message.
 *** general configs
 - somewhat lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
 #+BEGIN_SRC emacs-lisp
-  ;; (setq org-todo-keywords '((sequence "TODO" "IN-PROGRESS" "WAITING" "|" "DONE" "CANCELED")))
+  (setq org-todo-keywords '((sequence "TODO" "IN-PROGRESS" "WAITING" "|" "DONE" "CANCELED")))
 
   (setq org-blank-before-new-entry (quote ((heading) (plain-list-item))))
   (setq org-log-done (quote time))
