@@ -1,9 +1,7 @@
-#+STARTUP: indent
-#+STARTUP: overview
-
 * functions
 ** interesting M-x commands
 *** misc
+
 #+BEGIN_SRC
 M-x projectile-ag
 M-x count-words
@@ -15,13 +13,17 @@ M-x elpamr-create-mirror-for-installed; mnemonic: create [t]hin mirror
 M-x undo-tree-visualize
 M-x eshell
 #+END_SRC
+
 *** toggles
+
 #+BEGIN_SRC
 M-x toggle-truncate-lines
 M-x ninrod/display-ansi-colors
 M-x rainbow-mode
 #+END_SRC
+
 *** magit
+
 #+BEGIN_SRC
 M-x magit-init
 M-x magit-clone
@@ -30,31 +32,43 @@ these two go well together:
 M-x magit-find-file
 M-x magit-log-buffer-file: commits in master touching current buffer
 #+END_SRC
+
 *** faces
+
 #+BEGIN_SRC
 M-x or list-faces-display
 M-x list-colors-display
 #+END_SRC
+
 *** org
+
 #+BEGIN_SRC text
 M-x org-table-convert-region
 M-x org-sort
 #+END_SRC
+
 *** align
+
 #+BEGIN_SRC text
 M-x align-regexp
 #+END_SRC
+
 *** buffers
+
 #+BEGIN_SRC text
 M-x ninrod/extended-buffer-menu
 #+END_SRC
+
 *** edit
+
 #+BEGIN_SRC text
 M-x superword-mode
 M-x subword-mode
 #+END_SRC
+
 ** lisp-intro-tutorial-exercises
 *** CH02. Evaluation
+    
 1. Find a file with which you are working and move towards its middle.
 2. Find its buffer name, file name, length, and your position in the file.
 #+BEGIN_SRC emacs-lisp
@@ -72,6 +86,7 @@ M-x subword-mode
           (bpos  (point)))
       (message "bname: %s, fname: %s, bsize: %d, bpos: %d" bname fname bsize bpos)))
 #+END_SRC
+
 *** CH03. Writing defuns
 **** write a function that doubles a number
 1. write a non-interactive function that doubles the value of its argument, a number.
@@ -95,7 +110,7 @@ an appropriate message.
       (message "fill-column (%d) is equal or greater than the argument (%d)" fill-column test)))
 #+end_src
 *** CH04. Buffer walk through
-***** Write your own `simplified-end-of-buffer' function definition; then test it to see whether it works.
+**** Write your own `simplified-end-of-buffer' function definition; then test it to see whether it works.
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/lisp-intro/buffer-end ()
     "Move point to the end of the buffer."
@@ -103,7 +118,7 @@ an appropriate message.
     (push-mark)
     (goto-char (point-max)))
 #+END_SRC
-***** Use `if' and `get-buffer' to write a function that prints a message telling you whether a buffer exists.
+**** Use `if' and `get-buffer' to write a function that prints a message telling you whether a buffer exists.
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/lisp-intro/buffer-exists (bufstr)
     "Print something if BUFSTR exists as a buffer."
@@ -115,6 +130,7 @@ an appropriate message.
       (message "BUFSTR %s does not exist." bufstr)))
 #+END_SRC
 ** spacemacs/align-repeat
+
 #+BEGIN_SRC emacs-lisp
   ;; modified function from http://emacswiki.org/emacs/AlignCommands
   (defun spacemacs/align-repeat (start end regexp &optional justify-right after)
@@ -134,8 +150,10 @@ an appropriate message.
       (message "complete-regexp: %S" complete-regexp)
       (align-regexp start end complete-regexp group 1 t)))
 #+END_SRC
+
 ** file/dir/buffer commands
 *** ninrod/open-*
+
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/open-slot-0 ()
     "Open boot.org."
@@ -174,13 +192,17 @@ an appropriate message.
     (interactive)
     (ninrod/open-file "~/code/sources/gtd/info/owshit.org"))
 #+END_SRC
+
 *** ninrod/open-file
+
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/open-file (filename)
     (interactive)
     (switch-to-buffer (find-file-noselect (expand-file-name filename))))
 #+END_SRC
+
 *** ninrod/add-filename-to-kill-ring
+
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/add-filename-to-kill-ring ()
     "Add current buffer filename to the kill-ring."
@@ -194,6 +216,7 @@ an appropriate message.
 #+END_SRC
 
 *** ninrod/revert-buffer with no confirmation
+
 - from [[http://www.emacswiki.org/emacs-en/download/misc-cmds.el][emacswiki]]
 #+BEGIN_SRC emacs-lisp
 (defun ninrod/revert-buffer-no-confirm ()
@@ -201,7 +224,9 @@ an appropriate message.
     (interactive)
     (revert-buffer :ignore-auto :noconfirm))
 #+END_SRC
+
 *** ninrod/alternate-buffer
+
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/alternate-buffer ()
     "Switch to previously open buffer.
@@ -211,6 +236,7 @@ an appropriate message.
 #+END_SRC
 
 *** ninrod/mkdir
+
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/mkdir ()
     "Create directory."
@@ -221,15 +247,19 @@ an appropriate message.
           (call-interactively 'neotree-create-node)
         (call-interactively 'make-directory))))
 #+END_SRC
+
 ** advices
 *** always return t
+
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/return-t-advice (old-function &rest arguments)
     "Make the old-function return t in any case."
     (apply old-function arguments)
     t)
 #+END_SRC
+
 *** please don't kill my precious scratch buffer
+
 #+BEGIN_SRC emacs-lisp
   ;; credits to stefan monier (GNU Emacs mantainer)
   ;; http://lists.gnu.org/archive/html/help-gnu-emacs/2017-02/msg00074.html
@@ -238,7 +268,9 @@ an appropriate message.
               (lambda () (error "DENIED! don't kill my precious *scratch*!!"))
               nil t)) ;; Append at the end of the hook list? no. Buffer-local? yes.
 #+END_SRC
+
 *** daemon-p evil-quit
+
 - [[https://github.com/ninrod/dotfiles/issues/40][ninrod/dotfiles#40]]
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/advice-evil-quit (dumb-evil-quit &rest arguments)
@@ -247,7 +279,9 @@ an appropriate message.
     (apply dumb-evil-quit arguments))
   (advice-add #'evil-quit :around #'ninrod/advice-evil-quit)
 #+END_SRC
+
 *** iBuffer
+
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/ibuffer-recent-buffer (old-ibuffer &rest arguments) ()
          "Open ibuffer with cursor pointed to most recent buffer name"
@@ -256,8 +290,10 @@ an appropriate message.
            (ibuffer-jump-to-buffer recent-buffer-name)))
   (advice-add #'ibuffer :around #'ninrod/ibuffer-recent-buffer)
 #+END_SRC
+
 ** evil shortcuts
 *** ninrod's evil*marker
+
 #+BEGIN_SRC emacs-lisp
     (defun ninrod/evil-set-marker-z ()
       "Set marker z."
@@ -269,7 +305,9 @@ an appropriate message.
       (interactive)
       (evil-goto-mark ?z))
 #+END_SRC
+
 *** ninrod's evil macro
+
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/evil-record-macro-z ()
     "Record macro on register z."
@@ -280,8 +318,10 @@ an appropriate message.
     (interactive)
     (evil-ex "'<,'>norm @z"))
 #+END_SRC
+
 ** org
 *** horrendous org heading manipulation commands
+
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/org-eol-m-ret ()
     "Moves point to the end of the line and applies m-ret and enters insert state."
@@ -312,7 +352,9 @@ an appropriate message.
     (org-insert-heading-respect-content)
     (evil-insert-state))
 #+END_SRC
+
 *** ninrod/org-mv-down
+
 - credits go to [[https://www.reddit.com/r/emacs/comments/583n1x/movecopy_a_cel_to_the_right/][/u/gmfawcett]]
 #+BEGIN_SRC emacs-lisp
 (defun ninrod/org-mv-down ()           ; moves a value down
@@ -328,6 +370,7 @@ an appropriate message.
 #+END_SRC
 
 *** ninrod/org-swap-down
+
 - credits go to [[https://www.reddit.com/r/emacs/comments/583n1x/movecopy_a_cel_to_the_right/][/u/gmfawcett]]
 #+BEGIN_SRC emacs-lisp
 (defun ninrod/org-swap-down ()               ; swap with value below
@@ -344,7 +387,9 @@ an appropriate message.
       (org-table-align)                 ; realign the table
       (goto-char pos))))                ; move back to original position
 #+END_SRC
+
 *** ninrod/org-retrieve-url-from-point
+
 - stolen from [[http://emacs.stackexchange.com/a/3990/12585][here]] and modified.
 #+BEGIN_SRC emacs-lisp
   (defun ninrod--grab-link (text)
@@ -363,7 +408,9 @@ an appropriate message.
         (message "Extracted and yanked org-link: %s" extracted-text)
         (kill-new extracted-text))))
 #+END_SRC
+
 *** agenda functions
+
 - stolen from aaron bieber [[https://blog.aaronbieber.com/2016/09/25/agenda-interactions-primer.html][agenda interactions primer]]
 #+BEGIN_SRC emacs-lisp
 (defun ninrod/org-agenda-next-header ()
@@ -396,8 +443,10 @@ an appropriate message.
     (if pos (goto-char pos))
     (if backwards (goto-char (line-beginning-position)))))
 #+END_SRC
+
 ** lisp-mode
 *** ninrod/eval-print-last-sexp
+
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/eval-print-last-sexp ()
       "Move point to the end of the line and eval-prints last sexp."
@@ -408,6 +457,7 @@ an appropriate message.
 #+END_SRC
 
 *** ninrod/eval-last-sexp
+
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/eval-last-sexp ()
       "Move point to the end of the line and eval last sexp."
@@ -419,19 +469,24 @@ an appropriate message.
 
 ** uargs
 *** ninrod/uarg-shell-command
+
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/uarg-exec-shell-command ()
     (interactive)
     (execute-extended-command '(4) "shell-command"))
 #+END_SRC
+
 *** ninrod/uarg-magit-status
+
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/uarg-magit-status ()
     (interactive)
     (magit-status (magit-read-repository
                    (>= (prefix-numeric-value current-prefix-arg) 16))))
 #+END_SRC
+
 *** ninrod/extended-buffer-menu
+
 - more info here: http://emacs.stackexchange.com/a/21635/12585
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/extended-buffer-menu ()
@@ -442,6 +497,7 @@ an appropriate message.
 
 ** clipboard
 *** ninrod/neotree-copy-filepath-to-clipboard
+
 - with help from [[http://stackoverflow.com/a/40564951/4921402][/u/lawlist]]
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/neotree-copy-path ()
@@ -450,6 +506,7 @@ an appropriate message.
 #+END_SRC
 
 ** better windows splits
+
 #+BEGIN_SRC emacs-lisp
 (defun ninrod/split-window-below-and-focus ()
   "Split the window vertically and focus the new window."
@@ -466,6 +523,7 @@ an appropriate message.
 
 ** misc
 *** ninrod/origami-toggle-node
+
 - with help from [[https://www.reddit.com/r/emacs/comments/580v30/tweaking_origamiel_lisp_and_regexes/][reddit]]
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/origami-toggle-node ()
@@ -474,7 +532,9 @@ an appropriate message.
       (goto-char (point-at-eol))
       (origami-toggle-node (current-buffer) (point))))
 #+END_SRC
+
 *** ninrod/display-ansi-colors
+
 - credits: [[http://stackoverflow.com/a/23382008/4921402][this]] SO question
 #+BEGIN_SRC emacs-lisp
 (require 'ansi-color)
@@ -482,14 +542,18 @@ an appropriate message.
   (interactive)
   (ansi-color-apply-on-region (point-min) (point-max)))
 #+END_SRC
+
 *** ninrod/echo
+
 #+BEGIN_SRC emacs-lisp
 (defun ninrod/echo ()
   "just a simple test message for use within bind setups"
   (interactive)
   (message "The new bind *WORKED*! Yes!!11!"))
 #+END_SRC
+
 *** ninrod/add-to-hooks
+
 #+BEGIN_SRC emacs-lisp
 ;; from https://github.com/cofi/dotfiles/blob/master/emacs.d/config/cofi-util.el#L38
 (defun ninrod/add-to-hooks (fun hooks)
@@ -500,6 +564,7 @@ an appropriate message.
 
 * evil
 ** bootstrap
+
 #+BEGIN_SRC emacs-lisp
   (use-package evil
     :load-path "lisp/ninrod/evil"
@@ -519,8 +584,10 @@ an appropriate message.
       (evil-range (point-min) (point-max)))
     (define-key evil-outer-text-objects-map "e" 'ninrod/textobj-entire));; simulation of kana's textobj-entire
 #+END_SRC
+
 ** babysited packages
 *** evil-targets
+
 #+BEGIN_SRC emacs-lisp
   (use-package avy
     :ensure t
@@ -538,12 +605,16 @@ an appropriate message.
                      :around-key nil
                      :remote-key nil)))
 #+END_SRC
+
 *** evil-rect-ext
+
 #+BEGIN_SRC emacs-lisp
   (use-package rect-ext
     :load-path "lisp/noctuid/rect-ext.el")
 #+END_SRC
+
 *** evil-mc
+
 #+BEGIN_SRC emacs-lisp
   (use-package evil-mc
     :ensure t
@@ -568,7 +639,9 @@ an appropriate message.
 
     :diminish "")
 #+END_SRC
+
 *** evil-surround
+
 #+BEGIN_SRC emacs-lisp
   (use-package evil-surround
     :load-path "lisp/timcharper/evil-surround"
@@ -584,7 +657,9 @@ an appropriate message.
        ?\} '("{ " . " }")))
     :config (global-evil-surround-mode 1))
 #+END_SRC
+
 *** vim empty lines mode
+
 #+BEGIN_SRC emacs-lisp
   (use-package vim-empty-lines-mode
     :load-path "lisp/ninrod/vim-empty-lines-mode"
@@ -616,6 +691,7 @@ an appropriate message.
 
 ** melpa packages
 *** evil-replace-with-register
+
 #+BEGIN_SRC emacs-lisp
   (use-package evil-replace-with-register :ensure t
     :init
@@ -625,6 +701,7 @@ an appropriate message.
 #+END_SRC
 
 *** evil-commentary
+
 #+BEGIN_SRC emacs-lisp
 (use-package evil-commentary :ensure t
   :config (evil-commentary-mode)
@@ -632,24 +709,28 @@ an appropriate message.
 #+END_SRC
 
 *** evil-matchit
+
 #+BEGIN_SRC emacs-lisp
 (use-package evil-matchit :ensure t
   :config (global-evil-matchit-mode 1))
 #+END_SRC
 
 *** evil-exchange
+
 #+BEGIN_SRC emacs-lisp
 (use-package evil-exchange :ensure t
   :config (evil-exchange-install))
 #+END_SRC
 
 *** evil-visualstar
-#+begin_src emacs-lisp
+
+#+BEGIN_SRC emacs-lisp
 (use-package evil-visualstar :ensure t
   :config (global-evil-visualstar-mode))
-#+end_src
+#+END_SRC
 
 *** evil-embrace
+
 #+BEGIN_SRC emacs-lisp
   (use-package evil-embrace
     :ensure t
@@ -657,7 +738,9 @@ an appropriate message.
     (add-hook 'org-mode-hook 'embrace-org-mode-hook)
     (evil-embrace-enable-evil-surround-integration))
 #+END_SRC
+
 *** evil-escape
+
 #+BEGIN_SRC emacs-lisp
   (use-package evil-escape :ensure t
     :config
@@ -666,6 +749,7 @@ an appropriate message.
 #+END_SRC
 
 *** evil-anzu
+
 - config section hack: see [[https://github.com/TheBB/spaceline/issues/69][TheBB/spaceline#69]]
 #+BEGIN_SRC emacs-lisp
   (use-package evil-anzu :ensure t
@@ -685,23 +769,26 @@ an appropriate message.
 #+END_SRC
 
 *** evil-args
-#+begin_src emacs-lisp
+
+#+BEGIN_SRC emacs-lisp
 (use-package evil-args :ensure t
   :config
     (define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
     (define-key evil-outer-text-objects-map "a" 'evil-outer-arg))
-#+end_src
+#+END_SRC
 
 *** evil-numbers
+
 #+BEGIN_SRC emacs-lisp
 (use-package evil-numbers :ensure t)
 #+END_SRC
 
 *** evil-indent-plus
-#+begin_src emacs-lisp
+
+#+BEGIN_SRC emacs-lisp
 (use-package evil-indent-plus :ensure t
   :config (evil-indent-plus-default-bindings))
-#+end_src
+#+END_SRC
 
 * tweaks
 ** org-mode
@@ -963,6 +1050,7 @@ an appropriate message.
 ** cosmetic
 *** core-deps
 **** all-the-icons
+
 #+BEGIN_SRC emacs-lisp
   (use-package all-the-icons :ensure t)
 #+END_SRC
@@ -1534,6 +1622,7 @@ an appropriate message.
 
 * fixes
 ** yasnippet hijacks TAB key in term mode
+
 #+BEGIN_SRC emacs-lisp
 (add-hook 'term-mode-hook 'my-term-mode-hook)
 (defun my-term-mode-hook ()
@@ -1541,6 +1630,7 @@ an appropriate message.
 #+END_SRC
 
 ** fix $PATH on macosx with exec-path-from-shell
+
 #+BEGIN_SRC emacs-lisp
   (when (eq system-type 'darwin)
     (use-package exec-path-from-shell
