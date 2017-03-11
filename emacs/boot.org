@@ -793,6 +793,7 @@ an appropriate message.
 * tweaks
 ** org-mode
 *** general configs
+
 - somewhat lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
 #+BEGIN_SRC emacs-lisp
   (setq org-todo-keywords '((sequence "TODO" "IN-PROGRESS" "WAITING" "|" "DONE" "CANCELED")))
@@ -805,6 +806,7 @@ an appropriate message.
 #+END_SRC
 
 *** org capture
+
 - lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
 #+BEGIN_SRC emacs-lisp
   (setq org-capture-templates
@@ -819,6 +821,7 @@ an appropriate message.
 #+END_SRC
 
 *** org agenda
+
 - lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
 - also lifted from aaron bieber's post: [[https://blog.aaronbieber.com/2016/09/24/an-agenda-for-life-with-org-mode.html][An agenda for life with org-mode]]
 #+BEGIN_SRC emacs-lisp
@@ -866,6 +869,7 @@ an appropriate message.
 #+END_SRC
 
 *** org refile
+
 - with help from [[http://stackoverflow.com/a/22200624/4921402][so]]
 #+BEGIN_SRC emacs-lisp
   (setq ninrod-refile-targets
@@ -881,27 +885,16 @@ an appropriate message.
         '((nil :maxlevel . 1)
           (ninrod-refile-targets :maxlevel . 1)))
 #+END_SRC
+
 ** daemon configuration
+
 - more info [[http://www.tychoish.com/posts/running-multiple-emacs-daemons-on-a-single-system/][here]]
 #+BEGIN_SRC emacs-lisp
   ;; (setq server-use-tcp t)
 #+END_SRC
-** garbage collection hacks
-#+BEGIN_SRC emacs-lisp
-  ;; (setq ninrod/default-gc-threshold (* 800 1024))
 
-  ;; (setq gc-cons-threshold ninrod/default-gc-threshold)
-
-  ;; (defun my-minibuffer-setup-hook ()
-  ;;   (setq gc-cons-threshold most-positive-fixnum))
-
-  ;; (defun my-minibuffer-exit-hook ()
-  ;;   (setq gc-cons-threshold ninrod/default-gc-threshold))
-
-  ;; (add-hook 'minibuffer-setup-hook #'my-minibuffer-setup-hook)
-  ;; (add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook)
-#+END_SRC
 ** misc options
+
 #+BEGIN_SRC emacs-lisp
   (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -928,7 +921,9 @@ an appropriate message.
   (column-number-mode t)
   ;; (global-subword-mode) ;; support for camelcase words
 #+END_SRC
+
 ** better defaults
+
 #+BEGIN_SRC emacs-lisp
   (require 'uniquify)
   (setq uniquify-buffer-name-style 'forward
@@ -937,7 +932,9 @@ an appropriate message.
         sentence-end-double-space nil
         require-final-newline nil)
 #+END_SRC
+
 ** scroll
+
 #+BEGIN_SRC emacs-lisp
   (setq
    redisplay-dont-pause t
@@ -947,7 +944,9 @@ an appropriate message.
    scroll-preserve-screen-position 1
    )
 #+END_SRC
+
 ** backups
+
 - partially lifted from [[https://github.com/magnars/.emacs.d/blob/master/init.el][magnar's emacs.d]]
 #+BEGIN_SRC emacs-lisp
 (setq backup-directory-alist
@@ -959,11 +958,14 @@ an appropriate message.
 #+END_SRC
 
 ** font
+
 - Source Code Pro: [[https://github.com/adobe-fonts/source-code-pro][adobe-fonts/source-code-pro]]
   #+BEGIN_SRC emacs-lisp
     (add-to-list 'default-frame-alist '(font . "Source Code Pro-15"))
   #+END_SRC
+
 ** gui
+
 #+BEGIN_SRC emacs-lisp
   (when (display-graphic-p)
     (when (eq system-type 'darwin)
@@ -977,6 +979,7 @@ an appropriate message.
 #+END_SRC
 
 ** indentation
+
 #+BEGIN_SRC emacs-lisp
   (setq-default js-basic-offset 2
                 js-indent-level 2
@@ -986,6 +989,7 @@ an appropriate message.
 #+END_SRC
 
 ** move custom data out of init.el
+
 - more info [[http://irreal.org/blog/?p=3765][here]]
 - and [[http://emacsblog.org/2008/12/06/quick-tip-detaching-the-custom-file/][here (M-x all-things-emacs)]]
   #+BEGIN_SRC emacs-lisp
@@ -994,6 +998,7 @@ an appropriate message.
   #+END_SRC
 
 ** ibuffer
+
 #+BEGIN_SRC emacs-lisp
   (setq ibuffer-expert t)
   (setq-default ibuffer-show-empty-filter-groups nil)
@@ -1027,11 +1032,15 @@ an appropriate message.
                   " "
                   filename-and-process))))
 #+END_SRC
+
 ** dired
+
 #+BEGIN_SRC emacs-lisp
 (setq dired-omit-files "^\\.?#\\|^\\.[^.].*")
 #+END_SRC
+
 ** show trailing whitespaces
+
 #+BEGIN_SRC emacs-lisp
 (require 'whitespace) 
 (setq-default show-trailing-whitespace t)
@@ -1056,12 +1065,15 @@ an appropriate message.
 #+END_SRC
 
 **** autothemer
+
 #+BEGIN_SRC emacs-lisp
   (use-package autothemer
     :ensure t)
 #+END_SRC
+
 *** themes
 **** gruvbox
+
 #+BEGIN_SRC emacs-lisp
   (use-package gruvbox-theme :load-path "lisp/ninrod/gruvbox-theme"
     :init
@@ -1073,7 +1085,9 @@ an appropriate message.
     ;; (gruvbox-modeline-three)
     )
 #+END_SRC
+
 **** spacemacs
+
 #+BEGIN_SRC text
   (use-package spacemacs-dark-theme :load-path "lisp/ninrod/spacemacs-theme"
     :init
@@ -1085,6 +1099,7 @@ an appropriate message.
 #+END_SRC
 
 **** zerodark
+
 #+BEGIN_SRC text
   (use-package zerodark-theme :load-path "lisp/ninrod/zerodark-theme"
     :init
@@ -1099,6 +1114,7 @@ an appropriate message.
 #+END_SRC
 
 **** darktooth
+
 #+BEGIN_SRC text
   (use-package darktooth-theme :load-path "lisp/ninrod/emacs-theme-darktooth"
     :init
@@ -1107,7 +1123,9 @@ an appropriate message.
     (load-theme 'darktooth t)
     (darktooth-modeline-three))
 #+END_SRC
+
 **** leuven
+
 #+BEGIN_SRC text
   (use-package leuven-theme :load-path "lisp/ninrod/emacs-leuven-theme"
     :init
@@ -1115,7 +1133,9 @@ an appropriate message.
     :config
     (load-theme 'leuven t))
 #+END_SRC
+
 *** spaceline
+
 - to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
 #+BEGIN_SRC emacs-lisp
   (use-package spaceline :ensure t
@@ -1132,17 +1152,23 @@ an appropriate message.
     (spaceline-spacemacs-theme)
     (spaceline-compile))
 #+END_SRC
+
 *** rainbow-delimiters
+
 #+BEGIN_SRC emacs-lisp
 (use-package rainbow-delimiters :ensure t
   :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 #+END_SRC
+
 *** rainbow-mode
+
 #+BEGIN_SRC emacs-lisp
   (use-package rainbow-mode
     :ensure t)
 #+END_SRC
+
 *** highlight-numbers
+
 #+BEGIN_SRC emacs-lisp
   (use-package highlight-numbers
     :ensure t
@@ -1151,6 +1177,7 @@ an appropriate message.
 #+END_SRC
 
 *** highlight-parentheses
+
 #+BEGIN_SRC emacs-lisp
   (use-package highlight-parentheses :ensure t
     :config
@@ -1163,6 +1190,7 @@ an appropriate message.
 #+END_SRC
 
 *** smartparens
+
 #+BEGIN_SRC emacs-lisp
   (use-package smartparens :ensure t
     :init
@@ -1173,7 +1201,9 @@ an appropriate message.
 
     :diminish "")
 #+END_SRC
+
 *** Org Bullets
+
 #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
     :ensure t
@@ -1194,17 +1224,21 @@ an appropriate message.
 #+END_SRC
 
 *** info+
+
 #+BEGIN_SRC emacs-lisp
   (use-package info+
     :ensure t)
 #+END_SRC
+
 ** core
 *** restart-emacs
+
 #+BEGIN_SRC emacs-lisp
   (use-package restart-emacs :ensure t)
 #+END_SRC
 
 *** eyebrowse
+
 #+BEGIN_SRC emacs-lisp
 (use-package eyebrowse :ensure t
   :config
@@ -1213,17 +1247,20 @@ an appropriate message.
 #+END_SRC
 
 *** multi-term
+
 #+BEGIN_SRC emacs-lisp
 (use-package multi-term :ensure t
   :config (setq multi-term-program "/bin/zsh"))
 #+END_SRC
 
 *** ag: the silver searcher
+
 #+BEGIN_SRC emacs-lisp
 (use-package ag :ensure t)
 #+END_SRC
 
 *** origami
+
 #+BEGIN_SRC emacs-lisp
 (use-package origami :ensure t
   :config
@@ -1235,6 +1272,7 @@ an appropriate message.
 #+END_SRC
 
 *** editorconfig
+
 #+BEGIN_SRC emacs-lisp
   (use-package editorconfig
     :ensure t
@@ -1244,6 +1282,7 @@ an appropriate message.
     :diminish editorconfig "")
 #+END_SRC
 *** ibuffer-vc
+
 #+BEGIN_SRC emacs-lisp
   (use-package ibuffer-vc
     :ensure t
@@ -1255,7 +1294,9 @@ an appropriate message.
                 (unless (eq ibuffer-sorting-mode 'alphabetic)
                   (ibuffer-do-sort-by-alphabetic)))))
 #+END_SRC
+
 *** disable-mouse
+
 #+BEGIN_SRC emacs-lisp
   (use-package disable-mouse
     :ensure t
@@ -1267,7 +1308,9 @@ an appropriate message.
 
     :diminish global-disable-mouse-mode "")
 #+END_SRC
+
 *** atomic-chrome
+
 #+BEGIN_SRC emacs-lisp
   (when (eq system-type 'darwin)
     (use-package atomic-chrome :ensure t
@@ -1276,6 +1319,7 @@ an appropriate message.
 #+END_SRC
 
 *** git-gutter-fringe
+
 #+BEGIN_SRC emacs-lisp
   (use-package git-gutter-fringe
     :init
@@ -1283,7 +1327,9 @@ an appropriate message.
     :ensure t
     :defer t)
 #+END_SRC
+
 *** magit
+
 - for more info about magit-display-buffer-function, see [[http://stackoverflow.com/q/39933868/4921402][here]].
 #+BEGIN_SRC emacs-lisp
   (use-package magit :ensure t
@@ -1296,6 +1342,7 @@ an appropriate message.
 #+END_SRC
 
 *** projectile
+
 - the projectile-switch-project-action hack was lifted from [[projectile-switch-project-action][here]].
 #+BEGIN_SRC emacs-lisp
   (use-package projectile :ensure t
@@ -1321,11 +1368,14 @@ an appropriate message.
 #+END_SRC
 
 *** dired-sort
+
 #+BEGIN_SRC emacs-lisp
   (use-package dired-sort
     :ensure t)
 #+END_SRC
+
 *** neotree
+
 #+BEGIN_SRC emacs-lisp
   (use-package neotree :ensure t
     :init
@@ -1343,6 +1393,7 @@ an appropriate message.
 #+END_SRC
 
 *** smooth-scrolling
+
 #+BEGIN_SRC text
   (use-package smooth-scrolling
     :ensure t
@@ -1352,6 +1403,7 @@ an appropriate message.
 
 ** filetypes
 *** md: markdown
+
 #+BEGIN_SRC emacs-lisp
   (use-package markdown-mode
     :ensure t
@@ -1363,6 +1415,7 @@ an appropriate message.
 #+END_SRC
 
 *** html: web-mode
+
 #+BEGIN_SRC emacs-lisp
   (use-package web-mode
     :ensure t
@@ -1393,12 +1446,14 @@ an appropriate message.
 #+END_SRC
 
 *** css/less:
+
 #+BEGIN_SRC emacs-lisp
   (use-package less-css-mode
     :ensure t)
 #+END_SRC
 
 *** js: js2-mode
+
 #+BEGIN_SRC emacs-lisp
   (use-package js2-mode
     :ensure t
@@ -1408,6 +1463,7 @@ an appropriate message.
 #+END_SRC
 
 *** json: json-mode, json-reformat
+
 #+BEGIN_SRC emacs-lisp
   (use-package json-reformat
     :ensure t
@@ -1418,31 +1474,39 @@ an appropriate message.
 #+END_SRC
 
 *** viml
+
 #+BEGIN_SRC emacs-lisp
   (use-package vimrc-mode
     :ensure t)
 #+END_SRC
 
 *** gitconfig
+
 #+BEGIN_SRC emacs-lisp
 (use-package gitconfig-mode :ensure t)
 (use-package gitignore-mode :ensure t)
 (use-package gitattributes-mode :ensure t)
 #+END_SRC
+
 *** Dockerfile
+
 #+BEGIN_SRC emacs-lisp
 (use-package dockerfile-mode :ensure t
   :config (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
 #+END_SRC
+
 *** yaml
+
 #+BEGIN_SRC emacs-lisp
   (use-package yaml-mode
     :ensure t
     :init
     (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 #+END_SRC
+
 ** completions
 *** ivy
+
 #+BEGIN_SRC emacs-lisp
   (use-package ivy
     :ensure t
@@ -1471,7 +1535,9 @@ an appropriate message.
       :ensure t))
 
 #+END_SRC
+
 *** smex
+
 #+BEGIN_SRC emacs-lisp
   (use-package smex
         :ensure t
@@ -1480,7 +1546,9 @@ an appropriate message.
         :config
         (smex-initialize))
 #+END_SRC
+
 *** yasnippet
+
 #+BEGIN_SRC emacs-lisp
   (use-package yasnippet
     :ensure t
@@ -1489,6 +1557,7 @@ an appropriate message.
 #+END_SRC
 
 *** company
+
 #+BEGIN_SRC emacs-lisp
   (use-package company :ensure t
     :init
@@ -1502,6 +1571,7 @@ an appropriate message.
 #+END_SRC
 
 *** flycheck
+
 #+BEGIN_SRC emacs-lisp
   (use-package flycheck
     :ensure t
@@ -1513,6 +1583,7 @@ an appropriate message.
 #+END_SRC
 
 *** emmet
+
 #+BEGIN_SRC emacs-lisp
   (use-package emmet-mode
     :init (progn
@@ -1527,13 +1598,16 @@ an appropriate message.
 
 ** keybinds
 *** which key
+
 #+BEGIN_SRC emacs-lisp
   (use-package which-key :ensure t
     :config (which-key-mode)
     :diminish ""
     )
 #+END_SRC
+
 *** hydra
+
 #+BEGIN_SRC emacs-lisp
   (use-package hydra :ensure t
     :config
@@ -1541,26 +1615,31 @@ an appropriate message.
 #+END_SRC
 
 *** general.el
+
 #+BEGIN_SRC emacs-lisp
   (use-package general
     :ensure t
     :config
     (general-evil-setup))
 #+END_SRC
+
 ** disabled
 *** emaps
+
 #+BEGIN_SRC text
   (use-package emaps
     :ensure t)
 #+END_SRC
 
 *** kurecolor
+
 #+BEGIN_SRC text
   (use-package kurecolor
     :ensure t)
 #+END_SRC
 
 *** ob-http
+
 #+BEGIN_SRC text
 (use-package ob-http :ensure t
 :config
@@ -1571,6 +1650,7 @@ an appropriate message.
 #+END_SRC
 
 *** Reveal.js
+
 #+BEGIN_SRC text
   (use-package ox-reveal
   :ensure t)
@@ -1583,6 +1663,7 @@ an appropriate message.
 #+END_SRC
 
 *** elpa-mirror
+
 #+BEGIN_SRC text
   (use-package elpa-mirror
     :ensure t
@@ -1591,17 +1672,20 @@ an appropriate message.
 #+END_SRC
 
 *** elpa-clone
+
 #+BEGIN_SRC text
 (use-package elpa-clone :ensure t)
 #+END_SRC
 
 *** sicp
+
 #+BEGIN_SRC text
   (use-package sicp
     :ensure t)
 #+END_SRC
 
 *** keyfreq
+
 #+BEGIN_SRC text
   (use-package keyfreq
     :ensure t
@@ -1616,6 +1700,7 @@ an appropriate message.
 #+END_SRC
 
 *** speed-type
+
 #+BEGIN_SRC text
   (use-package speed-type :load-path "lisp/parkouss/speed-type")
 #+END_SRC
@@ -1640,6 +1725,7 @@ an appropriate message.
 #+END_SRC
 
 ** M-x man
+
 - [[http://emacs.stackexchange.com/a/10669/12585][list]] of evil states:
 - with [[https://github.com/syl20bnr/spacemacs/issues/7346][help]] from @TheBB
 - gnu/linux completion hack stolen from [[https://www.emacswiki.org/emacs/ManMode#toc2][EmacsWiki]]
@@ -1656,10 +1742,13 @@ an appropriate message.
 #+END_SRC
 
 ** dabbrev-expand case fix
+
 #+BEGIN_SRC emacs-lisp
   ;; (setq dabbrev-case-fold-search nil)
 #+END_SRC
+
 ** diminishes
+
 #+BEGIN_SRC emacs-lisp
   (diminish 'git-gutter-mode)
   (diminish 'undo-tree-mode)
@@ -1679,12 +1768,15 @@ an appropriate message.
 * keybinds
 ** SPC-map
 *** definer
+
 #+BEGIN_SRC emacs-lisp
   (general-create-definer spc-map
                           :states '(normal visual motion)
                           :prefix "SPC")
 #+END_SRC
+
 *** core
+
 #+BEGIN_SRC emacs-lisp
   (spc-map
    "TAB" 'ninrod/alternate-buffer
@@ -1702,7 +1794,9 @@ an appropriate message.
    "," 'pop-global-mark
    )
 #+END_SRC
+
 *** numbers
+
 #+BEGIN_SRC emacs-lisp
   (spc-map
    "0" 'ninrod/open-slot-0
@@ -1715,14 +1809,18 @@ an appropriate message.
    "1" 'ninrod/open-slot-1
    )
 #+END_SRC
+
 *** function keys
+
 #+BEGIN_SRC emacs-lisp
   (spc-map
    "<f12>" '(lambda ()
              (interactive)
              (ninrod/open-file "~/.emacs.d/boot.org")))
 #+END_SRC
+
 *** (d) emacs help
+
 #+BEGIN_SRC emacs-lisp
   (spc-map "d" '(:ignore t :which-key "describe/help")
     "da" 'apropos
@@ -1736,8 +1834,10 @@ an appropriate message.
     "dm" 'describe-mode
     )
 #+END_SRC
+
 *** (H) hydras
 **** (z) zoom
+
 #+BEGIN_SRC emacs-lisp
   (defhydra hydra-zoom ()
     "zoom"
@@ -1750,6 +1850,7 @@ an appropriate message.
 #+END_SRC
 
 *** (S) spelling
+
 #+BEGIN_SRC emacs-lisp
   (spc-map "S" '(:ignore t :which-key "spelling")
            "Sw" '(ispell-word :which-key "ispell: check word")
@@ -1761,6 +1862,7 @@ an appropriate message.
 #+END_SRC
 
 ** s-map
+
 #+BEGIN_SRC emacs-lisp
   (general-define-key
    :keymaps '(normal visual motion)
@@ -1810,6 +1912,7 @@ an appropriate message.
 #+END_SRC
 
 ** m-map
+
 #+BEGIN_SRC emacs-lisp
   (general-define-key
    :keymaps '(normal visual motion)
@@ -1840,7 +1943,9 @@ an appropriate message.
    "m" 'ninrod/evil-record-macro-z
    )
 #+END_SRC
+
 ** g prefix
+
 #+BEGIN_SRC emacs-lisp
   (general-define-key
    :keymaps 'motion
@@ -1875,6 +1980,7 @@ an appropriate message.
 
 ** evil
 *** comfort improvements
+
 #+BEGIN_SRC emacs-lisp
   (general-nmap
    "RET" 'evil-write
@@ -1892,6 +1998,7 @@ an appropriate message.
 #+END_SRC
 
 *** function keys
+
 #+BEGIN_SRC emacs-lisp
   (general-define-key
    "<f1>" 'eyebrowse-switch-to-window-config-1
@@ -1912,6 +2019,7 @@ an appropriate message.
 #+END_SRC
 
 *** fixes
+
 #+BEGIN_SRC emacs-lisp
   (general-define-key :keymaps '(normal visual) "z." 'evil-scroll-line-to-center) ;; `z.' fix
   (general-define-key :keymaps '(normal visual) "z-" 'evil-scroll-line-to-bottom) ;; `z-' fix
@@ -1925,17 +2033,22 @@ an appropriate message.
 #+END_SRC
 
 *** insert state
+
 #+BEGIN_SRC emacs-lisp
   (general-define-key "C-<tab>" 'dabbrev-expand)
   (general-define-key :keymaps 'minibuffer-local-map "C-<tab>" 'dabbrev-expand)
 #+END_SRC
+
 *** evil-mc
+
 #+BEGIN_SRC emacs-lisp
   (general-define-key :keymaps 'evil-mc-key-map :states 'visual "C-n" 'evil-mc-make-vertical-cursors)
 #+END_SRC
+
 ** org
 *** , local
 **** definer
+
 #+BEGIN_SRC emacs-lisp
 (general-create-definer org-comma-map
    :keymaps 'org-mode-map
@@ -1949,7 +2062,9 @@ an appropriate message.
    "" nil
 )
 #+END_SRC
+
 **** fast
+
 #+BEGIN_SRC emacs-lisp
   (org-comma-map
    "" 'nil
@@ -1969,8 +2084,10 @@ an appropriate message.
    )
 
 #+END_SRC
+
 **** caps
 ***** C: clock/timer
+
 #+BEGIN_SRC emacs-lisp
   (org-comma-map "C" '(:ignore t :which-key "clock/timer")
     "Ci" 'org-clock-in
@@ -1982,12 +2099,14 @@ an appropriate message.
 #+END_SRC
 
 ***** E: exports
+
 #+BEGIN_SRC emacs-lisp
   (org-comma-map "E" '(:ignore t :which-key "Exports")
   "Ed" 'org-export-dispatch)
 #+END_SRC
 
 ***** T: toggles
+
 #+BEGIN_SRC emacs-lisp
   (org-comma-map "T" '(:ignore t :which-key "Toggles")
   "Tl" 'org-toggle-link-display
@@ -1996,6 +2115,7 @@ an appropriate message.
 
 *** t local
 **** definer
+
 #+BEGIN_SRC emacs-lisp
 (general-create-definer org-t-map
    :keymaps 'org-mode-map
@@ -2004,6 +2124,7 @@ an appropriate message.
 #+END_SRC
 
 **** fast
+
 #+BEGIN_SRC emacs-lisp
   (org-t-map
    ;; "<SPC>" 'ninrod/org-insert-subheading ; open new subheading
@@ -2034,6 +2155,7 @@ an appropriate message.
 
 *** T local (tables)
 **** definer
+
 #+BEGIN_SRC emacs-lisp
 (general-create-definer org-T-map
    :keymaps 'org-mode-map
@@ -2042,6 +2164,7 @@ an appropriate message.
 #+END_SRC
 
 **** fast
+
 #+BEGIN_SRC emacs-lisp
   (org-T-map
     "t" 'org-table-transpose-table-at-point
@@ -2070,6 +2193,7 @@ an appropriate message.
 
 *** S local (subtrees)
 **** definer
+
 #+BEGIN_SRC emacs-lisp
 (general-create-definer org-S-map
    :keymaps 'org-mode-map
@@ -2078,6 +2202,7 @@ an appropriate message.
 #+END_SRC
 
 **** fast
+
 #+BEGIN_SRC emacs-lisp
   (org-S-map
   ;; subtree commands
@@ -2094,6 +2219,7 @@ an appropriate message.
 #+END_SRC
 
 *** local fixes
+
 #+BEGIN_SRC emacs-lisp
   (general-define-key
    :keymaps 'org-mode-map
@@ -2103,7 +2229,7 @@ an appropriate message.
    "zh" 'outline-previous-visible-heading
    "zj" 'org-forward-heading-same-level
    "zk" 'org-backward-heading-same-level
-   "zl" 'outline-next-visible-heading
+   "zn" 'outline-next-visible-heading
    "<" 'org-do-promote
    ">" 'org-do-demote
    )
@@ -2122,7 +2248,9 @@ an appropriate message.
    "t" 'org-edit-src-exit
    "," 'org-edit-src-abort)
 #+END_SRC
+
 *** agenda
+
 #+BEGIN_SRC emacs-lisp
   (general-define-key
    :keymaps 'org-agenda-mode-map
@@ -2132,8 +2260,10 @@ an appropriate message.
    "K" 'ninrod/org-agenda-previous-header
    )
 #+END_SRC
+
 ** dired
 *** unbinds
+
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/dired--unbinds ()
     (general-define-key
@@ -2174,7 +2304,9 @@ an appropriate message.
      "i" nil
      ))
 #+END_SRC
+
 *** binds
+
 #+BEGIN_SRC emacs-lisp
   (defun ninrod/dired--binds ()
     "my dired rebinds"
@@ -2205,7 +2337,9 @@ an appropriate message.
      "R" 'dired-do-redisplay
      "T" 'dired-toggle-marks))
 #+END_SRC
+
 *** setup
+
 - lifted from this [[http://stackoverflow.com/a/10672548/4921402][SO question]]
 - lifted from magnar's [[https://github.com/magnars/.emacs.d/blob/master/site-lisp/evil/evil-integration.el][magnars config]]
 #+BEGIN_SRC emacs-lisp
@@ -2215,7 +2349,9 @@ an appropriate message.
     (evil-make-overriding-map dired-mode-map 'normal t); use the standard Dired bindings as a base
     (ninrod/dired--binds))
 #+END_SRC
+
 ** neotree
+
 #+BEGIN_SRC emacs-lisp
   (require 'neotree)
   (require 'evil)
@@ -2273,8 +2409,10 @@ an appropriate message.
 
       neotree-mode-map))
 #+END_SRC
+
 ** lisp
 *** definers
+
 #+BEGIN_SRC emacs-lisp
   (general-create-definer
    lisp-comma-map
@@ -2288,7 +2426,9 @@ an appropriate message.
    :states 'normal
    :prefix "t")
 #+END_SRC
+
 *** binds
+
 #+BEGIN_SRC emacs-lisp
   (lisp-t-map
     "o" 'ninrod/eval-print-last-sexp ;mnemonic: output to current buffer
@@ -2300,14 +2440,18 @@ an appropriate message.
     "b" 'eval-buffer
     )
 #+END_SRC
+
 ** info
 *** definer
+
 #+BEGIN_SRC emacs-lisp
 (general-create-definer
    info-keybind-war
    :keymaps 'Info-mode-map)
 #+END_SRC
+
 *** unbinds
+
 #+BEGIN_SRC emacs-lisp
   (info-keybind-war
    "1" nil
@@ -2341,7 +2485,9 @@ an appropriate message.
 
    "s" nil)
 #+END_SRC
+
 *** binds
+
 #+BEGIN_SRC emacs-lisp
   (info-keybind-war
    :states 'motion
@@ -2360,8 +2506,10 @@ an appropriate message.
    "-" 'evil-scroll-line-to-bottom
    "." 'evil-scroll-line-to-center)
 #+END_SRC
+
 ** magit
 *** magit-status-mode-map fixes
+
 #+BEGIN_SRC emacs-lisp
   (general-define-key
    :keymaps 'magit-status-mode-map
@@ -2369,7 +2517,9 @@ an appropriate message.
    "go" 'evil-goto-first-line ;; I don't know how, but this also fixes the gl bind.
    )
 #+END_SRC
+
 *** magit-hunk-section-map fixes
+
 #+BEGIN_SRC emacs-lisp
   (general-define-key
    :keymaps 'magit-hunk-section-map
@@ -2377,6 +2527,7 @@ an appropriate message.
 #+END_SRC
 
 *** magit-file-section-map
+
 #+BEGIN_SRC emacs-lisp
 (general-define-key
    :keymaps 'magit-file-section-map
@@ -2385,6 +2536,7 @@ an appropriate message.
 
 ** term
 - with help from [[https://www.reddit.com/r/emacs/comments/56xmvg/properly_editing_a_shell_buffer_with_evilmode/][/r/emacs]]
+
 #+BEGIN_SRC emacs-lisp
   (evil-set-initial-state 'term-mode 'emacs)
 
@@ -2411,6 +2563,7 @@ an appropriate message.
 #+END_SRC
 
 ** prog
+
 #+BEGIN_SRC emacs-lisp
   (general-define-key
    :keymaps 'prog-mode-map
@@ -2420,6 +2573,7 @@ an appropriate message.
 #+END_SRC
 
 ** ag
+
 #+BEGIN_SRC emacs-lisp
   (general-define-key
    :keymaps 'ag-mode-map
@@ -2433,6 +2587,7 @@ an appropriate message.
 #+END_SRC
 
 ** ivy
+
 #+BEGIN_SRC emacs-lisp
   (general-define-key
    :keymaps '(ivy-minibuffer-map
@@ -2444,6 +2599,7 @@ an appropriate message.
 #+END_SRC
 
 ** buffer-menu
+
 #+BEGIN_SRC emacs-lisp
   (general-define-key
    :keymaps 'Buffer-menu-mode-map
@@ -2459,8 +2615,10 @@ an appropriate message.
    "-" 'evil-ex-nohighlight
    )
 #+END_SRC
+
 ** ibuffer
 *** hydra
+
 #+BEGIN_SRC emacs-lisp
   ;; from https://github.com/abo-abo/hydra/wiki/Ibuffer
   (defhydra hydra-ibuffer-main (:color pink :hint nil)
@@ -2554,14 +2712,18 @@ an appropriate message.
     ("b" hydra-ibuffer-main/body "back" :color blue))
 
 #+END_SRC
+
 *** definer
+
 #+BEGIN_SRC emacs-lisp
   (general-create-definer
    ninrod/ibuffer-map
    :keymaps 'ibuffer-mode-map
    )
 #+END_SRC
+
 *** unbinds
+
 #+BEGIN_SRC emacs-lisp
   (ninrod/ibuffer-map
    "/" nil
@@ -2570,7 +2732,9 @@ an appropriate message.
    "0" nil
    )
 #+END_SRC
+
 *** binds
+
 #+BEGIN_SRC emacs-lisp
   (ninrod/ibuffer-map
    :states 'normal
@@ -2584,7 +2748,9 @@ an appropriate message.
    "gl" 'evil-goto-line
    )
 #+END_SRC
+
 ** man
+
 #+BEGIN_SRC emacs-lisp
   (general-define-key
    :keymaps 'Man-mode-map
