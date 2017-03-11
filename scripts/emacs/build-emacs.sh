@@ -2,8 +2,8 @@
 
 print $EMACS_SRC_DIR
 builtin cd "$EMACS_SRC_DIR" &&
-  make distclean &&
-  make clean &&
+  git clean -fd &&
+  make maintainer-clean &&
   ./autogen.sh &&
   ./configure --with-ns &&
   make install
