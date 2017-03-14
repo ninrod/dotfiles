@@ -2727,6 +2727,8 @@ an appropriate message.
    "DEL" nil
    "l" nil
    "0" nil
+   "n" nil
+   "-" nil
    )
 #+END_SRC
 
