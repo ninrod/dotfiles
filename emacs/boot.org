@@ -914,6 +914,9 @@ an appropriate message.
   (menu-bar-mode -1)
   (electric-pair-mode 1)
   (column-number-mode t)
+
+  (if (fboundp 'scroll-bar-mode) ;; for emacs compiled with `nox'
+      (scroll-bar-mode -1))
 #+END_SRC
 
 ** better defaults
