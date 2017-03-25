@@ -867,7 +867,7 @@ an appropriate message.
   (setq recentf-max-menu-items 200 ;; MRU configs
         recentf-max-saved-items 200
         default-directory "~/code/sources/dotfiles"
-        initial-scratch-message ";; -*- lexical-binding: t -*-\n;; Scratch Buffer.\n"
+        initial-scratch-message ";; -*- lexical-binding: t -*-\n;; Scratch Buffer.\n\n"
         inhibit-startup-message t
         display-time-default-load-average nil
         display-time-day-and-date t
