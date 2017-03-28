@@ -755,7 +755,12 @@ an appropriate message.
 (use-package evil-indent-plus :ensure t
   :config (evil-indent-plus-default-bindings))
 #+END_SRC
-
+** test
+#+BEGIN_SRC emacs-lisp
+  (use-package evil-lion
+    :load-path "lisp/edkolev/evil-lion"
+    )
+#+END_SRC
 * tweaks
 ** org-mode
 *** general configs
@@ -1951,6 +1956,13 @@ an appropriate message.
    ;; As I've sequestered < and > when in org mode, we need a workaround.
    ">" 'evil-shift-right
    "<" 'evil-shift-left
+   )
+
+  (general-define-key
+   :keymaps '(normal visual motion)
+   :prefix "g"
+   "a" 'evil-lion-left
+   "A" 'evil-lion-right
    )
 #+END_SRC
 

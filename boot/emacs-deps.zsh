@@ -10,6 +10,7 @@ ningrab ninrod/evil
 ningrab noctuid/rect-ext.el
 ningrab ninrod/targets.el
 ningrab timcharper/evil-surround develop
+ningrab edkolev/evil-lion
 
 # forked themes
 ningrab ninrod/spacemacs-theme
