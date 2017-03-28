@@ -655,6 +655,13 @@ an appropriate message.
     :config (global-evil-surround-mode 1))
 #+END_SRC
 
+*** evil-lion
+ #+BEGIN_SRC emacs-lisp
+   (use-package evil-lion
+     :load-path "lisp/edkolev/evil-lion"
+     )
+ #+END_SRC
+
 ** melpa packages
 *** evil-replace-with-register
 
@@ -754,12 +761,6 @@ an appropriate message.
 #+BEGIN_SRC emacs-lisp
 (use-package evil-indent-plus :ensure t
   :config (evil-indent-plus-default-bindings))
-#+END_SRC
-** test
-#+BEGIN_SRC emacs-lisp
-  (use-package evil-lion
-    :load-path "lisp/edkolev/evil-lion"
-    )
 #+END_SRC
 * tweaks
 ** org-mode
