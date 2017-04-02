@@ -68,7 +68,7 @@ M-x subword-mode
 
 ** lisp-intro-tutorial-exercises
 *** CH02. Evaluation
-    
+
 1. Find a file with which you are working and move towards its middle.
 2. Find its buffer name, file name, length, and your position in the file.
 #+BEGIN_SRC emacs-lisp
@@ -2139,6 +2139,8 @@ an appropriate message.
    "o" 'ninrod/org-eol-m-ret ; open new heading below, not respecting content
    "RET" 'ninrod/org-insert-heading-respect-content ; open new heading below, respecting content
    "DEL" 'ninrod/org-bol-m-ret ; open new heading above
+
+   "i" 'org-tree-to-indirect-buffer
    )
 #+END_SRC
 
