@@ -6,7 +6,7 @@ ningrab ninrod/zipped-melpa-mirror
 ningrab ninrod/thin-melpa-mirror
 
 # core editing
-ningrab ninrod/evil
+ningrab emacs-evil/evil
 ningrab noctuid/rect-ext.el
 ningrab ninrod/targets.el
 ningrab timcharper/evil-surround develop
