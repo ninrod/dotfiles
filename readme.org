@@ -63,7 +63,6 @@ I maintain my configuration using an org-mode file, through org-babel.
 So you can see it in it's full glory [[https://github.com/ninrod/dotfiles/blob/master/emacs/boot.org][here]].
 * VIM: Powerful shell text editor. Tweaked with plugins.
 To check out what binds and plugins I use in this config, my [[https://github.com/ninrod/dotfiles/blob/master/vim/][vim directory]] is authoritative.
-That said, it is worth noting that I've remapped =<space>= to be an alias to the =<leader>= key.
 * TMUX custom binds
 checkout the [[https://github.com/ninrod/dotfiles/blob/master/tmux/keybinds.tmux][keybinds.tmux]] file for binding setup.
 
