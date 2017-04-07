@@ -1,14 +1,4 @@
 * functions
-** test pretty xml
-   #+BEGIN_SRC emacs-lisp
-     (require 'sgml-mode)
-
-     (defun reformat-xml ()
-       (interactive)
-       (save-excursion
-         (sgml-pretty-print (point-min) (point-max))
-         (indent-region (point-min) (point-max))))
-   #+END_SRC
 ** interesting M-x commands
 *** misc
 
@@ -477,6 +467,16 @@ an appropriate message.
       (eval-last-sexp nil))
 #+END_SRC
 
+** pretty print xml
+   #+BEGIN_SRC emacs-lisp
+     (require 'sgml-mode)
+
+     (defun ninrod/reformat-xml ()
+       (interactive)
+       (save-excursion
+         (sgml-pretty-print (point-min) (point-max))
+         (indent-region (point-min) (point-max))))
+   #+END_SRC
 ** uargs
 *** ninrod/uarg-shell-command
 
