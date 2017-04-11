@@ -1469,16 +1469,16 @@ an appropriate message.
 
       (use-package racer
         :ensure t
-        :init (progn
-                (setenv "PATH" (concat (getenv "PATH") ":~/.cargo/bin"))
-                (setq exec-path (append exec-path '("~/.cargo/bin")))
-                (unless (getenv "RUST_SRC_PATH")
-                  (setenv "RUST_SRC_PATH" (expand-file-name "~/rust/src/")))
-                (setq racer-cmd "~/.cargo/bin/racer")
-                (setq racer-rust-src-path "~/rust/src/")
-                (add-hook 'rust-mode-hook #'racer-mode)
-                (add-hook 'racer-mode-hook #'eldoc-mode)
-                (add-hook 'racer-mode-hook #'company-mode)))
+        :init
+        (setenv "PATH" (concat (getenv "PATH") ":~/.cargo/bin"))
+        (setq exec-path (append exec-path '("~/.cargo/bin")))
+        (unless (getenv "RUST_SRC_PATH")
+          (setenv "RUST_SRC_PATH" (expand-file-name "~/code/sources/rust/src/")))
+        (setq racer-cmd "~/.cargo/bin/racer")
+        (setq racer-rust-src-path "~/code/sources/rust/src/")
+        (add-hook 'rust-mode-hook #'racer-mode)
+        (add-hook 'racer-mode-hook #'eldoc-mode)
+        (add-hook 'racer-mode-hook #'company-mode))
 
       (use-package flycheck-rust
         :ensure t
