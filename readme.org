@@ -36,6 +36,7 @@ Feel free to open issues though, if the config did not work for you. I'll try to
   2. =brew install reattach-to-user-namespace= (Mainly because of the =open= utility. [[https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard.git][more info here]]).
   3. =brew install diff-so-fancy=
 - *Kind remark*: for the moment (until I change the script to back it up for you), I'll overwrite your =~/.gitconfig= file, so if you have something important in it, now would be the perfect moment to back it up.
+- *new* get [[https://www.gnu.org/software/emacs/][emacs]] 25.1.1 (this is optional, everything will work fine if you don't use emacs)
 
 * Shell time
 now lets write some shell commands.
