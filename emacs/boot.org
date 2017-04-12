@@ -1455,17 +1455,6 @@ an appropriate message.
     (add-hook 'typescript-mode-hook #'setup-tide-mode)
     )
 #+END_SRC
-*** java
-    #+BEGIN_SRC emacs-lisp
-      (use-package meghanada
-        :ensure t
-        :config
-        (add-hook 'java-mode-hook
-                  (lambda ()
-                    ;; meghanada-mode on
-                    (meghanada-mode t)
-                    (add-hook 'before-save-hook 'meghanada-code-beautify-before-save))))
-    #+END_SRC
 *** Rust
     - stolen from [[https://gist.github.com/matthew-piziak/51300f97c092041b081b8d9fb22d290d][matthew pizziak]]
     #+BEGIN_SRC emacs-lisp
