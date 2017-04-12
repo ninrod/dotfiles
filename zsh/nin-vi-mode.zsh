@@ -146,7 +146,7 @@ bindkey -M visual S add-surround
 
 autoload -Uz edit-command-line
 zle -N edit-command-line
-bindkey -M vicmd 'gs' edit-command-line
+bindkey -M vicmd 'go' edit-command-line
 
 bindkey -M vicmd '?' history-incremental-search-backward
 
