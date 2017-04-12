@@ -1447,8 +1447,6 @@ an appropriate message.
     #+BEGIN_SRC emacs-lisp
       (use-package rjsx-mode
         :ensure t)
-      (use-package js-auto-beautify
-        :ensure t)
     #+END_SRC
 *** ts: TypeScript
 #+BEGIN_SRC emacs-lisp

@@ -3,8 +3,8 @@ if [[ -z ${EMACS+x} ]]; then
 
   # simplest possible vi key configuration
   # no delays when switching keymaps
-  # export KEYTIMEOUT=5
   # bootstrap vi-mode
+  # export KEYTIMEOUT=1
   # bindkey -v
 
   # much more complex vi keys configuration

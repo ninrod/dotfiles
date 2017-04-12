@@ -100,7 +100,7 @@ TRAPWINCH() {
 }
 
 # no delays when switching keymaps
-export KEYTIMEOUT=5
+export KEYTIMEOUT=1
 # bootstrap vi-mode
 bindkey -v
 
