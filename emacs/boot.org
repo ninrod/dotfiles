@@ -2364,7 +2364,9 @@ an appropriate message.
      "m" 'dired-create-directory ;*-m is dired-mark
      "r" 'dired-do-rename
      "o" 'dired-do-chmod
+
      "t" 'dired-mark
+     "U" 'dired-unmark
 
      ",s" 'dired-sort-extension
      ",t" 'dired-details-toggle
