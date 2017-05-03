@@ -115,5 +115,3 @@ md () {
 export PS1="${Blue}\w ${Red}\u${Cyan}@${Yellow}\h ${Purple}#${Rst} "
 
 # }}}
-
-tmux
