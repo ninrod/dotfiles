@@ -1,0 +1,11 @@
+! Right Alt is Right Control
+! keycode 108 = right alt in thinkpad t460s
+
+! clear the control modifier
+clear control
+
+! now make right alt produce control_r
+keycode 108 = Control_R
+
+! now my control is control_l + control_r
+add Control = Control_L Control_R
