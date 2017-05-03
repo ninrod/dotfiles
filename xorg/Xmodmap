@@ -1,5 +1,6 @@
 ! Right Alt is Right Control
 ! keycode 108 = right alt in thinkpad t460s
+! with help from: http://xahlee.info/linux/linux_swap_control_and_alt_xmodmap.html
 
 ! clear the control modifier
 clear control
