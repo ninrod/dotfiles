@@ -2361,8 +2361,7 @@ an appropriate message.
      "l" 'evil-forward-char
 
      "p" 'ninrod/add-filename-to-kill-ring
-     "m" 'dired-create-directory ;*-m is dired-mark
-     "r" 'dired-do-rename
+     "m" 'dired-do-rename
      "o" 'dired-do-chmod
 
      "t" 'dired-mark
