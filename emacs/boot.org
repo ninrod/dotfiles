@@ -777,14 +777,18 @@ an appropriate message.
 *** general configs
 
 - somewhat lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
+- thanks to [[https://github.com/abo-abo/swiper/issues/986#issuecomment-300482804][@fabacino]] for the org-goto/ivy interplay hack
 #+BEGIN_SRC emacs-lisp
   (setq org-todo-keywords '((sequence "TODO" "IN-PROGRESS" "WAITING" "|" "DONE" "CANCELED")))
-
   (setq org-blank-before-new-entry (quote ((heading) (plain-list-item))))
   (setq org-log-done (quote time))
   (setq org-log-redeadline (quote time))
   (setq org-log-reschedule (quote time))
   (setq org-src-window-setup 'current-window)
+
+  ;; org-goto/ivy interplay hack
+  (setq org-goto-interface 'outline-path-completion)
+  (setq org-outline-path-complete-in-steps nil)
 #+END_SRC
 
 *** org capture
@@ -2119,7 +2123,8 @@ an appropriate message.
 
    "l" 'org-insert-link
    "t" 'counsel-org-tag
-   "g" 'worf-goto
+   "w" 'worf-goto
+   "g" 'org-goto
 
    "TAB" 'evil-toggle-fold
 
