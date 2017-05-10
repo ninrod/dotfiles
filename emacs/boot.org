@@ -1382,7 +1382,12 @@ an appropriate message.
     :config
     (smooth-scrolling-mode 1))
 #+END_SRC
-
+*** worf
+    #+BEGIN_SRC emacs-lisp
+      (use-package worf
+        :ensure t
+        :diminish worf-mode)
+    #+END_SRC
 ** filetypes
 *** md: markdown
 
@@ -1540,7 +1545,6 @@ an appropriate message.
 
 ** completions
 *** ivy
-
 #+BEGIN_SRC emacs-lisp
   (use-package ivy
     :ensure t
@@ -1567,9 +1571,7 @@ an appropriate message.
 
     (use-package counsel
       :ensure t))
-
 #+END_SRC
-
 *** smex
 
 #+BEGIN_SRC emacs-lisp
@@ -2117,6 +2119,7 @@ an appropriate message.
 
    "l" 'org-insert-link
    "t" 'counsel-org-tag
+   "g" 'worf-goto
 
    "TAB" 'evil-toggle-fold
 
