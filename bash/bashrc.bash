@@ -17,10 +17,6 @@ export EDITOR=vim
 # path {{{
 
 PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-
-export GNUBIN_PATH=/usr/local/opt/coreutils/libexec/gnubin
-PATH="$GNUBIN_PATH:$PATH"
-
 export PATH
 
 # }}}
