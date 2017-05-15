@@ -26,3 +26,4 @@ alias dot='la $(find ~ -maxdepth 1 -type l)'
 
 # dotfiles
 alias r='~/.dotfiles/install.zsh'
+alias t='tmux new-session -A -s tmux'
