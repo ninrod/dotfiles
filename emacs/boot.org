@@ -895,7 +895,11 @@ an appropriate message.
         yank-pop-change-selection t ;; https://github.com/dakrone/eos/blob/master/eos.org
         ;; confirm-kill-emacs #'y-or-n-p ;; ask before killing emacs
         echo-keystrokes 0.02) ;; instantly display current keystrokes in mini buffer
-   (run-at-time nil (* 5 60) 'recentf-save-list)
+
+  ;; periodically save recentf. very useful for daemon mode.
+  ;; stolen from: https://www.emacswiki.org/emacs/RecentFiles#toc1
+  ;; here it saves recentf in 5 minute intervals
+  (run-at-time nil (* 5 60) 'recentf-save-list)
 
   (display-time-mode) ;; hack: customize display time in modeline.
   (save-place-mode 1) ;; save last cursor position
