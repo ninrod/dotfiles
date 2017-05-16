@@ -1,13 +1,10 @@
-#+STARTUP: indent
-#+STARTUP: overview
-
 * Boot strategy
-this is where I maintain my boot process strategy programs
+- this is where I maintain my boot process strategy programs
 * Options
 - note: the user can opt for defining his own git url to assert from where he wants to grab his dependencies.
 - that's useful, for example, if you mantain your own private gitlab server or cgit.
 - you just have to create a file that populates a zsh associative array:
-  1. create a file called =~/.options/urlhash.zsh=
+  1. create a file called =~/.options/shell-options.zsh=
   2. populate the file like this:
 
 #+BEGIN_SRC shell
@@ -16,4 +13,3 @@ urlhash[foo/bar]=https://foo.com/cgit/baz.git
 #+END_SRC
 
 - done.
-
