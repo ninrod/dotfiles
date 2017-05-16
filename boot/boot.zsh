@@ -4,15 +4,15 @@
 SCRIPTPATH=$(cd $(dirname $0); pwd -P) && cd $SCRIPTPATH
 GIT_ROOT=$(git rev-parse --show-toplevel)
 
+source $GIT_ROOT/boot/guard.zsh
 source $GIT_ROOT/zsh/termcolors.zsh
 source $GIT_ROOT/boot/functions.zsh
 source $GIT_ROOT/zsh/constants.zsh
 source $GIT_ROOT/boot/symlinks.zsh
 
-
-OPTIONS=$(readlink -f ~/code/sources/options)
+OPTIONS=$(cd $SCRIPTPATH; cd ../../; readlink -f options)
 LINK_OPTIONS=$(readlink -f ~/.options)
-if [[ ! -e  $LINK_OPTIONS ]] && [[ -e $OPTIONS ]]; then
+if [[ ! -e $LINK_OPTIONS ]] && [[ -e $OPTIONS ]]; then
   echo "symlinking options"
   echo "first arg: $OPTIONS"
   echo "second arg: $LINK_OPTIONS"
