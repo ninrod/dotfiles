@@ -12,7 +12,9 @@ alias lf='lk -n'
 alias c='clear'
 alias q='exit'
 alias b='builtin cd ..'
-alias w='echo -e "$Blue ${"$(pwd)"/$HOME/~} ${Red}at ${Cyan}$(whoami)${Red}@${Yellow}$(hostname -s)$Red using $Yellow${0}$Purple ${DOT_PROMPT_CHAR:-$}${Rst}"'
+
+alias w='echo -e "$Blue ${"$(pwd)"/$HOME/~} ${Red}at ${Cyan}$(whoami)${Red}@${Yellow}$(hostname -s)$Red \
+using $Yellow${0}$Purple ${DOT_PROMPT_CHAR:-$}${Rst}"'
 
 # apps
 alias ag='ag --hidden'

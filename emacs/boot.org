@@ -273,11 +273,14 @@ an appropriate message.
 
 - [[https://github.com/ninrod/dotfiles/issues/40][ninrod/dotfiles#40]]
 #+BEGIN_SRC emacs-lisp
-  (defun ninrod/advice-evil-quit (dumb-evil-quit &rest arguments)
-    "Ask for confirmation before quitting the last window."
-    (message "it worked bitch!")
-    (apply dumb-evil-quit arguments))
-  (advice-add #'evil-quit :around #'ninrod/advice-evil-quit)
+    (defun ninrod/advice-evil-quit (dumb-evil-quit &rest arguments)
+      "Ask for confirmation before quitting the last window."
+      (message "it worked bitch!")
+      (message "saving recentf files...")
+      (recentf-save-list) ;; flush my recent used files
+      (message "recentf saved")
+      (apply dumb-evil-quit arguments))
+    (advice-add #'evil-quit :around #'ninrod/advice-evil-quit)
 #+END_SRC
 
 *** iBuffer
@@ -896,11 +899,6 @@ an appropriate message.
         ;; confirm-kill-emacs #'y-or-n-p ;; ask before killing emacs
         echo-keystrokes 0.02) ;; instantly display current keystrokes in mini buffer
 
-  ;; periodically save recentf. very useful for daemon mode.
-  ;; stolen from: https://www.emacswiki.org/emacs/RecentFiles#toc1
-  ;; here it saves recentf in 5 minute intervals
-  (run-at-time nil (* 5 60) 'recentf-save-list)
-
   (display-time-mode) ;; hack: customize display time in modeline.
   (save-place-mode 1) ;; save last cursor position
   (savehist-mode 1) ;; save minibuffer history
@@ -908,6 +906,7 @@ an appropriate message.
   (menu-bar-mode -1)
   (electric-pair-mode 1)
   (column-number-mode t)
+  (recentf-mode 1)
 
   (if (fboundp 'scroll-bar-mode) ;; for emacs compiled with `nox'
       (scroll-bar-mode -1))
