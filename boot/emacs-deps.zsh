@@ -2,8 +2,7 @@ source ~/.zsh.d/constants.zsh
 mkdir -p $emacs_deps && cd $emacs_deps
 
 # mirrors
-ningrab ninrod/zipped-melpa-mirror
-ningrab ninrod/thin-melpa-mirror
+ningrab ninrod/rsynced-melpa
 
 # core editing
 ningrab emacs-evil/evil
@@ -14,13 +13,4 @@ ningrab edkolev/evil-lion
 
 # forked themes
 ningrab ninrod/spacemacs-theme
-ningrab ninrod/zerodark-theme
 ningrab ninrod/gruvbox-theme
-ningrab ninrod/emacs-theme-darktooth
-ningrab ninrod/emacs-leuven-theme
-
-# appearance
-ningrab ninrod/vim-empty-lines-mode
-
-# toys
-ningrab parkouss/speed-type
