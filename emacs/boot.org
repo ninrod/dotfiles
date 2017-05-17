@@ -1103,17 +1103,6 @@ an appropriate message.
     (load-theme 'zerodark t))
 #+END_SRC
 
-**** darktooth
-
-#+BEGIN_SRC text
-  (use-package darktooth-theme :load-path "lisp/ninrod/emacs-theme-darktooth"
-    :init
-    (setq anzu-cons-mode-line-p t)
-    :config
-    (load-theme 'darktooth t)
-    (darktooth-modeline-three))
-#+END_SRC
-
 **** leuven
 
 #+BEGIN_SRC text

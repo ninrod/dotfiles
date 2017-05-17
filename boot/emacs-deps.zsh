@@ -12,5 +12,7 @@ ningrab timcharper/evil-surround develop
 ningrab edkolev/evil-lion
 
 # forked themes
-ningrab ninrod/spacemacs-theme
 ningrab ninrod/gruvbox-theme
+ningrab ninrod/spacemacs-theme
+ningrab ninrod/zerodark-theme
+ningrab ninrod/emacs-leuven-theme
