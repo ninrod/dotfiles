@@ -6,8 +6,9 @@ alias em=emacs.sh
 # gui
 alias emacs="background-emacs.sh"
 
-# terminal
+# emacs client
 alias et="emacsclient.sh --tty"
+alias ec="emacsclient.sh"
 
 # daemon
 alias e="background-connect-emacs-daemon.sh"
