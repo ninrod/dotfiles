@@ -88,8 +88,6 @@ TRAPINT() {
   if [[ -z ${EMACS+x} ]]; then
     nin-cursor-shape-block
     print -n " ${Purple}[${Cyan}ctrl-c${Purple}]${Rst}"
-  else
-    print -n " [ctrl-c]"
   fi
   return $(( 128 + $1 ))
 }
@@ -129,17 +127,6 @@ for m in visual viopp; do
     bindkey -M $m $c select-quoted
   done
 done
-
-# add support for the surround plugin emulation widget
-# due to KEYTIMEOUT set to a low number, you have to press the chords very, very fast.
-autoload -Uz surround
-zle -N delete-surround surround
-zle -N add-surround surround
-zle -N change-surround surround
-bindkey -a cs change-surround
-bindkey -a ds delete-surround
-bindkey -a ys add-surround
-bindkey -M visual S add-surround
 
 # }}}
 # simple binds {{{
