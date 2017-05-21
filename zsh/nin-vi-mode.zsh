@@ -1,109 +1,14 @@
-# helper functions {{{
-
-# terminal cursor shape support
-# parameters ($1)
-  # block shape: 2
-  # underline: 4
-  # line shape: 6
-# tmux escape string: echo -ne "\ePtmux;\e\e[2 q\e\\"
-# normal escape string: echo -ne "\e[6 q"
-# more info: https://github.com/mintty/mintty/wiki/CtrlSeqs#cursor-style
-nin-cursor-shape-mintty() {
-  local tmuxescape="\ePtmux;\e\e[${1} q\e\\"
-  local normalescape="\e[${1} q"
-  if [[ -n ${TMUX+x} ]]; then
-    echo -ne $tmuxescape
-  else
-    echo -ne $normalescape
-  fi
-}
-nin-cursor-shape-mintty-block() {
-  nin-cursor-shape-mintty 2
-}
-nin-cursor-shape-mintty-line() {
-  nin-cursor-shape-mintty 6
-}
-nin-cursor-shape-mintty-underscore() {
-  nin-cursor-shape-mintty 4
-}
-
-nin-cursor-shape-block() {
-  nin-cursor-shape-mintty-block
-}
-nin-cursor-shape-line() {
-  nin-cursor-shape-mintty-line
-}
-nin-cursor-shape-underscore() {
-  nin-cursor-shape-mintty-underscore
-}
-
-# }}}
 # bootstrap, keymap-select and cursor shape management {{{
-
-# Oliver Kiddle <opk@zsh.org> optimization:
-# If you change the cursor shape, consider taking care to reset it when
-# not in ZLE. zle-line-finish is only run when ZLE is succcessful so the
-# best place for the reset is in POSTEDIT:
-
-if [[ -z ${EMACS+x} ]]; then
-  POSTEDIT+=$'\e[2 q'
-fi
-
-# manage cursor shape under different keymaps on iTerm2
-function zle-keymap-select() {
-
-  if [[ -z ${EMACS+x} ]]; then
-    if [[ $KEYMAP = vicmd ]]; then
-      nin-cursor-shape-underscore
-    elif [[ $KEYMAP = main ]]; then
-      nin-cursor-shape-line
-    fi
-  fi
-
-  zle reset-prompt
-  zle -R
-}
-zle -N zle-keymap-select
-
-# when we hit <cr> return cursor shape to block
-nin-accept-line() {
-  nin-cursor-shape-block
-  zle .accept-line
-}
-zle -N nin-accept-line
-
-# ^J and ^M are the same as <cr>
-
-if [[ -z ${EMACS+x} ]]; then
-  bindkey "^@" nin-accept-line
-  bindkey "^J" nin-accept-line
-  bindkey "^M" nin-accept-line
-  bindkey -M vicmd "^@" nin-accept-line
-  bindkey -M vicmd "^J" nin-accept-line
-  bindkey -M vicmd "^M" nin-accept-line
-fi
-
-# when we cancel the current command, return the cursor shape to block
-TRAPINT() {
-  if [[ -z ${EMACS+x} ]]; then
-    nin-cursor-shape-block
-    print -n " ${Purple}[${Cyan}ctrl-c${Purple}]${Rst}"
-  fi
-  return $(( 128 + $1 ))
-}
-
-# Ensure that the prompt is redrawn when the terminal size changes.
-TRAPWINCH() {
-  zle && { zle reset-prompt; zle -R }
-}
 
 # no delays when switching keymaps
 export KEYTIMEOUT=1
+
 # bootstrap vi-mode
 bindkey -v
 
 # }}}
 # text objects support {{{
+
 # since zsh 5.0.8, text objects were introduced. Let's use some of them.
 # see here for more info: http://www.zsh.org/mla/workers/2015/msg01017.html
 # and here: https://github.com/zsh-users/zsh/commit/d257f0143e69c3724466c4c92f59538d2f3fffd1
