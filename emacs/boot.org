@@ -489,6 +489,15 @@ an appropriate message.
     (execute-extended-command '(4) "shell-command"))
 #+END_SRC
 
+*** ninrod/uarg-eval-defun
+
+- see [[http://endlessparentheses.com/debugging-emacs-lisp-part-1-earn-your-independence.html][Debugging Elisp Part 1: Earn your independence]]
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/uarg-eval-defun ()
+    (interactive)
+    (execute-extended-command '(4) "eval-defun"))
+#+END_SRC
+
 *** ninrod/uarg-magit-status
 
 #+BEGIN_SRC emacs-lisp
@@ -2288,8 +2297,8 @@ an appropriate message.
   (general-define-key
    :keymaps '(org-src-mode-map emacs-lisp-mode-map)
    :states '(normal)
-   "t" 'org-edit-src-exit
-   "," 'org-edit-src-abort)
+   "S" 'org-edit-src-exit
+   "T" 'org-edit-src-abort)
 #+END_SRC
 
 *** agenda
@@ -2460,13 +2469,13 @@ an appropriate message.
 #+BEGIN_SRC emacs-lisp
   (general-create-definer
    lisp-comma-map
-   :keymaps '(lisp-mode-map lisp-interaction-mode-map)
+   :keymaps '(lisp-mode-map lisp-mode-shared-map lisp-interaction-mode-map)
    :states '(normal visual)
    :prefix ",")
 
   (general-create-definer
    lisp-t-map
-   :keymaps '(lisp-mode-map lisp-interaction-mode-map)
+   :keymaps '(lisp-mode-map lisp-mode-shared-map lisp-interaction-mode-map)
    :states 'normal
    :prefix "t")
 #+END_SRC
@@ -2479,8 +2488,8 @@ an appropriate message.
     "l" 'ninrod/eval-last-sexp
     )
   (lisp-comma-map
-    "d" 'eval-defun
-    "e" 'edebug-defun
+    "e" 'eval-defun
+    "d" 'ninrod/uarg-eval-defun
     "b" 'eval-buffer
     )
 #+END_SRC
