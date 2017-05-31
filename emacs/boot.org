@@ -273,14 +273,13 @@ an appropriate message.
 
 - [[https://github.com/ninrod/dotfiles/issues/40][ninrod/dotfiles#40]]
 #+BEGIN_SRC emacs-lisp
-    (defun ninrod/advice-evil-quit (dumb-evil-quit &rest arguments)
-      "Ask for confirmation before quitting the last window."
-      (message "it worked bitch!")
-      (message "saving recentf files...")
-      (recentf-save-list) ;; flush my recent used files
-      (message "recentf saved")
-      (apply dumb-evil-quit arguments))
-    (advice-add #'evil-quit :around #'ninrod/advice-evil-quit)
+  (defun ninrod/advice-evil-quit (dumb-evil-quit &rest arguments)
+    "apply recent-f before quitting in daemon mode."
+    (when (daemonp)
+      (message "we are in daemon mode. saving recentf")
+      (recentf-save-list))
+    (apply dumb-evil-quit arguments))
+  (advice-add #'evil-quit :around #'ninrod/advice-evil-quit)
 #+END_SRC
 
 *** iBuffer
