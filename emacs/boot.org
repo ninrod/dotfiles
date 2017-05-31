@@ -282,6 +282,17 @@ an appropriate message.
   (advice-add #'evil-quit :around #'ninrod/advice-evil-quit)
 #+END_SRC
 
+*** delete-frame
+
+- [[https://github.com/ninrod/dotfiles/issues/40][ninrod/dotfiles#40]]
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/advice-delete-frame (dumb-delete-frame &rest arguments)
+    "test an advice around delete frame"
+    (when (yes-or-no-p "are you sure you want to delete the emacs frame?")
+      (apply dumb-delete-frame arguments)))
+  ;; (advice-add #'delete-frame :around #'ninrod/advice-delete-frame)
+#+END_SRC
+
 *** iBuffer
 
 #+BEGIN_SRC emacs-lisp
