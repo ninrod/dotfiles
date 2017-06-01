@@ -10,7 +10,6 @@ ningrab noctuid/rect-ext.el
 ningrab ninrod/targets.el
 ningrab timcharper/evil-surround develop
 ningrab edkolev/evil-lion
-ningrab noctuid/lispyville
 
 # forked themes
 ningrab ninrod/gruvbox-theme
