@@ -46,11 +46,18 @@ M-x list-colors-display
 #+END_SRC
 
 *** org
+**** convert region to an org-table
 
-#+BEGIN_SRC text
-M-x org-table-convert-region
-M-x org-sort
-#+END_SRC
+ - M-x org-table-convert-region
+
+**** sort
+
+- M-x org-sort
+
+**** to replicate scriviner
+
+- M-x org-tree-to-indirect-buffer
+- to [[https://www.youtube.com/watch?v=VOfSjLwQY28][replicate scriviner]]
 
 *** align
 
