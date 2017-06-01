@@ -5,7 +5,6 @@ plugin_paths+=(zsh-users/zsh-completions)
 plugin_paths+=(supercrabtree/k)
 plugin_paths+=(micha/resty)
 plugin_paths+=(zdharma/fast-syntax-highlighting)
-plugin_paths+=(zsh-users/zsh-autosuggestions)
 
 # complex zsh-users/zsh-syntax-highlighting configuration
 # plugin_paths+=(zsh-users/zsh-syntax-highlighting)
