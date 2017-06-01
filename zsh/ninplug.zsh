@@ -40,5 +40,5 @@ load_plugins() {
       local file=$(construct_filename $zsh_deps $plugin_path)
       source $file
     fi
-  done  
+  done
 }

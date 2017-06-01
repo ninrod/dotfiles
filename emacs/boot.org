@@ -2083,7 +2083,7 @@ an appropriate message.
    "<f8>" nil
    "<f9>" nil
    "<f10>" nil
-   "<f11>" nil
+   "<f11>" 'toggle-frame-fullscreen
 
    "<f12>" nil
    )
