@@ -706,6 +706,29 @@ an appropriate message.
      :load-path "lisp/edkolev/evil-lion"
      )
  #+END_SRC
+*** lispyville
+
+#+BEGIN_SRC emacs-lisp
+  (use-package lispy
+    :ensure t
+
+    :init
+    (add-hook 'emacs-lisp-mode-hook
+              (lambda ()
+                (lispy-mode 1)))
+
+    :config
+
+    (use-package lispyville
+      :load-path "lisp/noctuid/lispyville"
+      :init
+      (add-hook 'lispy-mode-hook #'lispyville-mode)
+
+      (with-eval-after-load 'lispyville
+        (lispyville-set-key-theme '(operators
+                                    slurp/barf-cp
+                                    (additional-movement normal visual motion))))))
+#+END_SRC
 
 ** melpa packages
 *** evil-replace-with-register
