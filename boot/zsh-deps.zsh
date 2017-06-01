@@ -9,8 +9,10 @@ ningrab supercrabtree/k
 # completions
 ningrab ninrod/docker-zsh-completion
 ningrab zsh-users/zsh-completions
-ningrab zdharma/fast-syntax-highlighting
 
 # appearance
 ningrab seebi/dircolors-solarized
-ningrab zsh-users/zsh-syntax-highlighting
+
+# in test
+ningrab zdharma/fast-syntax-highlighting
+# ningrab zsh-users/zsh-syntax-highlighting
