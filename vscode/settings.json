@@ -40,6 +40,6 @@
     ],
     "workbench.colorTheme": "One Dark Pro",
     "workbench.colorCustomizations": {
-        "editor.lineHighlightBackground": "#111111"
+        "editor.lineHighlightBackground": "#2F3238"
     }
 }
