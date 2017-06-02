@@ -1,9 +1,35 @@
 {
-    "editor.fontFamily": "'Source Code Pro', Menlo, Monaco, 'Courier New', monospace",
-    "editor.fontSize": 15,
+    "editor.fontFamily": "'Source Code Pro'",
+    "editor.fontSize": 16,
     "editor.lineNumbers": "relative",
     "workbench.iconTheme": "vscode-icons",
     "vim.disableAnnoyingNeovimMessage": true,
-    "vim.useSystemClipboard": true
+    "vim.useSystemClipboard": true,
+    "vim.incsearch": true,
+    "vim.hlsearch": true,
+    "vim.otherModesKeyBindingsNonRecursive": [
+        {
+            "before": ["-"],
+            "after": [],
+            "commands": [{"command": ":nohl"}]
+        },{
+            "before": ["<cr>"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.files.save",
+                    "args": []
+                }
+            ]
+        },{
+            "before": ["g", "o"],
+            "after": ["g", "g"]
+        },{
+            "before": ["g", "l"],
+            "after": ["G"]
+        },{
+            "before": ["z", "-"],
+            "after": ["z", "b"]
+        }
+    ]
 }
-
