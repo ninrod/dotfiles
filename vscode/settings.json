@@ -37,5 +37,9 @@
             "before": ["("],
             "after": ["{"]
         }
-    ]
+    ],
+    "workbench.colorTheme": "One Dark Pro",
+    "workbench.colorCustomizations": {
+        "editor.lineHighlightBackground": "#111111"
+    }
 }
