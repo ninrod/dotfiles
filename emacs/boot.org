@@ -930,6 +930,8 @@ an appropriate message.
         ;; confirm-kill-emacs #'y-or-n-p ;; ask before killing emacs
         echo-keystrokes 0.02) ;; instantly display current keystrokes in mini buffer
 
+  (set-default 'truncate-lines t)
+
   (display-time-mode) ;; hack: customize display time in modeline.
   (save-place-mode 1) ;; save last cursor position
   (savehist-mode 1) ;; save minibuffer history
