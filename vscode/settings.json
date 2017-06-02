@@ -1,7 +1,7 @@
 {
     "editor.fontFamily": "'Source Code Pro'",
     "editor.fontSize": 16,
-    "editor.lineNumbers": "relative",
+    "editor.lineNumbers": "off",
     "workbench.iconTheme": "vscode-icons",
     "vim.disableAnnoyingNeovimMessage": true,
     "vim.useSystemClipboard": true,
@@ -22,6 +22,15 @@
                 }
             ]
         },{
+            "before": ["q"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.closeActiveEditor",
+                    "args": []
+                }
+            ]
+        }, {
             "before": ["g", "o"],
             "after": ["g", "g"]
         },{
