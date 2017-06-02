@@ -1,0 +1,9 @@
+{
+    "editor.fontFamily": "'Source Code Pro', Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 15,
+    "editor.lineNumbers": "relative",
+    "workbench.iconTheme": "vscode-icons",
+    "vim.disableAnnoyingNeovimMessage": true,
+    "vim.useSystemClipboard": true
+}
+
