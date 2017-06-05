@@ -9,7 +9,6 @@ ningrab emacs-evil/evil
 ningrab emacs-evil/evil-surround
 ningrab ninrod/targets.el
 ningrab noctuid/rect-ext.el
-ningrab edkolev/evil-lion
 
 # forked themes
 ningrab ninrod/gruvbox-theme
