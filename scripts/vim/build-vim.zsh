@@ -7,5 +7,5 @@ builtin cd $VIM_SRC_DIR &&
   make distclean &&
   make clean &&
 ./configure --prefix=/usr --with-features=huge --enable-multibyte &&
-  make -j9 &&
+  make -j4 &&
   sudo make install

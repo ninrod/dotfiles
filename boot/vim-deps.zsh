@@ -24,3 +24,4 @@ ningrab ninrod/gruvbox develop # just while I wait for morhetz/gruvbox#150 to me
 ningrab itchyny/lightline.vim
 ningrab edkolev/tmuxline.vim
 ningrab luochen1990/rainbow
+ningrab vim-ruby/vim-ruby

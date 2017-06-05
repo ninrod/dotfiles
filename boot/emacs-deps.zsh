@@ -6,9 +6,9 @@ ningrab ninrod/rsynced-melpa
 
 # core editing
 ningrab emacs-evil/evil
-ningrab noctuid/rect-ext.el
+ningrab emacs-evil/evil-surround
 ningrab ninrod/targets.el
-ningrab timcharper/evil-surround develop
+ningrab noctuid/rect-ext.el
 ningrab edkolev/evil-lion
 
 # forked themes
