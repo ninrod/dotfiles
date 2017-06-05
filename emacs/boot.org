@@ -686,7 +686,7 @@ an appropriate message.
 
 #+BEGIN_SRC emacs-lisp
   (use-package evil-surround
-    :load-path "lisp/timcharper/evil-surround"
+    :load-path "lisp/emacs-evil/evil-surround"
     :init
     (with-eval-after-load 'evil-surround
       (evil-add-to-alist
