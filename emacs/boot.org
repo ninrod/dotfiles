@@ -1863,7 +1863,17 @@ an appropriate message.
             '(lambda ()
                (diminish 'org-indent-mode)))
 #+END_SRC
-
+** xmodmap
+   - stolen from [[https://www.emacswiki.org/emacs/XModMapMode][here]]
+   #+BEGIN_SRC emacs-lisp
+     (define-generic-mode 'xmodmap-mode
+       '(?!)
+       '("add" "clear" "keycode" "keysym" "pointer" "remove")
+       nil
+       '("[xX]modmap\\(rc\\)?\\'")
+       nil
+       "Simple mode for xmodmap files.")
+   #+END_SRC
 * keybinds
 ** SPC-map
 *** definer
