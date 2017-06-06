@@ -8,6 +8,7 @@ ningrab supercrabtree/k
 
 # completions
 ningrab ninrod/docker-zsh-completion
+ningrab ninrod/docker-compose-zsh-completion
 ningrab zsh-users/zsh-completions
 
 # appearance
