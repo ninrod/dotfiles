@@ -13,7 +13,4 @@ ningrab zsh-users/zsh-completions
 
 # appearance
 ningrab seebi/dircolors-solarized
-
-# in test
 ningrab zdharma/fast-syntax-highlighting
-# ningrab zsh-users/zsh-syntax-highlighting
