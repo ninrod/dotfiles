@@ -605,6 +605,32 @@ an appropriate message.
   (dolist (hook hooks)
     (add-hook hook fun)))
 #+END_SRC
+** modes
+*** xmodmap-mode
+
+    - stolen from [[https://www.emacswiki.org/emacs/XModMapMode][here]]
+    #+BEGIN_SRC emacs-lisp
+      (define-generic-mode 'xmodmap-mode
+        '(?!)
+        '("add" "clear" "keycode" "keysym" "pointer" "remove")
+        nil
+        '("[xX]modmap\\(rc\\)?\\'")
+        nil
+        "Simple mode for xmodmap files.")
+    #+END_SRC
+
+*** sxhkd-mode
+
+    #+BEGIN_SRC emacs-lisp
+      (define-generic-mode sxhkd-mode
+        '(?#)
+        '("alt" "Escape" "super" "bspc" "ctrl" "space" "shift")
+        nil
+        '("sxhkdrc")
+        nil
+        "Simple mode for sxhkdrc files.")
+    #+END_SRC
+
 
 * evil
 ** bootstrap
@@ -1863,17 +1889,6 @@ an appropriate message.
             '(lambda ()
                (diminish 'org-indent-mode)))
 #+END_SRC
-** xmodmap
-   - stolen from [[https://www.emacswiki.org/emacs/XModMapMode][here]]
-   #+BEGIN_SRC emacs-lisp
-     (define-generic-mode 'xmodmap-mode
-       '(?!)
-       '("add" "clear" "keycode" "keysym" "pointer" "remove")
-       nil
-       '("[xX]modmap\\(rc\\)?\\'")
-       nil
-       "Simple mode for xmodmap files.")
-   #+END_SRC
 * keybinds
 ** SPC-map
 *** definer
