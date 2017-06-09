@@ -973,7 +973,8 @@ an appropriate message.
         apropos-do-all t
         mode-require-final-newline nil
         sentence-end-double-space nil
-        require-final-newline nil)
+        require-final-newline nil
+        ring-bell-function 'ignore)
 #+END_SRC
 
 ** scroll
