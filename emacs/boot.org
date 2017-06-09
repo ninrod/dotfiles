@@ -1118,7 +1118,7 @@ an appropriate message.
 *** themes
 **** gruvbox
 
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package gruvbox-theme :load-path "lisp/ninrod/gruvbox-theme"
     :init
     (setq anzu-cons-mode-line-p t)
@@ -1132,7 +1132,7 @@ an appropriate message.
 
 **** spacemacs
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (use-package spacemacs-dark-theme :load-path "lisp/ninrod/spacemacs-theme"
     :init
     (setq spacemacs-theme-org-height nil)
