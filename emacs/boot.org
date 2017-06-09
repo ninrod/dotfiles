@@ -1181,6 +1181,7 @@ an appropriate message.
     (setq spaceline-workspace-numbers-unicode t) ;for eyebrowse. nice looking unicode numbers for tagging different layouts
     (setq spaceline-window-numbers-unicode t)
     (setq spaceline-highlight-face-func #'spaceline-highlight-face-evil-state) ; set colouring for different evil-states
+    (setq spaceline-inflation 1.4)
     (require 'spaceline-config)
     (spaceline-spacemacs-theme)
     (spaceline-compile))
