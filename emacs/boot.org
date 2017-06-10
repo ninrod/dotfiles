@@ -974,6 +974,7 @@ an appropriate message.
         mode-require-final-newline nil
         sentence-end-double-space nil
         require-final-newline nil
+        select-enable-primary t
         ring-bell-function 'ignore)
 #+END_SRC
 
