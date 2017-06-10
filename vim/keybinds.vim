@@ -12,3 +12,16 @@ nnoremap ( {
 xnoremap ( {
 nnoremap ) }
 xnoremap ) }
+
+" space is my leader key, but '\' remains as leader.
+nmap s <Leader>
+omap s <Leader>
+xmap s <Leader>
+
+" window operations
+nmap <leader>v <C-W>v
+nmap <leader>y <C-W>s
+nmap <leader>h <C-W>h
+nmap <leader>j <C-W>j
+nmap <leader>k <C-W>k
+nmap <leader>l <C-W>l
