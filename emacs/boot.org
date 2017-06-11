@@ -1119,16 +1119,16 @@ an appropriate message.
 *** themes
 **** gruvbox
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (use-package gruvbox-theme :load-path "lisp/ninrod/gruvbox-theme"
     :init
     (setq anzu-cons-mode-line-p t)
     (setq gruvbox-contrast 'hard)
 
     :config
-    (load-theme 'gruvbox t)
     ;; (gruvbox-modeline-three)
-    )
+    (load-theme 'gruvbox t))
+
 #+END_SRC
 
 **** spacemacs
@@ -1145,7 +1145,7 @@ an appropriate message.
 
 **** zerodark
 
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package zerodark-theme :load-path "lisp/ninrod/zerodark-theme"
     :init
     ;; (setq zerodark-use-paddings-in-mode-line nil)
@@ -1171,7 +1171,7 @@ an appropriate message.
 *** spaceline
 
 - to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (use-package spaceline :ensure t
     :config
     (setq powerline-height 30)
