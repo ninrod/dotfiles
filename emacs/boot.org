@@ -1133,7 +1133,7 @@ an appropriate message.
 
 **** spacemacs
 
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package spacemacs-dark-theme :load-path "lisp/ninrod/spacemacs-theme"
     :init
     (setq spacemacs-theme-org-height nil)
@@ -1145,7 +1145,7 @@ an appropriate message.
 
 **** zerodark
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (use-package zerodark-theme :load-path "lisp/ninrod/zerodark-theme"
     :init
     ;; (setq zerodark-use-paddings-in-mode-line nil)
@@ -1171,7 +1171,7 @@ an appropriate message.
 *** spaceline
 
 - to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package spaceline :ensure t
     :config
     (setq powerline-height 30)
