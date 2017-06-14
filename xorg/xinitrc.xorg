@@ -1,3 +1,15 @@
-[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
-[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
+# -*- mode: sh -*-
+
+EMACS_UP=~/.dotfiles/scripts/emacs/up-emacs-daemon.sh
+[[ -f $EMACS_UP ]] && $EMACS_UP &
+
+XREC=~/.Xresources
+[[ -f $XREC  ]] && xrdb -merge $XREC
+
+MODMAP=~/.Xmodmap
+[[ -f $MODMAP ]] && xmodmap $MODMAP
+
+command -v udiskie > /dev/null && udiskie &
+command -v dropbox-cli > /dev/null && dropbox-cli start &
+
 exec bspwm
