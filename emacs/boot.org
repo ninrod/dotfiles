@@ -1006,7 +1006,7 @@ an appropriate message.
 
 - Source Code Pro: [[https://github.com/adobe-fonts/source-code-pro][adobe-fonts/source-code-pro]]
   #+BEGIN_SRC emacs-lisp
-    (add-to-list 'default-frame-alist '(font . "Office Code Pro-16"))
+    (add-to-list 'default-frame-alist '(font . "Office Code Pro-14"))
     ;; (add-to-list 'default-frame-alist '(font . "Source Code Pro-16"))
   #+END_SRC
 
@@ -1120,21 +1120,21 @@ an appropriate message.
 *** themes
 **** gruvbox
 
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package gruvbox-theme :load-path "lisp/ninrod/gruvbox-theme"
     :init
     (setq anzu-cons-mode-line-p t)
     (setq gruvbox-contrast 'hard)
 
     :config
-    ;; (gruvbox-modeline-three)
-    (load-theme 'gruvbox t))
+    (load-theme 'gruvbox t)
+    (gruvbox-modeline-three))
 
 #+END_SRC
 
 **** spacemacs
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (use-package spacemacs-dark-theme :load-path "lisp/ninrod/spacemacs-theme"
     :init
     (setq spacemacs-theme-org-height nil)
@@ -1172,7 +1172,7 @@ an appropriate message.
 *** spaceline
 
 - to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (use-package spaceline :ensure t
     :config
     (setq powerline-height 30)
