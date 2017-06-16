@@ -111,3 +111,9 @@ md () {
 export PS1="${Blue}\w ${Red}\u${Cyan}@${Yellow}\h ${Purple}#${Rst} "
 
 # }}}
+# user last step {{{
+
+LAST_STEP=~/.options/last-step.zsh
+[[ -e $LAST_STEP ]] && source $LAST_STEP
+
+# }}}
