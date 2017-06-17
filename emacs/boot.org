@@ -5,7 +5,7 @@
 ** bootstrap
 #+BEGIN_SRC emacs-lisp
   (use-package evil
-    :load-path "lisp/ninrod/evil"
+    :load-path "lisp/emacs-evil/evil"
     :init
     (use-package goto-chg
       :ensure t)
