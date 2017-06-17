@@ -4,6 +4,9 @@
 * evil
 ** bootstrap
 #+BEGIN_SRC emacs-lisp
+  (setq custom-file "~/.emacs.d/emacs-customizations.el")
+  (load custom-file 'noerror)
+
   (use-package evil
     :load-path "lisp/emacs-evil/evil"
     :init
