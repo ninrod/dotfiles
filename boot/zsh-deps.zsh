@@ -4,7 +4,7 @@ mkdir -p $zsh_deps && cd $zsh_deps
 
 # functionality
 ningrab ninrod/zsh-bd
-ningrab supercrabtree/k
+ningrab ninrod/k
 
 # completions
 ningrab ninrod/docker-zsh-completion

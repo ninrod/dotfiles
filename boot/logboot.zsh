@@ -11,4 +11,4 @@ mkdir -p $logdir
 
 logfile=$logdir/boot.log
 
-./boot/boot.zsh $1 2>&1 | tee $logfile
+./boot.zsh $1 2>&1 | tee $logfile
