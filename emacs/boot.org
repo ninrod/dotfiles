@@ -633,15 +633,15 @@ an appropriate message.
   (use-package evil
     :load-path "lisp/emacs-evil/evil"
     :init
-    (use-package goto-chg
-      :ensure t)
-    (use-package undo-tree
-      :ensure t)
+    (use-package goto-chg :ensure t)
+    (use-package undo-tree :ensure t)
     :config
     (setcdr evil-insert-state-map nil) ;; emacsify insert state: http://stackoverflow.com/a/26573722/4921402
     (define-key evil-insert-state-map [escape] 'evil-normal-state);; but [escape] should switch back to normal state, obviously.
     (fset 'evil-visual-update-x-selection 'ignore);; Amazing hack lifted from: http://emacs.stackexchange.com/a/15054/12585
-    (setq evil-want-change-word-to-end nil) ;; Whether "cw" behaves like "ce".
+
+    (setq evil-want-change-word-to-end nil
+          evil-kill-on-visual-paste nil)
 
     (evil-mode)
 
