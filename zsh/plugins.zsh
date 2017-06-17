@@ -5,4 +5,4 @@ plugin_paths+=(ninrod/zsh-bd)
 
 plugin_paths+=(zsh-users/zsh-completions)
 plugin_paths+=(zdharma/fast-syntax-highlighting)
-plugin_paths+=(supercrabtree/k)
+plugin_paths+=(ninrod/k)
