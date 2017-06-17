@@ -1,6 +1,9 @@
 # setup vim deps dir
 mkdir -p $vim_deps && cd $vim_deps
 
+# fetch core infra deps
+ningrab tpope/vim-pathogen
+
 # fetch core editing deps
 ningrab bronson/vim-visual-star-search
 ningrab chaoren/vim-wordmotion
@@ -10,7 +13,6 @@ ningrab junegunn/vim-easy-align
 ningrab ninrod/vim-multiple-cursors
 ningrab tommcdo/vim-exchange
 ningrab tpope/vim-commentary
-ningrab tpope/vim-pathogen
 ningrab tpope/vim-repeat
 ningrab tpope/vim-surround
 ningrab vim-scripts/ReplaceWithRegister
