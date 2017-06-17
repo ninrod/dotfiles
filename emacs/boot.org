@@ -1127,8 +1127,8 @@ an appropriate message.
     (setq gruvbox-contrast 'hard)
 
     :config
-    (gruvbox-modeline-three)
-    (load-theme 'gruvbox t))
+    (load-theme 'gruvbox t)
+    (gruvbox-modeline-three))
 
 #+END_SRC
 
