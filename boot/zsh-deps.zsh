@@ -3,7 +3,7 @@ source ~/.zsh.d/constants.zsh
 mkdir -p $zsh_deps && cd $zsh_deps
 
 # functionality
-ningrab Tarrasch/bd
+ningrab ninrod/zsh-bd
 ningrab supercrabtree/k
 
 # completions
