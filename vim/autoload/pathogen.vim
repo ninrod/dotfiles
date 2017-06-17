@@ -1,1 +1,0 @@
-../../deps/vim/tpope/vim-pathogen/autoload/pathogen.vim

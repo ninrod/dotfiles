@@ -25,3 +25,9 @@ ningrab itchyny/lightline.vim
 ningrab edkolev/tmuxline.vim
 ningrab luochen1990/rainbow
 ningrab vim-ruby/vim-ruby
+
+# pathogen installation
+PATHOGEN_FILE=$vim_deps/tpope/vim-pathogen/autoload/pathogen.vim
+AUTOLOAD_DIR=~/.vim/autoload
+[[ ! -d  $AUTOLOAD_DIR ]] && mkdir -p $AUTOLOAD_DIR
+cp $PATHOGEN_FILE ~/.vim/autoload

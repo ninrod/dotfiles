@@ -1,4 +1,5 @@
-execute pathogen#infect('bundle/{}/{}')
+" execute pathogen#infect('bundle/{}/{}')
+execute pathogen#infect('vim/{}/{}', '~/.dotfiles/deps/')
 
 " appearance
 let g:tmuxline_powerline_separators = 0
