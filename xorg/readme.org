@@ -1,9 +1,0 @@
-* xmodmap and xev
-- tips stolen from [[xahlee.info/linux/linux_xmodmap_tutorial.html][Xah's xmodmap tutorial]]
-- use the =xev= tool to discover what the keycodes are
-- run only =xmodmap= to discover what are your current modifier configuration
-* capslock trick
-- run this in gnome
-#+BEGIN_SRC sh
-use xevdconf write /org/gnome/desktop/input-sources/xkb-options "['caps:escape']"
-#+END_SRC
