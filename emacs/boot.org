@@ -631,7 +631,7 @@ an appropriate message.
 
 #+BEGIN_SRC emacs-lisp
   (use-package evil
-    :load-path "lisp/emacs-evil/evil"
+    :load-path "~/.dotfiles/deps/emacs/emacs-evil/evil"
     :init
     (use-package goto-chg :ensure t)
     (use-package undo-tree :ensure t)
@@ -655,7 +655,7 @@ an appropriate message.
 
 #+BEGIN_SRC emacs-lisp
   (use-package targets
-    :load-path "lisp/ninrod/targets.el"
+    :load-path "~/.dotfiles/deps/emacs/ninrod/targets.el"
     :init
     (setq targets-user-text-objects '((pipe "|" nil separator)
                                       (paren "(" ")" pair :more-keys "b")
@@ -672,7 +672,7 @@ an appropriate message.
 
 #+BEGIN_SRC emacs-lisp
   (use-package rect-ext
-    :load-path "lisp/noctuid/rect-ext.el")
+    :load-path "~/.dotfiles/deps/emacs/noctuid/rect-ext.el")
 #+END_SRC
 
 *** evil-mc
@@ -706,7 +706,7 @@ an appropriate message.
 
 #+BEGIN_SRC emacs-lisp
   (use-package evil-surround
-    :load-path "lisp/emacs-evil/evil-surround"
+    :load-path "~/.dotfiles/deps/emacs/emacs-evil/evil-surround"
     :init
     (with-eval-after-load 'evil-surround
       (evil-add-to-alist
@@ -1121,7 +1121,7 @@ an appropriate message.
 **** gruvbox
 
 #+BEGIN_SRC emacs-lisp
-  (use-package gruvbox-theme :load-path "lisp/ninrod/gruvbox-theme"
+  (use-package gruvbox-theme :load-path "~/.dotfiles/deps/emacs/ninrod/gruvbox-theme"
     :init
     (setq anzu-cons-mode-line-p t)
     (setq gruvbox-contrast 'hard)
@@ -1135,7 +1135,7 @@ an appropriate message.
 **** spacemacs
 
 #+BEGIN_SRC text
-  (use-package spacemacs-dark-theme :load-path "lisp/ninrod/spacemacs-theme"
+  (use-package spacemacs-dark-theme :load-path "~/.dotfiles/deps/emacs/ninrod/spacemacs-theme"
     :init
     (setq spacemacs-theme-org-height nil)
     (setq spacemacs-theme-comment-bg nil)
@@ -1147,7 +1147,7 @@ an appropriate message.
 **** zerodark
 
 #+BEGIN_SRC text
-  (use-package zerodark-theme :load-path "lisp/ninrod/zerodark-theme"
+  (use-package zerodark-theme :load-path "~/.dotfiles/deps/emacs/ninrod/zerodark-theme"
     :init
     ;; (setq zerodark-use-paddings-in-mode-line nil)
     (setq anzu-cons-mode-line-p t)
@@ -1162,7 +1162,7 @@ an appropriate message.
 **** leuven
 
 #+BEGIN_SRC text
-  (use-package leuven-theme :load-path "lisp/ninrod/emacs-leuven-theme"
+  (use-package leuven-theme :load-path "~/.dotfiles/deps/emacs/ninrod/emacs-leuven-theme"
     :init
     (setq leuven-scale-outline-headlines nil)
     :config
@@ -1826,7 +1826,7 @@ an appropriate message.
 *** speed-type
 
 #+BEGIN_SRC text
-  (use-package speed-type :load-path "lisp/parkouss/speed-type")
+  (use-package speed-type :load-path "~/.dotfiles/deps/emacs/parkouss/speed-type")
 #+END_SRC
 
 * fixes
