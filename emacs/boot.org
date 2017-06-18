@@ -825,7 +825,11 @@ an appropriate message.
    (use-package evil-lion
      :ensure t)
  #+END_SRC
-
+*** evil-ediff
+    #+BEGIN_SRC emacs-lisp
+      (use-package evil-ediff
+        :ensure t)
+    #+END_SRC
 * tweaks
 ** org-mode
 *** general configs
@@ -1006,7 +1010,7 @@ an appropriate message.
 
 - Source Code Pro: [[https://github.com/adobe-fonts/source-code-pro][adobe-fonts/source-code-pro]]
   #+BEGIN_SRC emacs-lisp
-    (add-to-list 'default-frame-alist '(font . "Office Code Pro-16"))
+    (add-to-list 'default-frame-alist '(font . "Office Code Pro-14"))
     ;; (add-to-list 'default-frame-alist '(font . "Source Code Pro-16"))
   #+END_SRC
 
