@@ -1131,8 +1131,8 @@ an appropriate message.
     (setq gruvbox-contrast 'hard)
 
     :config
-    (load-theme 'gruvbox t)
-    (gruvbox-modeline-three))
+    ;; (gruvbox-modeline-three)
+    (load-theme 'gruvbox t))
 
 #+END_SRC
 
@@ -1176,10 +1176,10 @@ an appropriate message.
 *** spaceline
 
 - to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
-#+BEGIN_SRC text
+#+BEGIN_SRC emacs-lisp
   (use-package spaceline :ensure t
     :config
-    (setq powerline-height 30)
+    (setq powerline-height 35)
     (setq powerline-default-separator 'utf-8)
     (setq spaceline-separator-dir-left '(right . right))
     (setq spaceline-separator-dir-right '(right . right))
@@ -1187,7 +1187,7 @@ an appropriate message.
     (setq spaceline-workspace-numbers-unicode t) ;for eyebrowse. nice looking unicode numbers for tagging different layouts
     (setq spaceline-window-numbers-unicode t)
     (setq spaceline-highlight-face-func #'spaceline-highlight-face-evil-state) ; set colouring for different evil-states
-    (setq spaceline-inflation 1.4)
+    ;; (setq spaceline-inflation 1.4)
     (require 'spaceline-config)
     (spaceline-spacemacs-theme)
     (spaceline-compile))
