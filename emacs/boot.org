@@ -1423,7 +1423,7 @@ an appropriate message.
           neo-auto-indent-point nil
           neo-mode-line-type 'none
           neo-window-fixed-size nil
-          neo-window-width 90
+          neo-window-width 40
           neo-show-updir-line nil
           neo-smart-open t
           neo-show-hidden-files t
@@ -2517,6 +2517,7 @@ an appropriate message.
       (ninrod--neotree-map
        :states  'normal
        ;; "c" 'reserved (generally, confirmation)
+       ;; "." 'reserved
 
        ;; crud ops
        "DEL" 'ninrod/mkdir
@@ -2530,7 +2531,7 @@ an appropriate message.
 
        ;; navigation
        "u" 'neotree-select-up-node
-       "." 'neotree-change-root
+       "RET" 'neotree-change-root
        "zj" 'neotree-select-next-sibling-node
        "zk" 'neotree-select-previous-sibling-node
        "gg" 'evil-goto-first-line
@@ -2539,7 +2540,6 @@ an appropriate message.
 
        ;; file selection
        "x" 'neotree-enter-horizontal-split
-       "RET" 'neotree-enter
 
        ;;exiting
        "q" 'neotree-toggle
