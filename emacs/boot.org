@@ -979,7 +979,9 @@ an appropriate message.
         sentence-end-double-space nil
         require-final-newline nil
         select-enable-primary t
-        ring-bell-function 'ignore)
+        ring-bell-function 'ignore
+        split-width-threshold 200
+        split-height-threshold 80)
 #+END_SRC
 
 ** scroll
