@@ -1752,7 +1752,12 @@ an appropriate message.
     :config
     (general-evil-setup))
 #+END_SRC
-
+** other
+*** docker
+    #+BEGIN_SRC emacs-lisp
+      (use-package docker
+        :ensure t)
+    #+END_SRC
 ** disabled
 *** emaps
 
