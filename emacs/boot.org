@@ -1181,7 +1181,7 @@ an appropriate message.
 #+BEGIN_SRC emacs-lisp
   (use-package spaceline :ensure t
     :config
-    (setq powerline-height 35)
+    (setq powerline-height 40)
     (setq powerline-default-separator 'utf-8)
     (setq spaceline-separator-dir-left '(right . right))
     (setq spaceline-separator-dir-right '(right . right))
