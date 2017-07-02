@@ -1272,6 +1272,14 @@ an appropriate message.
     :ensure t)
 #+END_SRC
 
+*** kurecolor
+
+#+BEGIN_SRC emacs-lisp
+  (use-package kurecolor
+    :ensure t)
+#+END_SRC
+
+
 ** core
 *** restart-emacs
 
@@ -1763,13 +1771,6 @@ an appropriate message.
 
 #+BEGIN_SRC text
   (use-package emaps
-    :ensure t)
-#+END_SRC
-
-*** kurecolor
-
-#+BEGIN_SRC text
-  (use-package kurecolor
     :ensure t)
 #+END_SRC
 
