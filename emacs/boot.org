@@ -1279,7 +1279,6 @@ an appropriate message.
     :ensure t)
 #+END_SRC
 
-
 ** core
 *** restart-emacs
 

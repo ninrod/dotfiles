@@ -16,3 +16,5 @@ source $GIT_ROOT/boot/options.zsh
 source $GIT_ROOT/boot/zsh-deps.zsh
 source $GIT_ROOT/boot/vim-deps.zsh
 source $GIT_ROOT/boot/emacs-deps.zsh
+
+source ~/.options/shell-options.zsh setup
