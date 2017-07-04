@@ -27,8 +27,9 @@ zstyle ':completion:*' matcher-list '' \
   'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
   'r:[[:ascii:]]||[[:ascii:]]=** r:|=* m:{a-z\-}={A-Z\_}'
 
+# colors: magenta, green, blue,cyan, yellow, red
 zstyle ':completion:*:functions' ignored-patterns '_*'
-zstyle ':completion:*' format 'Completing %d '
+zstyle ':completion:*' format $'\n%F{yellow}Completing %d%f\n'
 zstyle ':completion:*' group-name ''
 
 # project path completion
