@@ -28,6 +28,8 @@ zstyle ':completion:*' matcher-list '' \
   'r:[[:ascii:]]||[[:ascii:]]=** r:|=* m:{a-z\-}={A-Z\_}'
 
 zstyle ':completion:*:functions' ignored-patterns '_*'
+zstyle ':completion:*' format 'Completing %d '
+zstyle ':completion:*' group-name ''
 
 # project path completion
 source ~/.zsh.d/pj.zsh
