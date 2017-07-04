@@ -344,8 +344,8 @@ an appropriate message.
        "Toogle showing absolute line number or 0 for the current line when display-line-numbers is set to visual or relative"
        (interactive)
        (if display-line-numbers-current-absolute
-           (setq display-line-numbers-current-absolute nil )
-         (setq display-line-numbers-current-absolute t )))
+           (setq display-line-numbers-current-absolute nil)
+         (setq display-line-numbers-current-absolute t)))
    #+END_SRC
 ** org
 *** horrendous org heading manipulation commands
