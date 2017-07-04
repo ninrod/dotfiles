@@ -5,6 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(ediff-window-setup-function (quote ediff-setup-windows-plain))
  '(evil-search-module (quote evil-search))
+ '(display-line-numbers 'visual)
  '(ibuffer-fontification-alist
    (quote
     ((10 buffer-read-only font-lock-constant-face)
