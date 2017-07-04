@@ -619,7 +619,7 @@ an appropriate message.
      #+BEGIN_SRC emacs-lisp
        (define-generic-mode sxhkd-mode
          '(?#)
-         '("alt" "Escape" "super" "bspc" "ctrl" "space" "shift" "print")
+         '("alt" "Escape" "super" "bspc" "ctrl" "space" "shift" "Print")
          nil
          '("sxhkdrc")
          nil
