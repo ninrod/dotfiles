@@ -341,6 +341,7 @@ an appropriate message.
 ** line numbers
    #+BEGIN_SRC emacs-lisp
      (defun ninrod/toggle-absolute-current-relative-visual-line-number ()
+
        "Toogle showing absolute line number or 0 for the current line when display-line-numbers is set to visual or relative"
        (interactive)
        (if display-line-numbers-current-absolute
@@ -938,13 +939,6 @@ an appropriate message.
           (ninrod-refile-targets :maxlevel . 1)))
 #+END_SRC
 
-** daemon configuration
-
-- more info [[http://www.tychoish.com/posts/running-multiple-emacs-daemons-on-a-single-system/][here]]
-#+BEGIN_SRC emacs-lisp
-  ;; (setq server-use-tcp t)
-#+END_SRC
-
 ** misc options
 
 #+BEGIN_SRC emacs-lisp
@@ -1000,8 +994,7 @@ an appropriate message.
    scroll-margin 1
    scroll-step 1
    scroll-conservatively 10000
-   scroll-preserve-screen-position 1
-   )
+   scroll-preserve-screen-position 1)
 #+END_SRC
 
 ** backups
@@ -1036,6 +1029,8 @@ an appropriate message.
 
         ;; osx does not lose screen real state with menu bar mode on
         (menu-bar-mode 1)))
+  (fringe-mode 0)
+
 #+END_SRC
 
 ** indentation
@@ -1048,7 +1043,7 @@ an appropriate message.
                 indent-tabs-mode nil)
 #+END_SRC
 
-** move custom data out of init.el
+** split emacs auto customizations
 
 - more info [[http://irreal.org/blog/?p=3765][here]]
 - and [[http://emacsblog.org/2008/12/06/quick-tip-detaching-the-custom-file/][here (M-x all-things-emacs)]]
