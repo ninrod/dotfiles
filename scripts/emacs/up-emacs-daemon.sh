@@ -13,6 +13,12 @@ else
   echo -e "emacs daemon is ${Red}killed${Rst}. Let us ${Green}ressurect${Rst} it..."
 fi
 
+if [[ "$unamestr" == *"Linux"* ]] && [[ $unamestr == *"ARCH"* ]]; then
+  # fix cedila | ç  in emacs under arch linux
+  # hack found here: http://lists.gnu.org/archive/html/help-gnu-emacs/2017-07/msg00070.html
+  LANG=C
+fi
+
 emacs.sh --daemon; rc=$?
 if [[ ! $rc = 0 ]]; then
   echo -e "there was a ${Red}problem${Rst} starting emacs daemon: $rc"
