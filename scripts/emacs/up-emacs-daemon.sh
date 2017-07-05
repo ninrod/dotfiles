@@ -13,7 +13,6 @@ else
   echo -e "emacs daemon is ${Red}killed${Rst}. Let us ${Green}ressurect${Rst} it..."
 fi
 
-
 # lang has to be pt_BR.UTF-8 by this point
 # LANG=pt_BR.UTF-8
 emacs.sh --daemon; rc=$?
