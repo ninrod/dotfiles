@@ -3,9 +3,6 @@
 # emacs command
 alias em=emacs.sh
 
-# gui
-alias emacs="background-emacs.sh"
-
 # emacs client
 alias et="emacsclient.sh --tty"
 alias ec="emacsclient.sh"
