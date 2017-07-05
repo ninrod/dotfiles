@@ -7,13 +7,6 @@ shopt -s autocd
 stty -echoctl
 
 # }}}
-# exports {{{
-
-export LANG=en_US.UTF-8
-export TERM=xterm-256color
-export EDITOR=vim
-
-# }}}
 # path {{{
 
 PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
