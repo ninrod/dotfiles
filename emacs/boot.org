@@ -339,15 +339,30 @@ an appropriate message.
     (evil-ex "'<,'>norm @z"))
 #+END_SRC
 ** line numbers
+*** toggle display absolute line number on the current line
    #+BEGIN_SRC emacs-lisp
      (defun ninrod/toggle-absolute-current-relative-visual-line-number ()
 
        "Toogle showing absolute line number or 0 for the current line when display-line-numbers is set to visual or relative"
        (interactive)
-       (if display-line-numbers-current-absolute
-           (setq display-line-numbers-current-absolute nil)
-         (setq display-line-numbers-current-absolute t)))
+       ;; tip from Stefan Monier
+       ;; http://lists.gnu.org/archive/html/emacs-devel/2017-07/msg00099.html
+       ;; do I have to (require 'cl-macs) here?
+       (cl-callf not display-line-numbers-current-absolute))
    #+END_SRC
+*** toggle display relative line numbers
+    #+BEGIN_SRC emacs-lisp
+      (defun ninrod/toggle-relative-line-numbers ()
+
+        "Toogle showing relative line numbers."
+        (interactive)
+        (if display-line-numbers
+            (setq display-line-numbers nil)
+          (setq display-line-numbers 'visual)))
+
+      ;; display-line-numbers-current-absolute nil
+      ;; display-line-numbers 'visual
+    #+END_SRC
 ** org
 *** horrendous org heading manipulation commands
 
@@ -974,16 +989,18 @@ an appropriate message.
 ** better defaults
 
 #+BEGIN_SRC emacs-lisp
-  (require 'uniquify)
-  (setq uniquify-buffer-name-style 'forward
-        apropos-do-all t
-        mode-require-final-newline nil
-        sentence-end-double-space nil
-        require-final-newline nil
-        select-enable-primary t
-        ring-bell-function 'ignore
-        split-width-threshold 200
-        split-height-threshold 80)
+     (require 'uniquify)
+     (setq uniquify-buffer-name-style 'forward
+           apropos-do-all t
+           mode-require-final-newline nil
+           display-line-numbers-current-absolute nil
+           display-line-numbers 'visual
+           sentence-end-double-space nil
+           require-final-newline nil
+           select-enable-primary t
+           ring-bell-function 'ignore
+           split-width-threshold 200
+           split-height-threshold 80)
 #+END_SRC
 
 ** scroll
