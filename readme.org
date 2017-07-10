@@ -1,6 +1,3 @@
-#+STARTUP: indent
-#+STARTUP: overview
-
 * Ninrod's emacs, vim, zsh and tmux dotfiles
 
 [[https://www.gnu.org/licenses/gpl-3.0.en.html][https://img.shields.io/badge/license-GPLv3-blue.svg]]
@@ -9,7 +6,7 @@
 
 * Screenshots
 ** Emacs
-[[https://raw.githubusercontent.com/ninrod/dotshots/master/2017-02-emacs.png][https://raw.githubusercontent.com/ninrod/dotshots/master/2017-02-emacs.png]]
+[[https://raw.githubusercontent.com/ninrod/dotshots/master/2017-06-emacs.png][https://raw.githubusercontent.com/ninrod/dotshots/master/2017-06-emacs.png]]
 ** Vim, tmux and zsh
 [[https://raw.githubusercontent.com/ninrod/dotshots/master/2017-02-vim-tmux-zsh.png][https://raw.githubusercontent.com/ninrod/dotshots/master/2017-02-vim-tmux-zsh.png]]
 * Note

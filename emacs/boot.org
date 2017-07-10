@@ -2638,8 +2638,8 @@ an appropriate message.
      "u" 'treemacs-uproot
      "r" 'treemacs-change-root
 
-     "j"   'treemacs-next-line
-     "k"   'treemacs-previous-line
+     ;; "j"   'treemacs-next-line
+     ;; "k"   'treemacs-previous-line
      )
 #+END_SRC
 
