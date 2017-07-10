@@ -14,7 +14,10 @@ else
 fi
 
 # lang has to be pt_BR.UTF-8 by this point
-# LANG=pt_BR.UTF-8
+unamestr=$(uname -a)
+if [[ "$unamestr" == *"Linux"* ]] && [[ $unamestr == *"ARCH"* ]]; then
+  LANG=pt_BR.UTF-8
+fi
 emacs --daemon; rc=$?
 if [[ ! $rc = 0 ]]; then
   echo -e "there was a ${Red}problem${Rst} starting emacs daemon: $rc"
