@@ -1362,7 +1362,7 @@ an appropriate message.
 *** atomic-chrome
 
 #+BEGIN_SRC emacs-lisp
-  (when (eq system-type 'darwin)
+  (when (or (eq system-type 'darwin) (eq system-type 'gnu/linux))
     (use-package atomic-chrome :ensure t
       :init
       (atomic-chrome-start-server)))
