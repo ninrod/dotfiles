@@ -1002,11 +1002,6 @@ an appropriate message.
            split-height-threshold 80)
 #+END_SRC
 ** hooks
-*** org
-    add line numbers to org-mode
-    #+BEGIN_SRC emacs-lisp
-      (add-hook 'org-mode-hook #'ninrod/toggle-relative-line-numbers)
-    #+END_SRC
 *** prog-mode
     #+BEGIN_SRC emacs-lisp
       (add-hook 'prog-mode-hook #'ninrod/toggle-relative-line-numbers)
