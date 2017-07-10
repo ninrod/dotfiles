@@ -358,7 +358,9 @@ an appropriate message.
         (interactive)
         (if display-line-numbers
             (setq display-line-numbers nil)
-          (setq display-line-numbers 'visual)))
+          (progn
+            (setq  display-line-numbers-current-absolute nil)
+            (setq display-line-numbers 'visual))))
 
       ;; display-line-numbers-current-absolute nil
       ;; display-line-numbers 'visual
@@ -953,7 +955,6 @@ an appropriate message.
         '((nil :maxlevel . 1)
           (ninrod-refile-targets :maxlevel . 1)))
 #+END_SRC
-
 ** misc options
 
 #+BEGIN_SRC emacs-lisp
@@ -993,8 +994,6 @@ an appropriate message.
      (setq uniquify-buffer-name-style 'forward
            apropos-do-all t
            mode-require-final-newline nil
-           display-line-numbers-current-absolute nil
-           display-line-numbers 'visual
            sentence-end-double-space nil
            require-final-newline nil
            select-enable-primary t
@@ -1002,7 +1001,16 @@ an appropriate message.
            split-width-threshold 200
            split-height-threshold 80)
 #+END_SRC
-
+** hooks
+*** org
+    add line numbers to org-mode
+    #+BEGIN_SRC emacs-lisp
+      (add-hook 'org-mode-hook #'ninrod/toggle-relative-line-numbers)
+    #+END_SRC
+*** prog-mode
+    #+BEGIN_SRC emacs-lisp
+      (add-hook 'prog-mode-hook #'ninrod/toggle-relative-line-numbers)
+    #+END_SRC
 ** scroll
 
 #+BEGIN_SRC emacs-lisp
@@ -1216,8 +1224,8 @@ an appropriate message.
 *** rainbow-delimiters
 
 #+BEGIN_SRC emacs-lisp
-(use-package rainbow-delimiters :ensure t
-  :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+  (use-package rainbow-delimiters :ensure t
+    :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 #+END_SRC
 
 *** rainbow-mode
