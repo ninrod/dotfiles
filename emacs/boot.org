@@ -177,22 +177,25 @@ an appropriate message.
     (interactive)
     (ninrod/open-file "~/code/sources/gtd/next.org"))
 
-  (defun ninrod/open-slot-5 ()
-    "Open project 5."
-    (interactive)
-    (ninrod/open-file "~/code/sources/gtd/projects/boston.org"))
-
   (defun ninrod/open-slot-4 ()
     "Open project 4."
     (interactive)
-    (if (eq system-type 'gnu/linux)
-        (ninrod/open-file "~/code/sources/orf/pom.xml")
-      (message "we're on OSx, slot 4 available.")))
+    (ninrod/open-file "~/code/sources/gtd/projects/oficina.org"))
+
+  (defun ninrod/open-slot-5 ()
+    "Open project 5."
+    (interactive)
+    (ninrod/echo "slot available"))
 
   (defun ninrod/open-slot-3 ()
     "Open project 3."
     (interactive)
-    (ninrod/open-file "~/code/sources/gtd/projects/oficina.org"))
+    (ninrod/echo "slot available"))
+
+  (defun ninrod/open-slot-2 ()
+    "Open project 2."
+    (interactive)
+    (ninrod/echo "slot available"))
 
   (defun ninrod/open-slot-1 ()
     "Open project 1."
@@ -1461,7 +1464,27 @@ an appropriate message.
           ;; neo-theme 'nerd ; fallback
           neo-banner-message nil))
 #+END_SRC
-
+*** treemacs
+    #+BEGIN_SRC emacs-lisp
+      (use-package treemacs
+        :ensure t
+        :defer t
+        :config
+        (setq treemacs-header-function            #'treemacs--create-header-projectile
+              treemacs-follow-after-init          t
+              treemacs-width                      35
+              treemacs-indentation                2
+              treemacs-git-integration            t
+              treemacs-change-root-without-asking nil
+              treemacs-sorting                    'alphabetic-desc
+              treemacs-show-hidden-files          t
+              treemacs-never-persist              nil)
+        (treemacs-follow-mode t)
+        (treemacs-filewatch-mode t)
+        :bind
+        (:map global-map
+              ([f8]        . treemacs-toggle)))
+    #+END_SRC
 *** smooth-scrolling
 
 #+BEGIN_SRC text
@@ -2080,7 +2103,7 @@ an appropriate message.
    ;; important modes
    "c" 'ninrod/org-task-capture
    "g" 'ninrod/uarg-magit-status
-   "t" 'neotree-toggle
+   "t" 'treemacs-toggle
    "o" 'ninrod/pop-to-org-agenda
 
    ;; buffer ops
@@ -2574,6 +2597,60 @@ an appropriate message.
        )
 
       neotree-mode-map))
+#+END_SRC
+
+** treemacs
+
+#+BEGIN_SRC emacs-lisp
+  (general-create-definer
+   ninrod--treemacs-map
+   :keymaps 'treemacs-mode-map)
+
+(general-create-definer treemacs-g-map
+   :keymaps 'treemacs-mode-map
+   :states '(normal)
+   :prefix "g")
+
+  (treemacs-g-map
+    "g" 'evil-goto-first-line
+    "o" 'evil-goto-first-line
+    "l" 'evil-goto-line)
+
+  ;; (ninrod--treemacs-map
+  ;;  ;; "c" 'reserved (generally, confirmation)
+  ;;  ;; "." 'reserved
+
+  ;;  ;; crud ops
+  ;;  ;; "DEL" 'ninrod/mkdir
+  ;;  ;; "d" 'neotree-delete-node
+  ;;  ;; "c" 'neotree-copy-node
+  ;;  ;; "r" 'neotree-rename-node
+
+
+  ;;  ;; info retrieval
+  ;;  ;; "p" 'ninrod/neotree-copy-path
+  ;;  ;; "gr" 'neotree-refresh
+
+  ;;  ;; navigation
+  ;;  "u" 'treemacs-uproot
+  ;;  "r" 'treemacs-change-root
+  ;;  ;; "RET" 'neotree-change-root
+  ;;  ;; "zj" 'neotree-select-next-sibling-node
+  ;;  ;; "zk" 'neotree-select-previous-sibling-node
+
+  ;;  "j"   'treemacs-next-line
+  ;;  "k"   'treemacs-previous-line
+  ;;  "M-j" 'treemacs-next-neighbour
+  ;;  "M-k" 'treemacs-previous-neighbour
+  ;;  "th"  'treemacs-toggle-show-dotfiles
+  ;;  "tw"  'treemacs-toggle-fixed-width
+  ;;  "tf"  'treemacs-follow-mode
+  ;;  "w"   'treemacs-reset-width
+  ;;  "yr" 'treemacs-yank-root
+  ;;  "yy" 'treemacs-yank-path-at-point
+  ;;  "g"  'treemacs-refresh
+
+  ;;  )
 #+END_SRC
 
 ** lisp
