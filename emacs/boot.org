@@ -2602,55 +2602,45 @@ an appropriate message.
 ** treemacs
 
 #+BEGIN_SRC emacs-lisp
-  (general-create-definer
-   ninrod--treemacs-map
-   :keymaps 'treemacs-mode-map)
+    (general-create-definer
+     ninrod--treemacs-map
+     :keymaps 'treemacs-mode-map)
 
-(general-create-definer treemacs-g-map
-   :keymaps 'treemacs-mode-map
-   :states '(normal)
-   :prefix "g")
+  (general-create-definer treemacs-g-map
+     :keymaps 'treemacs-mode-map
+     :states '(normal)
+     :prefix "g")
 
-  (treemacs-g-map
-    "g" 'evil-goto-first-line
-    "o" 'evil-goto-first-line
-    "l" 'evil-goto-line)
+    (treemacs-g-map
+      "j" 'treemacs-next-neighbour
+      "k" 'treemacs-previous-neighbour
+      "g" 'evil-goto-first-line
+      "o" 'evil-goto-first-line
+      "r"  'treemacs-refresh
+      "l" 'evil-goto-line)
 
-  ;; (ninrod--treemacs-map
-  ;;  ;; "c" 'reserved (generally, confirmation)
-  ;;  ;; "." 'reserved
+    (ninrod--treemacs-map
+    :states  'normal
 
-  ;;  ;; crud ops
-  ;;  ;; "DEL" 'ninrod/mkdir
-  ;;  ;; "d" 'neotree-delete-node
-  ;;  ;; "c" 'neotree-copy-node
-  ;;  ;; "r" 'neotree-rename-node
+     ;; "c" 'reserved (generally, confirmation)
+     ;; "." 'reserved
 
+     ;; crud ops
+     ;; "DEL" 'ninrod/mkdir
+     ;; "d" 'neotree-delete-node
+     ;; "c" 'neotree-copy-node
+     ;; "r" 'neotree-rename-node
 
-  ;;  ;; info retrieval
-  ;;  ;; "p" 'ninrod/neotree-copy-path
-  ;;  ;; "gr" 'neotree-refresh
+     ;; info retrieval
+      "p" 'treemacs-yank-path-at-point
 
-  ;;  ;; navigation
-  ;;  "u" 'treemacs-uproot
-  ;;  "r" 'treemacs-change-root
-  ;;  ;; "RET" 'neotree-change-root
-  ;;  ;; "zj" 'neotree-select-next-sibling-node
-  ;;  ;; "zk" 'neotree-select-previous-sibling-node
+     ;; navigation
+     "u" 'treemacs-uproot
+     "r" 'treemacs-change-root
 
-  ;;  "j"   'treemacs-next-line
-  ;;  "k"   'treemacs-previous-line
-  ;;  "M-j" 'treemacs-next-neighbour
-  ;;  "M-k" 'treemacs-previous-neighbour
-  ;;  "th"  'treemacs-toggle-show-dotfiles
-  ;;  "tw"  'treemacs-toggle-fixed-width
-  ;;  "tf"  'treemacs-follow-mode
-  ;;  "w"   'treemacs-reset-width
-  ;;  "yr" 'treemacs-yank-root
-  ;;  "yy" 'treemacs-yank-path-at-point
-  ;;  "g"  'treemacs-refresh
-
-  ;;  )
+     "j"   'treemacs-next-line
+     "k"   'treemacs-previous-line
+     )
 #+END_SRC
 
 ** lisp
