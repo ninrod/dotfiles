@@ -2,6 +2,8 @@
 *.dat
 *.cache
 
+.persistent-scratch
+
 keyfreq.el
 keyfreq.lock
 smex-items
