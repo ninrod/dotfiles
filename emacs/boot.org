@@ -1817,6 +1817,12 @@ an appropriate message.
       (use-package docker
         :ensure t)
     #+END_SRC
+*** password-store
+    #+BEGIN_SRC emacs-lisp
+      (use-package password-store
+        :ensure t)
+
+    #+END_SRC
 ** disabled
 *** emaps
 
