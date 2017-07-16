@@ -1148,20 +1148,6 @@ an appropriate message.
 #+END_SRC
 
 *** themes
-**** gruvbox
-
-#+BEGIN_SRC emacs-lisp
-  (use-package gruvbox-theme :load-path "~/.dotfiles/deps/emacs/ninrod/gruvbox-theme"
-    :init
-    (setq anzu-cons-mode-line-p t)
-    (setq gruvbox-contrast 'hard)
-
-    :config
-    ;; (gruvbox-modeline-three)
-    (load-theme 'gruvbox t))
-
-#+END_SRC
-
 **** spacemacs
 
 #+BEGIN_SRC text
@@ -1198,11 +1184,34 @@ an appropriate message.
     :config
     (load-theme 'leuven t))
 #+END_SRC
+**** gruvbox
+
+#+BEGIN_SRC emacs-lisp
+  (use-package gruvbox-theme :load-path "~/.dotfiles/deps/emacs/ninrod/gruvbox-theme"
+    :init
+    (setq anzu-cons-mode-line-p t)
+    (setq gruvbox-contrast 'hard)
+
+    :config
+    (gruvbox-modeline-three)
+    (load-theme 'gruvbox t))
+
+#+END_SRC
+
+**** darktooth
+
+#+BEGIN_SRC text
+  (use-package darktooth-theme
+    :load-path "~/.dotfiles/deps/emacs/ninrod/emacs-theme-darktooth"
+    :config
+    (darktooth-modeline-three)
+    (load-theme 'darktooth t))
+#+END_SRC
 
 *** spaceline
 
 - to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (use-package spaceline :ensure t
     :config
     (setq powerline-height 40)
@@ -1822,6 +1831,11 @@ an appropriate message.
       (use-package password-store
         :ensure t)
 
+    #+END_SRC
+*** writeroom-mode
+    #+BEGIN_SRC emacs-lisp
+      (use-package writeroom-mode
+        :ensure t)
     #+END_SRC
 ** disabled
 *** emaps
