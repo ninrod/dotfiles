@@ -1832,11 +1832,6 @@ an appropriate message.
         :ensure t)
 
     #+END_SRC
-*** writeroom-mode
-    #+BEGIN_SRC emacs-lisp
-      (use-package writeroom-mode
-        :ensure t)
-    #+END_SRC
 ** disabled
 *** emaps
 
