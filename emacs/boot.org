@@ -1419,6 +1419,7 @@ an appropriate message.
     ;;(setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
     (setq magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
     (setq magit-repository-directories '("~/code/sources"))
+    (setq magit-diff-refine-hunk 'all)
     (use-package evil-magit :ensure t)
     (setq magit-completing-read-function 'ivy-completing-read))
 #+END_SRC
