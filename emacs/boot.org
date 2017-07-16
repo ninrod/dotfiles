@@ -1534,15 +1534,6 @@ an appropriate message.
                                   slurp/barf-cp
                                   (additional-movement normal visual motion)))))
 #+END_SRC
-*** persistent scratch
-    - from [[https://pragmaticemacs.com/emacs/a-persistent-scratch-buffer/][pragmatic]] emacs
-    #+BEGIN_SRC emacs-lisp
-      (use-package persistent-scratch
-        :ensure t
-        :config
-        (persistent-scratch-setup-default))
-    #+END_SRC
-
 ** filetypes
 *** md: markdown
 
@@ -1833,6 +1824,15 @@ an appropriate message.
 
     #+END_SRC
 ** disabled
+*** persistent scratch
+    - from [[https://pragmaticemacs.com/emacs/a-persistent-scratch-buffer/][pragmatic]] emacs
+    #+BEGIN_SRC text
+      (use-package persistent-scratch
+        :ensure t
+        :config
+        (persistent-scratch-setup-default))
+    #+END_SRC
+
 *** emaps
 
 #+BEGIN_SRC text
