@@ -1008,6 +1008,7 @@ an appropriate message.
 *** prog-mode
     #+BEGIN_SRC emacs-lisp
       (add-hook 'prog-mode-hook #'ninrod/toggle-relative-line-numbers)
+      (add-hook 'org-mode-hook #'ninrod/toggle-relative-line-numbers)
     #+END_SRC
 ** scroll
 
