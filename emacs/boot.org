@@ -1038,6 +1038,7 @@ an appropriate message.
 - Source Code Pro: [[https://github.com/adobe-fonts/source-code-pro][adobe-fonts/source-code-pro]]
   #+BEGIN_SRC emacs-lisp
     (add-to-list 'default-frame-alist '(font . "Office Code Pro-14"))
+    ;; (add-to-list 'default-frame-alist '(font . "Source Code Pro-14"))
   #+END_SRC
 
 ** gui
@@ -1228,13 +1229,6 @@ an appropriate message.
     (spaceline-compile))
 #+END_SRC
 
-*** rainbow-delimiters
-
-#+BEGIN_SRC emacs-lisp
-  (use-package rainbow-delimiters :ensure t
-    :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
-#+END_SRC
-
 *** rainbow-mode
 
 #+BEGIN_SRC emacs-lisp
@@ -1249,32 +1243,6 @@ an appropriate message.
     :ensure t
     :config
     (add-hook 'prog-mode-hook 'highlight-numbers-mode))
-#+END_SRC
-
-*** highlight-parentheses
-
-#+BEGIN_SRC emacs-lisp
-  (use-package highlight-parentheses :ensure t
-    :config
-    (add-hook 'prog-mode-hook #'highlight-parentheses-mode)
-    (add-hook 'org-mode-hook #'highlight-parentheses-mode)
-    (setq hl-paren-delay 0.2)
-    (set-face-attribute 'hl-paren-face nil :weight 'ultra-bold)
-
-    :diminish "")
-#+END_SRC
-
-*** smartparens
-
-#+BEGIN_SRC emacs-lisp
-  (use-package smartparens :ensure t
-    :init
-    (setq sp-show-pair-delay 0.1
-          sp-show-pair-from-inside t)
-    :config
-    (show-smartparens-global-mode +1)
-
-    :diminish "")
 #+END_SRC
 
 *** Org Bullets
@@ -1310,6 +1278,39 @@ an appropriate message.
 #+BEGIN_SRC emacs-lisp
   (use-package kurecolor
     :ensure t)
+#+END_SRC
+
+*** highlight-parentheses
+
+#+BEGIN_SRC emacs-lisp
+  (use-package highlight-parentheses :ensure t
+    :config
+    (add-hook 'prog-mode-hook #'highlight-parentheses-mode)
+    (add-hook 'org-mode-hook #'highlight-parentheses-mode)
+    (setq hl-paren-delay 0.2)
+    (set-face-attribute 'hl-paren-face nil :weight 'ultra-bold)
+
+    :diminish "")
+#+END_SRC
+
+*** smartparens
+
+#+BEGIN_SRC emacs-lisp
+  (use-package smartparens :ensure t
+    :init
+    (setq sp-show-pair-delay 0.1
+          sp-show-pair-from-inside t)
+    :config
+    (show-smartparens-global-mode)
+
+    :diminish "")
+#+END_SRC
+
+*** rainbow-delimiters
+
+#+BEGIN_SRC emacs-lisp
+  (use-package rainbow-delimiters :ensure t
+    :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 #+END_SRC
 
 ** core
