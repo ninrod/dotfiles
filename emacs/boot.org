@@ -1818,11 +1818,10 @@ an appropriate message.
       (use-package docker
         :ensure t)
     #+END_SRC
-*** password-store
+*** pass
     #+BEGIN_SRC emacs-lisp
-      (use-package password-store
+      (use-package pass
         :ensure t)
-
     #+END_SRC
 ** disabled
 *** persistent scratch
