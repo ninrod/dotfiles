@@ -1293,6 +1293,13 @@ an appropriate message.
     :diminish "")
 #+END_SRC
 
+*** rainbow-delimiters
+
+#+BEGIN_SRC emacs-lisp
+  (use-package rainbow-delimiters :ensure t
+    :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+#+END_SRC
+
 *** smartparens
 
 #+BEGIN_SRC emacs-lisp
@@ -1304,13 +1311,6 @@ an appropriate message.
     (show-smartparens-global-mode)
 
     :diminish "")
-#+END_SRC
-
-*** rainbow-delimiters
-
-#+BEGIN_SRC emacs-lisp
-  (use-package rainbow-delimiters :ensure t
-    :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 #+END_SRC
 
 ** core
