@@ -1308,6 +1308,7 @@ an appropriate message.
     (setq sp-show-pair-delay 0.1
           sp-show-pair-from-inside t)
     :config
+    (smartparens-global-mode)
     (show-smartparens-global-mode)
 
     :diminish "")
