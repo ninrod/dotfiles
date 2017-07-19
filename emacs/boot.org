@@ -1989,6 +1989,7 @@ an appropriate message.
    "SPC" 'counsel-M-x
    "RET" 'write-file
    "DEL" 'ninrod/mkdir
+   "g" 'avy-goto-char
 
    "j" (kbd "LztM")
    "k" (kbd "Hz-M")
