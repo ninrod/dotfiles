@@ -660,7 +660,7 @@ an appropriate message.
 
 #+BEGIN_SRC emacs-lisp
   (use-package evil
-    :load-path "~/.dotfiles/deps/emacs/emacs-evil/evil"
+    :ensure t
     :init
     (use-package goto-chg :ensure t)
     (use-package undo-tree :ensure t)
@@ -704,38 +704,12 @@ an appropriate message.
     :load-path "~/.dotfiles/deps/emacs/noctuid/rect-ext.el")
 #+END_SRC
 
-*** evil-mc
-
-#+BEGIN_SRC emacs-lisp
-  (use-package evil-mc
-    :ensure t
-    :config
-    ;; (global-evil-mc-mode  1)
-
-    ;; stolen from @noctuid's comment on: https://github.com/gabesoft/evil-mc/issues/22#issuecomment-267682745
-    (defun evil--mc-make-cursor-at-col (startcol _endcol orig-line)
-      (move-to-column startcol)
-      (unless (= (line-number-at-pos) orig-line)
-        (evil-mc-make-cursor-here)))
-    (defun evil-mc-make-vertical-cursors (beg end)
-      (interactive (list (region-beginning) (region-end)))
-      (evil-mc-pause-cursors)
-      (apply-on-rectangle #'evil--mc-make-cursor-at-col
-                          beg end (line-number-at-pos (point)))
-      (evil-mc-resume-cursors)
-      (evil-normal-state)
-      (move-to-column (evil-mc-column-number (if (> end beg)
-                                                 beg
-                                               end))))
-
-    :diminish "")
-#+END_SRC
-
+** melpa packages
 *** evil-surround
 
 #+BEGIN_SRC emacs-lisp
   (use-package evil-surround
-    :load-path "~/.dotfiles/deps/emacs/emacs-evil/evil-surround"
+    :ensure t
     :init
     (with-eval-after-load 'evil-surround
       (evil-add-to-alist
@@ -749,7 +723,6 @@ an appropriate message.
     :config (global-evil-surround-mode 1))
 #+END_SRC
 
-** melpa packages
 *** evil-replace-with-register
 
 #+BEGIN_SRC emacs-lisp
@@ -859,6 +832,34 @@ an appropriate message.
       (use-package evil-ediff
         :ensure t)
     #+END_SRC
+** disabled packages
+*** evil-mc
+
+#+BEGIN_SRC text
+  (use-package evil-mc
+    :ensure t
+    :config
+    ;; (global-evil-mc-mode  1)
+
+    ;; stolen from @noctuid's comment on: https://github.com/gabesoft/evil-mc/issues/22#issuecomment-267682745
+    (defun evil--mc-make-cursor-at-col (startcol _endcol orig-line)
+      (move-to-column startcol)
+      (unless (= (line-number-at-pos) orig-line)
+        (evil-mc-make-cursor-here)))
+    (defun evil-mc-make-vertical-cursors (beg end)
+      (interactive (list (region-beginning) (region-end)))
+      (evil-mc-pause-cursors)
+      (apply-on-rectangle #'evil--mc-make-cursor-at-col
+                          beg end (line-number-at-pos (point)))
+      (evil-mc-resume-cursors)
+      (evil-normal-state)
+      (move-to-column (evil-mc-column-number (if (> end beg)
+                                                 beg
+                                               end))))
+
+    :diminish "")
+#+END_SRC
+
 * tweaks
 ** org-mode
 *** general configs
