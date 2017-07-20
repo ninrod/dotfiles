@@ -1321,6 +1321,13 @@ an appropriate message.
         :config
         (lisp-extra-font-lock-global-mode 1))
     #+END_SRC
+*** highlight-quoted
+    #+BEGIN_SRC emacs-lisp
+      (use-package highlight-quoted
+        :ensure t
+        :config
+        (add-hook 'emacs-lisp-mode-hook 'highlight-quoted-mode))
+    #+END_SRC
 ** core
 *** restart-emacs
 
