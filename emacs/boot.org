@@ -1314,7 +1314,13 @@ an appropriate message.
 
     :diminish "")
 #+END_SRC
-
+*** lisp-extra-font-lock
+    #+BEGIN_SRC emacs-lisp
+      (use-package lisp-extra-font-lock
+        :ensure t
+        :config
+        (lisp-extra-font-lock-global-mode 1))
+    #+END_SRC
 ** core
 *** restart-emacs
 
