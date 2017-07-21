@@ -1740,12 +1740,7 @@ an appropriate message.
     (ivy-mode 1)
 
     (use-package counsel
-      :ensure t)
-
-    (use-package all-the-icons-ivy
-      :ensure t
-      :config
-      (all-the-icons-ivy-setup)))
+      :ensure t))
 #+END_SRC
 *** smex
 
