@@ -1,2 +1,2 @@
 if has("gui_running")
-  set guifont=Office\ Code\ Pro\ 14
+  set guifont=Office\ Code\ Pro\ 13
