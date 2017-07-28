@@ -7,7 +7,7 @@ ningrab ninrod/rsynced-melpa
 # core editing
 ningrab ninrod/targets.el
 ningrab noctuid/rect-ext.el
-ningrab ninrod/evil.el
+ningrab ninrod/evil
 
 # forked themes
 ningrab ninrod/gruvbox-theme
