@@ -1,0 +1,4 @@
+* Shell options
+
+- guarda as minhas configurações pessoais para o shell do arch linux
+

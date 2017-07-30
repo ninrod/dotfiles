@@ -1,19 +1,3 @@
-ensure_options_file() {
-  if [[ ! -d $SHELL_OPTIONS_DIR ]]; then
-    mkdir -p $SHELL_OPTIONS_DIR
-  fi
-  local options_file="$(readlink -f $SHELL_OPTIONS_FILE)"
-  if [[ ! -e $options_file ]]; then
-    cp boot/options/shell-options.zsh $SHELL_OPTIONS_DIR
-  fi
-}
-ensure_dotpath() {
-  ensure_options_file
-  local options_file="$(readlink -f $SHELL_OPTIONS_FILE)"
-  local temp_file="$(readlink -f ~/.options/temp.conf)"
-  awk '!/^DOTPATH/' $options_file > $temp_file && mv $temp_file $options_file
-  echo "DOTPATH=${GIT_ROOT/$HOME/~}" >> $options_file
-}
 verifylink() {
   local symlink=${1:a}
   if [[ -e $symlink ]] && [[ ! -h $symlink ]]; then
@@ -22,6 +6,7 @@ verifylink() {
     exit 1
   fi
 }
+
 updatelinks() {
   local symlink=${1:a}
   local symlink_old_target=${1:A}

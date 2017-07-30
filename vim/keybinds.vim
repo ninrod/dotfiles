@@ -5,6 +5,10 @@ nnoremap <silent>- :noh<cr>
 xnoremap <silent>- :noh<cr>
 nnoremap <cr> :w<cr>
 
+nnoremap g; g_
+vnoremap g; g_
+onoremap g; g_
+
 nnoremap Q q
 nnoremap q ZQ
 
@@ -18,9 +22,14 @@ nmap s <Leader>
 omap s <Leader>
 xmap s <Leader>
 
+xnoremap io iw
+xnoremap ao aw
+onoremap io iw
+onoremap ao aw
+
 " window operations
-nmap <leader>v <C-W>v
-nmap <leader>y <C-W>s
+nmap <leader>y <C-W>v
+nmap <leader>x <C-W>s
 nmap <leader>h <C-W>h
 nmap <leader>j <C-W>j
 nmap <leader>k <C-W>k

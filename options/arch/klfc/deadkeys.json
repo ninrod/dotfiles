@@ -1,0 +1,19 @@
+{
+  "singletonKeys": [
+    ["Alt_R", "Control"],
+    ["CapsLock", "Escape"]
+  ],
+  "shiftlevels": [ "None", "Shift" ],
+  "customDeadKeys": [
+    {
+      "name": "cedilhaFix",
+      "baseChar": "'",
+      "stringMap": ["c", "ç"]
+    }
+  ],
+  "keys": [
+    { "pos": "~", "letters": [ "grave", "tilde" ] },
+    { "pos": "6", "letters": [ "6", "circumflex" ] },
+    { "pos": "'", "letters": [ "cdk:cedilhaFix", "\"" ] }
+  ]
+}

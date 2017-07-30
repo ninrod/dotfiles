@@ -1,0 +1,104 @@
+! uncomment for transparent terminal if you are ready to be made fun of in #rice
+! URxvt.transparent: true
+! URxvt.shading: 15
+
+! make otf / ttf fonts look pretty.  does not matter if you are using a bitmap font.
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+
+! colors
+*.cursorColor:  #ebdbb2
+
+! hard contrast: *background: #1d2021
+*.background: #1d2021
+! soft contrast: *background: #32302f
+*.foreground: #ebdbb2
+! Black + DarkGrey
+*.color0:  #282828
+*.color8:  #928374
+! DarkRed + Red
+*.color1:  #cc241d
+*.color9:  #fb4934
+! DarkGreen + Green
+*.color2:  #98971a
+*.color10: #b8bb26
+! DarkYellow + Yellow
+*.color3:  #d79921
+*.color11: #fabd2f
+! DarkBlue + Blue
+*.color4:  #458588
+*.color12: #83a598
+! DarkMagenta + Magenta
+*.color5:  #b16286
+*.color13: #d3869b
+! DarkCyan + Cyan
+*.color6:  #689d6a
+*.color14: #8ec07c
+! LightGrey + White
+*.color7:  #a89984
+*.color15: #ebdbb2
+! for 256 color stuff
+*.color24:  #076678
+*.color66:  #427b58
+*.color88:  #9d0006
+*.color96:  #8f3f71
+*.color100: #79740e
+*.color108: #8ec07c
+*.color109: #83a598
+*.color130: #af3a03
+*.color136: #b57614
+*.color142: #b8bb26
+*.color167: #fb4934
+*.color175: #d3869b
+*.color208: #fe8019
+*.color214: #fabd2f
+*.color223: #ebdbb2
+*.color228: #f4e8ba
+*.color229: #fdf4c1
+*.color230: #ffffc8
+*.color234: #1d2021
+*.color235: #282828
+*.color236: #32302f
+*.color237: #3c3836
+*.color239: #504945
+*.color241: #665c54
+*.color243: #7c6f64
+*.color244: #928374
+*.color245: #928374
+*.color246: #a89984
+*.color248: #bdae93
+*.color250: #d5c4a1
+
+! These are all possible options, presented with default values.
+! xst will fallback to *.option if st.option is not present.
+! see src/config.h for more information about option meanings.
+
+! These options only take effect on startup.
+st.termname:     xterm-256color
+! if you do not set shell, precedence is: -e arg, utmp option, SHELL env var, /etc/passwd shell
+st.shell:        /bin/zsh
+
+! The following options options can be reloaded via USR1 signal.
+st.font:         Office Code Pro:pixelsize=20:antialias=true:autohint=true;
+st.borderpx:     1
+! Available cursor values: 2 4 6 7 = █ _ | ☃ ( 1 3 5 are blinking versions)
+st.cursorshape:  2
+st.cursorthickness:  2
+st.cursorblinkstyle: 0
+st.cursorblinkontype: 0
+st.bold_font:    0
+st.xfps:         120
+st.actionfps:    30
+st.chscale:      1.0
+st.cwscale:      1.0
+st.blinktimeout: 200
+st.bellvolume:   100
+! this is a char that is exposed like so: `printf '\033[z'`
+st.prompt_char:  $
+
+! opacity==255 means what terminal will be not transparent, 0 - fully transparent
+st.opacity:      230

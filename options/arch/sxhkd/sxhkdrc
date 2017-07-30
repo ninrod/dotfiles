@@ -1,0 +1,158 @@
+# -*- mode: sxhkd -*-
+
+# ------------------- screen lock ---------------
+super + l
+      physlock
+
+# ------------------- brightness settings ---------------
+XF86MonBrightnessUp
+    xbacklight -inc 10
+XF86MonBrightnessDown
+    xbacklight -dec 10
+
+# ------------------- system volume ---------------------
+#also ensures audio is enabled
+XF86AudioRaiseVolume
+	amixer -q set Master 10%+ on
+
+# Lower volume
+XF86AudioLowerVolume
+	amixer -q set Master 10%-
+
+# toggle audio
+XF86AudioMute
+        pactl set-sink-mute 0 toggle
+        # amixer -q set Master off
+
+# ----------------------- Apps -------------------
+alt + Return
+	st
+alt + e
+        emacsclient --create-frame
+ctrl + alt + e
+        restart-emacs-daemon.sh
+ctrl + b
+        GTK_IM_MODULE=xim google-chrome-stable --force-device-scale-factor=1.3 &
+Print
+        maim -d 3 ~/Downloads/screenshot.png
+ctrl + Print
+        maim -s ~/Downloads/screenshot.png
+ctrl + alt + shift + p
+        ~/.options/arch/scripts/passmenu.sh
+ctrl + alt + r
+        ~/.options/arch/polybar/launch.sh
+
+# -------------------------- Emacs --------------------------
+
+# dmenu (from suckless)
+# -nb: background
+# -nf: foreground
+# -sb: background of the current selected candidate
+# -sf: foreground of the current selected candidate
+alt + space
+        dmenu_run -fn "Office Code Pro-12:normal" -nb "#32302f" -nf "#ebdbb2" -sb "#0a0814" -sf "#fe8019" -p ">"
+
+# dmenu_run -p "run: " -fn "Source Code Pro 12"
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# quit bspwm normally
+super + alt + Escape
+	bspc quit
+
+# close and kill
+alt + {_,shift + }w
+	bspc node -{c,k}
+
+# alternate between the tiled and monocle layout
+super + m
+	bspc desktop -l next
+
+# if the current node is automatic, send it to the last manual, otherwise pull the last leaf
+super + y
+	bspc query -N -n focused.automatic && bspc node -n last.!automatic || bspc node last.leaf -n focused
+
+# swap the current node and the biggest node
+super + g
+	bspc node -s biggest
+
+# state/flags
+
+# set the window state
+super + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# set the node flags
+super + ctrl + {x,y,z}
+	bspc node -g {locked,sticky,private}
+
+# -------------------------- focus/swap --------------------------
+alt + {1,2,3,4,5,6,7,8,9,0}
+  bspc desktop -f {I,II,III,IV,V,VI,VII,VIII,IX,X}
+
+ctrl + {1,2,3,4,5,6,7,8,9,0}
+  bspc desktop -f {I,II,III,IV,V,VI,VII,VIII,IX,X}
+
+# focus or send to the given desktop
+super + shift {1-9,0}
+	bspc node -d '^{1-9,10}'
+
+# focus the node in the given direction
+alt + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# focus the node for the given path jump
+super + {p,b,comma,period}
+	bspc node -f @{parent,brother,first,second}
+
+# focus the next/previous node
+super + {_,shift + }c
+	bspc node -f {next,prev}
+
+# focus the next/previous desktop
+# super + bracket{left,right}
+alt + {p,n}
+	bspc desktop -f {prev,next}
+
+# focus the last node/desktop
+alt + Tab
+	bspc {node,desktop} -f last
+
+# focus the older or newer node in the focus history
+super + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+
+
+# ----------------------------- preselect --------------------------
+# preselect the direction
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+super + ctrl + space
+	bspc node -p cancel
+
+# cancel the preselection for the focused desktop
+super + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+# -------------------------- move/resize --------------------------
+# expand a window by moving one of its side outward
+super + alt + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
+super + alt + shift + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# move a floating window
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
