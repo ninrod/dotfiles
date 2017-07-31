@@ -1,19 +1,5 @@
 # note: this file is meant to be source, not executed
 
-unamestr=$(uname -a)
-if [[ "$unamestr" == *"Linux"* ]] && [[ $unamestr == *"ARCH"* ]]; then
-
-  if [[ -n ${1+x} ]] && [[ "$1" == "setup" ]]; then
-    source ~/.options/arch/setup.zsh
-  else
-    source ~/.options/arch/arch.zsh
-  fi
-
-elif [[ "$unamestr" == *"Darwin"*  ]]; then
-  source ~/.options/osx/osx.zsh $1
-fi
-
-
 load_secrets() {
   local my_secrets=$(cd $GIT_ROOT && cd .. && readlink -f secrets)
   if [[ ! -d $my_secrets ]]; then
@@ -24,4 +10,18 @@ load_secrets() {
   echo "secrets $my_secrets detected. sourcing"
   source $my_secrets/secrets.zsh
 }
-load_secrets
+
+unamestr=$(uname -a)
+if [[ "$unamestr" == *"Linux"* ]] && [[ $unamestr == *"ARCH"* ]]; then
+
+  if [[ -n ${1+x} ]] && [[ "$1" == "setup" ]]; then
+    source ~/.options/arch/setup.zsh
+    load_secrets
+  else
+    source ~/.options/arch/arch.zsh
+  fi
+
+elif [[ "$unamestr" == *"Darwin"*  ]]; then
+  source ~/.options/osx/osx.zsh $1
+fi
+
