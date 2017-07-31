@@ -37,17 +37,6 @@ GNUMANPATH="/usr/local/opt/coreutils/libexec/gnuman"
 MANPATH="$GNUMANPATH:$MANPATH"
 export MANPATH
 
-# bulding emacs from src
-export EMACS_SRC_DIR="${HOME}/code/apps/emacs"
-export EMACS_BINARY=~/Applications/Emacs.app/Contents/MacOS/Emacs
-export EMACSCLIENT_BINARY=~/Applications/Emacs.app/Contents/MacOS/bin/emacsclient
-
-# building vim from src
-export VIM_SRC_DIR="${HOME}/code/apps/vim"
-
-# building zsh from src
-export ZSH_SRC_DIR="${HOME}/code/apps/zsh/zsh-src/"
-
 # node version manager
 
 export NVM_DIR="$HOME/.nvm"

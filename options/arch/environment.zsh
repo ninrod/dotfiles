@@ -7,11 +7,6 @@ PATH="$CUSTOM_SCRIPTS:$PATH"
 PATH="$LINUX_SCRIPTS:$PATH"
 export PATH
 
-# emacs binary paths
-export EMACS_BINARY=/usr/bin/emacs
-export EMACSCLIENT_BINARY=/usr/bin/emacsclient
-# export GTK_IM_MODULE=xim
-
 #nvm
 # export NVM_DIR="$HOME/.nvm"
 # [[ -e $NVM_DIR/nvm.sh ]] && source $NVM_DIR/nvm.sh
