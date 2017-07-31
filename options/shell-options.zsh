@@ -12,6 +12,3 @@ if [[ "$unamestr" == *"Linux"* ]] && [[ $unamestr == *"ARCH"* ]]; then
 elif [[ "$unamestr" == *"Darwin"*  ]]; then
   source ~/.options/osx/osx.zsh $1
 fi
-
-# dotfiles install path
-DOTPATH=~/code/sources/dotfiles
