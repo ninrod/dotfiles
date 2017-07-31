@@ -31,7 +31,7 @@ build_git_url() {
   local gitmask='https://github.com/'
   local url=${gitmask}${name}.git
   if [[ -n ${urlhash+x} ]] && ((${+urlhash[$name]})); then
-    local url=${urlhash[$name]}
+    url=${urlhash[$name]}
   fi
   echo $url
 }
