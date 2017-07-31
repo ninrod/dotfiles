@@ -1,0 +1,4 @@
+* Sample distro/OS agnostic config
+
+the idea here is to showcase how you can split your configuration for it to work both on OSx and on arch.
+And maybe centos, ubuntu, etc...
