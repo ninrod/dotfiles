@@ -1483,6 +1483,7 @@ an appropriate message.
           neo-auto-indent-point nil
           neo-mode-line-type 'none
           neo-window-fixed-size nil
+          neo-theme 'icons
           neo-window-width 40
           neo-show-updir-line nil
           neo-smart-open t
@@ -2643,45 +2644,46 @@ an appropriate message.
 ** treemacs
 
 #+BEGIN_SRC emacs-lisp
-    (general-create-definer
-     ninrod--treemacs-map
-     :keymaps 'treemacs-mode-map)
+  (general-create-definer
+   ninrod--treemacs-map
+   :keymaps 'treemacs-mode-map)
 
   (general-create-definer treemacs-g-map
-     :keymaps 'treemacs-mode-map
-     :states '(normal)
-     :prefix "g")
+                          :keymaps 'treemacs-mode-map
+                          :states '(normal)
+                          :prefix "g")
 
-    (treemacs-g-map
-      "j" 'treemacs-next-neighbour
-      "k" 'treemacs-previous-neighbour
-      "g" 'evil-goto-first-line
-      "o" 'evil-goto-first-line
-      "r"  'treemacs-refresh
-      "l" 'evil-goto-line)
+  (treemacs-g-map
+   "j" 'treemacs-next-neighbour
+   "k" 'treemacs-previous-neighbour
+   "g" 'evil-goto-first-line
+   "o" 'evil-goto-first-line
+   "r"  'treemacs-refresh
+   "l" 'evil-goto-line)
 
-    (ninrod--treemacs-map
-    :states  'normal
+  (ninrod--treemacs-map
+   :states  '(motion normal)
 
-     ;; "c" 'reserved (generally, confirmation)
-     ;; "." 'reserved
+   ;; "c" 'reserved (generally, confirmation)
+   ;; "." 'reserved
 
-     ;; crud ops
-     ;; "DEL" 'ninrod/mkdir
-     ;; "d" 'neotree-delete-node
-     ;; "c" 'neotree-copy-node
-     ;; "r" 'neotree-rename-node
+   ;; crud ops
+   ;; "DEL" 'ninrod/mkdir
+   ;; "d" 'neotree-delete-node
+   ;; "c" 'neotree-copy-node
+   ;; "r" 'neotree-rename-node
 
-     ;; info retrieval
-      "p" 'treemacs-yank-path-at-point
+   ;; info retrieval
+   "p" 'treemacs-yank-path-at-point
 
-     ;; navigation
-     "u" 'treemacs-uproot
-     "r" 'treemacs-change-root
+   ;; navigation
+   "u" 'treemacs-uproot
+   "r" 'treemacs-change-root
+   "RET" 'treemacs-change-root
 
-     ;; "j"   'treemacs-next-line
-     ;; "k"   'treemacs-previous-line
-     )
+   ;; "j"   'treemacs-next-line
+   ;; "k"   'treemacs-previous-line
+   )
 #+END_SRC
 
 ** lisp
