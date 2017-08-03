@@ -15,7 +15,7 @@ command -v dropbox-cli > /dev/null 2>&1 && dropbox-cli start &
 
 # Xorg configurations
 XREC=~/.Xresources; [[ -f $XREC ]] && xrdb -merge $XREC
-MODMAP=~/.Xmodmap;  [[ -f $MODMAP ]] && xmodmap $MODMAP
+# MODMAP=~/.Xmodmap;  [[ -f $MODMAP ]] && xmodmap $MODMAP
 
 # daemons
 sxhkd &

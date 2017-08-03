@@ -8,7 +8,9 @@
     {
       "name": "cedilhaFix",
       "baseChar": "'",
-      "stringMap": ["c", "ç"]
+      "stringMap": [
+        ["c", "ç"]
+      ]
     }
   ],
   "keys": [

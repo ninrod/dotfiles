@@ -113,8 +113,8 @@ super + {_,shift + }c
 
 # focus the next/previous desktop
 # super + bracket{left,right}
-alt + {p,n}
-	bspc desktop -f {prev,next}
+# alt + {p,n}
+# 	bspc desktop -f {prev,next}
 
 # focus the last node/desktop
 alt + Tab
