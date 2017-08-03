@@ -55,6 +55,17 @@ $ exec zsh
 
 - That's it, your're all set.
 - =protip=: =~/.dotfiles/install.zsh update= will update all dependencies.
+* On installing new plugins
+
+You may notice that I do not use any plugin manager, just a tiny little function I wrote called =ningrab=.
+For now, if you want to include a new plugin, search for the =*-deps.zsh= files in the =boot= directory.
+The files should be self descriptive. Just add a newline like this in, for example, =vim-deps.zsh= file:
+
+#+BEGIN_SRC sh
+ningrab githubuser/awesomeplugin
+#+END_SRC
+
+and then run the =install.zsh= script located in git root. That's it.
 
 * Emacs: the timeless and infinitely powerful editor
 I maintain my configuration using an org-mode file, through org-babel.
