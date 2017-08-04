@@ -1140,7 +1140,8 @@ an appropriate message.
 **** all-the-icons
 
 #+BEGIN_SRC emacs-lisp
-  (use-package all-the-icons :ensure t)
+  (use-package all-the-icons
+    :ensure t)
 #+END_SRC
 
 **** autothemer
@@ -1477,7 +1478,8 @@ an appropriate message.
 *** neotree
 
 #+BEGIN_SRC emacs-lisp
-  (use-package neotree :ensure t
+  (use-package neotree
+    :ensure t
     :init
     (setq neo-create-file-auto-open t
           neo-auto-indent-point nil
@@ -1488,31 +1490,8 @@ an appropriate message.
           neo-show-updir-line nil
           neo-smart-open t
           neo-show-hidden-files t
-          neo-theme (if (display-graphic-p) 'icons 'nerd) ; fallback
-          ;; neo-theme 'nerd ; fallback
           neo-banner-message nil))
 #+END_SRC
-*** treemacs
-    #+BEGIN_SRC emacs-lisp
-      (use-package treemacs
-        :ensure t
-        :defer t
-        :config
-        (setq treemacs-header-function            #'treemacs--create-header-projectile
-              treemacs-follow-after-init          t
-              treemacs-width                      35
-              treemacs-indentation                2
-              treemacs-git-integration            t
-              treemacs-change-root-without-asking nil
-              treemacs-sorting                    'alphabetic-desc
-              treemacs-show-hidden-files          t
-              treemacs-never-persist              nil)
-        (treemacs-follow-mode t)
-        (treemacs-filewatch-mode t)
-        :bind
-        (:map global-map
-              ([f8]        . treemacs-toggle)))
-    #+END_SRC
 *** smooth-scrolling
 
 #+BEGIN_SRC text
@@ -2145,7 +2124,7 @@ an appropriate message.
    ;; important modes
    "c" 'ninrod/org-task-capture
    "g" 'ninrod/uarg-magit-status
-   "t" 'treemacs-toggle
+   "t" 'neotree-toggle
    "o" 'ninrod/pop-to-org-agenda
 
    ;; buffer ops
@@ -2624,7 +2603,7 @@ an appropriate message.
 
        ;; navigation
        "u" 'neotree-select-up-node
-       "RET" 'neotree-change-root
+       "RET" 'neotree-enter
        "zj" 'neotree-select-next-sibling-node
        "zk" 'neotree-select-previous-sibling-node
        "gg" 'evil-goto-first-line
@@ -2639,51 +2618,6 @@ an appropriate message.
        )
 
       neotree-mode-map))
-#+END_SRC
-
-** treemacs
-
-#+BEGIN_SRC emacs-lisp
-  (general-create-definer
-   ninrod--treemacs-map
-   :keymaps 'treemacs-mode-map)
-
-  (general-create-definer treemacs-g-map
-                          :keymaps 'treemacs-mode-map
-                          :states '(normal)
-                          :prefix "g")
-
-  (treemacs-g-map
-   "j" 'treemacs-next-neighbour
-   "k" 'treemacs-previous-neighbour
-   "g" 'evil-goto-first-line
-   "o" 'evil-goto-first-line
-   "r"  'treemacs-refresh
-   "l" 'evil-goto-line)
-
-  (ninrod--treemacs-map
-   :states  '(motion normal)
-
-   ;; "c" 'reserved (generally, confirmation)
-   ;; "." 'reserved
-
-   ;; crud ops
-   ;; "DEL" 'ninrod/mkdir
-   ;; "d" 'neotree-delete-node
-   ;; "c" 'neotree-copy-node
-   ;; "r" 'neotree-rename-node
-
-   ;; info retrieval
-   "p" 'treemacs-yank-path-at-point
-
-   ;; navigation
-   "u" 'treemacs-uproot
-   "r" 'treemacs-change-root
-   "RET" 'treemacs-change-root
-
-   ;; "j"   'treemacs-next-line
-   ;; "k"   'treemacs-previous-line
-   )
 #+END_SRC
 
 ** lisp
