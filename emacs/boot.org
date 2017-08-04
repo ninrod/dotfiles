@@ -2598,17 +2598,18 @@ an appropriate message.
        "r" 'neotree-rename-node
 
        ;; info retrieval
-       "p" 'ninrod/neotree-copy-path
+       "p"  'ninrod/neotree-copy-path
        "gr" 'neotree-refresh
 
        ;; navigation
-       "u" 'neotree-select-up-node
+       "u"   'neotree-select-up-node
+       "o"   'neotree-enter-horizontal-split
        "RET" 'neotree-enter
-       "zj" 'neotree-select-next-sibling-node
-       "zk" 'neotree-select-previous-sibling-node
-       "gg" 'evil-goto-first-line
-       "go" 'evil-goto-first-line
-       "gl" 'evil-goto-line
+       "zj"  'neotree-select-next-sibling-node
+       "zk"  'neotree-select-previous-sibling-node
+       "gg"  'evil-goto-first-line
+       "go"  'evil-goto-first-line
+       "gl"  'evil-goto-line
 
        ;; file selection
        "x" 'neotree-enter-horizontal-split
