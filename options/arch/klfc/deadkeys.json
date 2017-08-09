@@ -9,13 +9,14 @@
       "name": "cedilhaFix",
       "baseChar": "'",
       "stringMap": [
-        ["c", "ç"]
+        ["c", "ç"],
+        ["C", "Ç"]
       ]
     }
   ],
   "keys": [
     { "pos": "~", "letters": [ "grave", "tilde" ] },
     { "pos": "6", "letters": [ "6", "circumflex" ] },
-    { "pos": "'", "letters": [ "cdk:cedilhaFix", "\"" ] }
+    { "pos": "'", "letters": [ "acute", "\"" ] }
   ]
 }
