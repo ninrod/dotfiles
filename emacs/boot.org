@@ -1038,7 +1038,11 @@ an appropriate message.
 
 - Source Code Pro: [[https://github.com/adobe-fonts/source-code-pro][adobe-fonts/source-code-pro]]
   #+BEGIN_SRC emacs-lisp
-    (add-to-list 'default-frame-alist '(font . "Iosevka-14"))
+    (setq nin--chosen-font "Iosevka-17")
+    (when (string-match "moby" (shell-command-to-string "uname -a | grep moby > /dev/null 2>&1; [[ $?=0 ]] && echo moby"))
+      (setq nin--chosen-font "Iosevka-14"))
+
+    (add-to-list 'default-frame-alist `(font . ,nin--chosen-font))
     ;; (add-to-list 'default-frame-alist '(font . "Office Code Pro-14"))
     ;; (add-to-list 'default-frame-alist '(font . "Source Code Pro-14"))
   #+END_SRC
