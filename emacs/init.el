@@ -18,4 +18,8 @@
   (setq vc-follow-symlinks "t") ; prevent prompt when loading org file
   (org-babel-load-file (expand-file-name "boot.org" user-emacs-directory))
 
+  (if (file-exists-p (concat (ninrod/parent-dir user-emacs-directory 2) "secrets/emacs.org"))
+      (message "secrets EXIST! whoaaaa! loading...")
+    (message "secrets does NOT exist. nothing to see here."))
+
   (garbage-collect))

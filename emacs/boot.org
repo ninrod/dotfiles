@@ -257,7 +257,15 @@ an appropriate message.
           (call-interactively 'neotree-create-node)
         (call-interactively 'make-directory))))
 #+END_SRC
-
+*** ninrod/parent-dir
+    #+BEGIN_SRC emacs-lisp
+      (defun ninrod/parent-dir (dirname times)
+        "get the parent dir of DIRNAME"
+        (let* ((path (file-truename dirname)))
+          (dotimes (number times path)
+            (setq path (file-name-directory (directory-file-name path))))
+          path))
+    #+END_SRC
 ** advices
 *** always return t
 
@@ -1039,6 +1047,7 @@ an appropriate message.
 - Source Code Pro: [[https://github.com/adobe-fonts/source-code-pro][adobe-fonts/source-code-pro]]
   #+BEGIN_SRC emacs-lisp
     (setq nin--chosen-font "Iosevka-17")
+    ;; FIXME: this does not work
     (when (string-match "moby" (shell-command-to-string "uname -a | grep moby > /dev/null 2>&1; [[ $?=0 ]] && echo moby"))
       (setq nin--chosen-font "Iosevka-14"))
 
