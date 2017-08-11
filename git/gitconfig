@@ -39,3 +39,5 @@
 [grep]
   lineNumber = true
   extendRegexp = true
+[credential]
+	helper = store
