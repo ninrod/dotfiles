@@ -1136,17 +1136,19 @@ an appropriate message.
 ** show trailing whitespaces
 
 #+BEGIN_SRC emacs-lisp
-(require 'whitespace) 
-(setq-default show-trailing-whitespace t)
-(defun no-trailing-whitespace () (setq show-trailing-whitespace nil))
-(add-hook 'minibuffer-setup-hook 'no-trailing-whitespace)
-(add-hook 'ielm-mode-hook 'no-trailing-whitespace)
-(add-hook 'gdb-mode-hook 'no-trailing-whitespace)
-(add-hook 'help-mode-hook 'no-trailing-whitespace)
-(add-hook 'term-mode-hook 'no-trailing-whitespace)
-(add-hook 'eshell-load-hook 'no-trailing-whitespace)
-(add-hook 'Buffer-menu-mode-hook 'no-trailing-whitespace)
-(add-hook 'Info-mode-hook 'no-trailing-whitespace)
+  (require 'whitespace) 
+  (setq-default show-trailing-whitespace t)
+  (defun no-trailing-whitespace () (setq show-trailing-whitespace nil))
+  (ninrod/add-to-hooks 'no-trailing-whitespace
+                       '(minibuffer-setup-hook
+                         ielm-mode-hook
+                         gdb-mode-hook
+                         help-mode-hook
+                         term-mode-hook
+                         eshell-load-hook
+                         Buffer-menu-mode-hook
+                         Info-mode-hook
+                         markdown-mode-hook))
 #+END_SRC
 
 * packages
