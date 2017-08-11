@@ -1138,8 +1138,8 @@ an appropriate message.
 #+BEGIN_SRC emacs-lisp
   (require 'whitespace) 
   (setq-default show-trailing-whitespace t)
-  (defun no-trailing-whitespace () (setq show-trailing-whitespace nil))
-  (ninrod/add-to-hooks 'no-trailing-whitespace
+  (defun ninrod--no-trailing-whitespace () (setq show-trailing-whitespace nil))
+  (ninrod/add-to-hooks 'ninrod--no-trailing-whitespace
                        '(minibuffer-setup-hook
                          ielm-mode-hook
                          gdb-mode-hook
