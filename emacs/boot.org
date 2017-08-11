@@ -2109,7 +2109,7 @@ an appropriate message.
    ;; edit operations
    "p" 'counsel-yank-pop
    "r" 'anzu-query-replace-regexp
-   "/" 'swiper
+   "/" 'counsel-grep-or-swiper
 
    "," 'evil-jump-backward
    ";" 'evil-jump-forward
