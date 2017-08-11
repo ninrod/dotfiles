@@ -974,7 +974,7 @@ an appropriate message.
 
   (setq recentf-max-menu-items 200 ;; MRU configs
         recentf-max-saved-items 200
-        recentf-exclude '("recentf" "autoload")
+        recentf-exclude '("recentf" "autoload" "emacs-customizations.el")
         default-directory "~/code/sources/dotfiles"
         initial-scratch-message ";; -*- lexical-binding: t -*-\n;; scratch buffer.\n\n"
         inhibit-startup-message t
