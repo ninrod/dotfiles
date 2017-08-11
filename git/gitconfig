@@ -40,4 +40,4 @@
   lineNumber = true
   extendRegexp = true
 [credential]
-	helper = store
+	helper = cache --timeout=25200
