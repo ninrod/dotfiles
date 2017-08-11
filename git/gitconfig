@@ -41,5 +41,3 @@
   extendRegexp = true
 [credential]
 	helper = store
-
-
