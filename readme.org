@@ -20,13 +20,13 @@ Feel free to open issues though, if the config did not work for you. I'll try to
 * Install Instructions
 
 - First off, I strongly recommend using [[https://github.com/gnachman/iTerm2.git][iTerm2]] on OSx.
-- On linux, I recommend [[https://github.com/neeasade/xst][xst]]. Failling that, try to use any [[https://gist.github.com/XVilka/8346728][truecolor]] terminal
+- On linux, I recommend [[https://github.com/neeasade/xst][xst]]. Failling that, try to use any [[https://gist.github.com/XVilka/8346728][truecolor]] terminal.
 - Secondly, this is for unix systems: =GNU/Linux=, =OSx=, etc... It should work on theory on windows, but I've faced a lot of configuration issues and ended up abandoning windows support.
 - configure your terminal to use the gruvbox theme. There's a [[https://github.com/ninrod/themes.git][ninrod/themes]] repo that can help you with that.
-- *recommendation*: I use and recommend the excelent [[https://github.com/adobe-fonts/source-code-pro][Source Code Pro]] font.
+- *recommendation*: I use and recommend the excelent [[https://github.com/be5invis/Iosevka][Iosevka]] font.
 - now get =vim= 8+ with [[http://vimcasts.org/blog/2013/11/getting-vim-with-clipboard-support][+clipboard]].
-- get [[https://github.com/tmux/tmux.git][tmux]] 2.3+
-- get [[https://github.com/zsh-users/zsh.git][zsh]] 5.2+ and make sure that =/bin/zsh= is valid. (if not: =$ cd /bin && sudo ln -s $(command -v zsh) zsh=)
+- get [[https://github.com/tmux/tmux.git][tmux]] 2.5+
+- get [[https://github.com/zsh-users/zsh.git][zsh]] 5.4+ and make sure that =/bin/zsh= is valid. (if not: =$ cd /bin && sudo ln -s $(command -v zsh) zsh=)
 - =cat /etc/shells= and verify that zsh appears on the list. If not, =sudo vi /etc/shells= and append =/bin/zsh=
 - get [[https://github.com/ggreer/the_silver_searcher.git][ag]] (you can =brew install ag= on OSx).
 - if you're on OSx, brew install these:
@@ -34,7 +34,7 @@ Feel free to open issues though, if the config did not work for you. I'll try to
   2. =brew install reattach-to-user-namespace= (Mainly because of the =open= utility. [[https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard.git][more info here]]).
   3. =brew install diff-so-fancy=
 - *Kind remark*: for the moment (until I change the script to back it up for you), I'll overwrite your =~/.gitconfig= file, so if you have something important in it, now would be the perfect moment to back it up.
-- *new* get [[https://www.gnu.org/software/emacs/][emacs]] 25.1.1 (this is optional, everything will work fine if you don't use emacs)
+- *new* get [[https://www.gnu.org/software/emacs/][emacs]] 25.2+ (this is optional, everything will work fine if you don't use emacs)
 
 * Shell time
 now lets write some shell commands.
