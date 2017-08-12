@@ -6,12 +6,12 @@
 
 #+BEGIN_QUOTE
 You are your dotfiles.
-- Fyodor Dostoyevsky
+-- Fyodor Dostoyevsky
 #+END_QUOTE
 
 #+BEGIN_QUOTE
 Show me your dotfiles and I'll tell you what kind of programmer you are.
-- Leon Tolstoi
+-- Leon Tolstoi
 #+END_QUOTE
 
 * Screenshots
