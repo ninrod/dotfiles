@@ -4,6 +4,16 @@
 
 - Simplicity, speed and power while working inside the shell.
 
+#+BEGIN_QUOTE
+You are your dotfiles.
+- Fyodor Dostoyevsky
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+Show me your dotfiles and I'll tell you what kind of programmer you are.
+- Leon Tolstoi
+#+END_QUOTE
+
 * Screenshots
 ** Emacs
 [[https://raw.githubusercontent.com/ninrod/dotshots/master/2017-08-emacs.png][https://raw.githubusercontent.com/ninrod/dotshots/master/2017-08-emacs.png]]
@@ -21,7 +31,7 @@ Feel free to open issues though, if the config did not work for you. I'll try to
 
 - First off, I strongly recommend using [[https://github.com/gnachman/iTerm2.git][iTerm2]] on OSx.
 - On linux, I recommend [[https://github.com/neeasade/xst][xst]]. Failling that, try to use any [[https://gist.github.com/XVilka/8346728][truecolor]] terminal.
-- Secondly, this is for unix systems: =GNU/Linux=, =OSx=. I have no idea how windows dotfiles work.
+- Secondly, this is for unix systems: =GNU/Linux=, =OSx=, BSDs. I don't know anything about windows.
 - configure your terminal to use the gruvbox theme. There's a [[https://github.com/ninrod/themes.git][ninrod/themes]] repo that can help you with that.
 - *recommendation*: I use and recommend the excelent [[https://github.com/be5invis/Iosevka][Iosevka]] font.
 - now get =vim= 8+ with [[http://vimcasts.org/blog/2013/11/getting-vim-with-clipboard-support][+clipboard]].
