@@ -37,6 +37,5 @@ bspc rule -a libreoffice-calc state=tiled
 setroot --center --zoom ~/Dropbox/pics/wall/red.jpg
 ~/.config/polybar/launch.sh &
 
-# heavy apps
-GTK_IM_MODULE=xim google-chrome-stable --force-device-scale-factor=1.3 &
+# start emacs daemon
 ~/.dotfiles/scripts/emacs/up-emacs-daemon.sh &
