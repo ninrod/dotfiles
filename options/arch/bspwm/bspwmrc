@@ -35,7 +35,6 @@ bspc rule -a libreoffice-calc state=tiled
 
 # visual effects
 setroot --center --zoom ~/Dropbox/pics/wall/red.jpg
-# compton &
 ~/.config/polybar/launch.sh &
 
 # heavy apps
