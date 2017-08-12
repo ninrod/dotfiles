@@ -2086,25 +2086,25 @@ an appropriate message.
    "" nil
 
    ;; "TAB" 'ninrod/echo
-   ;; "a" 'ninrod/echo
-   ;; "d" 'ninrod/echo
-   ;; "g" 'ninrod/echo
-   ;; "e" 'ninrod/echo
-   ;; "b" 'ninrod/echo
+   ;; "a"   'ninrod/echo
+   ;; "d"   'ninrod/echo
+   ;; "g"   'ninrod/echo
+   ;; "e"   'ninrod/echo
+   ;; "b"   'ninrod/echo
 
    ;; buffer operations
-   "u" 'ninrod/revert-buffer-no-confirm
-   "n" 'rect-ext-narrow
-   "w" 'rect-ext-widen
-   "m" 'ninrod/evil-set-marker-z
-   "i" 'ivy-switch-buffer
-   "s" 'multi-term
-   "." 'counsel-projectile
-   "o" 'counsel-projectile-switch-project
-   "RET" 'evil-save-modified-and-close; save and close
+   "u"     'ninrod/revert-buffer-no-confirm
+   "n"     'rect-ext-narrow
+   "w"     'rect-ext-widen
+   "m"     'ninrod/evil-set-marker-z
+   "i"     'ivy-switch-buffer
+   "s"     'multi-term
+   "."     'counsel-projectile
+   "o"     'counsel-projectile-switch-project
+   "RET"   'evil-save-modified-and-close; save and close
    "<SPC>" 'counsel-bookmark; jump to bookmark
-   "-" 'bookmark-delete
-   "=" 'bookmark-set
+   "-"     'bookmark-delete
+   "="     'bookmark-set
 
    ;; edit operations
    "p" 'counsel-yank-pop
@@ -2116,6 +2116,7 @@ an appropriate message.
 
    ;; directory operations
    "DEL" 'cd
+   "f"   'counsel-ag
 
    ;; window operations
    "j" 'evil-window-down
@@ -2123,8 +2124,7 @@ an appropriate message.
    "h" 'evil-window-left
    "l" 'evil-window-right
    "y" 'ninrod/split-window-right-and-focus
-   "x" 'ninrod/split-window-below-and-focus
-   )
+   "x" 'ninrod/split-window-below-and-focus)
 #+END_SRC
 
 ** m-map
