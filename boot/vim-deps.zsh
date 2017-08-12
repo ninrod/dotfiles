@@ -18,7 +18,7 @@ ningrab kana/vim-textobj-user
 ningrab kana/vim-textobj-entire
 
 # fetch cosmetic deps
-ningrab ninrod/gruvbox develop # just while I wait for morhetz/gruvbox#150 to merge.
+ningrab morhetz/gruvbox
 ningrab itchyny/lightline.vim
 
 # pathogen installation
