@@ -688,9 +688,27 @@ an appropriate message.
 #+END_SRC
 
 ** babysited packages
-*** evil-targets
+*** targets.el
 
+- this is the way to add new text-objects without targets.el
 #+BEGIN_SRC emacs-lisp
+  ;; modified to be able to specify name and use `function'
+  (defmacro define-and-bind-text-object (name key start-regex end-regex)
+    (let ((inner-name (make-symbol (concat "evil-inner-" name)))
+          (outer-name (make-symbol (concat "evil-a-" name))))
+      `(progn
+         (evil-define-text-object ,inner-name (count &optional beg end type)
+           (evil-select-paren ,start-regex ,end-regex beg end type count nil))
+         (evil-define-text-object ,outer-name (count &optional beg end type)
+           (evil-select-paren ,start-regex ,end-regex beg end type count t))
+         (define-key evil-inner-text-objects-map ,key #',inner-name)
+         (define-key evil-outer-text-objects-map ,key #',outer-name))))
+
+  (define-and-bind-text-object "pipe" "|" "|" "|")
+  (define-and-bind-text-object "pipe" "/" "/" "/")
+#+END_SRC
+
+#+BEGIN_SRC text
     (use-package targets
       :load-path "~/.dotfiles/deps/emacs/ninrod/targets.el"
       :init
