@@ -1,6 +1,6 @@
 # -*- mode: sh -*-
 
-alias d='dirs -v | head -n 20
+alias d='dirs -v | head -n 20'
 alias dic='dirs -c'
 alias 1='cd +1'
 alias 2='cd +2'
