@@ -4,7 +4,7 @@
 
 docker_alias_stop_all_containers() { docker stop $(docker ps -a -q); }
 docker_alias_remove_all_containers() { docker rm $(docker ps -a -q); }
-docker_alias_remove_all_empty_images() { docker images | grep '^<none' | awk '{print $3}' | xargs -I{} docker rmi {}; }
+docker_alias_remove_all_empty_images() {docker images | awk '{print $2 " " $3}' | grep '^<none>' | awk '{print $2}' | xargs -I{} docker rmi {}; }
 docker_alias_docker_file_build() { docker build -t=$1 .; }
 docker_alias_show_all_docker_related_alias() { alias | grep 'docker' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g" | sort; }
 docker_alias_bash_into_running_container() { docker exec -it $(docker ps -aqf "name=$1") bash; }
