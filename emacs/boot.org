@@ -180,7 +180,9 @@ an appropriate message.
   (defun ninrod/open-slot-4 ()
     "Open project 4."
     (interactive)
-    (ninrod/open-file "~/code/sources/gtd/projects/oficina.org"))
+    (if (ninrod--distro-p "arch")
+        (ninrod/open-file "~/code/sources/gtd/projects/oficina.org")
+      (ninrod/open-file "/var/workbench/gtd/projects/oficina.org")))
 
   (defun ninrod/open-slot-5 ()
     "Open project 5."
@@ -662,6 +664,13 @@ an appropriate message.
          nil
          "Simple mode for sxhkdrc files.")
      #+END_SRC
+** environment
+*** ninrod--moby-p
+    #+BEGIN_SRC emacs-lisp
+      (defun ninrod--distro-p (distro)
+         "verify if we are on DISTRO at the moment."
+         (string-match distro (shell-command-to-string "uname -a")))
+    #+END_SRC
 
 * evil
 ** bootstrap
@@ -1069,9 +1078,9 @@ an appropriate message.
     ;; (add-to-list 'default-frame-alist '(font . "Source Code Pro-14"))
 
     (setq nin--chosen-font nil)
-    (if (string-match "moby" (shell-command-to-string "uname -a"))
+    (if (ninrod--distro-p "moby")
         (setq nin--chosen-font "Iosevka-14")
-      (when (string-match "arch" (shell-command-to-string "uname -a"))
+      (if (ninrod--distro-p "arch")
         (setq nin--chosen-font "Iosevka-17")))
 
     (add-to-list 'default-frame-alist `(font . ,nin--chosen-font))
