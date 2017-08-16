@@ -1738,7 +1738,11 @@ an appropriate message.
     :init
     (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 #+END_SRC
-
+*** powershell
+#+BEGIN_SRC emacs-lisp
+  (use-package powershell
+    :ensure t)
+#+END_SRC
 ** completions
 *** ivy
 #+BEGIN_SRC emacs-lisp
