@@ -22,6 +22,8 @@ sxhkd &
 # xchainkeys &
 # mpd &
 
+# tip from: https://darryldias.me/06/bspwm-on-debian/
+xsetroot -cursor_name left_ptr &
+
 # bootstrap bspwm
 exec bspwm
-
