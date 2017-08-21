@@ -78,6 +78,8 @@ ningrab githubuser/awesomeplugin
 
 and then run the =install.zsh= script located in git root. The plugin will be fetched from github and placed in the correct location for you.
 
+Specifically for zsh plugin though, you have to also add a line in =zsh/plugins.zsh= so that your plugin can load. But I'll fix that in the future.
+
 * Emacs: the timeless and infinitely powerful editor
 I maintain my configuration using an org-mode file, through org-babel.
 So you can see it in it's full glory [[https://github.com/ninrod/dotfiles/blob/master/emacs/boot.org][here]].
