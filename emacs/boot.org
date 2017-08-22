@@ -2128,7 +2128,7 @@ an appropriate message.
    ;; "e"   'ninrod/echo
    ;; "b"   'ninrod/echo
 
-   ;; buffer operations
+   ;; buffer actions
    "u"     'ninrod/revert-buffer-no-confirm
    "n"     'rect-ext-narrow
    "w"     'rect-ext-widen
@@ -2136,25 +2136,29 @@ an appropriate message.
    "i"     'ivy-switch-buffer
    "s"     'multi-term
    "."     'counsel-projectile
+   "r"     'projectile-recentf
    "o"     'counsel-projectile-switch-project
    "RET"   'evil-save-modified-and-close; save and close
    "<SPC>" 'counsel-bookmark; jump to bookmark
    "-"     'bookmark-delete
    "="     'bookmark-set
 
-   ;; edit operations
+   ;; edit actions
    "p" 'counsel-yank-pop
-   "r" 'anzu-query-replace-regexp
-   "/" 'counsel-grep-or-swiper
+   "a" 'anzu-query-replace-regexp
 
+   ;; search actions
+   "/" 'counsel-grep-or-swiper
+   "f" 'counsel-ag
+
+   ;; jump actions
    "," 'evil-jump-backward
    ";" 'evil-jump-forward
 
-   ;; directory operations
+   ;; directory actions
    "DEL" 'cd
-   "f"   'counsel-ag
 
-   ;; window operations
+   ;; window actions
    "j" 'evil-window-down
    "k" 'evil-window-up
    "h" 'evil-window-left
@@ -2378,10 +2382,10 @@ an appropriate message.
 **** definer
 
 #+BEGIN_SRC emacs-lisp
-(general-create-definer org-t-map
-   :keymaps 'org-mode-map
-   :states '(normal)
-   :prefix "t")
+  (general-create-definer org-t-map
+     :keymaps 'org-mode-map
+     :states '(normal)
+     :prefix "t")
 #+END_SRC
 
 **** fast
