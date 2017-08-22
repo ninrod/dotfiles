@@ -1577,6 +1577,11 @@ an appropriate message.
                                   slurp/barf-cp
                                   (additional-movement normal visual motion)))))
 #+END_SRC
+*** helpful
+    #+BEGIN_SRC emacs-lisp
+      (use-package helpful
+        :ensure t)
+    #+END_SRC
 ** filetypes
 *** md: markdown
 
@@ -2074,12 +2079,12 @@ an appropriate message.
     "db" 'emaps-describe-keymap-bindings
     "dc" 'describe-char
     "dd" 'counsel-describe-face
-    "df" 'counsel-describe-function
+    ;; "df" 'counsel-describe-function
+    "df" 'helpful-function
     "di" 'info
     "dk" 'describe-key
     "dv" 'counsel-describe-variable
-    "dm" 'describe-mode
-    )
+    "dm" 'describe-mode)
 #+END_SRC
 
 *** (H) hydras
