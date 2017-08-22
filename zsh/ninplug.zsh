@@ -35,6 +35,7 @@ construct_filename() {
 }
 
 load_plugins() {
+  # TODO: construct $plugin_paths dinamically
   for plugin_path ($plugin_paths); do
     if is_plugin $zsh_deps $plugin_path; then
       local file=$(construct_filename $zsh_deps $plugin_path)
