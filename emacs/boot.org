@@ -170,12 +170,16 @@ an appropriate message.
   (defun ninrod/open-slot-8 ()
     "Open inbox.org."
     (interactive)
-    (ninrod/open-file "~/code/sources/gtd/inbox.org"))
+    (if (ninrod--distro-p "arch")
+        (ninrod/open-file "~/code/sources/gtd/inbox.org")
+      (ninrod/open-file "/var/workbench/gtd/inbox.org")))
 
   (defun ninrod/open-slot-9 ()
     "Open next.org."
     (interactive)
-    (ninrod/open-file "~/code/sources/gtd/next.org"))
+    (if (ninrod--distro-p "arch")
+        (ninrod/open-file "~/code/sources/gtd/next.org")
+      (ninrod/open-file "/var/workbench/gtd/next.org")))
 
   (defun ninrod/open-slot-4 ()
     "Open project 4."
