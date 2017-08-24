@@ -23,8 +23,6 @@ updatelinks() {
   ln -s $symlink_new_target $symlink
 }
 
-
-
 # ningrab function
 build_git_url() {
   local name="$1"
