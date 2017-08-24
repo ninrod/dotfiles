@@ -1,4 +1,4 @@
-# note: this file is meant to be source, not executed
+# note: this file is meant to be sourced, not executed
 
 load_secrets() {
   local my_secrets=$(cd $GIT_ROOT && cd .. && readlink -f secrets)
