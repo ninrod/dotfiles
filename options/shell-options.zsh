@@ -1,4 +1,7 @@
-# note: this file is meant to be sourced, not executed
+if [[ -n ${1+x} ]] && [[ "$1" == "gitmask" ]]; then
+  # hack lifted from: https://stackoverflow.com/a/3666941/4921402
+  return
+fi
 
 load_secrets() {
   local my_secrets=$(cd $GIT_ROOT && cd .. && readlink -f secrets)
