@@ -1,4 +1,3 @@
-source ~/.zsh.d/constants.zsh
 mkdir -p $emacs_deps && cd $emacs_deps
 
 # mirrors

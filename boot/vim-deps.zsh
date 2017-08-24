@@ -1,4 +1,3 @@
-# setup vim deps dir
 mkdir -p $vim_deps && cd $vim_deps
 
 # fetch core editing deps

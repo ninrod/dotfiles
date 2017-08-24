@@ -7,6 +7,3 @@ done
 
 verifylink ~/.dotfiles
 updatelinks ~/.dotfiles .
-
-verifylink ~/.lscolors
-updatelinks ~/.lscolors ~/.dotfiles/deps/zsh/seebi/dircolors-solarized/dircolors.256dark
