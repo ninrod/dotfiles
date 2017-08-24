@@ -28,11 +28,11 @@ updatelinks() {
 # ningrab function
 build_git_url() {
   local name="$1"
-  local gitmask='https://github.com/'
-  local url=${gitmask}${name}.git
-  if [[ -n ${urlhash+x} ]] && ((${+urlhash[$name]})); then
-    url=${urlhash[$name]}
+  local gitservermask='https://github.com/'
+  if [[ -n ${GITMASK+X} ]]; then
+    $gitservermask=$GITMASK
   fi
+  local url=${gitservermask}${name}.git
   echo $url
 }
 
