@@ -1243,8 +1243,7 @@ an appropriate message.
   (use-package gruvbox-theme :load-path "~/.dotfiles/deps/emacs/ninrod/gruvbox-theme"
     :init
     (setq anzu-cons-mode-line-p t)
-    ;; (setq gruvbox-contrast 'hard)
-    (setq gruvbox-contrast)
+    (setq gruvbox-contrast 'hard)
 
     :config
     ;; (gruvbox-modeline-three)
