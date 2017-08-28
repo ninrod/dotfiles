@@ -26,7 +26,7 @@ XF86AudioMute
 
 # ----------------------- Apps -------------------
 alt + Return
-	st
+	xfce4-terminal
 ctrl + Escape
         emacsclient --create-frame
 ctrl + alt + Escape
