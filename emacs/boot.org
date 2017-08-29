@@ -1083,7 +1083,7 @@ an appropriate message.
 
     (setq nin--chosen-font nil)
     (if (ninrod--distro-p "moby")
-        (setq nin--chosen-font "Iosevka-14")
+        (setq nin--chosen-font "Iosevka Term-14")
       (if (ninrod--distro-p "arch")
         (setq nin--chosen-font "Iosevka-17")))
 
