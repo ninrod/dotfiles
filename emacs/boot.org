@@ -1299,7 +1299,9 @@ an appropriate message.
 *** fic-mode
     #+BEGIN_SRC emacs-lisp
       (use-package fic-mode
-        :ensure t)
+        :ensure t
+        :config)
+      (ninrod/add-to-hooks #'fic-mode '(prog-mode-hook)))
     #+END_SRC
 *** Org Bullets
 
