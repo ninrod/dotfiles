@@ -1296,7 +1296,11 @@ an appropriate message.
     :config
     (add-hook 'prog-mode-hook 'highlight-numbers-mode))
 #+END_SRC
-
+*** fic-mode
+    #+BEGIN_SRC emacs-lisp
+      (use-package fic-mode
+        :ensure t)
+    #+END_SRC
 *** Org Bullets
 
 #+BEGIN_SRC emacs-lisp
