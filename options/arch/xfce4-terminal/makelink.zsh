@@ -14,7 +14,7 @@ if [[ ! -h $LINK ]] && [[ -d $LINK ]]; then
 fi
 
 if [[ ! -d $DIR ]]; then
-  mdkir -p $DIR
+  mkdir -p $DIR
 fi
 
 ln -s $(readlink -f .) $(readlink -f $LINK)

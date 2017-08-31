@@ -11,7 +11,7 @@ FULL_FILE=$DIR/$FILE
 [[ -e $FULL_FILE ]] && exit 0
 
 if [[ ! -d $DIR ]]; then
-  mdkir -p $DIR
+  mkdir -p $DIR
 fi
 rm -f $FULL_FILE
 ln -s $(readlink -f $FILE) $(readlink -f $FULL_FILE)
