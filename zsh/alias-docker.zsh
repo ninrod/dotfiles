@@ -59,5 +59,8 @@ alias dkd="docker run -d -P"
 # Run interactive container, e.g., $dki base /bin/bash
 alias dki="docker run -i -t -P"
 
+# Run interactive container and then auto kill it
+alias drit='docker run --rm -i -t'
+
 # Execute interactive container, e.g., $dex base /bin/bash
 alias dex="docker exec -i -t"
