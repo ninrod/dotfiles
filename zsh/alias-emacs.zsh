@@ -3,11 +3,10 @@
 # emacs command
 
 # emacs client
-alias et="emacsclient --tty"
-alias ec=emacsclient
+alias e="emacsclient --tty"
 
 # daemon
-alias e="background-connect-emacs-daemon.sh"
+alias eb="background-connect-emacs-daemon.sh"
 alias ed="up-emacs-daemon.sh"
 alias ek="kill-emacs-server.sh"
 alias er="ek && ed"
