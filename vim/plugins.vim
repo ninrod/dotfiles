@@ -9,7 +9,11 @@ let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_invert_selection=0
 
 set background=dark
-colorscheme gruvbox
+if &term=~'linux'
+  colorscheme default
+else
+  colorscheme gruvbox
+endif
 
 " for whitespaces at the end of the lines:    
 highlight SpecialKey ctermfg=124 guifg=#af3a03

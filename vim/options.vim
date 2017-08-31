@@ -2,7 +2,7 @@ syntax on
 filetype plugin indent on
 
 " add truecolor support, if available
-if has('termguicolors')
+if has('termguicolors') && ! &term=~'linux'
   set termguicolors
 endif
 
