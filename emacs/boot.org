@@ -1300,7 +1300,7 @@ an appropriate message.
     #+BEGIN_SRC emacs-lisp
       (use-package fic-mode
         :ensure t
-        :config)
+        :config
       (ninrod/add-to-hooks #'fic-mode '(prog-mode-hook)))
     #+END_SRC
 *** Org Bullets
