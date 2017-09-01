@@ -206,7 +206,9 @@ an appropriate message.
   (defun ninrod/open-slot-1 ()
     "Open project 1."
     (interactive)
-    (ninrod/open-file "~/code/sources/gtd/info/owshit.org"))
+    (if (ninrod--distro-p "arch")
+        (ninrod/open-file "~/code/sources/gtd/info/owshit.org")
+      (ninrod/open-file "/var/workbench/gtd/info/owshit.org")))
 #+END_SRC
 
 *** ninrod/open-file
