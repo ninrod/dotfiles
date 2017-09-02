@@ -1,0 +1,5 @@
+keycode 58 = Escape
+
+keymaps 0-15
+keycode 100 = Control
+
