@@ -16,3 +16,7 @@ else
 fi
 
 source ~/.zsh.d/expand-alias.zsh
+
+if [[ $TERM = linux ]]; then
+  sudo loadkeys ~/.options/arch/vconsole/rebinds.map
+fi
