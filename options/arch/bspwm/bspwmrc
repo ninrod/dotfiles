@@ -34,7 +34,7 @@ bspc rule -a Libreoffice state=tiled
 bspc rule -a libreoffice-calc state=tiled
 
 # visual effects
-setroot --center --zoom ~/Dropbox/pics/wall/juli-dormindo-praia.jpg
+feh --bg-fill ~/Dropbox/pics/wall/sky.jpg
 ~/.config/polybar/launch.sh &
 
 # start emacs daemon
