@@ -9,6 +9,7 @@ ningrab ninrod/k
 ningrab ninrod/docker-zsh-completion
 ningrab ninrod/docker-compose-zsh-completion
 ningrab zsh-users/zsh-completions
+ningrab ninrod/pass-zsh-completion
 
 # appearance
 ningrab zdharma/fast-syntax-highlighting
