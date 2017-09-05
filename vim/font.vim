@@ -1,3 +1,3 @@
 if has("gui_running")
-  set guifont=Iosevka\ 14
+  set guifont=Iosevka\ Term\ 14
 endif
