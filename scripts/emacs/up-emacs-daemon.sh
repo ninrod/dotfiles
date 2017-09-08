@@ -16,8 +16,8 @@ fi
 # lang has to be pt_BR.UTF-8 by this point
 unamestr=$(uname -a)
 if [[ "$unamestr" == *"Linux"* ]] && [[ $unamestr == *"ARCH"* ]]; then
-  # LANG=pt_BR.UTF-8
-  LANG=C
+  LANG=pt_BR.UTF-8
+  # LANG=C
 fi
 emacs --daemon; rc=$?
 if [[ ! $rc = 0 ]]; then
