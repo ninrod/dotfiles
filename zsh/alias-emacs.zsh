@@ -3,7 +3,8 @@
 # emacs command
 
 # emacs client
-alias e="emacsclient --tty"
+alias e="emacsclient --create-frame"
+alias et="emacsclient --tty"
 
 # daemon
 alias eb="background-connect-emacs-daemon.sh"
