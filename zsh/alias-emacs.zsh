@@ -1,7 +1,5 @@
 # -*- mode: sh -*-
 
-# emacs command
-
 # emacs client
 alias e="emacsclient"
 alias et="emacsclient --tty"
