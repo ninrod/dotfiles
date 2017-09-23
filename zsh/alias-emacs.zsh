@@ -3,7 +3,7 @@
 # emacs command
 
 # emacs client
-alias e="emacsclient --create-frame"
+alias e="emacsclient"
 alias et="emacsclient --tty"
 
 # daemon
