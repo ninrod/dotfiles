@@ -3,11 +3,13 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # setting up PATH
 CUSTOM_SCRIPTS=~/.dotfiles/scripts/emacs:~/.dotfiles/scripts/vim:~/.dotfiles/scripts/zsh
 LINUX_SCRIPTS=~/.options/arch/scripts
+CARGO_BIN=~/.cargo/bin
 PATH="$CUSTOM_SCRIPTS:$PATH"
 PATH="$LINUX_SCRIPTS:$PATH"
+PATH="$CARGO_BIN:$PATH"
 export PATH
 
-#nvm
+export LD_LIBRARY_PATH=$(rustc --print sysroot)/lib:$LD_LIBRARY_PATH
 
 nvm_config() {
   cd $(readlink -f ~/.dotfiles)

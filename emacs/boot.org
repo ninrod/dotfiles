@@ -1681,35 +1681,34 @@ an appropriate message.
 *** Rust
     - stolen from [[https://gist.github.com/matthew-piziak/51300f97c092041b081b8d9fb22d290d][matthew pizziak]]
     #+BEGIN_SRC emacs-lisp
-      (use-package toml-mode
-        :ensure t)
+      (use-package toml-mode :ensure t)
+      (use-package cargo :ensure t)
 
       (use-package rust-mode
         :ensure t
-        :init (progn
-                (add-hook 'rust-mode-hook 'cargo-minor-mode)
-                (add-hook 'toml-mode-hook 'cargo-minor-mode))
-        :config (setq rust-format-on-save t))
-
-      (use-package cargo :ensure t)
-
-      (use-package racer
-        :ensure t
         :init
-        (setenv "PATH" (concat (getenv "PATH") ":~/.cargo/bin"))
-        (setq exec-path (append exec-path '("~/.cargo/bin")))
-        (setq racer-cmd "~/.cargo/bin/racer")
-        (add-hook 'rust-mode-hook #'racer-mode)
-        (add-hook 'racer-mode-hook #'eldoc-mode)
-        (add-hook 'racer-mode-hook #'company-mode))
+        (add-hook 'rust-mode-hook 'cargo-minor-mode)
+        (add-hook 'toml-mode-hook 'cargo-minor-mode)
+        :config
+        (setq rust-format-on-save t))
+
+      ;; (use-package racer
+      ;;   :ensure t
+      ;;   :init
+      ;;   (setenv "PATH" (concat (getenv "PATH") ":~/.cargo/bin"))
+      ;;   (setq exec-path (append exec-path '("~/.cargo/bin")))
+      ;;   (setq racer-cmd "~/.cargo/bin/racer")
+      ;;   (add-hook 'rust-mode-hook #'racer-mode)
+      ;;   (add-hook 'racer-mode-hook #'eldoc-mode)
+      ;;   (add-hook 'racer-mode-hook #'company-mode))
 
       (use-package flycheck-rust
         :ensure t
-        :init (progn
-                (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
-                (add-hook 'rust-mode-hook #'flycheck-mode)
-                (add-hook 'rust-mode-hook #'yas-minor-mode)
-                (add-hook 'rust-mode-hook #'flyspell-prog-mode)))
+        :init
+        (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+        (add-hook 'rust-mode-hook #'flycheck-mode)
+        (add-hook 'rust-mode-hook #'yas-minor-mode)
+        (add-hook 'rust-mode-hook #'flyspell-prog-mode))
 
       (setenv "RUST_BACKTRACE" "1")
     #+END_SRC
