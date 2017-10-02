@@ -34,7 +34,7 @@ bspc rule -a Libreoffice state=tiled
 bspc rule -a libreoffice-calc state=tiled
 
 # visual effects
-feh --bg-fill ~/Dropbox/pics/wall/waves.jpg
+feh --bg-fill ~/Dropbox/pics/wall/autism-leaves.png
 
 ~/.config/polybar/launch.sh &
 
