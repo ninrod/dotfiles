@@ -2656,15 +2656,13 @@ an appropriate message.
 
       (ninrod--neotree-map
        :states  'normal
-       ;; "c" 'reserved (generally, confirmation)
-       ;; "." 'reserved
 
        ;; crud ops
        "DEL" 'ninrod/mkdir
        "d" 'neotree-delete-node
        "c" 'neotree-copy-node
        "r" 'neotree-rename-node
-
+     
        ;; info retrieval
        "p"  'ninrod/neotree-copy-path
        "gr" 'neotree-refresh
@@ -2678,13 +2676,13 @@ an appropriate message.
        "gg"  'evil-goto-first-line
        "go"  'evil-goto-first-line
        "gl"  'evil-goto-line
+       "."   'neotree-change-root
 
        ;; file selection
        "x" 'neotree-enter-horizontal-split
 
        ;;exiting
-       "q" 'neotree-toggle
-       )
+       "q" 'neotree-toggle)
 
       neotree-mode-map))
 #+END_SRC
