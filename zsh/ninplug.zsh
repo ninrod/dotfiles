@@ -37,6 +37,7 @@ load_plugins() {
   # link: http://www.zsh.org/mla/zsh-users/22852
   plugin_paths+=($zsh_deps/*/*/.git(N:h))
   for plugin_path ($plugin_paths); do
+    # print $plugin_path
     if is_plugin $plugin_path; then
       local file=$(construct_filename $plugin_path)
       source $file
