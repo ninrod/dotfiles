@@ -1,6 +1,7 @@
-PROJECT_PATHS=(           \
-  ~/code/sources/dotfiles \
-  ~/code/sources/options  \
-  ~/code/sources/gtd      \
-  ~/code/sources/logbook  \
+PROJECT_PATHS=(              \
+  ~/code/sources/dotfiles    \
+  ~/code/sources/options     \
+  ~/code/sources/gtd         \
+  ~/code/sources/logbook     \
+  ~/go/src/github.com/ninrod \
 )
