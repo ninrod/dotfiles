@@ -4,9 +4,11 @@ export XDG_CONFIG_HOME="$HOME/.config"
 CUSTOM_SCRIPTS=~/.dotfiles/scripts/emacs:~/.dotfiles/scripts/vim:~/.dotfiles/scripts/zsh
 LINUX_SCRIPTS=~/.options/arch/scripts
 CARGO_BIN=~/.cargo/bin
+GO_BIN=~/go/bin
 PATH="$CUSTOM_SCRIPTS:$PATH"
 PATH="$LINUX_SCRIPTS:$PATH"
 PATH="$CARGO_BIN:$PATH"
+PATH="$GO_BIN:$PATH"
 export PATH
 
 # hack stolen from: https://github.com/rust-lang-nursery/rustfmt/issues/1687#issuecomment-308756211
