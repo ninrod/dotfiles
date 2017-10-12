@@ -33,6 +33,8 @@ ctrl + alt + Escape
         restart-emacs-daemon.sh
 ctrl + b
         google-chrome-stable --force-device-scale-factor=1.3
+ctrl + i
+        idea.sh
 Print
         maim -d 3 ~/Downloads/screenshot.png
 ctrl + Print
