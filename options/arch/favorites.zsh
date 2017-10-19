@@ -1,4 +1,5 @@
 PROJECT_PATHS=(              \
+  ~/code/sources             \
   ~/code/sources/dotfiles    \
   ~/code/sources/options     \
   ~/code/sources/gtd         \
