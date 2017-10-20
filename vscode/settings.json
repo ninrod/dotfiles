@@ -1,12 +1,13 @@
 {
-    "editor.fontFamily": "'Source Code Pro'",
+    "editor.fontFamily": "'Iosevka Term'",
     "editor.fontSize": 16,
     "editor.lineNumbers": "off",
-    "workbench.iconTheme": "vscode-icons",
+    "workbench.iconTheme": "material-icon-theme",
     "vim.disableAnnoyingNeovimMessage": true,
     "vim.useSystemClipboard": true,
     "vim.incsearch": true,
     "vim.hlsearch": true,
+    "keyboard.dispatch": "keyCode",
     "vim.otherModesKeyBindingsNonRecursive": [
         {
             "before": ["-"],
@@ -47,8 +48,9 @@
             "after": ["{"]
         }
     ],
-    "workbench.colorTheme": "One Dark Pro",
+    "workbench.colorTheme": "One Dark Pro Vivid",
     "workbench.colorCustomizations": {
         "editor.lineHighlightBackground": "#2F3238"
-    }
+    },
+    "window.zoomLevel": 2
 }
