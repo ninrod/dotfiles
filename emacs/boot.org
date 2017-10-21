@@ -1743,6 +1743,14 @@ an appropriate message.
         :config
         (add-hook 'python-mode-hook 'yapf-mode))
 
+      (use-package pyvenv
+        :ensure t)
+
+      (use-package py-isort
+        :ensure t
+        :config
+        (add-hook 'before-save-hook 'py-isort-before-save))
+
       ;; from https://www.snip2code.com/Snippet/127022/Emacs-auto-remove-unused-import-statemen
       (defun spacemacs/python-remove-unused-imports()
         "Use Autoflake to remove unused function"
