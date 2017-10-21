@@ -1742,6 +1742,18 @@ an appropriate message.
         :ensure t
         :config
         (add-hook 'python-mode-hook 'yapf-mode))
+
+      ;; from https://www.snip2code.com/Snippet/127022/Emacs-auto-remove-unused-import-statemen
+      (defun spacemacs/python-remove-unused-imports()
+        "Use Autoflake to remove unused function"
+        "autoflake --remove-all-unused-imports -i unused_imports.py"
+        (interactive)
+        (if (executable-find "autoflake")
+            (progn
+              (shell-command (format "autoflake --remove-all-unused-imports -i %s"
+                                     (shell-quote-argument (buffer-file-name))))
+              (revert-buffer t t t))
+          (message "Error: Cannot find autoflake executable.")))
     #+END_SRC
 ** completions
 *** ivy
@@ -2566,6 +2578,25 @@ an appropriate message.
    "K" 'ninrod/org-agenda-previous-header
    )
 #+END_SRC
+** python
+*** python
+    #+BEGIN_SRC emacs-lisp
+(general-create-definer python-comma-map
+   :keymaps 'python-mode-map
+   :states '(normal visual)
+   :prefix ",")
+    #+END_SRC
+
+*** fast
+
+#+BEGIN_SRC emacs-lisp
+  (python-comma-map
+   "" 'nil
+   "i" 'spacemacs/python-remove-unused-imports
+   )
+
+#+END_SRC
+
 
 ** dired
 *** unbinds
