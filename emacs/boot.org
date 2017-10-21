@@ -1722,6 +1722,14 @@ an appropriate message.
         :ensure t
         :config
         (add-hook 'before-save-hook 'gofmt-before-save))
+
+      (use-package go-eldoc
+        :ensure t
+        :config
+        (add-hook 'go-mode-hook 'go-eldoc-setup))
+
+      (use-package go-guru
+        :ensure t)
     #+END_SRC
 *** python
     #+BEGIN_SRC emacs-lisp
