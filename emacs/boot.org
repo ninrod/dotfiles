@@ -1299,6 +1299,7 @@ an appropriate message.
     (add-hook 'prog-mode-hook 'highlight-numbers-mode))
 #+END_SRC
 *** fic-mode
+    - highlights TODO,FIXME, etc...
     #+BEGIN_SRC emacs-lisp
       (use-package fic-mode
         :ensure t
@@ -1373,6 +1374,7 @@ an appropriate message.
 
     :diminish "")
 #+END_SRC
+
 *** lisp-extra-font-lock
     #+BEGIN_SRC emacs-lisp
       (use-package lisp-extra-font-lock
@@ -1438,6 +1440,7 @@ an appropriate message.
 
     :diminish editorconfig "")
 #+END_SRC
+
 *** ibuffer-vc
 
 #+BEGIN_SRC emacs-lisp
@@ -1549,20 +1552,14 @@ an appropriate message.
           neo-show-hidden-files t
           neo-banner-message nil))
 #+END_SRC
-*** smooth-scrolling
-
-#+BEGIN_SRC text
-  (use-package smooth-scrolling
-    :ensure t
-    :config
-    (smooth-scrolling-mode 1))
-#+END_SRC
 *** worf
+
     #+BEGIN_SRC emacs-lisp
       (use-package worf
         :ensure t
         :diminish worf-mode)
     #+END_SRC
+
 *** lispy
 
 #+BEGIN_SRC emacs-lisp
@@ -1590,10 +1587,12 @@ an appropriate message.
                                   (additional-movement normal visual motion)))))
 #+END_SRC
 *** helpful
+
     #+BEGIN_SRC emacs-lisp
       (use-package helpful
         :ensure t)
     #+END_SRC
+
 ** filetypes
 *** md: markdown
 
@@ -1654,12 +1653,9 @@ an appropriate message.
     (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
     (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2))))
 #+END_SRC
-*** jsx: react
-    #+BEGIN_SRC emacs-lisp
-      (use-package rjsx-mode
-        :ensure t)
-    #+END_SRC
+
 *** ts: TypeScript
+
 #+BEGIN_SRC emacs-lisp
   (defun setup-tide-mode ()
     (interactive)
@@ -1678,40 +1674,7 @@ an appropriate message.
     (add-hook 'before-save-hook 'tide-format-before-save)
     (add-hook 'typescript-mode-hook #'setup-tide-mode))
 #+END_SRC
-*** Rust
-    - stolen from [[https://gist.github.com/matthew-piziak/51300f97c092041b081b8d9fb22d290d][matthew pizziak]]
-    #+BEGIN_SRC emacs-lisp
-      (use-package toml-mode :ensure t)
-      (use-package cargo :ensure t)
 
-      (use-package rust-mode
-        :ensure t
-        :init
-        (add-hook 'rust-mode-hook 'cargo-minor-mode)
-        (add-hook 'toml-mode-hook 'cargo-minor-mode)
-        :config
-        (setq rust-format-on-save t))
-
-      ;; (use-package racer
-      ;;   :ensure t
-      ;;   :init
-      ;;   (setenv "PATH" (concat (getenv "PATH") ":~/.cargo/bin"))
-      ;;   (setq exec-path (append exec-path '("~/.cargo/bin")))
-      ;;   (setq racer-cmd "~/.cargo/bin/racer")
-      ;;   (add-hook 'rust-mode-hook #'racer-mode)
-      ;;   (add-hook 'racer-mode-hook #'eldoc-mode)
-      ;;   (add-hook 'racer-mode-hook #'company-mode))
-
-      (use-package flycheck-rust
-        :ensure t
-        :init
-        (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
-        (add-hook 'rust-mode-hook #'flycheck-mode)
-        (add-hook 'rust-mode-hook #'yas-minor-mode)
-        (add-hook 'rust-mode-hook #'flyspell-prog-mode))
-
-      (setenv "RUST_BACKTRACE" "1")
-    #+END_SRC
 *** json: json-mode, json-reformat
 
 #+BEGIN_SRC emacs-lisp
@@ -1753,11 +1716,7 @@ an appropriate message.
     :init
     (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 #+END_SRC
-*** powershell
-#+BEGIN_SRC emacs-lisp
-  (use-package powershell
-    :ensure t)
-#+END_SRC
+
 ** completions
 *** ivy
 #+BEGIN_SRC emacs-lisp
@@ -1885,6 +1844,50 @@ an appropriate message.
         :ensure t)
     #+END_SRC
 ** disabled
+*** powershell
+
+#+BEGIN_SRC emacs-lisp
+  (use-package powershell
+    :ensure t)
+#+END_SRC
+
+
+*** Rust
+
+    - stolen from [[https://gist.github.com/matthew-piziak/51300f97c092041b081b8d9fb22d290d][matthew pizziak]]
+    #+BEGIN_SRC text
+      (use-package toml-mode :ensure t)
+      (use-package cargo :ensure t)
+
+      (use-package rust-mode
+        :ensure t
+        :init
+        (add-hook 'rust-mode-hook 'cargo-minor-mode)
+        (add-hook 'toml-mode-hook 'cargo-minor-mode)
+        :config
+        (setq rust-format-on-save t))
+
+      ;; (use-package racer
+      ;;   :ensure t
+      ;;   :init
+      ;;   (setenv "PATH" (concat (getenv "PATH") ":~/.cargo/bin"))
+      ;;   (setq exec-path (append exec-path '("~/.cargo/bin")))
+      ;;   (setq racer-cmd "~/.cargo/bin/racer")
+      ;;   (add-hook 'rust-mode-hook #'racer-mode)
+      ;;   (add-hook 'racer-mode-hook #'eldoc-mode)
+      ;;   (add-hook 'racer-mode-hook #'company-mode))
+
+      (use-package flycheck-rust
+        :ensure t
+        :init
+        (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+        (add-hook 'rust-mode-hook #'flycheck-mode)
+        (add-hook 'rust-mode-hook #'yas-minor-mode)
+        (add-hook 'rust-mode-hook #'flyspell-prog-mode))
+
+      (setenv "RUST_BACKTRACE" "1")
+    #+END_SRC
+
 *** persistent scratch
     - from [[https://pragmaticemacs.com/emacs/a-persistent-scratch-buffer/][pragmatic]] emacs
     #+BEGIN_SRC text
