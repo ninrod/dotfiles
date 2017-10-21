@@ -1723,6 +1723,26 @@ an appropriate message.
         :config
         (add-hook 'before-save-hook 'gofmt-before-save))
     #+END_SRC
+*** python
+    #+BEGIN_SRC emacs-lisp
+      (use-package anaconda-mode
+        :ensure t
+        :config
+        (ninrod/add-to-hooks 'python-mode-hook
+                             '(anaconda-mode
+                               anaconda-eldoc-mode)))
+
+      (use-package company-anaconda
+        :ensure t
+        :config
+        (eval-after-load "company"
+          '(add-to-list 'company-backends '(company-anaconda :with company-capf))))
+
+      (use-package yapfify
+        :ensure t
+        :config
+        (add-hook 'python-mode-hook 'yapf-mode))
+    #+END_SRC
 ** completions
 *** ivy
 #+BEGIN_SRC emacs-lisp
