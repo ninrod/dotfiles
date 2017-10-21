@@ -1716,7 +1716,13 @@ an appropriate message.
     :init
     (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 #+END_SRC
-
+*** go
+    #+BEGIN_SRC emacs-lisp
+      (use-package go-mode
+        :ensure t
+        :config
+        (add-hook 'before-save-hook 'gofmt-before-save))
+    #+END_SRC
 ** completions
 *** ivy
 #+BEGIN_SRC emacs-lisp
