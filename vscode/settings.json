@@ -3,6 +3,9 @@
     "editor.fontSize": 16,
     "editor.lineNumbers": "off",
     "workbench.iconTheme": "material-icon-theme",
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+    },
     "vim.disableAnnoyingNeovimMessage": true,
     "vim.useSystemClipboard": true,
     "vim.incsearch": true,
@@ -10,11 +13,20 @@
     "keyboard.dispatch": "keyCode",
     "vim.otherModesKeyBindingsNonRecursive": [
         {
-            "before": ["-"],
+            "before": [
+                "-"
+            ],
             "after": [],
-            "commands": [{"command": ":nohl"}]
-        },{
-            "before": ["<cr>"],
+            "commands": [
+                {
+                    "command": ":nohl"
+                }
+            ]
+        },
+        {
+            "before": [
+                "<cr>"
+            ],
             "after": [],
             "commands": [
                 {
@@ -22,8 +34,11 @@
                     "args": []
                 }
             ]
-        },{
-            "before": ["q"],
+        },
+        {
+            "before": [
+                "q"
+            ],
             "after": [],
             "commands": [
                 {
@@ -31,26 +46,56 @@
                     "args": []
                 }
             ]
-        }, {
-            "before": ["g", "o"],
-            "after": ["g", "g"]
-        },{
-            "before": ["g", "l"],
-            "after": ["G"]
-        },{
-            "before": ["z", "-"],
-            "after": ["z", "b"]
-        },{
-            "before": [")"],
-            "after": ["}"]
-        },{
-            "before": ["("],
-            "after": ["{"]
+        },
+        {
+            "before": [
+                "g",
+                "o"
+            ],
+            "after": [
+                "g",
+                "g"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "l"
+            ],
+            "after": [
+                "G"
+            ]
+        },
+        {
+            "before": [
+                "z",
+                "-"
+            ],
+            "after": [
+                "z",
+                "b"
+            ]
+        },
+        {
+            "before": [
+                ")"
+            ],
+            "after": [
+                "}"
+            ]
+        },
+        {
+            "before": [
+                "("
+            ],
+            "after": [
+                "{"
+            ]
         }
     ],
-    "workbench.colorTheme": "One Dark Pro Vivid",
     "workbench.colorCustomizations": {
         "editor.lineHighlightBackground": "#2F3238"
     },
-    "window.zoomLevel": 2
+    "window.zoomLevel": 2,
+    "workbench.colorTheme": "One Dark Pro Vivid"
 }

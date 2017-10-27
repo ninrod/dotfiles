@@ -1674,7 +1674,11 @@ an appropriate message.
     (add-hook 'before-save-hook 'tide-format-before-save)
     (add-hook 'typescript-mode-hook #'setup-tide-mode))
 #+END_SRC
-
+*** jsx: React
+    #+BEGIN_SRC emacs-lisp
+      (use-package rjsx-mode
+        :ensure t)
+    #+END_SRC
 *** json: json-mode, json-reformat
 
 #+BEGIN_SRC emacs-lisp
