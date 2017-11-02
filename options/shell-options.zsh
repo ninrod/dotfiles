@@ -26,5 +26,8 @@ if [[ "$unamestr" == *"Linux"* ]] && [[ $unamestr == *"ARCH"* ]]; then
 
 elif [[ "$unamestr" == *"Darwin"*  ]]; then
   source ~/.options/osx/osx.zsh $1
+  if [[ -n ${1+x} ]] && [[ "$1" == "setup" ]]; then
+    load_secrets
+  fi
 fi
 
