@@ -1099,8 +1099,8 @@ an appropriate message.
     (when (eq system-type 'darwin)
 
         ;; start maximized
-        (set-frame-parameter nil 'fullscreen 'fullboth)
-        (toggle-frame-maximized)
+        ;; (set-frame-parameter nil 'fullscreen 'fullboth)
+        ;; (toggle-frame-maximized)
 
         ;; osx does not lose screen real state with menu bar mode on
         (menu-bar-mode 1)))
