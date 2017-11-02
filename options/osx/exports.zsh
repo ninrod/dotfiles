@@ -22,12 +22,11 @@ alias java8='export JAVA_HOME=$JAVA_8_HOME && mountpath'
 export JAVA_HOME=$JAVA_8_HOME
 
 mountpath () {
-  PATH="/bin:/usr/local/bin:/usr/bin:/usr/sbin:/sbin"
-  PATH="$CUSTOM_SCRIPTS:$PATH"
-  PATH="$GNUBIN_PATH:$PATH"
-  PATH="$JAVA_HOME/bin:$PATH"
-  PATH="$CARGO_BIN:$PATH"
-  PATH="$RUST_SRC_PATH:$PATH"
+  PATH="$GNUBIN_PATH:/bin:/usr/local/bin:/usr/bin:/usr/sbin:/sbin"
+  PATH="$PATH:$CUSTOM_SCRIPTS"
+  PATH="$PATH:$JAVA_HOME/bin"
+  PATH="$PATH:$CARGO_BIN"
+  PATH="$PATH:$RUST_SRC_PATH"
   export PATH
 }
 mountpath
