@@ -17,12 +17,12 @@ bspc config normal_border_color  $DARK_ORANGE
 bspc config borderless_monocle    true
 bspc config gapless_monocle       true
 
-bspc config focus_follows_pointer true
+bspc config focus_follows_pointer false
 bspc config click_to_focus        true
 
 bspc config pointer_modifier mod4 # mod4 = super
-bspc config pointer_action1 resize_corner
-bspc config pointer_action2 move
+bspc config pointer_action1 move
+bspc config pointer_action2 resize_corner
 
 # rules
 bspc rule -a Emacs state=tiled
