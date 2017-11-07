@@ -1084,7 +1084,7 @@ an appropriate message.
 
     (setq nin--chosen-font "Iosevka Term-14")
     (if (ninrod--distro-p "moby")
-        (setq nin--chosen-font "Iosevka Term-14")
+        (setq nin--chosen-font "Hack-14")
       (if (ninrod--distro-p "arch")
         (setq nin--chosen-font "Hack-15")))
 
@@ -1460,10 +1460,10 @@ an appropriate message.
   (use-package disable-mouse
     :ensure t
     :config
-    (global-disable-mouse-mode)
-
-    (define-key evil-motion-state-map [down-mouse-1] 'ignore);; don't jump the cursor around in the window on clicking
-    (define-key evil-motion-state-map [mouse-1] 'ignore);; also avoid any '<mouse-1> is undefined' when setting to 'undefined
+    (when  (not (ninrod--distro-p "moby"))
+      (global-disable-mouse-mode)
+      (define-key evil-motion-state-map [down-mouse-1] 'ignore) ;; don't jump the cursor around in the window on clicking
+      (define-key evil-motion-state-map [mouse-1] 'ignore)) ;; also avoid any '<mouse-1> is undefined' when setting to 'undefined
 
     :diminish global-disable-mouse-mode "")
 #+END_SRC
