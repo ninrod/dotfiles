@@ -1,163 +1,121 @@
 * functions
-** interesting M-x commands
-*** misc
+** advices
+*** always return t
 
-#+BEGIN_SRC
-M-x projectile-ag
-M-x count-words
-M-x ninrod/uarg-exec-shell-command
-M-x customize-apropos-faces
-M-x ielm
-M-x man
-M-x elpamr-create-mirror-for-installed; mnemonic: create [t]hin mirror
-M-x undo-tree-visualize
-M-x eshell
-#+END_SRC
-
-*** toggles
-
-#+BEGIN_SRC
-M-x toggle-truncate-lines
-M-x ninrod/display-ansi-colors
-M-x rainbow-mode
-#+END_SRC
-
-*** magit
-
-#+BEGIN_SRC
-M-x magit-init
-M-x magit-clone
-
-these two go well together:
-M-x magit-find-file
-M-x magit-log-buffer-file: commits in master touching current buffer
-#+END_SRC
-
-*** faces
-
-#+BEGIN_SRC
-M-x or list-faces-display
-M-x list-colors-display
-#+END_SRC
-
-*** org
-**** convert region to an org-table
-
- - M-x org-table-convert-region
-
-**** sort
-
-- M-x org-sort
-
-**** to replicate scriviner
-
-- M-x org-tree-to-indirect-buffer
-- to [[https://www.youtube.com/watch?v=VOfSjLwQY28][replicate scriviner]]
-
-*** align
-
-#+BEGIN_SRC text
-M-x align-regexp
-#+END_SRC
-
-*** buffers
-
-#+BEGIN_SRC text
-M-x ninrod/extended-buffer-menu
-#+END_SRC
-
-*** edit
-
-#+BEGIN_SRC text
-M-x superword-mode
-M-x subword-mode
-#+END_SRC
-
-** lisp-intro-tutorial-exercises
-*** CH02. Evaluation
-
-1. Find a file with which you are working and move towards its middle.
-2. Find its buffer name, file name, length, and your position in the file.
 #+BEGIN_SRC emacs-lisp
-  (defun ninrod/lisp-intro/move-to-middle ()
-    "Move point to the middle of the file."
+  (defun ninrod/return-t-advice (old-function &rest arguments)
+    "Make the old-function return t in any case."
+    (apply old-function arguments)
+    t)
+#+END_SRC
+
+*** please don't kill my precious scratch buffer
+
+#+BEGIN_SRC emacs-lisp
+  ;; credits to stefan monier (GNU Emacs mantainer)
+  ;; http://lists.gnu.org/archive/html/help-gnu-emacs/2017-02/msg00074.html
+  (with-current-buffer (get-buffer "*scratch*")
+    (add-hook 'kill-buffer-hook
+              (lambda () (error "DENIED! don't kill my precious *scratch*!!"))
+              nil t)) ;; Append at the end of the hook list? no. Buffer-local? yes.
+#+END_SRC
+
+*** daemon-p evil-quit
+
+- [[https://github.com/ninrod/dotfiles/issues/40][ninrod/dotfiles#40]]
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/advice-evil-quit (dumb-evil-quit &rest arguments)
+    "apply recent-f before quitting in daemon mode."
+    (when (daemonp)
+      (message "we are in daemon mode. saving recentf")
+      (recentf-save-list))
+    (apply dumb-evil-quit arguments))
+  (advice-add #'evil-quit :around #'ninrod/advice-evil-quit)
+#+END_SRC
+
+*** delete-frame
+
+- [[https://github.com/ninrod/dotfiles/issues/40][ninrod/dotfiles#40]]
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/advice-delete-frame (dumb-delete-frame &rest arguments)
+    "test an advice around delete frame"
+    (when (yes-or-no-p "are you sure you want to delete the emacs frame?")
+      (apply dumb-delete-frame arguments)))
+  ;; (advice-add #'delete-frame :around #'ninrod/advice-delete-frame)
+#+END_SRC
+
+*** iBuffer
+
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/ibuffer-recent-buffer (old-ibuffer &rest arguments) ()
+         "Open ibuffer with cursor pointed to most recent buffer name"
+         (let ((recent-buffer-name (buffer-name)))
+           (apply old-ibuffer arguments)
+           (ibuffer-jump-to-buffer recent-buffer-name)))
+  (advice-add #'ibuffer :around #'ninrod/ibuffer-recent-buffer)
+#+END_SRC
+
+** better windows splits
+
+#+BEGIN_SRC emacs-lisp
+(defun ninrod/split-window-below-and-focus ()
+  "Split the window vertically and focus the new window."
+  (interactive)
+  (split-window-below)
+  (windmove-down))
+
+(defun ninrod/split-window-right-and-focus ()
+  "Split the window horizontally and focus the new window."
+  (interactive)
+  (split-window-right)
+  (windmove-right))
+#+END_SRC
+
+** clipboard
+*** ninrod/neotree-copy-filepath-to-clipboard
+
+- with help from [[http://stackoverflow.com/a/40564951/4921402][/u/lawlist]]
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/neotree-copy-path ()
     (interactive)
-    (goto-char (/ (buffer-size) 2)))
+    (message (concat "copied path: \"" (neotree-copy-filepath-to-yank-ring) "\" to the clipboard.")))
+#+END_SRC
 
-  (defun ninrod/lisp-intro/file-info ()
-    "Echo information about the current buffer."
+** environment
+*** ninrod--distro-p
+    #+BEGIN_SRC emacs-lisp
+      (defun ninrod--distro-p (distro)
+         "verify if we are on DISTRO at the moment."
+         (string-match distro (shell-command-to-string "uname -a")))
+    #+END_SRC
+
+** evil shortcuts
+*** ninrod's evil*marker
+
+#+BEGIN_SRC emacs-lisp
+    (defun ninrod/evil-set-marker-z ()
+      "Set marker z."
+      (interactive)
+      (evil-set-marker ?z))
+
+  (defun ninrod/evil-goto-marker-z ()
+      "Goto marker z."
+      (interactive)
+      (evil-goto-mark ?z))
+#+END_SRC
+
+*** ninrod's evil macro
+
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/evil-record-macro-z ()
+    "Record macro on register z."
     (interactive)
-    (let ((bname (buffer-name))
-          (fname (buffer-file-name))
-          (bsize (buffer-size))
-          (bpos  (point)))
-      (message "bname: %s, fname: %s, bsize: %d, bpos: %d" bname fname bsize bpos)))
-#+END_SRC
+    (evil-record-macro ?z))
 
-*** CH03. Writing defuns
-**** write a function that doubles a number
-1. write a non-interactive function that doubles the value of its argument, a number.
-2. make the above function interactive
-#+begin_src emacs-lisp
-  (defun ninrod/lisp-intro/double-number (number)
-    "doubles the number passed in as argument."
-    (interactive "p")
-    (message "if i double this number it will became %d" (* 2 number)))
-#+end_src
-**** fill-column test
-+ write a function that tests whether the current value of `fill-column'
-is greater than the argument passed to the function, and if so, prints
-an appropriate message.
-#+begin_src emacs-lisp
-  (defun ninrod/lisp-intro/fill-test (test)
-    "tests if the argument is greater than fill-column."
-    (interactive "p")
-    (if (> test fill-column)
-        (message "the passed argument, %d is greater than fill-column, %d" test fill-column)
-      (message "fill-column (%d) is equal or greater than the argument (%d)" fill-column test)))
-#+end_src
-*** CH04. Buffer walk through
-**** Write your own `simplified-end-of-buffer' function definition; then test it to see whether it works.
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/lisp-intro/buffer-end ()
-    "Move point to the end of the buffer."
+  (defun ninrod/apply-z-macro ()
     (interactive)
-    (push-mark)
-    (goto-char (point-max)))
+    (evil-ex "'<,'>norm @z"))
 #+END_SRC
-**** Use `if' and `get-buffer' to write a function that prints a message telling you whether a buffer exists.
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/lisp-intro/buffer-exists (bufstr)
-    "Print something if BUFSTR exists as a buffer."
-    (interactive (list (read-buffer
-                        "Buffer to check: "
-                        (other-buffer (current-buffer) t))))
-    (if (get-buffer bufstr)
-        (message "BUFSTR %s is a valid buffer." bufstr)
-      (message "BUFSTR %s does not exist." bufstr)))
-#+END_SRC
-** spacemacs/align-repeat
-
-#+BEGIN_SRC emacs-lisp
-  ;; modified function from http://emacswiki.org/emacs/AlignCommands
-  (defun spacemacs/align-repeat (start end regexp &optional justify-right after)
-    "Repeat alignment with respect to the given regular expression.
-  If JUSTIFY-RIGHT is non nil justify to the right instead of the
-  left. If AFTER is non-nil, add whitespace to the left instead of
-  the right."
-
-    (interactive "r\nsAlign repeat regexp: ")
-    (let* ((ws-regexp (if (string-empty-p regexp)
-                          "\\(\\s-+\\)"
-                        "\\(\\s-*\\)"))
-           (complete-regexp (if after
-                                (concat regexp ws-regexp)
-                              (concat ws-regexp regexp)))
-           (group (if justify-right -1 1)))
-      (message "complete-regexp: %S" complete-regexp)
-      (align-regexp start end complete-regexp group 1 t)))
-#+END_SRC
-
 ** file/dir/buffer commands
 *** ninrod/open-*
 
@@ -274,89 +232,80 @@ an appropriate message.
             (setq path (file-name-directory (directory-file-name path))))
           path))
     #+END_SRC
-** advices
-*** always return t
+** interesting M-x commands
+*** misc
 
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/return-t-advice (old-function &rest arguments)
-    "Make the old-function return t in any case."
-    (apply old-function arguments)
-    t)
+#+BEGIN_SRC
+M-x projectile-ag
+M-x count-words
+M-x ninrod/uarg-exec-shell-command
+M-x customize-apropos-faces
+M-x ielm
+M-x man
+M-x elpamr-create-mirror-for-installed; mnemonic: create [t]hin mirror
+M-x undo-tree-visualize
+M-x eshell
 #+END_SRC
 
-*** please don't kill my precious scratch buffer
+*** toggles
 
-#+BEGIN_SRC emacs-lisp
-  ;; credits to stefan monier (GNU Emacs mantainer)
-  ;; http://lists.gnu.org/archive/html/help-gnu-emacs/2017-02/msg00074.html
-  (with-current-buffer (get-buffer "*scratch*")
-    (add-hook 'kill-buffer-hook
-              (lambda () (error "DENIED! don't kill my precious *scratch*!!"))
-              nil t)) ;; Append at the end of the hook list? no. Buffer-local? yes.
+#+BEGIN_SRC
+M-x toggle-truncate-lines
+M-x ninrod/display-ansi-colors
+M-x rainbow-mode
 #+END_SRC
 
-*** daemon-p evil-quit
+*** magit
 
-- [[https://github.com/ninrod/dotfiles/issues/40][ninrod/dotfiles#40]]
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/advice-evil-quit (dumb-evil-quit &rest arguments)
-    "apply recent-f before quitting in daemon mode."
-    (when (daemonp)
-      (message "we are in daemon mode. saving recentf")
-      (recentf-save-list))
-    (apply dumb-evil-quit arguments))
-  (advice-add #'evil-quit :around #'ninrod/advice-evil-quit)
+#+BEGIN_SRC
+M-x magit-init
+M-x magit-clone
+
+these two go well together:
+M-x magit-find-file
+M-x magit-log-buffer-file: commits in master touching current buffer
 #+END_SRC
 
-*** delete-frame
+*** faces
 
-- [[https://github.com/ninrod/dotfiles/issues/40][ninrod/dotfiles#40]]
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/advice-delete-frame (dumb-delete-frame &rest arguments)
-    "test an advice around delete frame"
-    (when (yes-or-no-p "are you sure you want to delete the emacs frame?")
-      (apply dumb-delete-frame arguments)))
-  ;; (advice-add #'delete-frame :around #'ninrod/advice-delete-frame)
+#+BEGIN_SRC
+M-x or list-faces-display
+M-x list-colors-display
 #+END_SRC
 
-*** iBuffer
+*** org
+**** convert region to an org-table
 
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/ibuffer-recent-buffer (old-ibuffer &rest arguments) ()
-         "Open ibuffer with cursor pointed to most recent buffer name"
-         (let ((recent-buffer-name (buffer-name)))
-           (apply old-ibuffer arguments)
-           (ibuffer-jump-to-buffer recent-buffer-name)))
-  (advice-add #'ibuffer :around #'ninrod/ibuffer-recent-buffer)
+ - M-x org-table-convert-region
+
+**** sort
+
+- M-x org-sort
+
+**** to replicate scriviner
+
+- M-x org-tree-to-indirect-buffer
+- to [[https://www.youtube.com/watch?v=VOfSjLwQY28][replicate scriviner]]
+
+*** align
+
+#+BEGIN_SRC text
+M-x align-regexp
 #+END_SRC
 
-** evil shortcuts
-*** ninrod's evil*marker
+*** buffers
 
-#+BEGIN_SRC emacs-lisp
-    (defun ninrod/evil-set-marker-z ()
-      "Set marker z."
-      (interactive)
-      (evil-set-marker ?z))
-
-  (defun ninrod/evil-goto-marker-z ()
-      "Goto marker z."
-      (interactive)
-      (evil-goto-mark ?z))
+#+BEGIN_SRC text
+M-x ninrod/extended-buffer-menu
 #+END_SRC
 
-*** ninrod's evil macro
+*** edit
 
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/evil-record-macro-z ()
-    "Record macro on register z."
-    (interactive)
-    (evil-record-macro ?z))
-
-  (defun ninrod/apply-z-macro ()
-    (interactive)
-    (evil-ex "'<,'>norm @z"))
+#+BEGIN_SRC text
+M-x superword-mode
+M-x subword-mode
 #+END_SRC
+
 ** line numbers
 *** toggle display absolute line number on the current line
    #+BEGIN_SRC emacs-lisp
@@ -384,6 +333,157 @@ an appropriate message.
       ;; display-line-numbers-current-absolute nil
       ;; display-line-numbers 'visual
     #+END_SRC
+** lisp-intro-tutorial-exercises
+*** CH02. Evaluation
+
+1. Find a file with which you are working and move towards its middle.
+2. Find its buffer name, file name, length, and your position in the file.
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/lisp-intro/move-to-middle ()
+    "Move point to the middle of the file."
+    (interactive)
+    (goto-char (/ (buffer-size) 2)))
+
+  (defun ninrod/lisp-intro/file-info ()
+    "Echo information about the current buffer."
+    (interactive)
+    (let ((bname (buffer-name))
+          (fname (buffer-file-name))
+          (bsize (buffer-size))
+          (bpos  (point)))
+      (message "bname: %s, fname: %s, bsize: %d, bpos: %d" bname fname bsize bpos)))
+#+END_SRC
+
+*** CH03. Writing defuns
+**** write a function that doubles a number
+1. write a non-interactive function that doubles the value of its argument, a number.
+2. make the above function interactive
+#+begin_src emacs-lisp
+  (defun ninrod/lisp-intro/double-number (number)
+    "doubles the number passed in as argument."
+    (interactive "p")
+    (message "if i double this number it will became %d" (* 2 number)))
+#+end_src
+**** fill-column test
++ write a function that tests whether the current value of `fill-column'
+is greater than the argument passed to the function, and if so, prints
+an appropriate message.
+#+begin_src emacs-lisp
+  (defun ninrod/lisp-intro/fill-test (test)
+    "tests if the argument is greater than fill-column."
+    (interactive "p")
+    (if (> test fill-column)
+        (message "the passed argument, %d is greater than fill-column, %d" test fill-column)
+      (message "fill-column (%d) is equal or greater than the argument (%d)" fill-column test)))
+#+end_src
+*** CH04. Buffer walk through
+**** Write your own `simplified-end-of-buffer' function definition; then test it to see whether it works.
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/lisp-intro/buffer-end ()
+    "Move point to the end of the buffer."
+    (interactive)
+    (push-mark)
+    (goto-char (point-max)))
+#+END_SRC
+**** Use `if' and `get-buffer' to write a function that prints a message telling you whether a buffer exists.
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/lisp-intro/buffer-exists (bufstr)
+    "Print something if BUFSTR exists as a buffer."
+    (interactive (list (read-buffer
+                        "Buffer to check: "
+                        (other-buffer (current-buffer) t))))
+    (if (get-buffer bufstr)
+        (message "BUFSTR %s is a valid buffer." bufstr)
+      (message "BUFSTR %s does not exist." bufstr)))
+#+END_SRC
+** lisp-mode
+*** ninrod/eval-print-last-sexp
+
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/eval-print-last-sexp ()
+      "Move point to the end of the line and eval-prints last sexp."
+      (interactive)
+      (save-excursion)
+      (goto-char (point-at-eol))
+      (eval-print-last-sexp))
+#+END_SRC
+
+*** ninrod/eval-last-sexp
+
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/eval-last-sexp ()
+      "Move point to the end of the line and eval last sexp."
+      (interactive)
+      (save-excursion)
+      (goto-char (point-at-eol))
+      (eval-last-sexp nil))
+#+END_SRC
+
+** misc
+*** ninrod/origami-toggle-node
+
+- with help from [[https://www.reddit.com/r/emacs/comments/580v30/tweaking_origamiel_lisp_and_regexes/][reddit]]
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/origami-toggle-node ()
+    (interactive)
+    (save-excursion
+      (goto-char (point-at-eol))
+      (origami-toggle-node (current-buffer) (point))))
+#+END_SRC
+
+*** ninrod/display-ansi-colors
+
+- credits: [[http://stackoverflow.com/a/23382008/4921402][this]] SO question
+#+BEGIN_SRC emacs-lisp
+(require 'ansi-color)
+(defun ninrod/display-ansi-colors ()
+  (interactive)
+  (ansi-color-apply-on-region (point-min) (point-max)))
+#+END_SRC
+
+*** ninrod/echo
+
+#+BEGIN_SRC emacs-lisp
+(defun ninrod/echo ()
+  "just a simple test message for use within bind setups"
+  (interactive)
+  (message "The new bind *WORKED*! Yes!!11!"))
+#+END_SRC
+
+*** ninrod/add-to-hooks
+
+#+BEGIN_SRC emacs-lisp
+;; from https://github.com/cofi/dotfiles/blob/master/emacs.d/config/cofi-util.el#L38
+(defun ninrod/add-to-hooks (fun hooks)
+  "Add function to hooks."
+  (dolist (hook hooks)
+    (add-hook hook fun)))
+#+END_SRC
+** modes
+*** xmodmap-mode
+
+    - stolen from [[https://www.emacswiki.org/emacs/XModMapMode][here]]
+    #+BEGIN_SRC emacs-lisp
+      (define-generic-mode 'xmodmap-mode
+        '(?!)
+        '("add" "clear" "keycode" "keysym" "pointer" "remove")
+        nil
+        '("[xX]modmap\\(rc\\)?\\'")
+        nil
+        "Simple mode for xmodmap files.")
+    #+END_SRC
+
+**** sxhkd-mode
+
+     #+BEGIN_SRC emacs-lisp
+       (define-generic-mode sxhkd-mode
+         '(?#)
+         '("alt" "Escape" "super" "bspc" "ctrl" "space" "shift" "Print")
+         nil
+         '("sxhkdrc")
+         nil
+         "Simple mode for sxhkdrc files.")
+     #+END_SRC
 ** org
 *** horrendous org heading manipulation commands
 
@@ -509,29 +609,6 @@ an appropriate message.
     (if backwards (goto-char (line-beginning-position)))))
 #+END_SRC
 
-** lisp-mode
-*** ninrod/eval-print-last-sexp
-
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/eval-print-last-sexp ()
-      "Move point to the end of the line and eval-prints last sexp."
-      (interactive)
-      (save-excursion)
-      (goto-char (point-at-eol))
-      (eval-print-last-sexp))
-#+END_SRC
-
-*** ninrod/eval-last-sexp
-
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/eval-last-sexp ()
-      "Move point to the end of the line and eval last sexp."
-      (interactive)
-      (save-excursion)
-      (goto-char (point-at-eol))
-      (eval-last-sexp nil))
-#+END_SRC
-
 ** pretty print xml
    #+BEGIN_SRC emacs-lisp
      (require 'sgml-mode)
@@ -542,6 +619,28 @@ an appropriate message.
          (sgml-pretty-print (point-min) (point-max))
          (indent-region (point-min) (point-max))))
    #+END_SRC
+** spacemacs/align-repeat
+
+#+BEGIN_SRC emacs-lisp
+  ;; modified function from http://emacswiki.org/emacs/AlignCommands
+  (defun spacemacs/align-repeat (start end regexp &optional justify-right after)
+    "Repeat alignment with respect to the given regular expression.
+  If JUSTIFY-RIGHT is non nil justify to the right instead of the
+  left. If AFTER is non-nil, add whitespace to the left instead of
+  the right."
+
+    (interactive "r\nsAlign repeat regexp: ")
+    (let* ((ws-regexp (if (string-empty-p regexp)
+                          "\\(\\s-+\\)"
+                        "\\(\\s-*\\)"))
+           (complete-regexp (if after
+                                (concat regexp ws-regexp)
+                              (concat ws-regexp regexp)))
+           (group (if justify-right -1 1)))
+      (message "complete-regexp: %S" complete-regexp)
+      (align-regexp start end complete-regexp group 1 t)))
+#+END_SRC
+
 ** uargs
 *** ninrod/uarg-shell-command
 
@@ -578,105 +677,6 @@ an appropriate message.
     ;; M-x list-buffers???
     (execute-extended-command '(4) "buffer-menu"))
 #+END_SRC
-
-** clipboard
-*** ninrod/neotree-copy-filepath-to-clipboard
-
-- with help from [[http://stackoverflow.com/a/40564951/4921402][/u/lawlist]]
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/neotree-copy-path ()
-    (interactive)
-    (message (concat "copied path: \"" (neotree-copy-filepath-to-yank-ring) "\" to the clipboard.")))
-#+END_SRC
-
-** better windows splits
-
-#+BEGIN_SRC emacs-lisp
-(defun ninrod/split-window-below-and-focus ()
-  "Split the window vertically and focus the new window."
-  (interactive)
-  (split-window-below)
-  (windmove-down))
-
-(defun ninrod/split-window-right-and-focus ()
-  "Split the window horizontally and focus the new window."
-  (interactive)
-  (split-window-right)
-  (windmove-right))
-#+END_SRC
-
-** misc
-*** ninrod/origami-toggle-node
-
-- with help from [[https://www.reddit.com/r/emacs/comments/580v30/tweaking_origamiel_lisp_and_regexes/][reddit]]
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/origami-toggle-node ()
-    (interactive)
-    (save-excursion
-      (goto-char (point-at-eol))
-      (origami-toggle-node (current-buffer) (point))))
-#+END_SRC
-
-*** ninrod/display-ansi-colors
-
-- credits: [[http://stackoverflow.com/a/23382008/4921402][this]] SO question
-#+BEGIN_SRC emacs-lisp
-(require 'ansi-color)
-(defun ninrod/display-ansi-colors ()
-  (interactive)
-  (ansi-color-apply-on-region (point-min) (point-max)))
-#+END_SRC
-
-*** ninrod/echo
-
-#+BEGIN_SRC emacs-lisp
-(defun ninrod/echo ()
-  "just a simple test message for use within bind setups"
-  (interactive)
-  (message "The new bind *WORKED*! Yes!!11!"))
-#+END_SRC
-
-*** ninrod/add-to-hooks
-
-#+BEGIN_SRC emacs-lisp
-;; from https://github.com/cofi/dotfiles/blob/master/emacs.d/config/cofi-util.el#L38
-(defun ninrod/add-to-hooks (fun hooks)
-  "Add function to hooks."
-  (dolist (hook hooks)
-    (add-hook hook fun)))
-#+END_SRC
-** modes
-*** xmodmap-mode
-
-    - stolen from [[https://www.emacswiki.org/emacs/XModMapMode][here]]
-    #+BEGIN_SRC emacs-lisp
-      (define-generic-mode 'xmodmap-mode
-        '(?!)
-        '("add" "clear" "keycode" "keysym" "pointer" "remove")
-        nil
-        '("[xX]modmap\\(rc\\)?\\'")
-        nil
-        "Simple mode for xmodmap files.")
-    #+END_SRC
-
-**** sxhkd-mode
-
-     #+BEGIN_SRC emacs-lisp
-       (define-generic-mode sxhkd-mode
-         '(?#)
-         '("alt" "Escape" "super" "bspc" "ctrl" "space" "shift" "Print")
-         nil
-         '("sxhkdrc")
-         nil
-         "Simple mode for sxhkdrc files.")
-     #+END_SRC
-** environment
-*** ninrod--moby-p
-    #+BEGIN_SRC emacs-lisp
-      (defun ninrod--distro-p (distro)
-         "verify if we are on DISTRO at the moment."
-         (string-match distro (shell-command-to-string "uname -a")))
-    #+END_SRC
 
 * evil
 ** bootstrap
