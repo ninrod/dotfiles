@@ -1084,7 +1084,7 @@ an appropriate message.
 
     (setq nin--chosen-font "Iosevka Term-14")
     (if (ninrod--distro-p "moby")
-        (setq nin--chosen-font "Hack-14")
+        (setq nin--chosen-font "Hack-13")
       (if (ninrod--distro-p "arch")
         (setq nin--chosen-font "Hack-15")))
 
@@ -2747,7 +2747,7 @@ an appropriate message.
        "d" 'neotree-delete-node
        "c" 'neotree-copy-node
        "r" 'neotree-rename-node
-     
+
        ;; info retrieval
        "p"  'ninrod/neotree-copy-path
        "gr" 'neotree-refresh
