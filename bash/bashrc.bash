@@ -39,7 +39,6 @@ alias ag='ag --hidden --path-to-agignore=~/.agignore'
 alias b='cd ..'
 alias c='clear'
 alias q='exit'
-alias t='tmux new-session -A -s tmux -n shell'
 
 alias l='ls -lh'
 alias la='l -A'

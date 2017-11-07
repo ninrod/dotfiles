@@ -1078,7 +1078,6 @@ an appropriate message.
 
 ** font
 
-- Source Code Pro: [[https://github.com/adobe-fonts/source-code-pro][adobe-fonts/source-code-pro]]
   #+BEGIN_SRC emacs-lisp
     ;; (add-to-list 'default-frame-alist '(font . "Office Code Pro-14"))
     ;; (add-to-list 'default-frame-alist '(font . "Source Code Pro-14"))
@@ -1087,7 +1086,7 @@ an appropriate message.
     (if (ninrod--distro-p "moby")
         (setq nin--chosen-font "Iosevka Term-14")
       (if (ninrod--distro-p "arch")
-        (setq nin--chosen-font "Iosevka Term-17")))
+        (setq nin--chosen-font "Hack-15")))
 
     (add-to-list 'default-frame-alist `(font . ,nin--chosen-font))
   #+END_SRC
