@@ -1084,7 +1084,7 @@ an appropriate message.
 
     (setq nin--chosen-font "Hack-15")
     (if (ninrod--distro-p "moby")
-        (setq nin--chosen-font "Hack-13")
+        (setq nin--chosen-font "Hack-14")
       (if (ninrod--distro-p "arch")
         (setq nin--chosen-font "Hack-15")))
 
