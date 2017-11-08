@@ -59,8 +59,11 @@ set autoread
 " better gui clipboard integration
 " http://stackoverflow.com/questions/8134647/copy-and-paste-in-vim-via-keyboard-between-different-mac-terminals
 " http://vim.wikia.com/wiki/Accessing_the_system_clipboard
-" set clipboard=unnamed
 set clipboard=unnamedplus
+let uname = system("uname -a")
+if uname =~ "Darwin"
+  set clipboard=unnamed
+endif
 
 " Don't show intro
 set shortmess+=I
