@@ -10,23 +10,9 @@ OSX_SCRIPTS=~/.options/osx/scripts
 CUSTOM_SCRIPTS=$EMACS_SCRIPTS:$ZSH_SCRIPTS:$VIM_SCRIPTS:$OSX_SCRIPTS:$GIT_SCRIPTS
 GNUBIN_PATH=/usr/local/opt/coreutils/libexec/gnubin
 
-# Rust stuff
-# CARGO_BIN=~/.cargo/bin
-# RUST_SRC_PATH=~/code/sources/rust/src
-
-# # java stuff
-# export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
-# export JAVA_7_HOME=$(/usr/libexec/java_home -v1.7)
-# alias java7='export JAVA_HOME=$JAVA_7_HOME && mountpath'
-# alias java8='export JAVA_HOME=$JAVA_8_HOME && mountpath'
-# export JAVA_HOME=$JAVA_8_HOME
-
 mountpath () {
   PATH="$GNUBIN_PATH:/bin:/usr/local/bin:/usr/bin:/usr/sbin:/sbin"
   PATH="$PATH:$CUSTOM_SCRIPTS"
-  # PATH="$PATH:$JAVA_HOME/bin"
-  # PATH="$PATH:$CARGO_BIN"
-  # PATH="$PATH:$RUST_SRC_PATH"
   export PATH
 }
 mountpath
@@ -37,6 +23,17 @@ MANPATH="$GNUMANPATH:$MANPATH"
 export MANPATH
 
 # node version manager
-
-export NVM_DIR="$HOME/.nvm"
-[[ -e $NVM_DIR/nvm.sh ]] && source $NVM_DIR/nvm.sh
+nvm_config() {
+  cd $(readlink -f ~/.dotfiles)
+  cd ..
+  [[ ! -e secrets/nvm.zsh ]] && return 0
+  source secrets/nvm.zsh
+  if [[ -z ${USE_NVM+x} ]] || [[ $USE_NVM = 0 ]]; then
+    return 0
+  fi
+  export NVM_DIR="$HOME/.nvm"
+  [[ -e $NVM_DIR/nvm.sh ]] && source $NVM_DIR/nvm.sh
+}
+curdir=$(pwd -P)
+nvm_config
+cd $curdir
