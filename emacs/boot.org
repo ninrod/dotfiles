@@ -1187,7 +1187,6 @@ an appropriate message.
     (load custom-file 'noerror)
   #+END_SRC
 
-
 * packages
 ** cosmetic
 *** core-deps
