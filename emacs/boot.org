@@ -902,6 +902,156 @@ an appropriate message.
 #+END_SRC
 
 * tweaks
+** backups
+
+- partially lifted from [[https://github.com/magnars/.emacs.d/blob/master/init.el][magnar's emacs.d]]
+#+BEGIN_SRC emacs-lisp
+(setq backup-directory-alist
+      `(("." . ,(expand-file-name
+                 (concat user-emacs-directory "backups")))))
+(setq vc-make-backup-files t) ;Make backups of files, even when they're in version control
+(setq auto-save-default nil)  ;stop creating those #auto-save# files
+(global-auto-revert-mode)
+#+END_SRC
+
+** better defaults
+
+#+BEGIN_SRC emacs-lisp
+     (require 'uniquify)
+     (setq uniquify-buffer-name-style 'forward
+           apropos-do-all t
+           mode-require-final-newline nil
+           sentence-end-double-space nil
+           require-final-newline nil
+           select-enable-primary t
+           ring-bell-function 'ignore
+           split-width-threshold 200
+           split-height-threshold 80)
+#+END_SRC
+** dired
+
+#+BEGIN_SRC emacs-lisp
+(setq dired-omit-files "^\\.?#\\|^\\.[^.].*")
+#+END_SRC
+
+** font
+
+  #+BEGIN_SRC emacs-lisp
+    ;; (add-to-list 'default-frame-alist '(font . "Office Code Pro-14"))
+    ;; (add-to-list 'default-frame-alist '(font . "Source Code Pro-14"))
+
+    (setq nin--chosen-font "Hack-15")
+    (if (ninrod--distro-p "moby")
+        (setq nin--chosen-font "Hack-14")
+      (if (ninrod--distro-p "arch")
+        (setq nin--chosen-font "Hack-15")))
+
+    (add-to-list 'default-frame-alist `(font . ,nin--chosen-font))
+  #+END_SRC
+
+** gui
+
+#+BEGIN_SRC emacs-lisp
+  (when (display-graphic-p)
+    (when (eq system-type 'darwin)
+
+        ;; start maximized
+        ;; (set-frame-parameter nil 'fullscreen 'fullboth)
+        ;; (toggle-frame-maximized)
+
+        ;; osx does not lose screen real state with menu bar mode on
+        (menu-bar-mode 1)))
+#+END_SRC
+
+** hooks
+*** prog-mode
+    #+BEGIN_SRC emacs-lisp
+      ;; (add-hook 'prog-mode-hook #'ninrod/toggle-relative-line-numbers)
+      ;; (add-hook 'org-mode-hook #'ninrod/toggle-relative-line-numbers)
+    #+END_SRC
+*** sh-mode
+    #+BEGIN_SRC emacs-lisp
+      ;; (add-hook 'sh-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+    #+END_SRC
+** ibuffer
+
+#+BEGIN_SRC emacs-lisp
+  (setq ibuffer-expert t)
+  (setq-default ibuffer-show-empty-filter-groups nil)
+  (setq ibuffer-default-sorting-mode 'recency)
+
+  (setq ibuffer-filter-group-name-face 'org-level-4)
+  (setq ibuffer-deletion-face 'font-lock-warning-face)
+
+  (setq evil-emacs-state-modes (delq 'ibuffer-mode evil-emacs-state-modes))
+
+  (with-eval-after-load 'ibuffer
+    (require 'ibuffer-vc)
+
+    ;; Use human readable Size column instead of original one
+    (define-ibuffer-column size-h
+      (:name "Size" :inline t)
+      (cond
+       ((> (buffer-size) 1000000) (format "%7.1fM" (/ (buffer-size) 1000000.0)))
+       ((> (buffer-size) 100000) (format "%7.0fk" (/ (buffer-size) 1000.0)))
+       ((> (buffer-size) 1000) (format "%7.1fk" (/ (buffer-size) 1000.0)))
+       (t (format "%8d" (buffer-size)))))
+
+    ;; Modify the default ibuffer-formats
+    (setq ibuffer-formats
+          '((mark modified read-only " "
+                  (name 18 18 :left :elide)
+                  " "
+                  (size-h 9 -1 :right)
+                  " "
+                  (mode 16 16 :left :elide)
+                  " "
+                  filename-and-process))))
+#+END_SRC
+
+** indentation
+
+#+BEGIN_SRC emacs-lisp
+  (setq-default js-basic-offset 2
+                js-indent-level 2
+                sh-basic-offset 2
+                sh-indentation 2
+                indent-tabs-mode nil)
+#+END_SRC
+
+** misc options
+
+#+BEGIN_SRC emacs-lisp
+  (fset 'yes-or-no-p 'y-or-n-p)
+
+  (setq recentf-max-menu-items 200 ;; MRU configs
+        recentf-max-saved-items 200
+        recentf-exclude '("recentf" "autoload" "emacs-customizations.el")
+        default-directory "~/.dotfiles"
+        initial-scratch-message ";; -*- lexical-binding: t -*-\n;; scratch buffer.\n\n"
+        inhibit-startup-message t
+        display-time-default-load-average nil
+        display-time-day-and-date t
+        save-interprogram-paste-before-kill t ;; Save whatever’s in the clipboard before replacing it with the Emacs’ text.
+        yank-pop-change-selection t ;; https://github.com/dakrone/eos/blob/master/eos.org
+        ;; confirm-kill-emacs #'y-or-n-p ;; ask before killing emacs
+        echo-keystrokes 0.02) ;; instantly display current keystrokes in mini buffer
+
+  (set-default 'truncate-lines t)
+
+  (display-time-mode) ;; hack: customize display time in modeline.
+  (save-place-mode 1) ;; save last cursor position
+  (savehist-mode 1) ;; save minibuffer history
+  (tool-bar-mode -1)
+  (menu-bar-mode -1)
+  (electric-pair-mode 1)
+  (column-number-mode t)
+  (recentf-mode 1)
+
+  (if (fboundp 'scroll-bar-mode) ;; for emacs compiled with `nox'
+      (scroll-bar-mode -1))
+#+END_SRC
+
 ** org-mode
 *** general configs
 
@@ -1000,59 +1150,6 @@ an appropriate message.
         '((nil :maxlevel . 1)
           (ninrod-refile-targets :maxlevel . 1)))
 #+END_SRC
-** misc options
-
-#+BEGIN_SRC emacs-lisp
-  (fset 'yes-or-no-p 'y-or-n-p)
-
-  (setq recentf-max-menu-items 200 ;; MRU configs
-        recentf-max-saved-items 200
-        recentf-exclude '("recentf" "autoload" "emacs-customizations.el")
-        default-directory "~/.dotfiles"
-        initial-scratch-message ";; -*- lexical-binding: t -*-\n;; scratch buffer.\n\n"
-        inhibit-startup-message t
-        display-time-default-load-average nil
-        display-time-day-and-date t
-        save-interprogram-paste-before-kill t ;; Save whatever’s in the clipboard before replacing it with the Emacs’ text.
-        yank-pop-change-selection t ;; https://github.com/dakrone/eos/blob/master/eos.org
-        ;; confirm-kill-emacs #'y-or-n-p ;; ask before killing emacs
-        echo-keystrokes 0.02) ;; instantly display current keystrokes in mini buffer
-
-  (set-default 'truncate-lines t)
-
-  (display-time-mode) ;; hack: customize display time in modeline.
-  (save-place-mode 1) ;; save last cursor position
-  (savehist-mode 1) ;; save minibuffer history
-  (tool-bar-mode -1)
-  (menu-bar-mode -1)
-  (electric-pair-mode 1)
-  (column-number-mode t)
-  (recentf-mode 1)
-
-  (if (fboundp 'scroll-bar-mode) ;; for emacs compiled with `nox'
-      (scroll-bar-mode -1))
-#+END_SRC
-
-** better defaults
-
-#+BEGIN_SRC emacs-lisp
-     (require 'uniquify)
-     (setq uniquify-buffer-name-style 'forward
-           apropos-do-all t
-           mode-require-final-newline nil
-           sentence-end-double-space nil
-           require-final-newline nil
-           select-enable-primary t
-           ring-bell-function 'ignore
-           split-width-threshold 200
-           split-height-threshold 80)
-#+END_SRC
-** hooks
-*** prog-mode
-    #+BEGIN_SRC emacs-lisp
-      ;; (add-hook 'prog-mode-hook #'ninrod/toggle-relative-line-numbers)
-      ;; (add-hook 'org-mode-hook #'ninrod/toggle-relative-line-numbers)
-    #+END_SRC
 ** scroll
 
 #+BEGIN_SRC emacs-lisp
@@ -1062,108 +1159,6 @@ an appropriate message.
    scroll-step 1
    scroll-conservatively 10000
    scroll-preserve-screen-position 1)
-#+END_SRC
-
-** backups
-
-- partially lifted from [[https://github.com/magnars/.emacs.d/blob/master/init.el][magnar's emacs.d]]
-#+BEGIN_SRC emacs-lisp
-(setq backup-directory-alist
-      `(("." . ,(expand-file-name
-                 (concat user-emacs-directory "backups")))))
-(setq vc-make-backup-files t) ;Make backups of files, even when they're in version control
-(setq auto-save-default nil)  ;stop creating those #auto-save# files
-(global-auto-revert-mode)
-#+END_SRC
-
-** font
-
-  #+BEGIN_SRC emacs-lisp
-    ;; (add-to-list 'default-frame-alist '(font . "Office Code Pro-14"))
-    ;; (add-to-list 'default-frame-alist '(font . "Source Code Pro-14"))
-
-    (setq nin--chosen-font "Hack-15")
-    (if (ninrod--distro-p "moby")
-        (setq nin--chosen-font "Hack-14")
-      (if (ninrod--distro-p "arch")
-        (setq nin--chosen-font "Hack-15")))
-
-    (add-to-list 'default-frame-alist `(font . ,nin--chosen-font))
-  #+END_SRC
-
-** gui
-
-#+BEGIN_SRC emacs-lisp
-  (when (display-graphic-p)
-    (when (eq system-type 'darwin)
-
-        ;; start maximized
-        ;; (set-frame-parameter nil 'fullscreen 'fullboth)
-        ;; (toggle-frame-maximized)
-
-        ;; osx does not lose screen real state with menu bar mode on
-        (menu-bar-mode 1)))
-#+END_SRC
-
-** indentation
-
-#+BEGIN_SRC emacs-lisp
-  (setq-default js-basic-offset 2
-                js-indent-level 2
-                sh-basic-offset 2
-                sh-indentation 2
-                indent-tabs-mode nil)
-#+END_SRC
-
-** split emacs auto customizations
-
-- more info [[http://irreal.org/blog/?p=3765][here]]
-- and [[http://emacsblog.org/2008/12/06/quick-tip-detaching-the-custom-file/][here (M-x all-things-emacs)]]
-  #+BEGIN_SRC emacs-lisp
-    (setq custom-file "~/.emacs.d/emacs-customizations.el")
-    (load custom-file 'noerror)
-  #+END_SRC
-
-** ibuffer
-
-#+BEGIN_SRC emacs-lisp
-  (setq ibuffer-expert t)
-  (setq-default ibuffer-show-empty-filter-groups nil)
-  (setq ibuffer-default-sorting-mode 'recency)
-
-  (setq ibuffer-filter-group-name-face 'org-level-4)
-  (setq ibuffer-deletion-face 'font-lock-warning-face)
-
-  (setq evil-emacs-state-modes (delq 'ibuffer-mode evil-emacs-state-modes))
-
-  (with-eval-after-load 'ibuffer
-    (require 'ibuffer-vc)
-
-    ;; Use human readable Size column instead of original one
-    (define-ibuffer-column size-h
-      (:name "Size" :inline t)
-      (cond
-       ((> (buffer-size) 1000000) (format "%7.1fM" (/ (buffer-size) 1000000.0)))
-       ((> (buffer-size) 100000) (format "%7.0fk" (/ (buffer-size) 1000.0)))
-       ((> (buffer-size) 1000) (format "%7.1fk" (/ (buffer-size) 1000.0)))
-       (t (format "%8d" (buffer-size)))))
-
-    ;; Modify the default ibuffer-formats
-    (setq ibuffer-formats
-          '((mark modified read-only " "
-                  (name 18 18 :left :elide)
-                  " "
-                  (size-h 9 -1 :right)
-                  " "
-                  (mode 16 16 :left :elide)
-                  " "
-                  filename-and-process))))
-#+END_SRC
-
-** dired
-
-#+BEGIN_SRC emacs-lisp
-(setq dired-omit-files "^\\.?#\\|^\\.[^.].*")
 #+END_SRC
 
 ** show trailing whitespaces
@@ -1183,6 +1178,15 @@ an appropriate message.
                          Info-mode-hook
                          markdown-mode-hook))
 #+END_SRC
+** split emacs auto customizations
+
+- more info [[http://irreal.org/blog/?p=3765][here]]
+- and [[http://emacsblog.org/2008/12/06/quick-tip-detaching-the-custom-file/][here (M-x all-things-emacs)]]
+  #+BEGIN_SRC emacs-lisp
+    (setq custom-file "~/.emacs.d/emacs-customizations.el")
+    (load custom-file 'noerror)
+  #+END_SRC
+
 
 * packages
 ** cosmetic
