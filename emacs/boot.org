@@ -720,7 +720,7 @@ an appropriate message.
          (define-key evil-outer-text-objects-map ,key #',outer-name))))
 
   (define-and-bind-text-object "pipe" "|" "|" "|")
-  (define-and-bind-text-object "pipe" "/" "/" "/")
+  (define-and-bind-text-object "slash" "/" "/" "/")
 #+END_SRC
 
 #+BEGIN_SRC text
@@ -1204,6 +1204,139 @@ an appropriate message.
     :ensure t)
 #+END_SRC
 
+*** fic-mode
+    - highlights TODO,FIXME, etc...
+    #+BEGIN_SRC emacs-lisp
+      (use-package fic-mode
+        :ensure t
+        :config
+      (ninrod/add-to-hooks #'fic-mode '(prog-mode-hook)))
+    #+END_SRC
+*** highlight-numbers
+
+#+BEGIN_SRC emacs-lisp
+  (use-package highlight-numbers
+    :ensure t
+    :config
+    (add-hook 'prog-mode-hook 'highlight-numbers-mode))
+#+END_SRC
+*** highlight-parentheses
+
+#+BEGIN_SRC emacs-lisp
+  (use-package highlight-parentheses :ensure t
+    :config
+    (add-hook 'prog-mode-hook #'highlight-parentheses-mode)
+    (add-hook 'org-mode-hook #'highlight-parentheses-mode)
+    (setq hl-paren-delay 0.2)
+    (set-face-attribute 'hl-paren-face nil :weight 'ultra-bold)
+
+    :diminish "")
+#+END_SRC
+
+*** highlight-quoted
+    #+BEGIN_SRC emacs-lisp
+      (use-package highlight-quoted
+        :ensure t
+        :config
+        (add-hook 'emacs-lisp-mode-hook 'highlight-quoted-mode))
+    #+END_SRC
+*** highlight-defined
+    #+BEGIN_SRC emacs-lisp
+      (use-package highlight-defined
+        :ensure t
+        :config
+        (add-hook 'emacs-lisp-mode-hook 'highlight-defined-mode))
+    #+END_SRC
+*** info+
+
+#+BEGIN_SRC emacs-lisp
+  (use-package info+
+    :ensure t)
+#+END_SRC
+
+*** kurecolor
+
+#+BEGIN_SRC emacs-lisp
+  (use-package kurecolor
+    :ensure t)
+#+END_SRC
+
+*** lisp-extra-font-lock
+    #+BEGIN_SRC emacs-lisp
+      (use-package lisp-extra-font-lock
+        :ensure t
+        :config
+        (lisp-extra-font-lock-global-mode 1))
+    #+END_SRC
+*** Org Bullets
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org-bullets
+    :ensure t
+    :init
+
+    ;; org-bullets-bullet-list
+    ;; default: "◉ ○ ✸ ✿"
+    ;; large: ♥ ● ◇ ✚ ✜ ☯ ◆ ♠ ♣ ♦ ☢ ❀ ◆ ◖ ▶
+    ;; Small: ► • ★ ▸
+    (setq org-bullets-bullet-list '("•"))
+
+    ;; others: ▼, ↴, ⬎, ⤷,…, and ⋱.
+    ;; (setq org-ellipsis "⤵")
+    (setq org-ellipsis "…")
+
+    :config
+    (add-hook 'org-mode-hook #'org-bullets-mode))
+#+END_SRC
+
+*** rainbow-delimiters
+
+#+BEGIN_SRC emacs-lisp
+  (use-package rainbow-delimiters :ensure t
+    :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+#+END_SRC
+
+*** rainbow-mode
+
+#+BEGIN_SRC emacs-lisp
+  (use-package rainbow-mode
+    :ensure t)
+#+END_SRC
+
+*** smartparens
+
+#+BEGIN_SRC emacs-lisp
+  (use-package smartparens :ensure t
+    :init
+    (setq sp-show-pair-delay 0.1
+          sp-show-pair-from-inside t)
+    :config
+    (smartparens-global-mode)
+    (show-smartparens-global-mode)
+
+    :diminish "")
+#+END_SRC
+
+*** spaceline
+
+- to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
+#+BEGIN_SRC emacs-lisp
+  (use-package spaceline :ensure t
+    :config
+    (setq powerline-height 40)
+    (setq powerline-default-separator 'utf-8)
+    (setq spaceline-separator-dir-left '(right . right))
+    (setq spaceline-separator-dir-right '(right . right))
+    (setq powerline-default-separator 'alternate) ;; alternate, slant, wave, zigzag, nil.
+    (setq spaceline-workspace-numbers-unicode t) ;for eyebrowse. nice looking unicode numbers for tagging different layouts
+    (setq spaceline-window-numbers-unicode t)
+    (setq spaceline-highlight-face-func #'spaceline-highlight-face-evil-state) ; set colouring for different evil-states
+    ;; (setq spaceline-inflation 1.4)
+    (require 'spaceline-config)
+    (spaceline-spacemacs-theme)
+    (spaceline-compile))
+#+END_SRC
+
 *** themes
 **** spacemacs
 
@@ -1265,132 +1398,6 @@ an appropriate message.
     (load-theme 'darktooth t))
 #+END_SRC
 
-*** spaceline
-
-- to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
-#+BEGIN_SRC emacs-lisp
-  (use-package spaceline :ensure t
-    :config
-    (setq powerline-height 40)
-    (setq powerline-default-separator 'utf-8)
-    (setq spaceline-separator-dir-left '(right . right))
-    (setq spaceline-separator-dir-right '(right . right))
-    (setq powerline-default-separator 'alternate) ;; alternate, slant, wave, zigzag, nil.
-    (setq spaceline-workspace-numbers-unicode t) ;for eyebrowse. nice looking unicode numbers for tagging different layouts
-    (setq spaceline-window-numbers-unicode t)
-    (setq spaceline-highlight-face-func #'spaceline-highlight-face-evil-state) ; set colouring for different evil-states
-    ;; (setq spaceline-inflation 1.4)
-    (require 'spaceline-config)
-    (spaceline-spacemacs-theme)
-    (spaceline-compile))
-#+END_SRC
-
-*** rainbow-mode
-
-#+BEGIN_SRC emacs-lisp
-  (use-package rainbow-mode
-    :ensure t)
-#+END_SRC
-
-*** highlight-numbers
-
-#+BEGIN_SRC emacs-lisp
-  (use-package highlight-numbers
-    :ensure t
-    :config
-    (add-hook 'prog-mode-hook 'highlight-numbers-mode))
-#+END_SRC
-*** fic-mode
-    - highlights TODO,FIXME, etc...
-    #+BEGIN_SRC emacs-lisp
-      (use-package fic-mode
-        :ensure t
-        :config
-      (ninrod/add-to-hooks #'fic-mode '(prog-mode-hook)))
-    #+END_SRC
-*** Org Bullets
-
-#+BEGIN_SRC emacs-lisp
-  (use-package org-bullets
-    :ensure t
-    :init
-
-    ;; org-bullets-bullet-list
-    ;; default: "◉ ○ ✸ ✿"
-    ;; large: ♥ ● ◇ ✚ ✜ ☯ ◆ ♠ ♣ ♦ ☢ ❀ ◆ ◖ ▶
-    ;; Small: ► • ★ ▸
-    (setq org-bullets-bullet-list '("•"))
-
-    ;; others: ▼, ↴, ⬎, ⤷,…, and ⋱.
-    ;; (setq org-ellipsis "⤵")
-    (setq org-ellipsis "…")
-
-    :config
-    (add-hook 'org-mode-hook #'org-bullets-mode))
-#+END_SRC
-
-*** info+
-
-#+BEGIN_SRC emacs-lisp
-  (use-package info+
-    :ensure t)
-#+END_SRC
-
-*** kurecolor
-
-#+BEGIN_SRC emacs-lisp
-  (use-package kurecolor
-    :ensure t)
-#+END_SRC
-
-*** highlight-parentheses
-
-#+BEGIN_SRC emacs-lisp
-  (use-package highlight-parentheses :ensure t
-    :config
-    (add-hook 'prog-mode-hook #'highlight-parentheses-mode)
-    (add-hook 'org-mode-hook #'highlight-parentheses-mode)
-    (setq hl-paren-delay 0.2)
-    (set-face-attribute 'hl-paren-face nil :weight 'ultra-bold)
-
-    :diminish "")
-#+END_SRC
-
-*** rainbow-delimiters
-
-#+BEGIN_SRC emacs-lisp
-  (use-package rainbow-delimiters :ensure t
-    :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
-#+END_SRC
-
-*** smartparens
-
-#+BEGIN_SRC emacs-lisp
-  (use-package smartparens :ensure t
-    :init
-    (setq sp-show-pair-delay 0.1
-          sp-show-pair-from-inside t)
-    :config
-    (smartparens-global-mode)
-    (show-smartparens-global-mode)
-
-    :diminish "")
-#+END_SRC
-
-*** lisp-extra-font-lock
-    #+BEGIN_SRC emacs-lisp
-      (use-package lisp-extra-font-lock
-        :ensure t
-        :config
-        (lisp-extra-font-lock-global-mode 1))
-    #+END_SRC
-*** highlight-quoted
-    #+BEGIN_SRC emacs-lisp
-      (use-package highlight-quoted
-        :ensure t
-        :config
-        (add-hook 'emacs-lisp-mode-hook 'highlight-quoted-mode))
-    #+END_SRC
 ** core
 *** restart-emacs
 
