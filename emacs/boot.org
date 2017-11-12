@@ -405,8 +405,8 @@ an appropriate message.
       "Move point to the end of the line and eval-prints last sexp."
       (interactive)
       (save-excursion
-        (goto-char (point-at-eol)))
-      (eval-print-last-sexp))
+        (goto-char (point-at-eol))
+        (eval-print-last-sexp)))
 #+END_SRC
 
 *** ninrod/eval-last-sexp
@@ -709,7 +709,7 @@ an appropriate message.
 - this is the way to add new text-objects without targets.el
 #+BEGIN_SRC emacs-lisp
   ;; modified to be able to specify name and use `function'
-  (defmacro define-and-bind-text-object (name key start-regex end-regex)
+  (defmacro define-and-bind-quoted-text-object (name key start-regex end-regex)
     (let ((inner-name (make-symbol (concat "evil-inner-" name)))
           (outer-name (make-symbol (concat "evil-a-" name))))
       `(progn
@@ -720,8 +720,8 @@ an appropriate message.
          (define-key evil-inner-text-objects-map ,key #',inner-name)
          (define-key evil-outer-text-objects-map ,key #',outer-name))))
 
-  (define-and-bind-text-object "pipe" "|" "|" "|")
-  (define-and-bind-text-object "slash" "/" "/" "/")
+  (define-and-bind-quoted-text-object "pipe" "|" "|" "|")
+  (define-and-bind-quoted-text-object "slash" "/" "/" "/")
 #+END_SRC
 
 #+BEGIN_SRC text
