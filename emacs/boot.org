@@ -93,15 +93,16 @@
 *** ninrod's evil*marker
 
 #+BEGIN_SRC emacs-lisp
-    (defun ninrod/evil-set-marker-z ()
-      "Set marker z."
-      (interactive)
-      (evil-set-marker ?z))
+  (defun ninrod/evil-set-marker-z ()
+    "Set marker z."
+    (interactive)
+    (evil-set-marker ?z))
 
   (defun ninrod/evil-goto-marker-z ()
-      "Goto marker z."
-      (interactive)
-      (evil-goto-mark ?z))
+    "Goto marker z."
+    (interactive)
+    (evil-goto-mark ?z)
+    (call-interactively #'evil-scroll-line-to-center))
 #+END_SRC
 
 *** ninrod's evil macro
