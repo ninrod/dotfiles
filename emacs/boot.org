@@ -404,8 +404,8 @@ an appropriate message.
   (defun ninrod/eval-print-last-sexp ()
       "Move point to the end of the line and eval-prints last sexp."
       (interactive)
-      (save-excursion)
-      (goto-char (point-at-eol))
+      (save-excursion
+        (goto-char (point-at-eol)))
       (eval-print-last-sexp))
 #+END_SRC
 
@@ -579,35 +579,35 @@ an appropriate message.
 
 - stolen from aaron bieber [[https://blog.aaronbieber.com/2016/09/25/agenda-interactions-primer.html][agenda interactions primer]]
 #+BEGIN_SRC emacs-lisp
-(defun ninrod/org-agenda-next-header ()
-  "Jump to the next header in an agenda series."
-  (interactive)
-  (ninrod/org-agenda-goto-header))
+  (defun ninrod/org-agenda-next-header ()
+    "Jump to the next header in an agenda series."
+    (interactive)
+    (ninrod/org-agenda-goto-header))
 
-(defun ninrod/org-agenda-previous-header ()
-  "Jump to the previous header in an agenda series."
-  (interactive)
-  (ninrod/org-agenda-goto-header t))
+  (defun ninrod/org-agenda-previous-header ()
+    "Jump to the previous header in an agenda series."
+    (interactive)
+    (ninrod/org-agenda-goto-header t))
 
-(defun ninrod/org-agenda-goto-header (&optional backwards)
-  "Find the next agenda series header forwards or BACKWARDS."
-  (let ((pos (save-excursion
-               (goto-char (if backwards
-                              (line-beginning-position)
-                            (line-end-position)))
-               (let* ((find-func (if backwards
-                                     'previous-single-property-change
-                                   'next-single-property-change))
-                      (end-func (if backwards
-                                    'max
-                                  'min))
-                      (all-pos-raw (list (funcall find-func (point) 'org-agenda-structural-header)
-                                         (funcall find-func (point) 'org-agenda-date-header)))
-                      (all-pos (cl-remove-if-not 'numberp all-pos-raw))
-                      (prop-pos (if all-pos (apply end-func all-pos) nil)))
-                 prop-pos))))
-    (if pos (goto-char pos))
-    (if backwards (goto-char (line-beginning-position)))))
+  (defun ninrod/org-agenda-goto-header (&optional backwards)
+    "Find the next agenda series header forwards or BACKWARDS."
+    (let ((pos (save-excursion
+                 (goto-char (if backwards
+                                (line-beginning-position)
+                              (line-end-position)))
+                 (let* ((find-func (if backwards
+                                       #'previous-single-property-change
+                                     #'next-single-property-change))
+                        (end-func (if backwards
+                                      'max
+                                    'min))
+                        (all-pos-raw (list (funcall find-func (point) 'org-agenda-structural-header)
+                                           (funcall find-func (point) 'org-agenda-date-header)))
+                        (all-pos (cl-remove-if-not 'numberp all-pos-raw))
+                        (prop-pos (if all-pos (apply end-func all-pos) nil)))
+                   prop-pos))))
+      (if pos (goto-char pos))
+      (if backwards (goto-char (line-beginning-position)))))
 #+END_SRC
 
 ** pretty print xml
@@ -918,16 +918,17 @@ an appropriate message.
 ** better defaults
 
 #+BEGIN_SRC emacs-lisp
-     (require 'uniquify)
-     (setq uniquify-buffer-name-style 'forward
-           apropos-do-all t
-           mode-require-final-newline nil
-           sentence-end-double-space nil
-           require-final-newline nil
-           select-enable-primary t
-           ring-bell-function 'ignore
-           split-width-threshold 200
-           split-height-threshold 80)
+  (require 'uniquify)
+  (setq uniquify-buffer-name-style 'forward
+        apropos-do-all t
+        bookmark-save-flag 1
+        mode-require-final-newline nil
+        sentence-end-double-space nil
+        require-final-newline nil
+        select-enable-primary t
+        ring-bell-function 'ignore
+        split-width-threshold 200
+        split-height-threshold 80)
 #+END_SRC
 ** dired
 
@@ -2129,8 +2130,6 @@ an appropriate message.
 
    "j" (kbd "LztM")
    "k" (kbd "Hz-M")
-
-   "," 'pop-global-mark
    )
 #+END_SRC
 
