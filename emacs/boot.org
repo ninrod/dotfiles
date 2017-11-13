@@ -975,6 +975,10 @@ an appropriate message.
     #+BEGIN_SRC emacs-lisp
       ;; (add-hook 'sh-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
     #+END_SRC
+*** edebug
+#+BEGIN_SRC emacs-lisp
+(add-hook 'edebug-mode-hook 'evil-normalize-keymaps)
+#+END_SRC
 ** ibuffer
 
 #+BEGIN_SRC emacs-lisp
