@@ -1607,7 +1607,14 @@ an appropriate message.
       (use-package helpful
         :ensure t)
     #+END_SRC
-
+*** aggressive-indent
+#+BEGIN_SRC emacs-lisp
+  (use-package aggressive-indent
+    :ensure t
+    :diminish ""
+    :config
+    (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode))
+#+END_SRC
 ** filetypes
 *** md: markdown
 
@@ -2131,6 +2138,7 @@ an appropriate message.
    "RET" 'write-file
    "DEL" 'ninrod/mkdir
    "g" 'avy-goto-char
+   "c" 'ninrod/org-task-capture
 
    "j" (kbd "LztM")
    "k" (kbd "Hz-M")
@@ -2270,7 +2278,7 @@ an appropriate message.
    ;; "d"   'reserved
 
    ;; important modes
-   "c" 'ninrod/org-task-capture
+   "c" 'magit-clone
    "g" 'ninrod/uarg-magit-status
    "t" 'neotree-toggle
    "o" 'ninrod/pop-to-org-agenda
