@@ -1598,7 +1598,11 @@ an appropriate message.
     (add-hook 'lispy-mode-hook #'lispyville-mode)
     (with-eval-after-load 'lispyville
       (lispyville-set-key-theme '(operators
-                                  slurp/barf-cp))))
+                                  (mark-toggle)
+                                  (escape insert emacs)
+                                  slurp/barf-cp)))
+    (with-eval-after-load 'lispy
+      (lispy-define-key lispy-mode-map "v" #'lispyville-toggle-mark-type)))
 #+END_SRC
 *** helpful
 
