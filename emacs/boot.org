@@ -1598,8 +1598,7 @@ an appropriate message.
     (add-hook 'lispy-mode-hook #'lispyville-mode)
     (with-eval-after-load 'lispyville
       (lispyville-set-key-theme '(operators
-                                  slurp/barf-cp
-                                  (additional-movement normal visual motion)))))
+                                  slurp/barf-cp))))
 #+END_SRC
 *** helpful
 
@@ -2649,7 +2648,6 @@ an appropriate message.
 
 #+END_SRC
 
-
 ** dired
 *** unbinds
 
@@ -2820,14 +2818,13 @@ an appropriate message.
 
 #+BEGIN_SRC emacs-lisp
   (lisp-t-map
-    "o" 'ninrod/eval-print-last-sexp ;mnemonic: output to current buffer
-    "l" 'ninrod/eval-last-sexp
-    )
+   "o" 'ninrod/eval-print-last-sexp       ;; mnemonic: output to current buffer
+   "k" 'lispyville-drag-backward
+   "j" 'lispyville-drag-forward)
   (lisp-comma-map
-    "e" 'eval-defun
-    "d" 'ninrod/uarg-eval-defun
-    "b" 'eval-buffer
-    )
+   "e" 'eval-defun
+   "d" 'ninrod/uarg-eval-defun            ;; instrument func with edebug
+   "b" 'eval-buffer)
 #+END_SRC
 
 ** info
