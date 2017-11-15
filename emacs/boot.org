@@ -745,7 +745,11 @@ an appropriate message.
   (use-package rect-ext
     :load-path "~/.dotfiles/deps/emacs/noctuid/rect-ext.el")
 #+END_SRC
-
+*** thingatpt+
+    #+BEGIN_SRC emacs-lisp
+      (use-package thingatpt+
+        :ensure t)
+    #+END_SRC
 ** melpa packages
 *** evil-surround
 
