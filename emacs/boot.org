@@ -1326,7 +1326,7 @@ an appropriate message.
 *** spaceline
 
 - to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (use-package spaceline :ensure t
     :config
     (setq powerline-height 40)
@@ -1389,7 +1389,7 @@ an appropriate message.
     (setq gruvbox-contrast 'hard)
 
     :config
-    ;; (gruvbox-modeline-three)
+    (gruvbox-modeline-three)
     (load-theme 'gruvbox t))
 
 #+END_SRC
