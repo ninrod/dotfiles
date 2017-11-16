@@ -1947,6 +1947,14 @@ an appropriate message.
       (use-package pass
         :ensure t)
     #+END_SRC
+*** flycheck-package
+    #+BEGIN_SRC emacs-lisp
+      (use-package flycheck-package
+        :ensure t
+        :config
+        (with-eval-after-load 'flycheck
+          (flycheck-package-setup)))
+    #+END_SRC
 ** disabled
 *** powershell
 
