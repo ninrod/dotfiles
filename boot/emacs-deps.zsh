@@ -6,7 +6,7 @@ ningrab ninrod/rsynced-melpa
 # core editing
 ningrab noctuid/rect-ext.el
 
-ningrab emacs-evil/evil
+# ningrab ninrod/evil
 # ningrab ninrod/targets.el
 
 # forked themes

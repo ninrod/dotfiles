@@ -684,8 +684,7 @@ an appropriate message.
 
 #+BEGIN_SRC emacs-lisp
   (use-package evil
-    ;; :ensure t
-    :load-path "~/.dotfiles/deps/emacs/ninrod/evil"
+    :ensure t
     :init
     (use-package goto-chg :ensure t)
     (use-package undo-tree :ensure t)
