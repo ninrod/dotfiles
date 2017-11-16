@@ -751,10 +751,10 @@ an appropriate message.
       (use-package thingatpt+
         :ensure t)
     #+END_SRC
-*** evil-textobj-xmlattr
+*** exato
 #+BEGIN_SRC emacs-lisp
-  (use-package evil-textobj-xmlattr
-    :load-path "~/code/sources/evil-textobj-xmlattr")
+  (use-package exato
+    :load-path "~/code/sources/exato")
 #+END_SRC
 ** melpa packages
 *** evil-surround
