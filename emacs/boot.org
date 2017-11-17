@@ -753,8 +753,7 @@ an appropriate message.
     #+END_SRC
 *** exato
 #+BEGIN_SRC emacs-lisp
-  (use-package exato
-    :load-path "~/code/sources/exato")
+  (use-package exato :load-path "~/code/sources/exato")
 #+END_SRC
 ** melpa packages
 *** evil-surround
