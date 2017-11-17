@@ -27,7 +27,10 @@ alias gld='git_log_custom --graph --date=format:"%Y-%m-%d %H:%M:%S"'
 alias gl='gld --date=relative'
 alias gla='gld --date=relative --all'
 alias glnc='git log --no-color'
+alias gltag="git log --no-color --date-order --tags --simplify-by-decoration --pretty=format:'%ai %h %d' | grep --color tag"
 
 # ls-files
 alias glsu='git ls-files --others --exclude-standard'
 alias glsi='git ls-files -oiX .gitignore'
+
+
