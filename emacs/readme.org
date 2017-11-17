@@ -66,3 +66,8 @@ depends on the unreasonable man.
 - the star operator is broken when subword-mode is active.
 ** Completions
 - tab completion with dabbrev-expand ignores case.
+* package ideas
+  - xml/html tag attribute text object. NOTE: [[https://github.com/ninrod/exato][implemented!]]
+  - move horizontally in long lines like in vim's =zt=, =zb=, etc...
+  - implement a new operator that performs r<char> in visual mode (but in normal mode). useful for |    | -> |------| in markdown mode.
+
