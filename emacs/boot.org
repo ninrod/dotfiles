@@ -699,6 +699,8 @@ an appropriate message.
 
     (evil-mode)
 
+    (evil-set-command-property 'evil-yank :move-point t)
+
     (evil-define-text-object ninrod/textobj-entire (count &optional beg end type)
       (evil-range (point-min) (point-max)));; simulation of kana's textobj-entire
     (define-key evil-outer-text-objects-map "e" 'ninrod/textobj-entire))
@@ -1609,7 +1611,8 @@ an appropriate message.
       (lispyville-set-key-theme '(operators
                                   (mark-toggle)
                                   (escape insert emacs)
-                                  slurp/barf-cp)))
+                                  slurp/barf-cp))
+      (evil-set-command-property 'lispyville-yank :move-point t))
     (with-eval-after-load 'lispy
       (lispy-define-key lispy-mode-map "v" #'lispyville-toggle-mark-type)))
 #+END_SRC
