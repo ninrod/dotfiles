@@ -56,9 +56,14 @@ set guioptions-=T
 " Autoload files that have changed outside of vim
 set autoread
 
-" http://stackoverflow.com/questions/8134647/copy-and-paste-in-vim-via-keyboard-between-different-mac-terminals
 " better gui clipboard integration
-set clipboard+=unnamed
+" http://stackoverflow.com/questions/8134647/copy-and-paste-in-vim-via-keyboard-between-different-mac-terminals
+" http://vim.wikia.com/wiki/Accessing_the_system_clipboard
+set clipboard=unnamedplus
+let uname = system("uname -a")
+if uname =~ "Darwin"
+  set clipboard=unnamed
+endif
 
 " Don't show intro
 set shortmess+=I
