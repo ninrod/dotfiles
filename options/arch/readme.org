@@ -1,4 +1,6 @@
-* Arch specific configs
+* Arch setup ideas
 
-featuring bspwm
+- write a custom script to show the 2 batteries in polybar through acpi
+
+
 
