@@ -955,7 +955,7 @@ an appropriate message.
     (if (ninrod--distro-p "moby")
         (setq nin--chosen-font "Hack-14")
       (if (ninrod--distro-p "arch")
-        (setq nin--chosen-font "Hack-15")))
+        (setq nin--chosen-font "Hack-16")))
 
     (add-to-list 'default-frame-alist `(font . ,nin--chosen-font))
   #+END_SRC
