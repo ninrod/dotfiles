@@ -885,6 +885,20 @@ an appropriate message.
       (use-package evil-ediff
         :ensure t)
     #+END_SRC
+** strach
+*** new =r= operator that works with text objects in normal mode
+
+    #+BEGIN_SRC emacs-lisp
+      (evil-define-operator evil-operator-try (beg end count type register)
+        :move-point nil
+        (interactive "<R><x>")
+        (save-excursion
+          (delete-region beg end)
+          (goto-char beg)
+          (let ((s (make-string (- end beg) ?-)))
+            (insert s))))
+      (define-key evil-normal-state-map (kbd "g1") 'evil-operator-try)
+    #+END_SRC
 ** disabled packages
 *** evil-mc
 
