@@ -5,7 +5,7 @@ if ps aux | ag 'macs.*\-\-old\-daemon' > /dev/null; then
   exit 0
 fi
 
-emacs.sh --daemon; rc=$?
+emacs --daemon; rc=$?
 if [[ $rc = 0 ]]; then
   echo 'emacs daemon started. success.'
 else

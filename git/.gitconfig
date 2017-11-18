@@ -1,0 +1,44 @@
+[push]
+  default = simple
+[diff]
+  tool = vimdiff
+[merge]
+  tool = vimdiff
+  defaultToUpstream = true
+  conflictstyle = diff3
+[mergetool]
+  keepBackup = false
+[difftool]
+  prompt = false
+[core]
+  editor = vim
+  autocrlf = input
+[color]
+  ui = auto
+[color "diff"]
+  meta = yellow
+  commit = green
+  frag = magenta
+  old = red
+  new = green
+  whitespace = red reverse
+[color "diff-highlight"]
+  oldNormal = red
+  oldHighlight = "red 52"
+  newNormal = "green"
+  newHighlight = "green 22"
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "status"]
+  untracked = cyan
+[pager]
+  diff = diff-so-fancy | less --tabs=4 -RFX
+  show = diff-so-fancy | less --tabs=4 -RFX
+[grep]
+  lineNumber = true
+  extendRegexp = true
+[user]
+	name = ninrod
+	email = filipe.silva@gmail.com
