@@ -748,15 +748,6 @@ an appropriate message.
   (use-package rect-ext
     :load-path "~/.dotfiles/deps/emacs/noctuid/rect-ext.el")
 #+END_SRC
-*** thingatpt+
-    #+BEGIN_SRC emacs-lisp
-      (use-package thingatpt+
-        :ensure t)
-    #+END_SRC
-*** exato
-#+BEGIN_SRC emacs-lisp
-  (use-package exato :load-path "~/code/sources/exato")
-#+END_SRC
 ** melpa packages
 *** evil-surround
 
@@ -885,19 +876,13 @@ an appropriate message.
       (use-package evil-ediff
         :ensure t)
     #+END_SRC
-** strach
-*** new =r= operator that works with text objects in normal mode
-
+*** exato
     #+BEGIN_SRC emacs-lisp
-      (evil-define-operator evil-operator-try (beg end count type register)
-        :move-point nil
-        (interactive "<R><x>")
-        (save-excursion
-          (delete-region beg end)
-          (goto-char beg)
-          (let ((s (make-string (- end beg) ?-)))
-            (insert s))))
-      (define-key evil-normal-state-map (kbd "g1") 'evil-operator-try)
+      (use-package exato
+        :ensure t
+        :init
+        (setq exato-key "h"))
+
     #+END_SRC
 ** disabled packages
 *** evil-mc
