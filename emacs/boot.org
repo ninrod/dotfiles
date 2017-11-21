@@ -1536,7 +1536,13 @@ an appropriate message.
     (setq magit-repository-directories '("~/code/sources"))
     (setq magit-diff-refine-hunk 'all)
     (use-package evil-magit :ensure t)
-    (setq magit-completing-read-function 'ivy-completing-read))
+    (setq magit-completing-read-function 'ivy-completing-read)
+
+    ;; https://github.com/magit/magit/issues/3230#issuecomment-339901429
+    (magit-add-section-hook 'magit-status-sections-hook
+                            'magit-insert-unpushed-to-upstream
+                            'magit-insert-unpushed-to-upstream-or-recent
+                            'replace))
 #+END_SRC
 
 *** projectile
