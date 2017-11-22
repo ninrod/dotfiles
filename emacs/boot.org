@@ -29,7 +29,8 @@
     (when (daemonp)
       (message "we are in daemon mode. saving recentf")
       (recentf-save-list))
-    (apply dumb-evil-quit arguments))
+    (cond ((= 1 (count-windows)) (message "só tem uma janela, velho, gg"))
+          (t (apply dumb-evil-quit arguments))))
   (advice-add #'evil-quit :around #'ninrod/advice-evil-quit)
 #+END_SRC
 
