@@ -1353,7 +1353,7 @@ an appropriate message.
     :config
 
     (cond ((ninrod--distro-p "arch")
-           (setq powerline-height 40))
+           (setq powerline-height 50))
           (t (setq powerline-height 30)))
 
     (setq powerline-default-separator 'utf-8)
