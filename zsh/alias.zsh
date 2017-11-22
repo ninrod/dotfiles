@@ -17,7 +17,7 @@ alias w='echo -e "$Blue ${"$(pwd)"/$HOME/~} ${Red}at ${Cyan}$(whoami)${Red}@${Ye
 using $Yellow${0}$Purple ${DOT_PROMPT_CHAR:-$}${Rst}"'
 
 # apps
-alias ag='ag --hidden'
+alias ag='ag --path-to-ignore ~/.ignore --hidden'
 
 alias tarc='tar -zcvf file.tar.gz'
 alias tarx='tar -zxvf'
