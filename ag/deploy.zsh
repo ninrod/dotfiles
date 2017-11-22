@@ -1,2 +1,2 @@
-verifylink ~/.agignore
-updatelinks ~/.agignore ag/agignore
+verifylink ~/.gitignore
+updatelinks ~/.gitignore ag/gitignore
