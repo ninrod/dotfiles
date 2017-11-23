@@ -890,13 +890,18 @@ an appropriate message.
 *** new =r= operator that works with text objects in normal mode
 
     #+BEGIN_SRC emacs-lisp
-      (evil-define-operator evil-operator-try (beg end type)
+      (evil-define-operator evil-operator-try (beg end type char)
         :move-point nil
-        (interactive "<R>")
+        (interactive "<R>"
+                     (unwind-protect
+                         (let ((evil-force-cursor 'replace))
+                           (evil-refresh-cursor)
+                           (list (evil-read-key)))
+                       (evil-refresh-cursor)))
         (save-excursion
           (delete-region beg end)
           (goto-char beg)
-          (let ((s (make-string (- end beg) ?-)))
+          (let ((s (make-string (- end beg) char)))
             (insert s))))
       (define-key evil-normal-state-map (kbd "zx") 'evil-operator-try)
     #+END_SRC
