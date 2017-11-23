@@ -1646,13 +1646,6 @@ M-x subword-mode
     (add-hook 'web-mode-hook 'my-web-mode-hook))
 #+END_SRC
 
-*** css/less:
-
-#+BEGIN_SRC emacs-lisp
-  (use-package less-css-mode
-    :ensure t)
-#+END_SRC
-
 *** js: js2-mode
 
 #+BEGIN_SRC emacs-lisp
@@ -1683,11 +1676,7 @@ M-x subword-mode
     (add-hook 'before-save-hook 'tide-format-before-save)
     (add-hook 'typescript-mode-hook #'setup-tide-mode))
 #+END_SRC
-*** jsx: React
-    #+BEGIN_SRC emacs-lisp
-      (use-package rjsx-mode
-        :ensure t)
-    #+END_SRC
+
 *** json: json-mode, json-reformat
 
 #+BEGIN_SRC emacs-lisp
@@ -1729,6 +1718,7 @@ M-x subword-mode
     :init
     (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 #+END_SRC
+
 *** go
     #+BEGIN_SRC emacs-lisp
       (use-package go-mode
@@ -1789,6 +1779,13 @@ M-x subword-mode
   (use-package scss-mode
     :ensure t)
 #+END_SRC
+*** css/less:
+
+#+BEGIN_SRC emacs-lisp
+  (use-package less-css-mode
+    :ensure t)
+#+END_SRC
+
 ** completions
 *** ivy
 #+BEGIN_SRC emacs-lisp
@@ -1932,6 +1929,11 @@ M-x subword-mode
     :ensure t)
 #+END_SRC
 
+*** jsx: React
+    #+BEGIN_SRC text
+      (use-package rjsx-mode
+        :ensure t)
+    #+END_SRC
 
 *** Rust
 
