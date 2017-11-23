@@ -339,69 +339,6 @@ M-x subword-mode
       ;; display-line-numbers-current-absolute nil
       ;; display-line-numbers 'visual
     #+END_SRC
-** lisp-intro-tutorial-exercises
-*** CH02. Evaluation
-
-1. Find a file with which you are working and move towards its middle.
-2. Find its buffer name, file name, length, and your position in the file.
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/lisp-intro/move-to-middle ()
-    "Move point to the middle of the file."
-    (interactive)
-    (goto-char (/ (buffer-size) 2)))
-
-  (defun ninrod/lisp-intro/file-info ()
-    "Echo information about the current buffer."
-    (interactive)
-    (let ((bname (buffer-name))
-          (fname (buffer-file-name))
-          (bsize (buffer-size))
-          (bpos  (point)))
-      (message "bname: %s, fname: %s, bsize: %d, bpos: %d" bname fname bsize bpos)))
-#+END_SRC
-
-*** CH03. Writing defuns
-**** write a function that doubles a number
-1. write a non-interactive function that doubles the value of its argument, a number.
-2. make the above function interactive
-#+begin_src emacs-lisp
-  (defun ninrod/lisp-intro/double-number (number)
-    "doubles the number passed in as argument."
-    (interactive "p")
-    (message "if i double this number it will became %d" (* 2 number)))
-#+end_src
-**** fill-column test
-+ write a function that tests whether the current value of `fill-column'
-is greater than the argument passed to the function, and if so, prints
-an appropriate message.
-#+begin_src emacs-lisp
-  (defun ninrod/lisp-intro/fill-test (test)
-    "tests if the argument is greater than fill-column."
-    (interactive "p")
-    (if (> test fill-column)
-        (message "the passed argument, %d is greater than fill-column, %d" test fill-column)
-      (message "fill-column (%d) is equal or greater than the argument (%d)" fill-column test)))
-#+end_src
-*** CH04. Buffer walk through
-**** Write your own `simplified-end-of-buffer' function definition; then test it to see whether it works.
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/lisp-intro/buffer-end ()
-    "Move point to the end of the buffer."
-    (interactive)
-    (push-mark)
-    (goto-char (point-max)))
-#+END_SRC
-**** Use `if' and `get-buffer' to write a function that prints a message telling you whether a buffer exists.
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/lisp-intro/buffer-exists (bufstr)
-    "Print something if BUFSTR exists as a buffer."
-    (interactive (list (read-buffer
-                        "Buffer to check: "
-                        (other-buffer (current-buffer) t))))
-    (if (get-buffer bufstr)
-        (message "BUFSTR %s is a valid buffer." bufstr)
-      (message "BUFSTR %s does not exist." bufstr)))
-#+END_SRC
 ** lisp-mode
 *** ninrod/eval-print-last-sexp
 
