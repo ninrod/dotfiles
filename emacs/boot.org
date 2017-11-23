@@ -840,7 +840,7 @@ M-x subword-mode
           (goto-char beg)
           (let ((s (make-string (- end beg) char)))
             (insert s))))
-      (define-key evil-normal-state-map (kbd "zx") 'evil-operator-try)
+      (define-key evil-normal-state-map (kbd "gr") 'evil-operator-try)
     #+END_SRC
 ** disabled packages
 *** evil-mc
