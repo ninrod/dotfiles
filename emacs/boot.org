@@ -20,22 +20,23 @@
               nil t)) ;; Append at the end of the hook list? no. Buffer-local? yes.
 #+END_SRC
 
-**** daemon-p evil-quit
+*** evil-quit
 
- - [[https://github.com/ninrod/dotfiles/issues/40][ninrod/dotfiles#40]]
- #+BEGIN_SRC emacs-lisp
-   (defun ninrod/advice-evil-quit (dumb-evil-quit &rest arguments)
-     "apply recent-f before quitting in daemon mode."
-     (cond ((and (= 1 (count-windows))
-                 (not (y-or-n-p "reeealy quit?")))
-            (message "'do not quit' override applied."))
-           (t
-            (when (daemonp)
-              (message "we are in daemon mode. saving recentf")
-              (recentf-save-list))
-            (apply dumb-evil-quit arguments))))
-   (advice-add #'evil-quit :around #'ninrod/advice-evil-quit)
- #+END_SRC
+- [[https://github.com/ninrod/dotfiles/issues/40][ninrod/dotfiles#40]]
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/advice-evil-quit (dumb-evil-quit &rest arguments)
+    "apply recent-f before quitting in daemon mode."
+    (cond ((and (= 1 (count-windows))
+                (not (ninrod--distro-p "arch"))
+                (not (y-or-n-p "reeealy quit?")))
+           (message "'do not quit' override applied."))
+          (t
+           (when (daemonp)
+             (message "we are in daemon mode. saving recentf")
+             (recentf-save-list))
+           (apply dumb-evil-quit arguments))))
+  (advice-add #'evil-quit :around #'ninrod/advice-evil-quit)
+#+END_SRC
 
 *** delete-frame
 
@@ -899,7 +900,6 @@ an appropriate message.
             (insert s))))
       (define-key evil-normal-state-map (kbd "g1") 'evil-operator-try)
     #+END_SRC
-
 ** disabled packages
 *** evil-mc
 
