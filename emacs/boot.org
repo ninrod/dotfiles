@@ -1486,7 +1486,6 @@ M-x subword-mode
     (setq magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1
           magit-repository-directories '("~/code/sources")
           magit-diff-refine-hunk 'all
-          magit-commit-ask-to-stage nil
           magit-completing-read-function 'ivy-completing-read)
     (use-package evil-magit :ensure t)
     (magit-add-section-hook 'magit-status-sections-hook ;https://github.com/magit/magit/issues/3230#issuecomment-339901429
