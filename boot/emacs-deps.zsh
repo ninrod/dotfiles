@@ -5,6 +5,7 @@ ningrab ninrod/rsynced-melpa
 
 # core editing
 ningrab noctuid/rect-ext.el
+ningrab emacs-evil/evil-surround
 
 # ningrab ninrod/evil
 # ningrab ninrod/targets.el
