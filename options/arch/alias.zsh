@@ -17,4 +17,3 @@ function warsaw-browser {
          lichti/warsaw-browser bb
 }
 alias bb="warsaw-browser bb"
-alias t="~/.options/arch/scripts/tmux-attach.sh"
