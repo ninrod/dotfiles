@@ -2815,8 +2815,9 @@ M-x subword-mode
    "j" 'lispyville-drag-forward)
   (lisp-comma-map
    "e" 'eval-defun
-   "d" 'ninrod/uarg-eval-defun            ;; instrument func with edebug
-   "b" 'eval-buffer)
+   "d" 'ninrod/uarg-eval-defun ;; instrument func with edebug
+   "b" 'eval-buffer
+   "h" 'lispy-describe-inline)
 #+END_SRC
 
 ** info
