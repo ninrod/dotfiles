@@ -692,7 +692,7 @@ M-x subword-mode
 #+END_SRC
 *** =r+textobject= operator that works in normal mode
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC text
       (evil-define-operator evil-operator-try (beg end type char)
         :move-point nil
         (interactive "<R>"
