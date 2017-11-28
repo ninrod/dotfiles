@@ -690,26 +690,6 @@ M-x subword-mode
   (use-package rect-ext
     :load-path "~/.dotfiles/deps/emacs/noctuid/rect-ext.el")
 #+END_SRC
-*** evil-surround
-
-#+BEGIN_SRC emacs-lisp
-  (use-package evil-surround
-    :load-path "~/.dotfiles/deps/emacs/emacs-evil/evil-surround"
-    :init
-    (with-eval-after-load 'evil-surround
-      (evil-add-to-alist
-       'evil-surround-pairs-alist ;; use non-spaced pairs when surrounding with an opening brace evil-surround/issues/86
-       ?\( '("(" . ")")
-       ?\[ '("[" . "]")
-       ?\{ '("{" . "}")
-       ?\) '("( " . " )")
-       ?\] '("[ " . " ]")
-       ?\} '("{ " . " }")))
-    :config
-    (global-evil-surround-mode 1))
-#+END_SRC
-
-
 *** =r+textobject= operator that works in normal mode
 
     #+BEGIN_SRC text
@@ -730,6 +710,24 @@ M-x subword-mode
     #+END_SRC
 
 ** melpa packages
+*** evil-surround
+
+#+BEGIN_SRC emacs-lisp
+  (use-package evil-surround
+    :ensure t
+    :init
+    (with-eval-after-load 'evil-surround
+      (evil-add-to-alist
+       'evil-surround-pairs-alist ;; use non-spaced pairs when surrounding with an opening brace evil-surround/issues/86
+       ?\( '("(" . ")")
+       ?\[ '("[" . "]")
+       ?\{ '("{" . "}")
+       ?\) '("( " . " )")
+       ?\] '("[ " . " ]")
+       ?\} '("{ " . " }")))
+    :config (global-evil-surround-mode 1))
+#+END_SRC
+
 *** evil-replace-with-register
 
 #+BEGIN_SRC emacs-lisp
