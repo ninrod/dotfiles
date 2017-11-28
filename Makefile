@@ -1,5 +1,3 @@
-all: install
-
 install:
 	./install.zsh
 
