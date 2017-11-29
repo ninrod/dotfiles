@@ -30,4 +30,4 @@ alias dot='la $(find ~ -maxdepth 1 -type l)'
 alias r='~/.dotfiles/install.zsh'
 
 # tmux
-alias t="~/.options/arch/scripts/tmux-attach.sh"
+alias t="~/.dotfiles/scripts/tmux/tmux-attach.sh"
