@@ -75,7 +75,7 @@ The files should be self descriptive. Just add a newline like this in, for examp
 ningrab githubuser/awesomeplugin
 #+END_SRC
 
-and then run =make= =~/.dotfiles= dir. The plugin will be fetched from github and placed in the correct location for you.
+and then run =make= in the =~/.dotfiles= directory. The plugin will be fetched from github and placed in the correct location for you.
 
 * Emacs: the timeless and infinitely powerful editor
 I maintain my configuration using an org-mode file, through org-babel.
