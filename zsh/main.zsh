@@ -26,3 +26,4 @@ source ~/.zsh.d/completions.zsh
 eval $(dircolors ~/.lscolors)
 
 source ~/.zsh.d/jump.zsh
+source ~/.zsh.d/fzf.zsh
