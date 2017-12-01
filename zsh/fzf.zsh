@@ -1,3 +1,8 @@
+if [[ ! -d ~/.fzf ]]; then
+  print "~/.fzf is missing. no fzf features will be loaded."
+  return
+fi
+
 # Setup fzf
 # ---------
 if [[ ! "$PATH" == */home/ninrod/.fzf/bin* ]]; then
