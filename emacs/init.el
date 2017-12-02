@@ -10,6 +10,8 @@
     (package-refresh-contents)
     (package-install 'use-package))
 
+  (use-package diminish :ensure t)
+
   (use-package org
     :pin org
     :ensure org-plus-contrib
