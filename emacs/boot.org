@@ -769,7 +769,7 @@ M-x subword-mode
 
 *** evil-embrace
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (use-package evil-embrace
     :ensure t
     :config
