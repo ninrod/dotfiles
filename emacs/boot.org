@@ -2705,7 +2705,7 @@ M-x subword-mode
      "U" 'dired-unmark
 
      ",s" 'dired-sort-extension
-     ",t" 'dired-details-toggle
+     ",w" 'wdired-change-to-wdired-mode
 
      "DEL" 'find-file
      "c" 'dired-do-copy
