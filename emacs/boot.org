@@ -767,16 +767,6 @@ M-x subword-mode
   :config (global-evil-visualstar-mode))
 #+END_SRC
 
-*** evil-embrace
-
-#+BEGIN_SRC text
-  (use-package evil-embrace
-    :ensure t
-    :config
-    (add-hook 'org-mode-hook 'embrace-org-mode-hook)
-    (evil-embrace-enable-evil-surround-integration))
-#+END_SRC
-
 *** evil-escape
 
 #+BEGIN_SRC emacs-lisp
@@ -869,6 +859,17 @@ M-x subword-mode
 
     :diminish "")
 #+END_SRC
+
+*** evil-embrace
+
+#+BEGIN_SRC text
+  (use-package evil-embrace
+    :ensure t
+    :config
+    (add-hook 'org-mode-hook 'embrace-org-mode-hook)
+    (evil-embrace-enable-evil-surround-integration))
+#+END_SRC
+
 
 * tweaks
 ** backups
