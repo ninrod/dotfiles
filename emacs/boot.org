@@ -832,6 +832,13 @@ M-x subword-mode
       (use-package exato
         :ensure t)
     #+END_SRC
+** dev support
+*** string-inflection
+    #+BEGIN_SRC emacs-lisp
+      (use-package string-inflection
+        :ensure t)
+    #+END_SRC
+
 ** disabled packages
 *** evil-mc
 
