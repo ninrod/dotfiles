@@ -32,8 +32,8 @@ ctrl + Escape
 ctrl + alt + Escape
         restart-emacs-daemon.sh
 ctrl + b
-        firefox
-        # google-chrome-stable --force-device-scale-factor=1.4
+        google-chrome-stable --force-device-scale-factor=1.4
+        # firefox
 ctrl + i
         idea.sh
 Print
