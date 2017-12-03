@@ -63,3 +63,11 @@ n () {
 }
 
 # }}}
+# npm-do: exec npm installed binaries locally {{{
+
+# hack extracted from: http://2ality.com/2016/01/locally-installed-npm-executables.html
+npm-do () {
+  (PATH=$(npm bin):$PATH; eval $@;)
+}
+
+# }}}
