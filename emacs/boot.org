@@ -877,7 +877,6 @@ M-x subword-mode
     (evil-embrace-enable-evil-surround-integration))
 #+END_SRC
 
-
 * tweaks
 ** backups
 
@@ -1781,18 +1780,6 @@ M-x subword-mode
               (revert-buffer t t t))
           (message "Error: Cannot find autoflake executable.")))
     #+END_SRC
-*** scss
-#+BEGIN_SRC emacs-lisp
-  (use-package scss-mode
-    :ensure t)
-#+END_SRC
-*** css/less:
-
-#+BEGIN_SRC emacs-lisp
-  (use-package less-css-mode
-    :ensure t)
-#+END_SRC
-
 ** completions
 *** ivy
 #+BEGIN_SRC emacs-lisp
