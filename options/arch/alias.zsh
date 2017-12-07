@@ -5,6 +5,9 @@ alias open=xdg-open
 alias mpdcli='ncmpcpp -b ~/.config/ncmpcpp/bindings.conf'
 alias locate='~/.options/arch/scripts/mylocate.zsh'
 
+alias nj='sudo netctl stop-all; sudo netctl start juliforever'
+alias nm='sudo netctl stop-all; sudo netctl start motorola'
+
 function warsaw-browser {
   xhost +
   docker run -it --rm                                              \
