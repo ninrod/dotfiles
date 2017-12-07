@@ -832,6 +832,13 @@ M-x subword-mode
       (use-package exato
         :ensure t)
     #+END_SRC
+*** vdiff
+    #+BEGIN_SRC emacs-lisp
+      (use-package vdiff
+        :ensure t
+        :config
+        (define-key vdiff-mode-map (kbd "C-c") vdiff-mode-prefix-map))
+    #+END_SRC
 ** dev support
 *** string-inflection
     #+BEGIN_SRC emacs-lisp
@@ -1495,6 +1502,15 @@ M-x subword-mode
           magit-diff-refine-hunk 'all
           magit-completing-read-function 'ivy-completing-read)
     (use-package evil-magit :ensure t)
+    (use-package vdiff-magit
+      :ensure t
+      :config
+      (define-key magit-mode-map "e" 'vdiff-magit-dwim)
+      (define-key magit-mode-map "E" 'vdiff-magit-popup)
+      (setcdr (assoc ?e (plist-get magit-dispatch-popup :actions))
+              '("vdiff dwim" 'vdiff-magit-dwim))
+      (setcdr (assoc ?E (plist-get magit-dispatch-popup :actions))
+              '("vdiff popup" 'vdiff-magit-popup)))
     (magit-add-section-hook 'magit-status-sections-hook ;https://github.com/magit/magit/issues/3230#issuecomment-339901429
                             'magit-insert-unpushed-to-upstream
                             'magit-insert-unpushed-to-upstream-or-recent
