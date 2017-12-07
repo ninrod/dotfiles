@@ -8,7 +8,7 @@ alias locate='~/.options/arch/scripts/mylocate.zsh'
 alias nj='sudo netctl stop-all; sudo netctl start juliforever'
 alias nm='sudo netctl stop-all; sudo netctl start motorola'
 
-function warsaw-browser {
+warsaw-browser() {
   xhost +
   docker run -it --rm                     \
          -e DISPLAY=unix$DISPLAY          \
