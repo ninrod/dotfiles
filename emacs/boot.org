@@ -690,25 +690,16 @@ M-x subword-mode
   (use-package rect-ext
     :load-path "~/.dotfiles/deps/emacs/noctuid/rect-ext.el")
 #+END_SRC
-*** =r+textobject= operator that works in normal mode
-
-    #+BEGIN_SRC text
-      (evil-define-operator evil-operator-try (beg end type char)
-        :move-point nil
-        (interactive "<R>"
-                     (unwind-protect
-                         (let ((evil-force-cursor 'replace))
-                           (evil-refresh-cursor)
-                           (list (evil-read-key)))
-                       (evil-refresh-cursor)))
-        (save-excursion
-          (delete-region beg end)
-          (goto-char beg)
-          (let ((s (make-string (- end beg) char)))
-            (insert s))))
-      (define-key evil-normal-state-map (kbd "gr") 'evil-operator-try)
-    #+END_SRC
-
+*** evil-replace-with-char
+#+BEGIN_SRC emacs-lisp
+  (use-package evil-replace-with-char
+    :load-path "~/.dotfiles/deps/emacs/ninrod/evil-replace-with-char")
+#+END_SRC
+*** evil-string-inflection
+#+BEGIN_SRC emacs-lisp
+  (use-package evil-string-inflection
+    :load-path "~/.dotfiles/deps/emacs/ninrod/evil-string-inflection")
+#+END_SRC
 ** melpa packages
 *** evil-surround
 

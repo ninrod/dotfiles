@@ -1,8 +1,10 @@
 mkdir -p $emacs_deps && cd $emacs_deps
 
-ningrab ninrod/rsynced-melpa
-ningrab noctuid/rect-ext.el
+# my packages
 ningrab ninrod/gruvbox-theme
+ningrab ninrod/rsynced-melpa
+ningrab ninrod/evil-replace-with-char
+ningrab ninrod/evil-string-inflection
 
-# ningrab ninrod/evil
-# ningrab ninrod/targets.el
+# 3rd party
+ningrab noctuid/rect-ext.el
