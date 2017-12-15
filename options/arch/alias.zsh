@@ -20,3 +20,8 @@ warsaw-browser() {
          lichti/warsaw-browser bb
 }
 alias bb="warsaw-browser bb"
+
+
+# conda
+alias sa='source activate'
+alias sd='source deactivate'
