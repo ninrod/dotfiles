@@ -31,11 +31,14 @@ ctrl + Escape
         emacsclient --create-frame
 ctrl + alt + Escape
         restart-emacs-daemon.sh
+
+# https://askubuntu.com/questions/978226/how-to-make-touch-screen-scrolling-work-in-firefox-quantum
 ctrl + b
-        google-chrome-stable --force-device-scale-factor=1.4
-        # firefox
+       MOZ_USE_XINPUT2=1 firefox
+
 ctrl + i
-        idea.sh
+       google-chrome-stable --force-device-scale-factor=1.4
+
 Print
         maim -d 3 ~/Downloads/screenshot.png
 ctrl + Print
