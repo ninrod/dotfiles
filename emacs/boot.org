@@ -1807,6 +1807,15 @@ M-x subword-mode
       (use-package pyvenv
         :ensure t)
 
+      (use-package conda
+        :ensure t
+        :config
+        (conda-env-initialize-interactive-shells)
+        (conda-env-autoactivate-mode t))
+
+      (use-package ob-ipython
+        :ensure t)
+
       (use-package py-isort
         :ensure t
         :config
