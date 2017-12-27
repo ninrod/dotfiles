@@ -1458,7 +1458,7 @@ M-x subword-mode
       (define-key evil-motion-state-map [down-mouse-1] 'ignore) ;; don't jump the cursor around in the window on clicking
       (define-key evil-motion-state-map [mouse-1] 'ignore)) ;; also avoid any '<mouse-1> is undefined' when setting to 'undefined
 
-    :diminish global-disable-mouse-mode "")
+    :diminish disable-mouse-global-mode)
 #+END_SRC
 
 *** atomic-chrome
