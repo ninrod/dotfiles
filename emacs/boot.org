@@ -895,6 +895,7 @@ M-x subword-mode
   (setq uniquify-buffer-name-style 'forward
         apropos-do-all t
         bookmark-save-flag 1
+        debug-on-error t
         mode-require-final-newline nil
         sentence-end-double-space nil
         require-final-newline nil
@@ -1807,14 +1808,6 @@ M-x subword-mode
       (use-package pyvenv
         :ensure t)
 
-      (use-package conda
-        :ensure t
-        :config
-        (conda-env-initialize-interactive-shells)
-        (conda-env-autoactivate-mode t))
-
-      (use-package ob-ipython
-        :ensure t)
 
       (use-package py-isort
         :ensure t
@@ -1832,6 +1825,16 @@ M-x subword-mode
                                      (shell-quote-argument (buffer-file-name))))
               (revert-buffer t t t))
           (message "Error: Cannot find autoflake executable.")))
+
+      ;; (use-package conda
+      ;;   :ensure t
+      ;;   :config
+      ;;   (conda-env-initialize-interactive-shells)
+      ;;   (conda-env-autoactivate-mode t))
+
+      ;; (use-package ob-ipython
+      ;;   :ensure t)
+
     #+END_SRC
 ** completions
 *** ivy
