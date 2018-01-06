@@ -9,7 +9,7 @@
   # The -u flag tells compinit to be silent about that.
   # more info here: http://stackoverflow.com/a/19601821/4921402
 # comp bootstrap
-autoload -Uz compinit && compinit -u
+autoload -Uz compinit && compinit
 zstyle ':completion:*' menu select
 
 
