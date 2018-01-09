@@ -1836,6 +1836,11 @@ M-x subword-mode
       ;;   :ensure t)
 
     #+END_SRC
+*** cucumber
+    #+BEGIN_SRC emacs-lisp
+      (use-package feature-mode
+        :ensure t)
+    #+END_SRC
 ** completions
 *** ivy
 #+BEGIN_SRC emacs-lisp
