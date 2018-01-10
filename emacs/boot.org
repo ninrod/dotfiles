@@ -85,7 +85,26 @@
     (interactive)
     (message (concat "copied path: \"" (neotree-copy-filepath-to-yank-ring) "\" to the clipboard.")))
 #+END_SRC
+*** terminal clipboard functions
+    - see: [[https://github.com/syl20bnr/spacemacs/issues/2222#issuecomment-156326990][this]] issue
+    #+BEGIN_SRC emacs-lisp
+      (defun ninrod/terminal/copy-to-clipboard ()
+        "When in terminal, copies selection to x-clipboard."
+        (interactive)
+        (cond ((and (region-active-p) (not (display-graphic-p)))
+               (shell-command-on-region (region-beginning) (region-end) "xsel -i -b")
+               (message "Yanked region to clipboard through terminal!")
+               (deactivate-mark))
+              (t (message "No region active; can't yank to clipboard!"))))
 
+      (defun ninrod/terminal/paste-from-clipboard ()
+        "When in terminal, pastes from x-clipboard."
+        (interactive)
+        (cond ((display-graphic-p)
+               (clipboard-yank)
+               (message "Graphics active, no need to use xclip."))
+              (t (insert (shell-command-to-string "xsel -o -b")))))
+    #+END_SRC
 ** environment
 *** ninrod--distro-p
     #+BEGIN_SRC emacs-lisp
@@ -690,22 +709,13 @@ M-x subword-mode
   (use-package rect-ext
     :load-path "~/.dotfiles/deps/emacs/noctuid/rect-ext.el")
 #+END_SRC
-*** evil-replace-with-char
-#+BEGIN_SRC emacs-lisp
-  (use-package evil-replace-with-char
-    :load-path "~/.dotfiles/deps/emacs/ninrod/evil-replace-with-char")
-#+END_SRC
-*** evil-string-inflection
-#+BEGIN_SRC emacs-lisp
-  (use-package evil-string-inflection
-    :load-path "~/.dotfiles/deps/emacs/ninrod/evil-string-inflection")
-#+END_SRC
 ** melpa packages
 *** evil-surround
 
 #+BEGIN_SRC emacs-lisp
   (use-package evil-surround
     :ensure t
+    ;; :load-path "/var/workbench/evil-surround"
     :init
     (with-eval-after-load 'evil-surround
       (evil-add-to-alist
@@ -2300,7 +2310,7 @@ M-x subword-mode
    "o" 'ninrod/pop-to-org-agenda
 
    ;; buffer ops
-   "y" 'ninrod/add-filename-to-kill-ring
+   "f" 'ninrod/add-filename-to-kill-ring
    "k" 'kill-this-buffer
    "w" 'widen
    "i" 'ibuffer
@@ -2311,6 +2321,8 @@ M-x subword-mode
    "s" 'sort-lines
    "e" 'evil-emacs-state
    "m" 'ninrod/evil-record-macro-z
+   "y" 'ninrod/terminal/copy-to-clipboard
+   "p" 'ninrod/terminal/paste-from-clipboard
    )
 #+END_SRC
 
