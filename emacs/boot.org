@@ -28,6 +28,7 @@
     "apply recent-f before quitting in daemon mode."
     (cond ((and (= 1 (count-windows))
                 (not (ninrod--distro-p "arch"))
+                (display-graphic-p)
                 (not (y-or-n-p "reeealy quit?")))
            (message "'do not quit' override applied."))
           (t
