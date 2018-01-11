@@ -828,11 +828,6 @@ M-x subword-mode
       (use-package evil-ediff
         :ensure t)
     #+END_SRC
-*** exato
-    #+BEGIN_SRC emacs-lisp
-      (use-package exato
-        :ensure t)
-    #+END_SRC
 *** vdiff
     #+BEGIN_SRC emacs-lisp
       (use-package vdiff
@@ -840,13 +835,12 @@ M-x subword-mode
         :config
         (define-key vdiff-mode-map (kbd "C-c") vdiff-mode-prefix-map))
     #+END_SRC
-** dev support
-*** string-inflection
+*** my own packages
     #+BEGIN_SRC emacs-lisp
-      (use-package string-inflection
-        :ensure t)
+      (use-package exato :ensure t)
+      (use-package evil-replace-with-char :ensure t)
+      (use-package evil-string-inflection :ensure t)
     #+END_SRC
-
 ** disabled packages
 *** evil-mc
 

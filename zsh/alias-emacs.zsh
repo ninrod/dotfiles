@@ -3,7 +3,7 @@
 # emacs client
 alias e="emacsclient"
 alias et="emacsclient --tty"
-alias eg="emacsclient --create-frame < /dev/null &>/dev/null &"
+alias eg="nohup emacsclient --create-frame < /dev/null &>/dev/null &"
 
 # daemon
 alias eb="background-connect-emacs-daemon.sh"
