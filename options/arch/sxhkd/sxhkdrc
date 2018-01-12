@@ -58,7 +58,8 @@ ctrl + alt + r
 # -sb: background of the current selected candidate
 # -sf: foreground of the current selected candidate
 alt + space
-        dmenu_run -fn "Office Code Pro-12:normal" -nb "#32302f" -nf "#ebdbb2" -sb "#0a0814" -sf "#fe8019" -p ">"
+    rofi -show run
+    # dmenu_run -fn "Office Code Pro-12:normal" -nb "#32302f" -nf "#ebdbb2" -sb "#0a0814" -sf "#fe8019" -p ">"
 
 # dmenu_run -p "run: " -fn "Source Code Pro 12"
 
@@ -126,7 +127,8 @@ super + {_,shift + }c
 
 # focus the last node/desktop
 alt + Tab
-	bspc {node,desktop} -f last
+    rofi -show window
+    # bspc {node,desktop} -f last
 
 # focus the older or newer node in the focus history
 super + {o,i}
