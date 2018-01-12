@@ -50,18 +50,15 @@ ctrl + alt + shift + p
 ctrl + alt + r
         ~/.options/arch/polybar/launch.sh
 
-# -------------------------- Emacs --------------------------
+# -------------------------- BSPWM --------------------------
+# focus the last node/desktop
+# ???? bspc {node,desktop} -f last
 
-# dmenu (from suckless)
-# -nb: background
-# -nf: foreground
-# -sb: background of the current selected candidate
-# -sf: foreground of the current selected candidate
 alt + space
-    rofi -show run
-    # dmenu_run -fn "Office Code Pro-12:normal" -nb "#32302f" -nf "#ebdbb2" -sb "#0a0814" -sf "#fe8019" -p ">"
+    rofi -theme gruvbox-dark-hard -show run
 
-# dmenu_run -p "run: " -fn "Source Code Pro 12"
+alt + Tab
+    rofi -show window
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -124,11 +121,6 @@ super + {_,shift + }c
 # super + bracket{left,right}
 # alt + {p,n}
 # 	bspc desktop -f {prev,next}
-
-# focus the last node/desktop
-alt + Tab
-    rofi -show window
-    # bspc {node,desktop} -f last
 
 # focus the older or newer node in the focus history
 super + {o,i}
