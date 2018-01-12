@@ -1846,6 +1846,11 @@ M-x subword-mode
       (use-package feature-mode
         :ensure t)
     #+END_SRC
+*** groovy
+    #+BEGIN_SRC emacs-lisp
+      (use-package groovy-mode
+        :ensure t)
+    #+END_SRC
 ** completions
 *** ivy
 #+BEGIN_SRC emacs-lisp
