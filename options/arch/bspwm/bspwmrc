@@ -41,5 +41,8 @@ feh --bg-fill ~/Dropbox/pics/wall/dark-arch.png
 # start emacs daemon
 ~/.dotfiles/scripts/emacs/up-emacs-daemon.sh &
 
-# iniciando redshift
+# start redshift
 redshift &
+
+# start greenclip
+greenclip daemon

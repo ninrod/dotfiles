@@ -50,15 +50,20 @@ ctrl + alt + shift + p
 ctrl + alt + r
         ~/.options/arch/polybar/launch.sh
 
-# -------------------------- BSPWM --------------------------
-# focus the last node/desktop
-# ???? bspc {node,desktop} -f last
-
+# -------------------------- rofi --------------------------
 alt + space
     rofi -theme gruvbox-dark-hard -show run
 
 alt + Tab
     rofi -show window
+
+# stolen from: https://www.reddit.com/r/unixporn/comments/5mszii/greenclip_simple_clipboard_manager_integrated/
+alt + c
+    rofi -modi "clipboard:greenclip print" -show clipboard
+
+# -------------------------- BSPWM --------------------------
+# focus the last node/desktop
+# ???? bspc {node,desktop} -f last
 
 # make sxhkd reload its configuration files:
 super + Escape
