@@ -25,5 +25,4 @@ source ~/.zsh.d/completions.zsh
 # colors for GNU ls (from coreutils)
 eval $(dircolors ~/.lscolors)
 
-source ~/.zsh.d/jump.zsh
 source ~/.zsh.d/fzf.zsh

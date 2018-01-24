@@ -32,5 +32,3 @@ alias r='~/.dotfiles/install.zsh'
 # tmux
 alias t="~/.dotfiles/scripts/tmux/tmux-attach.sh"
 
-# jump
-alias jp="jq -r '.[] | {Path} | .Path' < ~/.jump/scores.json"
