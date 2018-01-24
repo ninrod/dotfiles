@@ -36,13 +36,25 @@ bspc rule -a libreoffice-calc state=tiled
 # visual effects
 feh --bg-fill ~/Dropbox/pics/wall/dark-arch.png
 
+# ------------------------------------
+# daemon spawn section
+kill_proc() {
+  pgrep -f $1 >/dev/null && pkill -9 -f $1
+}
+
+# launch polybar
+kill_proc polybar
 ~/.config/polybar/launch.sh &
 
 # start emacs daemon
+kill_proc emacs
 ~/.dotfiles/scripts/emacs/up-emacs-daemon.sh &
 
 # start redshift
-redshift &
+kill_proc redshift
+redshift -c ~/.dotfiles/redshift/redshift.conf &
 
-# start greenclip
-greenclip daemon
+# greenclip: clear history and spawn
+kill_proc greenclip
+greenclip clear
+greenclip daemon &
