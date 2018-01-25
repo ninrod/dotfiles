@@ -1,7 +1,6 @@
 cd() {
   builtin cd $1
-  sed -i "1i$(pwd)" $DIR_HISTORY
-  content=$(awk '!a[$0]++' $DIR_HISTORY)
+  local content=$(sed "1i$(pwd)" $DIR_HISTORY | awk '!a[$0]++')
   echo $content > $DIR_HISTORY
   local EOL='$'
   local NUM=$DIR_TRACKER_NUM
