@@ -4,7 +4,7 @@ pwd_hook() {
   local _cwd=$(pwd)
   lines=($_cwd)
 
-  for line in $(awk '!a[$0]++' $DIR_HISTORY )
+  for line in $(awk '!a[$0]++' $DIR_HISTORY)
   do
     if [[ $_cwd !=  $line ]]; then
       lines+=($line)
@@ -16,7 +16,7 @@ pwd_hook() {
 
 
 show_and_choose(){
-  choice=$( tail -n +2 $DIR_HISTORY | cat - -b | fzf | awk '{print $2}' )
+  choice=$( tail -n +2 $DIR_HISTORY | cat - -b | fzf | awk '{print $2}')
   if [ -n "$choice" ]; then
     cd $choice
   fi
@@ -25,4 +25,3 @@ show_and_choose(){
 # Hook functions
 chpwd_functions+=(pwd_hook)
 typeset -U chpwd_functions
-
