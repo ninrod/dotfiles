@@ -52,7 +52,7 @@ kill_proc emacs
 
 # start redshift
 kill_proc redshift
-redshift -c ~/.dotfiles/redshift/redshift.conf &
+redshift -c ~/.options/arch/redshift/redshift.conf &
 
 # greenclip: clear history and spawn
 kill_proc greenclip

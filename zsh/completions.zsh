@@ -31,6 +31,3 @@ zstyle ':completion:*' matcher-list '' \
 zstyle ':completion:*:functions' ignored-patterns '_*'
 zstyle ':completion:*' format $'\n%F{yellow}Completing %d%f\n'
 zstyle ':completion:*' group-name ''
-
-# project path completion
-source ~/.zsh.d/pj.zsh

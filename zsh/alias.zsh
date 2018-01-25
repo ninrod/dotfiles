@@ -33,7 +33,5 @@ alias r='~/.dotfiles/install.zsh'
 alias t="~/.dotfiles/scripts/tmux/tmux-attach.sh"
 
 # dirs
-
 alias d=show_and_choose
 alias 1='cd +1'
-

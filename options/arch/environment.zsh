@@ -29,4 +29,3 @@ nvm_config() {
 curdir=$(pwd -P)
 nvm_config
 cd $curdir
-
