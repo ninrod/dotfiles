@@ -1,8 +1,9 @@
 #! /usr/bin/env bash
 
-# to use, define a hosts file $servers with the following contents
-# blahblah.com - My delicious server
-# ilovemyserver.org - My other server
+# to use, define a hosts file $servers with the following contents:
+
+# blahblah.com       - My delicious server
+# ilovemyserver.org  - My other server
 # so.on.and.so.forth - ...
 
 user=myuser
