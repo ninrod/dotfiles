@@ -1,14 +1,28 @@
-cd() {
-  builtin cd $1
-  local content=$(sed "1i$(pwd)" $DIR_HISTORY | awk '!a[$0]++')
-  echo $content > $DIR_HISTORY
-  local EOL='$'
-  local NUM=$DIR_TRACKER_NUM
-  sed -i "${NUM},${EOL} d" $DIR_HISTORY
+pwd_hook() {
+  touch $DIR_HISTORY
+
+  local _cwd=$(pwd)
+  lines=($_cwd)
+
+  for line in $(awk '!a[$0]++' $DIR_HISTORY )
+  do
+    if [[ $_cwd !=  $line ]]; then
+      lines+=($line)
+    fi
+  done
+
+  printf "%s\n" "${lines[@]:0:20}" > $DIR_HISTORY
 }
 
 
-show_and_choose() {
-  local choice=$(tail -n +2 $DIR_HISTORY | cat - -b | fzf | awk '{print $2}')
-  [[ -n $choice ]] && cd $choice
+show_and_choose(){
+  choice=$( tail -n +2 $DIR_HISTORY | cat - -b | fzf | awk '{print $2}' )
+  if [ -n "$choice" ]; then
+    cd $choice
+  fi
 }
+
+# Hook functions
+chpwd_functions+=(pwd_hook)
+typeset -U chpwd_functions
+
