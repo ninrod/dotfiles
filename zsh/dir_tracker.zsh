@@ -1,5 +1,3 @@
-[[ ! -e $DIR_HISTORY ]] && echo $HOME > $DIR_HISTORY
-
 cd() {
   builtin cd $1
   sed -i "1i$(pwd)" $DIR_HISTORY
