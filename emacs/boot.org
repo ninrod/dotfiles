@@ -156,7 +156,7 @@
     (interactive)
     (if (or (ninrod--distro-p "arch") (ninrod--distro-p "Darwin"))
         (ninrod/open-file "~/code/sources/gtd/inbox.org")
-      (ninrod/open-file "/var/workbench/gtd/inbox.org")))
+      (ninrod/open-file "~/code/sources/workbench/gtd/inbox.org")))
 
   (defun ninrod/open-slot-9 ()
     "Open next.org."
