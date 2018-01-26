@@ -154,23 +154,17 @@
   (defun ninrod/open-slot-8 ()
     "Open inbox.org."
     (interactive)
-    (if (or (ninrod--distro-p "arch") (ninrod--distro-p "Darwin"))
-        (ninrod/open-file "~/code/sources/gtd/inbox.org")
-      (ninrod/open-file "~/code/sources/workbench/gtd/inbox.org")))
+    (ninrod/open-file "~/code/sources/gtd/inbox.org"))
 
   (defun ninrod/open-slot-9 ()
     "Open next.org."
     (interactive)
-      (if (or (ninrod--distro-p "arch") (ninrod--distro-p "Darwin"))
-        (ninrod/open-file "~/code/sources/gtd/next.org")
-      (ninrod/open-file "/var/workbench/gtd/next.org")))
+    (ninrod/open-file "~/code/sources/gtd/next.org"))
 
   (defun ninrod/open-slot-4 ()
     "Open project 4."
     (interactive)
-    (if (or (ninrod--distro-p "arch") (ninrod--distro-p "Darwin"))
-        (ninrod/open-file "~/code/sources/gtd/projects/oficina.org")
-      (ninrod/open-file "/var/workbench/gtd/projects/oficina.org")))
+    (ninrod/open-file "~/code/sources/gtd/projects/oficina.org"))
 
   (defun ninrod/open-slot-5 ()
     "Open project 5."
@@ -716,7 +710,7 @@ M-x subword-mode
 #+BEGIN_SRC emacs-lisp
   (use-package evil-surround
     :ensure t
-    ;; :load-path "/var/workbench/evil-surround"
+    ;; :load-path "~/code/sources/evil-surround"
     :init
     (with-eval-after-load 'evil-surround
       (evil-add-to-alist
@@ -1459,7 +1453,8 @@ M-x subword-mode
   (use-package disable-mouse
     :ensure t
     :config
-    (when  (not (ninrod--distro-p "moby"))
+    (when  (not (or (ninrod--distro-p "moby")
+                    (ninrod--distro-p "linuxkit")))
       (global-disable-mouse-mode)
       (define-key evil-motion-state-map [down-mouse-1] 'ignore) ;; don't jump the cursor around in the window on clicking
       (define-key evil-motion-state-map [mouse-1] 'ignore)) ;; also avoid any '<mouse-1> is undefined' when setting to 'undefined
