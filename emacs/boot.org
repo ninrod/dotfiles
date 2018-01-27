@@ -1891,8 +1891,11 @@ M-x subword-mode
 #+BEGIN_SRC emacs-lisp
   (use-package yasnippet
     :ensure t
-    :config (yas-global-mode 1)
+    :config
+    (add-to-list 'auto-mode-alist '("\\.snippet\\'" . snippet-mode))
+    (yas-global-mode 1)
     :diminish yas-minor-mode "")
+
 #+END_SRC
 
 *** company
