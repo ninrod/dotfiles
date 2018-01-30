@@ -727,7 +727,7 @@ M-x subword-mode
 #+BEGIN_SRC emacs-lisp
   (use-package evil-replace-with-register :ensure t
     :init
-    (setq evil-replace-with-register-key (kbd "gp"))
+    (setq evil-replace-with-register-key (kbd "gr"))
     :config
     (evil-replace-with-register-install))
 #+END_SRC
