@@ -184,9 +184,7 @@
   (defun ninrod/open-slot-1 ()
     "Open project 1."
     (interactive)
-    (if (or (ninrod--distro-p "arch") (ninrod--distro-p "Darwin"))
-        (ninrod/open-file "~/code/sources/gtd/info/owshit.org")
-      (ninrod/open-file "/var/workbench/gtd/info/owshit.org")))
+    (ninrod/open-file "~/code/sources/gtd/info/owshit.org"))
 #+END_SRC
 
 *** ninrod/open-file
@@ -837,33 +835,6 @@ M-x subword-mode
       (use-package evil-string-inflection :ensure t)
     #+END_SRC
 ** disabled packages
-*** evil-mc
-
-#+BEGIN_SRC text
-  (use-package evil-mc
-    :ensure t
-    :config
-    ;; (global-evil-mc-mode  1)
-
-    ;; stolen from @noctuid's comment on: https://github.com/gabesoft/evil-mc/issues/22#issuecomment-267682745
-    (defun evil--mc-make-cursor-at-col (startcol _endcol orig-line)
-      (move-to-column startcol)
-      (unless (= (line-number-at-pos) orig-line)
-        (evil-mc-make-cursor-here)))
-    (defun evil-mc-make-vertical-cursors (beg end)
-      (interactive (list (region-beginning) (region-end)))
-      (evil-mc-pause-cursors)
-      (apply-on-rectangle #'evil--mc-make-cursor-at-col
-                          beg end (line-number-at-pos (point)))
-      (evil-mc-resume-cursors)
-      (evil-normal-state)
-      (move-to-column (evil-mc-column-number (if (> end beg)
-                                                 beg
-                                               end))))
-
-    :diminish "")
-#+END_SRC
-
 *** evil-embrace
 
 #+BEGIN_SRC text
