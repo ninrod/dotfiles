@@ -911,10 +911,18 @@ M-x subword-mode
 
 ** hooks
 *** prog-mode
-    #+BEGIN_SRC emacs-lisp
-      ;; (add-hook 'prog-mode-hook #'ninrod/toggle-relative-line-numbers)
-      ;; (add-hook 'org-mode-hook #'ninrod/toggle-relative-line-numbers)
-    #+END_SRC
+     #+BEGIN_SRC emacs-lisp
+       (when (>= emacs-major-version 26)
+         (add-hook 'prog-mode-hook
+                   #'(lambda ()
+                       (setq-local display-line-numbers-current-absolute t)
+                       (setq display-line-numbers 'visual)))
+
+         (add-hook 'org-mode-hook
+                   #'(lambda ()
+                       (setq-local display-line-numbers-current-absolute nil)
+                       (setq display-line-numbers 'visual))))
+     #+END_SRC
 *** sh-mode
     #+BEGIN_SRC emacs-lisp
       ;; (add-hook 'sh-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
