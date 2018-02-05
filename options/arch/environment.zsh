@@ -5,10 +5,12 @@ CUSTOM_SCRIPTS=~/.dotfiles/scripts/emacs:~/.dotfiles/scripts/vim:~/.dotfiles/scr
 LINUX_SCRIPTS=~/.options/arch/scripts
 CARGO_BIN=~/.cargo/bin
 GO_BIN=~/go/bin
+HOME_LOCAL_BIN=~/.local/bin
 PATH="$CUSTOM_SCRIPTS:$PATH"
 PATH="$LINUX_SCRIPTS:$PATH"
 PATH="$CARGO_BIN:$PATH"
 PATH="$GO_BIN:$PATH"
+PATH="$HOME_LOCAL_BIN:$PATH"
 export PATH
 
 # hack stolen from: https://github.com/rust-lang-nursery/rustfmt/issues/1687#issuecomment-308756211
