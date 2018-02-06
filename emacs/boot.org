@@ -870,15 +870,12 @@ M-x subword-mode
 *** prog-mode
      #+BEGIN_SRC emacs-lisp
        (when (>= emacs-major-version 26)
-         (add-hook 'prog-mode-hook
-                   #'(lambda ()
-                       (setq-local display-line-numbers-current-absolute t)
-                       (setq display-line-numbers 'visual)))
-
-         (add-hook 'org-mode-hook
-                   #'(lambda ()
-                       (setq-local display-line-numbers-current-absolute nil)
-                       (setq display-line-numbers 'visual))))
+         (ninrod/add-to-hooks
+          #'(lambda ()
+              (setq-local display-line-numbers-current-absolute nil)
+              (setq display-line-numbers 'visual))
+          '(org-mode-hook
+            prog-mode-hook)))
      #+END_SRC
 *** sh-mode
     #+BEGIN_SRC emacs-lisp
