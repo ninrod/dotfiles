@@ -822,7 +822,7 @@ M-x subword-mode
   (setq uniquify-buffer-name-style 'forward
         apropos-do-all t
         bookmark-save-flag 1
-        debug-on-error t
+        debug-on-error nil
         mode-require-final-newline nil
         sentence-end-double-space nil
         require-final-newline nil
