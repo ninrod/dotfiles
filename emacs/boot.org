@@ -2104,21 +2104,6 @@ M-x subword-mode
    )
 #+END_SRC
 
-*** numbers
-
-#+BEGIN_SRC emacs-lisp
-  (spc-map
-   "0" 'ninrod/open-slot-0
-   "9" 'ninrod/open-slot-9
-   "8" 'ninrod/open-slot-8
-
-   "5" 'ninrod/open-slot-5
-   "4" 'ninrod/open-slot-4
-   "3" 'ninrod/open-slot-3
-   "1" 'ninrod/open-slot-1
-   )
-#+END_SRC
-
 *** function keys
 
 #+BEGIN_SRC emacs-lisp
