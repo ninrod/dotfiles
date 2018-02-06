@@ -867,7 +867,7 @@ M-x subword-mode
 #+END_SRC
 
 ** hooks
-*** prog-mode
+*** line-number bootstrap
      #+BEGIN_SRC emacs-lisp
        (when (>= emacs-major-version 26)
          (ninrod/add-to-hooks
@@ -876,7 +876,8 @@ M-x subword-mode
               (setq display-line-numbers 'visual))
           '(org-mode-hook
             prog-mode-hook
-            markdown-mode-hook)))
+            markdown-mode-hook
+            conf-unix-mode-hook)))
      #+END_SRC
 *** sh-mode
     #+BEGIN_SRC emacs-lisp
