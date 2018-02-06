@@ -174,7 +174,7 @@
   (defun ninrod/open-slot-3 ()
     "Open project 3."
     (interactive)
-    (ninrod/echo "slot available"))
+    (ninrod/open-file "~/code/sources/gtd/journal/2018.org"))
 
   (defun ninrod/open-slot-2 ()
     "Open project 2."
