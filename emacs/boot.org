@@ -143,50 +143,6 @@
     (evil-ex "'<,'>norm @z"))
 #+END_SRC
 ** file/dir/buffer commands
-*** ninrod/open-*
-
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/open-slot-0 ()
-    "Open boot.org."
-    (interactive)
-    (ninrod/open-file "~/.emacs.d/boot.org"))
-
-  (defun ninrod/open-slot-8 ()
-    "Open inbox.org."
-    (interactive)
-    (ninrod/open-file "~/code/sources/gtd/inbox.org"))
-
-  (defun ninrod/open-slot-9 ()
-    "Open next.org."
-    (interactive)
-    (ninrod/open-file "~/code/sources/gtd/next.org"))
-
-  (defun ninrod/open-slot-4 ()
-    "Open project 4."
-    (interactive)
-    (ninrod/open-file "~/code/sources/gtd/projects/oficina.org"))
-
-  (defun ninrod/open-slot-5 ()
-    "Open project 5."
-    (interactive)
-    (ninrod/echo "slot available"))
-
-  (defun ninrod/open-slot-3 ()
-    "Open project 3."
-    (interactive)
-    (ninrod/open-file "~/code/sources/gtd/journal/2018.org"))
-
-  (defun ninrod/open-slot-2 ()
-    "Open project 2."
-    (interactive)
-    (ninrod/echo "slot available"))
-
-  (defun ninrod/open-slot-1 ()
-    "Open project 1."
-    (interactive)
-    (ninrod/open-file "~/code/sources/gtd/info/owshit.org"))
-#+END_SRC
-
 *** ninrod/open-file
 
 #+BEGIN_SRC emacs-lisp
