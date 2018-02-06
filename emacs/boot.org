@@ -875,7 +875,8 @@ M-x subword-mode
               (setq-local display-line-numbers-current-absolute nil)
               (setq display-line-numbers 'visual))
           '(org-mode-hook
-            prog-mode-hook)))
+            prog-mode-hook
+            markdown-mode-hook)))
      #+END_SRC
 *** sh-mode
     #+BEGIN_SRC emacs-lisp
