@@ -1718,8 +1718,6 @@ M-x subword-mode
 
       (setenv "RUST_BACKTRACE" "1")
     #+END_SRC
-
-
 *** python
     #+BEGIN_SRC emacs-lisp
       (use-package anaconda-mode
@@ -1780,6 +1778,13 @@ M-x subword-mode
     #+BEGIN_SRC emacs-lisp
       (use-package groovy-mode
         :ensure t)
+    #+END_SRC
+*** PKGBUILD
+    #+BEGIN_SRC emacs-lisp
+      (use-package pkgbuild-mode
+        :ensure t
+        :config
+        (setq auto-mode-alist (append '(("/PKGBUILD$" . pkgbuild-mode)) auto-mode-alist)))
     #+END_SRC
 ** completions
 *** ivy
