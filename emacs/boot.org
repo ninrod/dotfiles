@@ -589,6 +589,17 @@ M-x subword-mode
     ;; M-x list-buffers???
     (execute-extended-command '(4) "buffer-menu"))
 #+END_SRC
+** string manipulation
+*** reverse the chars of a string
+    - found [[https://emacs.stackexchange.com/a/38159/12585][here]]
+    #+BEGIN_SRC emacs-lisp
+      (defun ninrod/reverse-region (beg end)
+        "Reverse characters between BEG and END."
+        (interactive "r")
+        (let ((region (buffer-substring beg end)))
+          (delete-region beg end)
+          (insert (nreverse region))))
+    #+END_SRC
 
 * evil
 ** bootstrap
