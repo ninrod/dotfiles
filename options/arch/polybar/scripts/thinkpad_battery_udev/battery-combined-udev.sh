@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# main idea: all that you need to probe battery performance lie in this beautiful file:
+# $ cat /sys/class/power_supply/BAT0/uevent
+# $ ls /sys/class/power_supply/BAT0
+# it is the same for BAT1 for thinkpads
+
 battery_print() {
     path_ac="/sys/class/power_supply/AC"
     path_battery_0="/sys/class/power_supply/BAT0"
