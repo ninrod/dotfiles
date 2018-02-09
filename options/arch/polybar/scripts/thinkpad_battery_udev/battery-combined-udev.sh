@@ -94,7 +94,7 @@ case "$1" in
     while true; do
       battery_print
 
-      sleep 2 &
+      sleep 5 &
       wait
     done
     ;;
