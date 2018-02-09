@@ -1,0 +1,4 @@
+SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_ONLINE}=="0", \
+    RUN+="/home/ninrod/.options/arch/polybar/scripts/thinkpad_battery_udev/battery-combined-udev.sh --update"
+SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_ONLINE}=="1", \
+    RUN+="/home/ninrod/.options/arch/polybar/scripts/thinkpad_battery_udev/battery-combined-udev.sh --update"
