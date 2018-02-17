@@ -1939,7 +1939,8 @@ M-x subword-mode
           (setq circe-network-options
                 `(("Freenode"
                    :nick "ninrod"
-                   :channels ("#emacs" "#emacs-circe"))
+                   :nickserv-password ,freenode-ninrod-pass
+                   :channels ("#emacs-evil"))
                   ("Mozilla"
                    :host "irc.mozilla.org"
                    :tls t
