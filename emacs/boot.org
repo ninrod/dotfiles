@@ -200,12 +200,7 @@
 #+END_SRC
 *** ninrod/parent-dir
     #+BEGIN_SRC emacs-lisp
-      (defun ninrod/parent-dir (dirname times)
-        "get the parent dir of DIRNAME"
-        (let* ((path (file-truename dirname)))
-          (dotimes (number times path)
-            (setq path (file-name-directory (directory-file-name path))))
-          path))
+      
     #+END_SRC
 ** interesting M-x commands
 *** misc
@@ -1940,18 +1935,25 @@ M-x subword-mode
       (when (ninrod--distro-p "arch")
         (use-package circe
           :ensure t
-          :config
+          :init
           (setq circe-network-options
-                '(("Freenode"
+                `(("Freenode"
                    :nick "ninrod"
                    :channels ("#emacs" "#emacs-circe"))
-                  ("mozilla"
+                  ("Mozilla"
                    :host "irc.mozilla.org"
                    :tls t
                    :port 6697
                    :nick "ninrod"
-                   :channels ("#rust-beginners")
-                   )))))
+                   :channels ("#rust")
+                   :sasl-username "ninrod"
+                   :sasl-password ,mozilla-ninrod-pass
+                   )))
+          (setq lui-logging-directory (expand-file-name ninrod--circe-logs-dir))
+          (load "lui-logging" nil t)
+          (evil-set-initial-state 'circe-channel-mode 'emacs)
+          (evil-set-initial-state 'circe-server-mode 'emacs)
+          (enable-lui-logging-globally)))
     #+END_SRC
 ** disabled
 *** powershell
