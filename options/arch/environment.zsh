@@ -14,7 +14,6 @@ PATH="$HOME_LOCAL_BIN:$PATH"
 export PATH
 
 # hack stolen from: https://github.com/rust-lang-nursery/rustfmt/issues/1687#issuecomment-308756211
-export LD_LIBRARY_PATH=$(rustc --print sysroot)/lib:$LD_LIBRARY_PATH
 
 nvm_config() {
   cd $(readlink -f ~/.dotfiles)
