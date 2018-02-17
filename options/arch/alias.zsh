@@ -1,6 +1,6 @@
 # pacman
 
-alias pmfs='pacman -Fs'  # query file database. a whatprovides local
+alias pmfs='pacman -Fs'      # query file database for a command
 alias pmss='pacman -Ss'      # search for packages
 alias pmqm='pacman -Qm'      # list foreign, manually installed
 alias pmquent='pacman -Qent' # list all explicit installed packages
