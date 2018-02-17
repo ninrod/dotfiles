@@ -1935,6 +1935,23 @@ M-x subword-mode
         (with-eval-after-load 'flycheck
           (flycheck-package-setup)))
     #+END_SRC
+*** circe
+    #+BEGIN_SRC emacs-lisp
+      (use-package circe
+        :ensure t
+        :config
+        (setq circe-network-options
+              '(("freenode"
+                 :nick "ninrod"
+                 :channels ("#emacs" "#emacs-circe"))
+                ("mozilla"
+                 :host "irc.mozilla.org"
+                 :tls t
+                 :port 6697
+                 :nick "ninrod"
+                 :channels ("#rust-beginners")
+                 ))))
+    #+END_SRC
 ** disabled
 *** powershell
 
