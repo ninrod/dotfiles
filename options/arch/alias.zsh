@@ -1,12 +1,12 @@
 # pacman
 
-alias pmfs='pacman -Fs'       # query file database for a command
-alias pmss='pacman -Ss'       # search for packages
-alias pmqm='pacman -Qm'       # list foreign, manually installed
-alias pmquent='pacman -Qent'  # list all explicit installed packages
-alias pmqmdt='pacman -Qmdt'   # foreign and orphans and installted as deps
-alias pms='sudo pacman -S'    # install
-alias pmsu='sudo pacman -Syu' # update
+alias pmfs='pacman -Fs'        # query file database for a command
+alias pmss='pacman -Ss'        # search for packages
+alias pmqm='pacman -Qm'        # list foreign, manually installed
+alias pmquent='pacman -Qent'   # list all explicit installed packages
+alias pmqmdt='pacman -Qmdt'    # foreign and orphans and installted as deps
+alias pms='sudo pacman -S'     # install
+alias pmsyu='sudo pacman -Syu' # update
 
 # conda
 alias sa='source activate'
