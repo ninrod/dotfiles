@@ -851,7 +851,7 @@ M-x subword-mode
 
     (setq nin--chosen-font "Hack-15")
     (if (ninrod--distro-p "workbench")
-        (setq nin--chosen-font "Hack-14")
+        (setq nin--chosen-font "Fantasque Sans Mono-16")
       (if (ninrod--distro-p "arch")
           (setq nin--chosen-font "Fantasque Sans Mono-17")))
 
