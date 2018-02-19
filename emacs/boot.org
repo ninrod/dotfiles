@@ -1765,6 +1765,8 @@ M-x subword-mode
               (revert-buffer t t t))
           (message "Error: Cannot find autoflake executable.")))
 
+      (add-to-list 'auto-mode-alist '("Pipfile" . toml-mode))
+
       ;; (use-package conda
       ;;   :ensure t
       ;;   :config
