@@ -62,7 +62,7 @@ xmap ga <Plug>(EasyAlign)
 
 nnoremap <leader>f :Files<cr>
 nnoremap <leader>r :History<cr>
-nnoremap <leader>g :GitFiles<cr>
+nnoremap gh :GitFiles<cr>
 nnoremap <leader>i :Buffers<cr>
 
 " FZF Mapping selecting mappings
