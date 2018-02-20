@@ -60,10 +60,10 @@ xmap ga <Plug>(EasyAlign)
 " }}}
 " fzf.vim {{{
 
-nnoremap <leader>f :Files<cr>
-nnoremap <leader>r :History<cr>
-nnoremap gh :GitFiles<cr>
+nnoremap <leader>g :GitFiles<cr>
 nnoremap <leader>i :Buffers<cr>
+nnoremap <leader>. :Files<cr>
+nnoremap gh :History<cr>
 
 " FZF Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
