@@ -15,6 +15,8 @@ ningrab vim-scripts/ReplaceWithRegister
 ningrab wellle/targets.vim
 ningrab kana/vim-textobj-user
 ningrab kana/vim-textobj-entire
+ningrab junegunn/fzf.vim
+ningrab junegunn/vim-easy-align
 
 # fetch cosmetic deps
 ningrab morhetz/gruvbox

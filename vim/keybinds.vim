@@ -38,3 +38,7 @@ nmap <leader>l <C-W>l
 nmap <space>j <C-F>
 nmap <space>k <C-B>
 
+" jungunn's easy align
+
+nmap ga <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)
