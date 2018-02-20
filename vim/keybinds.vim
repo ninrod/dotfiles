@@ -38,6 +38,9 @@ nmap s <Leader>
 omap s <Leader>
 xmap s <Leader>
 
+" emacs keybind standardization
+nnoremap mk :bd<cr>
+
 " }}}
 " window operations {{{
 
