@@ -1,3 +1,5 @@
+" core binds {{{
+
 nnoremap gl G
 vnoremap gl G
 onoremap gl G
@@ -17,17 +19,28 @@ xnoremap ( {
 nnoremap ) }
 xnoremap ) }
 
-" space is my leader key, but '\' remains as leader.
-nmap s <Leader>
-omap s <Leader>
-xmap s <Leader>
-
 xnoremap io iw
 xnoremap ao aw
 onoremap io iw
 onoremap ao aw
 
-" window operations
+omap ir i[
+omap ar a[
+xmap ir i[
+xmap ar a[
+
+omap ic i{
+omap ac a{
+xmap ic i{
+xmap ac a{
+
+nmap s <Leader>
+omap s <Leader>
+xmap s <Leader>
+
+" }}}
+" window operations {{{
+
 nmap <leader>y <C-W>v
 nmap <leader>x <C-W>s
 nmap <leader>h <C-W>h
@@ -38,7 +51,34 @@ nmap <leader>l <C-W>l
 nmap <space>j <C-F>
 nmap <space>k <C-B>
 
-" jungunn's easy align
+" }}}
+" jungunn/vim-easy-align {{{
 
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
+
+" }}}
+" fzf.vim {{{
+
+nnoremap <leader>f :Files<cr>
+nnoremap <leader>r :History<cr>
+nnoremap <leader>g :GitFiles<cr>
+nnoremap <leader>i :Buffers<cr>
+
+" FZF Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" FZF Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
+" }}}
+" nin-scratch {{{
+
+nnoremap gs :NinScratch<CR>
+
+" }}}
