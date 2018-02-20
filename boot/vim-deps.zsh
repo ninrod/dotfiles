@@ -17,6 +17,7 @@ ningrab kana/vim-textobj-user
 ningrab kana/vim-textobj-entire
 ningrab junegunn/fzf.vim
 ningrab junegunn/vim-easy-align
+ningrab ninrod/ninscratch-vim
 
 # fetch cosmetic deps
 ningrab morhetz/gruvbox
