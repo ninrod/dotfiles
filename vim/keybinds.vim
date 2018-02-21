@@ -96,3 +96,15 @@ vnoremap <silent> K :MultipleCursorsFind <C-R>/<CR>
 nnoremap <BS> :NERDTreeToggle<CR>
 
 " }}}
+" romainl auto expansions {{{
+
+" hack found here: https://www.reddit.com/r/vim/comments/6h0dy7/which_autoclosing_plugin_do_you_use/diujtbd/
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-r>=icr#ICR()\<CR>"
+inoremap (; (<CR>);<C-c>O
+inoremap (, (<CR>),<C-c>O
+inoremap {; {<CR>};<C-c>O
+inoremap {, {<CR>},<C-c>O
+inoremap [; [<CR>];<C-c>O
+inoremap [, [<CR>],<C-c>O
+
+" }}}
