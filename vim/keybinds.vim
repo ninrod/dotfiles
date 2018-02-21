@@ -85,3 +85,9 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 nnoremap gs :NinScratch<CR>
 
 " }}}
+" multiple-cursors {{{
+
+nnoremap <silent> K :MultipleCursorsFind <C-R>/<CR>
+vnoremap <silent> K :MultipleCursorsFind <C-R>/<CR>
+
+" }}}
