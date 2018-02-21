@@ -5,7 +5,12 @@ ningrab bronson/vim-visual-star-search
 ningrab chaoren/vim-wordmotion
 ningrab ervandew/supertab
 ningrab jiangmiao/auto-pairs
-ningrab ninrod/vim-multiple-cursors
+ningrab junegunn/fzf.vim
+ningrab junegunn/vim-easy-align
+ningrab kana/vim-textobj-entire
+ningrab kana/vim-textobj-user
+ningrab ninrod/ninscratch-vim
+ningrab terryma/vim-multiple-cursors
 ningrab tommcdo/vim-exchange
 ningrab tpope/vim-commentary
 ningrab tpope/vim-pathogen
@@ -13,15 +18,10 @@ ningrab tpope/vim-repeat
 ningrab tpope/vim-surround
 ningrab vim-scripts/ReplaceWithRegister
 ningrab wellle/targets.vim
-ningrab kana/vim-textobj-user
-ningrab kana/vim-textobj-entire
-ningrab junegunn/fzf.vim
-ningrab junegunn/vim-easy-align
-ningrab ninrod/ninscratch-vim
 
 # fetch cosmetic deps
-ningrab morhetz/gruvbox
 ningrab itchyny/lightline.vim
+ningrab morhetz/gruvbox
 
 # pathogen installation
 PATHOGEN_FILE=$vim_deps/tpope/vim-pathogen/autoload/pathogen.vim
