@@ -27,3 +27,9 @@ let g:multi_cursor_exit_from_insert_mode=0
 
 " fzf installation
 set rtp+=~/.fzf
+
+" Activation based on file type
+augroup rainbow_lisp
+  autocmd!
+  autocmd FileType lisp,clojure,scheme RainbowParentheses
+augroup END
