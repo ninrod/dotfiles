@@ -17,6 +17,7 @@ ningrab tpope/vim-repeat
 ningrab tpope/vim-surround
 ningrab vim-scripts/ReplaceWithRegister
 ningrab wellle/targets.vim
+ningrab Raimondi/delimitMate
 
 # fetch cosmetic deps
 ningrab itchyny/lightline.vim
@@ -28,3 +29,4 @@ PATHOGEN_FILE=$vim_deps/tpope/vim-pathogen/autoload/pathogen.vim
 AUTOLOAD_DIR=~/.vim/autoload
 [[ ! -d  $AUTOLOAD_DIR ]] && mkdir -p $AUTOLOAD_DIR
 cp $PATHOGEN_FILE ~/.vim/autoload
+
