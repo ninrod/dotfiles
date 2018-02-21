@@ -18,6 +18,7 @@ ningrab tpope/vim-surround
 ningrab vim-scripts/ReplaceWithRegister
 ningrab wellle/targets.vim
 ningrab Raimondi/delimitMate
+ningrab scrooloose/nerdtree
 
 # fetch cosmetic deps
 ningrab itchyny/lightline.vim

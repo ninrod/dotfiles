@@ -65,7 +65,7 @@ xmap ga <Plug>(EasyAlign)
 
 nnoremap <leader>g :GitFiles<cr>
 nnoremap <leader>i :Buffers<cr>
-nnoremap <BS> :Files<cr>
+nnoremap <leader>. :Files<cr>
 nnoremap gh :History<cr>
 
 " FZF Mapping selecting mappings
@@ -89,5 +89,10 @@ nnoremap gs :NinScratch<CR>
 
 nnoremap <silent> K :MultipleCursorsFind <C-R>/<CR>
 vnoremap <silent> K :MultipleCursorsFind <C-R>/<CR>
+
+" }}}
+" nerdtree {{{
+
+nnoremap <BS> :NERDTreeToggle<CR>
 
 " }}}
