@@ -33,6 +33,3 @@ augroup rainbow_lisp
   autocmd!
   autocmd FileType lisp,clojure,scheme RainbowParentheses
 augroup END
-
-let g:delimitMate_expand_cr = 1
-
