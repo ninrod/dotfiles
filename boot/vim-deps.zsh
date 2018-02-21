@@ -4,7 +4,6 @@ mkdir -p $vim_deps && cd $vim_deps
 ningrab bronson/vim-visual-star-search
 ningrab chaoren/vim-wordmotion
 ningrab ervandew/supertab
-ningrab jiangmiao/auto-pairs
 ningrab junegunn/fzf.vim
 ningrab junegunn/vim-easy-align
 ningrab kana/vim-textobj-entire
@@ -22,6 +21,7 @@ ningrab wellle/targets.vim
 # fetch cosmetic deps
 ningrab itchyny/lightline.vim
 ningrab morhetz/gruvbox
+ningrab junegunn/rainbow_parentheses.vim
 
 # pathogen installation
 PATHOGEN_FILE=$vim_deps/tpope/vim-pathogen/autoload/pathogen.vim

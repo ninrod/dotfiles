@@ -27,6 +27,3 @@ let g:multi_cursor_exit_from_insert_mode=0
 
 " fzf installation
 set rtp+=~/.fzf
-
-" auto pairs accent fix
-" let g:AutoPairsShortcutBackInsert = ''
