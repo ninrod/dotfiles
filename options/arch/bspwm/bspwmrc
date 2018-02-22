@@ -34,7 +34,6 @@ bspc rule -a Libreoffice state=tiled
 bspc rule -a libreoffice-calc state=tiled
 
 # visual effects
-feh --bg-fill ~/Dropbox/pics/wall/dark-arch.png
 
 # ------------------------------------
 # daemon spawn section
@@ -58,3 +57,6 @@ redshift -c ~/.options/arch/redshift/redshift.conf &
 greenclip clear
 kill_proc greenclip
 greenclip daemon &
+
+# wallpaper
+feh --bg-fill ~/Dropbox/pics/juli/DSCF0207.jpg

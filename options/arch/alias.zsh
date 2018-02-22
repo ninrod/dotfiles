@@ -7,6 +7,7 @@ alias pmquent='pacman -Qent'   # list all explicit installed packages
 alias pmqmdt='pacman -Qmdt'    # foreign and orphans and installted as deps
 alias pms='sudo pacman -S'     # install
 alias pmsyu='sudo pacman -Syu' # update
+alias pmr='sudo pacman -R'     # remove
 
 # conda
 alias sa='source activate'
@@ -15,7 +16,7 @@ alias sd='source deactivate'
 # random
 alias xclip="xclip -selection c"
 alias bat="sudo tlp stat -b"
-alias pdf="evince"
+alias pdf="mupdf"
 alias open=xdg-open
 alias mpdcli='ncmpcpp -b ~/.config/ncmpcpp/bindings.conf'
 
