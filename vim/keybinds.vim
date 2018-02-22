@@ -98,6 +98,9 @@ nnoremap <BS> :NERDTreeToggle<CR>
 " }}}
 " romainl auto expansions {{{
 
+" auto-closing sucks:
+" jingmiao autopairs has a bug with vim-multiple-cursors
+" Rom$%/delimitMate has a bug with vim completions if <CR> is enabled
 " hack found here: https://www.reddit.com/r/vim/comments/6h0dy7/which_autoclosing_plugin_do_you_use/diujtbd/
 inoremap (; (<CR>);<C-c>O
 inoremap (, (<CR>),<C-c>O
