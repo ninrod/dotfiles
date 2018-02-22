@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # main idea: all that you need to probe battery performance lie in this beautiful file:
 # $ cat /sys/class/power_supply/BAT0/uevent
-# $ ls /sys/class/power_supply/BAT0
-# it is the same for BAT1 for thinkpads
+# additional helper files: $ ls /sys/class/power_supply/BAT0
+# tip: thinkpads also have BAT1
 
 battery_print() {
   path_ac="/sys/class/power_supply/AC"
@@ -44,7 +44,7 @@ battery_print() {
   battery_percent_float=$(bc -l <<< "($battery_level * 100) / $battery_max" | cut -c1-4)
 
   if [ "$ac" -eq 1 ]; then
-    icon="#1"
+    icon=""
 
     if [ "$battery_percent" -gt 97 ]; then
       echo "$icon"
@@ -94,7 +94,7 @@ case "$1" in
     while true; do
       battery_print
 
-      sleep 15 &
+      sleep 5 &
       wait
     done
     ;;
