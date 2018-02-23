@@ -13,5 +13,15 @@
 		"pkgname": "go-mtpfs-git",
 		"url": "https://api.github.com/repos/hanwen/go-mtpfs",
 		"sha": "d6f8f3c05ce0ed31435057ec342268a0735863bb"
+	},
+	{
+		"pkgname": "tamzen-font-git",
+		"url": "https://api.github.com/repos/sunaku/tamzen-font",
+		"sha": "047976a00514c7082dc4ad296d4293c096deb8a3"
+	},
+	{
+		"pkgname": "phallus-fonts-git",
+		"url": "https://api.github.com/repos/phallus/fonts",
+		"sha": "83589de5b4b1134b89bfa9663686e5288ebe9131"
 	}
 ]
