@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-fusermount -u ~/s8
+sudo umount ~/s8
 rm -r ~/s8
