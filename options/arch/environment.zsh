@@ -30,3 +30,6 @@ nvm_config() {
 curdir=$(pwd -P)
 nvm_config
 cd $curdir
+
+# android
+export ANDROID_HOME=/home/ninrod/Android/Sdk
