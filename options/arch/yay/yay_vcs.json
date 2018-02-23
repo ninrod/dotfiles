@@ -8,5 +8,10 @@
 		"pkgname": "polybar-git",
 		"url": "https://api.github.com/repos/jaagr/polybar/branches",
 		"sha": "0fd614b0a92efceda40086d592a2426af5afe988"
+	},
+	{
+		"pkgname": "go-mtpfs-git",
+		"url": "https://api.github.com/repos/hanwen/go-mtpfs",
+		"sha": "d6f8f3c05ce0ed31435057ec342268a0735863bb"
 	}
 ]

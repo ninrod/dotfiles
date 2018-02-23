@@ -2,7 +2,7 @@
 
 # $ adb devices
 # List of devices attached
-# ce03171370c7970705	device
+# ce0917199c15b0700d      device
 
 # temp marvin@zen $ adb shell dumpsys power| grep lock
 #   mHoldingWakeLockSuspendBlocker=true
@@ -11,7 +11,7 @@
 
 
 function verify_galaxys8_connected {
-  adb devices | grep ce03171370c7970705 > /dev/null
+  adb devices | grep ce0917199c15b0700d > /dev/null
   if [ $? -eq 0 ]; then
     echo "Galaxy S8 Connected!"
   else
@@ -36,10 +36,9 @@ function verify_galaxys8_locked {
 #verify_galaxys8_connected
 verify_galaxys8_locked
 
-
 MOUNT_POINT=~/s8
 mkdir -p $MOUNT_POINT
-go-mtpfs $MOUNT_POINT
+go-mtpfs $MOUNT_POINT &
 
 if [ $? -eq 0 ]; then
   echo "Command succeeded."
