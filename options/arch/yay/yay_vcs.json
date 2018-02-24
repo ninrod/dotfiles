@@ -23,5 +23,10 @@
 		"pkgname": "phallus-fonts-git",
 		"url": "https://api.github.com/repos/phallus/fonts",
 		"sha": "83589de5b4b1134b89bfa9663686e5288ebe9131"
+	},
+	{
+		"pkgname": "gdm3setup-utils",
+		"url": "https://api.github.com/repos/Nano77/various",
+		"sha": "f3b9c877bce8121adb3711b2ebfb8b8ede8e9a7f"
 	}
 ]

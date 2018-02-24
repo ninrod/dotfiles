@@ -49,7 +49,7 @@ battery_print() {
     if [ "$battery_percent" -gt 97 ]; then
       echo "$icon"
     else
-      echo "$icon $battery_percent %"
+      echo "$icon ${battery_percent}%"
     fi
   else
     if [[ $(cat /sys/class/power_supply/BAT0/power_now) = 0 ]]; then

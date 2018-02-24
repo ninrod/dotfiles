@@ -33,6 +33,32 @@ bspc rule -a Zathura state=tiled
 bspc rule -a Libreoffice state=tiled
 bspc rule -a libreoffice-calc state=tiled
 
+# xinitrc migration
+# arch specific stuff
+# see: https://www.reddit.com/r/archlinux/comments/6o2il3/script_in_xinitrcd_not_running_automatically/
+if [[ -d /etc/X11/xinit/xinitrc.d ]]; then
+  for f in /etc/X11/xinit/xinitrc.d/?*.sh; do
+    [[ -x "$f" ]] && source "$f"
+  done
+  unset f
+fi
+
+# heavy daemons
+command -v udiskie > /dev/null 2>&1 && udiskie &
+command -v dropbox-cli > /dev/null 2>&1 && dropbox-cli start &
+
+# Xorg configurations
+XREC=~/.Xresources; [[ -f $XREC ]] && xrdb -merge $XREC
+MODMAP=~/.Xmodmap;  [[ -f $MODMAP ]] && xmodmap $MODMAP
+
+# daemons
+sxhkd &
+# xchainkeys &
+# mpd &
+
+# tip from: https://darryldias.me/06/bspwm-on-debian/
+xsetroot -cursor_name left_ptr &
+
 # visual effects
 
 # ------------------------------------
