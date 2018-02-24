@@ -2255,16 +2255,14 @@ M-x subword-mode
    :keymaps '(normal visual motion)
    :prefix "m"
    "" nil
-
-   ;; "TAB" 'reserved
    ;; "DEL" 'cd
    ;; "d"   'reserved
+   ;; "t"   'reserved
 
-   ;; important modes
    "c" 'magit-clone
    "g" 'ninrod/uarg-magit-status
-   "t" 'neotree-toggle
    "o" 'ninrod/pop-to-org-agenda
+   "TAB" 'neotree-toggle
 
    ;; buffer ops
    "f" 'ninrod/add-filename-to-kill-ring
