@@ -7,9 +7,9 @@
 # if lsmod | grep nfs does not return 0, you may have updgraded the kernel. reboot.
 # you can test this with modprobe nfs
 
-cloud_filipe=~/cloud-filipe
-cloud_eve=~/cloud-eve
-cloud_public=~/cloud-public
+cloud_filipe=~/julicloud/filipe
+cloud_eve=~/julicloud/eve
+cloud_public=~/julicloud/public
 
 mkdir -p $cloud_filipe
 mkdir -p $cloud_eve
