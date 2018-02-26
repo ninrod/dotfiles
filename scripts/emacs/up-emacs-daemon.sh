@@ -29,3 +29,9 @@ fi
 
 boostrap_time=$(emacsclient -e "(emacs-init-time)")
 echo -e "emacs daemon boostrap time: ${Cyan}${boostrap_time}${Rst}"
+
+unamestr=$(uname -a)
+if [[ "$unamestr" == *"Linux"* ]] && [[ $unamestr == *"ARCH"* ]]; then
+  notify-send 'emacs-daemon' "emacs daemon boostrap time: ${boostrap_time}"
+fi
+

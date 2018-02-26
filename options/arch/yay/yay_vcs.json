@@ -28,5 +28,10 @@
 		"pkgname": "gdm3setup-utils",
 		"url": "https://api.github.com/repos/Nano77/various",
 		"sha": "f3b9c877bce8121adb3711b2ebfb8b8ede8e9a7f"
+	},
+	{
+		"pkgname": "polybar",
+		"url": "https://api.github.com/repos/jaagr/polybar",
+		"sha": "29aa2487b94fb3372e7551d3b0b7f01a2ade549a"
 	}
 ]
