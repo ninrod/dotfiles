@@ -86,3 +86,9 @@ greenclip daemon &
 
 # wallpaper
 feh --bg-fill ~/Dropbox/pics/juli/DSCF0207.jpg
+
+eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg.pkcs11,secrets,ssh)
+export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT SSH_AUTH_SOCK
+
+# network manager
+nm-applet &
