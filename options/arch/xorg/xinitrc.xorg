@@ -1,4 +1,4 @@
 # -*- mode: sh -*-
 
 # bootstrap bspwm
-# exec bspwm
+exec bspwm
