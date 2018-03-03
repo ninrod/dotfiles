@@ -60,7 +60,10 @@ battery_print() {
     bat0_energy=$(cat /sys/class/power_supply/BAT0/energy_now)
     bat1_energy=$(cat /sys/class/power_supply/BAT1/energy_now)
     total_energy=$(bc -l <<< "$bat0_energy + $bat1_energy")
-    hours=$(bc <<< "$total_energy/$power" | cut -c1-4)" hs"
+    hours=$(bc <<< "$total_energy/$power" | cut -c1-4)"hs"
+    hours_discrete=$(bc <<< "$total_energy/$power")
+    hours_float=$(bc -l <<< "$total_energy/$power")
+    minutes=$(echo "scale=0; (($hours_float - $hours_discrete) * 60)/1" | bc)"min"
     power_float=$(bc -l <<< "$power/1000000" | cut -c1-4)
 
     if [ "$battery_percent" -gt 85 ]; then
@@ -75,7 +78,7 @@ battery_print() {
     else
       icon=""
     fi
-    echo "$icon ${battery_percent_float}% $hours ${power_float}W"
+    echo "$icon ${battery_percent_float}% $hours $minutes ${power_float}W"
   fi
 }
 

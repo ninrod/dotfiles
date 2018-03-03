@@ -303,6 +303,21 @@ M-x subword-mode
       ;; display-line-numbers-current-absolute nil
       ;; display-line-numbers 'visual
     #+END_SRC
+*** toggle display normal line numbers
+    #+BEGIN_SRC emacs-lisp
+      (defun ninrod/toggle-normal-line-numbers ()
+
+        "Toogle showing relative line numbers."
+        (interactive)
+        (if display-line-numbers
+            (setq display-line-numbers nil)
+          (progn
+            (setq  display-line-numbers-current-absolute nil)
+            (setq display-line-numbers t))))
+
+      ;; display-line-numbers-current-absolute nil
+      ;; display-line-numbers 'visual
+    #+END_SRC
 ** lisp-mode
 *** ninrod/eval-print-last-sexp
 
