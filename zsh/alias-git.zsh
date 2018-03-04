@@ -26,6 +26,7 @@ alias git_log_custom='git log --pretty=format:"%C(yellow)%h%Creset %C(cyan)%>(14
 alias gld='git_log_custom --graph --date=format:"%Y-%m-%d %H:%M:%S"'
 alias gl='gld --date=relative'
 alias gla='gld --date=relative --all'
+alias glr='gld --date=relative --all --reflog'
 alias glnc='git log --no-color'
 alias glt="git log --no-color --date-order --tags --simplify-by-decoration --pretty=format:'%ai %h %d' --date=format:'%Y-%m-%d %H:%M:%S' | grep --color tag"
 
