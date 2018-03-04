@@ -8,6 +8,7 @@ alias pmqmdt='pacman -Qmdt'    # foreign and orphans and installted as deps
 alias pms='sudo pacman -S'     # install
 alias pmsyu='sudo pacman -Syu' # update
 alias pmr='sudo pacman -R'     # remove
+alias pmr='sudo pacman'        # sudo pacman
 
 # conda
 alias sa='source activate'
