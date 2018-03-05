@@ -33,7 +33,7 @@ ctrl + alt + Escape
         restart-emacs-daemon.sh
 
 # https://askubuntu.com/questions/978226/how-to-make-touch-screen-scrolling-work-in-firefox-quantum
-ctrl + b
+alt + i
        MOZ_USE_XINPUT2=1 firefox
 
 ctrl + i
