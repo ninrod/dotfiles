@@ -1,3 +1,3 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-connect-emacs-daemon.sh "$@" > /dev/null &
+nohup emacsclient --create-frame "$@" < /dev/null &>/dev/null &
