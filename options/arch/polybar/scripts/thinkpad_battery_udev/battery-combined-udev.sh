@@ -74,7 +74,7 @@ battery_print() {
     minutes=$(echo "scale=0; (($hours_float - $hours_discrete) * 60)/1" | bc)
     formatted_minutes=$(format_minutes $minutes)
     power_float=$(bc -l <<< "$power/1000000" | cut -c1-4)
-    remaining=${hours_discrete}:${formatted_minutes}"Hs"
+    remaining=""${hours_discrete}:${formatted_minutes}
 
     if [ "$battery_percent" -gt 85 ]; then
       icon=""

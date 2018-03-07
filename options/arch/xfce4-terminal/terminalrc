@@ -1,5 +1,5 @@
 [Configuration]
-FontName=Fantasque Sans Mono 17
+FontName=Wuncon Siji 17
 MiscAlwaysShowTabs=FALSE
 MiscBell=FALSE
 MiscBellUrgent=FALSE
@@ -32,4 +32,5 @@ ScrollingUnlimited=TRUE
 ShortcutsNoHelpkey=TRUE
 ShortcutsNoMenukey=TRUE
 ShortcutsNoMnemonics=TRUE
+MiscNewTabAdjacent=FALSE
 
