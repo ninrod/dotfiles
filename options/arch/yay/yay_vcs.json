@@ -33,5 +33,10 @@
 		"pkgname": "polybar",
 		"url": "https://api.github.com/repos/jaagr/polybar",
 		"sha": "29aa2487b94fb3372e7551d3b0b7f01a2ade549a"
+	},
+	{
+		"pkgname": "siji-git",
+		"url": "https://api.github.com/repos/stark/siji",
+		"sha": "9d88311bb127b21672b2d4b43eed1ab0e494f143"
 	}
 ]
