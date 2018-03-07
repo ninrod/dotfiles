@@ -5,6 +5,14 @@
 # additional helper files: $ ls /sys/class/power_supply/BAT0
 # tip: thinkpads also have BAT1
 
+format_minutes() {
+  if (( $1 < 10 )); then
+    echo "0"$1
+    return 0
+  fi
+  echo $1
+}
+
 battery_print() {
   path_ac="/sys/class/power_supply/AC"
   path_battery_0="/sys/class/power_supply/BAT0"
@@ -63,8 +71,10 @@ battery_print() {
     hours=$(bc <<< "$total_energy/$power" | cut -c1-4)"hs"
     hours_discrete=$(bc <<< "$total_energy/$power")
     hours_float=$(bc -l <<< "$total_energy/$power")
-    minutes=$(echo "scale=0; (($hours_float - $hours_discrete) * 60)/1" | bc)"min"
+    minutes=$(echo "scale=0; (($hours_float - $hours_discrete) * 60)/1" | bc)
+    formatted_minutes=$(format_minutes $minutes)
     power_float=$(bc -l <<< "$power/1000000" | cut -c1-4)
+    remaining=${hours_discrete}:${formatted_minutes}"Hs"
 
     if [ "$battery_percent" -gt 85 ]; then
       icon=""
@@ -78,7 +88,7 @@ battery_print() {
     else
       icon=""
     fi
-    echo "$icon ${battery_percent_float}% $hours $minutes ${power_float}W"
+    echo "$icon ${battery_percent_float}% $remaining ${power_float}W"
   fi
 }
 
