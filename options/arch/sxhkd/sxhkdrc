@@ -101,9 +101,9 @@ super + ctrl + {x,y,z}
 
 # -------------------------- focus/swap --------------------------
 alt + {1-9,0}
-  bspc desktop -f {I,II,III,IV,V,VI,VII,VIII,IX,X}
+  bspc desktop -f {1-9,0}
 ctrl + {1-9,0}
-  bspc desktop -f {I,II,III,IV,V,VI,VII,VIII,IX,X}
+  bspc desktop -f {1-9,0}
 
 # focus or send to the given desktop
 super + shift {1-9,0}
