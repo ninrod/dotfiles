@@ -88,7 +88,7 @@ battery_print() {
     else
       icon=""
     fi
-    echo "$icon ${battery_percent_float}% $remaining ${power_float}W"
+    echo "$icon ${battery_percent_float}% $remaining ${power_float}"
   fi
 }
 
