@@ -32,3 +32,6 @@ source ~/.zsh.d/fzf.zsh
 # custom plugins
 source ~/.zsh.d/pj.zsh
 source ~/.zsh.d/dir_tracker.zsh
+
+# user last step
+source ~/.zsh.d/call_user_last_hook.zsh
