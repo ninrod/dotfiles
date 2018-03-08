@@ -5,4 +5,4 @@
 source ~/.options/arch/symlinks.zsh
 
 # arch specific java nuisance
-wmname LG3D
+# wmname LG3D

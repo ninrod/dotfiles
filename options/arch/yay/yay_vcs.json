@@ -38,5 +38,10 @@
 		"pkgname": "siji-git",
 		"url": "https://api.github.com/repos/stark/siji",
 		"sha": "9d88311bb127b21672b2d4b43eed1ab0e494f143"
+	},
+	{
+		"pkgname": "pgcli-git",
+		"url": "https://api.github.com/repos/amjith/pgcli",
+		"sha": "cde420e271c3a00312431784559b45c12681491a"
 	}
 ]

@@ -93,3 +93,6 @@ export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT SSH_AUTH_SOCK
 
 # network manager
 nm-applet &
+
+# java WM/bspwm specific nuisance
+wmname LG3D
