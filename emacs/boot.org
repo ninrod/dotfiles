@@ -1811,7 +1811,9 @@ M-x subword-mode
 *** kotlin
     #+BEGIN_SRC emacs-lisp
       (use-package kotlin-mode
-        :ensure t)
+        :ensure t
+        :config
+        (setq kotlin-tab-width 4))
     #+END_SRC
 ** completions
 *** ivy
