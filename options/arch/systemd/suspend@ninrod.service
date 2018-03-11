@@ -1,3 +1,8 @@
+# 01: place this file in /etc/systemd/system
+# 02: sudo systemctl enable suspend@ninrod.service
+# 03: sudo systemctl start suspend@ninrod.service
+# 04: edit /etc/systemd/logind.conf and uncomment HandleLidSwitch=suspend
+
 [Unit]
 Description=User suspend actions
 Before=suspend.target
@@ -6,8 +11,7 @@ Before=suspend.target
 User=ninrod
 Type=forking
 Environment=DISPLAY=:0
-ExecStart=/usr/bin/physlock -d
-# ExecStartPost=/usr/bin/sleep 1
+ExecStart=/home/ninrod/.options/arch/systemd/lock_if_unlocked.sh
 
 [Install]
 WantedBy=suspend.target
