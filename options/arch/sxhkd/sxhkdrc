@@ -44,12 +44,6 @@ Print
 ctrl + Print
         maim -s ~/Downloads/screenshot.png
 
-ctrl + alt + shift + p
-        ~/.options/arch/scripts/passmenu.sh
-
-ctrl + alt + r
-        ~/.options/arch/polybar/launch.sh
-
 # -------------------------- rofi --------------------------
 alt + space
     rofi -theme gruvbox-dark-hard -show run
@@ -74,8 +68,8 @@ super + alt + Escape
 	bspc quit
 
 # close and kill
-alt + {_,shift + }w
-	bspc node -{c,k}
+ctrl + {_,shift + }q
+	bspc node --{close,kill}
 
 # alternate between the tiled and monocle layout
 super + m
