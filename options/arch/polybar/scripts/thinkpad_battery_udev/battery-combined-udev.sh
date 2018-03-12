@@ -52,7 +52,7 @@ battery_print() {
   battery_percent_float=$(bc -l <<< "($battery_level * 100) / $battery_max" | cut -c1-4)
 
   if [ "$ac" -eq 1 ]; then
-    icon=""
+    icon=""
 
     if [ "$battery_percent" -gt 97 ]; then
       echo "$icon"
