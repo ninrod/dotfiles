@@ -33,4 +33,5 @@ ShortcutsNoHelpkey=TRUE
 ShortcutsNoMenukey=TRUE
 ShortcutsNoMnemonics=TRUE
 MiscNewTabAdjacent=FALSE
+ScrollingBar=TERMINAL_SCROLLBAR_NONE
 
