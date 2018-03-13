@@ -806,12 +806,12 @@ M-x subword-mode
         :config
         (define-key vdiff-mode-map (kbd "C-c") vdiff-mode-prefix-map))
     #+END_SRC
-*** my own packages
-    #+BEGIN_SRC emacs-lisp
-      (use-package exato :ensure t)
-      (use-package evil-replace-with-char :ensure t)
-      (use-package evil-string-inflection :ensure t)
-    #+END_SRC
+** my own packages
+   #+BEGIN_SRC emacs-lisp
+     (use-package exato :ensure t)
+     (use-package evil-replace-with-char :ensure t)
+     (use-package evil-string-inflection :ensure t)
+   #+END_SRC
 ** disabled packages
 *** evil-embrace
 

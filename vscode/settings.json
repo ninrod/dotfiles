@@ -1,8 +1,8 @@
 {
-    "editor.fontFamily": "'Iosevka Term'",
+    "editor.fontFamily": "fantasque sans mono",
     "editor.fontSize": 16,
     "editor.lineNumbers": "off",
-    "workbench.iconTheme": "material-icon-theme",
+    "workbench.iconTheme": "vscode-icons",
     "emmet.includeLanguages": {
         "javascript": "javascriptreact"
     },
