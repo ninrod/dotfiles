@@ -3,7 +3,9 @@
 PURPLE="#5F00AF"
 DARK_ORANGE="#613620"
 ZERODARK_BLUEDARK="#1f5582"
-GREEN="#00cd66"
+GREEN="#427b58"
+SECONDARY="#d3869b"
+ACCENT="#923D3D"
 
 # daemon config
 # bspc monitor -d I II III IV V VI VII VIII IX X
@@ -14,7 +16,7 @@ bspc config border_width          2
 bspc config split_ratio           0.52
 
 # bspc config focused_border_color $ZERODARK_BLUEDARK
-bspc config focused_border_color $GREEN
+bspc config focused_border_color $ACCENT
 bspc config normal_border_color  $DARK_ORANGE
 
 bspc config borderless_monocle    true
