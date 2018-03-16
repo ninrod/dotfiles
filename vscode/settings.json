@@ -2,7 +2,6 @@
     "editor.fontFamily": "fantasque sans mono",
     "editor.fontSize": 16,
     "editor.lineNumbers": "off",
-    "workbench.iconTheme": "vscode-icons",
     "emmet.includeLanguages": {
         "javascript": "javascriptreact"
     },
