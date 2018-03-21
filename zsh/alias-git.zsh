@@ -17,7 +17,8 @@ alias gm='git merge'
 ealias gr='git rebase'
 
 # branch
-alias gg='git branch -vv'
+# alias gg='git branch -vv'
+alias gg='nohup gitg 2>&1 > /dev/null &'
 ealias gb='git branch'
 ealias gco='git checkout'
 

@@ -19,7 +19,7 @@
 [mergetool "my_merge_meld"]
     # Choose one of these 2 lines (not both!) explained below.
     # cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
-    cmd = meld "$LOCAL" "$REMOTE" --diff "$BASE" "$LOCAL" --diff "$BASE" "$REMOTE" --diff "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+    cmd = meld "$LOCAL" "$REMOTE" --diff "$BASE" "$LOCAL" --diff "$BASE" "$REMOTE" --diff "$LOCAL" "$MERGED" "$REMOTE" --diff "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
 
 [core]
   editor = vim
