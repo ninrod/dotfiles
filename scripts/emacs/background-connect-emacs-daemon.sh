@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-nohup emacsclient --create-frame "$@" < /dev/null &>/dev/null &
+nohup emacsclient --create-frame "$@" > /dev/null 2>&1 &
