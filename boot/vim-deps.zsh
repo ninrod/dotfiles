@@ -23,6 +23,10 @@ ningrab itchyny/lightline.vim
 ningrab morhetz/gruvbox
 ningrab junegunn/rainbow_parentheses.vim
 
+# fetch buffer/file manipulation deps
+ningrab jlanzarotta/bufexplorer
+ningrab francoiscabrol/ranger.vim
+
 # pathogen installation
 PATHOGEN_FILE=$vim_deps/tpope/vim-pathogen/autoload/pathogen.vim
 AUTOLOAD_DIR=~/.vim/autoload
