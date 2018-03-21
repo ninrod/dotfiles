@@ -103,4 +103,4 @@ nm-applet &
 wmname LG3D
 
 # compton
-# compton --config ~/.options/arch/compton/compton.conf -b
+compton --config ~/.options/arch/compton/compton.conf -b
