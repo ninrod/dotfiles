@@ -17,10 +17,11 @@ alias gm='git merge'
 ealias gr='git rebase'
 
 # branch
-# alias gg='git branch -vv'
-alias gg='nohup gitg 2>&1 > /dev/null &'
 ealias gb='git branch'
 ealias gco='git checkout'
+# alias gg='git branch -vv'
+# with tip from https://stackoverflow.com/a/10708326/4921402
+alias gg='nohup gitg > /dev/null 2>&1 &'
 
 # log
 alias git_log_custom='git log --pretty=format:"%C(yellow)%h%Creset %C(cyan)%>(14)%ad%Creset %C(magenta)%<(7)%an%Creset %C(blue)%d%Creset %C(white)%s%Creset" --abbrev=7 '
