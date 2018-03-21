@@ -1,5 +1,7 @@
 # check
 alias g='git status -sb'
+alias gs='git status'
+alias gv='git branch -vv'
 alias gi='builtin cd $(git rev-parse --show-toplevel)'
 
 # add
