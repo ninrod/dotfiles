@@ -91,11 +91,6 @@ nnoremap <silent> K :MultipleCursorsFind <C-R>/<CR>
 vnoremap <silent> K :MultipleCursorsFind <C-R>/<CR>
 
 " }}}
-" nerdtree {{{
-
-nnoremap <BS> :NERDTreeToggle<CR>
-
-" }}}
 " romainl auto expansions {{{
 
 " auto-closing sucks:

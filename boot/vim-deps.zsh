@@ -17,7 +17,6 @@ ningrab tpope/vim-repeat
 ningrab tpope/vim-surround
 ningrab vim-scripts/ReplaceWithRegister
 ningrab wellle/targets.vim
-ningrab scrooloose/nerdtree
 
 # fetch cosmetic deps
 ningrab itchyny/lightline.vim
