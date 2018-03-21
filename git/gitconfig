@@ -9,14 +9,18 @@
 [difftool "my_diff_meld"]
     cmd = meld "$LOCAL" "$REMOTE"
 
+# Add the following to your .gitconfig file.
 [merge]
-  tool = vimdiff
+  tool = my_merge_meld
   defaultToUpstream = true
   conflictstyle = diff3
 [mergetool]
   keepBackup = false
-[difftool]
-  prompt = false
+[mergetool "my_merge_meld"]
+    # Choose one of these 2 lines (not both!) explained below.
+    # cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+    cmd = meld "$LOCAL" "$REMOTE" --diff "$BASE" "$LOCAL" --diff "$BASE" "$REMOTE" --diff "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+
 [core]
   editor = vim
   autocrlf = input
