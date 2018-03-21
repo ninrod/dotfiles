@@ -1,7 +1,14 @@
 [push]
   default = simple
+
+# Add the following to your .gitconfig file.
 [diff]
-  tool = vimdiff
+    tool = my_diff_meld
+[difftool]
+    prompt = false
+[difftool "my_diff_meld"]
+    cmd = meld "$LOCAL" "$REMOTE"
+
 [merge]
   tool = vimdiff
   defaultToUpstream = true
