@@ -16,7 +16,8 @@
 
 * Screenshots
 ** Emacs
-[[https://raw.githubusercontent.com/ninrod/dotshots/master/2017-08-emacs.png][https://raw.githubusercontent.com/ninrod/dotshots/master/2017-08-emacs.png]]
+[[https://github.com/ninrod/dotshots/blob/master/emacs-2018.03.21.png][https://github.com/ninrod/dotshots/blob/master/emacs-2018.03.21.png]]
+
 ** Vim, tmux and zsh
 [[https://raw.githubusercontent.com/ninrod/dotshots/master/2017-02-vim-tmux-zsh.png][https://raw.githubusercontent.com/ninrod/dotshots/master/2017-02-vim-tmux-zsh.png]]
 * Note
