@@ -100,3 +100,6 @@ nm-applet &
 
 # java WM/bspwm specific nuisance
 wmname LG3D
+
+# compton
+compton -b
