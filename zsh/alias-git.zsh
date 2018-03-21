@@ -14,7 +14,7 @@ alias gf='git fetch'
 alias gp='git push'
 alias gpf='git push --force-with-lease'
 alias gm='git merge'
-ealias gr='git rebase'
+ealias gr='git reset'
 
 # branch
 ealias gb='git branch'
