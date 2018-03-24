@@ -807,7 +807,7 @@ M-x subword-mode
         (define-key vdiff-mode-map (kbd "C-c") vdiff-mode-prefix-map))
     #+END_SRC
 ** my own packages
-   #+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC text
      (use-package exato :ensure t)
      (use-package evil-replace-with-char :ensure t)
      (use-package evil-string-inflection :ensure t)
@@ -1182,12 +1182,6 @@ M-x subword-mode
         :config
         (add-hook 'emacs-lisp-mode-hook 'highlight-defined-mode))
     #+END_SRC
-*** info+
-
-#+BEGIN_SRC emacs-lisp
-  (use-package info+
-    :ensure t)
-#+END_SRC
 
 *** kurecolor
 
@@ -1488,13 +1482,6 @@ M-x subword-mode
     (projectile-global-mode)
 
     :diminish global-projectile-mode "")
-#+END_SRC
-
-*** dired-sort
-
-#+BEGIN_SRC emacs-lisp
-  (use-package dired-sort
-    :ensure t)
 #+END_SRC
 
 *** neotree
