@@ -2131,15 +2131,16 @@ M-x subword-mode
 *** definer
 
 #+BEGIN_SRC emacs-lisp
-  (general-create-definer spc-map
-                          :states '(normal visual motion)
-                          :prefix "SPC")
+(general-create-definer spc-map
+  :prefix "SPC")
 #+END_SRC
 
 *** core
 
 #+BEGIN_SRC emacs-lisp
   (spc-map
+   :keymaps 'normal
+
    "TAB" 'ninrod/alternate-buffer
 
    "," 'pop-global-mark
@@ -2160,6 +2161,7 @@ M-x subword-mode
 
 #+BEGIN_SRC emacs-lisp
   (spc-map
+   :keymaps 'normal
    "<f12>" '(lambda ()
              (interactive)
              (ninrod/open-file "~/.emacs.d/boot.org")))
@@ -2168,7 +2170,9 @@ M-x subword-mode
 *** (d) emacs help
 
 #+BEGIN_SRC emacs-lisp
-  (spc-map "d" '(:ignore t :which-key "describe/help")
+  (spc-map
+    :keymaps 'normal
+    "d" '(:ignore t :which-key "describe/help")
     "da" 'apropos
     "db" 'emaps-describe-keymap-bindings
     "dc" 'describe-char
@@ -2191,6 +2195,7 @@ M-x subword-mode
     ("o" text-scale-decrease "out"))
 
   (spc-map "H" '(:ignore t :which-key "hydras")
+   :keymaps 'normal
    "Hz" 'hydra-zoom/body
    )
 #+END_SRC
@@ -2198,7 +2203,11 @@ M-x subword-mode
 *** (S) spelling
 
 #+BEGIN_SRC emacs-lisp
-  (spc-map "S" '(:ignore t :which-key "spelling")
+  (spc-map
+   :keymaps 'normal
+
+  "S" '(:ignore t :which-key "spelling")
+
            "Sw" '(ispell-word :which-key "ispell: check word")
            "Se" '((lambda () (interactive) (ispell-change-dictionary "english")) :which-key "ispell: use english dictionary")
            "Sp" '((lambda () (interactive) (ispell-change-dictionary "pt_BR")) :which-key "ispell: use pt_BR dictionary")
