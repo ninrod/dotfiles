@@ -89,10 +89,16 @@ greenclip clear
 kill_proc greenclip
 greenclip daemon &
 
-# wallpaper
-# feh --bg-fill ~/Dropbox/pics/wall/chromecast/horizonte.jpg
-# feh --bg-fill ~/Dropbox/pics/wall/autism-leaves.png
-feh --bg-fill ~/Dropbox/pics/juli/DSCF0207.jpg
+# wallpaper black
+# feh --bg-fill ~/Dropbox/pics/wall/falcon.jpg
+
+# wallpaper white
+# feh --bg-fill ~/Dropbox/pics/juli/DSCF0207.jpg
+# feh --bg-fill ~/Dropbox/pics/wall/tree-volcano.jpg
+# feh --bg-fill ~/Dropbox/pics/wall/house-inside-trees.jpg
+# feh --bg-fill ~/Dropbox/pics/wall/helicopter.jpg
+
+feh --bg-fill ~/Dropbox/pics/wall/ibm.png
 
 eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg.pkcs11,secrets,ssh)
 export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT SSH_AUTH_SOCK
