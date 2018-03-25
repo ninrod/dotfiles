@@ -36,3 +36,5 @@ alias glt="git log --no-color --date-order --tags --simplify-by-decoration --pre
 alias glsu='git ls-files --others --exclude-standard'
 alias glsi='git ls-files -oiX .gitignore'
 
+# cleanup
+alias git_kill_reflog='git reflog expire --expire-unreachable=now --all && git gc --aggressive --prune=now'
