@@ -850,7 +850,8 @@ M-x subword-mode
         select-enable-primary t
         ring-bell-function 'ignore
         split-width-threshold 200
-        split-height-threshold 80)
+        split-height-threshold 80
+        auto-hscroll-mode 'current-line)
 #+END_SRC
 ** dired
 
