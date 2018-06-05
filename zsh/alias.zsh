@@ -4,9 +4,6 @@
 alias ls='ls --color=auto --group-directories-first -X'
 alias l='ls -lh'
 alias la='l -A'
-alias lk='k -A --no-vcs'
-alias ld='lk -d'
-alias lf='lk -n'
 
 # quick alias
 alias c='clear'
