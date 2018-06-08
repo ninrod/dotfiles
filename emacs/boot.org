@@ -1714,15 +1714,15 @@ M-x subword-mode
         (setq rust-format-on-save t)
         (setq rust-indent-method-chain t))
 
-      ;; (use-package racer
-      ;;   :ensure t
-      ;;   :init
-      ;;   (setenv "PATH" (concat (getenv "PATH") ":~/.cargo/bin"))
-      ;;   (setq exec-path (append exec-path '("~/.cargo/bin")))
-      ;;   (setq racer-cmd "~/.cargo/bin/racer")
-      ;;   (add-hook 'rust-mode-hook #'racer-mode)
-      ;;   (add-hook 'racer-mode-hook #'eldoc-mode)
-      ;;   (add-hook 'racer-mode-hook #'company-mode))
+      (use-package racer
+        :ensure t
+        :init
+        (setenv "PATH" (concat (getenv "PATH") ":~/.cargo/bin"))
+        (setq exec-path (append exec-path '("~/.cargo/bin")))
+        (setq racer-cmd "~/.cargo/bin/racer")
+        (add-hook 'rust-mode-hook #'racer-mode)
+        (add-hook 'racer-mode-hook #'eldoc-mode)
+        (add-hook 'racer-mode-hook #'company-mode))
 
       (use-package flycheck-rust
         :ensure t
