@@ -1711,7 +1711,8 @@ M-x subword-mode
         (add-hook 'rust-mode-hook 'cargo-minor-mode)
         (add-hook 'toml-mode-hook 'cargo-minor-mode)
         :config
-        (setq rust-format-on-save t))
+        (setq rust-format-on-save t)
+        (setq rust-indent-method-chain t))
 
       ;; (use-package racer
       ;;   :ensure t
@@ -1728,8 +1729,7 @@ M-x subword-mode
         :init
         (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
         (add-hook 'rust-mode-hook #'flycheck-mode)
-        (add-hook 'rust-mode-hook #'yas-minor-mode)
-        (add-hook 'rust-mode-hook #'flyspell-prog-mode))
+        (add-hook 'rust-mode-hook #'yas-minor-mode))
 
       (setenv "RUST_BACKTRACE" "1")
     #+END_SRC
