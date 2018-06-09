@@ -39,6 +39,9 @@ alt + i
 ctrl + i
        google-chrome-stable --force-device-scale-factor=1.4
 
+ctrl + m
+       spotify --force-device-scale-factor=1.4
+
 Print
         maim -d 3 ~/Downloads/screenshot.png
 ctrl + Print
