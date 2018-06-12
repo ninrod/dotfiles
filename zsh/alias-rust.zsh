@@ -1,0 +1,1 @@
+alias cr='cargo run'

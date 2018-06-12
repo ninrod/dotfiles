@@ -14,6 +14,7 @@ source ~/.zsh.d/alias-git.zsh
 source ~/.zsh.d/alias-docker.zsh
 source ~/.zsh.d/alias-emacs.zsh
 source ~/.zsh.d/alias-vim.zsh
+source ~/.zsh.d/alias-rust.zsh
 
 source ~/.zsh.d/prompt.zsh
 source ~/.zsh.d/ninplug.zsh
