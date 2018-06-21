@@ -1979,6 +1979,17 @@ M-x subword-mode
           (evil-set-initial-state 'circe-server-mode 'emacs)
           (enable-lui-logging-globally)))
     #+END_SRC
+*** ob-http
+
+#+BEGIN_SRC emacs-lisp
+  (use-package ob-http :ensure t
+    :config
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((emacs-lisp . t)
+       (http . t))))
+#+END_SRC
+
 ** disabled
 *** powershell
 
@@ -2007,17 +2018,6 @@ M-x subword-mode
 #+BEGIN_SRC text
   (use-package emaps
     :ensure t)
-#+END_SRC
-
-*** ob-http
-
-#+BEGIN_SRC text
-(use-package ob-http :ensure t
-:config
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((emacs-lisp . t)
-   (http . t))))
 #+END_SRC
 
 *** Reveal.js
