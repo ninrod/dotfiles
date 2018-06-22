@@ -105,3 +105,6 @@ wmname LG3D
 
 # compton
 compton --config ~/.options/arch/compton/compton.conf -b
+
+# gpaste clipboard manager
+gpaste-client daemon-reexec
