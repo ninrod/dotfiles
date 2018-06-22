@@ -2,7 +2,7 @@
 
 alias pmfs='pacman -Fs'        # query file database for a command
 alias pmss='pacman -Ss'        # search for packages
-alias pmqm='pacman -Qm'        # list foreign, manually installed
+alias pmqm='pacman -Qm'        # list foreign, manually installed (often means aur packages)
 alias pmquent='pacman -Qent'   # list all explicit installed packages
 alias pmqmdt='pacman -Qmdt'    # foreign and orphans and installted as deps
 alias pms='sudo pacman -S'     # install
