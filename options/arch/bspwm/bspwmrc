@@ -48,6 +48,11 @@ if [[ -d /etc/X11/xinit/xinitrc.d ]]; then
   unset f
 fi
 
+# network manager
+eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg.pkcs11,secrets,ssh)
+export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT SSH_AUTH_SOCK
+nm-applet &
+
 # heavy daemons
 # command -v udiskie > /dev/null 2>&1 && udiskie &
 command -v dropbox-cli > /dev/null 2>&1 && dropbox-cli start &
@@ -94,17 +99,11 @@ redshift -c ~/.options/arch/redshift/redshift.conf &
 feh --bg-fill ~/Dropbox/pics/wall/helicopter.jpg
 # feh --bg-fill ~/Dropbox/pics/wall/ibm.png
 
-eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg.pkcs11,secrets,ssh)
-export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT SSH_AUTH_SOCK
-
-# network manager
-nm-applet &
-
 # java WM/bspwm specific nuisance
 wmname LG3D
 
 # compton
 compton --config ~/.options/arch/compton/compton.conf -b
 
-# gpaste clipboard manager
-gpaste-client daemon-reexec
+# parcellite clipboard manager
+parcellite &
