@@ -48,6 +48,10 @@ if [[ -d /etc/X11/xinit/xinitrc.d ]]; then
   unset f
 fi
 
+# start emacs daemon
+kill_proc emacs
+~/.dotfiles/scripts/emacs/up-emacs-daemon.sh &
+
 # network manager
 eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg.pkcs11,secrets,ssh)
 export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT SSH_AUTH_SOCK
@@ -80,10 +84,6 @@ kill_proc() {
 # launch polybar
 kill_proc polybar
 ~/.config/polybar/launch.sh &
-
-# start emacs daemon
-kill_proc emacs
-~/.dotfiles/scripts/emacs/up-emacs-daemon.sh &
 
 # start redshift
 kill_proc redshift
