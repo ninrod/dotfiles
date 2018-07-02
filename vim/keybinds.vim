@@ -96,3 +96,9 @@ vnoremap <silent> K :MultipleCursorsFind <C-R>/<CR>
 nnoremap mi :BufExplorer<cr>
 
 " }}}
+" ranger.vim {{{
+
+nnoremap <BS> :Ranger<cr>
+
+" }}}
+
