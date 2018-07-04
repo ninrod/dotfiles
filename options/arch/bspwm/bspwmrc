@@ -48,9 +48,13 @@ if [[ -d /etc/X11/xinit/xinitrc.d ]]; then
   unset f
 fi
 
+# parcellite clipboard manager
+parcellite &
+
 # start emacs daemon
 kill_proc emacs
 ~/.dotfiles/scripts/emacs/up-emacs-daemon.sh &
+
 
 # network manager
 eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg.pkcs11,secrets,ssh)
@@ -104,6 +108,3 @@ wmname LG3D
 
 # compton
 compton --config ~/.options/arch/compton/compton.conf -b
-
-# parcellite clipboard manager
-parcellite &
