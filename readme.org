@@ -2,7 +2,7 @@
 
 [[https://www.gnu.org/licenses/gpl-3.0.en.html][https://img.shields.io/badge/license-GPLv3-blue.svg]]
 
-- Simplicity, speed and power while working inside the shell.
+- Minimalism, speed and power while working inside the shell.
 
 #+BEGIN_QUOTE
 "you are your dotfiles"
