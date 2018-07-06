@@ -33,7 +33,7 @@ Feel free to open issues though, if the config did not work for you. I'll try to
 - On linux, I recommend xfce-terminal. Failling that, try to use any [[https://gist.github.com/XVilka/8346728][truecolor]] terminal.
 - Secondly, this is for unix systems: =GNU/Linux=, =OSx=, BSDs. I don't know anything about windows.
 - configure your terminal to use the gruvbox theme. There's a [[https://github.com/ninrod/themes.git][ninrod/themes]] repo that can help you with that.
-- *recommendation*: I use and recommend the excelent [[https://github.com/source-foundry/Hack][Hack]] font.
+- *recommendation*: I use and recommend the excelent [[https://github.com/belluzj/fantasque-sans][Fantasque Sans Mono]] font.
 - now get =vim= 8+ with [[http://vimcasts.org/blog/2013/11/getting-vim-with-clipboard-support][+clipboard]].
 - get [[https://github.com/tmux/tmux.git][tmux]] 2.5+
 - get [[https://github.com/zsh-users/zsh.git][zsh]] 5.4+ and make sure that =/bin/zsh= is valid. (if not: =$ cd /bin && sudo ln -s $(command -v zsh) zsh=)
