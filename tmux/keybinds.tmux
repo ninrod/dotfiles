@@ -34,8 +34,8 @@ bind-key g command-prompt -p "join pane from:"  "join-pane -s '%%'"
 bind-key s command-prompt -p "send pane to:"  "join-pane -t '%%'"
 
 # Make resizing panes easier
-bind-key < resize-pane -L 5
-bind-key > resize-pane -R 5
+bind-key Left resize-pane -L 5
+bind-key Right resize-pane -R 5
 bind-key Up resize-pane -U 5
 bind-key Down resize-pane -D 5
 bind-key = select-layout even-vertical
