@@ -2140,6 +2140,7 @@ M-x subword-mode
 
 #+BEGIN_SRC emacs-lisp
 (general-create-definer spc-map
+  :keymaps 'override
   :prefix "SPC")
 #+END_SRC
 
@@ -2147,22 +2148,21 @@ M-x subword-mode
 
 #+BEGIN_SRC emacs-lisp
   (spc-map
-   :keymaps 'normal
+    :states '(normal visual)
 
-   "TAB" 'ninrod/alternate-buffer
+    "TAB" 'ninrod/alternate-buffer
 
-   "," 'pop-global-mark
-   "<escape>" 'ninrod/echo ;; in test
+    "," 'pop-global-mark
+    "<escape>" 'ninrod/echo ;; in test
 
-   "SPC" 'counsel-M-x
-   "RET" 'write-file
-   "DEL" 'ninrod/mkdir
-   "g" 'avy-goto-char
-   "c" 'ninrod/org-task-capture
+    "SPC" 'counsel-M-x
+    "RET" 'write-file
+    "DEL" 'ninrod/mkdir
+    "g" 'avy-goto-char
+    "c" 'ninrod/org-task-capture
 
-   "j" (kbd "LztM")
-   "k" (kbd "Hz-M")
-   )
+    "j" (kbd "LztM")
+    "k" (kbd "Hz-M"))
 #+END_SRC
 
 *** function keys
