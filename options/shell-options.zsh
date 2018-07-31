@@ -15,7 +15,7 @@ load_secrets() {
 }
 
 unamestr=$(uname -a)
-if [[ "$unamestr" == *"Linux"* ]] && [[ $unamestr == *"ARCH"* ]]; then
+if [[ "$unamestr" == *"Linux"* ]] && [[ $unamestr == *"arch"* ]]; then
 
   if [[ -n ${1+x} ]] && [[ "$1" == "setup" ]]; then
     source ~/.options/arch/setup.zsh
