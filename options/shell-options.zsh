@@ -14,8 +14,9 @@ load_secrets() {
   source $my_secrets/secrets.zsh
 }
 
+# zsh parameter substitution: http://zsh.sourceforge.net/Intro/intro_12.html
 unamestr=$(uname -a)
-if [[ "$unamestr" == *"Linux"* ]] && [[ $unamestr == *"arch"* ]]; then
+if [[ $unamestr:l == *"linux"* ]] && [[ $unamestr:l == *"arch"* ]]; then
 
   if [[ -n ${1+x} ]] && [[ "$1" == "setup" ]]; then
     source ~/.options/arch/setup.zsh
