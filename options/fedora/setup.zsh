@@ -3,6 +3,3 @@
 
 # symlinkage
 source ~/.options/fedora/symlinks.zsh
-
-# arch specific java nuisance
-# wmname LG3D
