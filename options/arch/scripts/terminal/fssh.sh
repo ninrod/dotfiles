@@ -11,7 +11,7 @@ if [[ ! -f $FSSH_SERVERS_FILE ]]; then
   exit 0
 fi
 
-description=$(cat $servers | fzf)
+description=$(cat $FSSH_SERVERS_FILE | fzf)
 server=$(echo $description | cut -d "-" -f1)
 
 if [[ ! -z $server ]]; then
