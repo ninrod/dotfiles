@@ -1,4 +1,5 @@
 export XDG_CONFIG_HOME="$HOME/.config"
+export FSSH_SERVERS_FILE="$HOME/code/sources/secrets/fssh.servers"
 
 # setting up PATH
 CUSTOM_SCRIPTS=~/.dotfiles/scripts/emacs:~/.dotfiles/scripts/vim:~/.dotfiles/scripts/zsh

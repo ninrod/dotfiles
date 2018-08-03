@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
+
+# fssh: fuzzy ssh chooser
 # credits: original hack by @marvinbelfort
+
 set -euo pipefail
 IFS=$'\n\t'
 
-servers=~/.options/bssh.servers
-if [[ ! -f $servers ]]; then
-  echo "no $servers file found."
+if [[ ! -f $FSSH_SERVERS_FILE ]]; then
+  echo "[fssh]-> ERROR: no $FSSH_SERVERS_FILE file found."
   exit 0
 fi
 
