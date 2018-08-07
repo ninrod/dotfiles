@@ -5,5 +5,5 @@ set -euo pipefail
 # SIGINT fix hack
 (
 trap - SIGINT
-exec /bin/bash ~/apps/idea/bin/idea.sh "$*"
+exec /bin/bash ~/apps/idea/bin/idea.sh
 ) &
