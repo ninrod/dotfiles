@@ -5,12 +5,11 @@
     "emmet.includeLanguages": {
         "javascript": "javascriptreact"
     },
-    "vim.disableAnnoyingNeovimMessage": true,
     "vim.useSystemClipboard": true,
     "vim.incsearch": true,
     "vim.hlsearch": true,
     "keyboard.dispatch": "keyCode",
-    "vim.otherModesKeyBindingsNonRecursive": [
+    "vim.normalModeKeyBindingsNonRecursive": [
         {
             "before": [
                 "-"
@@ -95,6 +94,6 @@
     "workbench.colorCustomizations": {
         "editor.lineHighlightBackground": "#2F3238"
     },
-    "window.zoomLevel": 2,
+    "window.zoomLevel": 0,
     "workbench.colorTheme": "One Dark Pro Vivid"
 }
