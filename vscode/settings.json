@@ -95,5 +95,7 @@
         "editor.lineHighlightBackground": "#2F3238"
     },
     "window.zoomLevel": 0,
-    "workbench.colorTheme": "One Dark Pro Vivid"
+    "workbench.colorTheme": "One Dark Pro Vivid",
+    "git.confirmSync": false,
+    "git.enableSmartCommit": true
 }
