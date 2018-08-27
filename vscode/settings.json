@@ -98,5 +98,7 @@
     "workbench.colorTheme": "One Dark Pro Vivid",
     "git.confirmSync": false,
     "git.enableSmartCommit": true,
-    "workbench.iconTheme": "vscode-icons"
+    "workbench.iconTheme": "vscode-icons",
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false
 }
