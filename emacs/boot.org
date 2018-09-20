@@ -657,6 +657,7 @@ M-x subword-mode
 
   (define-and-bind-quoted-text-object "pipe" "|" "|" "|")
   (define-and-bind-quoted-text-object "slash" "/" "/" "/")
+  (define-and-bind-quoted-text-object "dollar" "$" "\\$" "\\$")
 #+END_SRC
 
 #+BEGIN_SRC text
