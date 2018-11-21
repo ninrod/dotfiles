@@ -33,11 +33,11 @@ ctrl + alt + Escape
         restart-emacs-daemon.sh
 
 # https://askubuntu.com/questions/978226/how-to-make-touch-screen-scrolling-work-in-firefox-quantum
-alt + i
+ctrl + i
        MOZ_USE_XINPUT2=1 firefox
 
-ctrl + i
-       google-chrome-stable --force-device-scale-factor=1.4
+alt + i
+       google-chrome-stable
 
 ctrl + m
        spotify --force-device-scale-factor=1.4
