@@ -12,7 +12,7 @@ PATH="$LINUX_SCRIPTS:$PATH"
 PATH="$CARGO_BIN:$PATH"
 PATH="$GO_BIN:$PATH"
 PATH="$HOME_LOCAL_BIN:$PATH"
-export PATH
+typeset -aU path
 
 # hack stolen from: https://github.com/rust-lang-nursery/rustfmt/issues/1687#issuecomment-308756211
 
