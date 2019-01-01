@@ -1,5 +1,4 @@
 {
-    "editor.fontFamily": "fantasque sans mono",
     "editor.fontSize": 16,
     "editor.lineNumbers": "off",
     "emmet.includeLanguages": {
@@ -94,11 +93,12 @@
     "workbench.colorCustomizations": {
         "editor.lineHighlightBackground": "#2F3238"
     },
-    "window.zoomLevel": 0,
+    "window.zoomLevel": 1,
     "workbench.colorTheme": "One Dark Pro Vivid",
     "git.confirmSync": false,
     "git.enableSmartCommit": true,
     "workbench.iconTheme": "vscode-icons",
     "telemetry.enableTelemetry": false,
-    "telemetry.enableCrashReporter": false
+    "telemetry.enableCrashReporter": false,
+    "editor.fontFamily": "'Fantasque Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'"
 }
