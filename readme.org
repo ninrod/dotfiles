@@ -15,8 +15,9 @@
 #+END_QUOTE
 
 * Screenshots
-** Emacs
-[[https://raw.githubusercontent.com/ninrod/dotshots/master/emacs-2018.03.21.png][https://raw.githubusercontent.com/ninrod/dotshots/master/emacs-2018.03.21.png]]
+** Ubuntu: emacs and vim
+
+[[https://raw.githubusercontent.com/ninrod/dotshots/master/2019.01.02-ubuntu.png][https://raw.githubusercontent.com/ninrod/dotshots/master/2019.01.02-ubuntu.png]]
 
 ** Vim, tmux and zsh
 [[https://raw.githubusercontent.com/ninrod/dotshots/master/2017-02-vim-tmux-zsh.png][https://raw.githubusercontent.com/ninrod/dotshots/master/2017-02-vim-tmux-zsh.png]]
