@@ -19,8 +19,10 @@
 
 [[https://raw.githubusercontent.com/ninrod/dotshots/master/ubuntu.png][https://raw.githubusercontent.com/ninrod/dotshots/master/ubuntu.png]]
 
-** Vim, tmux and zsh
+** terminal
+
 [[https://raw.githubusercontent.com/ninrod/dotshots/master/2017-02-vim-tmux-zsh.png][https://raw.githubusercontent.com/ninrod/dotshots/master/2017-02-vim-tmux-zsh.png]]
+
 * Note
 
 These are my personal configuration files, 
