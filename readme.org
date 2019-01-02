@@ -17,7 +17,7 @@
 * Screenshots
 ** Ubuntu: emacs and vim
 
-[[https://raw.githubusercontent.com/ninrod/dotshots/master/2019.01.02-ubuntu.png][https://raw.githubusercontent.com/ninrod/dotshots/master/2019.01.02-ubuntu.png]]
+[[https://raw.githubusercontent.com/ninrod/dotshots/master/ubuntu.png][https://raw.githubusercontent.com/ninrod/dotshots/master/ubuntu.png]]
 
 ** Vim, tmux and zsh
 [[https://raw.githubusercontent.com/ninrod/dotshots/master/2017-02-vim-tmux-zsh.png][https://raw.githubusercontent.com/ninrod/dotshots/master/2017-02-vim-tmux-zsh.png]]
