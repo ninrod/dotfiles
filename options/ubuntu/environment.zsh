@@ -7,6 +7,7 @@ LINUX_SCRIPTS=~/.options/ubuntu/scripts
 CARGO_BIN=~/.cargo/bin
 GO_BIN=~/go/bin
 HOME_LOCAL_BIN=~/.local/bin
+GRADLE_HOME=~/.sdkman/candidates/gradle/current
 PATH="$CUSTOM_SCRIPTS:$PATH"
 PATH="$LINUX_SCRIPTS:$PATH"
 PATH="$CARGO_BIN:$PATH"
