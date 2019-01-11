@@ -5,13 +5,13 @@
 - Minimalism, speed and power while working inside the shell.
 
 #+BEGIN_QUOTE
-"you are your dotfiles"
--- Fyodor Dostoyevsky
+"You are your dotfiles"
+-- Friedrich Wilhelm Nietzsche
 #+END_QUOTE
 
 #+BEGIN_QUOTE
 "Show me your dotfiles and I'll tell you what kind of programmer you are."
--- Leon Tolstoi
+-- Karl Marx
 #+END_QUOTE
 
 * Screenshots
