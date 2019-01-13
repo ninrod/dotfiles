@@ -8,11 +8,13 @@ CARGO_BIN=~/.cargo/bin
 GO_BIN=~/go/bin
 HOME_LOCAL_BIN=~/.local/bin
 GRADLE_HOME=~/.sdkman/candidates/gradle/current
+YARN_PATH="$(yarn global bin)"
 PATH="$CUSTOM_SCRIPTS:$PATH"
 PATH="$LINUX_SCRIPTS:$PATH"
 PATH="$CARGO_BIN:$PATH"
 PATH="$GO_BIN:$PATH"
 PATH="$HOME_LOCAL_BIN:$PATH"
+PATH="$YARN_PATH:$PATH"
 typeset -aU path
 
 # hack stolen from: https://github.com/rust-lang-nursery/rustfmt/issues/1687#issuecomment-308756211
