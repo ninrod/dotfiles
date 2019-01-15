@@ -5,7 +5,7 @@
 - Minimalism, speed and power while working inside the shell.
 
 #+BEGIN_QUOTE
-"You are your dotfiles"
+"You are your dotfiles."
 -- Friedrich Wilhelm Nietzsche
 #+END_QUOTE
 
