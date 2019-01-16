@@ -1,3 +1,4 @@
+set encoding=utf-8
 syntax on
 filetype plugin indent on
 
@@ -91,10 +92,7 @@ set showmatch
 set nowrap
 
 " indicates a wrap line continuation
-let hn = system("hostname")
-if uname != "droplet"
-  set showbreak=←←
-endif
+set showbreak=←←
 
 " redraw only when we need to (i.e. don't redraw when executing a macro)
 set lazyredraw
