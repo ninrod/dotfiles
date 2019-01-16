@@ -1589,7 +1589,6 @@ M-x subword-mode
     (add-hook 'typescript-mode-hook #'setup-tide-mode))
 #+END_SRC
 
-
 *** md: markdown
 
 #+BEGIN_SRC emacs-lisp
@@ -1800,7 +1799,9 @@ M-x subword-mode
 *** nginx-mode
     #+BEGIN_SRC emacs-lisp
       (use-package nginx-mode
-        :ensure t)
+        :ensure t
+        :config
+        (setq nginx-indent-level 2))
     #+END_SRC
 
 ** completions
