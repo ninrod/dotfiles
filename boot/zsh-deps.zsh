@@ -14,6 +14,3 @@ ningrab ninrod/gradle-zsh-completion
 
 # appearance
 ningrab zdharma/fast-syntax-highlighting
-
-# zle vim mode
-ningrab kutsan/zsh-system-clipboard
