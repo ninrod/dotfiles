@@ -91,7 +91,10 @@ set showmatch
 set nowrap
 
 " indicates a wrap line continuation
-set showbreak=←←
+let hn = system("hostname")
+if uname != "droplet"
+  set showbreak=←←
+endif
 
 " redraw only when we need to (i.e. don't redraw when executing a macro)
 set lazyredraw
