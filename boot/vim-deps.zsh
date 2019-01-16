@@ -27,6 +27,9 @@ ningrab junegunn/rainbow_parentheses.vim
 ningrab jlanzarotta/bufexplorer
 ningrab francoiscabrol/ranger.vim
 
+# filetypes
+ningrab chr4/nginx.vim
+
 # pathogen installation
 PATHOGEN_FILE=$vim_deps/tpope/vim-pathogen/autoload/pathogen.vim
 AUTOLOAD_DIR=~/.vim/autoload
