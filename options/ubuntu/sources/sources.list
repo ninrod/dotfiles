@@ -1,11 +1,10 @@
 # main
-deb http://us.archive.ubuntu.com/ubuntu/ bionic main restricted universe multiverse
+deb http://br.archive.ubuntu.com/ubuntu/ bionic main restricted universe multiverse
 
 # update and security
-deb http://us.archive.ubuntu.com/ubuntu/ bionic-updates main restricted universe multiverse
+deb http://br.archive.ubuntu.com/ubuntu/ bionic-updates main restricted universe multiverse
 deb http://security.ubuntu.com/ubuntu bionic-security main restricted universe  multiverse
 
 # other
-deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main
 deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
 
