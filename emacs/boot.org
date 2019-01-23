@@ -1398,21 +1398,6 @@ M-x subword-mode
                   (ibuffer-do-sort-by-alphabetic)))))
 #+END_SRC
 
-*** disable-mouse
-
-#+BEGIN_SRC emacs-lisp
-  (use-package disable-mouse
-    :ensure t
-    :config
-    (when  (not (or (ninrod--distro-p "moby")
-                    (ninrod--distro-p "linuxkit")))
-      (global-disable-mouse-mode)
-      (define-key evil-motion-state-map [down-mouse-1] 'ignore) ;; don't jump the cursor around in the window on clicking
-      (define-key evil-motion-state-map [mouse-1] 'ignore)) ;; also avoid any '<mouse-1> is undefined' when setting to 'undefined
-
-    :diminish disable-mouse-global-mode)
-#+END_SRC
-
 *** atomic-chrome
 
 #+BEGIN_SRC emacs-lisp
@@ -1980,14 +1965,29 @@ M-x subword-mode
 #+END_SRC
 
 ** disabled
+*** disable-mouse
+
+#+BEGIN_SRC text
+  (use-package disable-mouse
+    :ensure t
+    :config
+    (when  (not (or (ninrod--distro-p "ubuntu")
+                    (ninrod--distro-p "linuxkit")))
+      (global-disable-mouse-mode)
+      (define-key evil-motion-state-map [down-mouse-1] 'ignore) ;; don't jump the cursor around in the window on clicking
+      (define-key evil-motion-state-map [mouse-1] 'ignore)) ;; also avoid any '<mouse-1> is undefined' when setting to 'undefined
+
+    :diminish disable-mouse-global-mode)
+#+END_SRC
+
 *** cucumber
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC text
       (use-package feature-mode
         :ensure t)
     #+END_SRC
 
 *** go
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC text
       (use-package go-mode
         :ensure t
         :config
@@ -2004,7 +2004,7 @@ M-x subword-mode
 
 *** powershell
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC text
   (use-package powershell
     :ensure t)
 #+END_SRC
