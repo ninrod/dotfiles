@@ -5,6 +5,6 @@
 #!/usr/bin/env bash
 # author: Filipe Silva (ninrod)
 set -euo pipefail
-SCRIPTPATH=$(cd $(dirname $0); pwd -P) && cd $SCRIPTPATH
+SCRIPTPATH=$(cd $(dirname \$0); pwd -P) && cd $SCRIPTPATH
 
 $0
