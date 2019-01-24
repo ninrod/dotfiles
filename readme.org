@@ -93,7 +93,7 @@ checkout the [[https://github.com/ninrod/dotfiles/blob/master/tmux/keybinds.tmux
 - [[https://www.gnu.org/licenses/gpl-3.0.en.html][GNU General Public License v3]]
 #+BEGIN_SRC text
 GNU General Public License v3
-Copyright (c) 2015-2018 Filipe Silva (ninrod)
+Copyright (c) 2015-2019 Filipe Silva (ninrod)
 #+END_SRC
 
 * LINKS
