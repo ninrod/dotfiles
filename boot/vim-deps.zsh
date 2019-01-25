@@ -28,7 +28,7 @@ ningrab jlanzarotta/bufexplorer
 ningrab francoiscabrol/ranger.vim
 
 # filetypes
-# ningrab chr4/nginx.vim
+ningrab chr4/nginx.vim
 
 # pathogen installation
 PATHOGEN_FILE=$vim_deps/tpope/vim-pathogen/autoload/pathogen.vim
