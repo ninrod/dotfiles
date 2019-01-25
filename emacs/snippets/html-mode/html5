@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: html5-snippet
+# key: html5
+# --
+<!doctype html>
+
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+
+  <title>an html page</title>
+  <meta name="description" content="the description">
+  <meta name="author" content="the author">
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+        <h1>$0</h1>
+</body>
+</html>
