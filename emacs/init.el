@@ -15,9 +15,7 @@
   (use-package org
     :pin org
     :ensure org-plus-contrib
-    :defer 7
-    :config
-    (require 'org-tempo))                     ; fetch latest version of `org-mode'
+    :defer 7)  ;; fetch latest version of `org-mode'
 
   (setq vc-follow-symlinks "t") ; prevent prompt when loading org file
 
