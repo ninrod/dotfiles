@@ -15,16 +15,18 @@
   (use-package org
     :pin org
     :ensure org-plus-contrib
-    :defer 7)                     ; fetch latest version of `org-mode'
+    :defer 7
+    :config
+    (require 'org-tempo))                     ; fetch latest version of `org-mode'
 
   (setq vc-follow-symlinks "t") ; prevent prompt when loading org file
 
-(defun ninrod/parent-dir (dirname times)
-        "get the parent dir of DIRNAME"
-        (let* ((path (file-truename dirname)))
-          (dotimes (number times path)
-            (setq path (file-name-directory (directory-file-name path))))
-          path))
+  (defun ninrod/parent-dir (dirname times)
+    "get the parent dir of DIRNAME"
+    (let* ((path (file-truename dirname)))
+      (dotimes (number times path)
+        (setq path (file-name-directory (directory-file-name path))))
+      path))
   (let ((secrets-file "secrets/emacs-pre.org"))
     (cond ((file-exists-p (concat (ninrod/parent-dir user-emacs-directory 2) secrets-file))
            (message "pre-secrets EXISTS!!! loading...")
