@@ -1574,6 +1574,14 @@ M-x subword-mode
     (add-hook 'typescript-mode-hook #'setup-tide-mode))
 #+END_SRC
 
+*** jsx: React
+    #+BEGIN_SRC emacs-lisp
+      (use-package rjsx-mode
+        :ensure t
+        :config
+        (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode)))
+    #+END_SRC
+
 *** md: markdown
 
 #+BEGIN_SRC emacs-lisp
@@ -1623,7 +1631,7 @@ M-x subword-mode
   (use-package js2-mode
     :ensure t
     :config
-    (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+    ;; (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
     (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2))))
 #+END_SRC
 
@@ -2008,12 +2016,6 @@ M-x subword-mode
   (use-package powershell
     :ensure t)
 #+END_SRC
-
-*** jsx: React
-    #+BEGIN_SRC text
-      (use-package rjsx-mode
-        :ensure t)
-    #+END_SRC
 
 *** persistent scratch
     - from [[https://pragmaticemacs.com/emacs/a-persistent-scratch-buffer/][pragmatic]] emacs
