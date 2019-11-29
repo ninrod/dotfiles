@@ -1430,15 +1430,7 @@ M-x subword-mode
           magit-diff-refine-hunk 'all
           magit-completing-read-function 'ivy-completing-read)
     (use-package evil-magit :ensure t)
-    (use-package vdiff-magit
-      :ensure t
-      :config
-      (define-key magit-mode-map "e" 'vdiff-magit-dwim)
-      (define-key magit-mode-map "E" 'vdiff-magit-popup)
-      (setcdr (assoc ?e (plist-get magit-dispatch-popup :actions))
-              '("vdiff dwim" 'vdiff-magit-dwim))
-      (setcdr (assoc ?E (plist-get magit-dispatch-popup :actions))
-              '("vdiff popup" 'vdiff-magit-popup)))
+
     (magit-add-section-hook 'magit-status-sections-hook ;https://github.com/magit/magit/issues/3230#issuecomment-339901429
                             'magit-insert-unpushed-to-upstream
                             'magit-insert-unpushed-to-upstream-or-recent
@@ -1972,6 +1964,15 @@ M-x subword-mode
      '((emacs-lisp . t)
        (http . t))))
 #+END_SRC
+*** elpa-mirror
+
+#+BEGIN_SRC emacs-lisp
+  (use-package elpa-mirror
+    :ensure t
+    :init
+    (setq elpamr-default-output-directory "~/.emacs.d/thin-elpa-mirror"))
+#+END_SRC
+
 
 ** disabled
 *** disable-mouse
@@ -2045,15 +2046,6 @@ M-x subword-mode
 
   (use-package htmlize
   :ensure t)
-#+END_SRC
-
-*** elpa-mirror
-
-#+BEGIN_SRC text
-  (use-package elpa-mirror
-    :ensure t
-    :init
-    (setq elpamr-default-output-directory "~/.emacs.d/thin-elpa-mirror"))
 #+END_SRC
 
 *** elpa-clone
