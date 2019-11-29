@@ -1,10 +1,18 @@
 (let ((gc-cons-threshold (* 25 1024 1024)))
   (require 'package)
   (setq package-enable-at-startup nil)
+
+  ;;option 1: my fat local melpa/elpa mirror
   (defun ninrod--rsyncfy (repo) (concat "~/.dotfiles/deps/emacs/ninrod/rsynced-melpa/" repo))
   (setq package-archives `(("melpa" . ,(ninrod--rsyncfy "melpa/"))
                            ("org"   . ,(ninrod--rsyncfy "org/"))
                            ("gnu"   . ,(ninrod--rsyncfy "gnu/"))))
+
+  ;; option 2: my thin github mirror
+  ;;(setq package-archives
+  ;;      `(("myelpa" . "https://raw.githubusercontent.com/ninrod/thin-elpa-mirror/master/")))
+
+
   (package-initialize)
   (unless (package-installed-p 'use-package)
     (package-refresh-contents)
@@ -15,7 +23,7 @@
   (use-package org
     :pin org
     :ensure org-plus-contrib
-    :defer 7)  ;; fetch latest version of `org-mode'
+    :defer 7) ;; fetch latest version of `org-mode'
 
   (setq vc-follow-symlinks "t") ; prevent prompt when loading org file
 
