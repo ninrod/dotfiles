@@ -15,6 +15,8 @@ mkdir -p $cloud_filipe
 mkdir -p $cloud_eve
 mkdir -p $cloud_public
 
-sudo mount julicloud:/mnt/HD/HD_a2/filipe $cloud_filipe
-sudo mount julicloud:/mnt/HD/HD_a2/Public $cloud_public
-sudo mount julicloud:/mnt/HD/HD_a2/eve $cloud_eve
+JULICLOUD=192.168.0.2
+
+sudo mount $JULICLOUD:/mnt/HD/HD_a2/filipe $cloud_filipe
+sudo mount $JULICLOUD:/mnt/HD/HD_a2/Public $cloud_public
+sudo mount $JULICLOUD:/mnt/HD/HD_a2/eve $cloud_eve
