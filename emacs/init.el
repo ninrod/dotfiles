@@ -51,6 +51,6 @@
 
   (ninrod/load-secrets-file "secrets/emacs-pre.org")
   (org-babel-load-file (expand-file-name "boot.org" user-emacs-directory))
-  (ninrod/load-secrets-file "secrets/emacs-pre.org")
+  (ninrod/load-secrets-file "secrets/emacs-post.org")
 
   (garbage-collect))
