@@ -687,7 +687,7 @@ M-x subword-mode
 #+BEGIN_SRC emacs-lisp
   (use-package evil-surround
     :ensure t
-    ;; :load-path "~/code/sources/evil-surround"
+    :load-path "~/code/sources/evil-surround"
     :init
     (with-eval-after-load 'evil-surround
       (evil-add-to-alist
