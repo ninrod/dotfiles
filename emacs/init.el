@@ -9,9 +9,6 @@
        (local-thin-installed (file-directory-p local-elpa-mirror-thin))
        (local-fat-installed (file-directory-p local-elpa-mirror-fat)))
 
-  (when local-elpa-not-installed
-    (throw 'no-elpa "there are no elpa repos. aborting."))
-
   (require 'package)
   (setq package-enable-at-startup nil)
   (cond (local-fat-installed
@@ -21,7 +18,12 @@
         (local-thin-installed
          (setq package-archives `(("melpa" . ,(concat local-elpa-mirror-thin))
                                   ("org"   . ,(concat local-elpa-mirror-thin))
-                                  ("gnu"   . ,(concat local-elpa-mirror-thin))))))
+                                  ("gnu"   . ,(concat local-elpa-mirror-thin)))))
+        (t
+         (message "there are no local elpa mirrors. going to the interwebz")
+         (setq package-archives `(("melpa" . "https://melpa.org/packages/")
+                                  ("org"   . "http://orgmode.org/elpa/")
+                                  ("gnu"   . "https://elpa.gnu.org/packages/")))))
   (package-initialize)
   (unless (package-installed-p 'use-package)
     (package-refresh-contents)
