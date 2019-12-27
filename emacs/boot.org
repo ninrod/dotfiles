@@ -2419,12 +2419,6 @@ M-x subword-mode
   (general-define-key :keymaps 'minibuffer-local-map "C-<tab>" 'dabbrev-expand)
 #+END_SRC
 
-*** evil-mc
-
-#+BEGIN_SRC emacs-lisp
-  (general-define-key :keymaps 'evil-mc-key-map :states 'visual "C-n" 'evil-mc-make-vertical-cursors)
-#+END_SRC
-
 ** org
 *** , local
 **** definer
