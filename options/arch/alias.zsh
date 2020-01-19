@@ -28,4 +28,4 @@ alias nb='sudo netctl stop-all; sudo netctl start bcbWifi'
 
 
 # scripts
-alias fssh="~/.options/arch/scripts/terminal/fssh.sh"
+alias bssh="~/.options/arch/scripts/terminal/bssh.sh"
