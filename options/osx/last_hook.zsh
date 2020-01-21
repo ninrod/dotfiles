@@ -5,5 +5,6 @@ if [ -f $exercism_completion_file ]; then
 fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/ninrod/.sdkman"
-[[ -s "/home/ninrod/.sdkman/bin/sdkman-init.sh" ]] && source "/home/ninrod/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="/Users/ninrod/.sdkman"
+export SDKMAN_INIT_FILE="${SDKMAN_DIR}/bin/sdkman-init.sh"
+[[ -s ${SDKMAN_INIT_FILE} ]] && source $SDKMAN_INIT_FILE
