@@ -1,6 +1,7 @@
 # setting up PATH
 CUSTOM_SCRIPTS_BASE=~/.dotfiles/scripts
 
+
 EMACS_SCRIPTS=$CUSTOM_SCRIPTS_BASE/emacs
 VIM_SCRIPTS=$CUSTOM_SCRIPTS_BASE/vim
 ZSH_SCRIPTS=$CUSTOM_SCRIPTS_BASE/zsh
@@ -16,6 +17,8 @@ mountpath () {
   export PATH
 }
 mountpath
+
+export BSSH_SERVERS_FILE="$HOME/code/sources/secrets/bssh.servers"
 
 # manpath
 GNUMANPATH="/usr/local/opt/coreutils/libexec/gnuman"
