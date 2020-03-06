@@ -541,6 +541,10 @@ M-x subword-mode
          (sgml-pretty-print (point-min) (point-max))
          (indent-region (point-min) (point-max))))
    #+END_SRC
+** pretty print json
+   #+BEGIN_SRC txt
+   just use the json-pretty-print that comes with emacs
+   #+END_SRC
 ** spacemacs/align-repeat
 
 #+BEGIN_SRC emacs-lisp
