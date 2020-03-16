@@ -100,5 +100,5 @@
     "workbench.iconTheme": "vscode-icons",
     "telemetry.enableTelemetry": false,
     "telemetry.enableCrashReporter": false,
-    "editor.fontFamily": "'Fantasque Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'"
+    "vsicons.dontShowNewVersionMessage": true
 }
