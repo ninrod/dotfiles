@@ -2,18 +2,23 @@
 CUSTOM_SCRIPTS_BASE=~/.dotfiles/scripts
 
 
+# dotfiles scripts
 EMACS_SCRIPTS=$CUSTOM_SCRIPTS_BASE/emacs
 VIM_SCRIPTS=$CUSTOM_SCRIPTS_BASE/vim
 ZSH_SCRIPTS=$CUSTOM_SCRIPTS_BASE/zsh
 GIT_SCRIPTS=$CUSTOM_SCRIPTS_BASE/git
 OSX_SCRIPTS=~/.options/osx/scripts
-
 CUSTOM_SCRIPTS=$EMACS_SCRIPTS:$ZSH_SCRIPTS:$VIM_SCRIPTS:$OSX_SCRIPTS:$GIT_SCRIPTS
 GNUBIN_PATH=/usr/local/opt/coreutils/libexec/gnubin
+
+# RUST
+
+RUST_BIN=~/.cargo/bin
 
 mountpath () {
   PATH="$GNUBIN_PATH:/bin:/usr/local/bin:/usr/bin:/usr/sbin:/sbin"
   PATH="$PATH:$CUSTOM_SCRIPTS"
+  PATH=$PATH:$RUST_BIN
   export PATH
 }
 mountpath
