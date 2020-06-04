@@ -691,7 +691,7 @@ M-x subword-mode
 #+BEGIN_SRC emacs-lisp
   (use-package evil-surround
     :ensure t
-    ;; :load-path "~/code/sources/evil-surround"
+    :load-path "~/code/sources/evil-surround"
     :init
     (with-eval-after-load 'evil-surround
       (evil-add-to-alist
@@ -1671,7 +1671,10 @@ M-x subword-mode
   (use-package yaml-mode
     :ensure t
     :init
-    (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
+    (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+    :config
+    (ninrod/add-to-hooks #'yaml-mode '(prog-mode-hook)))
+
 #+END_SRC
 
 *** Rust
