@@ -12,8 +12,9 @@ CUSTOM_SCRIPTS=$EMACS_SCRIPTS:$ZSH_SCRIPTS:$VIM_SCRIPTS:$OSX_SCRIPTS:$GIT_SCRIPT
 GNUBIN_PATH=/usr/local/opt/coreutils/libexec/gnubin
 
 # RUST
-
 RUST_BIN=~/.cargo/bin
+
+# export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 mountpath () {
   PATH="$GNUBIN_PATH:/bin:/usr/local/bin:/usr/bin:/usr/sbin:/sbin"
@@ -29,6 +30,7 @@ export BSSH_SERVERS_FILE="$HOME/code/sources/secrets/bssh.servers"
 GNUMANPATH="/usr/local/opt/coreutils/libexec/gnuman"
 MANPATH="$GNUMANPATH:$MANPATH"
 export MANPATH
+
 
 # node version manager
 nvm_config() {
