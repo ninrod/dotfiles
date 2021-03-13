@@ -3,11 +3,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ediff-window-setup-function (quote ediff-setup-windows-plain))
- '(evil-search-module (quote evil-search))
+ '(ediff-window-setup-function 'ediff-setup-windows-plain)
+ '(evil-search-module 'evil-search)
  '(ibuffer-fontification-alist
-   (quote
-    ((10 buffer-read-only font-lock-constant-face)
+   '((10 buffer-read-only font-lock-constant-face)
      (15
       (and buffer-file-name
            (string-match ibuffer-compressed-file-name-regexp buffer-file-name))
@@ -26,26 +25,20 @@
       (memq major-mode ibuffer-help-buffer-modes)
       font-lock-comment-face)
      (35
-      (eq major-mode
-          (quote dired-mode))
+      (eq major-mode 'dired-mode)
       font-lock-function-name-face)
      (1
       (or
-       (eq major-mode
-           (quote emacs-lisp-mode))
-       (eq major-mode
-           (quote lisp-mode)))
+       (eq major-mode 'emacs-lisp-mode)
+       (eq major-mode 'lisp-mode))
       highlight-numbers-number)
      (1
-      (eq major-mode
-          (quote org-mode))
-      org-level-1))))
+      (eq major-mode 'org-mode)
+      org-level-1)))
  '(package-selected-packages
-   (quote
-    (rust-mode elpa-mirror rjsx-mode exec-path-from-shell nginx-mode ob-http racer dired-quick-sort systemd kotlin-mode circe pkgbuild-mode powershell flycheck-package pass docker general ivy-hydra which-key emmet-mode yasnippet smex groovy-mode feature-mode py-isort pyvenv yapfify company-anaconda anaconda-mode flycheck-rust cargo toml-mode go-guru go-eldoc go-mode yaml-mode dockerfile-mode gitattributes-mode gitignore-mode gitconfig-mode vimrc-mode json-mode json-reformat tide js2-mode web-mode markdown-mode f aggressive-indent helpful lispyville lispy worf neotree dired-sort counsel-projectile projectile vdiff-magit evil-magit magit git-gutter-fringe atomic-chrome disable-mouse ibuffer-vc editorconfig origami ag multi-term eyebrowse restart-emacs spaceline smartparens rainbow-mode rainbow-delimiters org-bullets lisp-extra-font-lock kurecolor info+ highlight-defined highlight-quoted highlight-parentheses highlight-numbers fic-mode autothemer all-the-icons evil-string-inflection evil-replace-with-char exato vdiff evil-ediff evil-lion evil-indent-plus evil-numbers evil-args evil-god-state evil-anzu evil-escape evil-visualstar evil-exchange evil-matchit evil-commentary evil-replace-with-register evil-surround evil-test-helpers org-plus-contrib diminish use-package)))
+   '(rust-mode elpa-mirror rjsx-mode exec-path-from-shell nginx-mode ob-http racer dired-quick-sort systemd kotlin-mode circe pkgbuild-mode powershell flycheck-package pass docker general ivy-hydra which-key emmet-mode yasnippet smex groovy-mode feature-mode py-isort pyvenv yapfify company-anaconda anaconda-mode flycheck-rust cargo toml-mode go-guru go-eldoc go-mode yaml-mode dockerfile-mode gitattributes-mode gitignore-mode gitconfig-mode vimrc-mode json-mode json-reformat tide js2-mode web-mode markdown-mode f aggressive-indent helpful lispyville lispy worf neotree dired-sort counsel-projectile projectile vdiff-magit evil-magit magit git-gutter-fringe atomic-chrome disable-mouse ibuffer-vc editorconfig origami ag multi-term eyebrowse restart-emacs spaceline smartparens rainbow-mode rainbow-delimiters org-bullets lisp-extra-font-lock kurecolor info+ highlight-defined highlight-quoted highlight-parentheses highlight-numbers fic-mode autothemer all-the-icons evil-string-inflection evil-replace-with-char exato vdiff evil-ediff evil-lion evil-indent-plus evil-numbers evil-args evil-god-state evil-anzu evil-escape evil-visualstar evil-exchange evil-matchit evil-commentary evil-replace-with-register evil-surround evil-test-helpers org-plus-contrib diminish use-package))
  '(safe-local-variable-values
-   (quote
-    ((eval when
+   '((eval when
            (and
             (buffer-file-name)
             (file-regular-p
@@ -53,31 +46,25 @@
             (string-match-p "^[^.]"
                             (buffer-file-name)))
            (unless
-               (featurep
-                (quote package-build))
+               (featurep 'package-build)
              (let
                  ((load-path
                    (cons "../package-build" load-path)))
-               (require
-                (quote package-build))))
+               (require 'package-build)))
            (package-build-minor-mode)
            (set
-            (make-local-variable
-             (quote package-build-working-dir))
+            (make-local-variable 'package-build-working-dir)
             (expand-file-name "../working/"))
            (set
-            (make-local-variable
-             (quote package-build-archive-dir))
+            (make-local-variable 'package-build-archive-dir)
             (expand-file-name "../packages/"))
            (set
-            (make-local-variable
-             (quote package-build-recipes-dir))
+            (make-local-variable 'package-build-recipes-dir)
             default-directory))
      (eval when
-           (fboundp
-            (quote rainbow-mode))
+           (fboundp 'rainbow-mode)
            (rainbow-mode 1))
-     (origami-fold-style . triple-braces)))))
+     (origami-fold-style . triple-braces))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
