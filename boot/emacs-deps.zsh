@@ -3,7 +3,6 @@ mkdir -p $emacs_deps && cd $emacs_deps
 # my packages
 ningrab ninrod/gruvbox-theme
 ningrab ninrod/thin-elpa-mirror
-ningrab ninrod/thin-elpa-mirror
 ningrab ninrod/evil-replace-with-char
 ningrab ninrod/evil-string-inflection
 
