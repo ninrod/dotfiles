@@ -1658,25 +1658,6 @@ M-x subword-mode
 (use-package gitattributes-mode :ensure t)
 #+END_SRC
 
-*** Dockerfile
-
-#+BEGIN_SRC emacs-lisp
-(use-package dockerfile-mode :ensure t
-  :config (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
-#+END_SRC
-
-*** yaml
-
-#+BEGIN_SRC emacs-lisp
-  (use-package yaml-mode
-    :ensure t
-    :init
-    (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
-    :config
-    (ninrod/add-to-hooks #'yaml-mode '(prog-mode-hook)))
-
-#+END_SRC
-
 *** Rust
 
     - stolen from [[https://gist.github.com/matthew-piziak/51300f97c092041b081b8d9fb22d290d][matthew pizziak]]

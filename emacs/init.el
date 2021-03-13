@@ -1,28 +1,20 @@
 (let* ((gc-cons-threshold (* 25 1024 1024))
        (local-elpa-mirror-base "~/.dotfiles/deps/emacs/ninrod")
-       (local-elpa-mirror-fat (concat  local-elpa-mirror-base "/rsynced-melpa"))
        (local-elpa-mirror-thin (concat local-elpa-mirror-base "/thin-elpa-mirror"))
-       (local-elpa-not-installed (cond ((or (file-directory-p local-elpa-mirror-fat)
-                                            (file-directory-p local-elpa-mirror-thin))
-                                        nil)
-                                       (t t)))
-       (local-thin-installed (file-directory-p local-elpa-mirror-thin))
-       (local-fat-installed (file-directory-p local-elpa-mirror-fat)))
+       (local-thin-installed nil)
+       ;; (local-thin-installed (file-directory-p local-elpa-mirror-thin))
+       )
 
   (require 'package)
   (setq package-enable-at-startup nil)
-  (cond (local-fat-installed
-         (setq package-archives `(("melpa" . ,(concat local-elpa-mirror-fat  "/melpa"))
-                                  ("org"   . ,(concat local-elpa-mirror-fat  "/org"))
-                                  ("gnu"   . ,(concat local-elpa-mirror-fat  "/gnu")))))
-        (local-thin-installed
+  (cond (local-thin-installed
          (setq package-archives `(("melpa" . ,(concat local-elpa-mirror-thin))
                                   ("org"   . ,(concat local-elpa-mirror-thin))
                                   ("gnu"   . ,(concat local-elpa-mirror-thin)))))
         (t
          (message "there are no local elpa mirrors. going to the interwebz")
          (setq package-archives `(("melpa" . "https://melpa.org/packages/")
-                                  ("org"   . "http://orgmode.org/elpa/")
+                                  ("org"   . "https://orgmode.org/elpa/")
                                   ("gnu"   . "https://elpa.gnu.org/packages/")))))
   (package-initialize)
   (unless (package-installed-p 'use-package)
