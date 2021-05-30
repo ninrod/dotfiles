@@ -1,13 +1,13 @@
 (let* ((gc-cons-threshold (* 25 1024 1024))
        (local-elpa-mirror-base "~/.dotfiles/deps/emacs/ninrod")
        (local-elpa-mirror-thin (concat local-elpa-mirror-base "/thin-elpa-mirror"))
-       (local-thin-installed nil)
-       (local-thin-installed (file-directory-p local-elpa-mirror-thin))
-       )
+       ;; (local-thin-installed nil)
+       (local-thin-installed (file-directory-p local-elpa-mirror-thin)))
 
   (require 'package)
   (setq package-enable-at-startup nil)
   (cond (local-thin-installed
+         (message "local thin melpa found: installing...")
          (setq package-archives `(("melpa" . ,(concat local-elpa-mirror-thin))
                                   ("org"   . ,(concat local-elpa-mirror-thin))
                                   ("gnu"   . ,(concat local-elpa-mirror-thin)))))

@@ -619,27 +619,38 @@ M-x subword-mode
 ** bootstrap
 
 #+BEGIN_SRC emacs-lisp
-  (use-package evil
-    :ensure t
-    :init
-    (use-package goto-chg :ensure t)
-    (use-package undo-tree :ensure t)
-    (use-package evil-test-helpers :ensure t)
-    :config
-    (setcdr evil-insert-state-map nil) ;; emacsify insert state: http://stackoverflow.com/a/26573722/4921402
-    (define-key evil-insert-state-map [escape] 'evil-normal-state);; but [escape] should switch back to normal state, obviously.
-    (fset 'evil-visual-update-x-selection 'ignore);; Amazing hack lifted from: http://emacs.stackexchange.com/a/15054/12585
-
-    (setq evil-want-change-word-to-end nil
-          evil-kill-on-visual-paste nil)
-
-    (evil-mode)
-
-    (evil-set-command-property 'evil-yank :move-point t)
-
-    (evil-define-text-object ninrod/textobj-entire (count &optional beg end type)
-      (evil-range (point-min) (point-max)));; simulation of kana's textobj-entire
-    (define-key evil-outer-text-objects-map "e" 'ninrod/textobj-entire))
+    (use-package evil
+      :ensure t
+      :init
+      (use-package goto-chg :ensure t)
+      (use-package undo-tree :ensure t)
+      (use-package evil-test-helpers :ensure t)
+  
+      (setq evil-want-integration t ;; This is optional since it's already set to t by default.
+            evil-want-keybinding nil)
+  
+      :config
+      (setcdr evil-insert-state-map nil) ;; emacsify insert state: http://stackoverflow.com/a/26573722/4921402
+      (define-key evil-insert-state-map [escape] 'evil-normal-state) ;; but [escape] should switch back to normal state, obviously.
+      (fset 'evil-visual-update-x-selection 'ignore) ;; Amazing hack lifted from: http://emacs.stackexchange.com/a/15054/12585
+  
+      (setq evil-want-change-word-to-end nil
+            evil-kill-on-visual-paste nil
+            evil-want-keybinding nil)
+  
+      (evil-mode 1)
+  
+      (evil-set-command-property 'evil-yank :move-point t)
+  
+      (evil-define-text-object ninrod/textobj-entire (count &optional beg end type)
+        (evil-range (point-min) (point-max))) ;; simulation of kana's textobj-entire
+      (define-key evil-outer-text-objects-map "e" 'ninrod/textobj-entire))
+  
+    (use-package evil-collection
+      :after evil
+      :ensure t
+      :config
+      (evil-collection-init))
 #+END_SRC
 
 ** babysited packages
@@ -927,7 +938,6 @@ M-x subword-mode
   (setq evil-emacs-state-modes (delq 'ibuffer-mode evil-emacs-state-modes))
 
   (with-eval-after-load 'ibuffer
-    (require 'ibuffer-vc)
 
     ;; Use human readable Size column instead of original one
     (define-ibuffer-column size-h
@@ -1433,8 +1443,7 @@ M-x subword-mode
           magit-repository-directories '("~/code/sources")
           magit-diff-refine-hunk 'all
           magit-completing-read-function 'ivy-completing-read)
-    (use-package evil-magit :ensure t)
-
+  
     (magit-add-section-hook 'magit-status-sections-hook ;https://github.com/magit/magit/issues/3230#issuecomment-339901429
                             'magit-insert-unpushed-to-upstream
                             'magit-insert-unpushed-to-upstream-or-recent
@@ -2723,7 +2732,7 @@ M-x subword-mode
   (require 'neotree)
   (require 'evil)
   (require 'dired)
-
+  
   (define-minor-mode neotree-evil
     "Use NERDTree bindings on neotree."
     :lighter " NT"
@@ -2732,7 +2741,7 @@ M-x subword-mode
       (general-create-definer
        ninrod--neotree-map
        :keymaps 'neotree-mode-map)
-
+  
       (ninrod--neotree-map
        "s"      nil
        "d"      nil
@@ -2740,39 +2749,39 @@ M-x subword-mode
        "-"      nil
        "N"      nil
        "<SPC>"  nil)
-
+  
       (evil-make-overriding-map neotree-mode-map 'normal t)
-
+  
       (ninrod--neotree-map
        :states  'normal
-
+  
        ;; crud ops
        "DEL" 'ninrod/mkdir
        "d" 'neotree-delete-node
        "c" 'neotree-copy-node
        "r" 'neotree-rename-node
-
+  
        ;; info retrieval
        "p"  'ninrod/neotree-copy-path
        "gr" 'neotree-refresh
-
+  
        ;; navigation
        "u"   'neotree-select-up-node
        "o"   'neotree-enter-horizontal-split
        "RET" 'neotree-enter
-       "zj"  'neotree-select-next-sibling-node
-       "zk"  'neotree-select-previous-sibling-node
+       ;; "zj"  'neotree-select-next-sibling-node
+       ;; "zk"  'neotree-select-previous-sibling-node
        "gg"  'evil-goto-first-line
        "go"  'evil-goto-first-line
        "gl"  'evil-goto-line
        "."   'neotree-change-root
-
+  
        ;; file selection
        "x" 'neotree-enter-horizontal-split
-
+  
        ;;exiting
        "q" 'neotree-toggle)
-
+  
       neotree-mode-map))
 #+END_SRC
 
