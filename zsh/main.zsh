@@ -36,3 +36,5 @@ source ~/.zsh.d/dir_tracker.zsh
 
 # user last step
 source ~/.zsh.d/call_user_last_hook.zsh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

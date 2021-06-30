@@ -39,5 +39,11 @@ elif [[ $unamestr:l == *"ubuntu"*  ]]; then
     source ~/.options/ubuntu/setup.zsh
     load_secrets
   fi
+elif [[ $unamestr:l == *"susepad"*  ]]; then
+  source ~/.options/ubuntu/ubuntu.zsh $1
+  if [[ -n ${1+x} ]] && [[ "$1" == "setup" ]]; then
+    source ~/.options/suse/setup.zsh
+    load_secrets
+  fi
 fi
 

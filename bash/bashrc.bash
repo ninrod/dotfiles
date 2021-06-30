@@ -92,7 +92,7 @@ alias glsi='git ls-files -oiX .gitignore'
 # }}}
 # custom functions {{{
 
-md () {
+mdr () {
   mkdir -p $1
   cd $1
 }
@@ -109,3 +109,5 @@ LAST_STEP=~/.options/last-step.zsh
 [[ -e $LAST_STEP ]] && source $LAST_STEP
 
 # }}}
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

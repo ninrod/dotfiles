@@ -1949,7 +1949,7 @@ M-x subword-mode
   (use-package elpa-mirror
     :ensure t
     :init
-    (setq elpamr-default-output-directory "~/.dotfiles/deps/emacs/ninrod/thin-elpa-mirror"))
+    (setq elpamr-default-output-directory "~/.dotfiles/deps/emacs/ninrod/thin-melpa-mirror"))
 #+END_SRC
 
 
