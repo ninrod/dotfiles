@@ -14,11 +14,14 @@ else
 fi
 
 # lang has to be pt_BR.UTF-8 by this point
+
 unamestr=$(uname -a)
+# if this isn't set, cedilla does not work in tumbleweed
+LANG=C
 if [[ "$unamestr" == *"Linux"* ]] && [[ $unamestr == *"ARCH"* ]]; then
   LANG=pt_BR.UTF-8
-  # LANG=C
 fi
+
 emacs --daemon; rc=$?
 if [[ ! $rc = 0 ]]; then
   echo -e "there was a ${Red}problem${Rst} starting emacs daemon: $rc"
