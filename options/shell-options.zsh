@@ -28,9 +28,10 @@ elif [[ $unamestr:l == *"darwin"*  ]]; then
   if [[ -n ${1+x} ]] && [[ "$1" == "setup" ]]; then
     load_secrets
   fi
-elif [[ $unamestr:l == *"fc28"*  ]]; then
+elif [[ $unamestr:l == *"fedora"*  ]]; then
   source ~/.options/fedora/fedora.zsh $1
   if [[ -n ${1+x} ]] && [[ "$1" == "setup" ]]; then
+    source ~/.options/fedora/setup.zsh $1
     load_secrets
   fi
 elif [[ $unamestr:l == *"ubuntu"*  ]]; then

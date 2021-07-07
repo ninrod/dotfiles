@@ -1,4 +1,4 @@
 PROJECT_PATHS=(              \
-  ~/code/            \
+  ~/code/sources            \
   ~/code/dotfiles    \
 )
