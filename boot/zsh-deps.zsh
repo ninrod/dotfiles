@@ -14,3 +14,4 @@ ningrab ninrod/gradle-zsh-completion
 
 # appearance
 ningrab zdharma/fast-syntax-highlighting
+ningrab so-fancy/diff-so-fancy
