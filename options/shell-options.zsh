@@ -46,5 +46,10 @@ elif [[ $unamestr:l == *"susepad"*  ]]; then
     source ~/.options/suse/setup.zsh
     load_secrets
   fi
+elif [[ $unamestr:l == *"microsoft"*  ]]; then
+  source ~/.options/wsl/wsl.zsh $1
+  if [[ -n ${1+x} ]] && [[ "$1" == "setup" ]]; then
+    source ~/.options/wsl/wsl.zsh
+    load_secrets
+  fi
 fi
-
