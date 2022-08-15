@@ -880,12 +880,8 @@ M-x subword-mode
   #+BEGIN_SRC emacs-lisp
     (add-to-list 'default-frame-alist '(font . "Office Code Pro-14"))
     (add-to-list 'default-frame-alist '(font . "Source Code Pro-14"))
-
+    (add-to-list 'default-frame-alist '(font . "Fantasque Sans Mono-16"))
     (setq nin--chosen-font "Fantasque Sans Mono-16")
-
-    (if (ninrod--distro-p "Microsoft")
-        (setq nin--chosen-font "Fantasque Sans Mono-16"))
-
     (add-to-list 'default-frame-alist `(font . ,nin--chosen-font))
   #+END_SRC
 
