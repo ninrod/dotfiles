@@ -2,20 +2,17 @@
        (local-elpa-mirror-base "~/.dotfiles/deps/emacs/ninrod")
        (local-elpa-mirror-thin (concat local-elpa-mirror-base "/thin-elpa-mirror"))
        (local-thin-installed nil)
-       ;; (local-thin-installed (file-directory-p local-elpa-mirror-thin))
-       )
+       (local-thin-installed (file-directory-p local-elpa-mirror-thin)))
 
   (require 'package)
   (setq package-enable-at-startup nil)
   (cond (local-thin-installed
          (message "local thin melpa found: installing...")
          (setq package-archives `(("melpa" . ,(concat local-elpa-mirror-thin))
-                                  ("org"   . ,(concat local-elpa-mirror-thin))
                                   ("gnu"   . ,(concat local-elpa-mirror-thin)))))
         (t
          (message "there are no local elpa mirrors. going to the interwebz")
          (setq package-archives `(("melpa" . "https://melpa.org/packages/")
-                                  ("org"   . "https://orgmode.org/elpa/")
                                   ("gnu"   . "https://elpa.gnu.org/packages/")))))
   (package-initialize)
   (unless (package-installed-p 'use-package)
@@ -24,8 +21,9 @@
 
   (setq vc-follow-symlinks "t") ; prevent prompt when loading org file
   (use-package diminish :ensure t)
+
   (use-package org
-    :pin org
+    :pin melpa
     :ensure org-plus-contrib
     :defer 7) ;; fetch latest version of `org-mode'
 
