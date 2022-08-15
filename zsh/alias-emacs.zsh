@@ -1,7 +1,7 @@
 # -*- mode: sh -*-
 
 # emacs client
-alias e="emacsclient"
+alias e="emacsclient --tty"
 alias et="emacsclient --tty"
 alias eg="background-connect-emacs-daemon.sh"
 

@@ -875,17 +875,16 @@ M-x subword-mode
 (setq dired-omit-files "^\\.?#\\|^\\.[^.].*")
 #+END_SRC
 
-** font
+* font
 
   #+BEGIN_SRC emacs-lisp
-    ;; (add-to-list 'default-frame-alist '(font . "Office Code Pro-14"))
-    ;; (add-to-list 'default-frame-alist '(font . "Source Code Pro-14"))
+    (add-to-list 'default-frame-alist '(font . "Office Code Pro-14"))
+    (add-to-list 'default-frame-alist '(font . "Source Code Pro-14"))
 
     (setq nin--chosen-font "Fantasque Sans Mono-16")
-    (if (ninrod--distro-p "workbench")
-        (setq nin--chosen-font "Fantasque Sans Mono-16")
-      (if (ninrod--distro-p "arch")
-          (setq nin--chosen-font "Fantasque Sans Mono-17")))
+
+    (if (ninrod--distro-p "Microsoft")
+        (setq nin--chosen-font "Fantasque Sans Mono-16"))
 
     (add-to-list 'default-frame-alist `(font . ,nin--chosen-font))
   #+END_SRC
