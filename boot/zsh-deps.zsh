@@ -11,6 +11,8 @@ ningrab ninrod/docker-compose-zsh-completion
 ningrab zsh-users/zsh-completions
 ningrab ninrod/pass-zsh-completion
 ningrab ninrod/gradle-zsh-completion
+ningrab ninrod/exercism-zsh-completion
+
 
 # appearance
 ningrab zdharma/fast-syntax-highlighting
