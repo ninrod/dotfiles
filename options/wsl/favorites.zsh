@@ -1,3 +1,3 @@
 PROJECT_PATHS=(        \
-  ~/sources/dotfiles    \
+  ~/code/dotfiles    \
 )
