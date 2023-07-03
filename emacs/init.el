@@ -1,7 +1,6 @@
 (let* ((gc-cons-threshold (* 25 1024 1024))
        (local-elpa-mirror-base "~/.dotfiles/deps/emacs/ninrod")
-       (local-elpa-mirror-thin (concat local-elpa-mirror-base "/thin-elpa-mirror"))
-       (local-thin-installed nil)
+       (local-elpa-mirror-thin (concat local-elpa-mirror-base "/thin-melpa-mirror"))
        (local-thin-installed (file-directory-p local-elpa-mirror-thin)))
 
   (require 'package)
