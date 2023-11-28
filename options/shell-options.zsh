@@ -4,7 +4,8 @@ if [[ -n ${1+x} ]] && [[ "$1" == "gitmask" ]]; then
 fi
 
 load_secrets() {
-  GIT_ROOT=$(git rev-parse --show-toplevel)
+
+  GIT_ROOT=$(cd ~/.dotfiles && git rev-parse --show-toplevel)
   local my_secrets=$(cd $GIT_ROOT && cd .. && readlink -f secrets)
   if [[ ! -d $my_secrets ]]; then
     echo "dir $my_secrets does not exist. aborting."
