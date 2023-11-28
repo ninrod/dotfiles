@@ -23,7 +23,6 @@ PATH=${PATH}:$ANDROID_HOME/platform-tools
 typeset -aU path
 
 # hack stolen from: https://github.com/rust-lang-nursery/rustfmt/issues/1687#issuecomment-308756211
-
 nvm_config() {
   cd $(readlink -f ~/.dotfiles)
   cd ..
@@ -33,8 +32,16 @@ nvm_config() {
     return 0
   fi
   export NVM_DIR="$HOME/.nvm"
-  [[ -e $NVM_DIR/nvm.sh ]] && source $NVM_DIR/nvm.sh
+  [[ -e $NVM_DIR/nvm.sh ]] && source $NVM_DIR/nvm.sh # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 }
+
+# RVM config
+source "/etc/profile.d/rvm.sh"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 curdir=$(pwd -P)
 nvm_config
