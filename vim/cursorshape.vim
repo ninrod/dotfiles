@@ -12,18 +12,14 @@
 " EI = END insert mode
 " SR = START replace mode
 
-if has('gui_running')
-  if empty($TMUX)
-    let &t_SI = "\<Esc>[6 q"
-    let &t_EI = "\<Esc>[2 q"
-    let &t_SR = "\<Esc>[4 q"
-  else
-    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>[6 q\<Esc>\\"
-    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>[2 q\<Esc>\\"
-    let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>[4 q\<Esc>\\"
-  endif
-endif
-
-" au InsertEnter * silent execute "!sed -i.bak -e 's/TERMINAL_CURSOR_SHAPE_BLOCK/TERMINAL_CURSOR_SHAPE_IBEAM/' ~/.config/xfce4/terminal/terminalrc"
-" au InsertLeave * silent execute "!sed -i.bak -e 's/TERMINAL_CURSOR_SHAPE_IBEAM/TERMINAL_CURSOR_SHAPE_BLOCK/' ~/.config/xfce4/terminal/terminalrc"
-" au VimLeave * silent execute "!sed -i.bak -e 's/TERMINAL_CURSOR_SHAPE_IBEAM/TERMINAL_CURSOR_SHAPE_BLOCK/' ~/.config/xfce4/terminal/terminalrc"
+" if has('gui_running')
+"   if empty($TMUX)
+"     let &t_SI = "\<Esc>[6 q"
+"     let &t_EI = "\<Esc>[2 q"
+"     let &t_SR = "\<Esc>[4 q"
+"   else
+"     let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>[6 q\<Esc>\\"
+"     let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>[2 q\<Esc>\\"
+"     let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>[4 q\<Esc>\\"
+"   endif
+" endif
