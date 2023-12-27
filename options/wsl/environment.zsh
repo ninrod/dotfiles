@@ -19,6 +19,7 @@ PATH=${PATH}:$HOME_LOCAL_BIN
 PATH=${PATH}:$YARN_PATH
 PATH=${PATH}:$ANDROID_HOME/tools
 PATH=${PATH}:$ANDROID_HOME/platform-tools
+PATH="$PATH:$HOME/.rvm/bin"
 
 typeset -aU path
 
@@ -33,11 +34,7 @@ nvm_config() {
   fi
   export NVM_DIR="$HOME/.nvm"
   [[ -e $NVM_DIR/nvm.sh ]] && source $NVM_DIR/nvm.sh # This loads nvm
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 }
-
-# RVM config
-source "/etc/profile.d/rvm.sh"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
