@@ -111,3 +111,4 @@ LAST_STEP=~/.options/last-step.zsh
 # }}}
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+. "$HOME/.cargo/env"

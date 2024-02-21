@@ -2,6 +2,7 @@ mkdir -p $vim_deps && cd $vim_deps
 
 # fetch core editing deps
 ningrab bronson/vim-visual-star-search
+ningrab vim-scripts/vis
 ningrab chaoren/vim-wordmotion
 ningrab ervandew/supertab
 ningrab junegunn/fzf.vim

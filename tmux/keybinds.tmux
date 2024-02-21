@@ -41,9 +41,6 @@ bind-key Down resize-pane -D 5
 bind-key = select-layout even-vertical
 bind-key | select-layout even-horizontal
 
-# ditched m which had select-pane -m
-# this place a stronger visual cue on the selected pane
-# add bind for mouse support toggle needs tmux 2.2
 bind-key m set -g mouse
 
 # toggles tmux bar on/off
