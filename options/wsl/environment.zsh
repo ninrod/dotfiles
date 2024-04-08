@@ -11,6 +11,8 @@ GRADLE_HOME=~/.sdkman/candidates/gradle/current
 YARN_PATH=~/.yarn/bin
 ANDROID_HOME=/home/ninrod/Android/Sdk
 
+PYENV_ROOT="$HOME/.pyenv"
+
 PATH=${PATH}:$CUSTOM_SCRIPTS
 PATH=${PATH}:$LINUX_SCRIPTS
 PATH=${PATH}:$CARGO_BIN
@@ -19,6 +21,8 @@ PATH=${PATH}:$HOME_LOCAL_BIN
 PATH=${PATH}:$YARN_PATH
 PATH=${PATH}:$ANDROID_HOME/tools
 PATH=${PATH}:$ANDROID_HOME/platform-tools
+PATH=${PATH}:$PYENV_ROOT
+PATH=${PATH}:$PYENV_ROOT/bin
 PATH="$PATH:$HOME/.rvm/bin"
 
 typeset -aU path

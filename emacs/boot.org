@@ -2260,6 +2260,7 @@ M-x subword-mode
 
 ** m-map
 
+
 #+BEGIN_SRC emacs-lisp
   (general-define-key
    :keymaps '(normal visual motion)
@@ -3132,6 +3133,6 @@ M-x subword-mode
 #+END_SRC
 * notice
 *** license
-    - Copyright 2015-2017 Filipe Silva.
+    - Copyright 2015-2024 Filipe Silva.
     - email: filipe dot silva at gmail dot com
     - Licensed under the GPLv3 LICENSE

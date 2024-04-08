@@ -7,3 +7,5 @@ fi
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/ninrod/.sdkman"
 [[ -s "/home/ninrod/.sdkman/bin/sdkman-init.sh" ]] && source "/home/ninrod/.sdkman/bin/sdkman-init.sh"
+
+eval "$(pyenv virtualenv-init -)"
