@@ -8,4 +8,6 @@ fi
 export SDKMAN_DIR="/home/ninrod/.sdkman"
 [[ -s "/home/ninrod/.sdkman/bin/sdkman-init.sh" ]] && source "/home/ninrod/.sdkman/bin/sdkman-init.sh"
 
-eval "$(pyenv virtualenv-init -)"
+eval "$(pyenv init -)"
+
+source ~/.rvm/scripts/rvm
