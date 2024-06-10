@@ -15,6 +15,7 @@ vim.keymap.set({ "n", "v" }, "gl", "G")
 
 vim.keymap.set("n", "md", "<C-F>")
 vim.keymap.set("n", "mu", "<C-B>")
+vim.keymap.set("n", "mk", "<cmd>bd<CR>")
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
