@@ -30,6 +30,8 @@ vim.keymap.set("n", "<leader>y", "<C-w>v", { desc = "create vertical partition" 
 
 vim.keymap.set("v", "<Esc>", "<C-c>")
 
+vim.keymap.set("n", "mi", "<cmd>BufExplorer<CR>")
+
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
