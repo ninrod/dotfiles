@@ -13,8 +13,8 @@ vim.keymap.set({ "n", "o", "x" }, ")", "}")
 
 vim.keymap.set({ "n", "v" }, "gl", "G")
 
-vim.keymap.set("n", "md", "<C-F>")
-vim.keymap.set("n", "mu", "<C-B>")
+vim.keymap.set("n", "<space>j", "<C-F>")
+vim.keymap.set("n", "<space>k", "<C-B>")
 vim.keymap.set("n", "mk", "<cmd>bd<CR>")
 
 -- Keybinds to make split navigation easier.
