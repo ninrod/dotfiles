@@ -7,10 +7,6 @@ nnoremap <silent>- :noh<cr>
 xnoremap <silent>- :noh<cr>
 nnoremap <cr> :w<cr>
 
-nnoremap g; g_
-vnoremap g; g_
-onoremap g; g_
-
 nnoremap Q q
 nnoremap q ZQ
 
