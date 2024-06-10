@@ -25,8 +25,10 @@ vim.keymap.set("n", "<leader>h", "<C-w><C-h>", { desc = "Move focus to the left 
 vim.keymap.set("n", "<leader>l", "<C-w><C-l>", { desc = "Move focus to the right window" })
 vim.keymap.set("n", "<leader>j", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<leader>k", "<C-w><C-k>", { desc = "Move focus to the upper window" })
-vim.keymap.set("n", "<leader>x", "<C-w>s", { desc = "Move focus to the upper window" })
-vim.keymap.set("n", "<leader>y", "<C-w>v", { desc = "Move focus to the upper window" })
+vim.keymap.set("n", "<leader>x", "<C-w>s", { desc = "create horizontal partition" })
+vim.keymap.set("n", "<leader>y", "<C-w>v", { desc = "create vertical partition" })
+
+vim.keymap.set("v", "<Esc>", "<C-c>")
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
