@@ -13,8 +13,8 @@ vim.keymap.set({ "n", "o", "x" }, ")", "}")
 
 vim.keymap.set({ "n", "v" }, "gl", "G")
 
-vim.keymap.set({ "n", "v" }, "<leader>j", "Lzt")
-vim.keymap.set({ "n", "v" }, "<leader>k", "Lzt")
+vim.keymap.set("n", "md", "<C-F>")
+vim.keymap.set("n", "mu", "<C-B>")
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
