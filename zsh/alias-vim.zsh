@@ -1,4 +1,5 @@
 # -*- mode: sh -*-
 
-alias v="nvim"
+alias v="vim"
+alias n="nvim"
 alias vi='vim -u NONE -N'
