@@ -21,12 +21,14 @@ vim.keymap.set("n", "mk", "<cmd>bd<CR>")
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
-vim.keymap.set("n", "<leader>h", "<C-w><C-h>", { desc = "Move focus to the left window" })
-vim.keymap.set("n", "<leader>l", "<C-w><C-l>", { desc = "Move focus to the right window" })
-vim.keymap.set("n", "<leader>j", "<C-w><C-j>", { desc = "Move focus to the lower window" })
-vim.keymap.set("n", "<leader>k", "<C-w><C-k>", { desc = "Move focus to the upper window" })
-vim.keymap.set("n", "<leader>x", "<C-w>s", { desc = "create horizontal partition" })
-vim.keymap.set("n", "<leader>y", "<C-w>v", { desc = "create vertical partition" })
+
+vim.keymap.set("n", "s", "<Nop>", { desc = "do nothing" })
+vim.keymap.set("n", "sh", "<C-w><C-h>", { desc = "Move focus to the left window" })
+vim.keymap.set("n", "sl", "<C-w><C-l>", { desc = "Move focus to the right window" })
+vim.keymap.set("n", "sj", "<C-w><C-j>", { desc = "Move focus to the lower window" })
+vim.keymap.set("n", "sk", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+vim.keymap.set("n", "sx", "<C-w>s", { desc = "create horizontal partition" })
+vim.keymap.set("n", "sy", "<C-w>v", { desc = "create vertical partition" })
 
 vim.keymap.set("v", "<Esc>", "<C-c>")
 
