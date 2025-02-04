@@ -250,7 +250,7 @@ require("lazy").setup({
 		config = function() -- This is the function that runs, AFTER loading
 			local wk = require("which-key")
 
-			wk.add({
+			wk.setup({
 				{ "<leader>c", group = "[C]ode" },
 				{ "<leader>c_", hidden = true },
 				{ "<leader>d", group = "[D]ocument" },
