@@ -7,4 +7,6 @@ elif [[ $unamestr:l == *"ubuntu"* ]]; then
   source ~/.options/ubuntu/last_hook.zsh
 elif [[ $unamestr:l == *"darwin"* ]]; then
   source ~/.options/osx/last_hook.zsh
+elif [[ $unamestr:l == *"fedora"* ]]; then
+  source ~/.options/fedora/last_hook.zsh
 fi

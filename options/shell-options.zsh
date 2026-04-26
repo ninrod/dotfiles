@@ -19,12 +19,12 @@ unamestr=$(uname -a)
 if [[ $unamestr:l == *"microsoft"*  ]]; then
   source ~/.options/wsl/wsl.zsh
   load_secrets
-elif [[ $unamestr:l == *"linux"* ]] && [[ $unamestr:l == *"arch"* ]]; then
+elif [[ $unamestr:l == *"linux"* ]] && [[ $unamestr:l == *"fedora"* ]]; then
   if [[ -n ${1+x} ]] && [[ "$1" == "setup" ]]; then
-    source ~/.options/arch/setup.zsh
+    source ~/.options/fedora/setup.zsh
     load_secrets
   else
-    source ~/.options/arch/arch.zsh
+    source ~/.options/fedora/fedora.zsh
   fi
 elif [[ $unamestr:l == *"darwin"*  ]]; then
   source ~/.options/osx/osx.zsh $1

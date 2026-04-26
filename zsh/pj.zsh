@@ -1,6 +1,6 @@
 alias f="project_jump"
 
-project_paths=~/.options/project_paths.zsh
+project_paths=~/.options/favorites.zsh
 if [[ -e $project_paths ]]; then
   source $project_paths
 fi

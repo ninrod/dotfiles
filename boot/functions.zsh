@@ -1,5 +1,8 @@
 verifylink() {
   local symlink=${1:a}
+  if [[ $symlink == $HOME/.config ]] && [[ -d $symlink ]] && [[ ! -h $symlink ]]; then
+    return 0
+  fi
   if [[ -e $symlink ]] && [[ ! -h $symlink ]]; then
     echo -e "${Yellow}$symlink${Rst} is a ${Red}regular${Rst} file on your system."
     echo -e "rename/backup the file ${Yellow}$symlink${Rst}, and run the script again."
@@ -11,6 +14,17 @@ updatelinks() {
   local symlink=${1:a}
   local symlink_old_target=${1:A}
   local symlink_new_target=${2:A}
+
+  if [[ $symlink == $HOME/.config ]] && [[ -d $symlink ]] && [[ ! -h $symlink ]]; then
+    echo -e "${Yellow}Merging contents into existing directory:${Rst} $symlink"
+    for item in $symlink_new_target/*(D); do
+      local basename=${item:t}
+      if [[ $basename == "deploy.zsh" ]]; then continue; fi
+      updatelinks "$symlink/$basename" "$item"
+    done
+    return 0
+  fi
+
   if [[ ! -h $symlink ]]; then
     echo -e "$symlink ${Green}->${Rst} $symlink_new_target"
   elif [[ $symlink_old_target != $symlink_new_target ]]; then
