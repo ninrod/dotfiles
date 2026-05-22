@@ -52,3 +52,5 @@
   extendRegexp = true
 [credential]
 	helper = store
+[tag]
+	sort = -v:refname
