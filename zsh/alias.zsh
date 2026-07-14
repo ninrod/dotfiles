@@ -16,6 +16,7 @@ using $Yellow${0}$Purple ${DOT_PROMPT_CHAR:-$}${Rst}"'
 # apps
 alias ag='ag --path-to-ignore ~/.ignore --hidden'
 
+
 # https://unix.stackexchange.com/a/39296/155613
 # use unaliased version of ag
 alias agu='command ag --hidden -u -a'
@@ -39,3 +40,8 @@ alias 1='cd +1'
 
 # BSSH: better ssh (ownz putty)
 alias bssh="~/.dotfiles/scripts/terminal/bssh.sh"
+
+
+# utils
+alias open=xdg-open
+
