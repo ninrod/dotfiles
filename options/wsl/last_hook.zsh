@@ -5,9 +5,9 @@ if [ -f $exercism_completion_file ]; then
 fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/ninrod/.sdkman"
+export SDKMAN_DIR="~/.sdkman"
 [[ -s "/home/ninrod/.sdkman/bin/sdkman-init.sh" ]] && source "/home/ninrod/.sdkman/bin/sdkman-init.sh"
 
-eval "$(pyenv init -)"
+alias python='uv run python'
 
 source ~/.rvm/scripts/rvm

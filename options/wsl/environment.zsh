@@ -9,7 +9,7 @@ GO_BIN=/usr/local/go/bin
 HOME_LOCAL_BIN=~/.local/bin
 GRADLE_HOME=~/.sdkman/candidates/gradle/current
 YARN_PATH=~/.yarn/bin
-ANDROID_HOME=/home/ninrod/Android/Sdk
+ANDROID_HOME=~/Android/Sdk
 
 PYENV_ROOT="$HOME/.pyenv"
 
