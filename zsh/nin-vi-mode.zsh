@@ -53,4 +53,32 @@ nin-noop() {
 zle -N nin-noop
 bindkey -M vicmd '\e' nin-noop
 
+# function para colar do clipboard do Windows no Zsh
+zsh-powershell-paste() {
+  local clipboard
+  clipboard=$(powershell.exe -NoProfile -command Get-Clipboard 2>/dev/null | tr -d '\r')
+  LBUFFER="${LBUFFER}${clipboard}"
+}
+
+# Cria o widget customizado
+zle -N zsh-powershell-paste
+
+# Sobrescreve a tecla 'p' no vi-mode para usar a function
+bindkey -M vicmd 'p' zsh-powershell-paste
+
+
+# function para enviar a selection do vi-mode para o clip.exe
+zsh-clip-yank() {
+  zle vi-yank
+  print -r -- "$CUTBUFFER" | clip.exe
+}
+
+# Cria o widget customizado no ZLE
+zle -N zsh-clip-yank
+
+# Remapeia 'y' e 'Y' no modo de comando e selection visual
+bindkey -M vicmd 'y' zsh-clip-yank
+bindkey -M vicmd 'Y' zsh-clip-yank
+bindkey -M visual 'y' zsh-clip-yank
+
 # }}}

@@ -914,7 +914,7 @@ require("lazy").setup({
 			set({ "n", "x" }, "ga", mc.addCursorOperator)
 
 			-- Add a cursor to every search result in the buffer.
-			set("n", "<leader>N", mc.searchAllAddCursors)
+			set("n", "<leader>n", mc.searchAllAddCursors)
 
 			-- Mappings defined in a keymap layer only apply when there are
 			-- multiple cursors. This lets you have overlapping mappings.
