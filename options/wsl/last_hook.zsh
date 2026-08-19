@@ -5,8 +5,13 @@ if [ -f $exercism_completion_file ]; then
 fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="~/.sdkman"
-[[ -s "/home/ninrod/.sdkman/bin/sdkman-init.sh" ]] && source "/home/ninrod/.sdkman/bin/sdkman-init.sh"
+
+echo "passa por aqui?"
+
+export SDKMAN_DIR="/home/filipecls/.sdkman"
+[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+
+echo "sim, passa por aqui"
 
 alias python='uv run python'
 

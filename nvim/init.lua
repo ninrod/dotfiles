@@ -115,6 +115,19 @@ vim.opt.showmode = false
 --  See `:help 'clipboard'`
 vim.opt.clipboard = "unnamedplus"
 
+vim.g.clipboard = {
+	name = "WslClipboardFast",
+	copy = {
+		["+"] = "clip.exe",
+		["*"] = "clip.exe",
+	},
+	paste = {
+		["+"] = "powershell.exe -NoProfile -command Get-Clipboard",
+		["*"] = "powershell.exe -NoProfile -command Get-Clipboard",
+	},
+	cache_enabled = 1,
+}
+
 -- Enable break indent
 vim.opt.breakindent = true
 
@@ -851,6 +864,89 @@ require("lazy").setup({
 			--    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 		end,
 	},
+	{
+		"jake-stewart/multicursor.nvim",
+		branch = "1.0",
+		config = function()
+			local mc = require("multicursor-nvim")
+			mc.setup()
+
+			local set = vim.keymap.set
+
+			-- Add or skip cursor above/below the main cursor.
+			set({ "n", "x" }, "<up>", function()
+				mc.lineAddCursor(-1)
+			end)
+			set({ "n", "x" }, "<down>", function()
+				mc.lineAddCursor(1)
+			end)
+			set({ "n", "x" }, "<leader><up>", function()
+				mc.lineSkipCursor(-1)
+			end)
+			set({ "n", "x" }, "<leader><down>", function()
+				mc.lineSkipCursor(1)
+			end)
+
+			-- Add or skip adding a new cursor by matching word/selection
+			set({ "n", "x" }, "<leader>n", function()
+				mc.matchAddCursor(1)
+			end)
+			set({ "n", "x" }, "<leader>s", function()
+				mc.matchSkipCursor(1)
+			end)
+			set({ "n", "x" }, "<leader>N", function()
+				mc.matchAddCursor(-1)
+			end)
+			set({ "n", "x" }, "<leader>S", function()
+				mc.matchSkipCursor(-1)
+			end)
+
+			-- Add and remove cursors with control + left click.
+			set("n", "<c-leftmouse>", mc.handleMouse)
+			set("n", "<c-leftdrag>", mc.handleMouseDrag)
+			set("n", "<c-leftrelease>", mc.handleMouseRelease)
+
+			-- Disable and enable cursors.
+			set({ "n", "x" }, "<c-q>", mc.toggleCursor)
+
+			-- Pressing `gaip` will add a cursor on each line of a paragraph.
+			-- Can also be used to add cursor for each line of visual selection.
+			set({ "n", "x" }, "ga", mc.addCursorOperator)
+
+			-- Add a cursor to every search result in the buffer.
+			set("n", "<leader>N", mc.searchAllAddCursors)
+
+			-- Mappings defined in a keymap layer only apply when there are
+			-- multiple cursors. This lets you have overlapping mappings.
+			mc.addKeymapLayer(function(layerSet)
+				-- Select a different cursor as the main one.
+				layerSet({ "n", "x" }, "<left>", mc.prevCursor)
+				layerSet({ "n", "x" }, "<right>", mc.nextCursor)
+
+				-- Delete the main cursor.
+				layerSet({ "n", "x" }, "<leader>x", mc.deleteCursor)
+
+				-- Enable and clear cursors using escape.
+				layerSet("n", "<esc>", function()
+					if not mc.cursorsEnabled() then
+						mc.enableCursors()
+					else
+						mc.clearCursors()
+					end
+				end)
+			end)
+
+			-- Customize how cursors look.
+			local hl = vim.api.nvim_set_hl
+			hl(0, "MultiCursorCursor", { reverse = true })
+			hl(0, "MultiCursorVisual", { link = "Visual" })
+			hl(0, "MultiCursorSign", { link = "SignColumn" })
+			hl(0, "MultiCursorMatchPreview", { link = "Search" })
+			hl(0, "MultiCursorDisabledCursor", { reverse = true })
+			hl(0, "MultiCursorDisabledVisual", { link = "Visual" })
+			hl(0, "MultiCursorDisabledSign", { link = "SignColumn" })
+		end,
+	},
 
 	-- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
 	-- init.lua. If you want these files, they are in the repository, so you can just download them and
@@ -893,6 +989,17 @@ require("lazy").setup({
 			task = "📌",
 			lazy = "💤 ",
 		},
+	},
+})
+
+vim.filetype.add({
+	extension = {
+		zsh = "sh",
+	},
+	filename = {
+		[".zshrc"] = "sh",
+		[".zshenv"] = "sh",
+		[".zprofile"] = "sh",
 	},
 })
 

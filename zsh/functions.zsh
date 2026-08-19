@@ -41,7 +41,7 @@ sk() {
 # }}}
 # md: faster dir creation {{{
 
-mdr() {
+md() {
   mkdir -p $1
   builtin cd $1
 }
