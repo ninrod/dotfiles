@@ -39,3 +39,9 @@ alias glsi='git ls-files -oiX .gitignore'
 
 # cleanup
 alias git_kill_reflog='git reflog expire --expire-unreachable=now --all && git gc --aggressive --prune=now'
+
+
+# scripts
+#
+# ssh fetch: fetch repos with different ssh keys than the default
+alias gssh="~/.dotfiles/scripts/git/ssh-fetch.sh"

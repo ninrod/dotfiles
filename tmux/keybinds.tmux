@@ -16,8 +16,14 @@ set -g prefix C-Space
 # Quick key for moving back to the previous window
 bind-key p last-window
 
-bind Space copy-mode
 bind r next-layout
+
+# copy-mode tweakings
+bind Space copy-mode
+unbind-key -T copy-mode-vi v
+bind-key -T copy-mode-vi 'v' send -X begin-selection     # Begin selection in copy mode.
+bind-key -T copy-mode-vi 'C-v' send -X rectangle-toggle  # Begin selection in copy mode.
+bind-key -T copy-mode-vi 'y' send -X copy-selection      # Yank selection in copy mode.
 
 # Vim style bindings for pane movement
 bind-key -r h select-pane -L

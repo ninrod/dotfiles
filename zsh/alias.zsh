@@ -41,7 +41,5 @@ alias 1='cd +1'
 # BSSH: better ssh (ownz putty)
 alias bssh="~/.dotfiles/scripts/terminal/bssh.sh"
 
-
 # utils
 alias open=xdg-open
-
