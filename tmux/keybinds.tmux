@@ -23,7 +23,13 @@ bind Space copy-mode
 unbind-key -T copy-mode-vi v
 bind-key -T copy-mode-vi 'v' send -X begin-selection     # Begin selection in copy mode.
 bind-key -T copy-mode-vi 'C-v' send -X rectangle-toggle  # Begin selection in copy mode.
-bind-key -T copy-mode-vi 'y' send -X copy-selection      # Yank selection in copy mode.
+
+bind-key -T copy-mode-vi 'y' send-keys -X copy-pipe-and-cancel "clip.exe" # Yank selection in copy mode.
+
+# auto detect wsl / real linux and yank selection to clipboard
+if-shell 'test -n "$WSL_DISTRO_NAME"' \
+    "bind-key -T copy-mode-vi 'y' send-keys -X copy-pipe-and-cancel 'clip.exe'" \
+    "bind-key -T copy-mode-vi 'y' send-keys -X copy-selection"
 
 # Vim style bindings for pane movement
 bind-key -r h select-pane -L
