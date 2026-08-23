@@ -12,3 +12,10 @@ export SDKMAN_DIR="$HOME/.sdkman"
 alias python='uv run python'
 
 source ~/.rvm/scripts/rvm
+
+
+if [[ $unamestr:l == *"127801"*  ]]; then
+  export DISPLAY=$(ip route show | grep default | awk '{print $3}'):0
+  export WAYLAND_DISPLAY=
+fi
+

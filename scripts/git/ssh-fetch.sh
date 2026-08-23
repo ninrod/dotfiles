@@ -31,7 +31,7 @@ if [ -d "$NOME_PASTA" ]; then
     git config user.email "$EMAIL"
     git config core.sshCommand "ssh -i $CHAVE_PRIVADA -o IdentitiesOnly=yes"
 
-    echo "Sucesso! O repo está pronto."
+    echo "yay! O repo is ready."
     echo "Autor local: $(git config user.name) <$(git config user.email)>"
     echo "Chave local: $(git config core.sshCommand)"
 else
