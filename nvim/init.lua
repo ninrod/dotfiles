@@ -115,6 +115,9 @@ vim.opt.showmode = false
 --  See `:help 'clipboard'`
 vim.opt.clipboard = "unnamedplus"
 
+-- Fix for surgical pasting (character-wise) in Neovim under WSL
+-- The powershell.exe wrapper implicitly injects a trailing newline to stdout
+-- We use perl 'chomp' at the end of the pipeline to strip only the very last newline
 vim.g.clipboard = {
 	name = "WslClipboardFast",
 	copy = {
@@ -122,8 +125,16 @@ vim.g.clipboard = {
 		["*"] = "clip.exe",
 	},
 	paste = {
-		["+"] = { "sh", "-c", [[powershell.exe -NoProfile -command Get-Clipboard | tr -d '\r']] },
-		["*"] = { "sh", "-c", [[powershell.exe -NoProfile -command Get-Clipboard | tr -d '\r']] },
+		["+"] = {
+			"sh",
+			"-c",
+			[[powershell.exe -NoProfile -command Get-Clipboard -Raw | tr -d '\r' | perl -pe 'chomp if eof']],
+		},
+		["*"] = {
+			"sh",
+			"-c",
+			[[powershell.exe -NoProfile -command Get-Clipboard -Raw | tr -d '\r' | perl -pe 'chomp if eof']],
+		},
 	},
 	cache_enabled = 1,
 }
