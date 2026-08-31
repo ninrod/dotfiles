@@ -913,6 +913,11 @@ require("lazy").setup({
 			-- Can also be used to add cursor for each line of visual selection.
 			set({ "n", "x" }, "ga", mc.addCursorOperator)
 
+			-- Append/insert for each line of visual selections.
+			-- Similar to block selection insertion.
+			set("x", "I", mc.insertVisual)
+			set("x", "A", mc.appendVisual)
+
 			-- Add a cursor to every search result in the buffer.
 			set("n", "<leader>n", mc.searchAllAddCursors)
 
