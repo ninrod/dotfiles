@@ -845,32 +845,47 @@ require("lazy").setup({
 	},
 	{ -- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
+		-- The old "master" branch is legacy/unmaintained and breaks on recent
+		-- Neovim releases (e.g. "attempt to call method 'range' (a nil value)").
+		-- "main" is the actively supported rewrite for Neovim 0.11+.
+		branch = "main",
 		build = ":TSUpdate",
-		opts = {
-			ensure_installed = { "bash", "c", "diff", "html", "lua", "luadoc", "markdown", "vim", "vimdoc" },
-			-- Autoinstall languages that are not installed
-			auto_install = true,
-			highlight = {
-				enable = true,
-				-- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
-				--  If you are experiencing weird indenting issues, add the language to
-				--  the list of additional_vim_regex_highlighting and disabled languages for indent.
-				additional_vim_regex_highlighting = { "ruby" },
-			},
-			indent = { enable = true, disable = { "ruby" } },
-		},
-		config = function(_, opts)
+		-- The "main" branch does not support lazy-loading
+		lazy = false,
+		config = function()
 			-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
+			require("nvim-treesitter").install({
+				"bash",
+				"c",
+				"diff",
+				"html",
+				"lua",
+				"luadoc",
+				"markdown",
+				"markdown_inline",
+				"vim",
+				"vimdoc",
+			})
 
-			-- Prefer git instead of curl in order to improve connectivity in some environments
-			require("nvim-treesitter.install").prefer_git = true
-			---@diagnostic disable-next-line: missing-fields
-			require("nvim-treesitter.configs").setup(opts)
+			-- Highlighting, folds and indent are provided by Neovim core / this
+			-- plugin's queries; they are enabled per-buffer here instead of via
+			-- the old `configs.setup` API.
+			vim.api.nvim_create_autocmd("FileType", {
+				callback = function(args)
+					-- Ruby depends on vim's regex highlighting system for indent rules
+					if vim.bo[args.buf].filetype == "ruby" then
+						return
+					end
+
+					pcall(vim.treesitter.start)
+					vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+					vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+				end,
+			})
 
 			-- There are additional nvim-treesitter modules that you can use to interact
 			-- with nvim-treesitter. You should go explore a few and see what interests you:
 			--
-			--    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
 			--    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
 			--    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 		end,
