@@ -46,7 +46,6 @@ apikeys_config() {
   cd ..
   [[ ! -e secrets/api-keys.zsh ]] && return 0
   source secrets/api-keys.zsh
-  echo "funcionou!"
 }
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
