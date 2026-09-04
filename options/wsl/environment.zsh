@@ -40,10 +40,20 @@ nvm_config() {
   [[ -e $NVM_DIR/nvm.sh ]] && source $NVM_DIR/nvm.sh # This loads nvm
 }
 
+# hack stolen from: https://github.com/rust-lang-nursery/rustfmt/issues/1687#issuecomment-308756211
+apikeys_config() {
+  cd $(readlink -f ~/.dotfiles)
+  cd ..
+  [[ ! -e secrets/api-keys.zsh ]] && return 0
+  source secrets/api-keys.zsh
+  echo "funcionou!"
+}
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 curdir=$(pwd -P)
 nvm_config
+apikeys_config
 cd $curdir
