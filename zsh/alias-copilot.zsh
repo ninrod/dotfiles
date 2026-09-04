@@ -1,5 +1,15 @@
-# function to wrap copilot prompt so you can ask freely without quotes
+# enhanced copilot function with pipe support
 function ais() {
-    # $* captures all arguments passed to the function as a single string
-    copilot -p "$*"
+    local input=""
+    # check if stdin is connected to a pipe/file
+    if [[ ! -t 0 ]]; then
+        input=$(cat)
+    fi
+
+    # if there is piped input, append it to the prompt
+    if [[ -n "$input" ]]; then
+        copilot -p "$*:\n\n$input"
+    else
+        copilot -p "$*"
+    fi
 }
