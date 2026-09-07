@@ -22,3 +22,5 @@ vim.opt.softtabstop = 2
 vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 vim.opt.scrolloff = 1
+vim.opt.foldmethod = "marker"
+vim.opt.foldlevelstart = 0
