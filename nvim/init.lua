@@ -29,7 +29,7 @@ local config_path = vim.fn.stdpath("config")
 package.path = config_path .. "/?.lua;" .. config_path .. "/?/init.lua;" .. package.path
 
 require("clipboard")
-require("keys.keybindings")
+require("keybindings")
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
