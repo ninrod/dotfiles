@@ -1,40 +1,14 @@
-return {
-	require("plugins.vim-sleuth"),
-	require("plugins.vim-surround"),
-	require("plugins.bufexplorer"),
-	require("plugins.comment"),
-	require("plugins.gitsigns"),
-	require("plugins.which-key"),
-	require("plugins.copilot-chat"),
-	require("plugins.telescope"),
-	require("plugins.plenary"),
-	require("plugins.telescope-fzf-native"),
-	require("plugins.telescope-ui-select"),
-	require("plugins.nvim-web-devicons"),
-	require("plugins.nvim-lspconfig"),
-	require("plugins.mason"),
-	require("plugins.mason-tool-installer"),
-	require("plugins.fidget"),
-	require("plugins.neodev"),
-	require("plugins.conform"),
-	require("plugins.nvim-cmp"),
-	require("plugins.luasnip"),
-	require("plugins.cmp-luasnip"),
-	require("plugins.cmp-nvim-lsp"),
-	require("plugins.cmp-path"),
-	require("plugins.gruvbox"),
-	require("plugins.todo-comments"),
-	require("plugins.mini"),
-	require("plugins.nvim-treesitter"),
-	require("plugins.multicursor"),
-	require("plugins.nvim-autopairs"),
-	require("plugins.neo-tree"),
-	require("plugins.nvim-nui"),
-	require("plugins.nvim-dap"),
-	require("plugins.nvim-dap-ui"),
-	require("plugins.nvim-nio"),
-	require("plugins.mason-nvim-dap"),
-	require("plugins.nvim-dap-go"),
-	require("plugins.indent-blankline"),
-	require("plugins.nvim-lint"),
-}
+local plugins = {}
+local plugin_path = vim.fn.stdpath("config") .. "/plugins"
+local filenames = vim.fn.readdir(plugin_path)
+
+table.sort(filenames)
+
+for _, filename in ipairs(filenames) do
+	if filename ~= "init.lua" and filename:sub(-4) == ".lua" then
+		local module = filename:sub(1, -5)
+		table.insert(plugins, require("plugins." .. module))
+	end
+end
+
+return plugins
