@@ -1,3 +1,5 @@
+alias yolo='command copilot --allow-all --no-ask-user'
+
 # function to wrap copilot prompt with reliable pipe support
 function ais() {
     local stdin_content=""
