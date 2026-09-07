@@ -16,10 +16,6 @@ using $Yellow${0}$Purple ${DOT_PROMPT_CHAR:-$}${Rst}"'
 # apps
 alias ag='ag --path-to-ignore ~/.ignore --hidden'
 
-rgf() {
-  rg --files --hidden --no-ignore -g "*.$1"
-}
-
 # https://unix.stackexchange.com/a/39296/155613
 # use unaliased version of ag
 alias agu='command ag --hidden -u -a'
@@ -31,8 +27,6 @@ alias tarx='tar -zxvf'
 alias re='exec zsh'
 alias dot='la $(find ~ -maxdepth 1 -type l)'
 
-# dotfiles
-alias r='~/.dotfiles/install.zsh'
 
 # tmux
 alias t="~/.dotfiles/scripts/tmux/tmux-attach.sh"
