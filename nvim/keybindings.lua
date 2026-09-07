@@ -135,6 +135,17 @@ function M.setup_conform_keybindings()
 	end, { desc = "[F]ormat buffer" })
 end
 
+-- PLUGIN: Orgmode keybindings
+function M.setup_orgmode_keybindings(event)
+	local opts = { buffer = event.buf }
+	vim.keymap.set("n", "<Tab>", function()
+		require("orgmode").action("org_mappings.cycle")
+	end, vim.tbl_extend("force", opts, { desc = "Org: cycle current headline" }))
+	vim.keymap.set("n", "<S-Tab>", function()
+		require("orgmode").action("org_mappings.global_cycle")
+	end, vim.tbl_extend("force", opts, { desc = "Org: cycle whole file" }))
+end
+
 -- PLUGIN: Multicursor keybindings
 function M.setup_multicursor_keybindings(mc)
 	local set = vim.keymap.set
