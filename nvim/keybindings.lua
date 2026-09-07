@@ -34,9 +34,6 @@ vim.keymap.set("n", "sy", "<C-w>v", { desc = "create vertical partition" })
 
 vim.keymap.set("v", "<Esc>", "<C-c>")
 
--- BufExplorer keybindings
-vim.keymap.set("n", "mi", "<cmd>BufExplorer<CR>")
-
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
@@ -51,13 +48,15 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
--- Neo-tree keybindings
-vim.keymap.set("n", "\\", "<cmd>Neotree reveal<CR>", { desc = "NeoTree reveal" })
-
--- PLUGIN CONFIGURATION SECTION
+-- PLUGINS CONFIG SECTION
+--
 local M = {}
 
+-- PLUGIN: BufExplorer keybindings
+vim.keymap.set("n", "mi", "<cmd>BufExplorer<CR>")
+
 -- PLUGIN: NEOTREE
+vim.keymap.set("n", "\\", "<cmd>Neotree reveal<CR>", { desc = "NeoTree reveal" })
 function M.neo_tree_window_mappings()
 	return {
 		["\\"] = "close_window",
