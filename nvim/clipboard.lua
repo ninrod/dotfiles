@@ -1,21 +1,13 @@
 vim.opt.clipboard = "unnamedplus"
 vim.g.clipboard = {
-	name = "WslClipboardFast",
+	name = "Win32Yank",
 	copy = {
-		["+"] = "clip.exe",
-		["*"] = "clip.exe",
+		["+"] = { "win32yank.exe", "-i", "--crlf" },
+		["*"] = { "win32yank.exe", "-i", "--crlf" },
 	},
 	paste = {
-		["+"] = {
-			"sh",
-			"-c",
-			[[powershell.exe -NoProfile -command '$OutputEncoding = [Console]::OutputEncoding = [System.Text.UTF8Encoding]::new($false); Get-Clipboard -Raw' | tr -d '\r' | perl -pe 'chomp if eof']],
-		},
-		["*"] = {
-			"sh",
-			"-c",
-			[[powershell.exe -NoProfile -command '$OutputEncoding = [Console]::OutputEncoding = [System.Text.UTF8Encoding]::new($false); Get-Clipboard -Raw' | tr -d '\r' | perl -pe 'chomp if eof]],
-		},
+		["+"] = { "win32yank.exe", "-o", "--lf" },
+		["*"] = { "win32yank.exe", "-o", "--lf" },
 	},
 	cache_enabled = 1,
 }
