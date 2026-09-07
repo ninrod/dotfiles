@@ -5,6 +5,7 @@ return {
 	require("plugins.comment"),
 	require("plugins.gitsigns"),
 	require("plugins.which-key"),
+	require("plugins.copilot-chat"),
 	require("plugins.telescope"),
 	require("plugins.plenary"),
 	require("plugins.telescope-fzf-native"),
