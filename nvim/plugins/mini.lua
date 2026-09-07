@@ -19,6 +19,8 @@ return {
 			},
 		})
 
+		require("mini.align").setup()
+
 		local statusline = require("mini.statusline")
 		statusline.setup({ use_icons = vim.g.have_nerd_font })
 		statusline.section_location = function()

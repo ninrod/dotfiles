@@ -19,6 +19,7 @@ ningrab ervandew/supertab
 ningrab chaoren/vim-wordmotion
 ningrab tommcdo/vim-exchange
 ningrab vim-scripts/ReplaceWithRegister
+
 ningrab wellle/targets.vim
 ningrab kana/vim-textobj-entire
 ningrab kana/vim-textobj-user
