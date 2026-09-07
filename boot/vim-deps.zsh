@@ -2,18 +2,20 @@ mkdir -p $vim_deps && cd $vim_deps
 
 # fetch core editing deps
 #
-ningrab vim-scripts/vis
 ningrab bronson/vim-visual-star-search
-ningrab ervandew/supertab
-ningrab junegunn/fzf.vim
+ningrab vim-scripts/vis
+
 ningrab junegunn/vim-easy-align
 ningrab francoiscabrol/ranger.vim
+
+ningrab junegunn/fzf.vim
 
 
 ########################################
 ########        MIGRADOS       #########
 ########################################
 
+ningrab ervandew/supertab
 ningrab chaoren/vim-wordmotion
 ningrab tommcdo/vim-exchange
 ningrab vim-scripts/ReplaceWithRegister
