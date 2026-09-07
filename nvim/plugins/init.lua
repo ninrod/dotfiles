@@ -12,7 +12,6 @@ return {
 	require("plugins.nvim-web-devicons"),
 	require("plugins.nvim-lspconfig"),
 	require("plugins.mason"),
-	require("plugins.mason-lspconfig"),
 	require("plugins.mason-tool-installer"),
 	require("plugins.fidget"),
 	require("plugins.neodev"),
