@@ -1,16 +1,10 @@
 return {
 	"stevearc/conform.nvim",
 	lazy = false,
-	keys = {
-		{
-			"<leader>f",
-			function()
-				require("conform").format({ async = true, lsp_fallback = true })
-			end,
-			mode = "",
-			desc = "[F]ormat buffer",
-		},
-	},
+	config = function(_, opts)
+		require("conform").setup(opts)
+		require("keybindings").setup_conform_keybindings()
+	end,
 	opts = {
 		notify_on_error = false,
 		format_on_save = function(bufnr)

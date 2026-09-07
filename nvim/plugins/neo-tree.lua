@@ -7,15 +7,10 @@ return {
 		"MunifTanjim/nui.nvim",
 	},
 	cmd = "Neotree",
-	keys = {
-		{ "\\", ":Neotree reveal<CR>", { desc = "NeoTree reveal" } },
-	},
 	opts = {
 		filesystem = {
 			window = {
-				mappings = {
-					["\\"] = "close_window",
-				},
+				mappings = require("keybindings").neo_tree_window_mappings(),
 			},
 		},
 	},
