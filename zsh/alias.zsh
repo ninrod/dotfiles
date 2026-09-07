@@ -16,6 +16,9 @@ using $Yellow${0}$Purple ${DOT_PROMPT_CHAR:-$}${Rst}"'
 # apps
 alias ag='ag --path-to-ignore ~/.ignore --hidden'
 
+rgf() {
+  rg --files --hidden --no-ignore -g "*.$1"
+}
 
 # https://unix.stackexchange.com/a/39296/155613
 # use unaliased version of ag
