@@ -87,25 +87,64 @@
     (interactive)
     (message (concat "copied path: \"" (neotree-copy-filepath-to-yank-ring) "\" to the clipboard.")))
 #+END_SRC
-*** terminal clipboard functions
-    - see: [[https://github.com/syl20bnr/spacemacs/issues/2222#issuecomment-156326990][this]] issue
+*** Win32 clipboard in terminal
     #+BEGIN_SRC emacs-lisp
-      (defun ninrod/terminal/copy-to-clipboard ()
-        "When in terminal, copies selection to x-clipboard."
-        (interactive)
-        (cond ((and (region-active-p) (not (display-graphic-p)))
-               (shell-command-on-region (region-beginning) (region-end) "xsel -i -b")
-               (message "Yanked region to clipboard through terminal!")
-               (deactivate-mark))
-              (t (message "No region active; can't yank to clipboard!"))))
+      (defvar ninrod/win32yank--last-copy nil
+        "Last text sent to the Windows clipboard by Emacs.")
 
-      (defun ninrod/terminal/paste-from-clipboard ()
-        "When in terminal, pastes from x-clipboard."
+      (defvar ninrod/win32yank--clipboard-cache-valid nil
+        "Whether the Windows clipboard has been checked since the last focus.")
+
+      (defun ninrod/win32yank-copy (text)
+        "Copy TEXT to the Windows clipboard through win32yank.exe."
+        (with-temp-buffer
+          (insert text)
+          (let ((coding-system-for-write 'utf-8-unix)
+                (status (call-process-region
+                         (point-min) (point-max)
+                         "win32yank.exe"
+                         nil nil nil
+                         "-i" "--crlf")))
+            (unless (eq status 0)
+              (error "win32yank copy failed (%s)" status)))
+          (setq ninrod/win32yank--last-copy text
+                ninrod/win32yank--clipboard-cache-valid t)))
+
+      (defun ninrod/win32yank-invalidate-cache ()
+        "Check the Windows clipboard before the next paste."
+        (setq ninrod/win32yank--clipboard-cache-valid nil))
+
+      (defun ninrod/win32yank-paste ()
+        "Return newly copied Windows clipboard text.
+
+The clipboard is read once after Emacs gains focus, then subsequent pastes
+use the local kill ring without starting win32yank.exe again."
+        (unless ninrod/win32yank--clipboard-cache-valid
+          (let ((text
+                 (with-temp-buffer
+                   (let ((coding-system-for-read 'utf-8-unix)
+                         (status (call-process
+                                  "win32yank.exe" nil t nil
+                                  "-o" "--lf")))
+                     (unless (eq status 0)
+                       (error "win32yank paste failed (%s)" status))
+                     (buffer-string)))))
+            (setq ninrod/win32yank--clipboard-cache-valid t)
+            (unless (equal text ninrod/win32yank--last-copy)
+              text))))
+
+      (defun ninrod/win32yank-paste-after ()
+        "Refresh the Windows clipboard and paste it after point."
         (interactive)
-        (cond ((display-graphic-p)
-               (clipboard-yank)
-               (message "Graphics active, no need to use xclip."))
-              (t (insert (shell-command-to-string "xsel -o -b")))))
+        (ninrod/win32yank-invalidate-cache)
+        (call-interactively #'evil-paste-after))
+
+      (if (executable-find "win32yank.exe")
+          (progn
+            (setq interprogram-cut-function #'ninrod/win32yank-copy
+                  interprogram-paste-function #'ninrod/win32yank-paste)
+            (add-hook 'focus-in-hook #'ninrod/win32yank-invalidate-cache))
+        (message "win32yank.exe unavailable; using the local Emacs kill ring"))
     #+END_SRC
 ** environment
 *** ninrod--distro-p
@@ -2287,8 +2326,7 @@ M-x subword-mode
    "s" 'sort-lines
    "e" 'evil-emacs-state
    "m" 'ninrod/evil-record-macro-z
-   "y" 'ninrod/terminal/copy-to-clipboard
-   "p" 'ninrod/terminal/paste-from-clipboard
+   "p" 'ninrod/win32yank-paste-after
    )
 #+END_SRC
 

@@ -13,14 +13,7 @@ else
   echo -e "emacs daemon is ${Red}killed${Rst}. Let us ${Green}ressurect${Rst} it..."
 fi
 
-# lang has to be pt_BR.UTF-8 by this point
-
-unamestr=$(uname -a)
-# if this isn't set, cedilla does not work in tumbleweed
-LANG=C
-if [[ "$unamestr" == *"Linux"* ]] && [[ $unamestr == *"ARCH"* ]]; then
-  LANG=pt_BR.UTF-8
-fi
+# Keep the terminal's UTF-8 locale; LANG=C makes daemon text I/O ASCII-only.
 
 emacs --daemon; rc=$?
 if [[ ! $rc = 0 ]]; then
@@ -37,4 +30,3 @@ unamestr=$(uname -a)
 if [[ "$unamestr" == *"Linux"* ]] && [[ $unamestr == *"ARCH"* ]]; then
   notify-send 'emacs-daemon' "emacs daemon boostrap time: ${boostrap_time}"
 fi
-
