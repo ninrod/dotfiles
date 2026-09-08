@@ -12,14 +12,14 @@ return {
 		{
 			"iw",
 			function()
-				require("unicode-subword").subword("inner")
+				require("patch/unicode-subword").subword("inner")
 			end,
 			mode = { "o", "x" },
 		},
 		{
 			"aw",
 			function()
-				require("unicode-subword").subword("outer")
+				require("patch/unicode-subword").subword("outer")
 			end,
 			mode = { "o", "x" },
 		},
