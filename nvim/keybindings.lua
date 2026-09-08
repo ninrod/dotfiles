@@ -1,7 +1,7 @@
 --  See `:help vim.keymap.set()`
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
-vim.keymap.set({ "n", "v" }, "<Esc>", "<cmd>nohlsearch<CR>")
+vim.keymap.set({ "n", "v" }, "-", "<cmd>nohlsearch<CR>")
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -178,6 +178,8 @@ function M.setup_multicursor_keybindings(mc)
 	set("x", "I", mc.insertVisual)
 	set("x", "A", mc.appendVisual)
 	set({ "n", "x" }, "<leader>n", mc.searchAllAddCursors)
+	set("x", "<leader>m", mc.matchCursors)
+	set("x", "<leader>|", mc.splitCursors)
 	mc.addKeymapLayer(function(layer_set)
 		layer_set({ "n", "x" }, "<left>", mc.prevCursor)
 		layer_set({ "n", "x" }, "<right>", mc.nextCursor)
