@@ -12,6 +12,11 @@
 -- patterns. This way, accents are never treated as case/word boundaries:
 -- what matters is casing/underscore/hyphen style, not whether a letter is
 -- accented.
+--
+-- It also replaces nvim-spider's ASCII Lua-pattern matcher with this
+-- classifier. nvim-spider provides the mapped `w`, `e`, `b`, and `ge`
+-- motions, so fixing only `iw`/`aw` would leave those motions splitting at
+-- accented letters.
 local M = {}
 
 ---@param char string a single character
@@ -28,14 +33,15 @@ local function classify(char)
 
 	-- letters without case distinction (e.g. some scripts) still count as
 	-- part of a word, just like a lowercase letter
-	if char:match("%w") then return "L" end
+	if vim.fn.match(char, [[^\k$]]) == 0 then return "L" end
 
 	return "O"
 end
 
+---@param line? string
 ---@return string[] chars, integer[] byteStarts, string line
-local function getLineChars()
-	local line = vim.api.nvim_get_current_line()
+local function getLineChars(line)
+	line = line or vim.api.nvim_get_current_line()
 	local nchars = vim.fn.strchars(line)
 	local chars, byteStarts = {}, {}
 	for i = 0, nchars - 1 do
@@ -161,6 +167,156 @@ function M.subword(scope)
 	end
 
 	selectCharRange(row, byteStarts, selStart, selEnd)
+end
+
+---@param char string
+---@return boolean
+local function isAsciiPunctuation(char)
+	return char:match("^[%p]$") ~= nil
+end
+
+---@param char string
+---@return boolean
+local function isSubwordSeparator(char)
+	return char == "_" or char == "-"
+end
+
+---@param char string|nil
+---@return boolean
+local function isBlank(char)
+	return char ~= nil and char:match("%s") ~= nil
+end
+
+---@param line string
+---@param opts Spider.config
+---@return { start: integer, finish: integer }[]
+local function motionTokens(line, opts)
+	local chars, byteStarts = getLineChars(line)
+	local classes, tokens = {}, {}
+	for i, char in ipairs(chars) do
+		classes[i] = classify(char)
+	end
+
+	local usesByteOffsets = #line == require("spider.extras.utf8-support").stringFuncs.len(line)
+	local function position(index)
+		return usesByteOffsets and byteStarts[index] + 1 or index
+	end
+	local function addToken(startIdx, endIdx)
+		tokens[#tokens + 1] = {
+			start = position(startIdx),
+			finish = position(endIdx),
+		}
+	end
+
+	local i = 1
+	while i <= #chars do
+		if isSubwordSeparator(chars[i]) then
+			-- Separators divide snake_case and kebab-case components without
+			-- becoming destinations of word motions themselves.
+			while i < #chars and isSubwordSeparator(chars[i + 1]) do
+				i = i + 1
+			end
+			i = i + 1
+		elseif isAsciiPunctuation(chars[i]) then
+			local startIdx, endIdx = i, i
+			while endIdx < #chars and isAsciiPunctuation(chars[endIdx + 1]) do
+				endIdx = endIdx + 1
+			end
+
+			-- Match Spider's default behavior: with this option enabled, only
+			-- punctuation that is insignificant between words is skipped.
+			local include = not opts.skipInsignificantPunctuation
+				or (startIdx == 1 and isBlank(chars[endIdx + 1]))
+				or (endIdx == #chars and isBlank(chars[startIdx - 1]))
+				or (isBlank(chars[startIdx - 1]) and isBlank(chars[endIdx + 1]))
+			if include then addToken(startIdx, endIdx) end
+			i = endIdx + 1
+		elseif classes[i] == "D" then
+			local endIdx = i
+			while endIdx < #chars and classes[endIdx + 1] == "D" do
+				endIdx = endIdx + 1
+			end
+			addToken(i, endIdx)
+			i = endIdx + 1
+		elseif classes[i] == "L" then
+			local endIdx = i
+			while endIdx < #chars and classes[endIdx + 1] == "L" do
+				endIdx = endIdx + 1
+			end
+			addToken(i, endIdx)
+			i = endIdx + 1
+		elseif classes[i] == "U" then
+			local upperEnd = i
+			while upperEnd < #chars and classes[upperEnd + 1] == "U" do
+				upperEnd = upperEnd + 1
+			end
+
+			local endIdx = upperEnd
+			if upperEnd < #chars and classes[upperEnd + 1] == "L" then
+				if upperEnd > i then
+					-- `HTMLParser` is `HTML` + `Parser`, not `HTMLP` + `arser`.
+					endIdx = upperEnd - 1
+				else
+					while endIdx < #chars and classes[endIdx + 1] == "L" do
+						endIdx = endIdx + 1
+					end
+				end
+			end
+			addToken(i, endIdx)
+			i = endIdx + 1
+		else
+			i = i + 1
+		end
+	end
+
+	return tokens
+end
+
+---Install a Unicode-aware replacement for Spider's default subword matcher.
+---
+---The replacement retains Spider's surrounding motion implementation, which
+---handles counts, lines, visual mode, and operator-pending endpoints.
+function M.patchSpider()
+	local motionLogic = require("spider.motion-logic")
+	if motionLogic.unicodeSubwordPatched then return end
+
+	local originalGetNextPosition = motionLogic.getNextPosition
+	motionLogic.getNextPosition = function(line, searchOffset, key, opts)
+		local customPatterns = opts.customPatterns
+		if not opts.subwordMovement or (customPatterns and #customPatterns.patterns > 0) then
+			return originalGetNextPosition(line, searchOffset, key, opts)
+		end
+
+		local tokens = motionTokens(line, opts)
+		if key == "w" then
+			for _, token in ipairs(tokens) do
+				if token.start > searchOffset then return token.start end
+			end
+		elseif key == "e" then
+			for _, token in ipairs(tokens) do
+				if token.finish > searchOffset then return token.finish end
+			end
+		elseif key == "b" then
+			for i = #tokens, 1, -1 do
+				-- Spider uses zero as the offset after crossing to the
+				-- preceding line; there it means "start from its end".
+				if searchOffset == 0 or tokens[i].start < searchOffset then return tokens[i].start end
+			end
+		elseif key == "ge" then
+			for i = #tokens, 1, -1 do
+				if searchOffset == 0 or tokens[i].finish < searchOffset then return tokens[i].finish end
+			end
+		end
+
+		return false
+	end
+	motionLogic.unicodeSubwordPatched = true
+end
+
+---@param key "w"|"e"|"b"|"ge"
+function M.motion(key)
+	M.patchSpider()
+	require("spider").motion(key)
 end
 
 return M
