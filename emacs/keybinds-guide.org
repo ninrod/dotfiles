@@ -1,0 +1,302 @@
+#+TITLE: Referência de keybindings do Emacs
+#+SUBTITLE: Extraída de =~/.emacs.d/boot.org=
+#+OPTIONS: toc:2
+
+* Convenções
+
+- Escopo: a maior parte deste documento cobre o nó =~* keybinds= de
+  =boot.org=. A seção "Bindings declarados fora de *keybinds*" complementa
+  os atalhos ativos declarados em outras partes do arquivo.
+- Estados Evil: =N= (normal), =V= (visual) e =M= (motion).
+- Sequências como =SPC d f= indicam teclas sucessivas, não teclas
+  pressionadas simultaneamente.
+- Os mapas específicos de modo podem sobrepor um atalho geral quando aquele
+  modo ou buffer está ativo.
+
+* Atalhos gerais
+
+** Espaço: comandos centrais
+
+| Estado | Tecla     | Comando / efeito |
+|--------+-----------+------------------|
+| N, V   | SPC TAB   | Alterna para o buffer anterior (=ninrod/alternate-buffer=). |
+| N, V   | SPC ,     | Vai para a marca global anterior (=pop-global-mark=). |
+| N, V   | SPC ESC   | Executa =ninrod/echo=. |
+| N, V   | SPC SPC   | Abre =counsel-M-x=. |
+| N, V   | SPC RET   | Salva o arquivo (=write-file=). |
+| N, V   | SPC DEL   | Cria um diretório (=ninrod/mkdir=). |
+| N, V   | SPC g     | Salta para um caractere com Avy (=avy-goto-char=). |
+| N, V   | SPC c     | Captura uma tarefa Org (=ninrod/org-task-capture=). |
+| N, V   | SPC j     | Executa a macro =LztM= para reposicionar cursor e janela. |
+| N, V   | SPC k     | Executa a macro =Hz-M= para reposicionar cursor e janela. |
+| N      | SPC F12   | Abre =~/.emacs.d/boot.org=. |
+
+** Espaço: ajuda, zoom e ortografia
+
+| Tema | Estado | Tecla | Comando / efeito |
+|------+--------+-------+------------------|
+| Ajuda | N | SPC d a | =apropos=. |
+| Ajuda | N | SPC d b | Descreve os bindings de um keymap (=emaps-describe-keymap-bindings=). |
+| Ajuda | N | SPC d c | Descreve o caractere no ponto (=describe-char=). |
+| Ajuda | N | SPC d d | Descreve uma face com Counsel. |
+| Ajuda | N | SPC d f | Descreve uma função com Helpful. |
+| Ajuda | N | SPC d i | Abre o Info. |
+| Ajuda | N | SPC d k | Descreve uma tecla (=describe-key=). |
+| Ajuda | N | SPC d v | Descreve uma variável com Counsel. |
+| Ajuda | N | SPC d m | Descreve o modo atual. |
+| Zoom | N | SPC H z, i | Abre Hydra de zoom; =i= aumenta a escala do texto. |
+| Zoom | N | SPC H z, o | Abre Hydra de zoom; =o= reduz a escala do texto. |
+| Ortografia | N | SPC S w | Verifica a palavra com Ispell. |
+| Ortografia | N | SPC S e | Muda o dicionário para inglês. |
+| Ortografia | N | SPC S p | Muda o dicionário para =pt_BR=. |
+| Ortografia | N | SPC S k | Desliga Flyspell. |
+| Ortografia | N | SPC S s | Liga Flyspell. |
+
+** Prefixo =s=: buffers, projetos, edição e janelas
+
+| Tema | Estado | Tecla | Comando / efeito |
+|------+--------+-------+------------------|
+| Buffers | N, V, M | s u | Reverte o buffer sem confirmação. |
+| Buffers | N, V, M | s n / s w | Estreita / alarga uma região retangular. |
+| Buffers | N, V, M | s m | Define o marcador Evil =z=. |
+| Buffers | N, V, M | s i | Alterna de buffer com Ivy. |
+| Buffers | N, V, M | s s | Abre Multi-Term. |
+| Projetos | N, V, M | s . | Localiza arquivo no projeto com Counsel Projectile. |
+| Projetos | N, V, M | s r | Mostra arquivos recentes do Projectile. |
+| Projetos | N, V, M | s o | Troca de projeto. |
+| Buffers | N, V, M | s RET | Salva e fecha via Evil. |
+| Bookmarks | N, V, M | s SPC | Salta para bookmark. |
+| Bookmarks | N, V, M | s - / s = | Exclui / cria bookmark. |
+| Edição | N, V, M | s p | Abre o histórico de yanks. |
+| Edição | N, V, M | s a | Faz substituição por regex com Anzu. |
+| Busca | N, V, M | s / | Busca com Grep ou Swiper. |
+| Busca | N, V, M | s f | Busca com Silver Searcher (=counsel-ag=). |
+| Histórico | N, V, M | s , / s ; | Salta para trás / frente no changelist Evil. |
+| Diretórios | N, V, M | s DEL | Altera o diretório padrão (=cd=). |
+| Janelas | N, V, M | s j / s k | Move o foco para a janela abaixo / acima. |
+| Janelas | N, V, M | s h / s l | Move o foco para a janela à esquerda / direita. |
+| Janelas | N, V, M | s y / s x | Divide à direita / abaixo e dá foco à nova janela. |
+
+** Prefixo =m=: Magit, Org, buffers e edição
+
+| Tema | Estado | Tecla | Comando / efeito |
+|------+--------+-------+------------------|
+| Git | N, V, M | m c | Clona repositório com Magit. |
+| Git | N, V, M | m g | Abre o status Magit. |
+| Org | N, V, M | m o | Abre a agenda Org. |
+| Arquivos | N, V, M | m TAB | Alterna NeoTree. |
+| Buffers | N, V, M | m f | Copia o nome do arquivo atual. |
+| Buffers | N, V, M | m k / m w / m i | Mata buffer / alarga buffer / abre Ibuffer. |
+| Edição | N, V, M | m a | Aplica a macro armazenada no registrador =z=. |
+| Edição | N, V, M | m r | Repete o alinhamento. |
+| Edição | N, V, M | m s | Ordena linhas. |
+| Evil | N, V, M | m e | Entra no estado Emacs do Evil. |
+| Macros | N, V, M | m m | Inicia a gravação da macro no registrador =z=. |
+| Clipboard | N, V, M | m p | Cola da área de transferência Win32. |
+
+** Prefixo =g=: movimentos e histórico
+
+| Tema | Estado | Tecla | Comando / efeito |
+|------+--------+-------+------------------|
+| Marcas | M | g TAB | Mostra o mark ring com Counsel. |
+| Movimento | M | g o / g l | Vai à primeira linha / a uma linha específica. |
+| Movimento | M | g m | Salta para o marcador Evil =z=. |
+| Histórico | M | g h / g s | Abre arquivos recentes / status Magit. |
+| Histórico | M | g i | Vai para a última alteração. |
+| Movimento | M | g ; | Vai ao último caractere não vazio. |
+| Números | M | g + / g - | Incrementa / decrementa o número sob o cursor. |
+| Indentação | M | g > / g < | Indenta à direita / esquerda. |
+| Alinhamento | N, V, M | g a / g A | Alinha à esquerda / direita com Evil Lion. |
+
+** Evil, edição e layouts
+
+| Tema | Estado | Tecla | Comando / efeito |
+|------+--------+-------+------------------|
+| Evil | N | RET / TAB | Salva / alterna folding. |
+| Evil | N | DEL | Abre arquivo com Counsel. |
+| Evil | N | q / - | Fecha conforme =evil-quit= / remove destaque de busca. |
+| Evil | N | Q / G | Grava macro / entra no estado God. |
+| Movimento | M | \\ | Executa =ninrod/echo=. |
+| Movimento | M | ( / ) | Vai ao parágrafo anterior / próximo. |
+| Layouts | Global | F1--F4 | Seleciona a configuração Eyebrowse 1--4. |
+| Layouts | Global | F5 | Renomeia a configuração Eyebrowse. |
+| Interface | Global | F11 | Alterna tela cheia. |
+| Scroll | N, V | z . / z - | Centraliza / posiciona a linha atual na base da janela. |
+| Busca | Isearch | ESC | Cancela a busca incremental. |
+| Busca | Evil Ex | ESC | Cancela o minibuffer da linha de comando Evil. |
+| Edição | Global | RET | Insere uma nova linha com indentação. |
+| Compleção | Global e minibuffer | C-TAB | Executa =dabbrev-expand=. |
+
+* Atalhos por modo ou tipo de buffer
+
+** Org
+
+| Tema | Estado | Tecla | Comando / efeito |
+|------+--------+-------+------------------|
+| Agenda | N, V | , s / , d / , r | Agenda / deadline / refile. |
+| Edição | N, V | , e / , l | Edita bloco especial / insere link. |
+| Navegação | N, V | , t / , w / , g | Tags com Counsel / WorF goto / =org-goto=. |
+| Folding | N, V | , TAB / , RET | Alterna folding / abre elemento no ponto. |
+| Clock e timer | N, V | , C i / , C o | Inicia / encerra clock. |
+| Clock e timer | N, V | , C - / , C t / , C s | Item de timer / inicia timer / para timer. |
+| Exportação | N, V | , E d | Abre o dispatch de exportação. |
+| Exibição | N, V | , T l | Alterna a exibição de links. |
+| Estrutura | N | t h / t j / t k / t l | Promove, move abaixo, move acima ou rebaixa heading/item. |
+| Estrutura | N | t y / t n / t t | Obtém URL no ponto / restringe à subtree / altera TODO. |
+| Estrutura | N | t - / t * / t p | Insere item / heading / define prioridade. |
+| Estrutura | N | t TAB | Insere subheading. |
+| Estrutura | N | t o / t RET / t DEL | Novo heading abaixo, abaixo respeitando conteúdo, ou acima. |
+| Estrutura | N | t i | Abre a subtree em buffer indireto. |
+| Tabelas | N | T t | Transpõe a tabela. |
+| Tabelas | N | T h / T l | Move por sentenças para trás / frente. |
+| Tabelas | N | T d / T f | Exclui coluna / edita fórmulas. |
+| Tabelas | N | T m | Marca a tabela ou elemento. |
+| Tabelas | N | T o / T i | Insere linha acima / coluna antes. |
+| Tabelas | N | T @ / T ? / T e | Alterna coordenadas / informa campo / recalcula fórmulas. |
+| Tabelas | N | T RET | Copia o valor para baixo. |
+| Subtrees | N | S h / S j / S k / S l | Promove, move abaixo, move acima ou rebaixa subtree. |
+| Subtrees | N | S y / S d / S p / S c | Copia, recorta, cola ou clona subtree. |
+| Navegação | N | z u / z h / z j / z k / z n | Navega entre headings visíveis. |
+| Estrutura | N | < / > | Promove / rebaixa elemento no ponto. |
+| Estrutura | V | - | Executa =org-ctrl-c-minus=. |
+| Remoção | Todos | C-TAB | Remove o binding nesse mapa. |
+
+** Org source, Emacs Lisp e agenda
+
+| Modo | Estado | Tecla | Comando / efeito |
+|------+--------+-------+------------------|
+| Org source e Emacs Lisp | N | S / T | Salva e sai / aborta a edição de um bloco Org. |
+| Agenda Org | Todos | j / k | Próximo / item anterior. |
+| Agenda Org | Todos | J / K | Próximo / cabeçalho anterior personalizado. |
+
+** Python e programação
+
+| Modo | Estado | Tecla | Comando / efeito |
+|------+--------+-------+------------------|
+| Python | N, V | , i | Remove imports não utilizados. |
+| prog-mode | N | TAB | Alterna nó de folding Origami. |
+
+** Dired e NeoTree
+
+| Modo | Estado | Tecla | Comando / efeito |
+|------+--------+-------+------------------|
+| Dired | N | h / j / k / l | Navegação Evil por caractere e linha. |
+| Dired | N | p / m / o | Copia nome do arquivo / renomeia / muda permissões. |
+| Dired | N | t / U | Marca / desmarca arquivos. |
+| Dired | N | , s / , w | Ordena por extensão / entra em Wdired. |
+| Dired | N | DEL / c / u | Abre arquivo / copia / sobe diretório. |
+| Dired | N | g o / g l / g e | Primeira linha / linha específica / fim da palavra anterior. |
+| Dired | N | R / T | Atualiza listagem / alterna marcas. |
+| NeoTree | N | DEL / d / c / r | Cria diretório / exclui / copia / renomeia nó. |
+| NeoTree | N | p / g r | Copia caminho / atualiza árvore. |
+| NeoTree | N | u / o / RET | Sobe nó / abre em divisão horizontal / abre nó. |
+| NeoTree | N | g g / g o / g l | Primeira linha / primeira linha / linha específica. |
+| NeoTree | N | . / x / q | Troca raiz / abre em divisão horizontal / fecha NeoTree. |
+
+** Lisp, Info e Man
+
+| Modo | Estado | Tecla | Comando / efeito |
+|------+--------+-------+------------------|
+| Lisp e Emacs Lisp interativo | N | t o | Avalia último sexp e insere o resultado. |
+| Lisp e Emacs Lisp interativo | N | t k / t j | Move expressão para trás / frente com Lispyville. |
+| Lisp e Emacs Lisp interativo | N, V | , e / , d / , b / , h | Avalia defun / instrumenta com Edebug / avalia buffer / descreve inline. |
+| Info | M | - / DEL | Remove destaque de busca / volta no histórico. |
+| Info | M | z RET / z - / z . | Põe linha no topo / base / centro da janela. |
+| Man | N | RET | Segue referência do manual. |
+
+** Magit, terminal, Ag, Ivy e Buffer Menu
+
+| Modo | Estado | Tecla | Comando / efeito |
+|------+--------+-------+------------------|
+| Magit Status | Todos | g o | Vai à primeira linha; também corrige o binding de =g l=. |
+| Terminal | Emacs | C-c ESC | Envia =ESC= ao terminal. |
+| Terminal | Emacs | C-c l / C-c c | Alterna para line mode / char mode. |
+| Terminal | Emacs | C-c j / C-c k | Próximo / terminal anterior. |
+| Terminal | N, V | , l / , c | Ativa line mode / char mode. |
+| Terminal | N, V | , n / , p | Próximo / terminal anterior. |
+| Ag | Todos | r / DEL | Recompila / vai ao erro anterior de compilação. |
+| Ivy | Todos | ESC | Executa =evil-escape=. |
+| Buffer Menu | Todos | - | Remove destaque de busca. |
+
+** Ibuffer e Hydras
+
+| Contexto | Estado | Tecla | Comando / efeito |
+|----------+--------+-------+------------------|
+| Ibuffer | N | . | Abre Hydra principal. |
+| Ibuffer | N | t / m / U | Marca adiante / alterna marcas / desmarca tudo. |
+| Ibuffer | N | g o / g l | Primeira linha / linha específica. |
+| Hydra principal | Hydra | j / k / RET / o | Navega, visita buffer, visita em outra janela. |
+| Hydra principal | Hydra | m / u / * | Marca, desmarca ou abre Hydra de marcação. |
+| Hydra principal | Hydra | D / S / a | Exclui, salva ou abre Hydra de ações. |
+| Hydra principal | Hydra | g / s / / | Atualiza, abre ordenação ou filtros. |
+| Hydra principal | Hydra | q / . | Sai do Ibuffer / fecha a Hydra. |
+| Hydra de marcação | Hydra | * / M / m / u / s / r | Desmarca tudo; marca por modo, modificação, não salvos, especiais ou somente leitura. |
+| Hydra de marcação | Hydra | / / e / h / z | Marca buffers Dired, dissociados, de ajuda ou comprimidos. |
+| Hydra de ações | Hydra | A / E / F / I / H / N / M / O | View, eval, shell, substituições, outra frame, pipe, alternâncias e occur. |
+| Hydra de ações | Hydra | P / Q / R / T / U / V / W / X | Imprime, substitui, renomeia e executa operações de buffer. |
+| Hydra de ordenação | Hydra | i / a / v / s / f / m | Inverte; ordena por nome, uso recente, tamanho, arquivo ou modo. |
+| Hydra de filtros | Hydra | m / M / n / c / e / f | Filtra por modo, modo derivado, nome, conteúdo, predicado ou arquivo. |
+| Hydra de filtros | Hydra | > / < / / | Filtra por tamanho maior / menor; desativa o filtro. |
+
+* Bindings declarados fora de =* keybinds=
+
+Os bindings desta seção são definidos em outros nós de =boot.org= e ficam
+ativos após o carregamento dos respectivos pacotes ou modos. Blocos marcados
+como =#+BEGIN_SRC text= foram deliberadamente excluídos: não são código
+Emacs Lisp executado pelo tangling.
+
+** Evil: estados, objetos de texto e registradores
+
+| Contexto | Estado | Tecla | Comando / efeito |
+|----------+--------+-------+------------------|
+| Evil | Insert | ESC | Volta ao estado normal (=evil-normal-state=). |
+| Evil | Normal, Visual e Operator-pending | a e | Seleciona o buffer inteiro como objeto de texto (=ninrod/textobj-entire=). |
+| Evil | Normal, Visual e Operator-pending | i \vert{} / a \vert{} | Seleciona o conteúdo entre barras verticais / inclui os delimitadores. |
+| Evil | Normal, Visual e Operator-pending | i / / a / | Seleciona o conteúdo entre barras normais / inclui os delimitadores. |
+| Evil | Normal, Visual e Operator-pending | i $ / a $ | Seleciona o conteúdo entre cifrões / inclui os delimitadores. |
+| Evil | Normal, Visual e Operator-pending | i a / a a | Seleciona o argumento interno / externo (=evil-args=). |
+| Evil | Normal | g r | Substitui texto pelo conteúdo de um registrador (=evil-replace-with-register=). |
+| Evil God | God | ESC | Abandona o estado God (=evil-god-state-bail=). |
+| Evil Emacs | Emacs | ESC | Executa o comando no estado God (=evil-execute-in-god-state=). |
+
+** Mapas de pacotes e minor modes
+
+| Contexto | Estado | Tecla | Comando / efeito |
+|----------+--------+-------+------------------|
+| Vdiff | vdiff-mode | C-c | Prefixo para o mapa de comandos do Vdiff (=vdiff-mode-prefix-map=). |
+| Company | company-mode | C-SPC | Abre a completagem Company (=company-complete=). |
+
+** Lispyville: edição estrutural de Lisp
+
+=lispyville-mode= é ativado sempre que =lispy-mode= é ativado. A configuração
+habilita os temas =operators=, =mark-toggle=, =(escape insert emacs)= e
+=slurp/barf-cp=. Assim, estes bindings só se aplicam em buffers nos quais
+=lispy-mode= e =lispyville-mode= estejam ativos.
+
+| Tema | Estado | Tecla / comando Evil | Efeito |
+|------+--------+----------------------+--------|
+| Operadores seguros | Estados que possuem o comando Evil | y / d / c | Remapeia yank, delete e change para versões que não copiam ou removem delimitadores não balanceados. |
+| Operadores seguros | Estados que possuem o comando Evil | Y / D / C | Aplica as variantes seguras de yank, delete e change de linha. |
+| Operadores seguros | Estados que possuem o comando Evil | x / X | Remove caractere à frente / atrás ou faz splice, preservando a estrutura. |
+| Operadores seguros | Estados que possuem o comando Evil | s / S | Substitui caractere / linha sem desbalancear delimitadores. |
+| Operadores seguros | Estados que possuem o comando Evil | J | Junta linhas sem levar parênteses não balanceados para dentro de comentários. |
+| Slurp/barf | Normal | > | Move o delimitador posterior à direita (=lispyville->=): faz slurp ou barf conforme a posição no parêntese. |
+| Slurp/barf | Normal | < | Move o delimitador posterior à esquerda (=lispyville-<=): faz slurp ou barf conforme a posição no parêntese. |
+| Marcação | Visual | v | Alterna do visual Evil para o estado especial do Lispy. |
+| Marcação | Lispy special | v | Alterna do estado especial do Lispy para o visual Evil (=lispyville-toggle-mark-type=); com prefixo numérico diferente de 1, preserva a ação =lispy-mark-list=. |
+| Escape | Insert, Emacs e Lispy special | ESC | Cancela região e entra no estado normal Evil (=lispyville-normal-state=). O tema =escape= vem depois de =mark-toggle= e vence o binding de =ESC= deste último. |
+| Inserção contextual | Insert, Emacs | Entrada / saída desses estados | Insere um espaço após delimitador de abertura ao entrar em inserção e o remove ao sair quando esse espaço foi automático; este tema não adiciona uma tecla. |
+
+* Bindings padrão deliberadamente removidos
+
+| Modo / mapa | Teclas removidas |
+|-------------+------------------|
+| Org | C-TAB |
+| Dired | F1--F12, s, -, n, N, y, M, L, H, $, 0, w, e, b, W, E, B, ., f, F, v, V, i |
+| NeoTree | s, d, n, -, N, SPC (alguns são redefinidos posteriormente) |
+| Info | 1--9, H, L, M, g, v, V, n, N, f, F, w, e, b, W, E, B, s, SPC |
+| Magit Status | SPC |
+| Magit hunk/file section | s |
+| Ag | s, g, n, N, SPC |
+| Buffer Menu | SPC, k, j, l, h, s, n, N, * |
+| Ibuffer | /, DEL, l, 0, n, - |

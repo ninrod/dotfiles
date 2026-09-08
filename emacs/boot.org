@@ -2181,7 +2181,10 @@ M-x subword-mode
 
     "SPC" 'counsel-M-x
     "RET" 'write-file
+
+    ;; lembrando que DEL é BACKSPACE
     "DEL" 'ninrod/mkdir
+
     "g" 'avy-goto-char
     "c" 'ninrod/org-task-capture
 
