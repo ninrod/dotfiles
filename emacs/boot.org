@@ -1367,7 +1367,12 @@ M-x subword-mode
 
     :config
     ;; (gruvbox-modeline-three)
-    (load-theme 'gruvbox t))
+    (load-theme 'gruvbox t)
+    (unless (display-graphic-p)
+      (set-face-attribute 'default nil :background "unspecified-bg")
+      (set-face-attribute 'fringe nil :background "unspecified-bg")
+      (with-eval-after-load 'term
+        (set-face-attribute 'term nil :background "unspecified-bg"))))
 #+END_SRC
 
 **** darktooth
