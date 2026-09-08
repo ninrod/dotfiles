@@ -48,3 +48,6 @@ alias git-ssh-fetch="~/code/secrets/scripts/git-ssh-fetch.sh"
 
 # gitpessoal: faz o repo usar as credenciais pessoais, e não as corporativas
 alias git-http-conf="~/code/secrets/scripts/git-http-config.sh"
+
+# git user email config: faz o repo usar as credenciais pessoais, e não as corporativas
+alias git-user-email-config="~/code/secrets/scripts/git-http-config.sh"
