@@ -4,6 +4,8 @@ mkdir -p $vim_deps && cd $vim_deps
 #
 ningrab vim-scripts/vis
 
+# teste aviãozão Colégio SacrilégioSupersônico
+
 ########################################
 ########        MIGRADOS       #########
 ########################################

@@ -11,12 +11,16 @@ return {
 	keys = {
 		{
 			"iw",
-			'<cmd>lua require("various-textobjs").subword("inner")<CR>',
+			function()
+				require("unicode-subword").subword("inner")
+			end,
 			mode = { "o", "x" },
 		},
 		{
 			"aw",
-			'<cmd>lua require("various-textobjs").subword("outer")<CR>',
+			function()
+				require("unicode-subword").subword("outer")
+			end,
 			mode = { "o", "x" },
 		},
 	},
