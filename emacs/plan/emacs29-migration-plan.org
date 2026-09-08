@@ -1,0 +1,227 @@
+#+TITLE: Plano de migracao para Emacs 29 e snapshot de dependencias
+#+DATE: 2026-09-07
+#+STARTUP: overview
+
+* Objetivo
+
+Atualizar a configuracao do Emacs 27 para o Emacs 29 e suas dependencias,
+validar o resultado em um ambiente isolado e publicar uma nova fotografia
+reproduzivel no repositorio =ninrod/thin-melpa-mirror=.
+
+O uso cotidiano deve permanecer independente de rede e instalavel a partir
+desse snapshot. A internet e os arquivos upstream sao usados somente na fase
+controlada de curadoria e atualizacao.
+
+* Estado inicial
+
+- Emacs instalado: 27.1.
+- Espelho atual: =~/.dotfiles/deps/emacs/ninrod/thin-melpa-mirror=.
+- Commit atual do espelho: =6ac90edc35a0c8ed87627ae1f5c51b5d29aefbfa=.
+- Data da fotografia: 2021-03-13.
+- Conteudo: 132 artefatos de pacote.
+- O =init.el= seleciona automaticamente o espelho local quando seu diretorio
+  existe; portanto, apenas instalar o Emacs 29 manteria o conjunto de pacotes
+  de 2021.
+
+* Arquivos upstream
+
+| Papel | Arquivo | Uso na migracao |
+|-------+---------+-----------------|
+| Pacotes oficiais do projeto Emacs | [[https://elpa.gnu.org/packages/][GNU ELPA]] | Atualizar pacotes oficiais separados do Emacs |
+| Pacotes externos sob infraestrutura GNU | [[https://elpa.nongnu.org/nongnu/][NonGNU ELPA]] | Fonte de pacotes externos mantidos, incluindo =org-contrib= |
+| Catalogo amplo e corrente | [[https://melpa.org/][MELPA]] | Fonte principal de pacotes da configuracao |
+| Fotografia local | =thin-melpa-mirror= | Uso diario, offline e reproduzivel |
+
+GNU ELPA e NonGNU ELPA sao os arquivos padrao do Emacs 29. MELPA continua
+sendo a fonte de facto para a maior parte do ecossistema, mas nao deve ser a
+fonte usada implicitamente no dia a dia depois do congelamento.
+
+* Principios
+
+1. Nunca atualizar diretamente o perfil de pacotes do Emacs 27.
+2. Manter a foto de 2021 recuperavel ate que o ambiente novo esteja aprovado.
+3. Usar um perfil limpo para a instalacao e teste no Emacs 29.
+4. Atualizar a partir de um manifesto de dependencias *diretas*, deixando o
+   =package.el= resolver dependencias transitivas.
+5. Produzir o espelho em diretorio novo e validá-lo com outro perfil vazio.
+6. Versionar a fotografia, sua procedencia e sua data.
+
+* Fase 1 -- Preservar a baseline de 2021
+
+** Resultado esperado
+
+Uma referencia imutavel permite voltar ao ambiente anterior sem depender de
+arquivos upstream que possam ter mudado ou desaparecido.
+
+** Acoes
+
+- Criar no repositorio =ninrod/thin-melpa-mirror= a tag
+  =snapshot-2021-03-13= apontando para =6ac90ed=.
+- Manter o diretorio atual e o perfil =~/.emacs.d/elpa= inalterados durante a
+  migracao.
+- Registrar qualquer configuracao local indispensavel para inicializar o
+  Emacs 27, caso seja necessario comparar comportamentos.
+
+* Fase 2 -- Separar os modos online e snapshot
+
+** Problema atual
+
+O =init.el= decide usar o mirror apenas porque o checkout existe. Isso
+impede uma atualizacao consciente: o Emacs 29 tambem veria somente o catalogo
+de 2021.
+
+** Resultado esperado
+
+Uma escolha explicita de fonte de pacotes:
+
+| Modo | Arquivos | Finalidade |
+|------+-----------+------------|
+| =online= | GNU ELPA, NonGNU ELPA e MELPA | Curadoria e atualizacao |
+| =snapshot= | Um unico arquivo local | Uso normal, sem rede |
+| =legacy= | Foto de 2021 | Rollback e comparacao temporarios |
+
+** Acoes
+
+- Alterar a configuracao para escolher o modo por uma variavel explicita,
+  preferencialmente uma variavel de ambiente.
+- Fazer =snapshot= ser o padrao depois que a nova fotografia for aprovada.
+- No modo snapshot, configurar um unico arquivo local, por exemplo
+  =("snapshot" . "/caminho/para/thin-melpa-mirror/")=.
+- Remover a dependencia de nomes duplicados (=gnu= e =melpa=) que hoje apontam
+  para o mesmo diretorio local.
+- Ajustar ou remover pins de arquivo que nao sejam validos no modo snapshot.
+
+* Fase 3 -- Criar o ambiente de staging
+
+** Resultado esperado
+
+O Emacs 29 instala e compila pacotes sem reutilizar codigo compilado, indices
+ou diretorios gerados pelo Emacs 27.
+
+** Acoes
+
+- Instalar o Emacs 29.
+- Usar um =package-user-dir= independente, por exemplo
+  =~/.emacs.d/elpa-29-staging=.
+- Inicializar esse perfil no modo =online=.
+- Conservar o perfil de 2021 e o staging lado a lado ate a aprovacao final.
+
+* Fase 4 -- Definir o manifesto e migrar incompatibilidades
+
+** Fonte do manifesto
+
+Usar como lista canônica os pacotes declarados diretamente por
+=use-package ... :ensure t= em =boot.org=, mais os pacotes que sao
+intencionalmente carregados por =load-path= em =~/.dotfiles/deps/emacs/=.
+
+O =package-selected-packages= atual deve ser tratado como inventario historico,
+nao como o manifesto. Ele mistura pacotes de primeiro nivel e dependencias
+transitivas.
+
+** Migracoes obrigatorias ou de alto risco
+
+- Substituir =org-plus-contrib=, que e legado, por:
+  - o Org embutido no Emacs 29 ou =org= no GNU ELPA; e
+  - =org-contrib= do NonGNU ELPA somente se houver configuracao que realmente
+    use um de seus add-ons.
+- Revisar os pacotes antigos da pilha Python/TypeScript.
+- Revisar Ivy, Counsel e Swiper.
+- Revisar Evil e suas extensoes.
+- Revisar Magit e sua cadeia de dependencias, especialmente =transient= e
+  =with-editor=.
+- Verificar temas e pacotes de interface antes de alterar escolhas de UX.
+
+** Criterio de decisao por pacote
+
+1. Ainda esta disponivel em um dos tres arquivos?
+2. Declara suporte ao Emacs 29?
+3. E necessario para o fluxo atual?
+4. Se foi aposentado, qual e a substituicao com menor alteracao de UX?
+5. Sua origem deve ficar fixa em GNU, NonGNU ou MELPA durante a curadoria?
+
+* Fase 5 -- Atualizar e validar por grupos
+
+Nao usar =package-upgrade-all= como primeira acao. Instalar o manifesto no
+staging e validar grupos pequenos torna a falha atribuivel.
+
+** Ordem sugerida
+
+1. Bootstrap: =use-package=, =bind-key=, =diminish= e dependencias basicas.
+2. Edicao: Evil, General, Undo Tree e extensoes Evil.
+3. Navegacao: Ivy, Counsel, Swiper, Projectile e Helpful.
+4. Desenvolvimento: Magit, Flycheck, Company, Yasnippet e linguagens usadas.
+5. Texto e interface: Org, temas, Smartparens e modos auxiliares.
+
+** Validacao funcional
+
+- Inicializacao sem erro no Emacs 29.
+- Abertura e edicao de arquivos Org.
+- Fluxos Evil e navegacao de buffers.
+- Magit em um repositorio.
+- Completion, Flycheck e Yasnippet.
+- Modos das linguagens efetivamente utilizadas.
+- Ausencia de downloads de pacote no modo snapshot.
+
+* Fase 6 -- Gerar a fotografia de 2026
+
+** Pre-requisito
+
+O perfil =elpa-29-staging= deve estar estavel e conter todas as dependencias
+diretas e transitivas que a configuracao aprovada necessita.
+
+** Acoes
+
+- Configurar =elpamr-default-output-directory= para um diretorio novo, como
+  =thin-melpa-mirror-2026=.
+- Executar =M-x elpamr-create-mirror-for-installed=.
+- Nunca gerar inicialmente sobre o checkout que contem a fotografia de 2021.
+- Verificar que o diretorio contem todos os arquivos de pacote e o
+  =archive-contents= correspondente.
+
+O [[https://github.com/redguardtoo/elpa-mirror][elpa-mirror]] continua sendo
+adequado para esse passo: ele gera um repositorio local a partir dos pacotes
+instalados e suporta o Emacs 29.
+
+* Fase 7 -- Testar o artefato
+
+** Resultado esperado
+
+Provar que o espelho e um artefato completo, e nao apenas uma copia que
+funciona porque o staging ainda existe.
+
+** Acoes
+
+- Criar outro =package-user-dir= vazio, distinto do staging.
+- Configurar somente o arquivo local gerado, sem GNU ELPA, NonGNU ELPA ou
+  MELPA.
+- Instalar as dependencias diretas do manifesto.
+- Inicializar o Emacs 29 e repetir a validacao funcional da fase 5.
+
+* Fase 8 -- Publicar a snapshot
+
+** Acoes
+
+- Promover o espelho validado para =ninrod/thin-melpa-mirror=.
+- Versionar todos os arquivos de pacote e =archive-contents=.
+- Adicionar =SNAPSHOT.org= ao repositorio contendo:
+  - data de geracao;
+  - versao exata do Emacs;
+  - URLs dos arquivos upstream;
+  - lista de dependencias diretas;
+  - versoes resolvidas;
+  - pacotes removidos, substituidos ou deliberadamente mantidos;
+  - instrucoes para consumir e regenerar a fotografia.
+- Criar uma tag imutavel, por exemplo =snapshot-2026-emacs-29=.
+- Atualizar o checkout usado por =boot/emacs-deps.zsh= para esse commit.
+
+* Definicao de pronto
+
+A migracao esta concluida quando:
+
+- o Emacs 29 inicializa pelo modo snapshot sem acesso a rede;
+- um perfil vazio e capaz de instalar todas as dependencias a partir do
+  espelho local;
+- os fluxos principais funcionam no perfil instalado;
+- a fotografia de 2021 continua referenciavel por tag;
+- a fotografia de 2026 tem commit, tag e metadados suficientes para ser
+  recriada ou auditada no futuro.
