@@ -4,6 +4,7 @@ return {
 	config = function()
 		local mc = require("multicursor-nvim")
 		mc.setup()
+		require("patch.multicursor-clipboard").setup(mc)
 		require("keybindings").setup_multicursor_keybindings(mc)
 
 		local hl = vim.api.nvim_set_hl
