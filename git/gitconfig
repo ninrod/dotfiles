@@ -24,6 +24,7 @@
 [core]
   editor = vim
   autocrlf = input
+  quotePath = false
 [color]
   ui = auto
 [color "diff"]

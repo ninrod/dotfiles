@@ -1,6 +1,9 @@
 # defining word endings
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
+# Preserve non-ASCII filenames safely for the uutils ls TTY output.
+export QUOTING_STYLE=shell-escape
+
 # history config options
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=2000000
