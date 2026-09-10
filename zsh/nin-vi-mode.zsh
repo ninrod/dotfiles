@@ -54,31 +54,31 @@ zle -N nin-noop
 bindkey -M vicmd '\e' nin-noop
 
 # function para colar do clipboard do Windows no Zsh
-zsh-powershell-paste() {
+zsh-win32yank-paste() {
   local clipboard
-  clipboard=$(powershell.exe -NoProfile -command Get-Clipboard 2>/dev/null | tr -d '\r')
+  clipboard=$(win32yank.exe -o --lf)
   LBUFFER="${LBUFFER}${clipboard}"
 }
 
 # Cria o widget customizado
-zle -N zsh-powershell-paste
+zle -N zsh-win32yank-paste
 
 # Sobrescreve a tecla 'p' no vi-mode para usar a function
-bindkey -M vicmd 'p' zsh-powershell-paste
+bindkey -M vicmd 'p' zsh-win32yank-paste
 
 
-# function para enviar a selection do vi-mode para o clip.exe
-zsh-clip-yank() {
+# function para enviar a selection do vi-mode para o clipboard do Windows
+zsh-win32yank-yank() {
   zle vi-yank
-  print -r -- "$CUTBUFFER" | clip.exe
+  print -r -- "$CUTBUFFER" | win32yank.exe -i --crlf
 }
 
 # Cria o widget customizado no ZLE
-zle -N zsh-clip-yank
+zle -N zsh-win32yank-yank
 
 # Remapeia 'y' e 'Y' no modo de comando e selection visual
-bindkey -M vicmd 'y' zsh-clip-yank
-bindkey -M vicmd 'Y' zsh-clip-yank
-bindkey -M visual 'y' zsh-clip-yank
+bindkey -M vicmd 'y' zsh-win32yank-yank
+bindkey -M vicmd 'Y' zsh-win32yank-yank
+bindkey -M visual 'y' zsh-win32yank-yank
 
 # }}}
