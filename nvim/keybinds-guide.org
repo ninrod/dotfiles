@@ -1,0 +1,219 @@
+#+TITLE: Referência de keybindings do Neovim
+#+SUBTITLE: Extraída de =~/.dotfiles/nvim=
+#+OPTIONS: toc:2
+
+* Convenções
+
+- =SPC= é o leader e o local leader.
+- Este guia cobre mapeamentos declarados nesta configuração. Bindings
+  nativos do Neovim e defaults de plugins não alterados aqui ficam fora do
+  escopo.
+- Uma linha indicada como “com LSP” só existe em buffers aos quais um servidor
+  LSP está anexado. Bindings de seleção exigem uma seleção Visual.
+
+* Atalhos gerais
+
+| Tecla | Comando / efeito |
+|-------+------------------|
+| RET | Salva o buffer atual. |
+| q | Sai imediatamente sem salvar (=ZQ=). |
+| Q | Inicia o comando de gravação de macro nativo (=q=). |
+| ( / ) | Vai ao parágrafo anterior / próximo. |
+| - | Remove o destaque da busca. |
+| gl | Vai ao fim do arquivo (=G=). |
+| SPC j / SPC k | Faz page down / page up. |
+| mk | Fecha o buffer atual (=bd=). |
+| \\ | Revela o arquivo atual no Neo-tree. |
+| BS | Localiza um arquivo na raiz Git do projeto atual. |
+| [ d / ] d | Vai ao diagnóstico anterior / próximo. |
+| SPC e / SPC q | Abre o diagnóstico flutuante / envia diagnósticos à location list. |
+| ESC ESC no terminal integrado | Sai do Terminal mode e retorna ao Normal. |
+
+* Prefixo =SPC=: comandos globais
+
+** Copilot Chat
+
+| Tecla | Comando / efeito |
+|-------+------------------|
+| SPC c c | Alterna o Copilot Chat. |
+| SPC c e, com seleção Visual | Abre o Copilot Chat com a seleção e o prompt para explicá-la. |
+
+** Busca e buffers
+
+| Tecla | Comando / efeito |
+|-------+------------------|
+| SPC SPC | Lista os buffers abertos. |
+| SPC / | Busca linhas no buffer atual. |
+| SPC s h | Busca na ajuda. |
+| SPC s k | Busca nos keymaps. |
+| SPC s s | Abre o seletor de fontes do Snacks. |
+| SPC s w | Busca no projeto pela palavra sob o cursor. |
+| SPC s g | Busca texto no projeto. |
+| SPC s d | Lista diagnósticos. |
+| SPC s r | Retoma o último picker. |
+| SPC s / | Busca nos buffers abertos. |
+| SPC s n | Localiza arquivos da configuração do Neovim. |
+
+** Edição e multicursores
+
+| Tecla | Comando / efeito |
+|-------+------------------|
+| SPC f | Formata o buffer com Conform e fallback para LSP. |
+| SPC n | Cria cursores para todos os resultados da busca ativa. |
+| SPC s | Pula o próximo match sem criar cursor. |
+| SPC S | Pula o match anterior sem criar cursor. |
+| SPC N | Cria cursor no match anterior. |
+| SPC \vert{} com seleção Visual | Divide a seleção em cursores. |
+
+** LSP
+
+| Tecla | Comando / efeito |
+|-------+------------------|
+| SPC D | Vai à definição de tipo. |
+| SPC d s | Lista símbolos do documento. |
+| SPC w s | Lista símbolos do workspace. |
+| SPC r n | Renomeia o símbolo no cursor. |
+| SPC c a | Abre ações de código. |
+| SPC t h | Alterna inlay hints, quando suportado pelo servidor. |
+
+** Completagem e snippets
+
+| Tecla | Comando / efeito |
+|-------+------------------|
+| C-n / C-p | Seleciona o candidato seguinte / anterior. |
+| C-b / C-f | Rola a documentação do candidato para cima / baixo. |
+| C-y / RET | Confirma o candidato selecionado. |
+| TAB / S-TAB | Seleciona o candidato seguinte / anterior. |
+| C-SPC | Abre o menu de completagem. |
+| C-l / C-h | Expande ou avança / retrocede no snippet, quando aplicável. |
+
+* Prefixo =s=: janelas, busca e projetos
+
+| Tecla | Comando / efeito |
+|-------+------------------|
+| s h / s j / s k / s l | Move o foco para a janela esquerda / abaixo / acima / direita. |
+| s x / s y | Cria uma divisão horizontal / vertical. |
+| s . | Localiza arquivo a partir do diretório de trabalho atual. |
+| s p | Troca de projeto (=Snacks.picker.projects=). Requer =fd= ou =fdfind=. |
+
+* Prefixo =m=: buffers e multicursores
+
+| Tecla | Comando / efeito |
+|-------+------------------|
+| m i | Abre o BufExplorer. |
+| m k | Fecha o buffer atual (=bd=). |
+| m c, com seleção Visual Line | Cria um cursor no início de cada linha selecionada e retorna ao Normal. |
+| m s, após =*= | Cria cursores em todos os matches da busca ativa e permanece no Normal. |
+| m p, com seleção Visual | Solicita um padrão e cria cursores nos matches da seleção. |
+
+* Prefixo =g=: navegação, LSP e substituição
+
+| Tecla | Comando / efeito |
+|-------+------------------|
+| g h | Abre arquivos recentes. |
+| g d | Vai à definição via LSP. |
+| g D | Vai à declaração via LSP. |
+| g R | Lista referências via LSP. |
+| g I | Vai à implementação via LSP. |
+| K | Mostra documentação do símbolo via LSP. |
+| g a seguido de movimento ou objeto de texto | Alinha a região com Mini.align. |
+| g A seguido de movimento ou objeto de texto | Abre o alinhamento Mini.align com preview; RET aceita e ESC cancela. |
+| g r seguido de movimento | Substitui pelo conteúdo de um registrador. |
+| g r r | Substitui a linha pelo conteúdo de um registrador. |
+| g r, com seleção Visual | Substitui a seleção pelo conteúdo de um registrador. |
+| g c seguido de movimento / g c c | Alterna comentário de uma região / da linha atual. |
+| g b seguido de movimento / g b c | Alterna comentário em bloco de uma região / da linha atual. |
+| g c o / g c O / g c A | Insere comentário abaixo / acima / no fim da linha e entra em Insert. |
+
+Os antigos mapas =gra=, =gri=, =grn=, =grt= e =grx= são removidos para não
+conflitar com a substituição por registrador.
+
+* Prefixo =c=: troca de texto
+
+| Tecla | Comando / efeito |
+|-------+------------------|
+| c x seguido de movimento | Marca o texto coberto pelo movimento para troca; repita =cx= em outro texto para trocá-los. |
+| c x x | Marca a linha atual para troca; repita =cxx= ou =cx{movimento}= para concluir. |
+| X, com seleção Visual | Marca a seleção para troca; use =X= sobre outra seleção para concluir. |
+| c x c | Cancela uma troca pendente. |
+
+* Objetos de texto
+
+** Mini.ai
+
+=mini.ai= substitui a resolução de objetos de texto por uma versão que procura
+até 500 linhas e escolhe o objeto que cobre ou está mais próximo do cursor.
+Use os identificadores abaixo depois de =a= ou =i=, com qualquer operador ou
+em Visual.
+
+| Tecla | Objeto de texto |
+|-------+-----------------|
+| a e / i e | Buffer inteiro. |
+| a f / i f | Chamada de função, incluindo / excluindo os delimitadores. |
+| a a / i a | Argumento de função, incluindo / excluindo a vírgula separadora. |
+| a t / i t | Tag HTML/XML, incluindo / excluindo as tags. |
+| a ? / i ? | Objeto definido interativamente por um padrão. |
+| a ( / a [ / a { / a < e variantes =i= | Delimitadores balanceados. |
+| a " / a ' / a ` e variantes =i= | Texto entre aspas. |
+| a b / i b | Alias para delimitadores =()=, =[]= ou ={}=. |
+| a q / i q | Alias para aspas =", ', `=. |
+| a n / i n | Próxima ocorrência do objeto de texto. |
+| a l / i l | Ocorrência anterior do objeto de texto. |
+
+** Subpalavras Unicode
+
+| Tecla | Comando / efeito |
+|-------+------------------|
+| i w / a w | Seleciona a subpalavra interna / externa. Respeita camelCase, snake_case, kebab-case e caracteres Unicode acentuados. |
+| w / e / b / g e | Move por subpalavras para frente / fim / trás / fim anterior, com a mesma segmentação Unicode. |
+
+* Surround
+
+| Tecla | Comando / efeito |
+|-------+------------------|
+| y s seguido de movimento e delimitador | Adiciona delimitadores ao texto coberto pelo movimento. |
+| y s s / y S S | Adiciona delimitadores à linha atual / em linhas próprias. |
+| y S seguido de movimento | Adiciona delimitadores em linhas próprias. |
+| d s seguido de delimitador | Remove os delimitadores selecionados. |
+| c s seguido de delimitador e substituto | Troca os delimitadores selecionados. |
+| c S seguido de delimitador e substituto | Troca delimitadores, pondo o substituto em linhas próprias. |
+| S / g S, com seleção Visual | Adiciona delimitadores à seleção / em linhas próprias. |
+| C-g s / C-g S em Insert | Adiciona delimitadores no cursor / em linhas próprias. |
+
+* Cursores múltiplos
+
+| Tecla | Comando / efeito |
+|-------+------------------|
+| Setas para cima / baixo | Adiciona cursor na linha acima / abaixo. |
+| SPC seta para cima / baixo | Move apenas o cursor principal, pulando a linha para adicionar ou ignorar cursor. |
+| C-q | Alterna um cursor manual na posição atual. |
+| gm seguido de movimento | Cria cursores para cada linha coberta pelo movimento. |
+| I / A, com seleção Visual | Cria cursores no início / fim de cada linha selecionada e entra em Insert. |
+| Clique ou arraste com C-mouse | Cria, move ou remove cursores com o mouse. |
+
+Enquanto há cursores ativos:
+
+| Tecla | Comando / efeito |
+|-------+------------------|
+| Seta esquerda / direita | Vai ao cursor anterior / próximo. |
+| SPC x | Remove o cursor atual. |
+| ESC | Remove todos os cursores. Se eles estiverem desativados, volta a ativá-los. |
+
+* Org
+
+| Tecla | Comando / efeito |
+|-------+------------------|
+| TAB | Alterna o estado do heading ou item atual. |
+| S-TAB | Alterna o estado de todos os headings. |
+
+* Depuração
+
+Os bindings abaixo pertencem ao =nvim-dap=, mas o plugin está desativado na
+configuração atual. Eles só passam a existir se o plugin for reativado.
+
+| Tecla | Comando / efeito |
+|-------+------------------|
+| F5 | Continua ou inicia a depuração. |
+| F1 / F2 / F3 | Entra no passo / avança o passo / sai do passo. |
+| F7 | Alterna a interface do DAP. |
+| SPC b / SPC B | Alterna breakpoint / solicita condição para um breakpoint. |
