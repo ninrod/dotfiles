@@ -362,17 +362,6 @@ M-x subword-mode
 #+END_SRC
 
 ** misc
-*** ninrod/origami-toggle-node
-
-- with help from [[https://www.reddit.com/r/emacs/comments/580v30/tweaking_origamiel_lisp_and_regexes/][reddit]]
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/origami-toggle-node ()
-    (interactive)
-    (save-excursion
-      (goto-char (point-at-eol))
-      (origami-toggle-node (current-buffer) (point))))
-#+END_SRC
-
 *** ninrod/display-ansi-colors
 
 - credits: [[http://stackoverflow.com/a/23382008/4921402][this]] SO question
@@ -514,41 +503,6 @@ M-x subword-mode
       (when extracted-text
         (message "Extracted and yanked org-link: %s" extracted-text)
         (kill-new extracted-text))))
-#+END_SRC
-
-*** agenda functions
-
-- stolen from aaron bieber [[https://blog.aaronbieber.com/2016/09/25/agenda-interactions-primer.html][agenda interactions primer]]
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/org-agenda-next-header ()
-    "Jump to the next header in an agenda series."
-    (interactive)
-    (ninrod/org-agenda-goto-header))
-
-  (defun ninrod/org-agenda-previous-header ()
-    "Jump to the previous header in an agenda series."
-    (interactive)
-    (ninrod/org-agenda-goto-header t))
-
-  (defun ninrod/org-agenda-goto-header (&optional backwards)
-    "Find the next agenda series header forwards or BACKWARDS."
-    (let ((pos (save-excursion
-                 (goto-char (if backwards
-                                (line-beginning-position)
-                              (line-end-position)))
-                 (let* ((find-func (if backwards
-                                       #'previous-single-property-change
-                                     #'next-single-property-change))
-                        (end-func (if backwards
-                                      'max
-                                    'min))
-                        (all-pos-raw (list (funcall find-func (point) 'org-agenda-structural-header)
-                                           (funcall find-func (point) 'org-agenda-date-header)))
-                        (all-pos (cl-remove-if-not 'numberp all-pos-raw))
-                        (prop-pos (if all-pos (apply end-func all-pos) nil)))
-                   prop-pos))))
-      (if pos (goto-char pos))
-      (if backwards (goto-char (line-beginning-position)))))
 #+END_SRC
 
 ** pretty print xml
@@ -1081,6 +1035,22 @@ M-x subword-mode
     :ensure t
     :after evil-collection)
 
+  (use-package vdiff-magit
+    :ensure t
+    :after magit
+    :custom
+    (vdiff-magit-dwim-show-on-hunks t)
+    :config
+    ;; Magit 4.6 removed Vdiff's second argument to this obsolete shim.
+    (defun ninrod/vdiff-magit-index-buffer-compat (function file &rest _)
+      (funcall function file))
+    (unless (advice-member-p #'ninrod/vdiff-magit-index-buffer-compat
+                             #'magit-find-file-index-noselect)
+      (advice-add #'magit-find-file-index-noselect :around
+                  #'ninrod/vdiff-magit-index-buffer-compat))
+    (define-key magit-mode-map "e" #'vdiff-magit-dwim)
+    (define-key magit-mode-map "E" #'vdiff-magit))
+
   (use-package embark
     :ensure t
     :bind (("C-." . embark-act)
@@ -1323,7 +1293,6 @@ M-x subword-mode
    )
 
   (general-mmap
-   "\\" 'ninrod/echo;; reserved
    "(" 'evil-backward-paragraph
    ")" 'evil-forward-paragraph)
 #+END_SRC
@@ -1332,12 +1301,6 @@ M-x subword-mode
 
 #+BEGIN_SRC emacs-lisp
   (general-define-key
-   "<f1>" 'eyebrowse-switch-to-window-config-1
-   "<f2>" 'eyebrowse-switch-to-window-config-2
-   "<f3>" 'eyebrowse-switch-to-window-config-3
-   "<f4>" 'eyebrowse-switch-to-window-config-4
-   "<f5>" 'eyebrowse-rename-window-config
-
    "<f6>" nil
    "<f7>" nil
    "<f8>" nil
@@ -1402,7 +1365,7 @@ M-x subword-mode
 
    "l" 'org-insert-link
    "t" 'org-set-tags-command
-   "w" 'worf-goto
+   "b" 'consult-org-heading
    "g" 'org-goto
 
    "TAB" 'evil-toggle-fold
@@ -1410,26 +1373,6 @@ M-x subword-mode
    "RET" 'org-open-at-point
    )
 
-#+END_SRC
-
-**** caps
-***** C: clock/timer
-
-#+BEGIN_SRC emacs-lisp
-  (org-comma-map "C" '(:ignore t :which-key "clock/timer")
-    "Ci" 'org-clock-in
-    "Co" 'org-clock-out
-    "C-" 'org-timer-item
-    "Ct" 'org-timer
-    "Cs" 'org-timer-stop
-    )
-#+END_SRC
-
-***** E: exports
-
-#+BEGIN_SRC emacs-lisp
-  (org-comma-map "E" '(:ignore t :which-key "Exports")
-  "Ed" 'org-export-dispatch)
 #+END_SRC
 
 ***** T: toggles
@@ -1578,17 +1521,6 @@ M-x subword-mode
    "T" 'org-edit-src-abort)
 #+END_SRC
 
-*** agenda
-
-#+BEGIN_SRC emacs-lisp
-  (general-define-key
-   :keymaps 'org-agenda-mode-map
-   "j" 'org-agenda-next-item
-   "k" 'org-agenda-previous-item
-   "J" 'ninrod/org-agenda-next-header
-   "K" 'ninrod/org-agenda-previous-header
-   )
-#+END_SRC
 ** dired
 *** unbinds
 
@@ -1689,20 +1621,19 @@ M-x subword-mode
    :states '(normal visual)
    :prefix ",")
 
-  (general-create-definer
-   lisp-t-map
-   :keymaps '(lisp-mode-map lisp-mode-shared-map lisp-interaction-mode-map)
-   :states 'normal
-   :prefix "t")
 #+END_SRC
 
 *** binds
 
 #+BEGIN_SRC emacs-lisp
-  (lisp-t-map
+  (general-define-key
+   :keymaps '(lisp-mode-map lisp-mode-shared-map lisp-interaction-mode-map)
+   :states 'normal
+   :prefix ","
    "o" 'ninrod/eval-print-last-sexp       ;; mnemonic: output to current buffer
    "k" 'lispyville-drag-backward
    "j" 'lispyville-drag-forward)
+
   (lisp-comma-map
    "e" 'eval-defun
    "d" 'ninrod/uarg-eval-defun ;; instrument func with edebug
@@ -1829,16 +1760,6 @@ M-x subword-mode
    "c" 'term-char-mode
    "n" 'multi-term-next
    "p" 'multi-term-prev)
-#+END_SRC
-
-** prog
-
-#+BEGIN_SRC emacs-lisp
-  (general-define-key
-   :keymaps 'prog-mode-map
-   :states 'normal
-   "TAB" 'ninrod/origami-toggle-node
-   )
 #+END_SRC
 
 ** buffer-menu

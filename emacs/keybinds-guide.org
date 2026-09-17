@@ -105,10 +105,7 @@
 | Evil | N | DEL | Abre arquivo (=find-file=). |
 | Evil | N | q / - | Fecha conforme =evil-quit= / remove destaque de busca. |
 | Evil | N | Q | Grava macro. |
-| Movimento | M | \\ | Executa =ninrod/echo=. |
 | Movimento | M | ( / ) | Vai ao parágrafo anterior / próximo. |
-| Layouts | Global | F1--F4 | Seleciona a configuração Eyebrowse 1--4. |
-| Layouts | Global | F5 | Renomeia a configuração Eyebrowse. |
 | Interface | Global | F11 | Alterna tela cheia. |
 | Scroll | N, V | z . / z - | Centraliza / posiciona a linha atual na base da janela. |
 | Busca | Isearch | ESC | Cancela a busca incremental. |
@@ -125,11 +122,8 @@
 |------+--------+-------+------------------|
 | Agenda | N, V | , s / , d / , r | Agenda / deadline / refile. |
 | Edição | N, V | , e / , l | Edita bloco especial / insere link. |
-| Navegação | N, V | , t / , w / , g | Define tags / WorF goto / =org-goto=. |
+| Navegação | N, V | , t / , b / , g | Define tags / lista headings com Consult / =org-goto=. |
 | Folding | N, V | , TAB / , RET | Alterna folding / abre elemento no ponto. |
-| Clock e timer | N, V | , C i / , C o | Inicia / encerra clock. |
-| Clock e timer | N, V | , C - / , C t / , C s | Item de timer / inicia timer / para timer. |
-| Exportação | N, V | , E d | Abre o dispatch de exportação. |
 | Exibição | N, V | , T l | Alterna a exibição de links. |
 | Estrutura | N | t h / t j / t k / t l | Promove, move abaixo, move acima ou rebaixa heading/item. |
 | Estrutura | N | t y / t n / t t | Obtém URL no ponto / restringe à subtree / altera TODO. |
@@ -156,15 +150,6 @@
 | Modo | Estado | Tecla | Comando / efeito |
 |------+--------+-------+------------------|
 | Org source e Emacs Lisp | N | S / T | Salva e sai / aborta a edição de um bloco Org. |
-| Agenda Org | Todos | j / k | Próximo / item anterior. |
-| Agenda Org | Todos | J / K | Próximo / cabeçalho anterior personalizado. |
-
-** Python e programação
-
-| Modo | Estado | Tecla | Comando / efeito |
-|------+--------+-------+------------------|
-| Python | N, V | , i | Remove imports não utilizados. |
-| prog-mode | N | TAB | Alterna nó de folding Origami. |
 
 ** Dired
 
@@ -178,47 +163,98 @@
 | Dired | N | g o / g l / g e | Primeira linha / linha específica / fim da palavra anterior. |
 | Dired | N | R / T | Atualiza listagem / alterna marcas. |
 
-** Lisp, Info e Man
+** Lisp e Emacs Lisp interativo
 
 | Modo | Estado | Tecla | Comando / efeito |
 |------+--------+-------+------------------|
-| Lisp e Emacs Lisp interativo | N | t o | Avalia último sexp e insere o resultado. |
-| Lisp e Emacs Lisp interativo | N | t k / t j | Move expressão para trás / frente com Lispyville. |
+| Lisp e Emacs Lisp interativo | N | , o | Avalia último sexp e insere o resultado. |
+| Lisp e Emacs Lisp interativo | N | , k / , j | Move expressão para trás / frente com Lispyville. |
 | Lisp e Emacs Lisp interativo | N, V | , e / , d / , b / , h | Avalia defun / instrumenta com Edebug / avalia buffer / descreve inline. |
+
+** Info
+
+| Modo | Estado | Tecla | Comando / efeito |
+|------+--------+-------+------------------|
 | Info | M | - / DEL | Remove destaque de busca / volta no histórico. |
 | Info | M | z RET / z - / z . | Põe linha no topo / base / centro da janela. |
+
+** Man
+
+| Modo | Estado | Tecla | Comando / efeito |
+|------+--------+-------+------------------|
 | Man | N | RET | Segue referência do manual. |
 
-** Magit, terminal, Ag e Buffer Menu
+** Magit
 
 | Modo | Estado | Tecla | Comando / efeito |
 |------+--------+-------+------------------|
 | Magit Status | Todos | g o | Vai à primeira linha; também corrige o binding de =g l=. |
+| Magit Status | N | e / E | Abre Vdiff contextual / menu de comparações Vdiff. |
+
+** Terminal
+
+| Modo | Estado | Tecla | Comando / efeito |
+|------+--------+-------+------------------|
 | Terminal | Emacs | C-c ESC | Envia =ESC= ao terminal. |
 | Terminal | Emacs | C-c l / C-c c | Alterna para line mode / char mode. |
 | Terminal | Emacs | C-c j / C-c k | Próximo / terminal anterior. |
 | Terminal | N, V | , l / , c | Ativa line mode / char mode. |
 | Terminal | N, V | , n / , p | Próximo / terminal anterior. |
+
+** Ag
+
+| Modo | Estado | Tecla | Comando / efeito |
+|------+--------+-------+------------------|
 | Ag | Todos | r / DEL | Recompila / vai ao erro anterior de compilação. |
+
+** Buffer Menu
+
+| Modo | Estado | Tecla | Comando / efeito |
+|------+--------+-------+------------------|
 | Buffer Menu | Todos | - | Remove destaque de busca. |
 
-** Ibuffer e Hydras
+** Ibuffer
 
 | Contexto | Estado | Tecla | Comando / efeito |
 |----------+--------+-------+------------------|
 | Ibuffer | N | . | Abre Hydra principal. |
 | Ibuffer | N | t / m / U | Marca adiante / alterna marcas / desmarca tudo. |
 | Ibuffer | N | g o / g l | Primeira linha / linha específica. |
+
+** Hydra principal
+
+| Contexto | Estado | Tecla | Comando / efeito |
+|----------+--------+-------+------------------|
 | Hydra principal | Hydra | j / k / RET / o | Navega, visita buffer, visita em outra janela. |
 | Hydra principal | Hydra | m / u / * | Marca, desmarca ou abre Hydra de marcação. |
 | Hydra principal | Hydra | D / S / a | Exclui, salva ou abre Hydra de ações. |
 | Hydra principal | Hydra | g / s / / | Atualiza, abre ordenação ou filtros. |
 | Hydra principal | Hydra | q / . | Sai do Ibuffer / fecha a Hydra. |
+
+** Hydra de marcação
+
+| Contexto | Estado | Tecla | Comando / efeito |
+|----------+--------+-------+------------------|
 | Hydra de marcação | Hydra | * / M / m / u / s / r | Desmarca tudo; marca por modo, modificação, não salvos, especiais ou somente leitura. |
 | Hydra de marcação | Hydra | / / e / h / z | Marca buffers Dired, dissociados, de ajuda ou comprimidos. |
+
+** Hydra de ações
+
+| Contexto | Estado | Tecla | Comando / efeito |
+|----------+--------+-------+------------------|
 | Hydra de ações | Hydra | A / E / F / I / H / N / M / O | View, eval, shell, substituições, outra frame, pipe, alternâncias e occur. |
 | Hydra de ações | Hydra | P / Q / R / T / U / V / W / X | Imprime, substitui, renomeia e executa operações de buffer. |
+
+** Hydra de ordenação
+
+| Contexto | Estado | Tecla | Comando / efeito |
+|----------+--------+-------+------------------|
 | Hydra de ordenação | Hydra | i / a / v / s / f / m | Inverte; ordena por nome, uso recente, tamanho, arquivo ou modo. |
+
+** Hydra de filtros
+
+| Contexto | Estado | Tecla | Comando / efeito |
+|----------+--------+-------+------------------|
 | Hydra de filtros | Hydra | m / M / n / c / e / f | Filtra por modo, modo derivado, nome, conteúdo, predicado ou arquivo. |
 | Hydra de filtros | Hydra | > / < / / | Filtra por tamanho maior / menor; desativa o filtro. |
 
