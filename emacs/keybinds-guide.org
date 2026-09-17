@@ -22,9 +22,9 @@
 | N, V   | SPC TAB   | Alterna para o buffer anterior (=ninrod/alternate-buffer=). |
 | N, V   | SPC ,     | Vai para a marca global anterior (=pop-global-mark=). |
 | N, V   | SPC ESC   | Executa =ninrod/echo=. |
-| N, V   | SPC SPC   | Abre =counsel-M-x=. |
+| N, V   | SPC SPC   | Abre =M-x= (=execute-extended-command=). |
 | N, V   | SPC RET   | Salva o arquivo (=write-file=). |
-| N, V   | SPC DEL   | Cria um diretório (=ninrod/mkdir=). |
+| N, V   | SPC DEL   | Cria um diretório (=make-directory=). |
 | N, V   | SPC g     | Salta para um caractere com Avy (=avy-goto-char=). |
 | N, V   | SPC c     | Captura uma tarefa Org (=ninrod/org-task-capture=). |
 | N, V   | SPC j     | Executa a macro =LztM= para reposicionar cursor e janela. |
@@ -38,11 +38,11 @@
 | Ajuda | N | SPC d a | =apropos=. |
 | Ajuda | N | SPC d b | Descreve os bindings de um keymap (=emaps-describe-keymap-bindings=). |
 | Ajuda | N | SPC d c | Descreve o caractere no ponto (=describe-char=). |
-| Ajuda | N | SPC d d | Descreve uma face com Counsel. |
+| Ajuda | N | SPC d d | Descreve uma face (=describe-face=). |
 | Ajuda | N | SPC d f | Descreve uma função com Helpful. |
 | Ajuda | N | SPC d i | Abre o Info. |
 | Ajuda | N | SPC d k | Descreve uma tecla (=describe-key=). |
-| Ajuda | N | SPC d v | Descreve uma variável com Counsel. |
+| Ajuda | N | SPC d v | Descreve uma variável (=describe-variable=). |
 | Ajuda | N | SPC d m | Descreve o modo atual. |
 | Zoom | N | SPC H z, i | Abre Hydra de zoom; =i= aumenta a escala do texto. |
 | Zoom | N | SPC H z, o | Abre Hydra de zoom; =o= reduz a escala do texto. |
@@ -51,6 +51,7 @@
 | Ortografia | N | SPC S p | Muda o dicionário para =pt_BR=. |
 | Ortografia | N | SPC S k | Desliga Flyspell. |
 | Ortografia | N | SPC S s | Liga Flyspell. |
+| Ações | N, V | SPC a a / SPC a d / SPC a b | Ação, ação padrão ou bindings do candidato (=embark=). |
 
 ** Prefixo =s=: buffers, projetos, edição e janelas
 
@@ -59,18 +60,18 @@
 | Buffers | N, V, M | s u | Reverte o buffer sem confirmação. |
 | Buffers | N, V, M | s n / s w | Estreita / alarga uma região retangular. |
 | Buffers | N, V, M | s m | Define o marcador Evil =z=. |
-| Buffers | N, V, M | s i | Alterna de buffer com Ivy. |
+| Buffers | N, V, M | s i | Alterna de buffer com Consult. |
 | Buffers | N, V, M | s s | Abre Multi-Term. |
-| Projetos | N, V, M | s . | Localiza arquivo no projeto com Counsel Projectile. |
-| Projetos | N, V, M | s r | Mostra arquivos recentes do Projectile. |
-| Projetos | N, V, M | s o | Troca de projeto. |
+| Projetos | N, V, M | s . | Localiza arquivo no projeto (=project-find-file=). |
+| Projetos | N, V, M | s r | Mostra arquivos recentes (=consult-recent-file=). |
+| Projetos | N, V, M | s o | Troca de projeto (=project-switch-project=). |
 | Buffers | N, V, M | s RET | Salva e fecha via Evil. |
 | Bookmarks | N, V, M | s SPC | Salta para bookmark. |
 | Bookmarks | N, V, M | s - / s = | Exclui / cria bookmark. |
-| Edição | N, V, M | s p | Abre o histórico de yanks. |
-| Edição | N, V, M | s a | Faz substituição por regex com Anzu. |
-| Busca | N, V, M | s / | Busca com Grep ou Swiper. |
-| Busca | N, V, M | s f | Busca com Silver Searcher (=counsel-ag=). |
+| Edição | N, V, M | s p | Abre o histórico de yanks (=consult-yank-pop=). |
+| Edição | N, V, M | s a | Faz substituição por regex (=query-replace-regexp=). |
+| Busca | N, V, M | s / | Busca no buffer (=consult-line=). |
+| Busca | N, V, M | s f | Busca por ripgrep (=consult-ripgrep=). |
 | Histórico | N, V, M | s , / s ; | Salta para trás / frente no changelist Evil. |
 | Diretórios | N, V, M | s DEL | Altera o diretório padrão (=cd=). |
 | Janelas | N, V, M | s j / s k | Move o foco para a janela abaixo / acima. |
@@ -84,7 +85,6 @@
 | Git | N, V, M | m c | Clona repositório com Magit. |
 | Git | N, V, M | m g | Abre o status Magit. |
 | Org | N, V, M | m o | Abre a agenda Org. |
-| Arquivos | N, V, M | m TAB | Alterna NeoTree. |
 | Buffers | N, V, M | m f | Copia o nome do arquivo atual. |
 | Buffers | N, V, M | m k / m w / m i | Mata buffer / alarga buffer / abre Ibuffer. |
 | Edição | N, V, M | m a | Aplica a macro armazenada no registrador =z=. |
@@ -98,13 +98,12 @@
 
 | Tema | Estado | Tecla | Comando / efeito |
 |------+--------+-------+------------------|
-| Marcas | M | g TAB | Mostra o mark ring com Counsel. |
+| Marcas | M | g TAB | Mostra o mark ring com Consult. |
 | Movimento | M | g o / g l | Vai à primeira linha / a uma linha específica. |
 | Movimento | M | g m | Salta para o marcador Evil =z=. |
-| Histórico | M | g h / g s | Abre arquivos recentes / status Magit. |
+| Histórico | M | g h / g s | Abre arquivos recentes com Consult / status Magit. |
 | Histórico | M | g i | Vai para a última alteração. |
 | Movimento | M | g ; | Vai ao último caractere não vazio. |
-| Números | M | g + / g - | Incrementa / decrementa o número sob o cursor. |
 | Indentação | M | g > / g < | Indenta à direita / esquerda. |
 | Alinhamento | N, V, M | g a / g A | Alinha à esquerda / direita com Evil Lion. |
 
@@ -113,9 +112,9 @@
 | Tema | Estado | Tecla | Comando / efeito |
 |------+--------+-------+------------------|
 | Evil | N | RET / TAB | Salva / alterna folding. |
-| Evil | N | DEL | Abre arquivo com Counsel. |
+| Evil | N | DEL | Abre arquivo (=find-file=). |
 | Evil | N | q / - | Fecha conforme =evil-quit= / remove destaque de busca. |
-| Evil | N | Q / G | Grava macro / entra no estado God. |
+| Evil | N | Q | Grava macro. |
 | Movimento | M | \\ | Executa =ninrod/echo=. |
 | Movimento | M | ( / ) | Vai ao parágrafo anterior / próximo. |
 | Layouts | Global | F1--F4 | Seleciona a configuração Eyebrowse 1--4. |
@@ -126,6 +125,7 @@
 | Busca | Evil Ex | ESC | Cancela o minibuffer da linha de comando Evil. |
 | Edição | Global | RET | Insere uma nova linha com indentação. |
 | Compleção | Global e minibuffer | C-TAB | Executa =dabbrev-expand=. |
+| Ações | Emacs e minibuffer | C-. / C-; / C-h B | Ação, ação padrão ou bindings do candidato (=embark=). |
 
 * Atalhos por modo ou tipo de buffer
 
@@ -135,7 +135,7 @@
 |------+--------+-------+------------------|
 | Agenda | N, V | , s / , d / , r | Agenda / deadline / refile. |
 | Edição | N, V | , e / , l | Edita bloco especial / insere link. |
-| Navegação | N, V | , t / , w / , g | Tags com Counsel / WorF goto / =org-goto=. |
+| Navegação | N, V | , t / , w / , g | Define tags / WorF goto / =org-goto=. |
 | Folding | N, V | , TAB / , RET | Alterna folding / abre elemento no ponto. |
 | Clock e timer | N, V | , C i / , C o | Inicia / encerra clock. |
 | Clock e timer | N, V | , C - / , C t / , C s | Item de timer / inicia timer / para timer. |
@@ -176,7 +176,7 @@
 | Python | N, V | , i | Remove imports não utilizados. |
 | prog-mode | N | TAB | Alterna nó de folding Origami. |
 
-** Dired e NeoTree
+** Dired
 
 | Modo | Estado | Tecla | Comando / efeito |
 |------+--------+-------+------------------|
@@ -187,11 +187,6 @@
 | Dired | N | DEL / c / u | Abre arquivo / copia / sobe diretório. |
 | Dired | N | g o / g l / g e | Primeira linha / linha específica / fim da palavra anterior. |
 | Dired | N | R / T | Atualiza listagem / alterna marcas. |
-| NeoTree | N | DEL / d / c / r | Cria diretório / exclui / copia / renomeia nó. |
-| NeoTree | N | p / g r | Copia caminho / atualiza árvore. |
-| NeoTree | N | u / o / RET | Sobe nó / abre em divisão horizontal / abre nó. |
-| NeoTree | N | g g / g o / g l | Primeira linha / primeira linha / linha específica. |
-| NeoTree | N | . / x / q | Troca raiz / abre em divisão horizontal / fecha NeoTree. |
 
 ** Lisp, Info e Man
 
@@ -204,7 +199,7 @@
 | Info | M | z RET / z - / z . | Põe linha no topo / base / centro da janela. |
 | Man | N | RET | Segue referência do manual. |
 
-** Magit, terminal, Ag, Ivy e Buffer Menu
+** Magit, terminal, Ag e Buffer Menu
 
 | Modo | Estado | Tecla | Comando / efeito |
 |------+--------+-------+------------------|
@@ -215,7 +210,6 @@
 | Terminal | N, V | , l / , c | Ativa line mode / char mode. |
 | Terminal | N, V | , n / , p | Próximo / terminal anterior. |
 | Ag | Todos | r / DEL | Recompila / vai ao erro anterior de compilação. |
-| Ivy | Todos | ESC | Executa =evil-escape=. |
 | Buffer Menu | Todos | - | Remove destaque de busca. |
 
 ** Ibuffer e Hydras
@@ -291,7 +285,6 @@ habilita os temas =operators=, =mark-toggle=, =(escape insert emacs)= e
 |-------------+------------------|
 | Org | C-TAB |
 | Dired | F1--F12, s, -, n, N, y, M, L, H, $, 0, w, e, b, W, E, B, ., f, F, v, V, i |
-| NeoTree | s, d, n, -, N, SPC (alguns são redefinidos posteriormente) |
 | Info | 1--9, H, L, M, g, v, V, n, N, f, F, w, e, b, W, E, B, s, SPC |
 | Magit Status | SPC |
 | Magit hunk/file section | s |

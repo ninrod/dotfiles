@@ -22,30 +22,24 @@
      (30 (memq major-mode ibuffer-help-buffer-modes)
          font-lock-comment-face)
      (35 (eq major-mode 'dired-mode) font-lock-function-name-face)
-     (1
-      (or (eq major-mode 'emacs-lisp-mode) (eq major-mode 'lisp-mode))
-      highlight-numbers-number)
      (1 (eq major-mode 'org-mode) org-level-1)))
  '(package-selected-packages
-   '(ag aggressive-indent all-the-icons anaconda-mode atomic-chrome
-        autothemer cargo company-anaconda counsel-projectile diminish
-        dired-quick-sort docker editorconfig elpa-mirror emmet-mode
-        evil-anzu evil-args evil-commentary evil-escape evil-exchange
-        evil-indent-plus evil-lion
-        evil-matchit evil-numbers evil-replace-with-char
+   '(ag aggressive-indent anaconda-mode atomic-chrome autothemer cargo
+        company-anaconda consult docker editorconfig elpa-mirror embark
+        embark-consult emmet-mode
+        evil-args evil-commentary evil-exchange evil-indent-plus evil-lion
+        evil-matchit evil-replace-with-char
         evil-replace-with-register evil-string-inflection
-        evil-surround evil-test-helpers evil-visualstar exato
+        evil-surround evil-visualstar exato
         eyebrowse fic-mode flycheck-package general git-gutter-fringe
         gitattributes-mode gitconfig-mode gitignore-mode groovy-mode
-        gruvbox-theme helpful highlight-defined highlight-numbers
-        highlight-parentheses highlight-quoted ibuffer-vc ivy-hydra
-        json-mode json-reformat kotlin-mode lisp-extra-font-lock lispy
+        gruvbox-theme helpful ibuffer-vc
+        json-mode json-reformat kotlin-mode lispy
         lispyville magit markdown-mode
-        multi-term nginx-mode ob-http org-bullets origami pass pkgbuild-mode
-        projectile
+        multi-term nginx-mode ob-http orderless origami pass pkgbuild-mode
         py-isort pyvenv rainbow-delimiters rainbow-mode restart-emacs
-        rjsx-mode smartparens smex spaceline systemd tide toml-mode
-        use-package vdiff vimrc-mode web-mode worf
+        rjsx-mode smartparens smex systemd tide toml-mode
+        use-package vdiff vertico vimrc-mode web-mode worf
         yapfify yasnippet))
  '(safe-local-variable-values
    '((eval when

@@ -227,7 +227,7 @@ use the local kill ring without starting win32yank.exe again."
 *** misc
 
 #+BEGIN_SRC
-M-x projectile-ag
+M-x consult-ripgrep
 M-x count-words
 M-x ninrod/uarg-exec-shell-command
 M-x customize-apropos-faces
@@ -646,7 +646,6 @@ M-x subword-mode
       :ensure t
       :init
       (use-package goto-chg :ensure t)
-      (use-package evil-test-helpers :ensure t)
   
       :config
       (setcdr evil-insert-state-map nil) ;; emacsify insert state: http://stackoverflow.com/a/26573722/4921402
@@ -749,8 +748,7 @@ M-x subword-mode
 
 #+BEGIN_SRC emacs-lisp
 (use-package evil-commentary :ensure t
-  :config (evil-commentary-mode)
-  :diminish "")
+  :config (evil-commentary-mode))
 #+END_SRC
 
 *** evil-matchit
@@ -774,24 +772,6 @@ M-x subword-mode
   :config (global-evil-visualstar-mode))
 #+END_SRC
 
-*** evil-escape
-
-#+BEGIN_SRC emacs-lisp
-  (use-package evil-escape :ensure t
-    :config
-    (evil-escape-mode)
-    :diminish evil-escape "")
-#+END_SRC
-
-*** evil-anzu
-
-- config section hack: see [[https://github.com/TheBB/spaceline/issues/69][TheBB/spaceline#69]]
-#+BEGIN_SRC emacs-lisp
-  (use-package evil-anzu :ensure t
-    :config
-    (setq anzu-cons-mode-line-p nil))
-#+END_SRC
-
 *** evil-args
 
 #+BEGIN_SRC emacs-lisp
@@ -799,12 +779,6 @@ M-x subword-mode
   :config
     (define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
     (define-key evil-outer-text-objects-map "a" 'evil-outer-arg))
-#+END_SRC
-
-*** evil-numbers
-
-#+BEGIN_SRC emacs-lisp
-(use-package evil-numbers :ensure t)
 #+END_SRC
 
 *** evil-indent-plus
@@ -928,6 +902,7 @@ M-x subword-mode
   (tool-bar-mode -1)
   (menu-bar-mode -1)
   (electric-pair-mode 1)
+  (show-paren-mode 1)
   (column-number-mode t)
   (recentf-mode 1)
 
@@ -997,90 +972,11 @@ M-x subword-mode
 * packages
 ** cosmetic
 *** core-deps
-**** all-the-icons
-
-#+BEGIN_SRC emacs-lisp
-  (use-package all-the-icons
-    :ensure t)
-#+END_SRC
-
 **** autothemer
 
 #+BEGIN_SRC emacs-lisp
   (use-package autothemer
     :ensure t)
-#+END_SRC
-
-*** fic-mode
-    - highlights TODO,FIXME, etc...
-    #+BEGIN_SRC emacs-lisp
-      (use-package fic-mode
-        :ensure t
-        :config
-      (ninrod/add-to-hooks #'fic-mode '(prog-mode-hook)))
-    #+END_SRC
-*** highlight-numbers
-
-#+BEGIN_SRC emacs-lisp
-  (use-package highlight-numbers
-    :ensure t
-    :config
-    (add-hook 'prog-mode-hook 'highlight-numbers-mode))
-#+END_SRC
-*** highlight-parentheses
-
-#+BEGIN_SRC emacs-lisp
-  (use-package highlight-parentheses :ensure t
-    :config
-    (add-hook 'prog-mode-hook #'highlight-parentheses-mode)
-    (add-hook 'org-mode-hook #'highlight-parentheses-mode)
-    (setq hl-paren-delay 0.2)
-    (set-face-attribute 'hl-paren-face nil :weight 'ultra-bold)
-
-    :diminish "")
-#+END_SRC
-
-*** highlight-quoted
-    #+BEGIN_SRC emacs-lisp
-      (use-package highlight-quoted
-        :ensure t
-        :config
-        (add-hook 'emacs-lisp-mode-hook 'highlight-quoted-mode))
-    #+END_SRC
-*** highlight-defined
-    #+BEGIN_SRC emacs-lisp
-      (use-package highlight-defined
-        :ensure t
-        :config
-        (add-hook 'emacs-lisp-mode-hook 'highlight-defined-mode))
-    #+END_SRC
-
-*** lisp-extra-font-lock
-    #+BEGIN_SRC emacs-lisp
-      (use-package lisp-extra-font-lock
-        :ensure t
-        :config
-        (lisp-extra-font-lock-global-mode 1))
-    #+END_SRC
-*** Org Bullets
-
-#+BEGIN_SRC emacs-lisp
-  (use-package org-bullets
-    :ensure t
-    :init
-
-    ;; org-bullets-bullet-list
-    ;; default: "◉ ○ ✸ ✿"
-    ;; large: ♥ ● ◇ ✚ ✜ ☯ ◆ ♠ ♣ ♦ ☢ ❀ ◆ ◖ ▶
-    ;; Small: ► • ★ ▸
-    (setq org-bullets-bullet-list '("•"))
-
-    ;; others: ▼, ↴, ⬎, ⤷,…, and ⋱.
-    ;; (setq org-ellipsis "⤵")
-    (setq org-ellipsis "…")
-
-    :config
-    (add-hook 'org-mode-hook #'org-bullets-mode))
 #+END_SRC
 
 *** rainbow-delimiters
@@ -1095,30 +991,6 @@ M-x subword-mode
 #+BEGIN_SRC emacs-lisp
   (use-package rainbow-mode
     :ensure t)
-#+END_SRC
-
-*** spaceline
-
-- to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
-#+BEGIN_SRC emacs-lisp
-  (use-package spaceline :ensure t
-    :config
-
-    (cond ((ninrod--distro-p "arch")
-           (setq powerline-height 50))
-          (t (setq powerline-height 30)))
-
-    (setq powerline-default-separator 'utf-8)
-    (setq spaceline-separator-dir-left '(right . right))
-    (setq spaceline-separator-dir-right '(right . right))
-    (setq powerline-default-separator 'alternate) ;; alternate, slant, wave, zigzag, nil.
-    (setq spaceline-workspace-numbers-unicode t) ;for eyebrowse. nice looking unicode numbers for tagging different layouts
-    (setq spaceline-window-numbers-unicode t)
-    (setq spaceline-highlight-face-func #'spaceline-highlight-face-evil-state) ; set colouring for different evil-states
-    ;; (setq spaceline-inflation 1.4)
-    (require 'spaceline-config)
-    (spaceline-spacemacs-theme)
-    (spaceline-compile))
 #+END_SRC
 
 *** themes
@@ -1188,6 +1060,38 @@ M-x subword-mode
 #+END_SRC
 
 ** keybinds
+*** minibuffer and project navigation
+
+#+BEGIN_SRC emacs-lisp
+  (use-package vertico
+    :ensure t
+    :init
+    (vertico-mode 1))
+
+  (use-package orderless
+    :ensure t
+    :custom
+    (completion-styles '(orderless basic))
+    (completion-category-overrides '((file (styles partial-completion)))))
+
+  (use-package consult
+    :ensure t)
+
+  (use-package embark
+    :ensure t
+    :bind (("C-." . embark-act)
+           ("C-;" . embark-dwim)
+           ("C-h B" . embark-bindings))
+    :init
+    (setq prefix-help-command #'embark-prefix-help-command))
+
+  (use-package embark-consult
+    :ensure t
+    :hook (embark-collect-mode . consult-preview-at-point-mode))
+
+  (require 'project)
+#+END_SRC
+
 *** which key
 
 #+BEGIN_SRC emacs-lisp
@@ -1199,8 +1103,7 @@ M-x subword-mode
 
 #+BEGIN_SRC emacs-lisp
   (use-package hydra :ensure t
-    :config
-    (use-package ivy-hydra :ensure t))
+    )
 #+END_SRC
 
 *** general.el
@@ -1232,17 +1135,28 @@ M-x subword-mode
     "," 'pop-global-mark
     "<escape>" 'ninrod/echo ;; in test
 
-    "SPC" 'counsel-M-x
+    "SPC" 'execute-extended-command
     "RET" 'write-file
 
     ;; lembrando que DEL é BACKSPACE
-    "DEL" 'ninrod/mkdir
+    "DEL" 'make-directory
 
     "g" 'avy-goto-char
     "c" 'ninrod/org-task-capture
 
     "j" (kbd "LztM")
     "k" (kbd "Hz-M"))
+#+END_SRC
+
+*** actions
+
+#+BEGIN_SRC emacs-lisp
+  (spc-map
+   :states '(normal visual)
+   "a" '(:ignore t :which-key "actions")
+   "aa" 'embark-act
+   "ad" 'embark-dwim
+   "ab" 'embark-bindings)
 #+END_SRC
 
 *** function keys
@@ -1264,12 +1178,11 @@ M-x subword-mode
     "da" 'apropos
     "db" 'emaps-describe-keymap-bindings
     "dc" 'describe-char
-    "dd" 'counsel-describe-face
-    ;; "df" 'counsel-describe-function
+    "dd" 'describe-face
     "df" 'helpful-function
     "di" 'info
     "dk" 'describe-key
-    "dv" 'counsel-describe-variable
+    "dv" 'describe-variable
     "dm" 'describe-mode)
 #+END_SRC
 
@@ -1324,23 +1237,23 @@ M-x subword-mode
    "n"     'rect-ext-narrow
    "w"     'rect-ext-widen
    "m"     'ninrod/evil-set-marker-z
-   "i"     'ivy-switch-buffer
+   "i"     'consult-buffer
    "s"     'multi-term
-   "."     'counsel-projectile
-   "r"     'projectile-recentf
-   "o"     'counsel-projectile-switch-project
+   "."     'project-find-file
+   "r"     'consult-recent-file
+   "o"     'project-switch-project
    "RET"   'evil-save-modified-and-close; save and close
-   "<SPC>" 'counsel-bookmark; jump to bookmark
+   "<SPC>" 'bookmark-jump
    "-"     'bookmark-delete
    "="     'bookmark-set
 
    ;; edit actions
-   "p" 'counsel-yank-pop
-   "a" 'anzu-query-replace-regexp
+   "p" 'consult-yank-pop
+   "a" 'query-replace-regexp
 
    ;; search actions
-   "/" 'counsel-grep-or-swiper
-   "f" 'counsel-ag
+   "/" 'consult-line
+   "f" 'consult-ripgrep
 
    ;; jump actions
    "," 'evil-jump-backward
@@ -1403,20 +1316,17 @@ M-x subword-mode
    ;; "m" 'reserved
    ;; "0" 'reserved
 
-   "TAB" 'counsel-mark-ring
+   "TAB" 'consult-mark
 
    "o" 'evil-goto-first-line
    "l" 'evil-goto-line
    "m" 'ninrod/evil-goto-marker-z
 
-   "h" 'counsel-recentf
+   "h" 'consult-recent-file
    "s" 'magit-status
 
    "i" 'goto-last-change
    ";" 'evil-last-non-blank
-
-   "+" 'evil-numbers/inc-at-pt
-   "-" 'evil-numbers/dec-at-pt
 
    ;; As I've sequestered < and > when in org mode, we need a workaround.
    ">" 'evil-shift-right
@@ -1438,11 +1348,11 @@ M-x subword-mode
   (general-nmap
    "RET" 'evil-write
    "TAB" 'evil-toggle-fold
-   "DEL" 'counsel-find-file
+   "DEL" 'find-file
    "q"   'evil-quit
    "-"   'evil-ex-nohighlight
    "Q"   'evil-record-macro
-   "G"   'evil-execute-in-god-state)
+   )
 
   (general-mmap
    "\\" 'ninrod/echo;; reserved
@@ -1523,7 +1433,7 @@ M-x subword-mode
    "e" 'org-edit-special
 
    "l" 'org-insert-link
-   "t" 'counsel-org-tag
+   "t" 'org-set-tags-command
    "w" 'worf-goto
    "g" 'org-goto
 

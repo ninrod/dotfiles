@@ -17,9 +17,9 @@ aparencia base.
 
 - =~/.emacs.d/boot.org= resolve para =~/.dotfiles/emacs/boot.org=; ha uma unica
   configuracao ativa, com 3.184 linhas.
-- O =init.el= atual usa =package.el= e ainda aponta para o thin mirror legado
-  =~/.dotfiles/deps/emacs/ninrod/thin-melpa-mirror=, com fallback para GNU ELPA
-  e MELPA na internet.
+- O =init.el= atual usa =package.el=, prioriza o mirror completo local
+  =d12frosted/elpa-mirror= e faz fallback para o thin mirror legado e, por
+  ultimo, para GNU ELPA e MELPA na internet.
 - O mirror completo local existe em
   =~/.dotfiles/deps/emacs/d12frosted/elpa-mirror= e possui =archive-contents=
   para =melpa=, =stable-melpa=, =gnu=, =gnu-devel=, =nongnu= e =nongnu-devel=.
@@ -38,8 +38,8 @@ aparencia base.
 
 1. O usuario cria uma tag anotada da configuracao funcional atual antes de
    reduzir =boot.org=.
-2. O usuario ajusta =init.el= para usar apenas o mirror ELPA completo local,
-   por URLs =file://=, sem fallback remoto.
+2. O =init.el= usa caminhos absolutos para os subarchives do mirror ELPA
+   completo local, com fallback para o thin mirror legado e os archives remotos.
 3. O novo Emacs 31.1 deve usar um =package-user-dir= de staging, sem reutilizar
    o profile =~/.emacs.d/elpa= nem bytecode gerado pelo Emacs 29.
 4. Pacote ausente ou catalogo local invalido deve causar erro explicito; nao
@@ -63,22 +63,22 @@ parte da configuracao atual carregada.
 | org-plus-contrib               | Org atualizado e contribuicoes.            | Obsoleto; usar Org embutido e org-contrib so se necessario. |
 | evil                           | Estados, operadores e movimentos Vim.      | Manter no marco inicial. |
 | evil-collection                | Integrar Evil a modos e pacotes.           | Manter no marco inicial, apos Evil. |
-| goto-chg                       | Navegar posicoes alteradas.                 | Sem equivalente core identico; adiar. |
+| goto-chg                       | Navegar posicoes alteradas.                 | Dependencia funcional do Evil; manter. |
 | undo-tree                      | Historico de undo em arvore.                | Remover; usar undo-redo do core. |
 | evil-test-helpers              | Auxilia testes do Evil.                     | Nao e dependencia de runtime; remover. |
 | targets                        | Text objects configuraveis.                 | Adiar para Evil/Tree-sitter. |
 | rect-ext                       | Extensoes de retangulos.                    | Evil visual block/core cobrem o basico; adiar. |
-| evil-surround                  | Alterar pares delimitadores.                | Solucao Evil usual; adiar para edicao. |
+| evil-surround                  | Alterar pares delimitadores.                | Manter; fornece ys, cs e ds. |
 | evil-replace-with-register     | Substituir texto por registrador.           | Sem equivalente core direto; adiar. |
-| evil-commentary                | Comentarios no estilo Vim.                  | Comparar a comment-dwim; adiar. |
-| evil-matchit                   | Saltar pares estruturais.                   | Tree-sitter/Combobulate podem cobrir melhor; adiar. |
+| evil-commentary                | Comentarios no estilo Vim.                  | Manter; preserva os operadores Evil `gc` que o core nao oferece diretamente. |
+| evil-matchit                   | Saltar pares estruturais.                   | Manter; amplia % para pares estruturais. |
 | evil-exchange                  | Trocar duas regioes.                        | Sem equivalente core identico; adiar. |
 | evil-visualstar                | Pesquisar selecao visual.                   | Isearch cobre parte; adiar. |
 | evil-escape                    | Sair do insert por sequencia.               | ESC basta; remover da base. |
 | evil-anzu                      | Contador de ocorrencias de busca.           | Isearch moderno ja exibe contagem; remover. |
 | evil-god-state                 | Estado God dentro de Emacs state.           | Contraria foco exclusivo Vim; remover. |
 | evil-args                      | Text object de argumentos.                  | Avaliar evil-textobj-tree-sitter; adiar. |
-| evil-numbers                   | Incrementar/decrementar numeros.            | Util, sem equivalente core identico; adiar. |
+| evil-numbers                   | Incrementar/decrementar numeros.            | Remover; nao ha uso confirmado. |
 | evil-indent-plus               | Objetos/movimentos de indentacao.           | Tree-sitter pode melhorar; adiar. |
 | evil-lion                      | Alinhamento por operadores Evil.            | align core cobre basico; adiar. |
 | evil-ediff                     | Integrar Ediff a Evil.                      | Remover; usar Ediff do core se necessario. |
@@ -87,14 +87,14 @@ parte da configuracao atual carregada.
 | evil-replace-with-char         | Extensao Evil propria.                      | Preservar fonte local; adiar. |
 | evil-string-inflection         | Alternar convencoes de nomes.               | Preservar fonte local; adiar. |
 | all-the-icons                  | Icones graficos.                            | Sem utilidade em TTY; remover. |
-| autothemer                     | Infraestrutura para temas.                  | Sem temas customizados no escopo; remover. |
+| autothemer                     | Infraestrutura para temas.                  | Manter enquanto gruvbox-theme for usado. |
 | fic-mode                       | Destacar TODO/FIXME.                        | hl-todo pode repor; adiar. |
 | highlight-numbers              | Destacar literais numericos.                | Cosmetico; remover. |
-| highlight-parentheses          | Destacar parenteses proximos.               | show-paren-mode core; migrar se desejado. |
-| highlight-quoted               | Destacar quotes em Elisp.                   | Cosmetico; adiar. |
-| highlight-defined              | Destacar simbolos definidos em Elisp.       | Adiar. |
+| highlight-parentheses          | Destacar parenteses proximos.               | Substituir por show-paren-mode do core. |
+| highlight-quoted               | Destacar quotes em Elisp.                   | Cosmetico; remover. |
+| highlight-defined              | Destacar simbolos definidos em Elisp.       | Cosmetico; remover. |
 | kurecolor                      | Utilitarios de cor.                         | Sem uso funcional em TTY; remover. |
-| lisp-extra-font-lock           | Font-lock adicional em Elisp.               | Adiar. |
+| lisp-extra-font-lock           | Font-lock adicional em Elisp.               | Cosmetico; remover. |
 | org-bullets                    | Bullets especiais no Org.                   | Cosmetico em TTY; remover. |
 | rainbow-delimiters             | Cores por profundidade de delimitadores.    | Cosmetico; adiar. |
 | rainbow-mode                   | Visualizar valores de cor.                  | Adiar. |
@@ -144,8 +144,13 @@ parte da configuracao atual carregada.
 | systemd                        | Modo para unidades systemd.                 | Confirmar suporte Emacs 31; adiar. |
 | kotlin-mode                    | Modo Kotlin.                                | Avaliar Tree-sitter/Eglot; adiar. |
 | nginx-mode                     | Modo Nginx.                                 | Adiar; manter se nao houver alternativa adequada. |
-| ivy                            | Framework de completion.                    | CAPF + vertico/orderless/marginalia/consult; decidir depois. |
-| counsel                        | Comandos adicionais para Ivy.               | Remover com Ivy; substituir seletivamente. |
+| ivy                            | Framework de completion.                    | Substituir por Vertico, Orderless, Consult e Embark. |
+| counsel                        | Comandos adicionais para Ivy.               | Substituir por Consult e comandos do core. |
+| vertico                        | Interface vertical de candidatos.           | Adicionar como interface de minibuffer. |
+| orderless                      | Matching de candidatos por componentes.     | Adicionar como estilo de completion. |
+| consult                        | Comandos de busca e navegacao.              | Adicionar; substitui comandos Counsel selecionados. |
+| embark                         | Acoes contextuais sobre candidatos.         | Adicionar para a UX de minibuffer. |
+| embark-consult                 | Preview em colecoes Embark.                 | Adicionar com Consult e Embark. |
 | smex                           | Ranking/historico para M-x.                 | M-x moderno ja tem ranking; remover. |
 | yasnippet                      | Snippets.                                   | Ainda e padrao de fato; adiar. |
 | company                        | Interface de completion.                    | CAPF/Eglot com corfu ou completion-preview-mode; decidir depois. |
@@ -173,10 +178,12 @@ origem, commit e checksum.
 
 ** Gramaticas Tree-sitter
 
-Gramaticas sao bibliotecas nativas compiladas, nao pacotes ELPA. E necessario
-definir se serao curadas em cache local/pinado ou se o primeiro download por
-=treesit-install-language-grammar= podera consultar os upstreams. Ate a
-decisao, o bootstrap so habilita o suporte builtin, sem instalacao automatica.
+Gramaticas sao bibliotecas nativas compiladas, nao pacotes ELPA. Elas serao
+instaladas pelo gerenciador de pacotes de cada sistema, como no Vim. Para cada
+linguagem migrada, a configuracao da respectiva distro deve incluir o diretorio
+da biblioteca em =treesit-extra-load-path= e a validacao deve conferir
+=treesit-language-available-p=. O bootstrap nao deve baixar ou compilar
+gramaticas automaticamente.
 
 ** Escopo minimo de Evil
 
@@ -199,10 +206,11 @@ de uso testado.
 5. *Validar o nucleo real.* Iniciar unicamente pelo script de daemon, conferir
    =evil-mode= com =emacsclient -e=, abrir =emacsclient -t= e provar que
    =package-archives= possui somente URLs =file://=.
-6. *Definir Combobulate e Tree-sitter.* Resolver as duas decisoes pendentes,
-   validar em profile vazio e so entao instalar Combobulate e, se aprovado,
-   =evil-textobj-tree-sitter=. Nao usar =treesit-auto=: Emacs 31 ja oferece
-   =treesit-enabled-modes= e =treesit-auto-install-grammar=.
+6. *Definir Combobulate e preparar Tree-sitter.* Resolver a decisao pendente
+   de Combobulate e validar, por linguagem, a gramatica instalada pelo sistema
+   antes de habilitar o respectivo =*-ts-mode=. So entao instalar Combobulate
+   e, se aprovado, =evil-textobj-tree-sitter=. Nao usar =treesit-auto=: Emacs
+   31 ja oferece =treesit-enabled-modes= e =treesit-auto-install-grammar=.
 7. *Migrar filetypes um por um.* Priorizar Rust, Python, TypeScript/TSX,
    JavaScript, JSON, TOML e HTML. Para cada um: gramatica, =*-ts-mode=,
    Eglot/formatter e teste por =emacsclient -t= antes de remover o modo legado.

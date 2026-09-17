@@ -33,8 +33,6 @@
     (package-install 'use-package))
 
   (setq vc-follow-symlinks "t") ; prevent prompt when loading org file
-  (use-package diminish :ensure t)
-
   (defun ninrod/load-secrets-file (secrets-file)
     (defun ninrod/parent-dir (dirname times)
       "get the parent dir of DIRNAME"
