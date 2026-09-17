@@ -1,30 +1,39 @@
+;; -*- lexical-binding: nil; -*-
+
 (let* ((gc-cons-threshold (* 25 1024 1024))
-       (local-elpa-mirror-base "~/.dotfiles/deps/emacs/d12frosted/")
-       (local-elpa-mirror-thin (concat local-elpa-mirror-base "elpa-mirror"))
+       (local-elpa-mirror-full
+        (expand-file-name
+         "~/.dotfiles/deps/emacs/d12frosted/elpa-mirror/"))
+       (local-elpa-mirror-thin
+        (expand-file-name
+         "~/.dotfiles/deps/emacs/ninrod/thin-melpa-mirror/"))
+       (local-full-installed (file-directory-p local-elpa-mirror-full))
        (local-thin-installed (file-directory-p local-elpa-mirror-thin)))
 
   (require 'package)
   (setq package-enable-at-startup nil)
-  (cond (local-thin-installed
-         (message "local thin melpa found: installing...")
-         (setq package-archives `(("melpa" . ,(concat local-elpa-mirror-thin))
-                                  ("gnu"   . ,(concat local-elpa-mirror-thin)))))
+  (cond (local-full-installed
+         (message "local d12frosted ELPA mirror found: installing...")
+         (setq package-archives
+               `(("gnu" . ,(concat local-elpa-mirror-full "gnu/"))
+                 ("nongnu" . ,(concat local-elpa-mirror-full "nongnu/"))
+                 ("melpa" . ,(concat local-elpa-mirror-full "melpa/")))))
+        (local-thin-installed
+         (message "local thin MELPA mirror found: installing...")
+         (setq package-archives `(("melpa" . ,local-elpa-mirror-thin)
+                                  ("gnu"   . ,local-elpa-mirror-thin))))
         (t
          (message "there are no local elpa mirrors. going to the interwebz")
          (setq package-archives `(("melpa" . "https://melpa.org/packages/")
                                   ("gnu"   . "https://elpa.gnu.org/packages/")))))
   (package-initialize)
+  (unless package-archive-contents
+    (package-refresh-contents))
   (unless (package-installed-p 'use-package)
-    (package-refresh-contents)
     (package-install 'use-package))
 
   (setq vc-follow-symlinks "t") ; prevent prompt when loading org file
   (use-package diminish :ensure t)
-
-  (use-package org
-    :pin melpa
-    :ensure org-plus-contrib
-    :defer 7) ;; fetch latest version of `org-mode'
 
   (defun ninrod/load-secrets-file (secrets-file)
     (defun ninrod/parent-dir (dirname times)

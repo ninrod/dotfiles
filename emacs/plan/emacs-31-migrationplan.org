@@ -64,7 +64,7 @@ parte da configuracao atual carregada.
 | evil                           | Estados, operadores e movimentos Vim.      | Manter no marco inicial. |
 | evil-collection                | Integrar Evil a modos e pacotes.           | Manter no marco inicial, apos Evil. |
 | goto-chg                       | Navegar posicoes alteradas.                 | Sem equivalente core identico; adiar. |
-| undo-tree                      | Historico de undo em arvore.                | Comecar com undo-redo do core; reavaliar. |
+| undo-tree                      | Historico de undo em arvore.                | Remover; usar undo-redo do core. |
 | evil-test-helpers              | Auxilia testes do Evil.                     | Nao e dependencia de runtime; remover. |
 | targets                        | Text objects configuraveis.                 | Adiar para Evil/Tree-sitter. |
 | rect-ext                       | Extensoes de retangulos.                    | Evil visual block/core cobrem o basico; adiar. |
@@ -81,7 +81,7 @@ parte da configuracao atual carregada.
 | evil-numbers                   | Incrementar/decrementar numeros.            | Util, sem equivalente core identico; adiar. |
 | evil-indent-plus               | Objetos/movimentos de indentacao.           | Tree-sitter pode melhorar; adiar. |
 | evil-lion                      | Alinhamento por operadores Evil.            | align core cobre basico; adiar. |
-| evil-ediff                     | Integrar Ediff a Evil.                      | Reavaliar com evil-collection; adiar. |
+| evil-ediff                     | Integrar Ediff a Evil.                      | Remover; usar Ediff do core se necessario. |
 | vdiff                          | Diff interativo em buffers.                 | Adiar; nao e bootstrap. |
 | exato                          | Extensao Evil propria.                      | Preservar fonte local; readicionar por uso. |
 | evil-replace-with-char         | Extensao Evil propria.                      | Preservar fonte local; adiar. |

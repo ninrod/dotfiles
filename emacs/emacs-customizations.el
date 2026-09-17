@@ -1,3 +1,5 @@
+;; -*- lexical-binding: nil; -*-
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -28,22 +30,22 @@
    '(ag aggressive-indent all-the-icons anaconda-mode atomic-chrome
         autothemer cargo company-anaconda counsel-projectile diminish
         dired-quick-sort docker editorconfig elpa-mirror emmet-mode
-        evil-anzu evil-args evil-commentary evil-ediff evil-escape
-        evil-exchange evil-god-state evil-indent-plus evil-lion
+        evil-anzu evil-args evil-commentary evil-escape evil-exchange
+        evil-indent-plus evil-lion
         evil-matchit evil-numbers evil-replace-with-char
         evil-replace-with-register evil-string-inflection
         evil-surround evil-test-helpers evil-visualstar exato
         eyebrowse fic-mode flycheck-package general git-gutter-fringe
         gitattributes-mode gitconfig-mode gitignore-mode groovy-mode
-        helpful highlight-defined highlight-numbers
+        gruvbox-theme helpful highlight-defined highlight-numbers
         highlight-parentheses highlight-quoted ibuffer-vc ivy-hydra
-        json-mode json-reformat kotlin-mode kurecolor
-        lisp-extra-font-lock lispy lispyville magit markdown-mode
-        multi-term neotree nginx-mode ob-http org-bullets
-        org-plus-contrib origami pass pkgbuild-mode projectile
+        json-mode json-reformat kotlin-mode lisp-extra-font-lock lispy
+        lispyville magit markdown-mode
+        multi-term nginx-mode ob-http org-bullets origami pass pkgbuild-mode
+        projectile
         py-isort pyvenv rainbow-delimiters rainbow-mode restart-emacs
         rjsx-mode smartparens smex spaceline systemd tide toml-mode
-        undo-tree use-package vdiff vimrc-mode web-mode which-key worf
+        use-package vdiff vimrc-mode web-mode which-key worf
         yapfify yasnippet))
  '(safe-local-variable-values
    '((eval when

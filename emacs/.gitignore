@@ -10,6 +10,7 @@ thin-elpa-mirror/
 speed-type/
 hacker-typer/
 transient/
+logs/
 
 *.log
 *.dat

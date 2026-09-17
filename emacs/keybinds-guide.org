@@ -256,8 +256,6 @@ Emacs Lisp executado pelo tangling.
 | Evil | Normal, Visual e Operator-pending | i $ / a $ | Seleciona o conteúdo entre cifrões / inclui os delimitadores. |
 | Evil | Normal, Visual e Operator-pending | i a / a a | Seleciona o argumento interno / externo (=evil-args=). |
 | Evil | Normal | g r | Substitui texto pelo conteúdo de um registrador (=evil-replace-with-register=). |
-| Evil God | God | ESC | Abandona o estado God (=evil-god-state-bail=). |
-| Evil Emacs | Emacs | ESC | Executa o comando no estado God (=evil-execute-in-god-state=). |
 
 ** Mapas de pacotes e minor modes
 

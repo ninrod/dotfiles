@@ -3,6 +3,8 @@
 *** always return t
 
 #+BEGIN_SRC emacs-lisp
+  ;; -*- lexical-binding: nil; -*-
+
   (defun ninrod/return-t-advice (old-function &rest arguments)
     "Make the old-function return t in any case."
     (apply old-function arguments)
@@ -79,14 +81,6 @@
 #+END_SRC
 
 ** clipboard
-*** ninrod/neotree-copy-filepath-to-clipboard
-
-- with help from [[http://stackoverflow.com/a/40564951/4921402][/u/lawlist]]
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/neotree-copy-path ()
-    (interactive)
-    (message (concat "copied path: \"" (neotree-copy-filepath-to-yank-ring) "\" to the clipboard.")))
-#+END_SRC
 *** Win32 clipboard in terminal
     #+BEGIN_SRC emacs-lisp
       (defvar ninrod/win32yank--last-copy nil
@@ -225,18 +219,6 @@ use the local kill ring without starting win32yank.exe again."
     (switch-to-buffer (other-buffer (current-buffer) 1)))
 #+END_SRC
 
-*** ninrod/mkdir
-
-#+BEGIN_SRC emacs-lisp
-  (defun ninrod/mkdir ()
-    "Create directory."
-    (interactive)
-    (if (equal major-mode 'dired-mode)
-        (call-interactively 'dired-create-directory)
-      (if (equal major-mode 'neotree-mode)
-          (call-interactively 'neotree-create-node)
-        (call-interactively 'make-directory))))
-#+END_SRC
 *** ninrod/parent-dir
     #+BEGIN_SRC emacs-lisp
       
@@ -252,7 +234,6 @@ M-x customize-apropos-faces
 M-x ielm
 M-x man
 M-x elpamr-create-mirror-for-installed; mnemonic: create [t]hin mirror
-M-x undo-tree-visualize
 M-x eshell
 #+END_SRC
 
@@ -658,15 +639,14 @@ M-x subword-mode
 ** bootstrap
 
 #+BEGIN_SRC emacs-lisp
+    (setq evil-want-integration t
+          evil-want-keybinding nil)
+
     (use-package evil
       :ensure t
       :init
       (use-package goto-chg :ensure t)
-      (use-package undo-tree :ensure t)
       (use-package evil-test-helpers :ensure t)
-  
-      (setq evil-want-integration t ;; This is optional since it's already set to t by default.
-            evil-want-keybinding nil)
   
       :config
       (setcdr evil-insert-state-map nil) ;; emacsify insert state: http://stackoverflow.com/a/26573722/4921402
@@ -674,8 +654,7 @@ M-x subword-mode
       (fset 'evil-visual-update-x-selection 'ignore) ;; Amazing hack lifted from: http://emacs.stackexchange.com/a/15054/12585
   
       (setq evil-want-change-word-to-end nil
-            evil-kill-on-visual-paste nil
-            evil-want-keybinding nil)
+            evil-kill-on-visual-paste nil)
   
       (evil-mode 1)
   
@@ -741,18 +720,19 @@ M-x subword-mode
 #+BEGIN_SRC emacs-lisp
   (use-package evil-surround
     :ensure t
-    :load-path "~/code/sources/evil-surround"
-    :init
-    (with-eval-after-load 'evil-surround
-      (evil-add-to-alist
-       'evil-surround-pairs-alist ;; use non-spaced pairs when surrounding with an opening brace evil-surround/issues/86
-       ?\( '("(" . ")")
-       ?\[ '("[" . "]")
-       ?\{ '("{" . "}")
-       ?\) '("( " . " )")
-       ?\] '("[ " . " ]")
-       ?\} '("{ " . " }")))
-    :config (global-evil-surround-mode 1))
+    :config
+    (setq-default evil-surround-pairs-alist
+                  (let ((pairs
+                         (copy-tree
+                          (default-value 'evil-surround-pairs-alist))))
+                    (setf (alist-get ?\( pairs) '("(" . ")")
+                          (alist-get ?\[ pairs) '("[" . "]")
+                          (alist-get ?\{ pairs) '("{" . "}")
+                          (alist-get ?\) pairs) '("( " . " )")
+                          (alist-get ?\] pairs) '("[ " . " ]")
+                          (alist-get ?\} pairs) '("{ " . " }"))
+                    pairs))
+    (global-evil-surround-mode 1))
 #+END_SRC
 
 *** evil-replace-with-register
@@ -812,17 +792,6 @@ M-x subword-mode
     (setq anzu-cons-mode-line-p nil))
 #+END_SRC
 
-*** evil-god-state
-
-#+BEGIN_SRC emacs-lisp
-    (use-package evil-god-state :ensure t
-      :config
-      (setq evil-emacs-state-cursor 'box)
-      (setq evil-god-state-cursor 'bar)
-      (evil-define-key 'god global-map [escape] 'evil-god-state-bail)
-      (evil-define-key 'emacs global-map [escape] 'evil-execute-in-god-state))
-#+END_SRC
-
 *** evil-args
 
 #+BEGIN_SRC emacs-lisp
@@ -849,11 +818,6 @@ M-x subword-mode
    (use-package evil-lion
      :ensure t)
  #+END_SRC
-*** evil-ediff
-    #+BEGIN_SRC emacs-lisp
-      (use-package evil-ediff
-        :ensure t)
-    #+END_SRC
 *** vdiff
     #+BEGIN_SRC emacs-lisp
       (use-package vdiff
@@ -1091,13 +1055,6 @@ M-x subword-mode
         (add-hook 'emacs-lisp-mode-hook 'highlight-defined-mode))
     #+END_SRC
 
-*** kurecolor
-
-#+BEGIN_SRC emacs-lisp
-  (use-package kurecolor
-    :ensure t)
-#+END_SRC
-
 *** lisp-extra-font-lock
     #+BEGIN_SRC emacs-lisp
       (use-package lisp-extra-font-lock
@@ -1204,7 +1161,8 @@ M-x subword-mode
 **** gruvbox
 
 #+BEGIN_SRC emacs-lisp
-  (use-package gruvbox-theme :load-path "~/.dotfiles/deps/emacs/ninrod/gruvbox-theme"
+  (use-package gruvbox-theme
+    :ensure t
     :init
     ;; (setq anzu-cons-mode-line-p t)
     (setq gruvbox-contrast 'hard)
@@ -1417,7 +1375,6 @@ M-x subword-mode
    "c" 'magit-clone
    "g" 'ninrod/uarg-magit-status
    "o" 'ninrod/pop-to-org-agenda
-   "TAB" 'neotree-toggle
 
    ;; buffer ops
    "f" 'ninrod/add-filename-to-kill-ring
@@ -1844,65 +1801,6 @@ M-x subword-mode
     (ninrod/dired--unbinds)
     (evil-make-overriding-map dired-mode-map 'normal t); use the standard Dired bindings as a base
     (ninrod/dired--binds))
-#+END_SRC
-
-** neotree
-
-#+BEGIN_SRC emacs-lisp
-  (require 'neotree)
-  (require 'evil)
-  (require 'dired)
-  
-  (define-minor-mode neotree-evil
-    "Use NERDTree bindings on neotree."
-    :lighter " NT"
-    :keymap
-    (progn
-      (general-create-definer
-       ninrod--neotree-map
-       :keymaps 'neotree-mode-map)
-  
-      (ninrod--neotree-map
-       "s"      nil
-       "d"      nil
-       "n"      nil
-       "-"      nil
-       "N"      nil
-       "<SPC>"  nil)
-  
-      (evil-make-overriding-map neotree-mode-map 'normal t)
-  
-      (ninrod--neotree-map
-       :states  'normal
-  
-       ;; crud ops
-       "DEL" 'ninrod/mkdir
-       "d" 'neotree-delete-node
-       "c" 'neotree-copy-node
-       "r" 'neotree-rename-node
-  
-       ;; info retrieval
-       "p"  'ninrod/neotree-copy-path
-       "gr" 'neotree-refresh
-  
-       ;; navigation
-       "u"   'neotree-select-up-node
-       "o"   'neotree-enter-horizontal-split
-       "RET" 'neotree-enter
-       ;; "zj"  'neotree-select-next-sibling-node
-       ;; "zk"  'neotree-select-previous-sibling-node
-       "gg"  'evil-goto-first-line
-       "go"  'evil-goto-first-line
-       "gl"  'evil-goto-line
-       "."   'neotree-change-root
-  
-       ;; file selection
-       "x" 'neotree-enter-horizontal-split
-  
-       ;;exiting
-       "q" 'neotree-toggle)
-  
-      neotree-mode-map))
 #+END_SRC
 
 ** lisp
