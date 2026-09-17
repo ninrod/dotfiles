@@ -867,6 +867,17 @@ M-x subword-mode
      (use-package evil-replace-with-char :ensure t)
      (use-package evil-string-inflection :ensure t)
    #+END_SRC
+** disabled packages
+*** evil-embrace
+
+#+BEGIN_SRC text
+  (use-package evil-embrace
+    :ensure t
+    :config
+    (add-hook 'org-mode-hook 'embrace-org-mode-hook)
+    (evil-embrace-enable-evil-surround-integration))
+#+END_SRC
+
 * tweaks
 ** backups
 
@@ -903,6 +914,51 @@ M-x subword-mode
 (setq dired-omit-files "^\\.?#\\|^\\.[^.].*")
 #+END_SRC
 
+* font
+
+  #+BEGIN_SRC emacs-lisp
+    (add-to-list 'default-frame-alist '(font . "Office Code Pro-14"))
+    (add-to-list 'default-frame-alist '(font . "Source Code Pro-14"))
+    (add-to-list 'default-frame-alist '(font . "Fantasque Sans Mono-16"))
+    (setq nin--chosen-font "Fantasque Sans Mono-16")
+    (add-to-list 'default-frame-alist `(font . ,nin--chosen-font))
+  #+END_SRC
+
+** gui
+
+#+BEGIN_SRC emacs-lisp
+  (when (display-graphic-p)
+    (when (eq system-type 'darwin)
+
+        ;; start maximized
+        ;; (set-frame-parameter nil 'fullscreen 'fullboth)
+        ;; (toggle-frame-maximized)
+
+        ;; osx does not lose screen real state with menu bar mode on
+        (menu-bar-mode 1)))
+#+END_SRC
+
+** hooks
+*** line-number bootstrap
+     #+BEGIN_SRC emacs-lisp
+       (when (>= emacs-major-version 26)
+         (ninrod/add-to-hooks
+          #'(lambda ()
+              (setq-local display-line-numbers-current-absolute nil)
+              (setq display-line-numbers 'visual))
+          '(org-mode-hook
+            prog-mode-hook
+            markdown-mode-hook
+            conf-unix-mode-hook)))
+     #+END_SRC
+*** sh-mode
+    #+BEGIN_SRC emacs-lisp
+      ;; (add-hook 'sh-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+    #+END_SRC
+*** edebug
+#+BEGIN_SRC emacs-lisp
+(add-hook 'edebug-mode-hook 'evil-normalize-keymaps)
+#+END_SRC
 ** ibuffer
 
 #+BEGIN_SRC emacs-lisp
@@ -938,6 +994,16 @@ M-x subword-mode
                   filename-and-process))))
 #+END_SRC
 
+** indentation
+
+#+BEGIN_SRC emacs-lisp
+  (setq-default js-basic-offset 2
+                js-indent-level 2
+                sh-basic-offset 2
+                sh-indentation 2
+                indent-tabs-mode nil)
+#+END_SRC
+
 ** misc options
 
 #+BEGIN_SRC emacs-lisp
@@ -971,29 +1037,104 @@ M-x subword-mode
       (scroll-bar-mode -1))
 #+END_SRC
 
-** hooks
-*** line-number bootstrap
-     #+BEGIN_SRC emacs-lisp
-       (when (>= emacs-major-version 26)
-         (ninrod/add-to-hooks
-          #'(lambda ()
-              (setq-local display-line-numbers-current-absolute nil)
-              (setq display-line-numbers 'visual))
-          '(org-mode-hook
-            prog-mode-hook
-            markdown-mode-hook
-            conf-unix-mode-hook)))
-     #+END_SRC
-** indentation
+** org-mode
+*** general configs
 
+- somewhat lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
+- thanks to [[https://github.com/abo-abo/swiper/issues/986#issuecomment-300482804][@fabacino]] for the org-goto/ivy interplay hack
 #+BEGIN_SRC emacs-lisp
-  (setq-default js-basic-offset 2
-                js-indent-level 2
-                sh-basic-offset 2
-                sh-indentation 2
-                indent-tabs-mode nil)
+  (setq org-todo-keywords '((sequence "TODO" "IN-PROGRESS" "WAITING" "|" "DONE" "CANCELED")))
+  (setq org-blank-before-new-entry (quote ((heading) (plain-list-item))))
+  (setq org-log-done (quote time))
+  (setq org-log-redeadline (quote time))
+  (setq org-log-reschedule (quote time))
+  (setq org-src-window-setup 'current-window)
+
+  ;; org-goto/ivy interplay hack
+  (setq org-goto-interface 'outline-path-completion)
+  (setq org-outline-path-complete-in-steps nil)
 #+END_SRC
 
+*** org capture
+
+- lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
+#+BEGIN_SRC emacs-lisp
+  (setq org-capture-templates
+        '(("a" "My TODO task format." entry
+           (file "~/code/sources/gtd/inbox.org")
+           "* TODO %? ")))
+
+  (defun ninrod/org-task-capture ()
+    "Capture a task with my default template."
+    (interactive)
+    (org-capture nil "a"))
+#+END_SRC
+
+*** org agenda
+
+- lifted from aaron bieber's post: [[http://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html][dig into org mode]]
+- also lifted from aaron bieber's post: [[https://blog.aaronbieber.com/2016/09/24/an-agenda-for-life-with-org-mode.html][An agenda for life with org-mode]]
+#+BEGIN_SRC emacs-lisp
+  (setq org-agenda-files '("~/code/sources/gtd/"))
+
+  (defun ninrod/pop-to-org-agenda (&optional split)
+    "Visit the org agenda, in the current window or a SPLIT."
+    (interactive "P")
+    (org-agenda nil "d")
+    (when (not split)
+      (delete-other-windows)))
+
+  (defun ninrod/org-skip-subtree-if-priority (priority)
+    "Skip an agenda subtree if it has a priority of PRIORITY.
+
+  PRIORITY may be one of the characters ?A, ?B, or ?C."
+    (let ((subtree-end (save-excursion (org-end-of-subtree t)))
+          (pri-value (* 1000 (- org-lowest-priority priority)))
+          (pri-current (org-get-priority (thing-at-point 'line t))))
+      (if (= pri-value pri-current)
+          subtree-end
+        nil)))
+
+  (defun ninrod/org-skip-subtree-if-habit ()
+    "Skip an agenda entry if it has a STYLE property equal to \"habit\"."
+    (let ((subtree-end (save-excursion (org-end-of-subtree t))))
+      (if (string= (org-entry-get nil "STYLE") "habit")
+          subtree-end
+        nil)))
+
+  (setq org-agenda-custom-commands
+        '(("d" "Daily agenda and all TODOs"
+           ((tags "PRIORITY=\"A\""
+                  ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                   (org-agenda-overriding-header "High-priority unfinished tasks:")))
+            (agenda "" ((org-agenda-ndays 1)))
+            (alltodo ""
+                     ((org-agenda-skip-function '(or (ninrod/org-skip-subtree-if-habit)
+                                                     (ninrod/org-skip-subtree-if-priority ?A)
+                                                     (org-agenda-skip-if nil '(scheduled deadline))))
+                      (org-agenda-overriding-header "ALL normal priority tasks:"))))
+           ((org-agenda-compact-blocks t)))))
+
+  (setq org-agenda-text-search-extra-files '(agenda-archives))
+#+END_SRC
+
+*** org refile
+
+- with help from [[http://stackoverflow.com/a/22200624/4921402][so]]
+#+BEGIN_SRC emacs-lisp
+  (setq ninrod-refile-targets
+        '("~/code/sources/gtd/archives/done.org"
+          "~/code/sources/gtd/archives/canceled.org"
+          "~/code/sources/gtd/projects/oficina.org"
+          "~/code/sources/gtd/inbox.org"
+          "~/code/sources/gtd/next.org"
+          "~/code/sources/gtd/agenda.org"
+          "~/code/sources/gtd/maybe.org"))
+
+  (setq org-refile-targets
+        '((nil :maxlevel . 1)
+          (ninrod-refile-targets :maxlevel . 1)))
+#+END_SRC
 ** scroll
 
 #+BEGIN_SRC emacs-lisp
@@ -1030,6 +1171,7 @@ M-x subword-mode
     (setq custom-file "~/.emacs.d/emacs-customizations.el")
     (load custom-file 'noerror)
   #+END_SRC
+
 * packages
 ** cosmetic
 *** core-deps
@@ -1140,6 +1282,25 @@ M-x subword-mode
     :ensure t)
 #+END_SRC
 
+*** smartparens
+
+The installed 2021 Smartparens release is incompatible with Emacs 31 terminal
+frames: its global highlighting mode creates a face-inheritance cycle while a
+TTY frame is initialized.  Keep it disabled until it is replaced during the
+Emacs 31 migration.
+
+#+BEGIN_SRC text
+  (use-package smartparens :ensure t
+    :init
+    (setq sp-show-pair-delay 0.1
+          sp-show-pair-from-inside t)
+    :config
+    (smartparens-global-mode)
+    (show-smartparens-global-mode)
+
+    :diminish "")
+#+END_SRC
+
 *** spaceline
 
 - to see an exhaustive separator list see [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el#L9-L11][here]].
@@ -1229,6 +1390,522 @@ M-x subword-mode
     (load-theme 'darktooth t))
 #+END_SRC
 
+** core
+*** restart-emacs
+
+#+BEGIN_SRC emacs-lisp
+  (use-package restart-emacs :ensure t)
+#+END_SRC
+
+*** eyebrowse
+
+#+BEGIN_SRC emacs-lisp
+(use-package eyebrowse :ensure t
+  :config
+    (setq eyebrowse-wrap-around t)
+    (eyebrowse-mode t))
+#+END_SRC
+
+*** multi-term
+
+#+BEGIN_SRC emacs-lisp
+(use-package multi-term :ensure t
+  :config (setq multi-term-program "/bin/zsh"))
+#+END_SRC
+
+*** ag: the silver searcher
+
+#+BEGIN_SRC emacs-lisp
+(use-package ag :ensure t)
+#+END_SRC
+
+*** origami
+
+#+BEGIN_SRC emacs-lisp
+(use-package origami :ensure t
+  :config
+    (add-hook 'prog-mode-hook
+      (lambda ()
+        (setq-local origami-fold-style 'triple-braces)
+        (origami-mode)
+        (origami-close-all-nodes (current-buffer)))))
+#+END_SRC
+
+*** editorconfig
+
+#+BEGIN_SRC emacs-lisp
+  (use-package editorconfig
+    :ensure t
+    :config
+    (editorconfig-mode 1)
+
+    :diminish editorconfig "")
+#+END_SRC
+
+*** ibuffer-vc
+
+#+BEGIN_SRC emacs-lisp
+  (use-package ibuffer-vc
+    :ensure t
+    :init
+    :config
+    (add-hook 'ibuffer-hook
+              (lambda ()
+                (ibuffer-vc-set-filter-groups-by-vc-root)
+                (unless (eq ibuffer-sorting-mode 'alphabetic)
+                  (ibuffer-do-sort-by-alphabetic)))))
+#+END_SRC
+
+*** atomic-chrome
+
+#+BEGIN_SRC emacs-lisp
+  (when (or (eq system-type 'darwin) (eq system-type 'gnu/linux))
+    (use-package atomic-chrome :ensure t
+      :init
+      (atomic-chrome-start-server)))
+#+END_SRC
+
+*** git-gutter-fringe
+
+#+BEGIN_SRC emacs-lisp
+  (use-package git-gutter-fringe
+    :init
+    (global-git-gutter-mode t)
+    :ensure t
+    :defer t)
+#+END_SRC
+
+*** magit
+
+- for more info about magit-display-buffer-function, see [[http://stackoverflow.com/q/39933868/4921402][here]].
+#+BEGIN_SRC emacs-lisp
+  (use-package magit
+    :ensure t
+    :config
+    ;;(setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
+    (setq magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1
+          magit-repository-directories '("~/code/sources")
+          magit-diff-refine-hunk 'all
+          magit-completing-read-function 'ivy-completing-read)
+  
+    (magit-add-section-hook 'magit-status-sections-hook ;https://github.com/magit/magit/issues/3230#issuecomment-339901429
+                            'magit-insert-unpushed-to-upstream
+                            'magit-insert-unpushed-to-upstream-or-recent
+                            'replace))
+#+END_SRC
+
+*** projectile
+
+- the projectile-switch-project-action hack was lifted from [[projectile-switch-project-action][here]].
+#+BEGIN_SRC emacs-lisp
+  (use-package projectile :ensure t
+    :init
+    ;; (add-hook 'after-init-hook 'projectile-mode)
+    (use-package counsel-projectile :ensure t)
+
+    ;; use ivy
+    (setq projectile-completion-system 'ivy)
+
+    ;; make projectile usable for every directory
+    (setq projectile-require-project-root nil)
+
+    ;; cd into dir i want, including git-root
+    ;; (defun cd-dwim ()
+    ;;     (cd (projectile-project-root)))
+    ;; (setq projectile-switch-project-action 'cd-dwim)
+
+    :config
+    (projectile-global-mode)
+
+    :diminish global-projectile-mode "")
+#+END_SRC
+
+*** neotree
+
+#+BEGIN_SRC emacs-lisp
+  (use-package neotree
+    :ensure t
+    :init
+    (setq neo-create-file-auto-open t
+          neo-auto-indent-point nil
+          neo-mode-line-type 'none
+          neo-window-fixed-size nil
+          neo-theme 'icons
+          neo-window-width 40
+          neo-show-updir-line nil
+          neo-smart-open t
+          neo-show-hidden-files t
+          neo-banner-message nil))
+#+END_SRC
+*** worf
+
+    #+BEGIN_SRC emacs-lisp
+      (use-package worf
+        :ensure t
+        :diminish worf-mode)
+    #+END_SRC
+
+*** lispy
+
+#+BEGIN_SRC emacs-lisp
+  (use-package lispy
+    :ensure t
+    :diminish ""
+    :config
+    (add-hook 'emacs-lisp-mode-hook
+              (lambda ()
+                (lispy-mode 1))))
+
+#+END_SRC
+
+*** lispyville
+
+#+BEGIN_SRC emacs-lisp
+  (use-package lispyville
+    :ensure t
+    :diminish ""
+    :config
+    (add-hook 'lispy-mode-hook #'lispyville-mode)
+    (with-eval-after-load 'lispyville
+      (lispyville-set-key-theme '(operators
+                                  (mark-toggle)
+                                  (escape insert emacs)
+                                  slurp/barf-cp))
+      (evil-set-command-property 'lispyville-yank :move-point t))
+    (with-eval-after-load 'lispy
+      (lispy-define-key lispy-mode-map "v" #'lispyville-toggle-mark-type)))
+#+END_SRC
+*** helpful
+
+    #+BEGIN_SRC emacs-lisp
+      (use-package helpful
+        :ensure t)
+    #+END_SRC
+*** aggressive-indent
+#+BEGIN_SRC emacs-lisp
+  (use-package aggressive-indent
+    :ensure t
+    :diminish ""
+    :config
+    (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode))
+#+END_SRC
+*** f.el
+    #+BEGIN_SRC emacs-lisp
+      (use-package f
+        :ensure t)
+    #+END_SRC
+*** dired-quick-sort
+    #+BEGIN_SRC emacs-lisp
+      (use-package dired-quick-sort
+        :ensure t
+        :config
+        (dired-quick-sort-setup))
+    #+END_SRC
+** filetypes
+*** ts: TypeScript
+
+#+BEGIN_SRC emacs-lisp
+  (defun setup-tide-mode ()
+    (interactive)
+    (tide-setup)
+    (flycheck-mode +1)
+    (setq flycheck-check-syntax-automatically '(save mode-enabled))
+    (eldoc-mode +1)
+    (tide-hl-identifier-mode +1)
+    (company-mode +1))
+
+  (use-package tide
+    :ensure t
+    :init
+    (setq company-tooltip-align-annotations t)
+    :config
+    (add-hook 'before-save-hook 'tide-format-before-save)
+    (add-hook 'typescript-mode-hook #'setup-tide-mode))
+#+END_SRC
+
+*** jsx: React
+    #+BEGIN_SRC emacs-lisp
+      (use-package rjsx-mode
+        :ensure t
+        :config
+        (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode)))
+    #+END_SRC
+
+*** md: markdown
+
+#+BEGIN_SRC emacs-lisp
+  (use-package markdown-mode
+    :ensure t
+    :commands (markdown-mode gfm-mode)
+    :mode (("README\\.md\\'" . gfm-mode)
+           ("\\.md\\'" . markdown-mode)
+           ("\\.markdown\\'" . markdown-mode))
+    :init (setq markdown-command "multimarkdown"))
+#+END_SRC
+
+*** html: web-mode
+
+#+BEGIN_SRC emacs-lisp
+  (use-package web-mode
+    :ensure t
+    :init
+    (setq web-mode-enable-current-element-highlight t)
+    :config
+    (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.svelte?\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+
+    (defun my-web-mode-hook ()
+      "Hooks for Web mode."
+
+      ;; config auto closing: http://stackoverflow.com/a/23407052/4921402
+      (setq web-mode-tag-auto-close-style 2)
+      (setq web-mode-auto-close-style 2)
+      (setq web-mode-enable-auto-closing t)
+
+      (setq web-mode-markup-indent-offset 2)
+      (setq web-mode-css-indent-offset    2)
+      (setq web-mode-code-indent-offset   2))
+    (add-hook 'web-mode-hook 'my-web-mode-hook))
+#+END_SRC
+
+*** js: js2-mode
+
+#+BEGIN_SRC emacs-lisp
+  (use-package js2-mode
+    :ensure t
+    :config
+    ;; (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+    (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2))))
+#+END_SRC
+
+*** json: json-mode, json-reformat
+
+#+BEGIN_SRC emacs-lisp
+  (use-package json-reformat
+    :ensure t
+    :config
+    (setq json-reformat:indent-width 2))
+
+  (use-package json-mode :ensure t)
+#+END_SRC
+
+*** viml
+
+#+BEGIN_SRC emacs-lisp
+  (use-package vimrc-mode
+    :ensure t)
+#+END_SRC
+
+*** gitconfig
+
+#+BEGIN_SRC emacs-lisp
+(use-package gitconfig-mode :ensure t)
+(use-package gitignore-mode :ensure t)
+(use-package gitattributes-mode :ensure t)
+#+END_SRC
+
+*** Rust
+
+    - stolen from [[https://gist.github.com/matthew-piziak/51300f97c092041b081b8d9fb22d290d][matthew pizziak]]
+    #+BEGIN_SRC emacs-lisp
+      (use-package toml-mode :ensure t)
+      (use-package cargo :ensure t)
+
+      (use-package rust-mode
+        :ensure t
+        :init
+        (add-hook 'rust-mode-hook 'cargo-minor-mode)
+        (add-hook 'toml-mode-hook 'cargo-minor-mode)
+        :config
+        (setq rust-format-on-save t)
+        (setq rust-indent-method-chain t))
+
+    #+END_SRC
+*** python
+    #+BEGIN_SRC emacs-lisp
+      (use-package anaconda-mode
+        :ensure t
+        :config
+        (ninrod/add-to-hooks 'python-mode-hook
+                             '(anaconda-mode
+                               anaconda-eldoc-mode)))
+
+      (use-package company-anaconda
+        :ensure t
+        :config
+        (eval-after-load "company"
+          '(add-to-list 'company-backends '(company-anaconda :with company-capf))))
+
+      (use-package yapfify
+        :ensure t
+        :config
+        (add-hook 'python-mode-hook 'yapf-mode))
+
+      (use-package pyvenv
+        :ensure t)
+
+
+      (use-package py-isort
+        :ensure t
+        :config
+        (add-hook 'before-save-hook 'py-isort-before-save))
+
+      ;; from https://www.snip2code.com/Snippet/127022/Emacs-auto-remove-unused-import-statemen
+      (defun spacemacs/python-remove-unused-imports()
+        "Use Autoflake to remove unused function"
+        "autoflake --remove-all-unused-imports -i unused_imports.py"
+        (interactive)
+        (if (executable-find "autoflake")
+            (progn
+              (shell-command (format "autoflake --remove-all-unused-imports -i %s"
+                                     (shell-quote-argument (buffer-file-name))))
+              (revert-buffer t t t))
+          (message "Error: Cannot find autoflake executable.")))
+
+      (add-to-list 'auto-mode-alist '("Pipfile" . toml-mode))
+
+      ;; (use-package conda
+      ;;   :ensure t
+      ;;   :config
+      ;;   (conda-env-initialize-interactive-shells)
+      ;;   (conda-env-autoactivate-mode t))
+
+      ;; (use-package ob-ipython
+      ;;   :ensure t)
+
+    #+END_SRC
+*** groovy
+    #+BEGIN_SRC emacs-lisp
+      (use-package groovy-mode
+        :ensure t)
+    #+END_SRC
+*** PKGBUILD
+    #+BEGIN_SRC emacs-lisp
+      (use-package pkgbuild-mode
+        :ensure t
+        :config
+        (setq auto-mode-alist (append '(("/PKGBUILD$" . pkgbuild-mode)) auto-mode-alist)))
+    #+END_SRC
+*** systemd
+    #+BEGIN_SRC emacs-lisp
+      (use-package systemd
+        :ensure t)
+    #+END_SRC
+*** kotlin
+    #+BEGIN_SRC emacs-lisp
+      (use-package kotlin-mode
+        :ensure t
+        :config
+        (setq kotlin-tab-width 4))
+    #+END_SRC
+*** nginx-mode
+    #+BEGIN_SRC emacs-lisp
+      (use-package nginx-mode
+        :ensure t
+        :config
+        (setq nginx-indent-level 2))
+    #+END_SRC
+
+** completions
+*** ivy
+#+BEGIN_SRC emacs-lisp
+  (use-package ivy
+    :ensure t
+    :init
+
+    ;; see https://github.com/abo-abo/swiper/issues/644
+    (setq ivy-ignore-buffers '())
+    (add-to-list 'ivy-ignore-buffers "\\*magit")
+    (add-to-list 'ivy-ignore-buffers "\\*Help\\*")
+    (add-to-list 'ivy-ignore-buffers "\\*Buffer List\\*")
+    (add-to-list 'ivy-ignore-buffers "\\*Compile-Log\\*")
+    (add-to-list 'ivy-ignore-buffers "\\*Flycheck")
+    (add-to-list 'ivy-ignore-buffers "\\*terminal")
+
+    (setq ivy-count-format "(%d/%d) ")
+    (setq ivy-height 15)
+
+    (setq ivy-extra-directories '("./"))
+
+    :diminish ""
+    :config
+    ;; (setq ivy-use-virtual-buffers t)
+    (ivy-mode 1)
+
+    (use-package counsel
+      :ensure t))
+#+END_SRC
+*** smex
+
+#+BEGIN_SRC emacs-lisp
+  (use-package smex
+        :ensure t
+        :init
+        (setq smex-history-length 20)
+        :config
+        (smex-initialize))
+#+END_SRC
+
+*** yasnippet
+
+#+BEGIN_SRC emacs-lisp
+  (use-package yasnippet
+    :ensure t
+    :config
+    (add-to-list 'auto-mode-alist '("\\.snippet\\'" . snippet-mode))
+    (yas-global-mode 1)
+    :diminish yas-minor-mode "")
+
+#+END_SRC
+
+*** company
+
+#+BEGIN_SRC emacs-lisp
+  (use-package company :ensure t
+    :init
+    ;; http://emacs.stackexchange.com/a/10838/12585
+    (setq company-dabbrev-downcase nil)
+    :config
+    (add-hook 'after-init-hook 'global-company-mode)
+    (define-key company-mode-map (kbd "C-SPC") 'company-complete)
+
+    :diminish global-company-mode "")
+#+END_SRC
+
+*** flycheck
+
+#+BEGIN_SRC emacs-lisp
+  (use-package flycheck
+    :ensure t
+    :init
+    (with-eval-after-load 'flycheck
+      (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
+    :config (global-flycheck-mode t)
+    :diminish global-flycheck-mode "")
+#+END_SRC
+
+*** emmet
+
+#+BEGIN_SRC emacs-lisp
+  (use-package emmet-mode
+    :init (progn
+            (add-hook 'html-mode-hook 'emmet-mode)
+            (add-hook 'nxml-mode-hook 'emmet-mode)
+            (add-hook 'sgml-mode-hook 'emmet-mode)
+            (add-hook 'css-mode-hook  'emmet-mode)
+            (add-hook 'web-mode-hook  'emmet-mode)
+            (add-hook 'rjsx-mode-hook  'emmet-mode))
+  :defer t
+    :ensure t)
+#+END_SRC
+
 ** keybinds
 *** which key
 
@@ -1254,6 +1931,237 @@ M-x subword-mode
     :ensure t
     :config
     (general-evil-setup))
+#+END_SRC
+** other
+*** docker
+    #+BEGIN_SRC emacs-lisp
+      (use-package docker
+        :ensure t)
+    #+END_SRC
+*** pass
+    #+BEGIN_SRC emacs-lisp
+      (use-package pass
+        :ensure t)
+    #+END_SRC
+*** flycheck-package
+    #+BEGIN_SRC emacs-lisp
+      (use-package flycheck-package
+        :ensure t
+        :config
+        (with-eval-after-load 'flycheck
+          (flycheck-package-setup)))
+    #+END_SRC
+*** circe
+    #+BEGIN_SRC emacs-lisp
+      (when (ninrod--distro-p "arch")
+        (use-package circe
+          :ensure t
+          :init
+          (setq circe-network-options
+                `(("Freenode"
+                   :nick "ninrod"
+                   :nickserv-password ,freenode-ninrod-pass
+                   :channels ("#emacs-evil"))
+                  ("Mozilla"
+                   :host "irc.mozilla.org"
+                   :tls t
+                   :port 6697
+                   :nick "ninrod"
+                   :channels ("#rust")
+                   :sasl-username "ninrod"
+                   :sasl-password ,mozilla-ninrod-pass
+                   )))
+          (setq lui-logging-directory (expand-file-name ninrod--circe-logs-dir))
+          (load "lui-logging" nil t)
+          (evil-set-initial-state 'circe-channel-mode 'emacs)
+          (evil-set-initial-state 'circe-server-mode 'emacs)
+          (enable-lui-logging-globally)))
+    #+END_SRC
+*** ob-http
+
+#+BEGIN_SRC emacs-lisp
+  (use-package ob-http :ensure t
+    :config
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((emacs-lisp . t)
+       (http . t))))
+#+END_SRC
+*** elpa-mirror
+
+#+BEGIN_SRC emacs-lisp
+  (use-package elpa-mirror
+    :ensure t
+    :init
+    (setq elpamr-default-output-directory "~/.dotfiles/deps/emacs/ninrod/thin-melpa-mirror"))
+#+END_SRC
+
+
+** disabled
+*** disable-mouse
+
+#+BEGIN_SRC text
+  (use-package disable-mouse
+    :ensure t
+    :config
+    (when  (not (or (ninrod--distro-p "ubuntu")
+                    (ninrod--distro-p "linuxkit")))
+      (global-disable-mouse-mode)
+      (define-key evil-motion-state-map [down-mouse-1] 'ignore) ;; don't jump the cursor around in the window on clicking
+      (define-key evil-motion-state-map [mouse-1] 'ignore)) ;; also avoid any '<mouse-1> is undefined' when setting to 'undefined
+
+    :diminish disable-mouse-global-mode)
+#+END_SRC
+
+*** cucumber
+    #+BEGIN_SRC text
+      (use-package feature-mode
+        :ensure t)
+    #+END_SRC
+
+*** go
+    #+BEGIN_SRC text
+      (use-package go-mode
+        :ensure t
+        :config
+        (add-hook 'before-save-hook 'gofmt-before-save))
+
+      (use-package go-eldoc
+        :ensure t
+        :config
+        (add-hook 'go-mode-hook 'go-eldoc-setup))
+
+      (use-package go-guru
+        :ensure t)
+    #+END_SRC
+
+*** powershell
+
+#+BEGIN_SRC text
+  (use-package powershell
+    :ensure t)
+#+END_SRC
+
+*** persistent scratch
+    - from [[https://pragmaticemacs.com/emacs/a-persistent-scratch-buffer/][pragmatic]] emacs
+    #+BEGIN_SRC text
+      (use-package persistent-scratch
+        :ensure t
+        :config
+        (persistent-scratch-setup-default))
+    #+END_SRC
+
+*** emaps
+
+#+BEGIN_SRC text
+  (use-package emaps
+    :ensure t)
+#+END_SRC
+
+*** Reveal.js
+
+#+BEGIN_SRC text
+  (use-package ox-reveal
+  :ensure t)
+
+  (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
+  (setq org-reveal-mathjax t)
+
+  (use-package htmlize
+  :ensure t)
+#+END_SRC
+
+*** elpa-clone
+
+#+BEGIN_SRC text
+(use-package elpa-clone :ensure t)
+#+END_SRC
+
+*** sicp
+
+#+BEGIN_SRC text
+  (use-package sicp
+    :ensure t)
+#+END_SRC
+
+*** keyfreq
+
+#+BEGIN_SRC text
+  (use-package keyfreq
+    :ensure t
+    :init
+
+    (setq keyfreq-file "~/.emacs.d/keyfreq.el")
+    (setq keyfreq-file-lock "~/.emacs.d/keyfreq.lock")
+
+    :config
+    (keyfreq-mode 1)
+    (keyfreq-autosave-mode 1))
+#+END_SRC
+
+*** speed-type
+
+#+BEGIN_SRC text
+  (use-package speed-type :load-path "~/.dotfiles/deps/emacs/parkouss/speed-type")
+#+END_SRC
+
+* fixes
+** yasnippet hijacks TAB key in term mode
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'term-mode-hook 'my-term-mode-hook)
+(defun my-term-mode-hook ()
+  (yas-minor-mode -1))
+#+END_SRC
+
+** fix $PATH on macosx with exec-path-from-shell
+
+#+BEGIN_SRC emacs-lisp
+  (when (eq system-type 'darwin)
+    (use-package exec-path-from-shell
+      :ensure t
+      :config
+      (exec-path-from-shell-initialize)))
+#+END_SRC
+
+** M-x man
+
+- [[http://emacs.stackexchange.com/a/10669/12585][list]] of evil states:
+- with [[https://github.com/syl20bnr/spacemacs/issues/7346][help]] from @TheBB
+- gnu/linux completion hack stolen from [[https://www.emacswiki.org/emacs/ManMode#toc2][EmacsWiki]]
+#+BEGIN_SRC emacs-lisp
+  (with-eval-after-load "man"
+    (evil-set-initial-state 'Man-mode 'normal)
+    (setq Man-notify-method 'pushy)
+
+    (when (eq system-type 'gnu/linux)
+      (defadvice man (before my-woman-prompt activate)
+        (interactive (progn
+                       (require 'woman)
+                       (list (woman-file-name nil)))))))
+#+END_SRC
+
+** dabbrev-expand case fix
+
+#+BEGIN_SRC emacs-lisp
+  ;; (setq dabbrev-case-fold-search nil)
+#+END_SRC
+
+** diminishes
+
+#+BEGIN_SRC emacs-lisp
+  (diminish 'git-gutter-mode)
+  (diminish 'undo-tree-mode)
+
+  ;; built-in modes
+  (diminish 'auto-revert-mode)
+  (diminish 'subword-mode)
+  (diminish 'flyspell-mode "FlyS")
+  (diminish 'org-indent-mode)
+
+  (add-hook 'org-mode-hook
+            '(lambda ()
+               (diminish 'org-indent-mode)))
 #+END_SRC
 * keybinds
 ** SPC-map
@@ -1756,6 +2664,25 @@ M-x subword-mode
    "K" 'ninrod/org-agenda-previous-header
    )
 #+END_SRC
+** python
+*** python
+    #+BEGIN_SRC emacs-lisp
+(general-create-definer python-comma-map
+   :keymaps 'python-mode-map
+   :states '(normal visual)
+   :prefix ",")
+    #+END_SRC
+
+*** fast
+
+#+BEGIN_SRC emacs-lisp
+  (python-comma-map
+   "" 'nil
+   "i" 'spacemacs/python-remove-unused-imports
+   )
+
+#+END_SRC
+
 ** dired
 *** unbinds
 
@@ -2067,6 +2994,32 @@ M-x subword-mode
    )
 #+END_SRC
 
+** ag
+
+#+BEGIN_SRC emacs-lisp
+  (general-define-key
+   :keymaps 'ag-mode-map
+   "s"      nil
+   "g"      nil
+   "n"      nil
+   "N"      nil
+   "r"      'recompile
+   "DEL"    'compilation-previous-error ;; TAB is already bound to compilation-next-error
+   "<SPC>"  nil)
+#+END_SRC
+
+** ivy
+
+#+BEGIN_SRC emacs-lisp
+  (general-define-key
+   :keymaps '(ivy-minibuffer-map
+              ivy-switch-buffer-map
+              ivy-mode-map
+              ivy-occur-mode-map
+              ivy-occur-grep-mode-map)
+   "<escape>" 'evil-escape)
+#+END_SRC
+
 ** buffer-menu
 
 #+BEGIN_SRC emacs-lisp
@@ -2231,6 +3184,6 @@ M-x subword-mode
 #+END_SRC
 * notice
 *** license
-    - Copyright 2015-2027 Filipe Silva.
+    - Copyright 2015-2024 Filipe Silva.
     - email: filipe dot silva at gmail dot com
     - Licensed under the GPLv3 LICENSE
