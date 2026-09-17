@@ -54,7 +54,7 @@
 | N, V | SPC M n / SPC M p | Adiciona cursor na ocorrência seguinte / anterior. |
 | N, V | SPC M s / SPC M S | Pula a ocorrência seguinte / anterior sem criar cursor. |
 | N, V | SPC M u / SPC M q | Remove o último cursor / todos os cursores. |
-| Visual Line | m c | Cria um cursor no início de cada linha selecionada e entra em inserção. |
+| Visual Line | m c | Cria um cursor no início de cada linha selecionada e permanece no estado normal. |
 
 ** Prefixo =s=: buffers, projetos, edição e janelas
 

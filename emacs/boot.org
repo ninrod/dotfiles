@@ -637,7 +637,8 @@ M-x subword-mode
         (interactive)
         (unless (eq (evil-visual-type) 'line)
           (user-error "This command requires a Visual Line selection"))
-        (evil-mc-make-cursor-in-visual-selection-beg))
+        (evil-mc-make-cursor-in-visual-selection t)
+        (evil-normal-state))
       (global-evil-mc-mode 1))
 #+END_SRC
 
