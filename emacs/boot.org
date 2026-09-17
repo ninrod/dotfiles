@@ -1148,15 +1148,13 @@ M-x subword-mode
     "k" (kbd "Hz-M"))
 #+END_SRC
 
-*** actions
+*** embark
 
 #+BEGIN_SRC emacs-lisp
   (spc-map
    :states '(normal visual)
-   "a" '(:ignore t :which-key "actions")
-   "aa" 'embark-act
-   "ad" 'embark-dwim
-   "ab" 'embark-bindings)
+   "e" '(:ignore t :which-key "embark")
+   "eb" 'embark-bindings)
 #+END_SRC
 
 *** function keys
@@ -1176,45 +1174,14 @@ M-x subword-mode
     :keymaps 'normal
     "d" '(:ignore t :which-key "describe/help")
     "da" 'apropos
-    "db" 'emaps-describe-keymap-bindings
+    "db" 'which-key-show-full-keymap
     "dc" 'describe-char
     "dd" 'describe-face
-    "df" 'helpful-function
+    "df" 'describe-function
     "di" 'info
     "dk" 'describe-key
     "dv" 'describe-variable
     "dm" 'describe-mode)
-#+END_SRC
-
-*** (H) hydras
-**** (z) zoom
-
-#+BEGIN_SRC emacs-lisp
-  (defhydra hydra-zoom ()
-    "zoom"
-    ("i" text-scale-increase "in")
-    ("o" text-scale-decrease "out"))
-
-  (spc-map "H" '(:ignore t :which-key "hydras")
-   :keymaps 'normal
-   "Hz" 'hydra-zoom/body
-   )
-#+END_SRC
-
-*** (S) spelling
-
-#+BEGIN_SRC emacs-lisp
-  (spc-map
-   :keymaps 'normal
-
-  "S" '(:ignore t :which-key "spelling")
-
-           "Sw" '(ispell-word :which-key "ispell: check word")
-           "Se" '((lambda () (interactive) (ispell-change-dictionary "english")) :which-key "ispell: use english dictionary")
-           "Sp" '((lambda () (interactive) (ispell-change-dictionary "pt_BR")) :which-key "ispell: use pt_BR dictionary")
-           "Sk" '((lambda () (interactive) (flyspell-mode -1)) :which-key "turn off flyspell mode")
-           "Ss" '((lambda () (interactive) (flyspell-mode 1)) :which-key "turn on flyspell mode")
-           )
 #+END_SRC
 
 ** s-map
@@ -1240,20 +1207,17 @@ M-x subword-mode
    "i"     'consult-buffer
    "s"     'multi-term
    "."     'project-find-file
-   "r"     'consult-recent-file
    "o"     'project-switch-project
-   "RET"   'evil-save-modified-and-close; save and close
    "<SPC>" 'bookmark-jump
    "-"     'bookmark-delete
-   "="     'bookmark-set
+   "b"     'bookmark-set
 
    ;; edit actions
    "p" 'consult-yank-pop
-   "a" 'query-replace-regexp
+   "r" 'query-replace-regexp
 
    ;; search actions
    "/" 'consult-line
-   "f" 'consult-ripgrep
 
    ;; jump actions
    "," 'evil-jump-backward

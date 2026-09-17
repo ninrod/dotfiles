@@ -31,27 +31,20 @@
 | N, V   | SPC k     | Executa a macro =Hz-M= para reposicionar cursor e janela. |
 | N      | SPC F12   | Abre =~/.emacs.d/boot.org=. |
 
-** Espaço: ajuda, zoom e ortografia
+** Espaço: ajuda
 
 | Tema | Estado | Tecla | Comando / efeito |
 |------+--------+-------+------------------|
 | Ajuda | N | SPC d a | =apropos=. |
-| Ajuda | N | SPC d b | Descreve os bindings de um keymap (=emaps-describe-keymap-bindings=). |
+| Ajuda | N | SPC d b | Mostra todos os bindings de um keymap no Which-Key (=which-key-show-full-keymap=). |
 | Ajuda | N | SPC d c | Descreve o caractere no ponto (=describe-char=). |
 | Ajuda | N | SPC d d | Descreve uma face (=describe-face=). |
-| Ajuda | N | SPC d f | Descreve uma função com Helpful. |
+| Ajuda | N | SPC d f | Descreve uma função (=describe-function=). |
 | Ajuda | N | SPC d i | Abre o Info. |
 | Ajuda | N | SPC d k | Descreve uma tecla (=describe-key=). |
 | Ajuda | N | SPC d v | Descreve uma variável (=describe-variable=). |
 | Ajuda | N | SPC d m | Descreve o modo atual. |
-| Zoom | N | SPC H z, i | Abre Hydra de zoom; =i= aumenta a escala do texto. |
-| Zoom | N | SPC H z, o | Abre Hydra de zoom; =o= reduz a escala do texto. |
-| Ortografia | N | SPC S w | Verifica a palavra com Ispell. |
-| Ortografia | N | SPC S e | Muda o dicionário para inglês. |
-| Ortografia | N | SPC S p | Muda o dicionário para =pt_BR=. |
-| Ortografia | N | SPC S k | Desliga Flyspell. |
-| Ortografia | N | SPC S s | Liga Flyspell. |
-| Ações | N, V | SPC a a / SPC a d / SPC a b | Ação, ação padrão ou bindings do candidato (=embark=). |
+| Embark | N, V | SPC e b | Explora e executa os bindings ativos no buffer atual (=embark-bindings=). |
 
 ** Prefixo =s=: buffers, projetos, edição e janelas
 
@@ -63,15 +56,12 @@
 | Buffers | N, V, M | s i | Alterna de buffer com Consult. |
 | Buffers | N, V, M | s s | Abre Multi-Term. |
 | Projetos | N, V, M | s . | Localiza arquivo no projeto (=project-find-file=). |
-| Projetos | N, V, M | s r | Mostra arquivos recentes (=consult-recent-file=). |
 | Projetos | N, V, M | s o | Troca de projeto (=project-switch-project=). |
-| Buffers | N, V, M | s RET | Salva e fecha via Evil. |
 | Bookmarks | N, V, M | s SPC | Salta para bookmark. |
-| Bookmarks | N, V, M | s - / s = | Exclui / cria bookmark. |
+| Bookmarks | N, V, M | s - / s b | Exclui / cria bookmark. |
 | Edição | N, V, M | s p | Abre o histórico de yanks (=consult-yank-pop=). |
-| Edição | N, V, M | s a | Faz substituição por regex (=query-replace-regexp=). |
+| Edição | N, V, M | s r | Faz substituição por regex (=query-replace-regexp=). |
 | Busca | N, V, M | s / | Busca no buffer (=consult-line=). |
-| Busca | N, V, M | s f | Busca por ripgrep (=consult-ripgrep=). |
 | Histórico | N, V, M | s , / s ; | Salta para trás / frente no changelist Evil. |
 | Diretórios | N, V, M | s DEL | Altera o diretório padrão (=cd=). |
 | Janelas | N, V, M | s j / s k | Move o foco para a janela abaixo / acima. |
