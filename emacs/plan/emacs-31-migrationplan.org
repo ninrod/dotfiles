@@ -1,0 +1,221 @@
+#+TITLE: Migracao incremental para Emacs 31.1
+#+STARTUP: overview
+
+* Objetivo
+
+Modernizar gradualmente a configuracao literate em =boot.org= para o Emacs
+31.1, destinado exclusivamente ao terminal via =emacsclient -t=. O daemon deve
+ser iniciado por =~/.dotfiles/scripts/emacs/up-emacs-daemon.sh=.
+
+O primeiro marco funcional e Evil. A configuracao sera acrescentada
+dependencia por dependencia, validando cada marco no daemon e no cliente de
+terminal antes do proximo. Ajustes cosmeticos -- fontes, icones, temas, fringes
+e modeline grafico -- ficam fora do escopo: o terminal fornece a fonte e a
+aparencia base.
+
+* Estado observado
+
+- =~/.emacs.d/boot.org= resolve para =~/.dotfiles/emacs/boot.org=; ha uma unica
+  configuracao ativa, com 3.184 linhas.
+- O =init.el= atual usa =package.el= e ainda aponta para o thin mirror legado
+  =~/.dotfiles/deps/emacs/ninrod/thin-melpa-mirror=, com fallback para GNU ELPA
+  e MELPA na internet.
+- O mirror completo local existe em
+  =~/.dotfiles/deps/emacs/d12frosted/elpa-mirror= e possui =archive-contents=
+  para =melpa=, =stable-melpa=, =gnu=, =gnu-devel=, =nongnu= e =nongnu-devel=.
+- O profile atual tem 133 diretorios de pacote em =~/.emacs.d/elpa=; 89 pacotes
+  foram selecionados diretamente por =package.el=. Dependencias transitivas nao
+  devem constituir o manifesto novo.
+- O script de daemon testa o servidor com =emacsclient -e= e inicia
+  =emacs --daemon=. Os aliases =e= e =et= usam =emacsclient --tty=.
+- O documento =emacs/plan/emacs29-migration-plan.org= e historico da migracao
+  para Emacs 29. Ele nao define esta migracao; apenas os principios de
+  isolamento, rollback e validacao offline continuam aproveitaveis.
+- O mirror local contem =evil-textobj-tree-sitter= e =use-package-treesit=.
+  =combobulate= nao aparece em seus catalogos nem como artefato de pacote.
+
+* Premissas
+
+1. O usuario cria uma tag anotada da configuracao funcional atual antes de
+   reduzir =boot.org=.
+2. O usuario ajusta =init.el= para usar apenas o mirror ELPA completo local,
+   por URLs =file://=, sem fallback remoto.
+3. O novo Emacs 31.1 deve usar um =package-user-dir= de staging, sem reutilizar
+   o profile =~/.emacs.d/elpa= nem bytecode gerado pelo Emacs 29.
+4. Pacote ausente ou catalogo local invalido deve causar erro explicito; nao
+   deve disparar download transparente da internet.
+5. O manifesto da migracao e composto apenas pelas dependencias diretas
+   efetivamente aprovadas. =package-selected-packages= e inventario historico,
+   nao uma lista a ser copiada.
+6. O profile antigo nao sera apagado antes de o staging Emacs 31.1 e o daemon
+   estarem aprovados.
+
+* Matriz dos pacotes diretos atuais
+
+Esta tabela cobre os pacotes selecionados por =package.el= e pacotes diretos
+ativos em =boot.org=. Blocos =#+BEGIN_SRC text= estao desativados e nao fazem
+parte da configuracao atual carregada.
+
+| Pacote                         | Uso atual                                  | Emacs 31/alternativa e decisao inicial |
+|--------------------------------+--------------------------------------------+-----------------------------------------|
+| use-package                    | Declarar e configurar pacotes.             | Embutido; usar apenas se necessario. |
+| diminish                       | Ocultar indicadores de minor modes.        | Cosmetico em TTY; remover. |
+| org-plus-contrib               | Org atualizado e contribuicoes.            | Obsoleto; usar Org embutido e org-contrib so se necessario. |
+| evil                           | Estados, operadores e movimentos Vim.      | Manter no marco inicial. |
+| evil-collection                | Integrar Evil a modos e pacotes.           | Manter no marco inicial, apos Evil. |
+| goto-chg                       | Navegar posicoes alteradas.                 | Sem equivalente core identico; adiar. |
+| undo-tree                      | Historico de undo em arvore.                | Comecar com undo-redo do core; reavaliar. |
+| evil-test-helpers              | Auxilia testes do Evil.                     | Nao e dependencia de runtime; remover. |
+| targets                        | Text objects configuraveis.                 | Adiar para Evil/Tree-sitter. |
+| rect-ext                       | Extensoes de retangulos.                    | Evil visual block/core cobrem o basico; adiar. |
+| evil-surround                  | Alterar pares delimitadores.                | Solucao Evil usual; adiar para edicao. |
+| evil-replace-with-register     | Substituir texto por registrador.           | Sem equivalente core direto; adiar. |
+| evil-commentary                | Comentarios no estilo Vim.                  | Comparar a comment-dwim; adiar. |
+| evil-matchit                   | Saltar pares estruturais.                   | Tree-sitter/Combobulate podem cobrir melhor; adiar. |
+| evil-exchange                  | Trocar duas regioes.                        | Sem equivalente core identico; adiar. |
+| evil-visualstar                | Pesquisar selecao visual.                   | Isearch cobre parte; adiar. |
+| evil-escape                    | Sair do insert por sequencia.               | ESC basta; remover da base. |
+| evil-anzu                      | Contador de ocorrencias de busca.           | Isearch moderno ja exibe contagem; remover. |
+| evil-god-state                 | Estado God dentro de Emacs state.           | Contraria foco exclusivo Vim; remover. |
+| evil-args                      | Text object de argumentos.                  | Avaliar evil-textobj-tree-sitter; adiar. |
+| evil-numbers                   | Incrementar/decrementar numeros.            | Util, sem equivalente core identico; adiar. |
+| evil-indent-plus               | Objetos/movimentos de indentacao.           | Tree-sitter pode melhorar; adiar. |
+| evil-lion                      | Alinhamento por operadores Evil.            | align core cobre basico; adiar. |
+| evil-ediff                     | Integrar Ediff a Evil.                      | Reavaliar com evil-collection; adiar. |
+| vdiff                          | Diff interativo em buffers.                 | Adiar; nao e bootstrap. |
+| exato                          | Extensao Evil propria.                      | Preservar fonte local; readicionar por uso. |
+| evil-replace-with-char         | Extensao Evil propria.                      | Preservar fonte local; adiar. |
+| evil-string-inflection         | Alternar convencoes de nomes.               | Preservar fonte local; adiar. |
+| all-the-icons                  | Icones graficos.                            | Sem utilidade em TTY; remover. |
+| autothemer                     | Infraestrutura para temas.                  | Sem temas customizados no escopo; remover. |
+| fic-mode                       | Destacar TODO/FIXME.                        | hl-todo pode repor; adiar. |
+| highlight-numbers              | Destacar literais numericos.                | Cosmetico; remover. |
+| highlight-parentheses          | Destacar parenteses proximos.               | show-paren-mode core; migrar se desejado. |
+| highlight-quoted               | Destacar quotes em Elisp.                   | Cosmetico; adiar. |
+| highlight-defined              | Destacar simbolos definidos em Elisp.       | Adiar. |
+| kurecolor                      | Utilitarios de cor.                         | Sem uso funcional em TTY; remover. |
+| lisp-extra-font-lock           | Font-lock adicional em Elisp.               | Adiar. |
+| org-bullets                    | Bullets especiais no Org.                   | Cosmetico em TTY; remover. |
+| rainbow-delimiters             | Cores por profundidade de delimitadores.    | Cosmetico; adiar. |
+| rainbow-mode                   | Visualizar valores de cor.                  | Adiar. |
+| smartparens                    | Pareamento/edicao estrutural generica.      | Comparar electric-pair + Tree-sitter/Combobulate; nao portar por padrao. |
+| spaceline                      | Modeline Spacemacs.                         | Cosmetico e GUI; remover. |
+| restart-emacs                  | Reiniciar Emacs.                            | Script do daemon fornece o fluxo; remover inicialmente. |
+| eyebrowse                      | Workspaces de janelas.                      | tab-bar-mode core; adiar. |
+| multi-term                     | Multiplos terminais.                        | Usar eshell/term; avaliar eat depois. |
+| ag                             | Front-end para the_silver_searcher.         | rgrep core ou consult-ripgrep; adiar. |
+| origami                        | Folding extensivel.                         | hs-minor-mode e futuro ts-fold; nao portar. |
+| editorconfig                   | Aplicar .editorconfig.                      | Recurso embutido; habilitar o core. |
+| ibuffer-vc                     | Agrupar Ibuffer por repositorio.            | Sem equivalente core identico; adiar. |
+| atomic-chrome                  | Editar campos do navegador.                 | Fora do fluxo terminal; adiar. |
+| git-gutter-fringe              | Indicadores Git na fringe.                  | Fringe nao existe em TTY; remover. |
+| magit                          | Interface Git.                              | Marco futuro independente; funciona em TTY. |
+| projectile                     | Projetos e comandos de projeto.             | Migrar para project.el; adiar. |
+| counsel-projectile             | Integrar Projectile ao Counsel.             | Remover com Projectile/Ivy. |
+| neotree                        | Arvore lateral de arquivos.                 | dired e adequado ao TTY; remover. |
+| worf                           | Atalhos de edicao para Org.                 | Adiar; reaproveitar somente comandos usados. |
+| lispy                          | Edicao estrutural de Lisp.                  | Adiar; pode coexistir com Evil. |
+| lispyville                     | Ponte entre Lispy e Evil.                   | Adiar junto a Lispy. |
+| helpful                        | Buffers de ajuda ricos.                     | Boa melhoria, mas adiar. |
+| aggressive-indent              | Reindentar Lisp automaticamente.            | Nao portar sem necessidade demonstrada. |
+| f                              | Biblioteca utilitaria.                      | Dependencia transitiva; nao declarar diretamente. |
+| dired-quick-sort               | Atalhos de ordenacao no Dired.              | Dired core; adiar. |
+| tide                           | IDE TypeScript legado.                      | typescript-ts-mode/tsx-ts-mode + Eglot. |
+| rjsx-mode                      | Modo JSX/React.                             | Avaliar tsx-ts-mode antes; adiar. |
+| markdown-mode                  | Modo Markdown completo.                     | Avaliar contra markdown-ts-mode; possivel manter. |
+| web-mode                       | HTML e templates.                           | html-ts-mode no HTML; manter so para templates nao cobertos. |
+| js2-mode                       | Modo JavaScript com parser proprio.         | Substituir por js-ts-mode. |
+| json-mode                      | Modo JSON.                                  | json-ts-mode ou modo core, apos gramatica. |
+| json-reformat                  | Formatar JSON.                              | json-pretty-print ou formatter externo; nao portar por padrao. |
+| vimrc-mode                     | Modo para vimrc.                            | Reavaliar suporte do Emacs 31; adiar. |
+| gitconfig-mode                 | Modo Git config.                            | conf-mode core cobre basico; adiar. |
+| gitignore-mode                 | Modo .gitignore.                            | Reavaliar suporte nativo; adiar. |
+| gitattributes-mode             | Modo .gitattributes.                        | Reavaliar suporte nativo; adiar. |
+| toml-mode                      | Modo TOML.                                  | toml-ts-mode apos gramatica. |
+| cargo                          | Comandos Cargo.                             | Avaliar com Rust/Eglot. |
+| rust-mode                      | Modo Rust.                                  | rust-ts-mode + Eglot. |
+| anaconda-mode                  | Backend Python Anaconda/Jedi.               | Eglot + servidor Python; usar Flymake. |
+| company-anaconda               | Completion para Anaconda.                   | Morre com Anaconda; CAPF/Eglot. |
+| yapfify                        | Formatar Python com YAPF ao salvar.         | Formatter do servidor ou apheleia; nao portar. |
+| pyvenv                         | Selecionar virtualenv Python.               | Adiar; manter se Eglot nao resolver ambiente. |
+| py-isort                       | Organizar imports ao salvar.                | Ruff/LSP ou apheleia; nao portar. |
+| groovy-mode                    | Modo Groovy.                                | Adiar ate uso real. |
+| pkgbuild-mode                  | Modo PKGBUILD.                              | Manter somente se ainda for necessario no Arch. |
+| systemd                        | Modo para unidades systemd.                 | Confirmar suporte Emacs 31; adiar. |
+| kotlin-mode                    | Modo Kotlin.                                | Avaliar Tree-sitter/Eglot; adiar. |
+| nginx-mode                     | Modo Nginx.                                 | Adiar; manter se nao houver alternativa adequada. |
+| ivy                            | Framework de completion.                    | CAPF + vertico/orderless/marginalia/consult; decidir depois. |
+| counsel                        | Comandos adicionais para Ivy.               | Remover com Ivy; substituir seletivamente. |
+| smex                           | Ranking/historico para M-x.                 | M-x moderno ja tem ranking; remover. |
+| yasnippet                      | Snippets.                                   | Ainda e padrao de fato; adiar. |
+| company                        | Interface de completion.                    | CAPF/Eglot com corfu ou completion-preview-mode; decidir depois. |
+| flycheck                       | Diagnosticos assincronos.                   | Flymake, integrado ao Eglot. |
+| emmet-mode                     | Expansao Emmet HTML/CSS.                    | Sem equivalente core identico; adiar. |
+| which-key                      | Mostrar atalhos disponiveis.                | Embutido; usar core. |
+| hydra                          | Menus transitorios de teclas.               | repeat-mode core ou transient; adiar. |
+| ivy-hydra                      | Hydras para Ivy.                            | Remover com Ivy. |
+| general                        | DSL de keybindings, sobretudo Evil.         | Adiar; nao e necessario ao Evil minimo. |
+| docker                         | Interface Docker.                           | Sem equivalente core completo; adiar. |
+| pass                           | Interface password-store.                   | Sem equivalente core; adiar. |
+| flycheck-package               | Lint de pacotes Elisp.                      | Morre com Flycheck; desnecessario fora de autoria de pacotes. |
+| ob-http                        | Blocos HTTP no Org Babel.                   | Manter apenas se esse fluxo for confirmado. |
+| elpa-mirror                    | Gerar thin mirror legado.                   | Nao usar enquanto mirror full for a fonte; remover. |
+
+* Decisoes pendentes
+
+** Combobulate fora do mirror
+
+O uso diario offline exige introduzir Combobulate de forma versionada e pinada:
+ou um artefato de pacote no mirror ou uma copia vendorizada em
+=deps/emacs=. =package-vc-install= apontando ao GitHub nao deve ser usado no
+dia a dia. A opcao recomendada e adicionar um artefato pinado, documentando
+origem, commit e checksum.
+
+** Gramaticas Tree-sitter
+
+Gramaticas sao bibliotecas nativas compiladas, nao pacotes ELPA. E necessario
+definir se serao curadas em cache local/pinado ou se o primeiro download por
+=treesit-install-language-grammar= podera consultar os upstreams. Ate a
+decisao, o bootstrap so habilita o suporte builtin, sem instalacao automatica.
+
+** Escopo minimo de Evil
+
+O primeiro =boot.org= reduzido tera somente =evil= e =evil-collection=.
+Extensoes Evil, atalhos proprios e =general= voltarao apenas quando houver caso
+de uso testado.
+
+* Plano de execucao
+
+1. *Congelar baseline (usuario).* Em commit limpo, criar e registrar uma tag
+   anotada da configuracao atual que funciona.
+2. *Configurar bootstrap offline (usuario).* Ajustar =init.el= para os
+   catalogos locais =file://= do mirror full, removendo thin mirror e fallback
+   remoto.
+3. *Criar staging Emacs 31.1.* Usar init e =package-user-dir= isolados; manter
+   o profile atual como rollback.
+4. *Criar nucleo Evil.* Reduzir =boot.org= para configuracao literate de
+   terminal com =evil-mode= e =evil-collection=, sem temas, filetypes,
+   integracoes ou keybindings antigos.
+5. *Validar o nucleo real.* Iniciar unicamente pelo script de daemon, conferir
+   =evil-mode= com =emacsclient -e=, abrir =emacsclient -t= e provar que
+   =package-archives= possui somente URLs =file://=.
+6. *Definir Combobulate e Tree-sitter.* Resolver as duas decisoes pendentes,
+   validar em profile vazio e so entao instalar Combobulate e, se aprovado,
+   =evil-textobj-tree-sitter=. Nao usar =treesit-auto=: Emacs 31 ja oferece
+   =treesit-enabled-modes= e =treesit-auto-install-grammar=.
+7. *Migrar filetypes um por um.* Priorizar Rust, Python, TypeScript/TSX,
+   JavaScript, JSON, TOML e HTML. Para cada um: gramatica, =*-ts-mode=,
+   Eglot/formatter e teste por =emacsclient -t= antes de remover o modo legado.
+8. *Reintroduzir fluxos nao visuais sob demanda.* Em marcos separados, decidir
+   Magit, projetos, completion, diagnosticos, snippets, Org e Dired.
+9. *Publicar.* Documentar pins, politica de gramaticas e validacoes; promover o
+   staging somente quando estiver aprovado e criar a tag final do Emacs 31.1.
+
+* Criterio de pronto por marco
+
+- =org-babel-load-file= de =boot.org= nao produz erro fatal nem baixa pacotes.
+- Um profile vazio instala dependencias diretas somente do mirror local.
+- O daemon iniciado pelo script responde a =emacsclient -e=.
+- =emacsclient -t= abre e preserva os fluxos aprovados no marco.
+- O commit de cada marco contem apenas a dependencia, configuracao, pin e
+  documentacao diretamente relacionados a ele.
