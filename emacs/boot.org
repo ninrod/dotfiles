@@ -1191,10 +1191,8 @@ M-x subword-mode
 *** which key
 
 #+BEGIN_SRC emacs-lisp
-  (use-package which-key :ensure t
-    :config (which-key-mode)
-    :diminish ""
-    )
+  (require 'which-key)
+  (which-key-mode)
 #+END_SRC
 
 *** hydra

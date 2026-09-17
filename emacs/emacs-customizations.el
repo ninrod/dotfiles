@@ -45,7 +45,7 @@
         projectile
         py-isort pyvenv rainbow-delimiters rainbow-mode restart-emacs
         rjsx-mode smartparens smex spaceline systemd tide toml-mode
-        use-package vdiff vimrc-mode web-mode which-key worf
+        use-package vdiff vimrc-mode web-mode worf
         yapfify yasnippet))
  '(safe-local-variable-values
    '((eval when
