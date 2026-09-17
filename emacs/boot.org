@@ -622,6 +622,23 @@ M-x subword-mode
       :ensure t
       :config
       (evil-collection-init))
+
+    (use-package evil-mc
+      :after evil
+      :ensure t
+      :config
+      (defun ninrod/evil-mc-undo-all-cursors-and-normal-state ()
+        "Remove all Evil multiple cursors and enter Normal state."
+        (interactive)
+        (evil-mc-undo-all-cursors)
+        (evil-normal-state))
+      (defun ninrod/evil-mc-make-cursors-at-line-beginnings ()
+        "Create cursors at the beginning of every Visual Line selection."
+        (interactive)
+        (unless (eq (evil-visual-type) 'line)
+          (user-error "This command requires a Visual Line selection"))
+        (evil-mc-make-cursor-in-visual-selection-beg))
+      (global-evil-mc-mode 1))
 #+END_SRC
 
 ** babysited packages
@@ -1131,6 +1148,25 @@ M-x subword-mode
    "eb" 'embark-bindings)
 #+END_SRC
 
+*** multiple cursors
+
+#+BEGIN_SRC emacs-lisp
+  (spc-map
+   :states '(normal visual)
+   "M" '(:ignore t :which-key "multiple cursors")
+   "Ma" 'evil-mc-make-all-cursors
+   "Mn" 'evil-mc-make-and-goto-next-match
+   "Mp" 'evil-mc-make-and-goto-prev-match
+   "Ms" 'evil-mc-skip-and-goto-next-match
+   "MS" 'evil-mc-skip-and-goto-prev-match
+   "Mu" 'evil-mc-undo-last-added-cursor
+   "Mq" 'evil-mc-undo-all-cursors)
+
+  (general-define-key
+   :states 'normal
+   "<escape>" 'ninrod/evil-mc-undo-all-cursors-and-normal-state)
+#+END_SRC
+
 *** function keys
 
 #+BEGIN_SRC emacs-lisp
@@ -1221,7 +1257,7 @@ M-x subword-mode
    ;; "d"   'reserved
    ;; "t"   'reserved
 
-   "c" 'magit-clone
+   "c" 'ninrod/evil-mc-make-cursors-at-line-beginnings
    "g" 'ninrod/uarg-magit-status
    "o" 'ninrod/pop-to-org-agenda
 
