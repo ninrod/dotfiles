@@ -10,61 +10,56 @@
    '((10 buffer-read-only font-lock-constant-face)
      (15
       (and buffer-file-name
-           (string-match ibuffer-compressed-file-name-regexp buffer-file-name))
+           (string-match ibuffer-compressed-file-name-regexp
+                         buffer-file-name))
       font-lock-doc-face)
-     (20
-      (string-match "^*"
-                    (buffer-name))
-      font-lock-comment-face)
+     (20 (string-match "^*" (buffer-name)) font-lock-comment-face)
      (25
-      (and
-       (string-match "^ "
-                     (buffer-name))
-       (null buffer-file-name))
+      (and (string-match "^ " (buffer-name)) (null buffer-file-name))
       italic)
-     (30
-      (memq major-mode ibuffer-help-buffer-modes)
-      font-lock-comment-face)
-     (35
-      (eq major-mode 'dired-mode)
-      font-lock-function-name-face)
+     (30 (memq major-mode ibuffer-help-buffer-modes)
+         font-lock-comment-face)
+     (35 (eq major-mode 'dired-mode) font-lock-function-name-face)
      (1
-      (or
-       (eq major-mode 'emacs-lisp-mode)
-       (eq major-mode 'lisp-mode))
+      (or (eq major-mode 'emacs-lisp-mode) (eq major-mode 'lisp-mode))
       highlight-numbers-number)
-     (1
-      (eq major-mode 'org-mode)
-      org-level-1)))
+     (1 (eq major-mode 'org-mode) org-level-1)))
  '(package-selected-packages
-   '(elpa-mirror ob-http flycheck-package pass docker general ivy-hydra which-key emmet-mode yasnippet smex nginx-mode kotlin-mode systemd pkgbuild-mode groovy-mode py-isort pyvenv yapfify company-anaconda anaconda-mode cargo toml-mode gitattributes-mode gitignore-mode gitconfig-mode vimrc-mode json-mode json-reformat web-mode markdown-mode rjsx-mode tide dired-quick-sort aggressive-indent helpful lispyville lispy worf neotree counsel-projectile projectile magit git-gutter-fringe atomic-chrome ibuffer-vc editorconfig origami ag multi-term eyebrowse restart-emacs spaceline smartparens rainbow-mode rainbow-delimiters org-bullets lisp-extra-font-lock kurecolor highlight-defined highlight-quoted highlight-parentheses highlight-numbers fic-mode autothemer all-the-icons evil-string-inflection evil-replace-with-char exato vdiff evil-ediff evil-lion evil-indent-plus evil-numbers evil-args evil-god-state evil-anzu evil-escape evil-visualstar evil-exchange evil-matchit evil-commentary evil-replace-with-register evil-surround evil-test-helpers undo-tree org-plus-contrib diminish use-package))
+   '(ag aggressive-indent all-the-icons anaconda-mode atomic-chrome
+        autothemer cargo company-anaconda counsel-projectile diminish
+        dired-quick-sort docker editorconfig elpa-mirror emmet-mode
+        evil-anzu evil-args evil-commentary evil-ediff evil-escape
+        evil-exchange evil-god-state evil-indent-plus evil-lion
+        evil-matchit evil-numbers evil-replace-with-char
+        evil-replace-with-register evil-string-inflection
+        evil-surround evil-test-helpers evil-visualstar exato
+        eyebrowse fic-mode flycheck-package general git-gutter-fringe
+        gitattributes-mode gitconfig-mode gitignore-mode groovy-mode
+        helpful highlight-defined highlight-numbers
+        highlight-parentheses highlight-quoted ibuffer-vc ivy-hydra
+        json-mode json-reformat kotlin-mode kurecolor
+        lisp-extra-font-lock lispy lispyville magit markdown-mode
+        multi-term neotree nginx-mode ob-http org-bullets
+        org-plus-contrib origami pass pkgbuild-mode projectile
+        py-isort pyvenv rainbow-delimiters rainbow-mode restart-emacs
+        rjsx-mode smartparens smex spaceline systemd tide toml-mode
+        undo-tree use-package vdiff vimrc-mode web-mode which-key worf
+        yapfify yasnippet))
  '(safe-local-variable-values
    '((eval when
-           (and
-            (buffer-file-name)
-            (file-regular-p
-             (buffer-file-name))
-            (string-match-p "^[^.]"
-                            (buffer-file-name)))
-           (unless
-               (featurep 'package-build)
-             (let
-                 ((load-path
-                   (cons "../package-build" load-path)))
+           (and (buffer-file-name) (file-regular-p (buffer-file-name))
+                (string-match-p "^[^.]" (buffer-file-name)))
+           (unless (featurep 'package-build)
+             (let ((load-path (cons "../package-build" load-path)))
                (require 'package-build)))
            (package-build-minor-mode)
-           (set
-            (make-local-variable 'package-build-working-dir)
-            (expand-file-name "../working/"))
-           (set
-            (make-local-variable 'package-build-archive-dir)
-            (expand-file-name "../packages/"))
-           (set
-            (make-local-variable 'package-build-recipes-dir)
-            default-directory))
-     (eval when
-           (fboundp 'rainbow-mode)
-           (rainbow-mode 1))
+           (set (make-local-variable 'package-build-working-dir)
+                (expand-file-name "../working/"))
+           (set (make-local-variable 'package-build-archive-dir)
+                (expand-file-name "../packages/"))
+           (set (make-local-variable 'package-build-recipes-dir)
+                default-directory))
+     (eval when (fboundp 'rainbow-mode) (rainbow-mode 1))
      (origami-fold-style . triple-braces))))
 
 (custom-set-faces

@@ -1284,7 +1284,12 @@ M-x subword-mode
 
 *** smartparens
 
-#+BEGIN_SRC emacs-lisp
+The installed 2021 Smartparens release is incompatible with Emacs 31 terminal
+frames: its global highlighting mode creates a face-inheritance cycle while a
+TTY frame is initialized.  Keep it disabled until it is replaced during the
+Emacs 31 migration.
+
+#+BEGIN_SRC text
   (use-package smartparens :ensure t
     :init
     (setq sp-show-pair-delay 0.1
