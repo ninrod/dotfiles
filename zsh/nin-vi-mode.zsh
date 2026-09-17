@@ -39,6 +39,7 @@ done
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd 'go' edit-command-line
+bindkey -M viins '^G' edit-command-line
 
 bindkey -M vicmd '?' history-incremental-search-backward
 

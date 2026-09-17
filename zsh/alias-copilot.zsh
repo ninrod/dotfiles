@@ -35,7 +35,7 @@ function yolo() {
     elif [ ! -t 0 ]; then
         command copilot "${copilot_options[@]}" --interactive "$(cat)"
     else
-        command copilot "${copilot_options[@]}"
+        command copilot "${copilot_options[@]}" -i "/vim"
     fi
 }
 
