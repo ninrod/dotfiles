@@ -639,6 +639,39 @@ M-x subword-mode
           (user-error "This command requires a Visual Line selection"))
         (evil-mc-make-cursor-in-visual-selection t)
         (evil-normal-state))
+      (defun ninrod/evil-mc-make-cursors-for-current-search ()
+        "Create cursors at the start of every match in the active Evil search."
+        (interactive)
+        (when (evil-mc-has-cursors-p)
+          (user-error "Cursors already exist"))
+        (unless evil-ex-search-pattern
+          (user-error "Search for a word with * first"))
+        (let ((point (point))
+              current-match
+              matches)
+          (save-excursion
+            (goto-char (point-min))
+            (while (eq (evil-ex-find-next evil-ex-search-pattern 'forward t) t)
+              (let ((match (cons (match-beginning 0) (match-end 0))))
+                (push match matches)
+                (when (and (<= (car match) point)
+                           (< point (cdr match)))
+                  (setq current-match match))
+                (goto-char (cdr match)))))
+          (unless current-match
+            (user-error "Point must be on an active Evil search match"))
+          (setq matches (nreverse matches)
+                evil-mc-pattern
+                (list evil-ex-search-pattern
+                      (car current-match)
+                      (cdr current-match)))
+          (goto-char (car current-match))
+          (dolist (match matches)
+            (unless (= (car match) (car current-match))
+              (evil-mc-run-cursors-before)
+              (evil-mc-make-cursor-at-pos (car match))))
+          (evil-mc-print-cursors-info "Created"))
+        (evil-normal-state))
       (global-evil-mc-mode 1))
 #+END_SRC
 
@@ -1135,6 +1168,7 @@ M-x subword-mode
 
     "g" 'avy-goto-char
     "c" 'ninrod/org-task-capture
+    "s" 'sort-lines
 
     "j" (kbd "LztM")
     "k" (kbd "Hz-M"))
@@ -1271,7 +1305,7 @@ M-x subword-mode
    ;; editing ops
    "a" 'ninrod/apply-z-macro
    "r" 'spacemacs/align-repeat
-   "s" 'sort-lines
+   "s" 'ninrod/evil-mc-make-cursors-for-current-search
    "e" 'evil-emacs-state
    "m" 'ninrod/evil-record-macro-z
    "p" 'ninrod/win32yank-paste-after

@@ -27,6 +27,7 @@
 | N, V   | SPC DEL   | Cria um diretório (=make-directory=). |
 | N, V   | SPC g     | Salta para um caractere com Avy (=avy-goto-char=). |
 | N, V   | SPC c     | Captura uma tarefa Org (=ninrod/org-task-capture=). |
+| N, V   | SPC s     | Ordena linhas (=sort-lines=). |
 | N, V   | SPC j     | Executa a macro =LztM= para reposicionar cursor e janela. |
 | N, V   | SPC k     | Executa a macro =Hz-M= para reposicionar cursor e janela. |
 | N      | SPC F12   | Abre =~/.emacs.d/boot.org=. |
@@ -55,6 +56,8 @@
 | N, V | SPC M s / SPC M S | Pula a ocorrência seguinte / anterior sem criar cursor. |
 | N, V | SPC M u / SPC M q | Remove o último cursor / todos os cursores. |
 | Visual Line | m c | Cria um cursor no início de cada linha selecionada e permanece no estado normal. |
+| N, após =*= | m s | Cria cursores no início de todos os matches destacados por =*= e permanece no estado normal. |
+| N | ESC | Remove todos os cursores múltiplos e entra no estado normal. |
 
 ** Prefixo =s=: buffers, projetos, edição e janelas
 
@@ -88,7 +91,6 @@
 | Buffers | N, V, M | m k / m w / m i | Mata buffer / alarga buffer / abre Ibuffer. |
 | Edição | N, V, M | m a | Aplica a macro armazenada no registrador =z=. |
 | Edição | N, V, M | m r | Repete o alinhamento. |
-| Edição | N, V, M | m s | Ordena linhas. |
 | Evil | N, V, M | m e | Entra no estado Emacs do Evil. |
 | Macros | N, V, M | m m | Inicia a gravação da macro no registrador =z=. |
 | Clipboard | N, V, M | m p | Cola da área de transferência Win32. |
@@ -114,7 +116,6 @@
 | Evil | N | DEL | Abre arquivo (=find-file=). |
 | Evil | N | q / - | Fecha conforme =evil-quit= / remove destaque de busca. |
 | Evil | N | Q | Grava macro. |
-| Evil | N | ESC | Remove todos os cursores múltiplos e entra no estado normal. |
 | Movimento | M | ( / ) | Vai ao parágrafo anterior / próximo. |
 | Interface | Global | F11 | Alterna tela cheia. |
 | Scroll | N, V | z . / z - | Centraliza / posiciona a linha atual na base da janela. |
