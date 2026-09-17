@@ -672,6 +672,39 @@ M-x subword-mode
               (evil-mc-make-cursor-at-pos (car match))))
           (evil-mc-print-cursors-info "Created"))
         (evil-normal-state))
+      (defun ninrod/evil-mc-make-cursors-for-regexp-in-visual-selection (regexp)
+        "Create cursors at each REGEXP match in the Visual selection."
+        (interactive (list (read-regexp "Match regexp: ")))
+        (unless (evil-visual-state-p)
+          (user-error "This command requires a Visual selection"))
+        (when (eq (evil-visual-type) 'block)
+          (user-error "This command does not support Visual Block selections"))
+        (when (evil-mc-has-cursors-p)
+          (user-error "Cursors already exist"))
+        (let* ((range (evil-visual-range))
+               (beginning (car range))
+               (end (cadr range))
+               matches)
+          (save-excursion
+            (goto-char beginning)
+            (while (re-search-forward regexp end t)
+              (let ((match (cons (match-beginning 0) (match-end 0))))
+                (when (= (car match) (cdr match))
+                  (user-error "Match regexp must not match empty text"))
+                (push match matches))))
+          (unless matches
+            (user-error "No matches in the Visual selection"))
+          (setq matches (nreverse matches)
+                evil-mc-pattern
+                (list (evil-ex-make-search-pattern regexp)
+                      (caar matches)
+                      (cdar matches)))
+          (evil-exit-visual-state)
+          (goto-char (caar matches))
+          (dolist (match (cdr matches))
+            (evil-mc-run-cursors-before)
+            (evil-mc-make-cursor-at-pos (car match)))
+          (evil-normal-state)))
       (global-evil-mc-mode 1))
 #+END_SRC
 
@@ -1308,7 +1341,7 @@ M-x subword-mode
    "s" 'ninrod/evil-mc-make-cursors-for-current-search
    "e" 'evil-emacs-state
    "m" 'ninrod/evil-record-macro-z
-   "p" 'ninrod/win32yank-paste-after
+   "p" 'ninrod/evil-mc-make-cursors-for-regexp-in-visual-selection
    )
 #+END_SRC
 

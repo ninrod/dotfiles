@@ -57,6 +57,7 @@
 | N, V | SPC M u / SPC M q | Remove o último cursor / todos os cursores. |
 | Visual Line | m c | Cria um cursor no início de cada linha selecionada e permanece no estado normal. |
 | N, após =*= | m s | Cria cursores no início de todos os matches destacados por =*= e permanece no estado normal. |
+| Visual Char ou Line | m p | Solicita um regexp e cria cursores no início dos matches dentro da seleção, permanecendo no estado normal. |
 | N | ESC | Remove todos os cursores múltiplos e entra no estado normal. |
 
 ** Prefixo =s=: buffers, projetos, edição e janelas
@@ -93,7 +94,6 @@
 | Edição | N, V, M | m r | Repete o alinhamento. |
 | Evil | N, V, M | m e | Entra no estado Emacs do Evil. |
 | Macros | N, V, M | m m | Inicia a gravação da macro no registrador =z=. |
-| Clipboard | N, V, M | m p | Cola da área de transferência Win32. |
 
 ** Prefixo =g=: movimentos e histórico
 
