@@ -6,7 +6,7 @@ SCRIPTPATH=$(cd $(dirname $0); pwd -P) && cd $SCRIPTPATH
 GIT_ROOT=$(git rev-parse --show-toplevel)
 zmodload zsh/datetime
 log_timestamp="$(date '+%Y%m%dT%H%M%S')-${EPOCHREALTIME#*.}"
-log_file="$SCRIPTPATH/log/${log_timestamp}-up-emacs-daemon.log"
+log_file="$SCRIPTPATH/../../emacs/logs/${log_timestamp}-up-emacs-daemon.log"
 mkdir -p "$SCRIPTPATH/log"
 exec > >(tee "$log_file") 2>&1
 
