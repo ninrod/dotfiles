@@ -152,6 +152,24 @@ end
 -- PLUGIN: Multicursor keybindings
 function M.setup_multicursor_keybindings(mc)
 	local set = vim.keymap.set
+	local function add_visual_line_cursors_at_start()
+		if vim.fn.mode() ~= "V" then
+			vim.notify("m c requires Visual Line mode", vim.log.levels.WARN)
+			return
+		end
+
+		mc.action(function(ctx)
+			ctx:forEachCursor(function(cursor)
+				cursor:splitVisualLines()
+			end)
+			ctx:forEachCursor(function(cursor)
+				cursor:feedkeys("<esc>0", { keycodes = true })
+			end)
+		end)
+	end
+
+	set("x", "mc", add_visual_line_cursors_at_start, { desc = "[M]ulticursor line [C]ursors" })
+	set("n", "ms", mc.searchAllAddCursors, { desc = "[M]ulticursor [S]earch matches" })
 	set({ "n", "x" }, "<up>", function()
 		mc.lineAddCursor(-1)
 	end)
