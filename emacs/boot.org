@@ -632,6 +632,14 @@ M-x subword-mode
         (interactive)
         (evil-mc-undo-all-cursors)
         (evil-normal-state))
+      (defun ninrod/bury-current-buffer-and-switch-to-scratch ()
+        "Bury the current buffer and show the scratch buffer."
+        (interactive)
+        (let ((buffer (current-buffer))
+              (scratch (get-buffer-create "*scratch*")))
+          (unless (eq buffer scratch)
+            (switch-to-buffer scratch)
+            (bury-buffer buffer))))
       (defun ninrod/evil-mc-make-cursors-at-line-beginnings ()
         "Create cursors at the beginning of every Visual Line selection."
         (interactive)
@@ -1201,6 +1209,7 @@ M-x subword-mode
 
     "g" 'avy-goto-char
     "c" 'ninrod/org-task-capture
+    "p" 'consult-yank-pop
     "s" 'sort-lines
 
     "j" (kbd "LztM")
@@ -1285,13 +1294,12 @@ M-x subword-mode
    "i"     'consult-buffer
    "s"     'multi-term
    "."     'project-find-file
-   "o"     'project-switch-project
+   "p"     'project-switch-project
    "<SPC>" 'bookmark-jump
    "-"     'bookmark-delete
    "b"     'bookmark-set
 
    ;; edit actions
-   "p" 'consult-yank-pop
    "r" 'query-replace-regexp
 
    ;; search actions
@@ -1331,7 +1339,7 @@ M-x subword-mode
 
    ;; buffer ops
    "f" 'ninrod/add-filename-to-kill-ring
-   "k" 'kill-this-buffer
+   "k" 'ninrod/bury-current-buffer-and-switch-to-scratch
    "w" 'widen
    "i" 'ibuffer
 

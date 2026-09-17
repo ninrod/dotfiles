@@ -27,6 +27,7 @@
 | N, V   | SPC DEL   | Cria um diretório (=make-directory=). |
 | N, V   | SPC g     | Salta para um caractere com Avy (=avy-goto-char=). |
 | N, V   | SPC c     | Captura uma tarefa Org (=ninrod/org-task-capture=). |
+| N, V   | SPC p     | Abre o histórico de yanks (=consult-yank-pop=). |
 | N, V   | SPC s     | Ordena linhas (=sort-lines=). |
 | N, V   | SPC j     | Executa a macro =LztM= para reposicionar cursor e janela. |
 | N, V   | SPC k     | Executa a macro =Hz-M= para reposicionar cursor e janela. |
@@ -69,11 +70,9 @@
 | Buffers | N, V, M | s m | Define o marcador Evil =z=. |
 | Buffers | N, V, M | s i | Alterna de buffer com Consult. |
 | Buffers | N, V, M | s s | Abre Multi-Term. |
-| Projetos | N, V, M | s . | Localiza arquivo no projeto (=project-find-file=). |
-| Projetos | N, V, M | s o | Troca de projeto (=project-switch-project=). |
+| Projetos | N, V, M | s . / s p | Localiza arquivo no projeto / troca de projeto (=project-switch-project=). |
 | Bookmarks | N, V, M | s SPC | Salta para bookmark. |
 | Bookmarks | N, V, M | s - / s b | Exclui / cria bookmark. |
-| Edição | N, V, M | s p | Abre o histórico de yanks (=consult-yank-pop=). |
 | Edição | N, V, M | s r | Faz substituição por regex (=query-replace-regexp=). |
 | Busca | N, V, M | s / | Busca no buffer (=consult-line=). |
 | Histórico | N, V, M | s , / s ; | Salta para trás / frente no changelist Evil. |
@@ -89,7 +88,7 @@
 | Git | N, V, M | m g | Abre o status Magit. |
 | Org | N, V, M | m o | Abre a agenda Org. |
 | Buffers | N, V, M | m f | Copia o nome do arquivo atual. |
-| Buffers | N, V, M | m k / m w / m i | Mata buffer / alarga buffer / abre Ibuffer. |
+| Buffers | N, V, M | m k / m w / m i | Enterra o buffer atual e vai para =*scratch*= / alarga buffer / abre Ibuffer. |
 | Edição | N, V, M | m a | Aplica a macro armazenada no registrador =z=. |
 | Edição | N, V, M | m r | Repete o alinhamento. |
 | Evil | N, V, M | m e | Entra no estado Emacs do Evil. |
