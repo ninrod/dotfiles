@@ -1040,6 +1040,25 @@ M-x subword-mode
     :ensure t)
 #+END_SRC
 
+*** dirvish
+
+Dirvish enhances Dired globally while preserving the regular Dired commands
+and the Spaceline modeline in directory buffers.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package nerd-icons
+    :ensure t)
+
+  (use-package dirvish
+    :ensure t
+    :demand t
+    :config
+    (setq dirvish-attributes
+          '(vc-state subtree-state nerd-icons collapse file-time file-size)
+          dirvish-mode-line-format nil)
+    (dirvish-override-dired-mode))
+#+END_SRC
+
 *** spaceline
 
 - See [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el][Powerline separators]] for available separator styles.
@@ -1553,6 +1572,7 @@ M-x subword-mode
   (general-define-key
    :keymaps '(normal visual motion)
    :prefix "g"
+   "d" 'dirvish
    "a" 'evil-lion-left
    "A" 'evil-lion-right
    )
@@ -1804,9 +1824,9 @@ M-x subword-mode
 *** unbinds
 
 #+BEGIN_SRC emacs-lisp
-  (defun ninrod/dired--unbinds ()
+  (defun ninrod/dired--unbinds (keymap)
     (general-define-key
-     :keymaps 'dired-mode-map
+     :keymaps keymap
      "<f1>" nil
      "<f2>" nil
      "<f3>" nil
@@ -1847,11 +1867,29 @@ M-x subword-mode
 *** binds
 
 #+BEGIN_SRC emacs-lisp
-  (defun ninrod/dired--binds ()
-    "my dired rebinds"
+  (defun ninrod/dired-quit ()
+    "Quit the current Dirvish session or Dired window."
+    (interactive)
+    (if (and (fboundp 'dirvish-curr) (dirvish-curr))
+        (dirvish-quit)
+      (quit-window)))
+
+  (defun ninrod/dired--window-binds (keymap)
+    "Configure window navigation bindings for KEYMAP."
+    (let ((map (symbol-value keymap)))
+      (evil-define-key 'normal map (kbd "s") nil)
+      (evil-define-key 'normal map (kbd "s h") #'evil-window-left)
+      (evil-define-key 'normal map (kbd "s j") #'evil-window-down)
+      (evil-define-key 'normal map (kbd "s k") #'evil-window-up)
+      (evil-define-key 'normal map (kbd "s l") #'evil-window-right)))
+
+  (defun ninrod/dired--binds (keymap)
+    "Configure Dired-style bindings for KEYMAP."
+    (ninrod/dired--window-binds keymap)
     (general-define-key
-     :keymaps 'dired-mode-map
+     :keymaps keymap
      :states 'normal
+     "q" 'ninrod/dired-quit
      "h" 'evil-backward-char
      "j" 'evil-next-line
      "k" 'evil-previous-line
@@ -1885,9 +1923,14 @@ M-x subword-mode
 #+BEGIN_SRC emacs-lisp
   ;; (setq dired-listing-switches "-lhXA --group-directories-first")
   (with-eval-after-load 'dired
-    (ninrod/dired--unbinds)
+    (ninrod/dired--unbinds 'dired-mode-map)
     (evil-make-overriding-map dired-mode-map 'normal t); use the standard Dired bindings as a base
-    (ninrod/dired--binds))
+    (ninrod/dired--binds 'dired-mode-map))
+
+  (with-eval-after-load 'dirvish
+    (ninrod/dired--unbinds 'dirvish-mode-map)
+    (evil-make-overriding-map dirvish-mode-map 'normal t)
+    (ninrod/dired--binds 'dirvish-mode-map))
 #+END_SRC
 
 ** lisp

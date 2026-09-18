@@ -77,8 +77,8 @@
 | Busca | N, V, M | s / | Busca no buffer (=consult-line=). |
 | Histórico | N, V, M | s , / s ; | Salta para trás / frente no changelist Evil. |
 | Diretórios | N, V, M | s DEL | Altera o diretório padrão (=cd=). |
-| Janelas | N, V, M | s j / s k | Move o foco para a janela abaixo / acima. |
-| Janelas | N, V, M | s h / s l | Move o foco para a janela à esquerda / direita. |
+| Windows | N, V, M | s j / s k | Moves focus to the window below / above. |
+| Windows | N, V, M | s h / s l | Moves focus to the window on the left / right. |
 | Janelas | N, V, M | s y / s x | Divide à direita / abaixo e dá foco à nova janela. |
 
 ** Prefixo =m=: Magit, Org, buffers e edição
@@ -105,6 +105,7 @@
 | Histórico | M | g i | Vai para a última alteração. |
 | Movimento | M | g ; | Vai ao último caractere não vazio. |
 | Indentação | M | g > / g < | Indenta à direita / esquerda. |
+| Files | N, V, M | g d | Opens Dirvish. |
 | Alinhamento | N, V, M | g a / g A | Alinha à esquerda / direita com Evil Lion. |
 
 ** Evil, edição e layouts
@@ -172,6 +173,7 @@
 | Dired | N | DEL / c / u | Abre arquivo / copia / sobe diretório. |
 | Dired | N | g o / g l / g e | Primeira linha / linha específica / fim da palavra anterior. |
 | Dired | N | R / T | Atualiza listagem / alterna marcas. |
+| Dired / Dirvish | N | q | Quits the full Dirvish session or the current Dired window. |
 
 ** Lisp e Emacs Lisp interativo
 
