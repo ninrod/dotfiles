@@ -1192,6 +1192,51 @@ M-x subword-mode
                copilot-login
                copilot-diagnose))
 
+  (defconst ninrod/copilot-chat-directory
+    (expand-file-name "~/code/secrets/chats/")
+    "Directory containing Copilot chat prompt transcripts.")
+
+  (defun ninrod/copilot-chat-session-file ()
+    "Return a unique filename for a new Copilot chat session."
+    (make-directory ninrod/copilot-chat-directory t)
+    (let* ((timestamp (format-time-string "%Y%m%d-%H%M%S"))
+           (filename (expand-file-name
+                      (format "copilot-%s.md" timestamp)
+                      ninrod/copilot-chat-directory))
+           (suffix 1))
+      (while (file-exists-p filename)
+        (setq filename
+              (expand-file-name
+               (format "copilot-%s-%d.md" timestamp suffix)
+               ninrod/copilot-chat-directory)
+              suffix (1+ suffix)))
+      filename))
+
+  (defun ninrod/copilot-chat-new-session ()
+    "Create a Markdown transcript unless already in a chat session."
+    (interactive)
+    (unless (ninrod/copilot-chat-session-buffer-p)
+      (let ((file (ninrod/copilot-chat-session-file)))
+        (find-file file)
+        (let ((timestamp (format-time-string "%d/%m/%Y %H:%M %Z")))
+          (insert (format "# Copilot Session\n\nCreated: %s\n\n## You [%s]\n\n"
+                          timestamp timestamp)))
+        (save-buffer))))
+
+  (defun ninrod/copilot-chat-session-buffer-p ()
+    "Return non-nil when the current buffer is a Copilot chat transcript."
+    (and buffer-file-name
+         (string= (file-name-extension buffer-file-name) "md")
+         (file-in-directory-p buffer-file-name ninrod/copilot-chat-directory)))
+
+  (defun ninrod/copilot-chat-start-next-prompt (position)
+    "Insert and save the next prompt section after POSITION."
+    (save-excursion
+      (goto-char position)
+      (insert (format "\n\n## You [%s]\n\n"
+                      (format-time-string "%d/%m/%Y %H:%M %Z")))
+      (save-buffer)))
+
   (defun ninrod/copilot-global-instruction-files ()
     "Return the Markdown files containing global Copilot instructions."
     (let ((directory (expand-file-name "~/.dotfiles/copilot/")))
@@ -1262,6 +1307,8 @@ M-x subword-mode
       (when (string-blank-p message)
         (user-error "The selected message is empty"))
       (require 'copilot-chat)
+      (when (ninrod/copilot-chat-session-buffer-p)
+        (ninrod/copilot-chat-start-next-prompt end))
       (copilot-chat message)))
 #+END_SRC
 * keybinds
@@ -1314,7 +1361,7 @@ M-x subword-mode
   (spc-map
    :states '(normal visual)
    "c" '(:ignore t :which-key "Copilot")
-   "cc" 'copilot-chat
+   "cc" 'ninrod/copilot-chat-new-session
    "cd" 'copilot-diagnose
    "ce" 'ninrod/copilot-chat-explain-region
    "cf" 'copilot-chat-fix
