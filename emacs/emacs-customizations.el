@@ -25,22 +25,19 @@
      (1 (eq major-mode 'org-mode) org-level-1)))
  '(package-selected-packages
    '(ag aggressive-indent anaconda-mode atomic-chrome autothemer cargo
-        company-anaconda consult docker editorconfig elpa-mirror embark
-        embark-consult emmet-mode
-        evil-args evil-commentary evil-exchange evil-indent-plus evil-lion
-        evil-matchit evil-replace-with-char
-        evil-replace-with-register evil-string-inflection
-        evil-surround evil-visualstar exato
+        company-anaconda consult copilot docker editorconfig
+        elpa-mirror embark embark-consult emmet-mode evil-args
+        evil-commentary evil-exchange evil-indent-plus evil-lion
+        evil-matchit evil-replace-with-char evil-replace-with-register
+        evil-string-inflection evil-surround evil-visualstar exato
         eyebrowse fic-mode flycheck-package general git-gutter-fringe
         gitattributes-mode gitconfig-mode gitignore-mode groovy-mode
-        gruvbox-theme helpful ibuffer-vc
-        json-mode json-reformat kotlin-mode lispy
-        lispyville magit markdown-mode
-        multi-term nginx-mode ob-http orderless origami pass pkgbuild-mode
+        gruvbox-theme helpful ibuffer-vc json-mode json-reformat
+        kotlin-mode lispy lispyville magit markdown-mode multi-term
+        nginx-mode ob-http orderless origami pass pkgbuild-mode
         py-isort pyvenv rainbow-delimiters rainbow-mode restart-emacs
-        rjsx-mode smartparens smex systemd tide toml-mode
-        use-package vdiff vertico vimrc-mode web-mode worf
-        yapfify yasnippet))
+        rjsx-mode smartparens smex systemd tide toml-mode use-package
+        vdiff vertico vimrc-mode web-mode worf yapfify yasnippet))
  '(safe-local-variable-values
    '((eval when
            (and (buffer-file-name) (file-regular-p (buffer-file-name))

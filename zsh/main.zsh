@@ -36,6 +36,8 @@ source ~/.zsh.d/fzf.zsh
 source ~/.zsh.d/pj.zsh
 source ~/.zsh.d/dir_tracker.zsh
 
+eval "$(zoxide init zsh)"
+
 # user last step
 source ~/.zsh.d/call_user_last_hook.zsh
 

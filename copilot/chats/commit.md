@@ -1,0 +1,1 @@
+olhe em ~/.dotfiles. veja que temos vários arquivos a serem comitados. com base nos diffs desses arquivos, gere uma mensagem de commit adequada.

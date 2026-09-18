@@ -42,10 +42,11 @@ Feel free to open issues though, if the config did not work for you. I'll try to
 - get [[https://github.com/zsh-users/zsh.git][zsh]] 5.4+ and make sure that =/bin/zsh= is valid. (if not: =$ cd /bin && sudo ln -s $(command -v zsh) zsh=)
 - =cat /etc/shells= and verify that zsh appears on the list. If not, =sudo vi /etc/shells= and append =/bin/zsh=
 - get [[https://github.com/ggreer/the_silver_searcher.git][ag]] (you can =brew install ag= on OSx).
+- *[optional]* install [[https://github.com/eza-community/eza][eza]] for enhanced directory listings (=sudo apt install eza= on Ubuntu; =brew install eza= on OSx). The aliases fall back to =ls= if it is unavailable.
 - if you're on OSx, brew install these:
   1. =brew install coreutils= (mainly because =BSD= =ls= =CLICOLOR= sucks).
   2. =brew install reattach-to-user-namespace= (Mainly because of the =open= utility. [[https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard.git][more info here]]).
-  3. =brew install diff-so-fancy=
+  3. =brew install git-delta=
 - *Kind remark*: for the moment (until I change the script to back it up for you), I'll overwrite your =~/.gitconfig= file, so if you have something important in it, now would be the perfect moment to back it up.
 - *[optional]* get [[https://www.gnu.org/software/emacs/][emacs]] 25.2+ (this is optional, everything will work fine if you don't use emacs)
 

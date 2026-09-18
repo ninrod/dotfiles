@@ -1,6 +1,12 @@
 # -*- mode: sh -*-
 
 # ls
+if (( $+commands[eza] )); then
+  alias els='eza --color=auto --group-directories-first --sort=extension --icons=auto'
+  alias el='eza --long --header --git --icons=auto'
+  alias ela='eza --almost-all --icons=auto'
+fi
+
 alias ls='ls --color=auto --group-directories-first -X'
 alias l='ls -lh'
 alias la='l -A'

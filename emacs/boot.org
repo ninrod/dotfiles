@@ -229,6 +229,7 @@ use the local kill ring without starting win32yank.exe again."
 #+BEGIN_SRC
 M-x consult-ripgrep
 M-x count-words
+M-x copilot-chat
 M-x ninrod/uarg-exec-shell-command
 M-x customize-apropos-faces
 M-x ielm
@@ -1180,6 +1181,89 @@ M-x subword-mode
     :config
     (general-evil-setup))
 #+END_SRC
+
+** AI
+*** copilot
+
+#+BEGIN_SRC emacs-lisp
+  (use-package copilot
+    :ensure t
+    :commands (copilot-install-server
+               copilot-login
+               copilot-diagnose))
+
+  (defun ninrod/copilot-global-instruction-files ()
+    "Return the Markdown files containing global Copilot instructions."
+    (let ((directory (expand-file-name "~/.dotfiles/copilot/")))
+      (unless (file-directory-p directory)
+        (user-error "Copilot instructions directory does not exist: %s" directory))
+      (let ((files (sort (directory-files directory t "\\.md\\'" t) #'string<)))
+        (unless files
+          (user-error "No Markdown Copilot instruction files in: %s" directory))
+        (dolist (file files)
+          (unless (file-readable-p file)
+            (user-error "Copilot instruction file is not readable: %s" file)))
+        files)))
+
+  (defun ninrod/copilot-chat-attach-global-instructions (function message &rest arguments)
+    "Attach global instruction files to a Copilot chat MESSAGE."
+    (dolist (file (ninrod/copilot-global-instruction-files))
+      (copilot-chat-add-file-reference file))
+    (apply function message arguments))
+
+  (defun ninrod/copilot-chat-enable-global-instructions ()
+    "Apply global instructions to new chats and follow-up messages."
+    (dolist (function '(copilot-chat copilot-chat-send))
+      (unless (advice-member-p #'ninrod/copilot-chat-attach-global-instructions function)
+        (advice-add function :around #'ninrod/copilot-chat-attach-global-instructions))))
+
+  (defun ninrod/copilot-chat-add-response-timestamp (function token chat-buffer value)
+    "Add a timestamp when a streamed Copilot response begins."
+    (funcall function token chat-buffer value)
+    (when (and (buffer-live-p chat-buffer)
+               (equal (plist-get value :kind) "begin"))
+      (with-current-buffer chat-buffer
+        (let ((inhibit-read-only t))
+          (save-excursion
+            (goto-char (point-max))
+            (insert (propertize
+                     (format-time-string "[%d/%m/%Y %H:%M %Z]\n\n")
+                     'face 'bold))))
+        (copilot-chat--scroll-to-bottom))))
+
+  (defun ninrod/copilot-chat-enable-response-timestamp ()
+    "Show timestamps for streamed Copilot responses."
+    (unless (advice-member-p #'ninrod/copilot-chat-add-response-timestamp
+                             #'copilot-chat--handle-buffer-progress)
+      (advice-add #'copilot-chat--handle-buffer-progress :around
+                  #'ninrod/copilot-chat-add-response-timestamp)))
+
+  (with-eval-after-load 'copilot-chat
+    (setopt copilot-chat-model "gpt-5.6-terra"
+            copilot-chat-save-history t)
+    (ninrod/copilot-chat-enable-global-instructions)
+    (ninrod/copilot-chat-enable-response-timestamp))
+
+  (defun ninrod/copilot-chat-explain-region (beginning end)
+    "Ask Copilot Chat to explain the active region."
+    (interactive "r")
+    (unless (use-region-p)
+      (user-error "Select a region to explain"))
+    (require 'copilot-chat)
+    (copilot-chat-add-region-reference beginning end)
+    (copilot-chat "Explique o código selecionado."))
+
+  (defun ninrod/copilot-chat-send-region-as-message (beginning end)
+    "Send the active region as a Copilot Chat message."
+    (interactive "r")
+    (unless (use-region-p)
+      (user-error "Select a message to send"))
+    (let ((message (buffer-substring-no-properties beginning end)))
+      (when (string-blank-p message)
+        (user-error "The selected message is empty"))
+      (require 'copilot-chat)
+      (copilot-chat message)))
+#+END_SRC
 * keybinds
 ** SPC-map
 *** definer
@@ -1208,7 +1292,6 @@ M-x subword-mode
     "DEL" 'make-directory
 
     "g" 'avy-goto-char
-    "c" 'ninrod/org-task-capture
     "p" 'consult-yank-pop
     "s" 'sort-lines
 
@@ -1223,6 +1306,23 @@ M-x subword-mode
    :states '(normal visual)
    "e" '(:ignore t :which-key "embark")
    "eb" 'embark-bindings)
+#+END_SRC
+
+*** copilot
+
+#+BEGIN_SRC emacs-lisp
+  (spc-map
+   :states '(normal visual)
+   "c" '(:ignore t :which-key "Copilot")
+   "cc" 'copilot-chat
+   "cd" 'copilot-diagnose
+   "ce" 'ninrod/copilot-chat-explain-region
+   "cf" 'copilot-chat-fix
+   "cr" 'copilot-chat-review
+   "cs" 'ninrod/copilot-chat-send-region-as-message
+   "ct" 'copilot-chat-task
+   "ci" 'copilot-install-server
+   "cl" 'copilot-login)
 #+END_SRC
 
 *** multiple cursors

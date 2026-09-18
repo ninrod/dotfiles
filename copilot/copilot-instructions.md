@@ -14,3 +14,4 @@
 ## 3. Formatting & Output
 - Keep inline comments concise, accurate, and written exclusively in English.
 - Do not add conversational fluff or extraneous markdown wrappers inside code snippets meant for replacement/editing.
+- Start every chat response with a single concise Portuguese sentence in the format `**TL;DR:** <summary>`, before the detailed response.

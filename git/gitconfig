@@ -46,8 +46,12 @@
 [color "status"]
   untracked = cyan
 [pager]
-  diff = diff-so-fancy | less --tabs=4 -RFX
-  show = diff-so-fancy | less --tabs=4 -RFX
+  diff = delta
+  show = delta
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  navigate = true
 [grep]
   lineNumber = true
   extendRegexp = true
