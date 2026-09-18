@@ -39,6 +39,15 @@ function yolo() {
     fi
 }
 
+function copilot-export-sessions() {
+    if [ "$#" -eq 0 ]; then
+        command python3 "$HOME/.dotfiles/scripts/python/copilot-export-sessions.py" \
+            "$HOME/code/secrets/chats/cli"
+    else
+        command python3 "$HOME/.dotfiles/scripts/python/copilot-export-sessions.py" "$@"
+    fi
+}
+
 # function to wrap copilot prompt with reliable pipe support
 function ais() {
     local stdin_content=""
