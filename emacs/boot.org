@@ -1040,6 +1040,26 @@ M-x subword-mode
     :ensure t)
 #+END_SRC
 
+*** spaceline
+
+- See [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el][Powerline separators]] for available separator styles.
+#+BEGIN_SRC emacs-lisp
+  (use-package spaceline
+    :ensure t
+    :config
+    (setq powerline-height (if (ninrod--distro-p "arch") 50 30)
+          powerline-default-separator 'alternate
+          spaceline-separator-dir-left '(right . right)
+          spaceline-separator-dir-right '(right . right)
+          spaceline-workspace-numbers-unicode t
+          spaceline-window-numbers-unicode t
+          spaceline-highlight-face-func
+          #'spaceline-highlight-face-evil-state)
+    (require 'spaceline-config)
+    (spaceline-spacemacs-theme)
+    (spaceline-compile))
+#+END_SRC
+
 *** themes
 **** spacemacs
 
