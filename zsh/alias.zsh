@@ -38,7 +38,7 @@ alias dot='la $(find ~ -maxdepth 1 -type l)'
 alias t="~/.dotfiles/scripts/tmux/tmux-attach.sh"
 
 # dirs
-alias d=show_and_choose
+alias d=zi
 alias 1='cd +1'
 
 # BSSH: better ssh (ownz putty)
