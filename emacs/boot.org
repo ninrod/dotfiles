@@ -1053,6 +1053,11 @@ and the Spaceline modeline in directory buffers.
     :ensure t
     :demand t
     :config
+    (defun ninrod/dirvish-fd-search (pattern)
+      "Search the current Dirvish directory with PATTERN."
+      (interactive (list (read-regexp "Dirvish search regexp: ")))
+      (dirvish-fd nil pattern))
+
     (setq dirvish-attributes
           '(vc-state subtree-state nerd-icons collapse file-time file-size)
           dirvish-mode-line-format nil)
@@ -1379,6 +1384,7 @@ and the Spaceline modeline in directory buffers.
 
     "g" 'avy-goto-char
     "p" 'consult-yank-pop
+    "/" 'ninrod/dirvish-fd-search
     "s" 'sort-lines
 
     "j" (kbd "LztM")

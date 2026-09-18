@@ -28,6 +28,7 @@
 | N, V   | SPC g     | Salta para um caractere com Avy (=avy-goto-char=). |
 | N, V   | SPC c     | Captura uma tarefa Org (=ninrod/org-task-capture=). |
 | N, V   | SPC p     | Abre o histórico de yanks (=consult-yank-pop=). |
+| N, V   | SPC /     | Opens a Dirvish regexp search. |
 | N, V   | SPC s     | Ordena linhas (=sort-lines=). |
 | N, V   | SPC j     | Executa a macro =LztM= para reposicionar cursor e janela. |
 | N, V   | SPC k     | Executa a macro =Hz-M= para reposicionar cursor e janela. |
