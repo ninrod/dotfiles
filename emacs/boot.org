@@ -2043,6 +2043,14 @@ and the Spaceline modeline in directory buffers.
 #+END_SRC
 
 ** magit
+*** with-editor-mode commit finish
+
+#+BEGIN_SRC emacs-lisp
+  (with-eval-after-load 'with-editor
+    (evil-define-key 'normal with-editor-mode-map
+      (kbd "s <return>") #'with-editor-finish))
+#+END_SRC
+
 *** magit-status-mode-map fixes
 
 #+BEGIN_SRC emacs-lisp
