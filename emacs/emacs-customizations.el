@@ -37,7 +37,8 @@
         nginx-mode ob-http orderless origami pass pkgbuild-mode
         py-isort pyvenv rainbow-delimiters rainbow-mode restart-emacs
         rjsx-mode smartparens smex systemd tide toml-mode use-package
-        vdiff vertico vimrc-mode web-mode worf yapfify yasnippet))
+        vdiff vdiff-magit vertico vimrc-mode web-mode worf yapfify
+        yasnippet))
  '(safe-local-variable-values
    '((eval when
            (and (buffer-file-name) (file-regular-p (buffer-file-name))

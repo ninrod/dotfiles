@@ -594,127 +594,131 @@ M-x subword-mode
 ** bootstrap
 
 #+BEGIN_SRC emacs-lisp
-    (setq evil-want-integration t
-          evil-want-keybinding nil)
+  (setq evil-want-integration t
+        evil-want-keybinding nil)
 
-    (use-package evil
-      :ensure t
-      :init
-      (use-package goto-chg :ensure t)
-  
-      :config
-      (setcdr evil-insert-state-map nil) ;; emacsify insert state: http://stackoverflow.com/a/26573722/4921402
-      (define-key evil-insert-state-map [escape] 'evil-normal-state) ;; but [escape] should switch back to normal state, obviously.
-      (fset 'evil-visual-update-x-selection 'ignore) ;; Amazing hack lifted from: http://emacs.stackexchange.com/a/15054/12585
-  
-      (setq evil-want-change-word-to-end nil
-            evil-kill-on-visual-paste nil)
-  
-      (evil-mode 1)
-  
-      (evil-set-command-property 'evil-yank :move-point t)
-  
-      (evil-define-text-object ninrod/textobj-entire (count &optional beg end type)
-        (evil-range (point-min) (point-max))) ;; simulation of kana's textobj-entire
-      (define-key evil-outer-text-objects-map "e" 'ninrod/textobj-entire))
-  
-    (use-package evil-collection
-      :after evil
-      :ensure t
-      :config
-      (evil-collection-init))
+  (use-package evil
+    :ensure t
+    :init
+    (use-package goto-chg :ensure t)
 
-    (use-package evil-mc
-      :after evil
-      :ensure t
-      :config
-      (defun ninrod/evil-mc-undo-all-cursors-and-normal-state ()
-        "Remove all Evil multiple cursors and enter Normal state."
-        (interactive)
-        (evil-mc-undo-all-cursors)
-        (evil-normal-state))
-      (defun ninrod/bury-current-buffer-and-switch-to-scratch ()
-        "Bury the current buffer and show the scratch buffer."
-        (interactive)
-        (let ((buffer (current-buffer))
-              (scratch (get-buffer-create "*scratch*")))
-          (unless (eq buffer scratch)
-            (switch-to-buffer scratch)
-            (bury-buffer buffer))))
-      (defun ninrod/evil-mc-make-cursors-at-line-beginnings ()
-        "Create cursors at the beginning of every Visual Line selection."
-        (interactive)
-        (unless (eq (evil-visual-type) 'line)
-          (user-error "This command requires a Visual Line selection"))
-        (evil-mc-make-cursor-in-visual-selection t)
-        (evil-normal-state))
-      (defun ninrod/evil-mc-make-cursors-for-current-search ()
-        "Create cursors at the start of every match in the active Evil search."
-        (interactive)
-        (when (evil-mc-has-cursors-p)
-          (user-error "Cursors already exist"))
-        (unless evil-ex-search-pattern
-          (user-error "Search for a word with * first"))
-        (let ((point (point))
-              current-match
-              matches)
-          (save-excursion
-            (goto-char (point-min))
-            (while (eq (evil-ex-find-next evil-ex-search-pattern 'forward t) t)
-              (let ((match (cons (match-beginning 0) (match-end 0))))
-                (push match matches)
-                (when (and (<= (car match) point)
-                           (< point (cdr match)))
-                  (setq current-match match))
-                (goto-char (cdr match)))))
-          (unless current-match
-            (user-error "Point must be on an active Evil search match"))
-          (setq matches (nreverse matches)
-                evil-mc-pattern
-                (list evil-ex-search-pattern
-                      (car current-match)
-                      (cdr current-match)))
-          (goto-char (car current-match))
-          (dolist (match matches)
-            (unless (= (car match) (car current-match))
-              (evil-mc-run-cursors-before)
-              (evil-mc-make-cursor-at-pos (car match))))
-          (evil-mc-print-cursors-info "Created"))
-        (evil-normal-state))
-      (defun ninrod/evil-mc-make-cursors-for-regexp-in-visual-selection (regexp)
-        "Create cursors at each REGEXP match in the Visual selection."
-        (interactive (list (read-regexp "Match regexp: ")))
-        (unless (evil-visual-state-p)
-          (user-error "This command requires a Visual selection"))
-        (when (eq (evil-visual-type) 'block)
-          (user-error "This command does not support Visual Block selections"))
-        (when (evil-mc-has-cursors-p)
-          (user-error "Cursors already exist"))
-        (let* ((range (evil-visual-range))
-               (beginning (car range))
-               (end (cadr range))
-               matches)
-          (save-excursion
-            (goto-char beginning)
-            (while (re-search-forward regexp end t)
-              (let ((match (cons (match-beginning 0) (match-end 0))))
-                (when (= (car match) (cdr match))
-                  (user-error "Match regexp must not match empty text"))
-                (push match matches))))
-          (unless matches
-            (user-error "No matches in the Visual selection"))
-          (setq matches (nreverse matches)
-                evil-mc-pattern
-                (list (evil-ex-make-search-pattern regexp)
-                      (caar matches)
-                      (cdar matches)))
-          (evil-exit-visual-state)
-          (goto-char (caar matches))
-          (dolist (match (cdr matches))
+    :config
+    (setcdr evil-insert-state-map nil) ;; emacsify insert state: http://stackoverflow.com/a/26573722/4921402
+    (define-key evil-insert-state-map [escape] 'evil-normal-state) ;; but [escape] should switch back to normal state, obviously.
+    (fset 'evil-visual-update-x-selection 'ignore) ;; Amazing hack lifted from: http://emacs.stackexchange.com/a/15054/12585
+
+    (setq evil-want-change-word-to-end nil
+          evil-kill-on-visual-paste nil)
+
+    (evil-mode 1)
+
+    (evil-set-command-property 'evil-yank :move-point t)
+
+    (evil-define-text-object ninrod/textobj-entire (count &optional beg end type)
+      (evil-range (point-min) (point-max))) ;; simulation of kana's textobj-entire
+    (define-key evil-outer-text-objects-map "e" 'ninrod/textobj-entire))
+
+  (use-package evil-collection
+    :after evil
+    :ensure t
+    :config
+    (evil-collection-init))
+
+  (use-package evil-mc
+    :after evil
+    :ensure t
+    :config
+    (defun ninrod/evil-mc-undo-all-cursors-and-normal-state ()
+      "Remove all Evil multiple cursors and enter Normal state."
+      (interactive)
+      (evil-mc-undo-all-cursors)
+      (evil-normal-state))
+    (defun ninrod/bury-current-buffer-and-switch-to-scratch ()
+      "Bury the current buffer and show the scratch buffer."
+      (interactive)
+      (let ((buffer (current-buffer))
+            (scratch (get-buffer-create "*scratch*")))
+        (unless (eq buffer scratch)
+          (switch-to-buffer scratch)
+          (bury-buffer buffer))))
+
+    (defun ninrod/evil-mc-make-cursors-at-line-beginnings ()
+      "Create cursors at the beginning of every Visual Line selection."
+      (interactive)
+      (unless (eq (evil-visual-type) 'line)
+        (user-error "This command requires a Visual Line selection"))
+      (evil-mc-make-cursor-in-visual-selection t)
+      (evil-normal-state))
+
+    (defun ninrod/evil-mc-make-cursors-for-current-search ()
+      "Create cursors at the start of every match in the active Evil search."
+      (interactive)
+      (when (evil-mc-has-cursors-p)
+        (user-error "Cursors already exist"))
+      (unless evil-ex-search-pattern
+        (user-error "Search for a word with * first"))
+      (let ((point (point))
+            current-match
+            matches)
+        (save-excursion
+          (goto-char (point-min))
+          (while (eq (evil-ex-find-next evil-ex-search-pattern 'forward t) t)
+            (let ((match (cons (match-beginning 0) (match-end 0))))
+              (push match matches)
+              (when (and (<= (car match) point)
+                         (< point (cdr match)))
+                (setq current-match match))
+              (goto-char (cdr match)))))
+        (unless current-match
+          (user-error "Point must be on an active Evil search match"))
+        (setq matches (nreverse matches)
+              evil-mc-pattern
+              (list evil-ex-search-pattern
+                    (car current-match)
+                    (cdr current-match)))
+        (goto-char (car current-match))
+        (dolist (match matches)
+          (unless (= (car match) (car current-match))
             (evil-mc-run-cursors-before)
-            (evil-mc-make-cursor-at-pos (car match)))
-          (evil-normal-state)))
-      (global-evil-mc-mode 1))
+            (evil-mc-make-cursor-at-pos (car match))))
+        (evil-mc-print-cursors-info "Created"))
+      (evil-normal-state))
+
+    (defun ninrod/evil-mc-make-cursors-for-regexp-in-visual-selection (regexp)
+      "Create cursors at each REGEXP match in the Visual selection."
+      (interactive (list (read-regexp "Match regexp: ")))
+      (unless (evil-visual-state-p)
+        (user-error "This command requires a Visual selection"))
+      (when (eq (evil-visual-type) 'block)
+        (user-error "This command does not support Visual Block selections"))
+      (when (evil-mc-has-cursors-p)
+        (user-error "Cursors already exist"))
+      (let* ((range (evil-visual-range))
+             (beginning (car range))
+             (end (cadr range))
+             matches)
+        (save-excursion
+          (goto-char beginning)
+          (while (re-search-forward regexp end t)
+            (let ((match (cons (match-beginning 0) (match-end 0))))
+              (when (= (car match) (cdr match))
+                (user-error "Match regexp must not match empty text"))
+              (push match matches))))
+        (unless matches
+          (user-error "No matches in the Visual selection"))
+        (setq matches (nreverse matches)
+              evil-mc-pattern
+              (list (evil-ex-make-search-pattern regexp)
+                    (caar matches)
+                    (cdar matches)))
+        (evil-exit-visual-state)
+        (goto-char (caar matches))
+        (dolist (match (cdr matches))
+          (evil-mc-run-cursors-before)
+          (evil-mc-make-cursor-at-pos (car match)))
+        (evil-normal-state)))
+
+    (global-evil-mc-mode 1))
 #+END_SRC
 
 ** babysited packages
@@ -1521,27 +1525,30 @@ and the Spaceline modeline in directory buffers.
    :keymaps '(normal visual motion)
    :prefix "m"
    "" nil
-   ;; "DEL" 'cd
+   ;; "DEL" 'reserved
    ;; "d"   'reserved
    ;; "t"   'reserved
+   ;; "g"   'reserved
+   ;; "o"   'reserved
+   ;; "f"   'reserved
 
+   ;; multiple cursor ops
    "c" 'ninrod/evil-mc-make-cursors-at-line-beginnings
-   "g" 'ninrod/uarg-magit-status
-   "o" 'ninrod/pop-to-org-agenda
+   "s" 'ninrod/evil-mc-make-cursors-for-current-search
+   "p" 'ninrod/evil-mc-make-cursors-for-regexp-in-visual-selection
 
    ;; buffer ops
-   "f" 'ninrod/add-filename-to-kill-ring
    "k" 'ninrod/bury-current-buffer-and-switch-to-scratch
-   "w" 'widen
    "i" 'ibuffer
+   "w" 'widen
 
-   ;; editing ops
+   ;; macro ops
    "a" 'ninrod/apply-z-macro
-   "r" 'spacemacs/align-repeat
-   "s" 'ninrod/evil-mc-make-cursors-for-current-search
-   "e" 'evil-emacs-state
    "m" 'ninrod/evil-record-macro-z
-   "p" 'ninrod/evil-mc-make-cursors-for-regexp-in-visual-selection
+
+   ;; edit hacks
+   "r" 'spacemacs/align-repeat
+   "e" 'evil-emacs-state
    )
 #+END_SRC
 
