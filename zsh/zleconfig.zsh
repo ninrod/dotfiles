@@ -1,5 +1,6 @@
 if [[ -z ${EMACS+x} ]]; then
   export EDITOR="nvim"
+  export VISUAL="nvim"
 
   # simplest possible vi key configuration
   # no delays when switching keymaps

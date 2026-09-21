@@ -38,7 +38,9 @@ alias dot='la $(find ~ -maxdepth 1 -type l)'
 alias t="~/.dotfiles/scripts/tmux/tmux-attach.sh"
 
 # dirs
-alias d=zi
+if (( $+commands[zoxide] )); then
+  alias d=zi
+fi
 alias 1='cd +1'
 
 # BSSH: better ssh (ownz putty)
