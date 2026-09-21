@@ -13,6 +13,10 @@
 -- what matters is casing/underscore/hyphen style, not whether a letter is
 -- accented.
 --
+-- Classification is deliberately independent of `'iskeyword'`: it varies per
+-- filetype (`lisp` adds `/`, `+`, `:`, ... to it), which would otherwise make
+-- the very same text split differently depending on the buffer's filetype.
+--
 -- It also replaces nvim-spider's ASCII Lua-pattern matcher with this
 -- classifier. nvim-spider provides the mapped `w`, `e`, `b`, and `ge`
 -- motions, so fixing only `iw`/`aw` would leave those motions splitting at
@@ -23,7 +27,18 @@ local M = {}
 ---@return "U"|"L"|"D"|"S"|"O" class upper letter, lower letter, digit, separator (`_`/`-`), other
 local function classify(char)
 	if char == "_" or char == "-" then return "S" end
-	if char:match("%d") then return "D" end
+
+	-- ASCII is classified structurally and never through `'iskeyword'`, which
+	-- is filetype-dependent: `lisp`, for instance, adds `/ + * % < = > : $ ? !`
+	-- to it. Consulting it here would make a subword swallow whole paths and
+	-- operators (e.g. `deps/emacs/elpa` as a single word) in some filetypes
+	-- only, so the same text would behave differently per filetype.
+	if char:byte(1) < 0x80 then
+		if char:match("%d") then return "D" end
+		if char:match("%l") then return "L" end
+		if char:match("%u") then return "U" end
+		return "O"
+	end
 
 	local lower, upper = vim.fn.tolower(char), vim.fn.toupper(char)
 	if lower ~= upper then
@@ -36,6 +51,37 @@ local function classify(char)
 	if vim.fn.match(char, [[^\k$]]) == 0 then return "L" end
 
 	return "O"
+end
+
+---End (inclusive) of the subword segment starting at `startIdx`.
+---
+---A segment is a maximal run of letters and digits, split only at camelCase
+---boundaries. Digits never start a new segment, so `d12frosted` and `utf8` are
+---single subwords.
+---@param classes ("U"|"L"|"D"|"S"|"O")[]
+---@param startIdx integer
+---@param lastIdx integer last index that may be consumed
+---@return integer
+local function segmentEnd(classes, startIdx, lastIdx)
+	local endIdx = startIdx
+
+	if classes[startIdx] == "U" then
+		local upperEnd = startIdx
+		while upperEnd < lastIdx and classes[upperEnd + 1] == "U" do
+			upperEnd = upperEnd + 1
+		end
+		if upperEnd > startIdx and upperEnd < lastIdx and classes[upperEnd + 1] == "L" then
+			-- `HTMLParser` is `HTML` + `Parser`, not `HTMLP` + `arser`
+			return upperEnd - 1
+		end
+		endIdx = upperEnd
+	end
+
+	while endIdx < lastIdx and (classes[endIdx + 1] == "L" or classes[endIdx + 1] == "D") do
+		endIdx = endIdx + 1
+	end
+
+	return endIdx
 end
 
 ---@param line? string
@@ -109,38 +155,13 @@ function M.subword(scope)
 		wordEnd = wordEnd + 1
 	end
 
-	-- segment the word into camelCase/UPPER_CASE/number/single-char subwords,
-	-- attaching a single trailing separator (if any) to each segment
+	-- segment the word into camelCase/UPPER_CASE subwords, attaching a single
+	-- trailing separator (if any) to each segment
 	local segStart, segEnd, segSepIdx
 	local i = wordStart
 	while i <= wordEnd do
-		local c = classes[i]
 		local startIdx = i
-		local endIdx = i
-
-		if c == "D" then
-			while endIdx < wordEnd and classes[endIdx + 1] == "D" do
-				endIdx = endIdx + 1
-			end
-		elseif c == "U" then
-			local upperEnd = i
-			while upperEnd < wordEnd and (classes[upperEnd + 1] == "U" or classes[upperEnd + 1] == "D") do
-				upperEnd = upperEnd + 1
-			end
-			if upperEnd > i then
-				endIdx = upperEnd -- UPPER_CASE run
-			else
-				local camelEnd = i
-				while camelEnd < wordEnd and (classes[camelEnd + 1] == "L" or classes[camelEnd + 1] == "D") do
-					camelEnd = camelEnd + 1
-				end
-				endIdx = camelEnd -- PascalCase-like segment, or single upper char
-			end
-		else -- "L" or "S" (stray separator not attached as trailing)
-			while endIdx < wordEnd and (classes[endIdx + 1] == "L" or classes[endIdx + 1] == "D") do
-				endIdx = endIdx + 1
-			end
-		end
+		local endIdx = segmentEnd(classes, i, wordEnd)
 
 		local sepIdx = nil
 		if endIdx < wordEnd and classes[endIdx + 1] == "S" then sepIdx = endIdx + 1 end
@@ -231,37 +252,8 @@ local function motionTokens(line, opts)
 				or (isBlank(chars[startIdx - 1]) and isBlank(chars[endIdx + 1]))
 			if include then addToken(startIdx, endIdx) end
 			i = endIdx + 1
-		elseif classes[i] == "D" then
-			local endIdx = i
-			while endIdx < #chars and classes[endIdx + 1] == "D" do
-				endIdx = endIdx + 1
-			end
-			addToken(i, endIdx)
-			i = endIdx + 1
-		elseif classes[i] == "L" then
-			local endIdx = i
-			while endIdx < #chars and classes[endIdx + 1] == "L" do
-				endIdx = endIdx + 1
-			end
-			addToken(i, endIdx)
-			i = endIdx + 1
-		elseif classes[i] == "U" then
-			local upperEnd = i
-			while upperEnd < #chars and classes[upperEnd + 1] == "U" do
-				upperEnd = upperEnd + 1
-			end
-
-			local endIdx = upperEnd
-			if upperEnd < #chars and classes[upperEnd + 1] == "L" then
-				if upperEnd > i then
-					-- `HTMLParser` is `HTML` + `Parser`, not `HTMLP` + `arser`.
-					endIdx = upperEnd - 1
-				else
-					while endIdx < #chars and classes[endIdx + 1] == "L" do
-						endIdx = endIdx + 1
-					end
-				end
-			end
+		elseif classes[i] == "L" or classes[i] == "U" or classes[i] == "D" then
+			local endIdx = segmentEnd(classes, i, #chars)
 			addToken(i, endIdx)
 			i = endIdx + 1
 		else

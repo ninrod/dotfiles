@@ -1,7 +1,7 @@
 return {
 	"chrisgrieser/nvim-spider",
 	opts = {
-		skipInsignificantPunctuation = false,
+		skipInsignificantPunctuation = true,
 	},
 	keys = {
 		{ "w", "<cmd>lua require('patch/unicode-subword').motion('w')<CR>", mode = { "n", "o", "x" } },
