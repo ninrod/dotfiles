@@ -2048,6 +2048,7 @@ and the Spaceline modeline in directory buffers.
 #+BEGIN_SRC emacs-lisp
   (with-eval-after-load 'with-editor
     (evil-define-key 'normal with-editor-mode-map
+      (kbd "s RET") #'with-editor-finish
       (kbd "s <return>") #'with-editor-finish))
 #+END_SRC
 
