@@ -209,7 +209,8 @@
 | Modo | Estado | Tecla | Comando / efeito |
 |------+--------+-------+------------------|
 | Terminal | Emacs | C-c ESC | Envia =ESC= ao terminal. |
-| Terminal | Emacs | C-c l / C-c c | Alterna para line mode / char mode. |
+| Terminal | Char | C-q | Alterna para semi-char mode. |
+| Terminal | N | t c | Ativa char mode. |
 | Terminal | Emacs | C-c j / C-c k | Próximo / terminal anterior. |
 | Terminal | N, V | , l / , c | Ativa line mode / char mode. |
 | Terminal | N, V | , n / , p | Próximo / terminal anterior. |

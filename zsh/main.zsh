@@ -38,6 +38,8 @@ source ~/.zsh.d/dir_tracker.zsh
 
 eval "$(zoxide init zsh)"
 
+[[ -n "$EAT_SHELL_INTEGRATION_DIR" ]] && source "$EAT_SHELL_INTEGRATION_DIR/zsh"
+
 # user last step
 source ~/.zsh.d/call_user_last_hook.zsh
 

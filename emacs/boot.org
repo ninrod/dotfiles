@@ -1488,7 +1488,6 @@ and the Spaceline modeline in directory buffers.
    "w"     'rect-ext-widen
    "m"     'ninrod/evil-set-marker-z
    "i"     'consult-buffer
-   "s"     'multi-term
    "."     'project-find-file
    "p"     'project-switch-project
    "<SPC>" 'bookmark-jump
@@ -1515,6 +1514,16 @@ and the Spaceline modeline in directory buffers.
    "l" 'evil-window-right
    "y" 'ninrod/split-window-right-and-focus
    "x" 'ninrod/split-window-below-and-focus)
+#+END_SRC
+
+** t-map
+
+#+BEGIN_SRC emacs-lisp
+  (general-define-key
+   :keymaps '(normal visual motion)
+   :prefix "t"
+   "" nil
+   "t" 'ghostel)
 #+END_SRC
 
 ** m-map
@@ -1675,41 +1684,8 @@ and the Spaceline modeline in directory buffers.
    "r" 'org-refile
    "e" 'org-edit-special
 
-   "l" 'org-insert-link
-   "t" 'org-set-tags-command
    "b" 'consult-org-heading
    "g" 'org-goto
-
-   "TAB" 'evil-toggle-fold
-
-   "RET" 'org-open-at-point
-   )
-
-#+END_SRC
-
-***** T: toggles
-
-#+BEGIN_SRC emacs-lisp
-  (org-comma-map "T" '(:ignore t :which-key "Toggles")
-  "Tl" 'org-toggle-link-display
-)
-#+END_SRC
-
-*** t local
-**** definer
-
-#+BEGIN_SRC emacs-lisp
-  (general-create-definer org-t-map
-     :keymaps 'org-mode-map
-     :states '(normal)
-     :prefix "t")
-#+END_SRC
-
-**** fast
-
-#+BEGIN_SRC emacs-lisp
-  (org-t-map
-   ;; "<SPC>" 'ninrod/org-insert-subheading ; open new subheading
 
    "l" 'org-metaright
    "h" 'org-metaleft
@@ -1735,6 +1711,15 @@ and the Spaceline modeline in directory buffers.
 
    "i" 'org-tree-to-indirect-buffer
    )
+
+#+END_SRC
+
+***** T: toggles
+
+#+BEGIN_SRC emacs-lisp
+  (org-comma-map "T" '(:ignore t :which-key "Toggles")
+  "Tl" 'org-toggle-link-display
+)
 #+END_SRC
 
 *** T local (tables)
@@ -2078,32 +2063,27 @@ and the Spaceline modeline in directory buffers.
    "s" nil)
 #+END_SRC
 
-** term
-- with help from [[https://www.reddit.com/r/emacs/comments/56xmvg/properly_editing_a_shell_buffer_with_evilmode/][/r/emacs]]
+** ghostel
 
 #+BEGIN_SRC emacs-lisp
-  (evil-set-initial-state 'term-mode 'emacs)
+  (use-package ghostel
+    :ensure t
+    :commands ghostel
+    :custom (ghostel-initial-input-mode 'char)
+    :config
+    ;; C-] is a plain ASCII control character, so it survives a TTY frame
+    ;; and is not in `evil-ghostel--ctrl-passthrough-keys'.
+    (keymap-set ghostel-char-mode-map "C-q" #'ghostel-semi-char-mode))
 
-  (general-create-definer
-   ninrod--term-mode
-   :keymaps '(term-raw-map term-mode-map))
+  (use-package evil-ghostel
+    :ensure t
+    :after (ghostel evil)
+    :hook (ghostel-mode . evil-ghostel-mode)
+    :config
+    (evil-define-key 'normal evil-ghostel-mode-map
+      (kbd "t") nil
+      (kbd "t c") #'ghostel-char-mode))
 
-  (ninrod--term-mode
-   :states 'emacs
-   :prefix "C-c"
-   "<escape>" 'term-send-esc
-   "l"        'term-line-mode
-   "c"        'term-char-mode
-   "j"        'multi-term-next
-   "k"        'multi-term-prev)
-
-  (ninrod--term-mode
-   :states '(normal visual)
-   :prefix ","
-   "l" 'term-line-mode
-   "c" 'term-char-mode
-   "n" 'multi-term-next
-   "p" 'multi-term-prev)
 #+END_SRC
 
 ** buffer-menu

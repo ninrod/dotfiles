@@ -23,9 +23,7 @@
          (setq package-archives `(("melpa" . ,local-elpa-mirror-thin)
                                   ("gnu"   . ,local-elpa-mirror-thin))))
         (t
-         (message "there are no local elpa mirrors. going to the interwebz")
-         (setq package-archives `(("melpa" . "https://melpa.org/packages/")
-                                  ("gnu"   . "https://elpa.gnu.org/packages/")))))
+         (error "No local ELPA mirror found; install the full local mirror first")))
   (package-initialize)
   (unless package-archive-contents
     (package-refresh-contents))

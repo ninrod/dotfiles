@@ -4,6 +4,7 @@ mkdir -p $emacs_deps && cd $emacs_deps
 ningrab ninrod/thin-melpa-mirror
 ningrab ninrod/evil-replace-with-char
 ningrab ninrod/evil-string-inflection
+ningrab dakra/ghostel
 
 # 3rd party
 ningrab noctuid/rect-ext.el
