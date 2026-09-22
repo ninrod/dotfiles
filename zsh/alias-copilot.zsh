@@ -1,6 +1,7 @@
 # you only live once.
 #
 function yolo() {
+    local -x COPILOT_EDITOR="emacsclient -tty"
     local argument
     local copilot_model="gpt-6-sol"
     local -a copilot_arguments=()
