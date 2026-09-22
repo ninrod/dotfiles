@@ -51,7 +51,7 @@ alias git_kill_reflog='git reflog expire --expire-unreachable=now --all && git g
 alias git-ssh-fetch="~/code/secrets/scripts/git-ssh-fetch.sh"
 
 # gitpessoal: faz o repo usar as credenciais pessoais, e não as corporativas
-alias git-http-conf="~/code/secrets/scripts/git-http-config.sh"
+alias git-pessoal-http="~/code/secrets/scripts/git-pessoal-http.sh"
 
 # git user email config: faz o repo usar as credenciais pessoais, e não as corporativas
 alias git-user-email-config="~/code/secrets/scripts/git-user-email-config.sh"
