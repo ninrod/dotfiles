@@ -27,10 +27,11 @@
    '(ag aggressive-indent anaconda-mode atomic-chrome autothemer cargo
         company-anaconda consult copilot docker editorconfig
         elpa-mirror embark embark-consult emmet-mode evil-args
-        evil-commentary evil-exchange evil-indent-plus evil-lion
-        evil-matchit evil-replace-with-char evil-replace-with-register
-        evil-string-inflection evil-surround evil-visualstar exato
-        eyebrowse fic-mode flycheck-package general git-gutter-fringe
+        evil-commentary evil-exchange evil-ghostel evil-indent-plus
+        evil-lion evil-matchit evil-replace-with-char
+        evil-replace-with-register evil-string-inflection
+        evil-surround evil-visualstar exato eyebrowse fic-mode
+        flycheck-package general ghostel git-gutter-fringe
         gitattributes-mode gitconfig-mode gitignore-mode groovy-mode
         gruvbox-theme helpful ibuffer-vc json-mode json-reformat
         kotlin-mode lispy lispyville magit markdown-mode multi-term
