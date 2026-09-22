@@ -58,6 +58,13 @@ depends on the unreasonable man.
 - use-package for managing dependencies
 - org-babel to keep the init.el organized as an org-mode file.
 - ivy instead of helm
+
+* Local thin MELPA mirror
+Run =make= from the =emacs/= directory to regenerate the mirror from installed
+Emacs packages. The =ninrod/thin-melpa-mirror= repository must already be cloned
+by the dotfiles installer. The script writes the mirror there and saves each
+run's output in =emacs/scripts/logs/[YYYY-MM-DD-HH-MM-SS]-thin-elpa-mirror.log=.
+
 * List of minor emacs paint points comming from vim
 ** basic editing operations
 - [[https://bitbucket.org/lyro/evil/issues/726/vt-vf-vt-vf-vt-vf-vt-vf-do-not-work][`vt'` and `vt"` do not work with us-internationl keyboard deadkeys in osx gui mode.]]
@@ -70,5 +77,4 @@ depends on the unreasonable man.
   - move horizontally in long lines like in vim's =zt=, =zb=, etc...
   - implement a new operator that performs r<char> in visual mode (but in normal mode). useful for |    | -> |------| in markdown mode.
     - alternatively: implement a function that substitutes all occurrences of |   | -> |-----|
-
 
