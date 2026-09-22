@@ -1,0 +1,23 @@
+* Emacs daemon on WSL2
+
+Enable systemd in =/etc/wsl.conf= without removing existing settings:
+
+#+begin_src conf
+[boot]
+systemd=true
+#+end_src
+
+From Windows, run =wsl --shutdown= to restart WSL. Run =make= from the
+dotfiles root to link only =emacs-daemon.service= into
+=~/.config/systemd/user/=; the deployment does not enable or start the service.
+
+Inside WSL, enable the user manager at instance startup and start the service:
+
+#+begin_src sh
+sudo loginctl enable-linger "$USER"
+systemctl --user daemon-reload
+systemctl --user enable --now emacs-daemon.service
+#+end_src
+
+Check its state with =systemctl --user status emacs-daemon.service=. The service
+starts the existing daemon script once; it does not restart Emacs after a crash.

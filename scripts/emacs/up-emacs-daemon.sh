@@ -7,7 +7,7 @@ GIT_ROOT=$(git rev-parse --show-toplevel)
 zmodload zsh/datetime
 log_timestamp="$(date '+%Y%m%dT%H%M%S')-${EPOCHREALTIME#*.}"
 log_file="$SCRIPTPATH/../../emacs/logs/${log_timestamp}-up-emacs-daemon.log"
-mkdir -p "$SCRIPTPATH/log"
+mkdir -p "$(dirname "$log_file")"
 exec > >(tee "$log_file") 2>&1
 
 source $GIT_ROOT/zsh/termcolors.zsh

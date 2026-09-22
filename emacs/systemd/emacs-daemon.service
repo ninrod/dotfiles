@@ -1,0 +1,12 @@
+[Unit]
+Description=Emacs daemon
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+Environment=PATH=/usr/local/bin:/usr/bin:/bin
+ExecStart=%h/.dotfiles/scripts/emacs/up-emacs-daemon.sh
+ExecStop=%h/.dotfiles/scripts/emacs/kill-emacs-server.sh
+
+[Install]
+WantedBy=default.target
