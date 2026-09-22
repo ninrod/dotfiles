@@ -32,6 +32,11 @@ alias glr='gld --date=relative --all --reflog'
 alias glnc='git log --no-color'
 alias glt="git log --no-color --date-order --tags --simplify-by-decoration --pretty=format:'%ai %h %d' --date=format:'%Y-%m-%d %H:%M:%S' | grep --color tag"
 alias gls="gl --simplify-by-decoration"
+alias gln="gl --name-status"
+
+# restore
+ealias gre='git restore --source=[source] -- [path]'
+
 
 # ls-files
 alias glsu='git ls-files --others --exclude-standard'
@@ -40,8 +45,7 @@ alias glsi='git ls-files -oiX .gitignore'
 # cleanup
 alias git_kill_reflog='git reflog expire --expire-unreachable=now --all && git gc --aggressive --prune=now'
 
-
-# scripts
+###### scripts
 
 # ssh fetch: fetch repos with different ssh keys than the default
 alias git-ssh-fetch="~/code/secrets/scripts/git-ssh-fetch.sh"
