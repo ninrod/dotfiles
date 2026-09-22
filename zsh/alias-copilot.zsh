@@ -2,12 +2,12 @@
 #
 function yolo() {
     local argument
-    local copilot_model="gpt-5.6-terra"
+    local copilot_model="gpt-6-sol"
     local -a copilot_arguments=()
 
     for argument in "$@"; do
         if [ "$argument" = "--opus" ]; then
-            copilot_model="claude-opus-5"
+            copilot_model="claude-opus-5.5"
         else
             copilot_arguments+=("$argument")
         fi
