@@ -1044,30 +1044,6 @@ M-x subword-mode
     :ensure t)
 #+END_SRC
 
-*** dirvish
-
-Dirvish enhances Dired globally while preserving the regular Dired commands
-and the Spaceline modeline in directory buffers.
-
-#+BEGIN_SRC emacs-lisp
-  (use-package nerd-icons
-    :ensure t)
-
-  (use-package dirvish
-    :ensure t
-    :demand t
-    :config
-    (defun ninrod/dirvish-fd-search (pattern)
-      "Search the current Dirvish directory with PATTERN."
-      (interactive (list (read-regexp "Dirvish search regexp: ")))
-      (dirvish-fd nil pattern))
-
-    (setq dirvish-attributes
-          '(vc-state subtree-state nerd-icons collapse file-time file-size)
-          dirvish-mode-line-format nil)
-    (dirvish-override-dired-mode))
-#+END_SRC
-
 *** spaceline
 
 - See [[https://github.com/milkypostman/powerline/blob/master/powerline-separators.el][Powerline separators]] for available separator styles.
@@ -1359,6 +1335,32 @@ and the Spaceline modeline in directory buffers.
         (ninrod/copilot-chat-start-next-prompt end))
       (copilot-chat message)))
 #+END_SRC
+** File Navigation
+*** dirvish
+
+Dirvish enhances Dired globally while preserving the regular Dired commands
+and the Spaceline modeline in directory buffers.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package nerd-icons
+    :ensure t)
+
+  (use-package dirvish
+    :ensure t
+    :demand t
+    :config
+    (defun ninrod/dirvish-fd-search (pattern)
+      "Search the current Dirvish directory with PATTERN."
+      (interactive (list (read-regexp "Dirvish search regexp: ")))
+      (dirvish-fd nil pattern))
+
+    (setq dirvish-attributes
+          '(vc-state subtree-state nerd-icons collapse file-time file-size)
+          dirvish-mode-line-format nil)
+    (dirvish-override-dired-mode))
+#+END_SRC
+
+
 * keybinds
 ** SPC-map
 *** definer
@@ -1520,7 +1522,7 @@ and the Spaceline modeline in directory buffers.
 
 #+BEGIN_SRC emacs-lisp
   (general-define-key
-   :keymaps '(normal visual motion)
+   :keymaps 'normal
    :prefix "t"
    "" nil
    "t" 'ghostel)
