@@ -2081,8 +2081,7 @@ and the Spaceline modeline in directory buffers.
     :hook (ghostel-mode . evil-ghostel-mode)
     :config
     (evil-define-key 'normal evil-ghostel-mode-map
-      (kbd "t") nil
-      (kbd "t c") #'ghostel-char-mode))
+      (kbd "C-e") #'ghostel-char-mode))
 
 #+END_SRC
 
