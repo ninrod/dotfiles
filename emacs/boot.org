@@ -1206,6 +1206,14 @@ M-x subword-mode
     (general-evil-setup))
 #+END_SRC
 
+** Markdown
+
+#+BEGIN_SRC emacs-lisp
+  (use-package markdown-mode
+    :ensure t
+    :mode ("\\.md\\'" "\\.markdown\\'"))
+#+END_SRC
+
 ** AI
 *** copilot
 

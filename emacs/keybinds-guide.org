@@ -163,7 +163,7 @@
 |------+--------+-------+------------------|
 | Org source e Emacs Lisp | N | S / T | Salva e sai / aborta a edição de um bloco Org. |
 
-** Dired
+** Dired / Dirvish
 
 | Modo | Estado | Tecla | Comando / efeito |
 |------+--------+-------+------------------|
