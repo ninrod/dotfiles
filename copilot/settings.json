@@ -1,3 +1,4 @@
 {
-  "editorMode": "vim"
+  "editorMode": "vim",
+  "showReasoning": false
 }
