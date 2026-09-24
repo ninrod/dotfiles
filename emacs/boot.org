@@ -87,7 +87,7 @@
         "Last text sent to the Windows clipboard by Emacs.")
 
       (defvar ninrod/win32yank--clipboard-cache-valid nil
-        "Whether the Windows clipboard has been checked since the last focus.")
+        "Whether the Windows clipboard has been checked during this command.")
 
       (defun ninrod/win32yank-copy (text)
         "Copy TEXT to the Windows clipboard through win32yank.exe."
@@ -111,8 +111,10 @@
       (defun ninrod/win32yank-paste ()
         "Return newly copied Windows clipboard text.
 
-The clipboard is read once after Emacs gains focus, then subsequent pastes
-use the local kill ring without starting win32yank.exe again."
+The clipboard is read at most once per command, so repeated reads within the
+same command (e.g. evil-mc fake cursors) do not start win32yank.exe again.
+Focus events are not relied upon because they are not delivered to tty
+frames running inside tmux."
         (unless ninrod/win32yank--clipboard-cache-valid
           (let ((text
                  (with-temp-buffer
@@ -137,7 +139,7 @@ use the local kill ring without starting win32yank.exe again."
           (progn
             (setq interprogram-cut-function #'ninrod/win32yank-copy
                   interprogram-paste-function #'ninrod/win32yank-paste)
-            (add-hook 'focus-in-hook #'ninrod/win32yank-invalidate-cache))
+            (add-hook 'pre-command-hook #'ninrod/win32yank-invalidate-cache))
         (message "win32yank.exe unavailable; using the local Emacs kill ring"))
     #+END_SRC
 ** environment
@@ -1211,7 +1213,13 @@ M-x subword-mode
 #+BEGIN_SRC emacs-lisp
   (use-package markdown-mode
     :ensure t
-    :mode ("\\.md\\'" "\\.markdown\\'"))
+    :mode ("\\.md\\'" "\\.markdown\\'")
+    :config
+    (general-define-key
+     :keymaps 'markdown-mode-map
+     :states 'normal
+     "RET" 'evil-write
+     "<return>" 'evil-write))
 #+END_SRC
 
 ** AI
