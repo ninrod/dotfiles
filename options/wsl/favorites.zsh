@@ -1,4 +1,4 @@
 PROJECT_PATHS=(        \
-  ~/code/dotfiles    \
-  ~/code/econtrole    \
+  ~/code/econtrole     \
+  ~/code/dotfiles      \
 )
