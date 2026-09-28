@@ -10,6 +10,7 @@ HOME_LOCAL_BIN=~/.local/bin
 GRADLE_HOME=~/.sdkman/candidates/gradle/current
 YARN_PATH=~/.yarn/bin
 ANDROID_HOME=~/Android/Sdk
+NODE_EXTRA_CA_CERTS=/etc/ssl/certs/TCU-ROOTCA.pem
 
 PYENV_ROOT="$HOME/.pyenv"
 
