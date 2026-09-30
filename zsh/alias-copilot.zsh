@@ -4,12 +4,14 @@ function yolo() {
     local -x COPILOT_EDITOR="emacsclient -tty"
     local argument
     local copilot_model="gpt-6.1-sol"
+    local copilot_effort="xhigh"
 
     local -a copilot_arguments=()
 
     for argument in "$@"; do
-        if [ "$argument" = "--opus" ]; then
+        if [ "$argument" = "--megabrain" ]; then
             copilot_model="claude-opus-5.5"
+            copilot_effort="high"
         else
             copilot_arguments+=("$argument")
         fi
@@ -19,7 +21,7 @@ function yolo() {
         --allow-all
         --no-ask-user
         --model "$copilot_model"
-        --effort high
+        --effort "$copilot_effort"
     )
 
     if [ "${#copilot_arguments[@]}" -eq 1 ] && [ -f "${copilot_arguments[1]}" ]; then
