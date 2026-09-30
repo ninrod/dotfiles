@@ -1,17 +1,21 @@
 # you only live once.
 #
 function yolo() {
-    local -x COPILOT_EDITOR="emacsclient -tty"
+    local -x COPILOT_EDITOR="vi"
+    if (( $+commands[emacsclient] )); then
+        COPILOT_EDITOR="emacsclient -tty"
+    elif (( $+commands[nvim] )); then
+        COPILOT_EDITOR="nvim"
+    fi
     local argument
     local copilot_model="gpt-6.1-sol"
-    local copilot_effort="xhigh"
+    local copilot_effort="high"
 
     local -a copilot_arguments=()
 
     for argument in "$@"; do
         if [ "$argument" = "--megabrain" ]; then
             copilot_model="claude-opus-5.5"
-            copilot_effort="high"
         else
             copilot_arguments+=("$argument")
         fi
