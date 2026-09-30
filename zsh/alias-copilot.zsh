@@ -8,14 +8,20 @@ function yolo() {
         COPILOT_EDITOR="nvim"
     fi
     local argument
+
+    # GPT config
     local copilot_model="gpt-6.1-sol"
-    local copilot_effort="high"
+    local copilot_effort="medium"
 
     local -a copilot_arguments=()
 
     for argument in "$@"; do
+        # ref: https://www.youtube.com/watch?v=aJ9QqQB-hlQ&t=282s
         if [ "$argument" = "--megabrain" ]; then
+            # CLAUDE MODEL CONFIG
+            # 
             copilot_model="claude-opus-5.5"
+            copilot_effort="high"
         else
             copilot_arguments+=("$argument")
         fi
