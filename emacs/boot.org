@@ -82,27 +82,130 @@
 
 ** clipboard
 *** Win32 clipboard in terminal
+    Copying uses asynchronous, serialized jobs, like Neovim's cached clipboard
+    provider. Rapid copies keep only the newest pending export; every local kill
+    still enters the kill ring immediately. While an export is pending, pasting
+    uses the local kill ring rather than importing stale Windows clipboard text.
+
+    The previous external clipboard is still saved when
+    =save-interprogram-paste-before-kill= is enabled, but its read and insertion
+    into the kill ring happen in the background. Windows receives the new text
+    after that read and the export finish; editing does not wait for either.
+    External pastes remain synchronous and are checked once per command, including
+    in terminal Emacs inside tmux. Process failures produce explicit warnings.
     #+BEGIN_SRC emacs-lisp
       (defvar ninrod/win32yank--last-copy nil
         "Last text sent to the Windows clipboard by Emacs.")
 
+      (defvar ninrod/win32yank--copy-process nil
+        "Process currently reading before a copy or exporting clipboard text.")
+
+      (defvar ninrod/win32yank--pending-copy nil
+        "Newest queued copy: text, preservation setting, and kill-ring tail.")
+
+      (defvar ninrod/win32yank--preserve-before-copy nil
+        "Dynamically bound preservation setting for the current kill.")
+
       (defvar ninrod/win32yank--clipboard-cache-valid nil
         "Whether the Windows clipboard has been checked during this command.")
 
+      (defun ninrod/win32yank--save-previous (text setting anchor)
+        "Save external TEXT under the kill at ANCHOR, respecting SETTING."
+        (when (and (not (equal text ninrod/win32yank--last-copy))
+                   (or (not (numberp setting)) (< (length text) setting)))
+          (let ((tail kill-ring))
+            (while (and tail (not (eq tail anchor)))
+              (setq tail (cdr tail)))
+            (setq tail (or tail kill-ring))
+            (if tail
+                (unless (and kill-do-not-save-duplicates
+                             (equal-including-properties text (cadr tail)))
+                  (setcdr tail (cons text (cdr tail))))
+              (setq kill-ring (list text)
+                    kill-ring-yank-pointer kill-ring))
+            (when (> kill-ring-max 0)
+              (let ((last (nthcdr (1- kill-ring-max) kill-ring)))
+                (when last (setcdr last nil)))))))
+
+      (defun ninrod/win32yank--copy-sentinel (process event)
+        "Finish a clipboard PROCESS and start the newest queued copy."
+        (when (memq (process-status process) '(exit signal))
+          (let ((job (process-get process 'clipboard-job))
+                (reading (process-get process 'clipboard-reading))
+                (buffer (process-buffer process))
+                (success (and (eq (process-status process) 'exit)
+                              (= (process-exit-status process) 0))))
+            (setq ninrod/win32yank--copy-process nil)
+            (unwind-protect
+                (cond
+                 ((not success)
+                  (setq ninrod/win32yank--clipboard-cache-valid nil)
+                  (display-warning
+                   'ninrod/win32yank
+                   (format "win32yank %s failed (%s): %s"
+                           (if reading "read before copy" "copy")
+                           (process-exit-status process)
+                           (string-trim event))
+                   :error))
+                 (reading
+                  (ninrod/win32yank--save-previous
+                   (with-current-buffer buffer (buffer-string))
+                   (nth 1 job) (nth 2 job))
+                  (ninrod/win32yank--start-copy job t))
+                 (t
+                  (setq ninrod/win32yank--last-copy (car job))))
+              (when (buffer-live-p buffer) (kill-buffer buffer)))
+            (when (and (not ninrod/win32yank--copy-process)
+                       ninrod/win32yank--pending-copy)
+              (let ((next ninrod/win32yank--pending-copy))
+                (setq ninrod/win32yank--pending-copy nil)
+                (ninrod/win32yank--start-copy next))))))
+
+      (defun ninrod/win32yank--start-copy (job &optional previous-saved)
+        "Start JOB without blocking, reading first unless PREVIOUS-SAVED."
+        (let* ((reading (and (nth 1 job) (not previous-saved)))
+               (buffer (when reading
+                         (generate-new-buffer " *win32yank clipboard*")))
+               (process
+                (condition-case err
+                    (make-process
+                     :name "win32yank-copy"
+                     :buffer buffer
+                     :command (if reading
+                                  '("win32yank.exe" "-o" "--lf")
+                                '("win32yank.exe" "-i" "--crlf"))
+                     :connection-type 'pipe
+                     :coding 'utf-8-unix
+                     :noquery t
+                     :sentinel #'ninrod/win32yank--copy-sentinel)
+                  (file-error
+                   (when (buffer-live-p buffer) (kill-buffer buffer))
+                   (signal (car err) (cdr err))))))
+          (process-put process 'clipboard-job job)
+          (process-put process 'clipboard-reading reading)
+          (setq ninrod/win32yank--copy-process process)
+          (unless reading
+            (process-send-string process (car job)))
+          (process-send-eof process)))
+
       (defun ninrod/win32yank-copy (text)
-        "Copy TEXT to the Windows clipboard through win32yank.exe."
-        (with-temp-buffer
-          (insert text)
-          (let ((coding-system-for-write 'utf-8-unix)
-                (status (call-process-region
-                         (point-min) (point-max)
-                         "win32yank.exe"
-                         nil nil nil
-                         "-i" "--crlf")))
-            (unless (eq status 0)
-              (error "win32yank copy failed (%s)" status)))
-          (setq ninrod/win32yank--last-copy text
-                ninrod/win32yank--clipboard-cache-valid t)))
+        "Export TEXT asynchronously, serializing Windows clipboard writes."
+        (let ((job (list (copy-sequence text)
+                         ninrod/win32yank--preserve-before-copy kill-ring)))
+          (setq ninrod/win32yank--clipboard-cache-valid t)
+          (if ninrod/win32yank--copy-process
+              (setq ninrod/win32yank--pending-copy job)
+            (ninrod/win32yank--start-copy job))))
+
+      (defun ninrod/win32yank--kill-new (function &rest arguments)
+        "Let FUNCTION save the previous Windows clipboard asynchronously."
+        (if (and (eq interprogram-cut-function #'ninrod/win32yank-copy)
+                 (eq interprogram-paste-function #'ninrod/win32yank-paste))
+            (let ((ninrod/win32yank--preserve-before-copy
+                   save-interprogram-paste-before-kill)
+                  (save-interprogram-paste-before-kill nil))
+              (apply function arguments))
+          (apply function arguments)))
 
       (defun ninrod/win32yank-invalidate-cache ()
         "Check the Windows clipboard before the next paste."
@@ -115,11 +218,13 @@ The clipboard is read at most once per command, so repeated reads within the
 same command (e.g. evil-mc fake cursors) do not start win32yank.exe again.
 Focus events are not relied upon because they are not delivered to tty
 frames running inside tmux."
-        (unless ninrod/win32yank--clipboard-cache-valid
+        (unless (or ninrod/win32yank--copy-process
+                    ninrod/win32yank--pending-copy
+                    ninrod/win32yank--clipboard-cache-valid)
           (let ((text
                  (with-temp-buffer
-                   (let ((coding-system-for-read 'utf-8-unix)
-                         (status (call-process
+                   (let* ((coding-system-for-read 'utf-8-unix)
+                          (status (call-process
                                   "win32yank.exe" nil t nil
                                   "-o" "--lf")))
                      (unless (eq status 0)
@@ -139,6 +244,7 @@ frames running inside tmux."
           (progn
             (setq interprogram-cut-function #'ninrod/win32yank-copy
                   interprogram-paste-function #'ninrod/win32yank-paste)
+            (advice-add 'kill-new :around #'ninrod/win32yank--kill-new)
             (add-hook 'pre-command-hook #'ninrod/win32yank-invalidate-cache))
         (message "win32yank.exe unavailable; using the local Emacs kill ring"))
     #+END_SRC
