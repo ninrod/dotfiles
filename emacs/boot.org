@@ -97,8 +97,10 @@
       finishes waits only for its remainder.
     - Changes made while Emacs keeps focus (e.g. tmux copy-mode in the Emacs
       pane) are picked up by a background refresh after
-      =ninrod/win32yank-idle-refresh-delay= idle seconds;
-      =ninrod/win32yank-paste-after= forces a fresh read.
+      =ninrod/win32yank-idle-refresh-delay= idle seconds. Every =p= served from
+      the snapshot also re-reads the clipboard in the background; if it changed,
+      the snapshot is updated and Emacs asks to undo and paste again (or, when a
+      newer kill is about to overwrite it, keeps the text below that kill).
     - Until the first focus report arrives, the clipboard is read synchronously
       once per command, so terminals without focus reporting stay correct.
     - With =save-interprogram-paste-before-kill=, the previous external clipboard
@@ -209,20 +211,36 @@
             (setq ninrod/win32yank--pending-copy nil)
             (ninrod/win32yank--start-copy job))))
 
+      (defun ninrod/win32yank--report-stale-paste (text)
+        "Report that a paste used a snapshot older than clipboard TEXT."
+        (if ninrod/win32yank--pending-copy
+            (progn
+              ;; A newer kill is about to overwrite TEXT on the clipboard.
+              (ninrod/win32yank--save-previous
+               text (list :preserve t :anchor kill-ring))
+              (message (concat "win32yank: clipboard changed without a focus "
+                               "change; its text was kept below the newest kill")))
+          (message (concat "win32yank: clipboard changed without a focus "
+                           "change; undo and paste again"))))
+
       (defun ninrod/win32yank--refresh-sentinel (process _event)
         "Store the clipboard text read by the background PROCESS."
         (when (memq (process-status process) '(exit signal))
           (let ((current (eql (process-get process 'clipboard-generation)
-                              ninrod/win32yank--generation)))
+                              ninrod/win32yank--generation))
+                (expected (process-get process 'clipboard-expected)))
             (when (eq process ninrod/win32yank--refresh-process)
               (setq ninrod/win32yank--refresh-process nil))
             (unwind-protect
-                (when current
-                  (if (ninrod/win32yank--process-succeeded-p process)
-                      (setq ninrod/win32yank--snapshot
-                            (ninrod/win32yank--process-output process)
-                            ninrod/win32yank--snapshot-valid t)
-                    ;; The next paste reads synchronously and reports the error.
+                (if (ninrod/win32yank--process-succeeded-p process)
+                    (let ((text (ninrod/win32yank--process-output process)))
+                      (when current
+                        (setq ninrod/win32yank--snapshot text
+                              ninrod/win32yank--snapshot-valid t))
+                      (when (and expected (not (equal text expected)))
+                        (ninrod/win32yank--report-stale-paste text)))
+                  ;; The next paste reads synchronously and reports the error.
+                  (when current
                     (setq ninrod/win32yank--snapshot-valid nil)))
               (kill-buffer (process-buffer process))
               (ninrod/win32yank--dispatch)
@@ -230,21 +248,26 @@
               (unless current
                 (ninrod/win32yank--refresh))))))
 
-      (defun ninrod/win32yank--refresh ()
-        "Read the Windows clipboard into the snapshot in the background."
-        (when (and ninrod/win32yank--focus-tracking
-                   (not ninrod/win32yank--refresh-process)
-                   (not ninrod/win32yank--copy-process)
-                   (not ninrod/win32yank--pending-copy))
-          (condition-case err
-              (setq ninrod/win32yank--refresh-process
-                    (ninrod/win32yank--start-process
-                     "win32yank-refresh" '("-o" "--lf")
-                     #'ninrod/win32yank--refresh-sentinel
-                     (list 'clipboard-generation ninrod/win32yank--generation)))
-            (error
-             (display-warning 'ninrod/win32yank
-                              (error-message-string err) :error)))))
+      (defun ninrod/win32yank--refresh (&optional expected)
+        "Read the Windows clipboard into the snapshot in the background.
+      When EXPECTED is non-nil, report a clipboard that no longer holds it."
+        (if (and expected ninrod/win32yank--refresh-process)
+            (process-put ninrod/win32yank--refresh-process
+                         'clipboard-expected expected)
+          (when (and ninrod/win32yank--focus-tracking
+                     (not ninrod/win32yank--refresh-process)
+                     (not ninrod/win32yank--copy-process)
+                     (not ninrod/win32yank--pending-copy))
+            (condition-case err
+                (setq ninrod/win32yank--refresh-process
+                      (ninrod/win32yank--start-process
+                       "win32yank-refresh" '("-o" "--lf")
+                       #'ninrod/win32yank--refresh-sentinel
+                       (list 'clipboard-generation ninrod/win32yank--generation
+                             'clipboard-expected expected)))
+              (error
+               (display-warning 'ninrod/win32yank
+                                (error-message-string err) :error))))))
 
       (defun ninrod/win32yank--save-previous (text job)
         "Save external TEXT below the kill exported by JOB."
@@ -374,17 +397,23 @@
         (when (eq (frame-focus-state) t)
           (ninrod/win32yank--refresh)))
 
-      (defun ninrod/win32yank-paste-after ()
-        "Re-read the Windows clipboard and paste it after point."
-        (interactive)
-        (ninrod/win32yank-invalidate-cache)
-        (call-interactively #'evil-paste-after))
+      (defun ninrod/win32yank--verify-paste (_count &optional register &rest _)
+        "Re-read the clipboard after an Evil paste served from the snapshot.
+      The paste itself never waits; a stale snapshot is reported afterwards."
+        (when (and (memq register '(nil ?\"))
+                   ninrod/win32yank--focus-tracking
+                   ninrod/win32yank--snapshot-valid
+                   (not ninrod/win32yank--copy-process)
+                   (not ninrod/win32yank--pending-copy))
+          (ninrod/win32yank--refresh ninrod/win32yank--snapshot)))
 
       (if (executable-find "win32yank.exe")
           (progn
             (setq interprogram-cut-function #'ninrod/win32yank-copy
                   interprogram-paste-function #'ninrod/win32yank-paste)
             (advice-add 'kill-new :around #'ninrod/win32yank--kill-new)
+            (dolist (command '(evil-paste-before evil-paste-after))
+              (advice-add command :before #'ninrod/win32yank--verify-paste))
             (add-function :after after-focus-change-function
                           #'ninrod/win32yank--focus-changed)
             ;; Earlier versions invalidated the snapshot before every command.
