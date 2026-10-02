@@ -2,6 +2,8 @@
 #+SUBTITLE: Extraída de =~/.dotfiles/nvim=
 #+OPTIONS: toc:2
 
+Cross-editor comparison: [[file:../editor-keybindings-comparison.org][custom keybindings grouped by functionality]].
+
 * Convenções
 
 - =SPC= é o leader e o local leader.

@@ -2,6 +2,8 @@
 #+SUBTITLE: Extraída de =~/.emacs.d/boot.org=
 #+OPTIONS: toc:2
 
+Cross-editor comparison: [[file:../editor-keybindings-comparison.org][custom keybindings grouped by functionality]].
+
 * Convenções
 
 - Escopo: a maior parte deste documento cobre o nó =~* keybinds= de
