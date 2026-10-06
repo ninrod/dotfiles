@@ -605,7 +605,8 @@ M-x subword-mode
             (setq display-line-numbers nil)
           (progn
             (setq  display-line-numbers-current-absolute nil)
-            (setq display-line-numbers 'visual))))
+            (setq display-line-numbers
+                  (if visual-line-mode 'relative 'visual)))))
 
       ;; display-line-numbers-current-absolute nil
       ;; display-line-numbers 'visual
@@ -1253,13 +1254,36 @@ M-x subword-mode
        (when (>= emacs-major-version 26)
          (ninrod/add-to-hooks
           #'(lambda ()
-              (setq-local display-line-numbers-current-absolute nil)
-              (setq display-line-numbers 'visual))
+              (setq-local display-line-numbers-current-absolute visual-line-mode)
+              (setq display-line-numbers
+                    (if visual-line-mode 'relative 'visual)))
           '(org-mode-hook
             prog-mode-hook
             markdown-mode-hook
             conf-unix-mode-hook)))
      #+END_SRC
+*** visual wrapping
+
+#+BEGIN_SRC emacs-lisp
+  (require 'disp-table)
+
+  (defun ninrod/enable-visual-wrap ()
+    "Wrap text for display, with continuation indicators and logical line numbers."
+    (visual-line-mode 1)
+    (visual-wrap-prefix-mode 1)
+    (setq-local word-wrap nil
+                buffer-display-table
+                (copy-sequence
+                 (or buffer-display-table standard-display-table
+                     (make-display-table)))
+                display-line-numbers 'relative
+                display-line-numbers-current-absolute t)
+    (set-display-table-slot buffer-display-table 'wrap
+                            (make-glyph-code #x21aa 'shadow)))
+
+  (add-hook 'text-mode-hook #'ninrod/enable-visual-wrap)
+#+END_SRC
+
 ** indentation
 
 #+BEGIN_SRC emacs-lisp

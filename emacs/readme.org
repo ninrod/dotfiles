@@ -60,6 +60,24 @@ depends on the unreasonable man.
 - ivy instead of helm
 - Markdown files (=.md= and =.markdown=) use =markdown-mode= for syntax highlighting; the package is installed from the local ELPA mirror.
 
+* Visual line wrapping
+
+Text buffers, including Org and Markdown, use the built-in =visual-line-mode=
+with character-based wrapping at the window edge, without inserting newline
+characters. Words may be split between visual rows.
+=visual-wrap-prefix-mode= preserves contextual indentation on continuation
+rows, such as inside lists.
+
+Terminal Emacs displays the Unicode rightwards arrow with hook (=U+21AA=) at
+the right edge of each continued segment. The buffer-local display table's
+=wrap= slot supplies this indicator, without plugins or graphical fringes.
+Line numbers count logical file lines rather than visual rows, with the absolute
+number shown on the current logical line; continuation rows do not acquire new
+line numbers.
+
+Programming buffers keep their existing truncation behavior. Neither Auto Fill
+nor paragraph reformatting is enabled, and wrapping does not modify file content.
+
 * Code folding
 
 Origami is enabled in programming modes and =vimrc-mode=. The original
