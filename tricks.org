@@ -1,0 +1,5 @@
+* tricks
+
+Esse arquivo coleciona alguns truques colecionados ao longo do tempo para demonstrar a utilidade da config
+
+** fd-find + fzf + clip

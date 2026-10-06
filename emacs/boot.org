@@ -1980,14 +1980,17 @@ and the Spaceline modeline in directory buffers.
   (org-comma-map
    "" 'nil
    ;; "w" 'reserved
+   ;; "s" 'reserved
+   ;; "d" 'reserved
+   ;; "g" 'reserved
+   ;; "t" 'reserved
+   ;; "p" 'reserved
 
-   "s" 'org-schedule
-   "d" 'org-deadline
+   "b" 'consult-org-heading
+
    "r" 'org-refile
    "e" 'org-edit-special
 
-   "b" 'consult-org-heading
-   "g" 'org-goto
 
    "l" 'org-metaright
    "h" 'org-metaleft
@@ -1998,12 +2001,9 @@ and the Spaceline modeline in directory buffers.
 
    "n" 'org-narrow-to-subtree
 
-   "t" 'org-todo
-
    "-" 'org-ctrl-c-minus
    "*" 'org-ctrl-c-star
 
-   "p" 'org-priority
 
    "TAB" 'ninrod/org-insert-subheading ; open new subheading
 
