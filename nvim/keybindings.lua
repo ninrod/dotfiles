@@ -7,6 +7,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 vim.keymap.set("n", "<CR>", "<cmd>w<CR>")
+vim.keymap.set("n", "<Tab>", "za", { desc = "Toggle fold" })
 vim.keymap.set("n", "q", "ZQ")
 vim.keymap.set("n", "Q", "q")
 

@@ -18,6 +18,7 @@ Cross-editor comparison: [[file:../editor-keybindings-comparison.org][custom key
 | Tecla | Comando / efeito |
 |-------+------------------|
 | RET | Salva o buffer atual. |
+| TAB, Normal mode | Toggle the fold under the cursor (=za=); Org keeps its buffer-local headline cycling. |
 | q | Sai imediatamente sem salvar (=ZQ=). |
 | Q | Inicia o comando de gravação de macro nativo (=q=). |
 | ( / ) | Vai ao parágrafo anterior / próximo. |
