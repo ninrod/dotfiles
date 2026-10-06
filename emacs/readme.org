@@ -60,6 +60,33 @@ depends on the unreasonable man.
 - ivy instead of helm
 - Markdown files (=.md= and =.markdown=) use =markdown-mode= for syntax highlighting; the package is installed from the local ELPA mirror.
 
+* Snippets
+
+YASnippet is installed from the local ELPA mirror and enabled in programming,
+text (including Org), and configuration buffers, but not terminal buffers.
+Personal snippets are loaded from =emacs/snippets/= in this repository,
+also available as =~/.emacs.d/snippets/= after deployment. Subdirectories
+are named after major modes. A snippet's =# key:= header defines its
+abbreviation; without that header, its filename supplies the key.
+For example, =js-mode/log= expands =log= and =org-mode/el.snippet= expands =el=.
+
+In Evil Normal state:
+
+- =SPC i e=: expand the snippet key at the cursor and enter Insert state.
+- =SPC i i=: select and insert a snippet, then enter Insert state.
+- =SPC i n=: create a snippet.
+- =SPC i v=: visit a snippet's source.
+- =SPC i d=: open the personal snippets directory in Dired.
+
+In Evil Insert state:
+
+- =TAB=: expand the snippet key immediately before point. If no snippet
+  matches, run the existing TAB command (such as indentation or Org cycling).
+- Inside an active snippet, =TAB= and =S-TAB= move between fields.
+
+Normal-state TAB bindings remain unchanged. No additional plugin is needed.
+Files ending in =.snippet= use =snippet-mode=.
+
 * Local thin MELPA mirror
 Run =make= from the =emacs/= directory to regenerate the mirror from installed
 Emacs packages. The =ninrod/thin-melpa-mirror= repository must already be cloned
@@ -78,4 +105,3 @@ run's output in =emacs/scripts/logs/[YYYY-MM-DD-HH-MM-SS]-thin-elpa-mirror.log=.
   - move horizontally in long lines like in vim's =zt=, =zb=, etc...
   - implement a new operator that performs r<char> in visual mode (but in normal mode). useful for |    | -> |------| in markdown mode.
     - alternatively: implement a function that substitutes all occurrences of |   | -> |-----|
-

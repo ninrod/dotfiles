@@ -1,5 +1,14 @@
+#+STARTUP: indent
+#+STARTUP: overview
+
 * tricks
 
 Esse arquivo coleciona alguns truques colecionados ao longo do tempo para demonstrar a utilidade da config
 
 ** fd-find + fzf + clip
+
+escolhe um diretório na árvore profunda do dir atual `.` via fzf e joga para o clipboard
+
+#+BEGIN_SRC sh
+  $ fd --type d . | fzf | clip
+#+END_SRC

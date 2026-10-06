@@ -128,6 +128,23 @@ Cross-editor comparison: [[file:../editor-keybindings-comparison.org][custom key
 | Compleção | Global e minibuffer | C-TAB | Executa =dabbrev-expand=. |
 | Ações | Emacs e minibuffer | C-. / C-; / C-h B | Ação, ação padrão ou bindings do candidato (=embark=). |
 
+** Snippets
+
+YASnippet is enabled in programming, text, Org, and configuration buffers.
+Personal snippets live in =emacs/snippets/= (=~/.emacs.d/snippets/=).
+
+| Evil state | Key | Command / effect |
+|------------+-----+------------------|
+| Normal | SPC i e | Expand the snippet key at the cursor and enter Insert state. |
+| Normal | SPC i i | Select and insert a snippet, then enter Insert state. |
+| Normal | SPC i n | Create a snippet (=yas-new-snippet=). |
+| Normal | SPC i v | Visit a snippet's source (=yas-visit-snippet-file=). |
+| Normal | SPC i d | Open the personal snippets directory in Dired. |
+| Insert | TAB | Expand a snippet, or run the existing TAB command if no key matches. |
+| Insert, active snippet | TAB / S-TAB | Move to the next / previous field. |
+
+Normal-state TAB bindings remain unchanged. No additional plugin is needed.
+
 * Atalhos por modo ou tipo de buffer
 
 ** Org

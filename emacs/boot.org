@@ -1506,6 +1506,44 @@ M-x subword-mode
      "<return>" 'evil-write))
 #+END_SRC
 
+** Snippets
+
+#+BEGIN_SRC emacs-lisp
+  (use-package yasnippet
+    :ensure t
+    :demand t
+    :mode ("\\.snippet\\'" . snippet-mode)
+    :hook ((prog-mode text-mode conf-mode) . yas-minor-mode)
+    :custom
+    (yas-snippet-dirs
+     (list (expand-file-name "snippets" user-emacs-directory)))
+    (yas-fallback-behavior 'call-other-command)
+    :config
+    (define-key yas-minor-mode-map (kbd "TAB") nil)
+    (define-key yas-minor-mode-map (kbd "<tab>") nil)
+    (general-define-key
+     :states 'insert
+     :keymaps 'yas-minor-mode-map
+     "TAB" #'yas-expand
+     "<tab>" #'yas-expand)
+    (yas-reload-all)
+
+    (defun ninrod/yas-expand ()
+      "Expand the snippet key at the Evil cursor and enter Insert state."
+      (interactive)
+      (evil-append 1)
+      (let ((yas-fallback-behavior 'return-nil))
+        (unless (yas-expand)
+          (evil-normal-state)
+          (user-error "No snippet key before point"))))
+
+    (defun ninrod/yas-insert-snippet ()
+      "Select a snippet and enter Evil Insert state."
+      (interactive)
+      (call-interactively #'yas-insert-snippet)
+      (evil-insert-state)))
+#+END_SRC
+
 ** AI
 *** copilot
 
@@ -1721,6 +1759,21 @@ and the Spaceline modeline in directory buffers.
    "ct" 'copilot-chat-task
    "ci" 'copilot-install-server
    "cl" 'copilot-login)
+#+END_SRC
+
+*** snippets
+
+#+BEGIN_SRC emacs-lisp
+  (spc-map
+   :states 'normal
+   "i" '(:ignore t :which-key "snippets")
+   "ie" 'ninrod/yas-expand
+   "ii" 'ninrod/yas-insert-snippet
+   "in" 'yas-new-snippet
+   "iv" 'yas-visit-snippet-file
+   "id" '(lambda ()
+           (interactive)
+           (dired (expand-file-name "snippets" user-emacs-directory))))
 #+END_SRC
 
 *** multiple cursors
