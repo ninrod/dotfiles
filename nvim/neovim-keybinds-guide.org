@@ -85,9 +85,15 @@ Cross-editor comparison: [[file:../editor-keybindings-comparison.org][custom key
 | C-n / C-p | Seleciona o candidato seguinte / anterior. |
 | C-b / C-f | Rola a documentação do candidato para cima / baixo. |
 | C-y / RET | Confirma o candidato selecionado. |
-| TAB / S-TAB | Seleciona o candidato seguinte / anterior. |
+| TAB / S-TAB | Expand or navigate snippet fields first; otherwise select the next / previous completion candidate, or use the original key behavior. |
 | C-SPC | Abre o menu de completagem. |
 | C-l / C-h | Expande ou avança / retrocede no snippet, quando aplicável. |
+| SPC i d, Normal mode | Open the personal snippets directory (=~/.dotfiles/nvim/snippets/=). |
+
+Personal LuaSnip definitions use SnipMate format, grouped by Neovim filetype in
+=nvim/snippets/*.snippets=. See [[file:readme.org][snippet organization and editing]].
+TAB snippet mappings apply to Insert and Select modes; Normal-mode Org folding
+is unchanged.
 
 * Prefixo =s=: janelas, busca e projetos
 

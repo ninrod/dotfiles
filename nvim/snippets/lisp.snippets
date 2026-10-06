@@ -1,0 +1,21 @@
+snippet let let
+
+	(let ((${1:var1} ${2: value1}))
+	     $0)
+snippet con con
+	(cond (${1:condition} $0)
+	      (t nil))
+snippet zc zc
+	;; ${1:header} {{{
+
+	$0
+
+	;; }}}
+snippet def defun
+	(defun ${1:fun} (${2:args})
+	  "${3:docstring}"
+	  ${4:(interactive${5: "${6:P}"})}
+	$0)
+snippet use use-package
+	(use-package $0
+	    :ensure t)

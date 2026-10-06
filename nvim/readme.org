@@ -1,0 +1,38 @@
+#+STARTUP: indent
+#+STARTUP: overview
+
+* Ninrod's neovim configuration
+- I've split up the initial lua script  into manageable smaller files
+
+* Neovim snippets
+
+The active Neovim configuration lives in =nvim/=. Its existing LuaSnip plugin
+loads personal SnipMate-format snippets from =nvim/snippets/=, available as
+=~/.dotfiles/nvim/snippets/= and =~/.config/nvim/snippets/= after deployment.
+The loader and directory shortcut resolve the path through =stdpath("config")=.
+The legacy Vimscript configuration does not load this engine.
+
+Snippet files are named after Neovim filetypes: =javascript.snippets=,
+=typescript.snippets=, =org.snippets=, =sh.snippets=, and so on. Each definition
+starts with =snippet <abbreviation> <description>=, followed by a tab-indented
+body. Numbered fields =$1=, =$2=, etc. are visited in order; =$0= is the final
+cursor position. Escape literal dollar signs with a backslash.
+
+All 13 personal YASnippet definitions from =emacs/snippets/= have been ported.
+Emacs and Neovim keep separate copies; subsequent edits are not synchronized.
+The =extends= directives preserve Lisp-to-Elisp and JavaScript-to-TypeScript
+inheritance, including JSX and TSX filetypes. Emacs JS variants map to
+=javascript=, Lisp interaction buffers to =elisp=, and HTML/web buffers to
+=html=. Shell defaults and snippet bodies are preserved.
+
+- In Insert or Select mode, =TAB= expands a matching snippet or advances through
+  its fields before navigating completion candidates.
+- =S-TAB= returns to the previous field, or previous completion candidate.
+- With neither a snippet action nor completion menu, the original key behavior
+  is preserved. Normal-mode Org folding is unchanged.
+- =C-l= and =C-h= remain available for snippet navigation.
+- In Normal mode, =SPC i d= opens the personal snippets directory.
+
+LuaSnip lazy-loads definitions when their filetype is used and watches loaded
+snippet files for changes. Adding another =<filetype>.snippets= requires no
+plugin registration.

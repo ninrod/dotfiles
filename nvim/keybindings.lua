@@ -216,6 +216,10 @@ function M.setup_multicursor_keybindings(mc)
 end
 
 -- PLUGIN: nvim-cmp and LuaSnip keybindings
+vim.keymap.set("n", "<leader>id", function()
+	vim.cmd.edit(vim.fn.fnameescape(vim.fn.stdpath("config") .. "/snippets"))
+end, { desc = "Open personal snippets directory" })
+
 function M.cmp_mappings(cmp, luasnip)
 	return cmp.mapping.preset.insert({
 		["<C-n>"] = cmp.mapping.select_next_item(),
@@ -224,8 +228,24 @@ function M.cmp_mappings(cmp, luasnip)
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-y>"] = cmp.mapping.confirm({ select = true }),
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
-		["<Tab>"] = cmp.mapping.select_next_item(),
-		["<S-Tab>"] = cmp.mapping.select_prev_item(),
+		["<Tab>"] = cmp.mapping(function(fallback)
+			if luasnip.expand_or_locally_jumpable() then
+				luasnip.expand_or_jump()
+			elseif cmp.visible() then
+				cmp.select_next_item()
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+		["<S-Tab>"] = cmp.mapping(function(fallback)
+			if luasnip.locally_jumpable(-1) then
+				luasnip.jump(-1)
+			elseif cmp.visible() then
+				cmp.select_prev_item()
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
 		["<C-Space>"] = cmp.mapping.complete({}),
 		["<C-l>"] = cmp.mapping(function()
 			if luasnip.expand_or_locally_jumpable() then

@@ -1,6 +1,0 @@
-#+STARTUP: indent
-#+STARTUP: overview
-
-* Ninrod's vim configuration
-- I've split up vimrc into manageable smaller files
-

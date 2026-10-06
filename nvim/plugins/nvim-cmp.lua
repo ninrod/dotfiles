@@ -10,8 +10,6 @@ return {
 	config = function()
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
-		luasnip.config.setup({})
-
 		cmp.setup({
 			snippet = {
 				expand = function(args)
