@@ -13,3 +13,10 @@ $ fd --type d . | fzf | clip
 * yasnippet (emacs)
 
 expanda `bang` ou `if` em um shell file no sh-mode
+
+
+
+* word wrap (emacs)
+
+em uma linha grande, veja q o emacs quebra a linha automaticamente, mas só em termos de exibição. expanda `bang`
+ou `if` em um shell file no sh-mode. experimente usar `gwip` ou `gwg_`
