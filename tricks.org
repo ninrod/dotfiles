@@ -9,3 +9,7 @@ escolhe um diretório na árvore profunda do dir atual `.` via fzf e joga para o
 #+BEGIN_SRC sh
 $ fd --type d . | fzf | clip
 #+END_SRC
+
+* yasnippet (emacs)
+
+expanda `bang` ou `if` em um shell file no sh-mode
