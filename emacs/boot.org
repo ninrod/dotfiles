@@ -2330,6 +2330,14 @@ and the Spaceline modeline in directory buffers.
 #+END_SRC
 
 ** magit
+*** blame current line
+
+#+BEGIN_SRC emacs-lisp
+  (general-define-key
+   :states 'normal
+   "g b" 'magit-blame-addition)
+#+END_SRC
+
 *** with-editor-mode commit finish
 
 #+BEGIN_SRC emacs-lisp
