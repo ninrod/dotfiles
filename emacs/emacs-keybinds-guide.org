@@ -128,6 +128,19 @@ Cross-editor comparison: [[file:../editor-keybindings-comparison.org][custom key
 | Compleção | Global e minibuffer | C-TAB | Executa =dabbrev-expand=. |
 | Ações | Emacs e minibuffer | C-. / C-; / C-h B | Ação, ação padrão ou bindings do candidato (=embark=). |
 
+** Code folding
+
+Origami is enabled in programming modes and =vimrc-mode=, using ={{{= / =}}}=
+markers with nested regions. Marker folds start closed when a buffer is opened.
+Ordinary comments and unmarked code are not folded.
+Org keeps its existing outline-based folding.
+
+| Evil state | Key | Command / effect |
+|------------+-----+------------------|
+| Normal | TAB / za | Toggle the code fold at point. |
+| Normal | zc / zo | Close / open the code fold at point. |
+| Normal | zM / zR | Close / open all code folds. |
+
 ** Snippets
 
 YASnippet is enabled in programming, text, Org, and configuration buffers.

@@ -104,7 +104,7 @@ parte da configuracao atual carregada.
 | eyebrowse                      | Workspaces de janelas.                      | tab-bar-mode core; adiar. |
 | multi-term                     | Multiplos terminais.                        | Usar eshell/term; avaliar eat depois. |
 | ag                             | Front-end para the_silver_searcher.         | rgrep core ou consult-ripgrep; adiar. |
-| origami                        | Folding extensivel.                         | hs-minor-mode e futuro ts-fold; nao portar. |
+| origami                        | Extensible folding.                         | Restored with triple-braces marker folding and Evil bindings. |
 | editorconfig                   | Aplicar .editorconfig.                      | Recurso embutido; habilitar o core. |
 | ibuffer-vc                     | Agrupar Ibuffer por repositorio.            | Sem equivalente core identico; adiar. |
 | atomic-chrome                  | Editar campos do navegador.                 | Fora do fluxo terminal; adiar. |

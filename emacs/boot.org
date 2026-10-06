@@ -1506,6 +1506,55 @@ M-x subword-mode
      "<return>" 'evil-write))
 #+END_SRC
 
+** Code folding
+
+#+BEGIN_SRC emacs-lisp
+  (use-package origami
+    :ensure t
+    :demand t
+    :after evil
+    :hook ((prog-mode vimrc-mode) . ninrod/origami-setup)
+    :init
+    ;; Avoid Origami's invalid box color when the theme leaves it unspecified.
+    (custom-set-faces
+     '(origami-fold-header-face ((t (:inherit highlight :box nil)))))
+    :config
+    (defun ninrod/origami-setup ()
+      "Enable marker folding and initially close all folds."
+      (setq-local origami-fold-style 'triple-braces)
+      (origami-mode 1)
+      (origami-close-all-nodes (current-buffer)))
+
+    (defun ninrod/origami-toggle-node ()
+      "Toggle the marker fold on the current line, preserving Org folding."
+      (interactive)
+      (if origami-mode
+          (save-excursion
+            (goto-char (line-end-position))
+            (origami-toggle-node (current-buffer) (point)))
+        (evil-toggle-fold)))
+
+    (setcdr (assoc '(origami-mode) evil-fold-list)
+            (list :open-all (lambda () (origami-open-all-nodes (current-buffer)))
+                  :close-all (lambda () (origami-close-all-nodes (current-buffer)))
+                  :toggle #'ninrod/origami-toggle-node
+                  :open (lambda ()
+                          (origami-open-node (current-buffer) (line-end-position)))
+                  :open-rec (lambda ()
+                              (origami-open-node-recursively
+                               (current-buffer) (line-end-position)))
+                  :close (lambda ()
+                           (origami-close-node (current-buffer) (line-end-position))))))
+
+  (use-package lua-mode
+    :ensure t
+    :mode "\\.lua\\'")
+
+  (use-package vimrc-mode
+    :ensure t
+    :mode ("\\.vim\\'" "\\.?vimrc\\'"))
+#+END_SRC
+
 ** Snippets
 
 #+BEGIN_SRC emacs-lisp
@@ -1961,7 +2010,7 @@ and the Spaceline modeline in directory buffers.
 #+BEGIN_SRC emacs-lisp
   (general-nmap
    "RET" 'evil-write
-   "TAB" 'evil-toggle-fold
+   "TAB" 'ninrod/origami-toggle-node
    "DEL" 'find-file
    "q"   'evil-quit
    "-"   'evil-ex-nohighlight

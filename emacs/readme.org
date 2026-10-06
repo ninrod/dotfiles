@@ -60,6 +60,21 @@ depends on the unreasonable man.
 - ivy instead of helm
 - Markdown files (=.md= and =.markdown=) use =markdown-mode= for syntax highlighting; the package is installed from the local ELPA mirror.
 
+* Code folding
+
+Origami is enabled in programming modes and =vimrc-mode=. The original
+=triple-braces= configuration is restored: regions delimited by ={{{= and
+=}}}= are folded, including nested regions and markers in comments.
+All marker folds start closed when a programming buffer is opened.
+Ordinary comment lines and unmarked code are not folded.
+
+Lua files use =lua-mode=; Vimscript files (=.vim= and =.vimrc=) use
+=vimrc-mode=. Missing packages are installed from the local ELPA mirror.
+
+In Evil Normal state, =TAB= or =za= toggles a code fold, =zc= closes it,
+=zo= opens it, =zM= closes all folds, and =zR= opens all folds.
+Org and text buffers retain their existing folding behavior.
+
 * Snippets
 
 YASnippet is installed from the local ELPA mirror and enabled in programming,
