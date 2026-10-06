@@ -4,6 +4,16 @@
 * Ninrod's neovim configuration
 - I've split up the initial lua script  into manageable smaller files
 
+* Visual wrapping indicator
+
+The native =showbreak= option displays a Unicode rightwards arrow with hook
+(=U+21AA=) followed by a space at the start of each wrapped continuation.
+Unlike the terminal Emacs indicator, this marker appears on the continuation
+row, not at the right edge of the preceding segment.
+
+Existing wrapping and indentation settings are unchanged. The marker is
+display-only and does not modify file content. No additional plugin is needed.
+
 * Neovim snippets
 
 The active Neovim configuration lives in =nvim/=. Its existing LuaSnip plugin

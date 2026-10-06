@@ -5,6 +5,7 @@ vim.opt.relativenumber = true
 vim.opt.mouse = "a"
 vim.opt.showmode = false
 vim.opt.breakindent = true
+vim.opt.showbreak = vim.fn.nr2char(0x21aa) .. " "
 vim.opt.undofile = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true

@@ -78,6 +78,22 @@ line numbers.
 Programming buffers keep their existing truncation behavior. Neither Auto Fill
 nor paragraph reformatting is enabled, and wrapping does not modify file content.
 
+* Filling text to the current window
+
+In text buffers, including Org and Markdown, =M-q= (=fill-paragraph=) and Evil's
+=gq= use the selected window's usable width minus two columns. The width is
+calculated when the command runs, accounting for line-number space and the
+continuation indicator. Resizing, splitting windows, and connecting a new
+=emacsclient= frame require no configuration reload.
+
+The daemon only installs the command advice at startup; it does not calculate a
+terminal width then. =fill-column= is bound temporarily for each filling command,
+so two windows showing the same buffer can use different widths without changing
+that buffer's saved setting. Programming buffers keep their existing fill width.
+
+These explicit filling commands insert real newline characters and modify the
+buffer. Visual wrapping remains display-only, and Auto Fill is not enabled.
+
 * Code folding
 
 Origami is enabled in programming modes and =vimrc-mode=. The original

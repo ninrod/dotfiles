@@ -1284,6 +1284,22 @@ M-x subword-mode
   (add-hook 'text-mode-hook #'ninrod/enable-visual-wrap)
 #+END_SRC
 
+** paragraph filling
+
+#+BEGIN_SRC emacs-lisp
+  (defun ninrod/fill-to-window-width (function &rest arguments)
+    "Fill text using the selected window's current usable width."
+    (if (and (derived-mode-p 'text-mode)
+             (eq (current-buffer) (window-buffer (selected-window))))
+        (let ((fill-column (max 1 (- (window-max-chars-per-line) 2))))
+          (apply function arguments))
+      (apply function arguments)))
+
+  (dolist (command '(fill-paragraph fill-region))
+    (unless (advice-member-p #'ninrod/fill-to-window-width command)
+      (advice-add command :around #'ninrod/fill-to-window-width)))
+#+END_SRC
+
 ** indentation
 
 #+BEGIN_SRC emacs-lisp
