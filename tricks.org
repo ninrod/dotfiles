@@ -14,9 +14,29 @@ $ fd --type d . | fzf | clip
 
 expanda `bang` ou `if` em um shell file no sh-mode
 
-
-
 * word wrap (emacs)
 
 em uma linha grande, veja q o emacs quebra a linha automaticamente, mas só em termos de exibição. expanda `bang`
 ou `if` em um shell file no sh-mode. experimente usar `gwip` ou `gwg_`
+
+
+* diretórios
+
+#+BEGIN_SRC sh
+  # voltando na raiz
+  $ mkdir -p a/b/c/d/e/f/g/h/i/j
+  $ cd  a/b/c/d/e/f/g/h/i/j
+  $ bd a
+
+  # escolhendo diretórios já visitados
+  $ d
+
+  # indo para diretórios favoritos
+  $ f
+
+  # expandindo nomes de diretórios parciais
+  $ cd
+  $ cd c/d/e[tab]
+#+END_SRC
+
+

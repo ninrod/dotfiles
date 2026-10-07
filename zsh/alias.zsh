@@ -42,6 +42,8 @@ if (( $+commands[zoxide] )); then
   alias d=zi
 fi
 alias 1='cd +1'
+alias fd=fdfind
+alias fbd='cd -- $(fd --type d . | fzf)'
 
 # BSSH: better ssh (ownz putty)
 alias bssh="~/.dotfiles/scripts/terminal/bssh.sh"
