@@ -174,7 +174,7 @@ Cloning is an alternative that creates a copy without a separate paste step.
 |------+--------+-------+------------------|
 | Git | N, V, M | m g | Abre o status Magit. |
 | Org | N, V, M | m o | Abre a agenda Org. |
-| Buffers | N, V, M | m f | Copia o nome do arquivo atual. |
+| Buffers | N | m f | Copy the current file's full path to the kill ring (=ninrod/add-filename-to-kill-ring=). |
 | Buffers | N, V, M | m k | Bury the current buffer and switch to =*scratch*=. |
 | Edição | N, V, M | m r | Repete o alinhamento. |
 | Evil | N, V, M | m e | Entra no estado Emacs do Evil. |
@@ -201,7 +201,7 @@ Cloning is an alternative that creates a copy without a separate paste step.
 | Evil | N | q / - | Fecha conforme =evil-quit= / remove destaque de busca. |
 | Movimento | M | ( / ) | Vai ao parágrafo anterior / próximo. |
 | Interface | Global | F11 | Alterna tela cheia. |
-| Scroll | N, V | z . / z - | Centraliza / posiciona a linha atual na base da janela. |
+| Scroll | N, V | z . / z - / zt | Centraliza / posiciona a linha atual na base da janela. |
 | Busca | Isearch | ESC | Cancela a busca incremental. |
 | Busca | Evil Ex | ESC | Cancela o minibuffer da linha de comando Evil. |
 | Edição | Global | RET | Insere uma nova linha com indentação. |

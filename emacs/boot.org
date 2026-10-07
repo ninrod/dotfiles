@@ -1989,7 +1989,6 @@ and the Spaceline modeline in directory buffers.
    ;; "t"   'reserved
    ;; "g"   'reserved
    ;; "o"   'reserved
-   ;; "f"   'reserved
 
    ;; multiple cursor ops
    "c" 'ninrod/evil-mc-make-cursors-at-line-beginnings
@@ -2009,6 +2008,8 @@ and the Spaceline modeline in directory buffers.
    "r" 'spacemacs/align-repeat
    "e" 'evil-emacs-state
    )
+
+  (general-nmap "mf" 'ninrod/add-filename-to-kill-ring)
 #+END_SRC
 
 ** g prefix
