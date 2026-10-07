@@ -4,14 +4,154 @@
 
 Cross-editor comparison: [[file:../editor-keybindings-comparison.org][custom keybindings grouped by functionality]].
 
+Multi-step operations are grouped under one Org heading, even when their
+bindings use different prefixes or modes. Follow the steps in order;
+alternatives and cleanup commands are identified separately.
+
 * Convenções
 
 - =SPC= é o leader e o local leader.
-- Este guia cobre mapeamentos declarados nesta configuração. Bindings
-  nativos do Neovim e defaults de plugins não alterados aqui ficam fora do
-  escopo.
+- Scope: mappings declared in this configuration. Native commands and
+  unchanged plugin defaults are included only when needed to complete a
+  documented workflow, and are identified as such.
 - Uma linha indicada como “com LSP” só existe em buffers aos quais um servidor
   LSP está anexado. Bindings de seleção exigem uma seleção Visual.
+
+* Multi-step workflows
+
+** Record and replay a macro
+
+Choose a register when starting the recording, perform the editing
+operation, then stop and replay it. Use =Q= to stop: this configuration maps
+Normal-mode =q= to quit without saving.
+
+| Step | Mode | Key | Command / effect |
+|------+------+-----+------------------|
+| Start recording | Normal | Q followed by a register, e.g. Q a | Invoke native =q= to record into the chosen register. |
+| Stop recording | Normal | Q | Invoke native =q= again to finish recording. |
+| Replay | Normal | @ followed by the register, e.g. @ a | Replay the recorded macro (native command). |
+| Repeat replay | Normal | @ @ | Replay the last executed macro again (native command). |
+
+** Split a window and move between windows
+
+| Step | Mode | Key | Command / effect |
+|------+------+-----+------------------|
+| Split | Normal | s x / s y | Create a horizontal / vertical split. |
+| Move horizontally | Normal | s h / s l | Focus the window on the left / right. |
+| Move vertically | Normal | s j / s k | Focus the window below / above. |
+
+** Reveal a file in Neo-tree and close the tree
+
+| Step | Context | Key | Command / effect |
+|------+---------+-----+------------------|
+| Open / reveal | Normal, editing buffer | \ | Reveal the current file in Neo-tree. |
+| Close | Neo-tree window | \ | Close the tree window. |
+
+** Search and resume the last picker
+
+Choose a search source, select a result, then resume the picker if needed.
+The resume command reopens the last picker, not necessarily the last text
+search.
+
+| Step | Mode | Key | Command / effect |
+|------+------+-----+------------------|
+| Search project text | Normal | SPC s g / SPC s w | Search project text / the word under the cursor. |
+| Search buffer text | Normal | =SPC /= or =SPC s /= | Search lines in the current buffer / text in open buffers. |
+| Open a result | Picker | RET | Confirm the selected result (Snacks default). |
+| Resume | Normal | SPC s r | Resume the last picker. |
+
+** Inspect diagnostics and choose an action
+
+Navigation, inspection, and actions belong to the same troubleshooting
+workflow. Code actions require an attached LSP server and depend on what
+that server offers at the cursor.
+
+| Step | Mode | Key | Command / effect |
+|------+------+-----+------------------|
+| Locate | Normal | [ d / ] d | Go to the previous / next diagnostic. |
+| Browse a list instead | Normal | SPC s d / SPC q | Browse diagnostics with Snacks / populate the location list. |
+| Inspect | Normal | SPC e | Show diagnostics in a floating window. |
+| Act | Normal, with LSP | SPC c a | Request code actions at the cursor. |
+
+** Copy text and replace a target with the register
+
+First yank the source, then move to the target and replace it. The
+replacement mappings use the selected register; an explicit register
+prefix such as ="a= can be used for both the yank and replacement.
+
+| Step | Mode | Key | Command / effect |
+|------+------+-----+------------------|
+| Copy source | Normal | y followed by a motion or text object | Yank the source into a register (native command). |
+| Replace target | Normal | g r followed by a motion | Replace the target with the register contents. |
+| Replace a line instead | Normal | g r r | Replace the current line with the register contents. |
+| Replace a selection instead | Visual | g r | Replace the selected text with the register contents. |
+
+The old =gra=, =gri=, =grn=, =grt=, and =grx= mappings are removed to avoid
+conflicts with register replacement.
+
+** Exchange two pieces of text
+
+Mark the first piece, move to the second, then repeat the exchange command
+to swap them. Cancel is an alternative to selecting the second piece.
+
+| Step | Mode | Key | Command / effect |
+|------+------+-----+------------------|
+| Mark first piece | Normal | c x followed by a motion / c x x | Mark the motion's range / the current line for exchange. |
+| Mark second piece and exchange | Normal | c x followed by a motion / c x x | Select the second range / line and exchange it with the first. |
+| Use selections instead | Visual | X, then X on another selection | Mark the first selection, then exchange it with the second. |
+| Cancel | Normal | c x c | Cancel the pending exchange. |
+
+** Align text and accept or cancel the preview
+
+| Step | Mode | Key | Command / effect |
+|------+------+-----+------------------|
+| Start with preview | Normal | g A followed by a motion or text object | Select the range and open Mini.align's preview. |
+| Configure alignment | Mini.align session | Interactive prompts | Choose the alignment rules and inspect the preview. |
+| Accept | Mini.align session | RET | Accept the previewed alignment. |
+| Cancel instead | Mini.align session | ESC | Cancel the previewed alignment. |
+| Alternative without preview | Normal | g a followed by a motion or text object | Align the selected range without preview. |
+
+** Open a terminal and return to editing
+
+| Step | Context | Key / command | Command / effect |
+|------+---------+---------------+------------------|
+| Open | Normal | :terminal | Open the integrated terminal (native command). |
+| Enter terminal input | Terminal buffer, Normal | i | Enter Terminal mode to send input to the terminal (native command). |
+| Return to Normal | Terminal mode | ESC ESC | Leave terminal input mode. |
+| Move to an editing window | Terminal buffer, Normal | s h / s j / s k / s l | Focus an existing editing window. |
+| Resume terminal input | Terminal buffer, Normal | i | Re-enter Terminal mode (native command). |
+
+** Multiple cursors: select targets, edit, and clean up
+
+Choose one way to create cursors, edit with the active cursors, then remove
+them. Search-based creation uses the active search pattern; =*= is a native
+way to set it from the word under the cursor.
+
+*** Create cursors
+
+| Context | Key | Command / effect |
+|---------+-----+------------------|
+| Normal, after * | m s / SPC n | Create cursors for every match of the active search. |
+| Visual Line | m c | Create a cursor at the beginning of each selected line and return to Normal. |
+| Visual | m p | Prompt for a pattern and create cursors at matches inside the selection. |
+| Normal / Visual | Up / Down | Add a cursor on the line above / below. |
+| Normal / Visual | SPC Up / SPC Down | Move the main cursor without adding a cursor on the skipped line. |
+| Normal / Visual | SPC N | Add a cursor at the previous match. |
+| Normal / Visual | SPC s / SPC S | Skip the next / previous match without adding a cursor. |
+| Visual | SPC \vert{} | Split the selection into cursors. |
+| Normal | g m followed by a motion | Create cursors for each line covered by the motion. |
+| Visual | I / A | Create cursors at the beginning / end of each selected line and enter Insert. |
+| Normal | C-mouse click / drag | Create, move, or remove cursors with the mouse. |
+| Normal / Visual | C-q | Toggle a manual cursor at the current position. |
+
+*** Navigate or remove active cursors
+
+| Context | Key | Command / effect |
+|---------+-----+------------------|
+| Normal / Visual, active cursors | Left / Right | Select the previous / next cursor. |
+| Normal / Visual, active cursors | SPC x | Remove the current cursor. |
+| Normal, disabled cursors | ESC | Re-enable cursors; this first press does not clear them. |
+| Normal, enabled cursors | ESC | Clear all additional cursors. |
 
 * Atalhos gerais
 
@@ -20,17 +160,12 @@ Cross-editor comparison: [[file:../editor-keybindings-comparison.org][custom key
 | RET | Salva o buffer atual. |
 | TAB, Normal mode | Toggle the fold under the cursor (=za=); Org keeps its buffer-local headline cycling. |
 | q | Sai imediatamente sem salvar (=ZQ=). |
-| Q | Inicia o comando de gravação de macro nativo (=q=). |
 | ( / ) | Vai ao parágrafo anterior / próximo. |
 | - | Remove o destaque da busca. |
 | gl | Vai ao fim do arquivo (=G=). |
 | SPC j / SPC k | Faz page down / page up. |
 | mk | Fecha o buffer atual (=bd=). |
-| \\ | Revela o arquivo atual no Neo-tree. |
 | BS | Localiza um arquivo na raiz Git do projeto atual. |
-| [ d / ] d | Vai ao diagnóstico anterior / próximo. |
-| SPC e / SPC q | Abre o diagnóstico flutuante / envia diagnósticos à location list. |
-| ESC ESC no terminal integrado | Sai do Terminal mode e retorna ao Normal. |
 
 * Prefixo =SPC=: comandos globais
 
@@ -46,27 +181,16 @@ Cross-editor comparison: [[file:../editor-keybindings-comparison.org][custom key
 | Tecla | Comando / efeito |
 |-------+------------------|
 | SPC SPC | Lista os buffers abertos. |
-| SPC / | Busca linhas no buffer atual. |
 | SPC s h | Busca na ajuda. |
 | SPC s k | Busca nos keymaps. |
 | SPC s s | Abre o seletor de fontes do Snacks. |
-| SPC s w | Busca no projeto pela palavra sob o cursor. |
-| SPC s g | Busca texto no projeto. |
-| SPC s d | Lista diagnósticos. |
-| SPC s r | Retoma o último picker. |
-| SPC s / | Busca nos buffers abertos. |
 | SPC s n | Localiza arquivos da configuração do Neovim. |
 
-** Edição e multicursores
+** Formatting
 
 | Tecla | Comando / efeito |
 |-------+------------------|
 | SPC f | Formata o buffer com Conform e fallback para LSP. |
-| SPC n | Cria cursores para todos os resultados da busca ativa. |
-| SPC s | Pula o próximo match sem criar cursor. |
-| SPC S | Pula o match anterior sem criar cursor. |
-| SPC N | Cria cursor no match anterior. |
-| SPC \vert{} com seleção Visual | Divide a seleção em cursores. |
 
 ** LSP
 
@@ -76,7 +200,6 @@ Cross-editor comparison: [[file:../editor-keybindings-comparison.org][custom key
 | SPC d s | Lista símbolos do documento. |
 | SPC w s | Lista símbolos do workspace. |
 | SPC r n | Renomeia o símbolo no cursor. |
-| SPC c a | Abre ações de código. |
 | SPC t h | Alterna inlay hints, quando suportado pelo servidor. |
 
 ** Completagem e snippets
@@ -96,26 +219,21 @@ Personal LuaSnip definitions use SnipMate format, grouped by Neovim filetype in
 TAB snippet mappings apply to Insert and Select modes; Normal-mode Org folding
 is unchanged.
 
-* Prefixo =s=: janelas, busca e projetos
+* Prefix =s=: file search and projects
 
 | Tecla | Comando / efeito |
 |-------+------------------|
-| s h / s j / s k / s l | Move o foco para a janela esquerda / abaixo / acima / direita. |
-| s x / s y | Cria uma divisão horizontal / vertical. |
 | s . | Localiza arquivo a partir do diretório de trabalho atual. |
 | s p | Troca de projeto (=Snacks.picker.projects=). Requer =fd= ou =fdfind=. |
 
-* Prefixo =m=: buffers e multicursores
+* Prefix =m=: buffers
 
 | Tecla | Comando / efeito |
 |-------+------------------|
 | m i | Abre o BufExplorer. |
 | m k | Fecha o buffer atual (=bd=). |
-| m c, com seleção Visual Line | Cria um cursor no início de cada linha selecionada e retorna ao Normal. |
-| m s, após =*= | Cria cursores em todos os matches da busca ativa e permanece no Normal. |
-| m p, com seleção Visual | Solicita um padrão e cria cursores nos matches da seleção. |
 
-* Prefixo =g=: navegação, LSP e substituição
+* Prefix =g=: navigation, LSP, and comments
 
 | Tecla | Comando / efeito |
 |-------+------------------|
@@ -125,26 +243,9 @@ is unchanged.
 | g R | Lista referências via LSP. |
 | g I | Vai à implementação via LSP. |
 | K | Mostra documentação do símbolo via LSP. |
-| g a seguido de movimento ou objeto de texto | Alinha a região com Mini.align. |
-| g A seguido de movimento ou objeto de texto | Abre o alinhamento Mini.align com preview; RET aceita e ESC cancela. |
-| g r seguido de movimento | Substitui pelo conteúdo de um registrador. |
-| g r r | Substitui a linha pelo conteúdo de um registrador. |
-| g r, com seleção Visual | Substitui a seleção pelo conteúdo de um registrador. |
 | g c seguido de movimento / g c c | Alterna comentário de uma região / da linha atual. |
 | g b seguido de movimento / g b c | Alterna comentário em bloco de uma região / da linha atual. |
 | g c o / g c O / g c A | Insere comentário abaixo / acima / no fim da linha e entra em Insert. |
-
-Os antigos mapas =gra=, =gri=, =grn=, =grt= e =grx= são removidos para não
-conflitar com a substituição por registrador.
-
-* Prefixo =c=: troca de texto
-
-| Tecla | Comando / efeito |
-|-------+------------------|
-| c x seguido de movimento | Marca o texto coberto pelo movimento para troca; repita =cx= em outro texto para trocá-los. |
-| c x x | Marca a linha atual para troca; repita =cxx= ou =cx{movimento}= para concluir. |
-| X, com seleção Visual | Marca a seleção para troca; use =X= sobre outra seleção para concluir. |
-| c x c | Cancela uma troca pendente. |
 
 * Objetos de texto
 
@@ -188,25 +289,6 @@ em Visual.
 | c S seguido de delimitador e substituto | Troca delimitadores, pondo o substituto em linhas próprias. |
 | S / g S, com seleção Visual | Adiciona delimitadores à seleção / em linhas próprias. |
 | C-g s / C-g S em Insert | Adiciona delimitadores no cursor / em linhas próprias. |
-
-* Cursores múltiplos
-
-| Tecla | Comando / efeito |
-|-------+------------------|
-| Setas para cima / baixo | Adiciona cursor na linha acima / abaixo. |
-| SPC seta para cima / baixo | Move apenas o cursor principal, pulando a linha para adicionar ou ignorar cursor. |
-| C-q | Alterna um cursor manual na posição atual. |
-| gm seguido de movimento | Cria cursores para cada linha coberta pelo movimento. |
-| I / A, com seleção Visual | Cria cursores no início / fim de cada linha selecionada e entra em Insert. |
-| Clique ou arraste com C-mouse | Cria, move ou remove cursores com o mouse. |
-
-Enquanto há cursores ativos:
-
-| Tecla | Comando / efeito |
-|-------+------------------|
-| Seta esquerda / direita | Vai ao cursor anterior / próximo. |
-| SPC x | Remove o cursor atual. |
-| ESC | Remove todos os cursores. Se eles estiverem desativados, volta a ativá-los. |
 
 * Org
 

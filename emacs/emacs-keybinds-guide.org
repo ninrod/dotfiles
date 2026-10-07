@@ -4,6 +4,10 @@
 
 Cross-editor comparison: [[file:../editor-keybindings-comparison.org][custom keybindings grouped by functionality]].
 
+Multi-step operations are grouped under one Org heading, even when their
+bindings use different prefixes or modes. Follow the steps in order; rows
+labelled as alternatives or cleanup are optional.
+
 * Convenções
 
 - Escopo: a maior parte deste documento cobre o nó =~* keybinds= de
@@ -14,6 +18,94 @@ Cross-editor comparison: [[file:../editor-keybindings-comparison.org][custom key
   pressionadas simultaneamente.
 - Os mapas específicos de modo podem sobrepor um atalho geral quando aquele
   modo ou buffer está ativo.
+
+* Multi-step workflows
+
+** Save a position and return to it
+
+The Evil marker =z= stores one position; setting it again replaces the
+previous position. This is separate from Emacs's mark ring (=g TAB=).
+
+| Step | State | Key | Command / effect |
+|------+-------+-----+------------------|
+| Save | N, V, M | s m | Save the current position in marker =z= (=ninrod/evil-set-marker-z=). |
+| Return | M | g m | Jump to marker =z= and center the destination line (=ninrod/evil-goto-marker-z=). |
+
+** Record a macro and apply it to selected lines
+
+Record the editing operation once, then select the target lines. The
+custom replay command uses the last Visual selection's range, not just the
+current cursor position.
+
+| Step | State | Key | Command / effect |
+|------+-------+-----+------------------|
+| Start recording | N, V, M | m m | Record a macro in register =z= (=ninrod/evil-record-macro-z=). |
+| Finish recording | N, V, M | m m | Invoke the recording command again to stop recording. |
+| Select targets | N | V, then motions | Select the lines on which to replay the macro. |
+| Apply | N, V, M | m a | Run ='<,'>norm @z= over the selected line range (=ninrod/apply-z-macro=). |
+| Alternative recording | N | Q | Invoke =evil-record-macro= with an explicitly chosen register; =m a= still replays register =z=. |
+
+** Create, visit, and remove a bookmark
+
+| Step | State | Key | Command / effect |
+|------+-------+-----+------------------|
+| Create | N, V, M | s b | Save a named bookmark (=bookmark-set=). |
+| Visit | N, V, M | s SPC | Choose a bookmark and jump to it (=bookmark-jump=). |
+| Cleanup | N, V, M | s - | Delete a bookmark (=bookmark-delete=). |
+
+** Narrow the editing scope and restore it
+
+Choose the narrowing operation appropriate to the buffer. Rectangular
+narrowing has its own matching restore command.
+
+| Step | Context / state | Key | Command / effect |
+|------+-----------------+-----+------------------|
+| Narrow a rectangle | N, V, M | s n | Narrow a rectangular region (=rect-ext-narrow=). |
+| Restore the rectangle | N, V, M | s w | Undo rectangular narrowing (=rect-ext-widen=). |
+| Narrow an Org subtree | Org, N, V | , n | Restrict the buffer to the current subtree (=org-narrow-to-subtree=). |
+| Restore the buffer | N, V, M | m w | Remove buffer narrowing (=widen=). |
+
+** Split a window and move between windows
+
+| Step | State | Key | Command / effect |
+|------+-------+-----+------------------|
+| Split | N, V, M | s y / s x | Split right / below and focus the new window. |
+| Move horizontally | N, V, M | s h / s l | Focus the window to the left / right. |
+| Move vertically | N, V, M | s j / s k | Focus the window below / above. |
+
+** Edit an Org source block and return
+
+| Step | Context / state | Key | Command / effect |
+|------+-----------------+-----+------------------|
+| Open | Org, N, V | , e | Edit the source block at point in its dedicated buffer (=org-edit-special=). |
+| Commit and return | Org source / Emacs Lisp edit buffer, N | S | Write the edits back to the Org block and exit (=org-edit-src-exit=). |
+| Abort and return | Org source / Emacs Lisp edit buffer, N | T | Discard the edit-buffer changes and exit (=org-edit-src-abort=). |
+
+=S= and =T= are alternatives for finishing the same operation, not
+successive steps. Their Org editing commands require an active source
+editing session, even though the bindings also exist in Emacs Lisp mode.
+
+** Inspect, edit, and recalculate Org table formulas
+
+| Step | Context / state | Key | Command / effect |
+|------+-----------------+-----+------------------|
+| Inspect coordinates | Org, N | T @ | Toggle table coordinate overlays. |
+| Inspect a field | Org, N | T ? | Show information about the current field. |
+| Edit | Org, N | T f | Open the table formula editor (=org-table-edit-formulas=). |
+| Apply and return | Formula editor | C-c C-c | Install the edited formulas and return to the table. |
+| Recalculate | Org, N | T e | Recalculate the table with prefix argument =4=. |
+
+** Copy or move an Org subtree
+
+Copy or cut the subtree, move to the destination heading, then paste.
+Cloning is an alternative that creates a copy without a separate paste step.
+
+| Step | Context / state | Key | Command / effect |
+|------+-----------------+-----+------------------|
+| Copy | Org, N | S y | Copy the subtree (=org-copy-subtree=). |
+| Cut instead | Org, N | S d | Cut the subtree (=org-cut-subtree=). |
+| Paste at destination | Org, N | S p | Paste the copied or cut subtree (=org-paste-subtree=). |
+| Clone instead | Org, N | S c | Clone the subtree with a time shift (=org-clone-subtree-with-time-shift=). |
 
 * Atalhos gerais
 
@@ -64,25 +156,17 @@ Cross-editor comparison: [[file:../editor-keybindings-comparison.org][custom key
 | Visual Char ou Line | m p | Solicita um regexp e cria cursores no início dos matches dentro da seleção, permanecendo no estado normal. |
 | N | ESC | Remove todos os cursores múltiplos e entra no estado normal. |
 
-** Prefixo =s=: buffers, projetos, edição e janelas
+** Prefix =s=: standalone buffer, project, and editing commands
 
 | Tema | Estado | Tecla | Comando / efeito |
 |------+--------+-------+------------------|
 | Buffers | N, V, M | s u | Reverte o buffer sem confirmação. |
-| Buffers | N, V, M | s n / s w | Estreita / alarga uma região retangular. |
-| Buffers | N, V, M | s m | Define o marcador Evil =z=. |
 | Buffers | N, V, M | s i | Alterna de buffer com Consult. |
-| Buffers | N, V, M | s s | Abre Multi-Term. |
 | Projetos | N, V, M | s . / s p | Localiza arquivo no projeto / troca de projeto (=project-switch-project=). |
-| Bookmarks | N, V, M | s SPC | Salta para bookmark. |
-| Bookmarks | N, V, M | s - / s b | Exclui / cria bookmark. |
 | Edição | N, V, M | s r | Faz substituição por regex (=query-replace-regexp=). |
 | Busca | N, V, M | s / | Busca no buffer (=consult-line=). |
 | Histórico | N, V, M | s , / s ; | Salta para trás / frente no changelist Evil. |
 | Diretórios | N, V, M | s DEL | Altera o diretório padrão (=cd=). |
-| Windows | N, V, M | s j / s k | Moves focus to the window below / above. |
-| Windows | N, V, M | s h / s l | Moves focus to the window on the left / right. |
-| Janelas | N, V, M | s y / s x | Divide à direita / abaixo e dá foco à nova janela. |
 
 ** Prefixo =m=: Magit, Org, buffers e edição
 
@@ -91,11 +175,9 @@ Cross-editor comparison: [[file:../editor-keybindings-comparison.org][custom key
 | Git | N, V, M | m g | Abre o status Magit. |
 | Org | N, V, M | m o | Abre a agenda Org. |
 | Buffers | N, V, M | m f | Copia o nome do arquivo atual. |
-| Buffers | N, V, M | m k / m w / m i | Enterra o buffer atual e vai para =*scratch*= / alarga buffer / abre Ibuffer. |
-| Edição | N, V, M | m a | Aplica a macro armazenada no registrador =z=. |
+| Buffers | N, V, M | m k | Bury the current buffer and switch to =*scratch*=. |
 | Edição | N, V, M | m r | Repete o alinhamento. |
 | Evil | N, V, M | m e | Entra no estado Emacs do Evil. |
-| Macros | N, V, M | m m | Inicia a gravação da macro no registrador =z=. |
 
 ** Prefixo =g=: movimentos e histórico
 
@@ -103,7 +185,6 @@ Cross-editor comparison: [[file:../editor-keybindings-comparison.org][custom key
 |------+--------+-------+------------------|
 | Marcas | M | g TAB | Mostra o mark ring com Consult. |
 | Movimento | M | g o / g l | Vai à primeira linha / a uma linha específica. |
-| Movimento | M | g m | Salta para o marcador Evil =z=. |
 | Histórico | M | g h / g s | Abre arquivos recentes com Consult / status Magit. |
 | Histórico | M | g i | Vai para a última alteração. |
 | Movimento | M | g ; | Vai ao último caractere não vazio. |
@@ -118,7 +199,6 @@ Cross-editor comparison: [[file:../editor-keybindings-comparison.org][custom key
 | Evil | N | RET / TAB | Salva / alterna folding. |
 | Evil | N | DEL | Abre arquivo (=find-file=). |
 | Evil | N | q / - | Fecha conforme =evil-quit= / remove destaque de busca. |
-| Evil | N | Q | Grava macro. |
 | Movimento | M | ( / ) | Vai ao parágrafo anterior / próximo. |
 | Interface | Global | F11 | Alterna tela cheia. |
 | Scroll | N, V | z . / z - | Centraliza / posiciona a linha atual na base da janela. |
@@ -165,35 +245,27 @@ Normal-state TAB bindings remain unchanged. No additional plugin is needed.
 | Tema | Estado | Tecla | Comando / efeito |
 |------+--------+-------+------------------|
 | Agenda | N, V | , s / , d / , r | Agenda / deadline / refile. |
-| Edição | N, V | , e / , l | Edita bloco especial / insere link. |
+| Edição | N, V | , l | Insere link. |
 | Navegação | N, V | , t / , b / , g | Define tags / lista headings com Consult / =org-goto=. |
 | Folding | N, V | , TAB / , RET | Alterna folding / abre elemento no ponto. |
 | Exibição | N, V | , T l | Alterna a exibição de links. |
 | Estrutura | N | t h / t j / t k / t l | Promove, move abaixo, move acima ou rebaixa heading/item. |
-| Estrutura | N | t y / t n / t t | Obtém URL no ponto / restringe à subtree / altera TODO. |
+| Estrutura | N | t y / t t | Obtém URL no ponto / altera TODO. |
 | Estrutura | N | t - / t * / t p | Insere item / heading / define prioridade. |
 | Estrutura | N | t TAB | Insere subheading. |
 | Estrutura | N | t o / t RET / t DEL | Novo heading abaixo, abaixo respeitando conteúdo, ou acima. |
 | Estrutura | N | t i | Abre a subtree em buffer indireto. |
 | Tabelas | N | T t | Transpõe a tabela. |
 | Tabelas | N | T h / T l | Move por sentenças para trás / frente. |
-| Tabelas | N | T d / T f | Exclui coluna / edita fórmulas. |
+| Tabelas | N | T d | Exclui coluna. |
 | Tabelas | N | T m | Marca a tabela ou elemento. |
 | Tabelas | N | T o / T i | Insere linha acima / coluna antes. |
-| Tabelas | N | T @ / T ? / T e | Alterna coordenadas / informa campo / recalcula fórmulas. |
 | Tabelas | N | T RET | Copia o valor para baixo. |
 | Subtrees | N | S h / S j / S k / S l | Promove, move abaixo, move acima ou rebaixa subtree. |
-| Subtrees | N | S y / S d / S p / S c | Copia, recorta, cola ou clona subtree. |
 | Navegação | N | z u / z h / z j / z k / z n | Navega entre headings visíveis. |
 | Estrutura | N | < / > | Promove / rebaixa elemento no ponto. |
 | Estrutura | V | - | Executa =org-ctrl-c-minus=. |
 | Remoção | Todos | C-TAB | Remove o binding nesse mapa. |
-
-** Org source, Emacs Lisp e agenda
-
-| Modo | Estado | Tecla | Comando / efeito |
-|------+--------+-------+------------------|
-| Org source e Emacs Lisp | N | S / T | Salva e sai / aborta a edição de um bloco Org. |
 
 ** Dired / Dirvish
 
@@ -261,13 +333,18 @@ Normal-state TAB bindings remain unchanged. No additional plugin is needed.
 
 ** Ibuffer
 
+Open Ibuffer, mark the target buffers, then run an action on them.
+The related Hydra menus stay under this heading so the complete workflow
+can be read together.
+
 | Contexto | Estado | Tecla | Comando / efeito |
 |----------+--------+-------+------------------|
+| Any buffer | N, V, M | m i | Open Ibuffer. |
 | Ibuffer | N | . | Abre Hydra principal. |
 | Ibuffer | N | t / m / U | Marca adiante / alterna marcas / desmarca tudo. |
 | Ibuffer | N | g o / g l | Primeira linha / linha específica. |
 
-** Hydra principal
+*** Main Hydra: mark buffers, then choose an action
 
 | Contexto | Estado | Tecla | Comando / efeito |
 |----------+--------+-------+------------------|
@@ -277,27 +354,27 @@ Normal-state TAB bindings remain unchanged. No additional plugin is needed.
 | Hydra principal | Hydra | g / s / / | Atualiza, abre ordenação ou filtros. |
 | Hydra principal | Hydra | q / . | Sai do Ibuffer / fecha a Hydra. |
 
-** Hydra de marcação
+*** Marking Hydra
 
 | Contexto | Estado | Tecla | Comando / efeito |
 |----------+--------+-------+------------------|
 | Hydra de marcação | Hydra | * / M / m / u / s / r | Desmarca tudo; marca por modo, modificação, não salvos, especiais ou somente leitura. |
 | Hydra de marcação | Hydra | / / e / h / z | Marca buffers Dired, dissociados, de ajuda ou comprimidos. |
 
-** Hydra de ações
+*** Actions Hydra
 
 | Contexto | Estado | Tecla | Comando / efeito |
 |----------+--------+-------+------------------|
 | Hydra de ações | Hydra | A / E / F / I / H / N / M / O | View, eval, shell, substituições, outra frame, pipe, alternâncias e occur. |
 | Hydra de ações | Hydra | P / Q / R / T / U / V / W / X | Imprime, substitui, renomeia e executa operações de buffer. |
 
-** Hydra de ordenação
+*** Sorting Hydra
 
 | Contexto | Estado | Tecla | Comando / efeito |
 |----------+--------+-------+------------------|
 | Hydra de ordenação | Hydra | i / a / v / s / f / m | Inverte; ordena por nome, uso recente, tamanho, arquivo ou modo. |
 
-** Hydra de filtros
+*** Filtering Hydra
 
 | Contexto | Estado | Tecla | Comando / efeito |
 |----------+--------+-------+------------------|
