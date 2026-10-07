@@ -886,6 +886,8 @@ M-x subword-mode
 
   (use-package evil
     :ensure t
+    :custom
+    (evil-undo-system 'undo-redo)
     :init
     (use-package goto-chg :ensure t)
 
@@ -1525,8 +1527,7 @@ M-x subword-mode
 *** hydra
 
 #+BEGIN_SRC emacs-lisp
-  (use-package hydra :ensure t
-    )
+  (use-package hydra :ensure t)
 #+END_SRC
 
 *** general.el
@@ -1812,7 +1813,6 @@ and the Spaceline modeline in directory buffers.
 
     "TAB" 'ninrod/alternate-buffer
 
-    "," 'pop-global-mark
     "<escape>" 'ninrod/echo ;; in test
 
     "SPC" 'execute-extended-command
@@ -1873,17 +1873,6 @@ and the Spaceline modeline in directory buffers.
 *** multiple cursors
 
 #+BEGIN_SRC emacs-lisp
-  (spc-map
-   :states '(normal visual)
-   "M" '(:ignore t :which-key "multiple cursors")
-   "Ma" 'evil-mc-make-all-cursors
-   "Mn" 'evil-mc-make-and-goto-next-match
-   "Mp" 'evil-mc-make-and-goto-prev-match
-   "Ms" 'evil-mc-skip-and-goto-next-match
-   "MS" 'evil-mc-skip-and-goto-prev-match
-   "Mu" 'evil-mc-undo-last-added-cursor
-   "Mq" 'evil-mc-undo-all-cursors)
-
   (general-define-key
    :states 'normal
    "<escape>" 'ninrod/evil-mc-undo-all-cursors-and-normal-state)
@@ -1922,7 +1911,6 @@ and the Spaceline modeline in directory buffers.
    ;; "b"   'ninrod/echo
 
    ;; buffer actions
-   "u"     'ninrod/revert-buffer-no-confirm
    "n"     'rect-ext-narrow
    "w"     'rect-ext-widen
    "m"     'ninrod/evil-set-marker-z
@@ -1982,7 +1970,13 @@ and the Spaceline modeline in directory buffers.
    ;; multiple cursor ops
    "c" 'ninrod/evil-mc-make-cursors-at-line-beginnings
    "s" 'ninrod/evil-mc-make-cursors-for-current-search
-   "p" 'ninrod/evil-mc-make-cursors-for-regexp-in-visual-selection
+   "r" 'ninrod/evil-mc-make-cursors-for-regexp-in-visual-selection
+   "n" 'evil-mc-make-and-goto-next-match
+   "N" 'evil-mc-skip-and-goto-next-match
+   "p" 'evil-mc-make-and-goto-prev-match
+   "P" 'evil-mc-skip-and-goto-prev-match
+   "u" 'evil-mc-undo-last-added-cursor
+   "U" 'evil-mc-undo-all-cursors
 
    ;; buffer ops
    "k" 'ninrod/bury-current-buffer-and-switch-to-scratch
@@ -2066,7 +2060,7 @@ and the Spaceline modeline in directory buffers.
    "<f8>" nil
    "<f9>" nil
    "<f10>" nil
-   "<f11>" 'toggle-frame-fullscreen
+   "<f11>" nil
 
    "<f12>" nil
    )
@@ -2089,8 +2083,10 @@ and the Spaceline modeline in directory buffers.
 *** insert state
 
 #+BEGIN_SRC emacs-lisp
-  (general-define-key "C-<tab>" 'dabbrev-expand)
-  (general-define-key :keymaps 'minibuffer-local-map "C-<tab>" 'dabbrev-expand)
+  (general-define-key
+   :keymaps '(global insert emacs minibuffer-local-map)
+   :predicate '(not (derived-mode-p 'ghostel-mode))
+   "C-e" 'dabbrev-expand)
 #+END_SRC
 
 ** org
@@ -2246,8 +2242,6 @@ and the Spaceline modeline in directory buffers.
    :keymaps 'org-mode-map
    :states 'visual
    "-" 'org-ctrl-c-minus)
-
-  (general-define-key :keymaps 'org-mode-map "C-<tab>" nil)
 
   ;; finally!
   (general-define-key
@@ -2555,102 +2549,6 @@ and the Spaceline modeline in directory buffers.
 #+END_SRC
 
 ** ibuffer
-*** hydra
-
-#+BEGIN_SRC emacs-lisp
-  ;; from https://github.com/abo-abo/hydra/wiki/Ibuffer
-  (defhydra hydra-ibuffer-main (:color pink :hint nil)
-    "
-   ^Navigation^ | ^Mark^        | ^Actions^        | ^View^
-  -^----------^-+-^----^--------+-^-------^--------+-^----^-------
-    _k_:    ʌ   | _m_: mark     | _D_: delete      | _g_: refresh
-   _RET_: visit | _u_: unmark   | _S_: save        | _s_: sort
-    _j_:    v   | _*_: specific | _a_: all actions | _/_: filter
-  -^----------^-+-^----^--------+-^-------^--------+-^----^-------
-  "
-    ("j" ibuffer-forward-line)
-    ("RET" ibuffer-visit-buffer :color blue)
-    ("k" ibuffer-backward-line)
-
-    ("m" ibuffer-mark-forward)
-    ("u" ibuffer-unmark-forward)
-    ("*" hydra-ibuffer-mark/body :color blue)
-
-    ("D" ibuffer-do-delete)
-    ("S" ibuffer-do-save)
-    ("a" hydra-ibuffer-action/body :color blue)
-
-    ("g" ibuffer-update)
-    ("s" hydra-ibuffer-sort/body :color blue)
-    ("/" hydra-ibuffer-filter/body :color blue)
-
-    ("o" ibuffer-visit-buffer-other-window "other window" :color blue)
-    ("q" ibuffer-quit "quit ibuffer" :color blue)
-    ("." nil "toggle hydra" :color blue))
-
-  (defhydra hydra-ibuffer-mark (:color teal :columns 5
-                                :after-exit (hydra-ibuffer-main/body))
-    "Mark"
-    ("*" ibuffer-unmark-all "unmark all")
-    ("M" ibuffer-mark-by-mode "mode")
-    ("m" ibuffer-mark-modified-buffers "modified")
-    ("u" ibuffer-mark-unsaved-buffers "unsaved")
-    ("s" ibuffer-mark-special-buffers "special")
-    ("r" ibuffer-mark-read-only-buffers "read-only")
-    ("/" ibuffer-mark-dired-buffers "dired")
-    ("e" ibuffer-mark-dissociated-buffers "dissociated")
-    ("h" ibuffer-mark-help-buffers "help")
-    ("z" ibuffer-mark-compressed-file-buffers "compressed")
-    ("b" hydra-ibuffer-main/body "back" :color blue))
-
-  (defhydra hydra-ibuffer-action (:color teal :columns 4
-                                  :after-exit
-                                  (if (eq major-mode 'ibuffer-mode)
-                                      (hydra-ibuffer-main/body)))
-    "Action"
-    ("A" ibuffer-do-view "view")
-    ("E" ibuffer-do-eval "eval")
-    ("F" ibuffer-do-shell-command-file "shell-command-file")
-    ("I" ibuffer-do-query-replace-regexp "query-replace-regexp")
-    ("H" ibuffer-do-view-other-frame "view-other-frame")
-    ("N" ibuffer-do-shell-command-pipe-replace "shell-cmd-pipe-replace")
-    ("M" ibuffer-do-toggle-modified "toggle-modified")
-    ("O" ibuffer-do-occur "occur")
-    ("P" ibuffer-do-print "print")
-    ("Q" ibuffer-do-query-replace "query-replace")
-    ("R" ibuffer-do-rename-uniquely "rename-uniquely")
-    ("T" ibuffer-do-toggle-read-only "toggle-read-only")
-    ("U" ibuffer-do-replace-regexp "replace-regexp")
-    ("V" ibuffer-do-revert "revert")
-    ("W" ibuffer-do-view-and-eval "view-and-eval")
-    ("X" ibuffer-do-shell-command-pipe "shell-command-pipe")
-    ("b" nil "back"))
-
-  (defhydra hydra-ibuffer-sort (:color amaranth :columns 3)
-    "Sort"
-    ("i" ibuffer-invert-sorting "invert")
-    ("a" ibuffer-do-sort-by-alphabetic "alphabetic")
-    ("v" ibuffer-do-sort-by-recency "recently used")
-    ("s" ibuffer-do-sort-by-size "size")
-    ("f" ibuffer-do-sort-by-filename/process "filename")
-    ("m" ibuffer-do-sort-by-major-mode "mode")
-    ("b" hydra-ibuffer-main/body "back" :color blue))
-
-  (defhydra hydra-ibuffer-filter (:color amaranth :columns 4)
-    "Filter"
-    ("m" ibuffer-filter-by-used-mode "mode")
-    ("M" ibuffer-filter-by-derived-mode "derived mode")
-    ("n" ibuffer-filter-by-name "name")
-    ("c" ibuffer-filter-by-content "content")
-    ("e" ibuffer-filter-by-predicate "predicate")
-    ("f" ibuffer-filter-by-filename "filename")
-    (">" ibuffer-filter-by-size-gt "size")
-    ("<" ibuffer-filter-by-size-lt "size")
-    ("/" ibuffer-filter-disable "disable")
-    ("b" hydra-ibuffer-main/body "back" :color blue))
-
-#+END_SRC
-
 *** definer
 
 #+BEGIN_SRC emacs-lisp
@@ -2670,22 +2568,6 @@ and the Spaceline modeline in directory buffers.
    "0" nil
    "n" nil
    "-" nil
-   )
-#+END_SRC
-
-*** binds
-
-#+BEGIN_SRC emacs-lisp
-  (ninrod/ibuffer-map
-   :states 'normal
-   "." 'hydra-ibuffer-main/body
-   "t" 'ibuffer-mark-forward
-   "m" 'ibuffer-toggle-marks
-   "U" '(lambda ()
-          (interactive)
-          (ibuffer-unmark-all ?\s))
-   "go" 'evil-goto-first-line
-   "gl" 'evil-goto-line
    )
 #+END_SRC
 

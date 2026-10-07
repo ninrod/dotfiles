@@ -60,6 +60,19 @@ depends on the unreasonable man.
 - ivy instead of helm
 - Markdown files (=.md= and =.markdown=) use =markdown-mode= for syntax highlighting; the package is installed from the local ELPA mirror.
 
+* Evil undo and redo
+
+Evil uses the built-in =undo-redo= backend through =evil-undo-system=.
+In Normal state, =u= undoes changes and =C-r= redoes them.
+No external undo package is required.
+
+* Ibuffer
+
+=m i= opens Ibuffer, which lists open buffers and supports marking them
+for batch operations such as saving or deleting.
+The custom Ibuffer Hydra menus are removed; Hydra remains configured
+as a dependency of =vdiff=.
+
 * Evil Visual Block in Windows Terminal
 
 =C-v= enters Evil Visual Block selection from Normal state. Windows Terminal
@@ -166,7 +179,7 @@ run's output in =emacs/scripts/logs/[YYYY-MM-DD-HH-MM-SS]-thin-elpa-mirror.log=.
 - no virtual columns
 - the star operator is broken when subword-mode is active.
 ** Completions
-- tab completion with dabbrev-expand ignores case.
+- Completion with =C-e= (=dabbrev-expand=) ignores case.
 * package ideas
   - xml/html tag attribute text object. NOTE: [[https://github.com/ninrod/exato][implemented!]]
   - move horizontally in long lines like in vim's =zt=, =zb=, etc...

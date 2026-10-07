@@ -113,29 +113,32 @@ Cloning is an alternative that creates a copy without a separate paste step.
 |----------|-----------|----------------------------------------------------------------------------|
 |  N, V, M | s DEL     | Altera o diretório padrão (=cd=).                                          |
 |  N, V, M | s . / s p | Localiza arquivo no projeto / troca de projeto (=project-switch-project=). |
+| Evil | N | DEL | Abre arquivo (=find-file=). |
+| Evil | N | q / - | Fecha conforme =evil-quit= / remove destaque de busca. |
+
+** Evil
+
+|  Estado | Tecla          | Comando / efeito                                                           |
+|         |                |                                                                            |
+| Evil    | N              | RET        Salva / alterna folding.                                        |
+| Evil    | N              | TAB             alterna folding.                                           |
+|  M      | ( / )          | Vai ao parágrafo anterior / próximo.                                       |
+|  N, V   | z . / z - / zt | Centraliza / posiciona a linha atual na base da janela.                    |
+|  I      |  C-e           | Expand the word at point with =dabbrev-expand=, except in Ghostel buffers. |
 
 ** Manipulação de buffers, windows e posições nos buffers
 
-| Estado    | Tecla     | Comando / efeito                                                                         |
-|--------   |---------  |-----------------------------------------------------------                               |
-| N, V      | SPC TAB   | Alterna para o buffer anterior (=ninrod/alternate-buffer=)                               |
-| N, V      | SPC ,     | Vai para a marca global anterior (=pop-global-mark=)                                     |
-| N, V, M   | s u       | Reverte o buffer sem confirmação.                                                        |
-| N, V, M   | s i       | Alterna de buffer com Consult.                                                           |
-|   N, V, M | s , / s ; | Salta para trás / frente no changelist Evil.                                             |
-|   N       | m f       | Copy the current file's full path to the kill ring (=ninrod/add-filename-to-kill-ring=). |
-|   N, V, M | m k       | Bury the current buffer and switch to =*scratch*=.                                       |
-
-|  Estado   | Tecla     | Comando / efeito                                   |
-|------+----|           |                                                    |
-|  M        | g TAB     | Mostra o mark ring com Consult.                    |
-|   M       | g o / g l | Vai à primeira linha / a uma linha específica.     |
-|   M       | g h / g s | Abre arquivos recentes com Consult / status Magit. |
-|   M       | g i       | Vai para a última alteração.                       |
-|   M       | g ;       | Vai ao último caractere não vazio.                 |
-|   M       | g > / g < | Indenta à direita / esquerda.                      |
-|   N, V, M | g d       | Opens Dirvish.                                     |
-|   N, V, M | g a / g A | Alinha à esquerda / direita com Evil Lion.         |
+|Tecla     | Comando / efeito                                                                         |
+|----------|------------------------------------------------------------------------------------------|
+|SPC TAB   | Alterna para o buffer anterior (=ninrod/alternate-buffer=)                               |
+| s i      | Alterna de buffer com Consult.                                                           |
+| m i      | Open Ibuffer.                                                                            |
+|s , / s ; | Salta para trás / frente no changelist Evil.                                             |
+|m f       | Copy the current file's full path to the kill ring (=ninrod/add-filename-to-kill-ring=). |
+|m k       | Bury the current buffer and switch to =*scratch*=.                                       |
+|g TAB     | Mostra o mark ring com Consult.                                                          |
+|g o / g l | Vai à primeira linha / a uma linha específica.                                           |
+|g h       | Abre arquivos recentes com Consult                                                       |
 
 ** busca nos buffers
 
@@ -148,15 +151,16 @@ Cloning is an alternative that creates a copy without a separate paste step.
 | Estado | Tecla   | Comando / efeito                                          |
 |--------|---------|-----------------------------------------------------------|
 | N, V   | SPC TAB | Alterna para o buffer anterior (=ninrod/alternate-buffer=)|
-| N, V   | SPC ,   | Vai para a marca global anterior (=pop-global-mark=)      |
 | N, V   | SPC j   | Executa a macro =LztM= para reposicionar cursor e janela  |
 | N, V   | SPC k   | Executa a macro =Hz-M= para reposicionar cursor e janela  |
 
 ** buffers de propósito específico (magit, dirvish, etc..)
 
-| Tema | Estado | Tecla | Comando / efeito |
-|------+--------+-------+------------------|
-| Git | N, V, M | m g | Abre o status Magit. |
+| Tecla | Comando / efeito     |
+|-------|----------------------|
+| m g   | Abre o status Magit. |
+| g s   | Abre o status Magit. |
+| g d   | Opens Dirvish.       |
 
 ** Espaço: comandos centrais
 
@@ -175,7 +179,7 @@ Cloning is an alternative that creates a copy without a separate paste step.
 
 | Tema | Estado | Tecla | Comando / efeito |
 |------+--------+-------+------------------|
-| Ajuda | N | SPC d a | =apropos=. |
+| Ajuda | N | SPC d a | =apropos= |
 | Ajuda | N | SPC d b | Mostra todos os bindings de um keymap no Which-Key (=which-key-show-full-keymap=). |
 | Ajuda | N | SPC d c | Descreve o caractere no ponto (=describe-char=). |
 | Ajuda | N | SPC d d | Descreve uma face (=describe-face=). |
@@ -185,25 +189,6 @@ Cloning is an alternative that creates a copy without a separate paste step.
 | Ajuda | N | SPC d v | Descreve uma variável (=describe-variable=). |
 | Ajuda | N | SPC d m | Descreve o modo atual. |
 | Embark | N, V | SPC e b | Explora e executa os bindings ativos no buffer atual (=embark-bindings=). |
-
-** Prefixo =g=: movimentos e histórico
-
-
-** Evil, edição e layouts
-
-| Tema | Estado | Tecla | Comando / efeito |
-|------+--------+-------+------------------|
-| Evil | N | RET / TAB | Salva / alterna folding. |
-| Evil | N | DEL | Abre arquivo (=find-file=). |
-| Evil | N | q / - | Fecha conforme =evil-quit= / remove destaque de busca. |
-| Movimento | M | ( / ) | Vai ao parágrafo anterior / próximo. |
-| Interface | Global | F11 | Alterna tela cheia. |
-| Scroll | N, V | z . / z - / zt | Centraliza / posiciona a linha atual na base da janela. |
-| Busca | Isearch | ESC | Cancela a busca incremental. |
-| Busca | Evil Ex | ESC | Cancela o minibuffer da linha de comando Evil. |
-| Edição | Global | RET | Insere uma nova linha com indentação. |
-| Compleção | Global e minibuffer | C-TAB | Executa =dabbrev-expand=. |
-| Ações | Emacs e minibuffer | C-. / C-; / C-h B | Ação, ação padrão ou bindings do candidato (=embark=). |
 
 ** Code folding
 
@@ -251,164 +236,25 @@ Normal-state TAB bindings remain unchanged. No additional plugin is needed.
 
 ** Cursores múltiplos
 
-| Estado | Tecla | Comando / efeito |
-|--------+-------+------------------|
-| N, V | SPC M a | Cria cursores em todas as ocorrências da seleção ou símbolo atual. |
-| N, V | SPC M n / SPC M p | Adiciona cursor na ocorrência seguinte / anterior. |
-| N, V | SPC M s / SPC M S | Pula a ocorrência seguinte / anterior sem criar cursor. |
-| N, V | SPC M u / SPC M q | Remove o último cursor / todos os cursores. |
-| Visual Line | m c | Cria um cursor no início de cada linha selecionada e permanece no estado normal. |
-| N, após =*= | m s | Cria cursores no início de todos os matches destacados por =*= e permanece no estado normal. |
-| Visual Char ou Line | m p | Solicita um regexp e cria cursores no início dos matches dentro da seleção, permanecendo no estado normal. |
-| N | ESC | Remove todos os cursores múltiplos e entra no estado normal. |
+| Estado      | Tecla | Comando / efeito                                                                             |
+|             |       |                                                                                              |
+| Visual Line | m c   | Cria um cursor no início de cada linha selecionada e permanece no estado normal.             |
+| N, após =*= | m s   | Cria cursores no início de todos os matches destacados por =*= e permanece no estado normal. |
+| N, V        | m n   | Adiciona cursor na ocorrência seguinte.                                                      |
+| N, V        | m N   | skipa cursor para a ocorrência seguinte.                                                     |
+| N, V        | m p   | Adiciona cursor na ocorrência anterior.                                                      |
+| N, V        | m P   | skipa cursor para a ocorrência anterior.                                                     |
+| N           | m r   | Solicita um regexp e cria cursores no início dos matches dentro da seleção                   |
+| N           | m u   |undo último add de cursor                                                                     |
+| N           | m U   |undo TODOS os add de cursor                                                                   |
+| N           | ESC   | Remove todos os cursores múltiplos e entra no estado normal.                                 |
 
-** evil-mode
+** alinhamento e identação
 
-| Tema | Estado  | Tecla | Comando / efeito               |
-| Evil | N, V, M | m e   | Entra no estado Emacs do Evil. |
-
-* Atalhos por modo ou tipo de buffer
-
-** Org
-
-| Tema | Estado | Tecla | Comando / efeito |
-|------+--------+-------+------------------|
-| Agenda | N, V | , s / , d / , r | Agenda / deadline / refile. |
-| Edição | N, V | , l | Insere link. |
-| Navegação | N, V | , t / , b / , g | Define tags / lista headings com Consult / =org-goto=. |
-| Folding | N, V | , TAB / , RET | Alterna folding / abre elemento no ponto. |
-| Exibição | N, V | , T l | Alterna a exibição de links. |
-| Estrutura | N | t h / t j / t k / t l | Promove, move abaixo, move acima ou rebaixa heading/item. |
-| Estrutura | N | t y / t t | Obtém URL no ponto / altera TODO. |
-| Estrutura | N | t - / t * / t p | Insere item / heading / define prioridade. |
-| Estrutura | N | t TAB | Insere subheading. |
-| Estrutura | N | t o / t RET / t DEL | Novo heading abaixo, abaixo respeitando conteúdo, ou acima. |
-| Estrutura | N | t i | Abre a subtree em buffer indireto. |
-| Tabelas | N | T t | Transpõe a tabela. |
-| Tabelas | N | T h / T l | Move por sentenças para trás / frente. |
-| Tabelas | N | T d | Exclui coluna. |
-| Tabelas | N | T m | Marca a tabela ou elemento. |
-| Tabelas | N | T o / T i | Insere linha acima / coluna antes. |
-| Tabelas | N | T RET | Copia o valor para baixo. |
-| Subtrees | N | S h / S j / S k / S l | Promove, move abaixo, move acima ou rebaixa subtree. |
-| Navegação | N | z u / z h / z j / z k / z n | Navega entre headings visíveis. |
-| Estrutura | N | < / > | Promove / rebaixa elemento no ponto. |
-| Estrutura | V | - | Executa =org-ctrl-c-minus=. |
-| Remoção | Todos | C-TAB | Remove o binding nesse mapa. |
-
-** Dired / Dirvish
-
-| Modo | Estado | Tecla | Comando / efeito |
-|------+--------+-------+------------------|
-| Dired | N | h / j / k / l | Navegação Evil por caractere e linha. |
-| Dired | N | p / m / o | Copia nome do arquivo / renomeia / muda permissões. |
-| Dired | N | t / U | Marca / desmarca arquivos. |
-| Dired | N | , s / , w | Ordena por extensão / entra em Wdired. |
-| Dired | N | DEL / c / u | Abre arquivo / copia / sobe diretório. |
-| Dired | N | g o / g l / g e | Primeira linha / linha específica / fim da palavra anterior. |
-| Dired | N | R / T | Atualiza listagem / alterna marcas. |
-| Dired / Dirvish | N | q | Quits the full Dirvish session or the current Dired window. |
-
-** Lisp e Emacs Lisp interativo
-
-| Modo | Estado | Tecla | Comando / efeito |
-|------+--------+-------+------------------|
-| Lisp e Emacs Lisp interativo | N | , o | Avalia último sexp e insere o resultado. |
-| Lisp e Emacs Lisp interativo | N | , k / , j | Move expressão para trás / frente com Lispyville. |
-| Lisp e Emacs Lisp interativo | N, V | , e / , d / , b / , h | Avalia defun / instrumenta com Edebug / avalia buffer / descreve inline. |
-
-** Info
-
-| Modo | Estado | Tecla | Comando / efeito |
-|------+--------+-------+------------------|
-| Info | M | - / DEL | Remove destaque de busca / volta no histórico. |
-| Info | M | z RET / z - / z . | Põe linha no topo / base / centro da janela. |
-
-** Man
-
-| Modo | Estado | Tecla | Comando / efeito |
-|------+--------+-------+------------------|
-| Man | N | RET | Segue referência do manual. |
-
-** Magit
-
-| Modo | Estado | Tecla | Comando / efeito |
-|------+--------+-------+------------------|
-| Magit Status | Todos | g o | Vai à primeira linha; também corrige o binding de =g l=. |
-| Magit Status | N | e / E | Abre Vdiff contextual / menu de comparações Vdiff. |
-
-** Terminal
-
-| Modo | Estado | Tecla | Comando / efeito |
-|------+--------+-------+------------------|
-| Terminal | Emacs | C-c ESC | Envia =ESC= ao terminal. |
-| Terminal | Char | C-q | Alterna para semi-char mode. |
-| Terminal | N | t c | Ativa char mode. |
-| Terminal | Emacs | C-c j / C-c k | Próximo / terminal anterior. |
-| Terminal | N, V | , l / , c | Ativa line mode / char mode. |
-| Terminal | N, V | , n / , p | Próximo / terminal anterior. |
-
-** Ag
-
-| Modo | Estado | Tecla | Comando / efeito |
-|------+--------+-------+------------------|
-| Ag | Todos | r / DEL | Recompila / vai ao erro anterior de compilação. |
-
-** Buffer Menu
-
-| Modo | Estado | Tecla | Comando / efeito |
-|------+--------+-------+------------------|
-| Buffer Menu | Todos | - | Remove destaque de busca. |
-
-** Ibuffer
-
-Open Ibuffer, mark the target buffers, then run an action on them.
-The related Hydra menus stay under this heading so the complete workflow
-can be read together.
-
-| Contexto | Estado | Tecla | Comando / efeito |
-|----------+--------+-------+------------------|
-| Any buffer | N, V, M | m i | Open Ibuffer. |
-| Ibuffer | N | . | Abre Hydra principal. |
-| Ibuffer | N | t / m / U | Marca adiante / alterna marcas / desmarca tudo. |
-| Ibuffer | N | g o / g l | Primeira linha / linha específica. |
-
-*** Main Hydra: mark buffers, then choose an action
-
-| Contexto | Estado | Tecla | Comando / efeito |
-|----------+--------+-------+------------------|
-| Hydra principal | Hydra | j / k / RET / o | Navega, visita buffer, visita em outra janela. |
-| Hydra principal | Hydra | m / u / * | Marca, desmarca ou abre Hydra de marcação. |
-| Hydra principal | Hydra | D / S / a | Exclui, salva ou abre Hydra de ações. |
-| Hydra principal | Hydra | g / s / / | Atualiza, abre ordenação ou filtros. |
-| Hydra principal | Hydra | q / . | Sai do Ibuffer / fecha a Hydra. |
-
-*** Marking Hydra
-
-| Contexto | Estado | Tecla | Comando / efeito |
-|----------+--------+-------+------------------|
-| Hydra de marcação | Hydra | * / M / m / u / s / r | Desmarca tudo; marca por modo, modificação, não salvos, especiais ou somente leitura. |
-| Hydra de marcação | Hydra | / / e / h / z | Marca buffers Dired, dissociados, de ajuda ou comprimidos. |
-
-*** Actions Hydra
-
-| Contexto | Estado | Tecla | Comando / efeito |
-|----------+--------+-------+------------------|
-| Hydra de ações | Hydra | A / E / F / I / H / N / M / O | View, eval, shell, substituições, outra frame, pipe, alternâncias e occur. |
-| Hydra de ações | Hydra | P / Q / R / T / U / V / W / X | Imprime, substitui, renomeia e executa operações de buffer. |
-
-*** Sorting Hydra
-
-| Contexto | Estado | Tecla | Comando / efeito |
-|----------+--------+-------+------------------|
-| Hydra de ordenação | Hydra | i / a / v / s / f / m | Inverte; ordena por nome, uso recente, tamanho, arquivo ou modo. |
-
-*** Filtering Hydra
-
-| Contexto | Estado | Tecla | Comando / efeito |
-|----------+--------+-------+------------------|
-| Hydra de filtros | Hydra | m / M / n / c / e / f | Filtra por modo, modo derivado, nome, conteúdo, predicado ou arquivo. |
-| Hydra de filtros | Hydra | > / < / / | Filtra por tamanho maior / menor; desativa o filtro. |
+| Estado      | Tecla | Comando / efeito                                                                             |
+|             |       |                                                                                              |
+|g > / g < | Indenta à direita / esquerda.                                                            |
+|g a / g A | Alinha à esquerda / direita com Evil Lion.                                               |
 
 * Bindings declarados fora de =* keybinds=
 
@@ -417,24 +263,11 @@ ativos após o carregamento dos respectivos pacotes ou modos. Blocos marcados
 como =#+BEGIN_SRC text= foram deliberadamente excluídos: não são código
 Emacs Lisp executado pelo tangling.
 
-** Evil: estados, objetos de texto e registradores
+** Evil: objetos de texto
 
-| Contexto | Estado | Tecla | Comando / efeito |
-|----------+--------+-------+------------------|
-| Evil | Insert | ESC | Volta ao estado normal (=evil-normal-state=). |
-| Evil | Normal, Visual e Operator-pending | a e | Seleciona o buffer inteiro como objeto de texto (=ninrod/textobj-entire=). |
-| Evil | Normal, Visual e Operator-pending | i \vert{} / a \vert{} | Seleciona o conteúdo entre barras verticais / inclui os delimitadores. |
-| Evil | Normal, Visual e Operator-pending | i / / a / | Seleciona o conteúdo entre barras normais / inclui os delimitadores. |
-| Evil | Normal, Visual e Operator-pending | i $ / a $ | Seleciona o conteúdo entre cifrões / inclui os delimitadores. |
-| Evil | Normal, Visual e Operator-pending | i a / a a | Seleciona o argumento interno / externo (=evil-args=). |
-| Evil | Normal | g r | Substitui texto pelo conteúdo de um registrador (=evil-replace-with-register=). |
-
-** Mapas de pacotes e minor modes
-
-| Contexto | Estado | Tecla | Comando / efeito |
-|----------+--------+-------+------------------|
-| Vdiff | vdiff-mode | C-c | Prefixo para o mapa de comandos do Vdiff (=vdiff-mode-prefix-map=). |
-| Company | company-mode | C-SPC | Abre a completagem Company (=company-complete=). |
+objeto: ae  = text entire
+movimento: gr "substitui" a motion pelo que está no registrador
+movimento: cx "troca" a motion pela outra motion que vc marcou
 
 ** Lispyville: edição estrutural de Lisp
 
@@ -461,7 +294,6 @@ habilita os temas =operators=, =mark-toggle=, =(escape insert emacs)= e
 
 | Modo / mapa | Teclas removidas |
 |-------------+------------------|
-| Org | C-TAB |
 | Dired | F1--F12, s, -, n, N, y, M, L, H, $, 0, w, e, b, W, E, B, ., f, F, v, V, i |
 | Info | 1--9, H, L, M, g, v, V, n, N, f, F, w, e, b, W, E, B, s, SPC |
 | Magit Status | SPC |
