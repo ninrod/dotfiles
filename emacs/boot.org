@@ -1823,7 +1823,6 @@ and the Spaceline modeline in directory buffers.
 
     "g" 'avy-goto-char
     "p" 'consult-yank-pop
-    "/" 'ninrod/dirvish-fd-search
     "s" 'sort-lines
 
     "j" (kbd "LztM")
@@ -1995,7 +1994,6 @@ and the Spaceline modeline in directory buffers.
    "m" 'ninrod/evil-record-macro-z
 
    ;; edit hacks
-   "r" 'spacemacs/align-repeat
    "e" 'evil-emacs-state
    )
 
@@ -2369,7 +2367,11 @@ and the Spaceline modeline in directory buffers.
   (with-eval-after-load 'dirvish
     (ninrod/dired--unbinds 'dirvish-mode-map)
     (evil-make-overriding-map dirvish-mode-map 'normal t)
-    (ninrod/dired--binds 'dirvish-mode-map))
+    (ninrod/dired--binds 'dirvish-mode-map)
+    (spc-map
+     :keymaps 'dirvish-mode-map
+     :states '(normal visual)
+     "/" 'ninrod/dirvish-fd-search))
 #+END_SRC
 
 ** lisp
