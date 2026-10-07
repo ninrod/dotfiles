@@ -60,6 +60,21 @@ depends on the unreasonable man.
 - ivy instead of helm
 - Markdown files (=.md= and =.markdown=) use =markdown-mode= for syntax highlighting; the package is installed from the local ELPA mirror.
 
+* Evil Visual Block in Windows Terminal
+
+=C-v= enters Evil Visual Block selection from Normal state. Windows Terminal
+must forward this key instead of using it to paste from the clipboard.
+In Windows Terminal's =settings.json=, use these entries in =keybindings=:
+
+#+begin_src json
+{ "id": null, "keys": "ctrl+v" },
+{ "id": "Terminal.PasteFromClipboard", "keys": "ctrl+shift+v" }
+#+end_src
+
+=Ctrl+Shift+V= still pastes from the terminal clipboard. If =C-v= runs
+=xterm-paste=, the terminal is sending bracketed clipboard text instead of
+the key; rebinding Evil cannot fix that interception.
+
 * Visual line wrapping
 
 All editing buffers, including code, Org, Markdown, scratch buffers, and files

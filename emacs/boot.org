@@ -1890,16 +1890,6 @@ and the Spaceline modeline in directory buffers.
    "<escape>" 'ninrod/evil-mc-undo-all-cursors-and-normal-state)
 #+END_SRC
 
-*** function keys
-
-#+BEGIN_SRC emacs-lisp
-  (spc-map
-   :keymaps 'normal
-   "<f12>" '(lambda ()
-             (interactive)
-             (ninrod/open-file "~/.emacs.d/boot.org")))
-#+END_SRC
-
 *** (d) emacs help
 
 #+BEGIN_SRC emacs-lisp

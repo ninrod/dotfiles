@@ -2,8 +2,6 @@
 #+SUBTITLE: Extraída de =~/.emacs.d/boot.org=
 #+OPTIONS: toc:2
 
-Cross-editor comparison: [[file:../editor-keybindings-comparison.org][custom keybindings grouped by functionality]].
-
 Multi-step operations are grouped under one Org heading, even when their
 bindings use different prefixes or modes. Follow the steps in order; rows
 labelled as alternatives or cleanup are optional.
@@ -109,24 +107,69 @@ Cloning is an alternative that creates a copy without a separate paste step.
 
 * Atalhos gerais
 
+** arquivos: procurar, abrir
+
+| Estado   | Tecla     | Comando / efeito                                                           |
+|----------|-----------|----------------------------------------------------------------------------|
+|  N, V, M | s DEL     | Altera o diretório padrão (=cd=).                                          |
+|  N, V, M | s . / s p | Localiza arquivo no projeto / troca de projeto (=project-switch-project=). |
+
+** Manipulação de buffers, windows e posições nos buffers
+
+| Estado    | Tecla     | Comando / efeito                                                                         |
+|--------   |---------  |-----------------------------------------------------------                               |
+| N, V      | SPC TAB   | Alterna para o buffer anterior (=ninrod/alternate-buffer=)                               |
+| N, V      | SPC ,     | Vai para a marca global anterior (=pop-global-mark=)                                     |
+| N, V, M   | s u       | Reverte o buffer sem confirmação.                                                        |
+| N, V, M   | s i       | Alterna de buffer com Consult.                                                           |
+|   N, V, M | s , / s ; | Salta para trás / frente no changelist Evil.                                             |
+|   N       | m f       | Copy the current file's full path to the kill ring (=ninrod/add-filename-to-kill-ring=). |
+|   N, V, M | m k       | Bury the current buffer and switch to =*scratch*=.                                       |
+
+|  Estado   | Tecla     | Comando / efeito                                   |
+|------+----|           |                                                    |
+|  M        | g TAB     | Mostra o mark ring com Consult.                    |
+|   M       | g o / g l | Vai à primeira linha / a uma linha específica.     |
+|   M       | g h / g s | Abre arquivos recentes com Consult / status Magit. |
+|   M       | g i       | Vai para a última alteração.                       |
+|   M       | g ;       | Vai ao último caractere não vazio.                 |
+|   M       | g > / g < | Indenta à direita / esquerda.                      |
+|   N, V, M | g d       | Opens Dirvish.                                     |
+|   N, V, M | g a / g A | Alinha à esquerda / direita com Evil Lion.         |
+
+** busca nos buffers
+
+| Estado   | Tecla   | Comando / efeito                                          |
+|--------  |---------|-----------------------------------------------------------|
+| Busca | N, V, M | s / | Busca no buffer (=consult-line=). |
+
+** posicionamento e janelas
+
+| Estado | Tecla   | Comando / efeito                                          |
+|--------|---------|-----------------------------------------------------------|
+| N, V   | SPC TAB | Alterna para o buffer anterior (=ninrod/alternate-buffer=)|
+| N, V   | SPC ,   | Vai para a marca global anterior (=pop-global-mark=)      |
+| N, V   | SPC j   | Executa a macro =LztM= para reposicionar cursor e janela  |
+| N, V   | SPC k   | Executa a macro =Hz-M= para reposicionar cursor e janela  |
+
+** buffers de propósito específico (magit, dirvish, etc..)
+
+| Tema | Estado | Tecla | Comando / efeito |
+|------+--------+-------+------------------|
+| Git | N, V, M | m g | Abre o status Magit. |
+
 ** Espaço: comandos centrais
 
-| Estado | Tecla     | Comando / efeito |
-|--------+-----------+------------------|
-| N, V   | SPC TAB   | Alterna para o buffer anterior (=ninrod/alternate-buffer=). |
-| N, V   | SPC ,     | Vai para a marca global anterior (=pop-global-mark=). |
-| N, V   | SPC ESC   | Executa =ninrod/echo=. |
-| N, V   | SPC SPC   | Abre =M-x= (=execute-extended-command=). |
-| N, V   | SPC RET   | Salva o arquivo (=write-file=). |
-| N, V   | SPC DEL   | Cria um diretório (=make-directory=). |
-| N, V   | SPC g     | Salta para um caractere com Avy (=avy-goto-char=). |
-| N, V   | SPC c     | Captura uma tarefa Org (=ninrod/org-task-capture=). |
-| N, V   | SPC p     | Abre o histórico de yanks (=consult-yank-pop=). |
-| N, V   | SPC /     | Opens a Dirvish regexp search. |
-| N, V   | SPC s     | Ordena linhas (=sort-lines=). |
-| N, V   | SPC j     | Executa a macro =LztM= para reposicionar cursor e janela. |
-| N, V   | SPC k     | Executa a macro =Hz-M= para reposicionar cursor e janela. |
-| N      | SPC F12   | Abre =~/.emacs.d/boot.org=. |
+| Estado | Tecla   | Comando / efeito                                 |
+|--------|---------|--------------------------------------------------|
+| N, V   | SPC ESC | Executa =ninrod/echo=                            |
+| N, V   | SPC SPC | Abre =M-x= (=execute-extended-command=)          |
+| N, V   | SPC RET | Salva o arquivo (=write-file=)                   |
+| N, V   | SPC DEL | Cria um diretório (=make-directory=)             |
+| N, V   | SPC g   | Salta para um caractere com Avy (=avy-goto-char=)|
+| N, V   | SPC p   | Abre o histórico de yanks (=consult-yank-pop=)   |
+| N, V   | SPC /   | Opens a Dirvish regexp search                    |
+| N, V   | SPC s   | Ordena linhas (=sort-lines=)                     |
 
 ** Espaço: ajuda
 
@@ -143,54 +186,8 @@ Cloning is an alternative that creates a copy without a separate paste step.
 | Ajuda | N | SPC d m | Descreve o modo atual. |
 | Embark | N, V | SPC e b | Explora e executa os bindings ativos no buffer atual (=embark-bindings=). |
 
-** Cursores múltiplos
-
-| Estado | Tecla | Comando / efeito |
-|--------+-------+------------------|
-| N, V | SPC M a | Cria cursores em todas as ocorrências da seleção ou símbolo atual. |
-| N, V | SPC M n / SPC M p | Adiciona cursor na ocorrência seguinte / anterior. |
-| N, V | SPC M s / SPC M S | Pula a ocorrência seguinte / anterior sem criar cursor. |
-| N, V | SPC M u / SPC M q | Remove o último cursor / todos os cursores. |
-| Visual Line | m c | Cria um cursor no início de cada linha selecionada e permanece no estado normal. |
-| N, após =*= | m s | Cria cursores no início de todos os matches destacados por =*= e permanece no estado normal. |
-| Visual Char ou Line | m p | Solicita um regexp e cria cursores no início dos matches dentro da seleção, permanecendo no estado normal. |
-| N | ESC | Remove todos os cursores múltiplos e entra no estado normal. |
-
-** Prefix =s=: standalone buffer, project, and editing commands
-
-| Tema | Estado | Tecla | Comando / efeito |
-|------+--------+-------+------------------|
-| Buffers | N, V, M | s u | Reverte o buffer sem confirmação. |
-| Buffers | N, V, M | s i | Alterna de buffer com Consult. |
-| Projetos | N, V, M | s . / s p | Localiza arquivo no projeto / troca de projeto (=project-switch-project=). |
-| Edição | N, V, M | s r | Faz substituição por regex (=query-replace-regexp=). |
-| Busca | N, V, M | s / | Busca no buffer (=consult-line=). |
-| Histórico | N, V, M | s , / s ; | Salta para trás / frente no changelist Evil. |
-| Diretórios | N, V, M | s DEL | Altera o diretório padrão (=cd=). |
-
-** Prefixo =m=: Magit, Org, buffers e edição
-
-| Tema | Estado | Tecla | Comando / efeito |
-|------+--------+-------+------------------|
-| Git | N, V, M | m g | Abre o status Magit. |
-| Org | N, V, M | m o | Abre a agenda Org. |
-| Buffers | N | m f | Copy the current file's full path to the kill ring (=ninrod/add-filename-to-kill-ring=). |
-| Buffers | N, V, M | m k | Bury the current buffer and switch to =*scratch*=. |
-| Edição | N, V, M | m r | Repete o alinhamento. |
-| Evil | N, V, M | m e | Entra no estado Emacs do Evil. |
-
 ** Prefixo =g=: movimentos e histórico
 
-| Tema | Estado | Tecla | Comando / efeito |
-|------+--------+-------+------------------|
-| Marcas | M | g TAB | Mostra o mark ring com Consult. |
-| Movimento | M | g o / g l | Vai à primeira linha / a uma linha específica. |
-| Histórico | M | g h / g s | Abre arquivos recentes com Consult / status Magit. |
-| Histórico | M | g i | Vai para a última alteração. |
-| Movimento | M | g ; | Vai ao último caractere não vazio. |
-| Indentação | M | g > / g < | Indenta à direita / esquerda. |
-| Files | N, V, M | g d | Opens Dirvish. |
-| Alinhamento | N, V, M | g a / g A | Alinha à esquerda / direita com Evil Lion. |
 
 ** Evil, edição e layouts
 
@@ -237,6 +234,38 @@ Personal snippets live in =emacs/snippets/= (=~/.emacs.d/snippets/=).
 | Insert, active snippet | TAB / S-TAB | Move to the next / previous field. |
 
 Normal-state TAB bindings remain unchanged. No additional plugin is needed.
+
+* Edição
+** Regex
+
+| Tema | Estado | Tecla | Comando / efeito |
+|------+--------+-------+------------------|
+| Edição | N, V, M | s r | Faz substituição por regex (=query-replace-regexp=). |
+
+** Especiais
+
+| Estado | Tecla   | Comando / efeito                                 |
+|--------|---------|--------------------------------------------------|
+| N, V   | SPC p   | Abre o histórico de yanks (=consult-yank-pop=)   |
+| N, V   | SPC s   | Ordena linhas (=sort-lines=)                     |
+
+** Cursores múltiplos
+
+| Estado | Tecla | Comando / efeito |
+|--------+-------+------------------|
+| N, V | SPC M a | Cria cursores em todas as ocorrências da seleção ou símbolo atual. |
+| N, V | SPC M n / SPC M p | Adiciona cursor na ocorrência seguinte / anterior. |
+| N, V | SPC M s / SPC M S | Pula a ocorrência seguinte / anterior sem criar cursor. |
+| N, V | SPC M u / SPC M q | Remove o último cursor / todos os cursores. |
+| Visual Line | m c | Cria um cursor no início de cada linha selecionada e permanece no estado normal. |
+| N, após =*= | m s | Cria cursores no início de todos os matches destacados por =*= e permanece no estado normal. |
+| Visual Char ou Line | m p | Solicita um regexp e cria cursores no início dos matches dentro da seleção, permanecendo no estado normal. |
+| N | ESC | Remove todos os cursores múltiplos e entra no estado normal. |
+
+** evil-mode
+
+| Tema | Estado  | Tecla | Comando / efeito               |
+| Evil | N, V, M | m e   | Entra no estado Emacs do Evil. |
 
 * Atalhos por modo ou tipo de buffer
 
