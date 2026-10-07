@@ -62,7 +62,8 @@ depends on the unreasonable man.
 
 * Visual line wrapping
 
-Text buffers, including Org and Markdown, use the built-in =visual-line-mode=
+All editing buffers, including code, Org, Markdown, scratch buffers, and files
+without an extension (including piped input), use the built-in =visual-line-mode=
 with character-based wrapping at the window edge, without inserting newline
 characters. Words may be split between visual rows.
 =visual-wrap-prefix-mode= preserves contextual indentation on continuation
@@ -75,8 +76,10 @@ Line numbers count logical file lines rather than visual rows, with the absolute
 number shown on the current logical line; continuation rows do not acquire new
 line numbers.
 
-Programming buffers keep their existing truncation behavior. Neither Auto Fill
-nor paragraph reformatting is enabled, and wrapping does not modify file content.
+Wrapping is applied after every major-mode change and to existing buffers when
+the configuration is loaded. Minibuffers are not changed during that reload.
+Neither Auto Fill nor paragraph reformatting is enabled, and wrapping does not
+modify file content.
 
 * Filling text to the current window
 

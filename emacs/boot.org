@@ -1232,7 +1232,7 @@ M-x subword-mode
         ;; confirm-kill-emacs #'y-or-n-p ;; ask before killing emacs
         echo-keystrokes 0.02) ;; instantly display current keystrokes in mini buffer
 
-  (set-default 'truncate-lines t)
+  (set-default 'truncate-lines nil)
 
   (display-time-mode) ;; hack: customize display time in modeline.
   (save-place-mode 1) ;; save last cursor position
@@ -1281,7 +1281,13 @@ M-x subword-mode
     (set-display-table-slot buffer-display-table 'wrap
                             (make-glyph-code #x21aa 'shadow)))
 
-  (add-hook 'text-mode-hook #'ninrod/enable-visual-wrap)
+  (remove-hook 'text-mode-hook #'ninrod/enable-visual-wrap)
+  (add-hook 'after-change-major-mode-hook #'ninrod/enable-visual-wrap t)
+
+  (dolist (buffer (buffer-list))
+    (with-current-buffer buffer
+      (unless (minibufferp)
+        (ninrod/enable-visual-wrap))))
 #+END_SRC
 
 ** paragraph filling
