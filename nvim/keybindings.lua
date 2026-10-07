@@ -1,3 +1,4 @@
+-- bindings gerais {{{
 --  See `:help vim.keymap.set()`
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
@@ -19,8 +20,8 @@ vim.keymap.set({ "n", "v" }, "gl", "G")
 vim.keymap.set("n", "<space>j", "<C-F>")
 vim.keymap.set("n", "<space>k", "<C-B>")
 vim.keymap.set("n", "mk", "<cmd>bd<CR>")
-
--- Keybinds to make split navigation easier.
+-- }}}
+-- Keybinds to make split navigation easier. {{{
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
@@ -34,13 +35,14 @@ vim.keymap.set("n", "sx", "<C-w>s", { desc = "create horizontal partition" })
 vim.keymap.set("n", "sy", "<C-w>v", { desc = "create vertical partition" })
 
 vim.keymap.set("v", "<Esc>", "<C-c>")
-
--- Diagnostic keymaps
+-- }}}
+-- Diagnostic keymaps {{{
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
-
+-- }}}
+-- terminal {{{
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
@@ -48,23 +50,25 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+}}}
 
--- PLUGINS CONFIG SECTION
+-- PLUGINS CONFIG SECTION: BEGIN {{{
 --
 local M = {}
+-- }}}
 
--- PLUGIN: BufExplorer keybindings
+-- PLUGIN: BufExplorer keybindings {{{
 vim.keymap.set("n", "mi", "<cmd>BufExplorer<CR>")
-
--- PLUGIN: NEOTREE
+-- }}}
+-- PLUGIN: NEOTREE {{{
 vim.keymap.set("n", "\\", "<cmd>Neotree reveal<CR>", { desc = "NeoTree reveal" })
 function M.neo_tree_window_mappings()
 	return {
 		["\\"] = "close_window",
 	}
 end
-
--- PLUGIN: Copilot Chat keybindings
+-- }}}
+-- PLUGIN: Copilot Chat keybindings {{{
 vim.keymap.set("n", "<leader>cc", "<cmd>CopilotChatToggle<cr>", { desc = "[C]opilot [C]hat" })
 vim.keymap.set("x", "<leader>ce", function()
 	local copilot = require("CopilotChat")
@@ -76,8 +80,8 @@ vim.keymap.set("x", "<leader>ce", function()
 	copilot.chat:follow()
 	vim.cmd("startinsert")
 end, { desc = "[C]opilot [E]dit explanation prompt" })
-
--- PLUGIN: Snacks picker keybindings
+-- }}}
+-- PLUGIN: Snacks picker keybindings {{{
 function M.setup_snacks_picker_keybindings(picker)
 	local project_root = function()
 		return vim.fs.root(0, ".git") or vim.fn.getcwd(0)
@@ -107,8 +111,8 @@ function M.setup_snacks_picker_keybindings(picker)
 		picker.files({ cwd = vim.fn.stdpath("config") })
 	end, { desc = "[S]earch [N]eovim files" })
 end
-
--- PLUGIN: LSP keybindings
+-- }}}
+-- PLUGIN: LSP keybindings {{{
 function M.setup_lsp_keybindings(event, client)
 	local map = function(keys, func, desc)
 		vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
@@ -131,15 +135,15 @@ function M.setup_lsp_keybindings(event, client)
 		end, "[T]oggle Inlay [H]ints")
 	end
 end
-
--- PLUGIN: Conform keybindings
+-- }}}
+-- PLUGIN: Conform keybindings {{{
 function M.setup_conform_keybindings()
 	vim.keymap.set("n", "<leader>f", function()
 		require("conform").format({ async = true, lsp_fallback = true })
 	end, { desc = "[F]ormat buffer" })
 end
-
--- PLUGIN: Orgmode keybindings
+-- }}}
+-- PLUGIN: Orgmode keybindings {{{
 function M.setup_orgmode_keybindings(event)
 	local opts = { buffer = event.buf }
 	vim.keymap.set("n", "<Tab>", function()
@@ -149,8 +153,8 @@ function M.setup_orgmode_keybindings(event)
 		require("orgmode").action("org_mappings.global_cycle")
 	end, vim.tbl_extend("force", opts, { desc = "Org: cycle whole file" }))
 end
-
--- PLUGIN: Multicursor keybindings
+-- }}}
+-- PLUGIN: Multicursor keybindings {{{
 function M.setup_multicursor_keybindings(mc)
 	local set = vim.keymap.set
 	local function add_visual_line_cursors_at_start()
@@ -215,8 +219,8 @@ function M.setup_multicursor_keybindings(mc)
 		end)
 	end)
 end
-
--- PLUGIN: nvim-cmp and LuaSnip keybindings
+-- }}}
+-- PLUGIN: nvim-cmp and LuaSnip keybindings {{{
 vim.keymap.set("n", "<leader>id", function()
 	vim.cmd.edit(vim.fn.fnameescape(vim.fn.stdpath("config") .. "/snippets"))
 end, { desc = "Open personal snippets directory" })
@@ -260,8 +264,8 @@ function M.cmp_mappings(cmp, luasnip)
 		end, { "i", "s" }),
 	})
 end
-
--- PLUGIN: nvim-dap keybindings
+-- }}}
+-- PLUGIN: nvim-dap keybindings {{{
 function M.setup_dap_keybindings(dap, dapui)
 	vim.keymap.set("n", "<F5>", dap.continue, { desc = "Debug: Start/Continue" })
 	vim.keymap.set("n", "<F1>", dap.step_into, { desc = "Debug: Step Into" })
@@ -273,8 +277,8 @@ function M.setup_dap_keybindings(dap, dapui)
 	end, { desc = "Debug: Set Breakpoint" })
 	vim.keymap.set("n", "<F7>", dapui.toggle, { desc = "Debug: See last session result." })
 end
-
--- PLUGIN: which-key group labels
+-- }}}
+-- PLUGIN: which-key group labels {{{
 function M.which_key_groups()
 	return {
 		{ "<leader>c", group = "[C]ode" },
@@ -291,5 +295,8 @@ function M.which_key_groups()
 		{ "<leader>w_", hidden = true },
 	}
 end
+}}}
 
+-- plugin section: END {{{
 return M
+-- }}}
