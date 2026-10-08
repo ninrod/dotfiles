@@ -2027,7 +2027,6 @@ and the Spaceline modeline in directory buffers.
   (general-define-key
    :keymaps '(normal visual motion)
    :prefix "g"
-   "d" 'dirvish
    "a" 'evil-lion-left
    "A" 'evil-lion-right
    )
@@ -2037,6 +2036,10 @@ and the Spaceline modeline in directory buffers.
 *** comfort improvements
 
 #+BEGIN_SRC emacs-lisp
+  (general-define-key
+   :keymaps '(normal visual motion)
+   "\\" 'dirvish)
+
   (general-nmap
    "RET" 'evil-write
    "TAB" 'ninrod/origami-toggle-node

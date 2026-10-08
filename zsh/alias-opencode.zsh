@@ -1,14 +1,16 @@
 # oc: opencode wrapper function
 #
 function oc() {
-    local -x VISUAL="vi" EDITOR="vi"
-    if (( $+commands[emacsclient] )); then
-        VISUAL="emacsclient -tty"
-        EDITOR="$VISUAL"
-    elif (( $+commands[nvim] )); then
-        VISUAL="nvim"
-        EDITOR="$VISUAL"
-    fi
+
+    # local -x VISUAL="vi" EDITOR="vi"
+    # if (( $+commands[emacsclient] )); then
+    #     VISUAL="emacsclient -tty"
+    #     EDITOR="$VISUAL"
+    # elif (( $+commands[nvim] )); then
+    #     VISUAL="nvim"
+    #     EDITOR="$VISUAL"
+    # fi
+    
     if [[ ! -t 0 ]]; then
         local stdin_content
         stdin_content=$(cat) || return
