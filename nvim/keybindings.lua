@@ -70,19 +70,6 @@ function M.neo_tree_window_mappings()
 	}
 end
 -- }}}
--- PLUGIN: Copilot Chat keybindings {{{
-vim.keymap.set("n", "<leader>cc", "<cmd>CopilotChatToggle<cr>", { desc = "[C]opilot [C]hat" })
-vim.keymap.set("x", "<leader>ce", function()
-	local copilot = require("CopilotChat")
-	copilot.open()
-	copilot.chat:add_message({
-		role = "user",
-		content = "#selection\n\nExplique o que este trecho de codigo faz.",
-	})
-	copilot.chat:follow()
-	vim.cmd("startinsert")
-end, { desc = "[C]opilot [E]dit explanation prompt" })
--- }}}
 -- PLUGIN: Snacks picker keybindings {{{
 function M.setup_snacks_picker_keybindings(picker)
 	local project_root = function()
@@ -112,48 +99,6 @@ function M.setup_snacks_picker_keybindings(picker)
 	vim.keymap.set("n", "<leader>sn", function()
 		picker.files({ cwd = vim.fn.stdpath("config") })
 	end, { desc = "[S]earch [N]eovim files" })
-end
--- }}}
--- PLUGIN: LSP keybindings {{{
-function M.setup_lsp_keybindings(event, client)
-	local map = function(keys, func, desc)
-		vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
-	end
-	local picker = require("snacks").picker
-	map("gd", picker.lsp_definitions, "[G]oto [D]efinition")
-	map("gR", picker.lsp_references, "[G]oto [R]eferences")
-	map("gI", picker.lsp_implementations, "[G]oto [I]mplementation")
-	map("<leader>D", picker.lsp_type_definitions, "Type [D]efinition")
-	map("<leader>ds", picker.lsp_symbols, "[D]ocument [S]ymbols")
-	map("<leader>ws", picker.lsp_workspace_symbols, "[W]orkspace [S]ymbols")
-	map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-	map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
-	map("K", vim.lsp.buf.hover, "Hover Documentation")
-	map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-
-	if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-		map("<leader>th", function()
-			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-		end, "[T]oggle Inlay [H]ints")
-	end
-end
--- }}}
--- PLUGIN: Conform keybindings {{{
-function M.setup_conform_keybindings()
-	vim.keymap.set("n", "<leader>f", function()
-		require("conform").format({ async = true, lsp_fallback = true })
-	end, { desc = "[F]ormat buffer" })
-end
--- }}}
--- PLUGIN: Orgmode keybindings {{{
-function M.setup_orgmode_keybindings(event)
-	local opts = { buffer = event.buf }
-	vim.keymap.set("n", "<Tab>", function()
-		require("orgmode").action("org_mappings.cycle")
-	end, vim.tbl_extend("force", opts, { desc = "Org: cycle current headline" }))
-	vim.keymap.set("n", "<S-Tab>", function()
-		require("orgmode").action("org_mappings.global_cycle")
-	end, vim.tbl_extend("force", opts, { desc = "Org: cycle whole file" }))
 end
 -- }}}
 -- PLUGIN: Multicursor keybindings {{{
@@ -219,6 +164,30 @@ function M.setup_multicursor_keybindings(mc)
 end
 
 -- }}}
+-- PLUGIN: Orgmode keybindings {{{
+function M.setup_orgmode_keybindings(event)
+	local opts = { buffer = event.buf }
+	vim.keymap.set("n", "<Tab>", function()
+		require("orgmode").action("org_mappings.cycle")
+	end, vim.tbl_extend("force", opts, { desc = "Org: cycle current headline" }))
+	vim.keymap.set("n", "<S-Tab>", function()
+		require("orgmode").action("org_mappings.global_cycle")
+	end, vim.tbl_extend("force", opts, { desc = "Org: cycle whole file" }))
+end
+-- }}}
+-- PLUGIN: Copilot Chat keybindings {{{
+vim.keymap.set("n", "<leader>cc", "<cmd>CopilotChatToggle<cr>", { desc = "[C]opilot [C]hat" })
+vim.keymap.set("x", "<leader>ce", function()
+	local copilot = require("CopilotChat")
+	copilot.open()
+	copilot.chat:add_message({
+		role = "user",
+		content = "#selection\n\nExplique o que este trecho de codigo faz.",
+	})
+	copilot.chat:follow()
+	vim.cmd("startinsert")
+end, { desc = "[C]opilot [E]dit explanation prompt" })
+-- }}}
 -- PLUGIN: nvim-cmp and LuaSnip keybindings {{{
 vim.keymap.set("n", "<leader>id", function()
 	vim.cmd.edit(vim.fn.fnameescape(vim.fn.stdpath("config") .. "/snippets"))
@@ -275,6 +244,37 @@ function M.setup_dap_keybindings(dap, dapui)
 		dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
 	end, { desc = "Debug: Set Breakpoint" })
 	vim.keymap.set("n", "<F7>", dapui.toggle, { desc = "Debug: See last session result." })
+end
+-- }}}
+-- PLUGIN: Conform keybindings {{{
+function M.setup_conform_keybindings()
+	vim.keymap.set("n", "<leader>f", function()
+		require("conform").format({ async = true, lsp_fallback = true })
+	end, { desc = "[F]ormat buffer" })
+end
+-- }}}
+-- PLUGIN: LSP keybindings {{{
+function M.setup_lsp_keybindings(event, client)
+	local map = function(keys, func, desc)
+		vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+	end
+	local picker = require("snacks").picker
+	map("gd", picker.lsp_definitions, "[G]oto [D]efinition")
+	map("gR", picker.lsp_references, "[G]oto [R]eferences")
+	map("gI", picker.lsp_implementations, "[G]oto [I]mplementation")
+	map("<leader>D", picker.lsp_type_definitions, "Type [D]efinition")
+	map("<leader>ds", picker.lsp_symbols, "[D]ocument [S]ymbols")
+	map("<leader>ws", picker.lsp_workspace_symbols, "[W]orkspace [S]ymbols")
+	map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+	map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+	map("K", vim.lsp.buf.hover, "Hover Documentation")
+	map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+
+	if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+		map("<leader>th", function()
+			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+		end, "[T]oggle Inlay [H]ints")
+	end
 end
 -- }}}
 -- PLUGIN: which-key group labels {{{
