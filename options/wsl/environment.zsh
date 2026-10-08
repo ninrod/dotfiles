@@ -1,5 +1,6 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 export BSSH_SERVERS_FILE="$HOME/code/sources/secrets/bssh.servers"
+export DISPLAY=:99.0
 
 # setting up PATH
 CUSTOM_SCRIPTS=~/.dotfiles/scripts/emacs:~/.dotfiles/scripts/vim:~/.dotfiles/scripts/zsh
