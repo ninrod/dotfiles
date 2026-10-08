@@ -1,10 +1,4 @@
-#+TITLE: Referência de keybindings do Emacs
-#+SUBTITLE: Extraída de =~/.emacs.d/boot.org=
 #+OPTIONS: toc:2
-
-Multi-step operations are grouped under one Org heading, even when their
-bindings use different prefixes or modes. Follow the steps in order; rows
-labelled as alternatives or cleanup are optional.
 
 * Multi-step workflows
 
@@ -72,16 +66,6 @@ narrowing has its own matching restore command.
 successive steps. Both bindings apply only in Normal state in an active Org
 source editing buffer, regardless of its language. Ordinary Emacs Lisp buffers
 are unaffected, and =S= and =T= retain their usual Evil behavior.
-
-** Inspect, edit, and recalculate Org table formulas
-
-| Step | Context / state | Key | Command / effect |
-|------+-----------------+-----+------------------|
-| Inspect coordinates | Org, N | T @ | Toggle table coordinate overlays. |
-| Inspect a field | Org, N | T ? | Show information about the current field. |
-| Edit | Org, N | T f | Open the table formula editor (=org-table-edit-formulas=). |
-| Apply and return | Formula editor | C-c C-c | Install the edited formulas and return to the table. |
-| Recalculate | Org, N | T e | Recalculate the table with prefix argument =4=. |
 
 ** Copy or move an Org subtree
 

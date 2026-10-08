@@ -2219,7 +2219,6 @@ and the Spaceline modeline in directory buffers.
     "h" 'org-backward-sentence
     "l" 'org-forward-sentence
     "d" 'org-table-delete-column
-    "f" 'org-table-edit-formulas
 
     ;; from https://www.reddit.com/r/emacs/comments/56oc9c/orgtables_is_there_a_way_to_delete_a_whole_table/
     ;; fist place point in the top left bar (`|')
@@ -2227,13 +2226,6 @@ and the Spaceline modeline in directory buffers.
 
     "o" 'org-table-insert-row ; above
     "i" 'org-table-insert-column ;before
-
-    ;; formulas
-    "@" 'org-table-toggle-coordinate-overlays
-    "?" 'org-table-field-info
-    "e" '((lambda () (interactive) ; [E]val formulas
-           (let ((current-prefix-arg 4))
-             (call-interactively 'org-table-recalculate))) :which-key "eval formulas")
 
     "RET" 'org-table-copy-down
   )
