@@ -6,17 +6,6 @@ Multi-step operations are grouped under one Org heading, even when their
 bindings use different prefixes or modes. Follow the steps in order; rows
 labelled as alternatives or cleanup are optional.
 
-* Convenções
-
-- Escopo: a maior parte deste documento cobre o nó =~* keybinds= de
-  =boot.org=. A seção "Bindings declarados fora de *keybinds*" complementa
-  os atalhos ativos declarados em outras partes do arquivo.
-- Estados Evil: =N= (normal), =V= (visual) e =M= (motion).
-- Sequências como =SPC d f= indicam teclas sucessivas, não teclas
-  pressionadas simultaneamente.
-- Os mapas específicos de modo podem sobrepor um atalho geral quando aquele
-  modo ou buffer está ativo.
-
 * Multi-step workflows
 
 ** Save a position and return to it
@@ -137,7 +126,6 @@ Cloning is an alternative that creates a copy without a separate paste step.
 |m f       | Copy the current file's full path to the kill ring (=ninrod/add-filename-to-kill-ring=). |
 |m k       | Bury the current buffer and switch to =*scratch*=.                                       |
 |g TAB     | Mostra o mark ring com Consult.                                                          |
-|g o / g l | Vai à primeira linha / a uma linha específica.                                           |
 |g h       | Abre arquivos recentes com Consult                                                       |
 
 ** busca nos buffers
@@ -148,11 +136,12 @@ Cloning is an alternative that creates a copy without a separate paste step.
 
 ** posicionamento e janelas
 
-| Estado | Tecla   | Comando / efeito                                          |
-|--------|---------|-----------------------------------------------------------|
-| N, V   | SPC TAB | Alterna para o buffer anterior (=ninrod/alternate-buffer=)|
-| N, V   | SPC j   | Executa a macro =LztM= para reposicionar cursor e janela  |
-| N, V   | SPC k   | Executa a macro =Hz-M= para reposicionar cursor e janela  |
+|  Tecla    | Comando / efeito                                           |
+|-----------|------------------------------------------------------------|
+| SPC TAB   | Alterna para o buffer anterior (=ninrod/alternate-buffer=) |
+| SPC j     | Executa a macro =LztM= para reposicionar cursor e janela   |
+| SPC k     | Executa a macro =Hz-M= para reposicionar cursor e janela   |
+| g o / g l | Vai à primeira linha / a uma linha específica.             |
 
 ** buffers de propósito específico (magit, dirvish, etc..)
 
