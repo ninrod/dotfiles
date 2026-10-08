@@ -24,22 +24,24 @@
      (35 (eq major-mode 'dired-mode) font-lock-function-name-face)
      (1 (eq major-mode 'org-mode) org-level-1)))
  '(package-selected-packages
-   '(ag aggressive-indent anaconda-mode atomic-chrome autothemer cargo
-        company-anaconda consult copilot docker editorconfig
-        elpa-mirror embark embark-consult emmet-mode evil-args
-        evil-commentary evil-exchange evil-ghostel evil-indent-plus
-        evil-lion evil-matchit evil-replace-with-char
-        evil-replace-with-register evil-string-inflection
-        evil-surround evil-visualstar exato eyebrowse fic-mode
-        flycheck-package general ghostel git-gutter-fringe
-        gitattributes-mode gitconfig-mode gitignore-mode groovy-mode
-        gruvbox-theme helpful ibuffer-vc json-mode json-reformat
-        kotlin-mode lispy lispyville magit markdown-mode multi-term
-        nginx-mode ob-http orderless origami pass pkgbuild-mode
-        py-isort pyvenv rainbow-delimiters rainbow-mode restart-emacs
-        rjsx-mode smartparens smex systemd tide toml-mode use-package
-        vdiff vdiff-magit vertico vimrc-mode web-mode worf yapfify
-        yasnippet))
+   '(ace-window ag aggressive-indent anaconda-mode atomic-chrome
+                autothemer cargo company-anaconda consult copilot
+                docker editorconfig elpa-mirror embark embark-consult
+                emmet-mode evil-args evil-commentary evil-exchange
+                evil-ghostel evil-indent-plus evil-lion evil-matchit
+                evil-replace-with-char evil-replace-with-register
+                evil-string-inflection evil-surround evil-visualstar
+                exato eyebrowse fic-mode flycheck-package general
+                ghostel git-gutter-fringe gitattributes-mode
+                gitconfig-mode gitignore-mode groovy-mode
+                gruvbox-theme helpful ibuffer-vc iedit json-mode
+                json-reformat kotlin-mode lispy lispyville magit
+                markdown-mode multi-term nginx-mode ob-http orderless
+                origami pass pkgbuild-mode py-isort pyvenv
+                rainbow-delimiters rainbow-mode restart-emacs
+                rjsx-mode smartparens smex swiper systemd tide
+                toml-mode use-package vdiff vdiff-magit vertico
+                vimrc-mode web-mode worf yapfify yasnippet zoutline))
  '(safe-local-variable-values
    '((eval when
            (and (buffer-file-name) (file-regular-p (buffer-file-name))
@@ -62,6 +64,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(origami-fold-header-face ((t (:inherit highlight :box nil))))
  '(trailing-whitespace ((t (:background "dark magenta" :foreground "#B3B3B3")))))
 
 (put 'narrow-to-region 'disabled nil)

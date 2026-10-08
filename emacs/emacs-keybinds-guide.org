@@ -268,19 +268,18 @@ habilita os temas =operators=, =mark-toggle=, =(escape insert emacs)= e
 =slurp/barf-cp=. Assim, estes bindings só se aplicam em buffers nos quais
 =lispy-mode= e =lispyville-mode= estejam ativos.
 
-| Tema | Estado | Tecla / comando Evil | Efeito |
-|------+--------+----------------------+--------|
-| Operadores seguros | Estados que possuem o comando Evil | y / d / c | Remapeia yank, delete e change para versões que não copiam ou removem delimitadores não balanceados. |
-| Operadores seguros | Estados que possuem o comando Evil | Y / D / C | Aplica as variantes seguras de yank, delete e change de linha. |
-| Operadores seguros | Estados que possuem o comando Evil | x / X | Remove caractere à frente / atrás ou faz splice, preservando a estrutura. |
-| Operadores seguros | Estados que possuem o comando Evil | s / S | Substitui caractere / linha sem desbalancear delimitadores. |
-| Operadores seguros | Estados que possuem o comando Evil | J | Junta linhas sem levar parênteses não balanceados para dentro de comentários. |
-| Slurp/barf | Normal | > | Move o delimitador posterior à direita (=lispyville->=): faz slurp ou barf conforme a posição no parêntese. |
-| Slurp/barf | Normal | < | Move o delimitador posterior à esquerda (=lispyville-<=): faz slurp ou barf conforme a posição no parêntese. |
-| Marcação | Visual | v | Alterna do visual Evil para o estado especial do Lispy. |
-| Marcação | Lispy special | v | Alterna do estado especial do Lispy para o visual Evil (=lispyville-toggle-mark-type=); com prefixo numérico diferente de 1, preserva a ação =lispy-mark-list=. |
-| Escape | Insert, Emacs e Lispy special | ESC | Cancela região e entra no estado normal Evil (=lispyville-normal-state=). O tema =escape= vem depois de =mark-toggle= e vence o binding de =ESC= deste último. |
-| Inserção contextual | Insert, Emacs | Entrada / saída desses estados | Insere um espaço após delimitador de abertura ao entrar em inserção e o remove ao sair quando esse espaço foi automático; este tema não adiciona uma tecla. |
+|Tecla      |Efeito                                                                                                     |
+|           |                                                                                                           |
+| y / d / c |Remapeia yank, delete e change para versões que não copiam ou removem delimitadores não balanceados.       |
+| Y / D / C |Aplica as variantes seguras de yank, delete e change de linha.                                             |
+| x / X     |Remove caractere à frente / atrás ou faz splice, preservando a estrutura.                                  |
+| s / S     |Substitui caractere / linha sem desbalancear delimitadores.                                                |
+| J         |Junta linhas sem levar parênteses não balanceados para dentro de comentários.                              |
+| >         |Move o delimitador posterior à direita (=lispyville->=): faz slurp ou barf conforme a posição no parêntese |
+| <         |Move o delimitador posterior à esquerda (=lispyville-<=): faz slurp ou barf conforme a posição no parêntese|
+| v         |Alterna do visual Evil para o estado especial do Lispy.                                                    |
+| v         |Alterna do estado especial do Lispy para o visual Evil (=lispyville-toggle-mark-type=);                    |
+| ESC       |Cancela região e entra no estado normal Evil (=lispyville-normal-state=).                                  |
 
 * Bindings padrão deliberadamente removidos
 

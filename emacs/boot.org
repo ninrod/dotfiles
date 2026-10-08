@@ -1602,6 +1602,31 @@ M-x subword-mode
     :mode ("\\.vim\\'" "\\.?vimrc\\'"))
 #+END_SRC
 
+** Lisp structural editing
+
+#+BEGIN_SRC emacs-lisp
+  ;; The local MELPA mirror omits Lispy's dependency metadata.
+  (dolist (package '(avy ace-window hydra iedit swiper zoutline))
+    (unless (package-installed-p package)
+      (package-install package)))
+
+  (use-package lispy
+    :ensure t
+    :hook (emacs-lisp-mode . lispy-mode))
+
+  (use-package lispyville
+    :ensure t
+    :after (evil lispy)
+    :hook (lispy-mode . lispyville-mode)
+    :config
+    (lispyville-set-key-theme '(operators
+                                (mark-toggle)
+                                (escape insert emacs)
+                                slurp/barf-cp))
+    (evil-set-command-property 'lispyville-yank :move-point t)
+    (lispy-define-key lispy-mode-map "v" #'lispyville-toggle-mark-type))
+#+END_SRC
+
 ** Snippets
 
 #+BEGIN_SRC emacs-lisp
@@ -1821,7 +1846,6 @@ and the Spaceline modeline in directory buffers.
     ;; lembrando que DEL é BACKSPACE
     "DEL" 'make-directory
 
-    "g" 'avy-goto-char
     "p" 'consult-yank-pop
     "s" 'sort-lines
 
@@ -2016,6 +2040,7 @@ and the Spaceline modeline in directory buffers.
    "s" 'magit-status
 
    "i" 'goto-last-change
+   "g" 'avy-goto-char
    ";" 'evil-last-non-blank
 
    ;; As I've sequestered < and > when in org mode, we need a workaround.
