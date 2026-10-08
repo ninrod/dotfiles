@@ -2232,7 +2232,7 @@ and the Spaceline modeline in directory buffers.
    :states 'normal
    "RET" 'evil-write
    "zu" 'outline-up-heading
-   "zh" 'outline-previous-visible-heading
+   "zp" 'outline-previous-visible-heading
    "zj" 'org-forward-heading-same-level
    "zk" 'org-backward-heading-same-level
    "zn" 'outline-next-visible-heading

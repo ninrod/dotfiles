@@ -13,10 +13,10 @@ labelled as alternatives or cleanup are optional.
 The Evil marker =z= stores one position; setting it again replaces the
 previous position. This is separate from Emacs's mark ring (=g TAB=).
 
-| Step | State | Key | Command / effect |
-|------+-------+-----+------------------|
-| Save | N, V, M | s m | Save the current position in marker =z= (=ninrod/evil-set-marker-z=). |
-| Return | M | g m | Jump to marker =z= and center the destination line (=ninrod/evil-goto-marker-z=). |
+| Key | Command / effect                                                                  |
+|-----|-----------------------------------------------------------------------------------|
+| s m | Save the current position in marker =z= (=ninrod/evil-set-marker-z=).             |
+| g m | Jump to marker =z= and center the destination line (=ninrod/evil-goto-marker-z=). |
 
 ** Record a macro and apply it to selected lines
 
@@ -98,12 +98,13 @@ Cloning is an alternative that creates a copy without a separate paste step.
 
 ** arquivos: procurar, abrir
 
-| Estado   | Tecla     | Comando / efeito                                                           |
-|----------|-----------|----------------------------------------------------------------------------|
-|  N, V, M | s DEL     | Altera o diretório padrão (=cd=).                                          |
-|  N, V, M | s . / s p | Localiza arquivo no projeto / troca de projeto (=project-switch-project=). |
-| Evil | N | DEL | Abre arquivo (=find-file=). |
-| Evil | N | q / - | Fecha conforme =evil-quit= / remove destaque de busca. |
+| Tecla | Comando / efeito                                      |
+|-------|-------------------------------------------------------|
+| s DEL | Altera o diretório padrão (=cd=).                     |
+| s .   | Localiza arquivo no projeto /                         |
+| sp    |  troca de projeto (=project-switch-project=).         |
+| DEL   | Abre arquivo (=find-file=).                           |
+| q / - | Fecha conforme =evil-quit= / remove destaque de busca.|
 
 ** Evil
 
