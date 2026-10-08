@@ -4,6 +4,13 @@
 * Ninrod's neovim configuration
 - I've split up the initial lua script  into manageable smaller files
 
+* Whitespace indicators
+
+The native =list= option is disabled by default. In Normal mode, =SPC t w=
+toggles whitespace indicators in the current window. The =listchars= option
+defines the markers for tabs, trailing spaces, and non-breaking spaces.
+This only changes their display, not the file content.
+
 * Visual wrapping indicator
 
 The native =showbreak= option displays a Unicode rightwards arrow with hook

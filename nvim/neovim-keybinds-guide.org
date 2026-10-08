@@ -169,6 +169,12 @@ way to set it from the word under the cursor.
 
 * Prefixo =SPC=: comandos globais
 
+** Display toggles
+
+| Key | Command / effect |
+|-----+------------------|
+| SPC t w | Toggle whitespace indicators in the current window (=list=); disabled by default. |
+
 ** Copilot Chat
 
 | Tecla | Comando / efeito |

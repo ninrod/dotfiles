@@ -7,6 +7,8 @@ vim.keymap.set({ "n", "v" }, "-", "<cmd>nohlsearch<CR>")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.keymap.set("n", "<leader>tw", "<cmd>setlocal list!<CR>", { desc = "[T]oggle [W]hitespace characters" })
+
 vim.keymap.set("n", "<CR>", "<cmd>w<CR>")
 vim.keymap.set("n", "<Tab>", "za", { desc = "Toggle fold" })
 vim.keymap.set("n", "q", "ZQ")
@@ -155,6 +157,7 @@ function M.setup_orgmode_keybindings(event)
 end
 -- }}}
 -- PLUGIN: Multicursor keybindings {{{
+--
 function M.setup_multicursor_keybindings(mc)
 	local set = vim.keymap.set
 	local function add_visual_line_cursors_at_start()
@@ -174,38 +177,31 @@ function M.setup_multicursor_keybindings(mc)
 	end
 
 	set("x", "mc", add_visual_line_cursors_at_start, { desc = "[M]ulticursor line [C]ursors" })
-	set("n", "ms", mc.searchAllAddCursors, { desc = "[M]ulticursor [S]earch matches" })
-	set({ "n", "x" }, "<up>", function()
-		mc.lineAddCursor(-1)
-	end)
-	set({ "n", "x" }, "<down>", function()
-		mc.lineAddCursor(1)
-	end)
-	set({ "n", "x" }, "<leader><up>", function()
-		mc.lineSkipCursor(-1)
-	end)
-	set({ "n", "x" }, "<leader><down>", function()
-		mc.lineSkipCursor(1)
-	end)
-	set({ "n", "x" }, "<leader>s", function()
-		mc.matchSkipCursor(1)
-	end)
-	set({ "n", "x" }, "<leader>N", function()
-		mc.matchAddCursor(-1)
-	end)
-	set({ "n", "x" }, "<leader>S", function()
-		mc.matchSkipCursor(-1)
-	end)
-	set("n", "<c-leftmouse>", mc.handleMouse)
-	set("n", "<c-leftdrag>", mc.handleMouseDrag)
-	set("n", "<c-leftrelease>", mc.handleMouseRelease)
-	set({ "n", "x" }, "<c-q>", mc.toggleCursor)
-	set({ "n", "x" }, "gm", mc.addCursorOperator)
-	set("x", "I", mc.insertVisual)
-	set("x", "A", mc.appendVisual)
+
+	set("n", "m*", mc.searchAllAddCursors, { desc = "[M]ulticursor [S]earch matches" })
 	set({ "n", "x" }, "<leader>n", mc.searchAllAddCursors)
 	set("x", "mp", mc.matchCursors)
 	set("x", "<leader>|", mc.splitCursors)
+
+	set({ "n", "x" }, "mN", function()
+		mc.matchSkipCursor(1)
+	end)
+	set({ "n", "x" }, "mp", function()
+		mc.matchAddCursor(-1)
+	end)
+	set({ "n", "x" }, "mn", function()
+		mc.matchAddCursor(1)
+	end)
+	set({ "n", "x" }, "mP", function()
+		mc.matchSkipCursor(-1)
+	end)
+
+	set({ "n", "x" }, "<c-q>", mc.toggleCursor)
+	set({ "n", "x" }, "gm", mc.addCursorOperator)
+
+	set("x", "I", mc.insertVisual)
+	set("x", "A", mc.appendVisual)
+
 	mc.addKeymapLayer(function(layer_set)
 		layer_set({ "n", "x" }, "<left>", mc.prevCursor)
 		layer_set({ "n", "x" }, "<right>", mc.nextCursor)
@@ -219,6 +215,7 @@ function M.setup_multicursor_keybindings(mc)
 		end)
 	end)
 end
+
 -- }}}
 -- PLUGIN: nvim-cmp and LuaSnip keybindings {{{
 vim.keymap.set("n", "<leader>id", function()
