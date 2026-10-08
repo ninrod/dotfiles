@@ -176,12 +176,14 @@ function M.setup_multicursor_keybindings(mc)
 		end)
 	end
 
+	-- place cursors at the start  of the selected visual lines
 	set("x", "mc", add_visual_line_cursors_at_start, { desc = "[M]ulticursor line [C]ursors" })
 
-	set("n", "m*", mc.searchAllAddCursors, { desc = "[M]ulticursor [S]earch matches" })
-	set({ "n", "x" }, "<leader>n", mc.searchAllAddCursors)
-	set("x", "mp", mc.matchCursors)
-	set("x", "<leader>|", mc.splitCursors)
+	-- place cursors at the start of the matched terms
+	set("n", "m*", mc.matchAllAddCursors, { desc = "[M]ulticursor [*]start matches" })
+	set("n", "ms", mc.searchAllAddCursors, { desc = "[M]ulticursor [S]earch matches" })
+	set("x", "mr", mc.matchCursors)
+	set("x", "m|", mc.splitCursors)
 
 	set({ "n", "x" }, "mN", function()
 		mc.matchSkipCursor(1)
