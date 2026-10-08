@@ -62,8 +62,17 @@ local M = {}
 -- PLUGIN: BufExplorer keybindings {{{
 vim.keymap.set("n", "mi", "<cmd>BufExplorer<CR>")
 -- }}}
--- PLUGIN: NEOTREE {{{
-vim.keymap.set("n", "\\", "<cmd>Neotree reveal<CR>", { desc = "NeoTree reveal" })
+-- PLUGIN: Oil keybindings {{{
+vim.keymap.set("n", "\\", "<cmd>Oil<CR>", { desc = "Open current file directory" })
+function M.oil_buffer_mappings()
+	return {
+		["<CR>"] = "actions.select",
+		["-"] = { "actions.parent", mode = "n" },
+		["\\"] = { "actions.close", mode = "n" },
+	}
+end
+-- }}}
+-- PLUGIN: Neo-tree keybindings {{{
 function M.neo_tree_window_mappings()
 	return {
 		["\\"] = "close_window",

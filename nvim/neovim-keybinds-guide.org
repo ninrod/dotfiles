@@ -40,12 +40,23 @@ Normal-mode =q= to quit without saving.
 | Move horizontally | Normal | s h / s l | Focus the window on the left / right. |
 | Move vertically | Normal | s j / s k | Focus the window below / above. |
 
-** Reveal a file in Neo-tree and close the tree
+** Browse and edit directories with Oil
+
+Oil opens the current file's directory as an editable buffer. File operations
+are staged by editing its entries and applied only after saving and confirming
+the operation preview. Neo-tree remains available through =:Neotree=, but Oil
+handles directory buffers by default.
 
 | Step | Context | Key | Command / effect |
 |------+---------+-----+------------------|
-| Open / reveal | Normal, editing buffer | \ | Reveal the current file in Neo-tree. |
-| Close | Neo-tree window | \ | Close the tree window. |
+| Open directory | Normal, editing buffer | \ | Open the current file's directory in Oil. |
+| Open entry | Oil buffer | RET | Open the file or enter the directory under the cursor. |
+| Parent directory | Oil buffer, Normal | - | Go up one directory; outside Oil, keep clearing search highlighting. |
+| Create | Oil buffer | o / O, then type a name | Stage a new file; use a trailing slash for a directory. |
+| Rename | Oil buffer | Normal editing commands | Edit an entry's name to stage a rename. |
+| Delete | Oil buffer, Normal | d d | Remove an entry's line to stage deletion. |
+| Apply operations | Oil buffer | :w | Review and confirm the pending filesystem operations. |
+| Close | Oil buffer, Normal | \ | Return to the editing buffer. |
 
 ** Search and resume the last picker
 

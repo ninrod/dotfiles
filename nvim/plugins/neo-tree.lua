@@ -9,6 +9,7 @@ return {
 	cmd = "Neotree",
 	opts = {
 		filesystem = {
+			hijack_netrw_behavior = "disabled",
 			window = {
 				mappings = require("keybindings").neo_tree_window_mappings(),
 			},
