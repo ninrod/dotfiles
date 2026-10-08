@@ -86,15 +86,12 @@ Cloning is an alternative that creates a copy without a separate paste step.
 
 * Atalhos gerais
 
-** arquivos: procurar, abrir
+** Espaço: comandos centrais
 
-| Tecla | Comando / efeito                                      |
-|-------|-------------------------------------------------------|
-| s DEL | Altera o diretório padrão (=cd=).                     |
-| s .   | Localiza arquivo no projeto /                         |
-| sp    |  troca de projeto (=project-switch-project=).         |
-| DEL   | Abre arquivo (=find-file=).                           |
-| q / - | Fecha conforme =evil-quit= / remove destaque de busca.|
+|  Tecla   | Comando / efeito                                 |
+|----------|--------------------------------------------------|
+|  SPC ESC | Executa =ninrod/echo=                            |
+|  SPC SPC | Abre =M-x= (=execute-extended-command=)          |
 
 ** Evil
 
@@ -106,23 +103,36 @@ Cloning is an alternative that creates a copy without a separate paste step.
 | z . / z - / zt | Centraliza / posiciona a linha atual na base da janela.                    |
 | C-e            | Expand the word at point with =dabbrev-expand=, except in Ghostel buffers. |
 
+** arquivos: procurar, abrir
+
+| Tecla   | Comando / efeito                                                                         |
+|---------|------------------------------------------------------------------------------------------|
+| sp      |  troca de projeto (=project-switch-project=).                                            |
+| s .     | Localiza arquivo no projeto /                                                            |
+| g h     | Abre arquivos recentes com Consult                                                       |
+| s DEL   | Altera o diretório padrão (=cd=).                                                        |
+| SPC RET | Salva "como" o arquivo (=write-file=)                                                    |
+| SPC DEL | Cria um diretório (=make-directory=)                                                     |
+| DEL     | Abre arquivo (=find-file=).                                                              |
+| q / -   | Fecha conforme =evil-quit= / remove destaque de busca.                                   |
+| m f     | Copy the current file's full path to the kill ring (=ninrod/add-filename-to-kill-ring=). |
+
 ** Manipulação de buffers, windows e posições nos buffers
 
-|Tecla      | Comando / efeito                                                                         |
-|---------- |------------------------------------------------------------------------------------------|
-| SPC TAB   | Alterna para o buffer anterior (=ninrod/alternate-buffer=)                               |
-|  m i      | Open Ibuffer.                                                                            |
-| s , / s ; | Salta para trás / frente no changelist Evil.                                             |
-| m f       | Copy the current file's full path to the kill ring (=ninrod/add-filename-to-kill-ring=). |
-| m k       | Bury the current buffer and switch to =*scratch*=.                                       |
-| g TAB     | Mostra o mark ring com Consult.                                                          |
-| g h       | Abre arquivos recentes com Consult                                                       |
+|Tecla      | Comando / efeito                                           |
+|---------- |------------------------------------------------------------|
+| SPC TAB   | Alterna para o buffer anterior (=ninrod/alternate-buffer=) |
+| m i       | Open Ibuffer.                                              |
+| m k       | Bury the current buffer and switch to =*scratch*=.         |
+| s , / s ; | Salta para trás / frente no changelist Evil.               |
+| g TAB     | Mostra o mark ring com Consult.                            |
 
 ** busca nos buffers
 
 |  Tecla   | Comando / efeito                                          |
 |----------|-----------------------------------------------------------|
-|  s / | Busca no buffer (=consult-line=). |
+|  s /     | Busca no buffer (=consult-line=).                         |
+|  s ?     | Busca no projeto (=consult-ripgrep=).                     |
 
 ** posicionamento e janelas
 
@@ -132,42 +142,36 @@ Cloning is an alternative that creates a copy without a separate paste step.
 | SPC k     | Executa a macro =Hz-M= para reposicionar cursor e janela   |
 | g o / g l | Vai à primeira linha / a uma linha específica.             |
 | g g       | avy goto char                                              |
+| s x       | quebrar janela eixo x                                      |
+| s y       | quebrar janela eixo y                                      |
+| s h       | navegar janela eixo pra esquerda                           |
+| s l       | navegar janela eixo pra direita                            |
+| s j       | navegar janela eixo pra baixo                              |
+| s k       | navegar janela eixo pra cima                               |
 
 ** buffers de propósito específico (magit, dirvish, etc..)
 
-| Tecla | Comando / efeito     |
-|-------|----------------------|
-| m g   | Abre o status Magit. |
-| g s   | Abre o status Magit. |
-| g d   | Opens Dirvish.       |
+| Tecla | Comando / efeito              |
+|-------|----------------------         |
+| m g   | Abre o status Magit.          |
+| g s   | Abre o status Magit.          |
+| g d   | Opens Dirvish.                |
+| SPC / | Opens a Dirvish regexp search |
 
-** Espaço: comandos centrais
+** Espaço: ajuda (gaveta SPC d)
 
-| Estado | Tecla   | Comando / efeito                                 |
-|--------|---------|--------------------------------------------------|
-| N, V   | SPC ESC | Executa =ninrod/echo=                            |
-| N, V   | SPC SPC | Abre =M-x= (=execute-extended-command=)          |
-| N, V   | SPC RET | Salva o arquivo (=write-file=)                   |
-| N, V   | SPC DEL | Cria um diretório (=make-directory=)             |
-| N, V   | SPC g   | Salta para um caractere com Avy (=avy-goto-char=)|
-| N, V   | SPC p   | Abre o histórico de yanks (=consult-yank-pop=)   |
-| N, V   | SPC /   | Opens a Dirvish regexp search                    |
-| N, V   | SPC s   | Ordena linhas (=sort-lines=)                     |
-
-** Espaço: ajuda
-
-| Tema | Estado | Tecla | Comando / efeito |
+|  Tecla | Comando / efeito |
 |------+--------+-------+------------------|
-| Ajuda | N | SPC d a | =apropos= |
-| Ajuda | N | SPC d b | Mostra todos os bindings de um keymap no Which-Key (=which-key-show-full-keymap=). |
-| Ajuda | N | SPC d c | Descreve o caractere no ponto (=describe-char=). |
-| Ajuda | N | SPC d d | Descreve uma face (=describe-face=). |
-| Ajuda | N | SPC d f | Descreve uma função (=describe-function=). |
-| Ajuda | N | SPC d i | Abre o Info. |
-| Ajuda | N | SPC d k | Descreve uma tecla (=describe-key=). |
-| Ajuda | N | SPC d v | Descreve uma variável (=describe-variable=). |
-| Ajuda | N | SPC d m | Descreve o modo atual. |
-| Embark | N, V | SPC e b | Explora e executa os bindings ativos no buffer atual (=embark-bindings=). |
+|  SPC d a | =apropos= |
+|  SPC d b | Mostra todos os bindings de um keymap no Which-Key (=which-key-show-full-keymap=). |
+|  SPC d c | Descreve o caractere no ponto (=describe-char=). |
+|  SPC d d | Descreve uma face (=describe-face=). |
+|  SPC d f | Descreve uma função (=describe-function=). |
+|  SPC d i | Abre o Info. |
+|  SPC d k | Descreve uma tecla (=describe-key=). |
+|  SPC d v | Descreve uma variável (=describe-variable=). |
+|  SPC d m | Descreve o modo atual. |
+|  SPC e b | Explora e executa os bindings ativos no buffer atual (=embark-bindings=). |
 
 ** Code folding
 
@@ -182,29 +186,158 @@ Org keeps its existing outline-based folding.
 | Normal | zc / zo | Close / open the code fold at point. |
 | Normal | zM / zR | Close / open all code folds. |
 
+* Edição
+** Lispyville: edição estrutural de Lisp
+*** When this cheat sheet applies
+
+These keys belong to Lispy, integrated with Evil by Lispyville.
+
+They apply when =special= appears in the modeline: Evil is in Insert or Emacs
+state, and point is before an opening delimiter, after a closing delimiter,
+or an active region puts Lispy in special context.
+
+In this context, letters execute commands instead of inserting text.
+In Evil Normal state, use the usual Evil and Lispyville bindings instead.
+
+*** Navigate the structure
+
+| Key   | Action                                                   |
+|-------+----------------------------------------------------------|
+| j / k | Move to the next / previous expression at the same level. |
+| h     | Move outward to the beginning of the parent list.         |
+| l     | Move outward to the end of the parent list.               |
+| d     | Switch between the beginning and end of the current list. |
+| f     | Navigate into a nested list.                              |
+| q     | Jump to a visible delimiter using letter labels.          |
+| a     | Select a symbol in the list using letter labels.          |
+| A     | Move to the beginning of the top-level function.          |
+
+*** Edit the structure
+
+| Key   | Term      | Action                                                |
+|-------+-----------+-------------------------------------------------------|
+| >     | Slurp     | Pull a neighboring expression into the list.           |
+| <     | Barf      | Push an expression out of the list.                    |
+| /     | Splice    | Remove the enclosing delimiters, keeping the contents. |
+| r     | Raise     | Replace the parent list with the current expression.   |
+| w / s | Drag      | Move the expression up / down among its siblings.      |
+| c     | Clone     | Duplicate the expression.                             |
+| +     | Join      | Join lists.                                           |
+| C     | Convolute | Exchange the heads of two enclosing lists.             |
+
+**** Slurp: pull an expression inside
+
+#+BEGIN_SRC emacs-lisp
+;; Before
+(a b) c
+;; After
+(a b c)
+#+END_SRC
+
+**** Barf: push an expression outside
+
+#+BEGIN_SRC emacs-lisp
+;; Before
+(a b c)
+;; After
+(a b) c
+#+END_SRC
+
+**** Splice: remove the inner list's wrapping
+
+#+BEGIN_SRC emacs-lisp
+;; Before
+(a (b c) d)
+;; After
+(a b c d)
+#+END_SRC
+
+**** Raise: keep the selected inner expression
+
+#+BEGIN_SRC emacs-lisp
+;; Before, with the inner expression targeted
+(foo (bar baz))
+;; After
+(bar baz)
+#+END_SRC
+
+**** Special versus Normal state
+
+In Lispy special, =>= always slurps and =<= always barfs.
+
+In Evil Normal state, the configured =slurp/barf-cp= theme uses these keys
+as arrows that move a delimiter. The result depends on whether point is
+on an opening or closing delimiter.
+
+*** Evaluate and format
+
+| Key | Action                                          |
+|-----+-------------------------------------------------|
+| e   | Evaluate the expression and display the result.  |
+| E   | Evaluate and insert the result into the buffer.  |
+| i   | Reindent and normalize the expression.           |
+| O   | Put the expression on one line.                  |
+| M   | Reformat the expression across multiple lines.   |
+
+*** Select, copy, and exit
+
+| Key   | Action                                                               |
+|-------+----------------------------------------------------------------------|
+| m     | Select the list.                                                     |
+| v     | With a region, toggle between Lispy and Evil Visual; otherwise mark.  |
+| n     | Copy the expression to the kill ring.                                |
+| P     | Paste using Lispy's paste command.                                   |
+| N / W | Narrow the buffer to the expression / widen it again.                |
+| u     | Undo.                                                                |
+| ESC   | Cancel the selection and return to Evil Normal state.               |
+
+The =v= and =ESC= behavior reflects the personal Lispyville configuration
+in =boot.org=, rather than unmodified Lispy defaults.
+
+*** Counts
+
+Numbers prefix commands that support repetition:
+
+- =3j=: move forward three expressions.
+- =2>=: slurp two expressions.
+
+*** Learn these first
+
+- Navigate: =j=, =k=, =h=, =l=, =d=.
+- Edit: =>=, =<=, =/=, =r=, =c=.
+- Evaluate and format: =e=, =i=.
+- Exit: =ESC=.
+
+From Insert state, =)= normally moves point to the end of the current list,
+which is a quick way to reach special context. Check the modeline indicator
+before using letter commands.
+
+*** Reference
+
+- [[https://github.com/noctuid/lispyville][Lispyville user manual]]
+- [[https://github.com/abo-abo/lispy][Lispy]]
 ** Snippets
 
 YASnippet is enabled in programming, text, Org, and configuration buffers.
 Personal snippets live in =emacs/snippets/= (=~/.emacs.d/snippets/=).
 
-| Evil state | Key | Command / effect |
-|------------+-----+------------------|
-| Normal | SPC i e | Expand the snippet key at the cursor and enter Insert state. |
-| Normal | SPC i i | Select and insert a snippet, then enter Insert state. |
-| Normal | SPC i n | Create a snippet (=yas-new-snippet=). |
-| Normal | SPC i v | Visit a snippet's source (=yas-visit-snippet-file=). |
-| Normal | SPC i d | Open the personal snippets directory in Dired. |
-| Insert | TAB | Expand a snippet, or run the existing TAB command if no key matches. |
-| Insert, active snippet | TAB / S-TAB | Move to the next / previous field. |
+|  Key         |  effect                                                              |
+|--------------|----------------------------------------------------------------------|
+|  SPC i e     | Expand the snippet key at the cursor and enter Insert state.         |
+|  SPC i i     | Select and insert a snippet, then enter Insert state.                |
+|  SPC i n     | Create a snippet (=yas-new-snippet=).                                |
+|  SPC i v     | Visit a snippet's source (=yas-visit-snippet-file=).                 |
+|  SPC i d     | Open the personal snippets directory in Dired.                       |
+|  TAB         | Expand a snippet, or run the existing TAB command if no key matches. |
+|  TAB / S-TAB | Move to the next / previous field.                                   |
 
 Normal-state TAB bindings remain unchanged. No additional plugin is needed.
 
-* Edição
 ** Regex
 
-| Tema | Estado | Tecla | Comando / efeito |
-|------+--------+-------+------------------|
-| Edição | N, V, M | s r | Faz substituição por regex (=query-replace-regexp=). |
+|  Tecla | Comando / efeito                                     |
+|--------|------------------------------------------------------|
+|  s r   | Faz substituição por regex (=query-replace-regexp=). |
 
 ** Especiais
 
@@ -216,7 +349,7 @@ Normal-state TAB bindings remain unchanged. No additional plugin is needed.
 ** Cursores múltiplos
 
 | Estado      | Tecla | Comando / efeito                                                                             |
-|             |       |                                                                                              |
+|-------------|-------|----------------------------------------------------------------------------------------------|
 | Visual Line | m c   | Cria um cursor no início de cada linha selecionada e permanece no estado normal.             |
 | N, após =*= | m s   | Cria cursores no início de todos os matches destacados por =*= e permanece no estado normal. |
 | N, V        | m n   | Adiciona cursor na ocorrência seguinte.                                                      |
@@ -230,10 +363,10 @@ Normal-state TAB bindings remain unchanged. No additional plugin is needed.
 
 ** alinhamento e identação
 
-| Estado      | Tecla | Comando / efeito                                                                             |
-|             |       |                                                                                              |
-|g > / g < | Indenta à direita / esquerda.                                                            |
-|g a / g A | Alinha à esquerda / direita com Evil Lion.                                               |
+|  Tecla   | Comando / efeito                           |
+|----------|--------------------------------------------|
+|g > / g < | Indenta à direita / esquerda.              |
+|g a / g A | Alinha à esquerda / direita com Evil Lion. |
 
 * Bindings declarados fora de =* keybinds=
 
@@ -248,34 +381,3 @@ objeto: ae  = text entire
 movimento: gr "substitui" a motion pelo que está no registrador
 movimento: cx "troca" a motion pela outra motion que vc marcou
 
-** Lispyville: edição estrutural de Lisp
-
-=lispyville-mode= é ativado sempre que =lispy-mode= é ativado. A configuração
-habilita os temas =operators=, =mark-toggle=, =(escape insert emacs)= e
-=slurp/barf-cp=. Assim, estes bindings só se aplicam em buffers nos quais
-=lispy-mode= e =lispyville-mode= estejam ativos.
-
-|Tecla      |Efeito                                                                                                     |
-|           |                                                                                                           |
-| y / d / c |Remapeia yank, delete e change para versões que não copiam ou removem delimitadores não balanceados.       |
-| Y / D / C |Aplica as variantes seguras de yank, delete e change de linha.                                             |
-| x / X     |Remove caractere à frente / atrás ou faz splice, preservando a estrutura.                                  |
-| s / S     |Substitui caractere / linha sem desbalancear delimitadores.                                                |
-| J         |Junta linhas sem levar parênteses não balanceados para dentro de comentários.                              |
-| >         |Move o delimitador posterior à direita (=lispyville->=): faz slurp ou barf conforme a posição no parêntese |
-| <         |Move o delimitador posterior à esquerda (=lispyville-<=): faz slurp ou barf conforme a posição no parêntese|
-| v         |Alterna do visual Evil para o estado especial do Lispy.                                                    |
-| v         |Alterna do estado especial do Lispy para o visual Evil (=lispyville-toggle-mark-type=);                    |
-| ESC       |Cancela região e entra no estado normal Evil (=lispyville-normal-state=).                                  |
-
-* Bindings padrão deliberadamente removidos
-
-| Modo / mapa | Teclas removidas |
-|-------------+------------------|
-| Dired | F1--F12, s, -, n, N, y, M, L, H, $, 0, w, e, b, W, E, B, ., f, F, v, V, i |
-| Info | 1--9, H, L, M, g, v, V, n, N, f, F, w, e, b, W, E, B, s, SPC |
-| Magit Status | SPC |
-| Magit hunk/file section | s |
-| Ag | s, g, n, N, SPC |
-| Buffer Menu | SPC, k, j, l, h, s, n, N, * |
-| Ibuffer | /, DEL, l, 0, n, - |
