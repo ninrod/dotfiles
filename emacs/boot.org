@@ -1914,7 +1914,6 @@ and the Spaceline modeline in directory buffers.
    "n"     'rect-ext-narrow
    "w"     'rect-ext-widen
    "m"     'ninrod/evil-set-marker-z
-   "i"     'consult-buffer
    "."     'project-find-file
    "p"     'project-switch-project
    "<SPC>" 'bookmark-jump
