@@ -72,13 +72,6 @@ function M.oil_buffer_mappings()
 	}
 end
 -- }}}
--- PLUGIN: Neo-tree keybindings {{{
-function M.neo_tree_window_mappings()
-	return {
-		["\\"] = "close_window",
-	}
-end
--- }}}
 -- PLUGIN: Snacks picker keybindings {{{
 function M.setup_snacks_picker_keybindings(picker)
 	local project_root = function()

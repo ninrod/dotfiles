@@ -44,8 +44,7 @@ Normal-mode =q= to quit without saving.
 
 Oil opens the current file's directory as an editable buffer. File operations
 are staged by editing its entries and applied only after saving and confirming
-the operation preview. Neo-tree remains available through =:Neotree=, but Oil
-handles directory buffers by default.
+the operation preview. Oil handles directory buffers by default.
 
 | Step | Context | Key | Command / effect |
 |------+---------+-----+------------------|
