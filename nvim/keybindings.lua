@@ -75,6 +75,7 @@ function M.oil_buffer_mappings()
 end
 -- }}}
 -- PLUGIN: Snacks picker keybindings {{{
+
 function M.setup_snacks_picker_keybindings(picker)
 	local project_root = function()
 		return vim.fs.root(0, ".git") or vim.fn.getcwd(0)
@@ -107,9 +108,10 @@ function M.setup_snacks_picker_keybindings(picker)
 		picker.files({ cwd = vim.fn.stdpath("config") })
 	end, { desc = "[S]earch [N]eovim files" })
 end
+
 -- }}}
 -- PLUGIN: Multicursor keybindings {{{
---
+
 function M.setup_multicursor_keybindings(mc)
 	local set = vim.keymap.set
 	local function add_visual_line_cursors_at_start()
