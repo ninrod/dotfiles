@@ -50,7 +50,7 @@ the operation preview. Oil handles directory buffers by default.
 |------+---------+-----+------------------|
 | Open directory | Normal, editing buffer | \ | Open the current file's directory in Oil. |
 | Open entry | Oil buffer | RET | Open the file or enter the directory under the cursor. |
-| Parent directory | Oil buffer, Normal | - | Go up one directory; outside Oil, keep clearing search highlighting. |
+| Parent directory | Oil buffer, Normal | BS | Go up one directory; outside Oil, keep opening the project file picker. |
 | Create | Oil buffer | o / O, then type a name | Stage a new file; use a trailing slash for a directory. |
 | Rename | Oil buffer | Normal editing commands | Edit an entry's name to stage a rename. |
 | Delete | Oil buffer, Normal | d d | Remove an entry's line to stage deletion. |
@@ -143,7 +143,7 @@ to swap them. Cancel is an alternative to selecting the second piece.
 
 | Step | Context | Key / command | Command / effect |
 |------+---------+---------------+------------------|
-| Open | Normal | :terminal | Open the integrated terminal (native command). |
+| Open | Normal | t t | Run :terminal to open the integrated terminal. |
 | Enter terminal input | Terminal buffer, Normal | i | Enter Terminal mode to send input to the terminal (native command). |
 | Return to Normal | Terminal mode | ESC ESC | Leave terminal input mode. |
 | Move to an editing window | Terminal buffer, Normal | s h / s j / s k / s l | Focus an existing editing window. |
