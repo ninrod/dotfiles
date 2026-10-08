@@ -72,13 +72,17 @@ are unaffected, and =S= and =T= retain their usual Evil behavior.
 Copy or cut the subtree, move to the destination heading, then paste.
 Cloning is an alternative that creates a copy without a separate paste step.
 
-| Step | Context / state | Key | Command / effect |
+| Key | Command / effect |
 |------+-----------------+-----+------------------|
-| Copy | Org, N | , y | Copy the subtree (=org-copy-subtree=). |
-| Cut instead | Org, N | , d | Cut the subtree (=org-cut-subtree=). |
-| Paste at destination | Org, N | , p | Paste the copied or cut subtree (=org-paste-subtree=). |
-| Clone instead | Org, N | , c | Clone the subtree with a time shift (=org-clone-subtree-with-time-shift=). |
-| Copy URL | Org, N, V | , Y | Copy the URL at point (=ninrod/org-retrieve-url-from-point=). |
+| , h | Copy the subtree over (=org-metaleft=). |
+| , j | Copy the subtree down (=org-metadown=). |
+| , k | move the subtree up (=org-metaup=). |
+| , l | Copy the subtree under (=org-metaright=). |
+| , y | Copy the subtree (=org-copy-subtree=). |
+| , d | Cut the subtree (=org-cut-subtree=). |
+| , p | Paste the copied or cut subtree (=org-paste-subtree=). |
+| , c | Clone the subtree with a time shift (=org-clone-subtree-with-time-shift=). |
+| , Y | Copy the URL at point (=ninrod/org-retrieve-url-from-point=). |
 
 * Atalhos gerais
 
@@ -94,41 +98,40 @@ Cloning is an alternative that creates a copy without a separate paste step.
 
 ** Evil
 
-|  Estado | Tecla          | Comando / efeito                                                           |
-|         |                |                                                                            |
-| Evil    | N              | RET        Salva / alterna folding.                                        |
-| Evil    | N              | TAB             alterna folding.                                           |
-|  M      | ( / )          | Vai ao parágrafo anterior / próximo.                                       |
-|  N, V   | z . / z - / zt | Centraliza / posiciona a linha atual na base da janela.                    |
-|  I      |  C-e           | Expand the word at point with =dabbrev-expand=, except in Ghostel buffers. |
+| Tecla          | Comando / efeito                                                           |
+|                |                                                                            |
+| N              | RET        Salva / alterna folding.                                        |
+| N              | TAB             alterna folding.                                           |
+| ( , )          | Vai ao parágrafo anterior / próximo.                                       |
+| z . / z - / zt | Centraliza / posiciona a linha atual na base da janela.                    |
+| C-e            | Expand the word at point with =dabbrev-expand=, except in Ghostel buffers. |
 
 ** Manipulação de buffers, windows e posições nos buffers
 
-|Tecla     | Comando / efeito                                                                         |
-|----------|------------------------------------------------------------------------------------------|
-|SPC TAB   | Alterna para o buffer anterior (=ninrod/alternate-buffer=)                               |
-| s i      | Alterna de buffer com Consult.                                                           |
-| m i      | Open Ibuffer.                                                                            |
-|s , / s ; | Salta para trás / frente no changelist Evil.                                             |
-|m f       | Copy the current file's full path to the kill ring (=ninrod/add-filename-to-kill-ring=). |
-|m k       | Bury the current buffer and switch to =*scratch*=.                                       |
-|g TAB     | Mostra o mark ring com Consult.                                                          |
-|g h       | Abre arquivos recentes com Consult                                                       |
+|Tecla      | Comando / efeito                                                                         |
+|---------- |------------------------------------------------------------------------------------------|
+| SPC TAB   | Alterna para o buffer anterior (=ninrod/alternate-buffer=)                               |
+|  m i      | Open Ibuffer.                                                                            |
+| s , / s ; | Salta para trás / frente no changelist Evil.                                             |
+| m f       | Copy the current file's full path to the kill ring (=ninrod/add-filename-to-kill-ring=). |
+| m k       | Bury the current buffer and switch to =*scratch*=.                                       |
+| g TAB     | Mostra o mark ring com Consult.                                                          |
+| g h       | Abre arquivos recentes com Consult                                                       |
 
 ** busca nos buffers
 
-| Estado   | Tecla   | Comando / efeito                                          |
-|--------  |---------|-----------------------------------------------------------|
-| Busca | N, V, M | s / | Busca no buffer (=consult-line=). |
+|  Tecla   | Comando / efeito                                          |
+|----------|-----------------------------------------------------------|
+|  s / | Busca no buffer (=consult-line=). |
 
 ** posicionamento e janelas
 
 |  Tecla    | Comando / efeito                                           |
 |-----------|------------------------------------------------------------|
-| SPC TAB   | Alterna para o buffer anterior (=ninrod/alternate-buffer=) |
 | SPC j     | Executa a macro =LztM= para reposicionar cursor e janela   |
 | SPC k     | Executa a macro =Hz-M= para reposicionar cursor e janela   |
 | g o / g l | Vai à primeira linha / a uma linha específica.             |
+| g g       | avy goto char                                              |
 
 ** buffers de propósito específico (magit, dirvish, etc..)
 

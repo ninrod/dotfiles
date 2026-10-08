@@ -1954,6 +1954,7 @@ and the Spaceline modeline in directory buffers.
 
    ;; search actions
    "/" 'consult-line
+   "?" 'consult-ripgrep
 
    ;; jump actions
    "," 'evil-jump-backward
