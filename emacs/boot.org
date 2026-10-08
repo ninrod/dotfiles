@@ -1394,7 +1394,12 @@ M-x subword-mode
           spaceline-highlight-face-func
           #'spaceline-highlight-face-evil-state)
     (require 'spaceline-config)
-    (spaceline-spacemacs-theme)
+    (spaceline-define-segment lispy-special
+      "Show when Lispy special keybindings are active."
+      (when (and (bound-and-true-p lispyville-mode)
+                 (lispyville--lispy-keybindings-active-p))
+        (propertize "special" 'face 'lispyville-special-face)))
+    (spaceline-spacemacs-theme '(lispy-special :when active))
     (spaceline-compile))
 #+END_SRC
 
@@ -2183,6 +2188,8 @@ and the Spaceline modeline in directory buffers.
 
   ;; Evil computes its keymaps before Org enables `org-src-mode'.
   (add-hook 'org-src-mode-hook #'evil-normalize-keymaps)
+
+  (setq org-src-window-setup 'current-window)
 
 #+END_SRC
 
