@@ -2103,10 +2103,8 @@ and the Spaceline modeline in directory buffers.
 
 (general-create-definer org-src-comma-map
    :keymaps 'org-src-mode-map
-   :states 'motion
-   :prefix ","
-   "" nil
-)
+   :states 'normal
+   :prefix ",")
 #+END_SRC
 
 **** fast
@@ -2116,10 +2114,8 @@ and the Spaceline modeline in directory buffers.
    "" 'nil
    ;; "w" 'reserved
    ;; "s" 'reserved
-   ;; "d" 'reserved
    ;; "g" 'reserved
    ;; "t" 'reserved
-   ;; "p" 'reserved
 
    "b" 'consult-org-heading
 
@@ -2132,7 +2128,7 @@ and the Spaceline modeline in directory buffers.
    "j" 'org-metadown
    "k" 'org-metaup
 
-   "y" 'ninrod/org-retrieve-url-from-point
+   "Y" 'ninrod/org-retrieve-url-from-point
 
    "n" 'org-narrow-to-subtree
 
@@ -2148,6 +2144,20 @@ and the Spaceline modeline in directory buffers.
 
    "i" 'org-tree-to-indirect-buffer
    )
+
+  (org-comma-map
+   :states 'normal
+   "y" 'org-copy-subtree
+   "d" 'org-cut-subtree
+   "p" 'org-paste-subtree
+   "c" 'org-clone-subtree-with-time-shift)
+
+  (org-src-comma-map
+   "w" 'org-edit-src-exit
+   "q" 'org-edit-src-abort)
+
+  ;; Evil computes its keymaps before Org enables `org-src-mode'.
+  (add-hook 'org-src-mode-hook #'evil-normalize-keymaps)
 
 #+END_SRC
 
@@ -2197,33 +2207,6 @@ and the Spaceline modeline in directory buffers.
   )
 #+END_SRC
 
-*** S local (subtrees)
-**** definer
-
-#+BEGIN_SRC emacs-lisp
-(general-create-definer org-S-map
-   :keymaps 'org-mode-map
-   :states '(normal)
-   :prefix "S")
-#+END_SRC
-
-**** fast
-
-#+BEGIN_SRC emacs-lisp
-  (org-S-map
-  ;; subtree commands
-  "h" 'org-promote-subtree
-  "l" 'org-demote-subtree
-  "k" 'org-move-subtree-up
-  "j" 'org-move-subtree-down
-
-  "y" 'org-copy-subtree
-  "d" 'org-cut-subtree
-  "p" 'org-paste-subtree
-  "c" 'org-clone-subtree-with-time-shift
-  )
-#+END_SRC
-
 *** local fixes
 
 #+BEGIN_SRC emacs-lisp
@@ -2245,12 +2228,6 @@ and the Spaceline modeline in directory buffers.
    :states 'visual
    "-" 'org-ctrl-c-minus)
 
-  ;; finally!
-  (general-define-key
-   :keymaps '(org-src-mode-map emacs-lisp-mode-map)
-   :states '(normal)
-   "S" 'org-edit-src-exit
-   "T" 'org-edit-src-abort)
 #+END_SRC
 
 ** dired

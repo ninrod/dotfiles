@@ -35,12 +35,15 @@ starts with =snippet <abbreviation> <description>=, followed by a tab-indented
 body. Numbered fields =$1=, =$2=, etc. are visited in order; =$0= is the final
 cursor position. Escape literal dollar signs with a backslash.
 
-All 13 personal YASnippet definitions from =emacs/snippets/= have been ported.
+Personal YASnippet definitions from =emacs/snippets/= have been ported.
 Emacs and Neovim keep separate copies; subsequent edits are not synchronized.
 The =extends= directives preserve Lisp-to-Elisp and JavaScript-to-TypeScript
 inheritance, including JSX and TSX filetypes. Emacs JS variants map to
 =javascript=, Lisp interaction buffers to =elisp=, and HTML/web buffers to
 =html=. Shell defaults and snippet bodies are preserved.
+
+In Markdown buffers, the trigger =``= expands a fenced code block with =sh=
+as the editable language and the final cursor position inside the block.
 
 - In Insert or Select mode, =TAB= expands a matching snippet or advances through
   its fields before navigating completion candidates.

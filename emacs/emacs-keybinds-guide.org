@@ -24,53 +24,54 @@ Record the editing operation once, then select the target lines. The
 custom replay command uses the last Visual selection's range, not just the
 current cursor position.
 
-| Step | State | Key | Command / effect |
-|------+-------+-----+------------------|
-| Start recording | N, V, M | m m | Record a macro in register =z= (=ninrod/evil-record-macro-z=). |
-| Finish recording | N, V, M | m m | Invoke the recording command again to stop recording. |
-| Select targets | N | V, then motions | Select the lines on which to replay the macro. |
-| Apply | N, V, M | m a | Run ='<,'>norm @z= over the selected line range (=ninrod/apply-z-macro=). |
-| Alternative recording | N | Q | Invoke =evil-record-macro= with an explicitly chosen register; =m a= still replays register =z=. |
+|  Key             | Command / effect                                                          |
+|                  |                                                                           |
+|  m m             | Record a macro in register =z= (=ninrod/evil-record-macro-z=).            |
+|  m m             | Invoke the recording command again to stop recording.                     |
+|  V, then motions | Select the lines on which to replay the macro.                            |
+|  m a             | Run ='<,'>norm @z= over the selected line range (=ninrod/apply-z-macro=). |
+|  Q               | Invoke =evil-record-macro= with an explicitly chosen register             |
 
 ** Create, visit, and remove a bookmark
 
-| Step | State | Key | Command / effect |
-|------+-------+-----+------------------|
-| Create | N, V, M | s b | Save a named bookmark (=bookmark-set=). |
-| Visit | N, V, M | s SPC | Choose a bookmark and jump to it (=bookmark-jump=). |
-| Cleanup | N, V, M | s - | Delete a bookmark (=bookmark-delete=). |
+| Key   | Command / effect                                    |
+|-------|-----------------------------------------------------|
+| s b   | Save a named bookmark (=bookmark-set=).             |
+| s SPC | Choose a bookmark and jump to it (=bookmark-jump=). |
+| s -   | Delete a bookmark (=bookmark-delete=).              |
 
 ** Narrow the editing scope and restore it
 
 Choose the narrowing operation appropriate to the buffer. Rectangular
 narrowing has its own matching restore command.
 
-| Step | Context / state | Key | Command / effect |
-|------+-----------------+-----+------------------|
-| Narrow a rectangle | N, V, M | s n | Narrow a rectangular region (=rect-ext-narrow=). |
-| Restore the rectangle | N, V, M | s w | Undo rectangular narrowing (=rect-ext-widen=). |
-| Narrow an Org subtree | Org, N, V | , n | Restrict the buffer to the current subtree (=org-narrow-to-subtree=). |
-| Restore the buffer | N, V, M | m w | Remove buffer narrowing (=widen=). |
+|  Key | Command / effect                                                      |
+|------|-----------------------------------------------------------------------|
+|  s n | Narrow a rectangular region (=rect-ext-narrow=).                      |
+|  s w | Undo rectangular narrowing (=rect-ext-widen=).                        |
+|  , n | Restrict the buffer to the current subtree (=org-narrow-to-subtree=). |
+|  m w | Remove buffer narrowing (=widen=).                                    |
 
 ** Split a window and move between windows
 
-| Step | State | Key | Command / effect |
-|------+-------+-----+------------------|
-| Split | N, V, M | s y / s x | Split right / below and focus the new window. |
-| Move horizontally | N, V, M | s h / s l | Focus the window to the left / right. |
-| Move vertically | N, V, M | s j / s k | Focus the window below / above. |
+|  Key       | Command / effect                              |
+|------------|-----------------------------------------------|
+|  s y / s x | Split right / below and focus the new window. |
+|  s h / s l | Focus the window to the left / right.         |
+|  s j / s k | Focus the window below / above.               |
 
 ** Edit an Org source block and return
 
-| Step | Context / state | Key | Command / effect |
-|------+-----------------+-----+------------------|
-| Open | Org, N, V | , e | Edit the source block at point in its dedicated buffer (=org-edit-special=). |
-| Commit and return | Org source / Emacs Lisp edit buffer, N | S | Write the edits back to the Org block and exit (=org-edit-src-exit=). |
-| Abort and return | Org source / Emacs Lisp edit buffer, N | T | Discard the edit-buffer changes and exit (=org-edit-src-abort=). |
+| Key | Command / effect                                                             |
+|-----|------------------------------------------------------------------------------|
+| , e | Edit the source block at point in its dedicated buffer (=org-edit-special=). |
+| , w | Write the edits back to the Org block and exit (=org-edit-src-exit=).        |
+| , q | Discard the edit-buffer changes and exit (=org-edit-src-abort=).             |
 
-=S= and =T= are alternatives for finishing the same operation, not
-successive steps. Their Org editing commands require an active source
-editing session, even though the bindings also exist in Emacs Lisp mode.
+=,w= and =,q= are alternatives for finishing the same operation, not
+successive steps. Both bindings apply only in Normal state in an active Org
+source editing buffer, regardless of its language. Ordinary Emacs Lisp buffers
+are unaffected, and =S= and =T= retain their usual Evil behavior.
 
 ** Inspect, edit, and recalculate Org table formulas
 
@@ -89,10 +90,11 @@ Cloning is an alternative that creates a copy without a separate paste step.
 
 | Step | Context / state | Key | Command / effect |
 |------+-----------------+-----+------------------|
-| Copy | Org, N | S y | Copy the subtree (=org-copy-subtree=). |
-| Cut instead | Org, N | S d | Cut the subtree (=org-cut-subtree=). |
-| Paste at destination | Org, N | S p | Paste the copied or cut subtree (=org-paste-subtree=). |
-| Clone instead | Org, N | S c | Clone the subtree with a time shift (=org-clone-subtree-with-time-shift=). |
+| Copy | Org, N | , y | Copy the subtree (=org-copy-subtree=). |
+| Cut instead | Org, N | , d | Cut the subtree (=org-cut-subtree=). |
+| Paste at destination | Org, N | , p | Paste the copied or cut subtree (=org-paste-subtree=). |
+| Clone instead | Org, N | , c | Clone the subtree with a time shift (=org-clone-subtree-with-time-shift=). |
+| Copy URL | Org, N, V | , Y | Copy the URL at point (=ninrod/org-retrieve-url-from-point=). |
 
 * Atalhos gerais
 
