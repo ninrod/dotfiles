@@ -1,0 +1,13 @@
+* Keybinds Interessantes do OpenCode
+
+<leader> == [C-x]
+
+** Modelo
+
+[<leader>m]: escolhe modelo
+[C-t]: configura effort level
+
+** edição
+
+[<leader>y]
+

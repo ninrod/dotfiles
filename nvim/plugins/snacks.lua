@@ -2,6 +2,10 @@ return {
 	"folke/snacks.nvim",
 	event = "VimEnter",
 	opts = {
+		explorer = {
+			enabled = true,
+			replace_netrw = false,
+		},
 		picker = {
 			enabled = true,
 			ui_select = true,

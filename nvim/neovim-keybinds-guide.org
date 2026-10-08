@@ -57,6 +57,24 @@ the operation preview. Oil handles directory buffers by default.
 | Apply operations | Oil buffer | :w | Review and confirm the pending filesystem operations. |
 | Close | Oil buffer, Normal | \ | Return to the editing buffer. |
 
+** Browse the project tree with Snacks Explorer
+
+Snacks Explorer is an optional sidebar for exploring the project tree. It
+opens at the current buffer's Git root, falling back to the current working
+directory, and follows the current file. Oil remains the default directory
+explorer and keeps its =\= binding.
+
+| Step | Context | Key | Command / effect |
+|------+---------+-----+------------------|
+| Open explorer | Normal, editing buffer | SPC s e | Open Snacks Explorer at the project root. |
+| Open entry | Explorer list | RET / l | Open a file or toggle a directory (Snacks default). |
+| Collapse directory | Explorer list | h | Close the directory (Snacks default). |
+| Parent directory | Explorer list | BS | Go up one directory (Snacks default). |
+| Search | Explorer list | / | Focus the search input (Snacks default). |
+| Toggle hidden / ignored | Explorer list | H / I | Toggle hidden or Git-ignored entries (Snacks defaults). |
+| Toggle preview | Explorer list | P | Toggle the file preview (Snacks default). |
+| Close | Explorer list, Normal | q / ESC | Close the explorer (Snacks defaults). |
+
 ** Search and resume the last picker
 
 Choose a search source, select a result, then resume the picker if needed.
@@ -199,6 +217,7 @@ way to set it from the word under the cursor.
 | SPC SPC | Lista os buffers abertos. |
 | SPC s h | Busca na ajuda. |
 | SPC s k | Busca nos keymaps. |
+| SPC s e | Open Snacks Explorer at the project root. |
 | SPC s s | Abre o seletor de fontes do Snacks. |
 | SPC s n | Localiza arquivos da configuração do Neovim. |
 
