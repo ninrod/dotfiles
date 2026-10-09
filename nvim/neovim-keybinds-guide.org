@@ -19,6 +19,54 @@ alternatives and cleanup commands are identified separately.
 
 * Multi-step workflows
 
+** Multiple cursors: select targets, edit, and clean up
+
+Choose one way to create cursors, edit with the active cursors, then remove
+them. Search-based creation uses the active search pattern; =*= is a native
+way to set it from the word under the cursor.
+
+*** Create cursors
+
+| Context                | Key                      | Command / effect                                                               |
+|                        |                          |                                                                                |
+| Normal                 | m *                      | Create cursors for every match of the word under the cursor.                   |
+| Normal, after a search | m s                      | Create cursors for every match of the active search.                           |
+| Visual Line            | m c                      | Create a cursor at the beginning of each selected line and return to Normal.   |
+| Visual                 | m r                      | Prompt for a pattern and select each match inside the selection with a cursor. |
+| Normal / Visual        | m n / m p                | Add a cursor at the next / previous match.                                     |
+| Normal / Visual        | m N / m P                | Skip the next / previous match without adding a cursor.                        |
+| Visual                 | m \vert{}                | Prompt for a regex separator and split the selection into cursors.             |
+| Normal                 | g m followed by a motion | Create cursors for each line covered by the motion.                            |
+| Visual                 | g m                      | Create cursors for each line covered by the selection.                         |
+| Visual                 | I / A                    | Create cursors at the beginning / end of each selected line and enter Insert.  |
+| Normal / Visual        | C-q                      | Toggle a manual cursor at the current position.                                |
+
+*** Replace a pattern only inside the visual selection
+
+Use =m r= to select matches inside the selected region, then change all
+matches together. Unlike a plain =:'<,'>s/A/B/g= command, this workflow
+respects the selected columns rather than operating on entire lines.
+
+| Step | Mode | Key / input | Command / effect |
+|------+------+-------------+------------------|
+| Select the region | Normal | v / V / C-v, then select | Use native characterwise, linewise, or blockwise Visual mode. |
+| Select matches | Visual | m r, type pattern A, then RET | Answer the =Match:= prompt; create a cursor selecting each match inside the region. |
+| Replace matches | Visual, active cursors | c, then type replacement B | Change every selected match together (native change command). |
+| Finish editing | Insert, active cursors | ESC | Return to Normal mode. |
+| Clean up | Normal, enabled cursors | ESC | Clear the additional cursors. |
+
+Example: select a region, press =m r=, enter =foo= and press =RET=, then
+press =c=, type =bar=, and press =ESC= twice.
+
+*** Navigate or remove active cursors
+
+| Context | Key | Command / effect |
+|---------+-----+------------------|
+| Normal / Visual, active cursors | Left / Right | Select the previous / next cursor. |
+| Normal / Visual, active cursors | SPC x | Remove the current cursor. |
+| Normal, disabled cursors | ESC | Re-enable cursors; this first press does not clear them. |
+| Normal, enabled cursors | ESC | Clear all additional cursors. |
+
 ** Record and replay a macro
 
 Choose a register when starting the recording, perform the editing
@@ -148,38 +196,6 @@ to swap them. Cancel is an alternative to selecting the second piece.
 | Return to Normal | Terminal mode | ESC ESC | Leave terminal input mode. |
 | Move to an editing window | Terminal buffer, Normal | s h / s j / s k / s l | Focus an existing editing window. |
 | Resume terminal input | Terminal buffer, Normal | i | Re-enter Terminal mode (native command). |
-
-** Multiple cursors: select targets, edit, and clean up
-
-Choose one way to create cursors, edit with the active cursors, then remove
-them. Search-based creation uses the active search pattern; =*= is a native
-way to set it from the word under the cursor.
-
-*** Create cursors
-
-| Context | Key | Command / effect |
-|---------+-----+------------------|
-| Normal, after * | m s / SPC n | Create cursors for every match of the active search. |
-| Visual Line | m c | Create a cursor at the beginning of each selected line and return to Normal. |
-| Visual | m p | Prompt for a pattern and create cursors at matches inside the selection. |
-| Normal / Visual | Up / Down | Add a cursor on the line above / below. |
-| Normal / Visual | SPC Up / SPC Down | Move the main cursor without adding a cursor on the skipped line. |
-| Normal / Visual | SPC N | Add a cursor at the previous match. |
-| Normal / Visual | SPC s / SPC S | Skip the next / previous match without adding a cursor. |
-| Visual | SPC \vert{} | Split the selection into cursors. |
-| Normal | g m followed by a motion | Create cursors for each line covered by the motion. |
-| Visual | I / A | Create cursors at the beginning / end of each selected line and enter Insert. |
-| Normal | C-mouse click / drag | Create, move, or remove cursors with the mouse. |
-| Normal / Visual | C-q | Toggle a manual cursor at the current position. |
-
-*** Navigate or remove active cursors
-
-| Context | Key | Command / effect |
-|---------+-----+------------------|
-| Normal / Visual, active cursors | Left / Right | Select the previous / next cursor. |
-| Normal / Visual, active cursors | SPC x | Remove the current cursor. |
-| Normal, disabled cursors | ESC | Re-enable cursors; this first press does not clear them. |
-| Normal, enabled cursors | ESC | Clear all additional cursors. |
 
 * Atalhos gerais
 

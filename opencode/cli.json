@@ -6,7 +6,7 @@
   },
   "animations": true,
   "session": {
-    "sidebar": "auto",
+    "sidebar": "hide",
     "scrollbar": false,
     "verbosity": "medium",
     "image_preview": true,
