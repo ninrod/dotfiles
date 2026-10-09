@@ -13,7 +13,7 @@ YARN_PATH=~/.yarn/bin
 ANDROID_HOME=~/Android/Sdk
 NODE_EXTRA_CA_CERTS=/etc/ssl/certs/TCU-ROOTCA.pem
 PYENV_ROOT="$HOME/.pyenv"
-OPENCODE="$HOME/.opencode/bin'
+OPENCODE="$HOME/.opencode/bin"
 
 PATH=${PATH}:$CUSTOM_SCRIPTS
 PATH=${PATH}:$LINUX_SCRIPTS
