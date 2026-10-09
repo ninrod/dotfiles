@@ -31,8 +31,9 @@ alias gla='gld --date=relative --all'
 alias glr='gld --date=relative --all --reflog'
 alias glnc='git log --no-color'
 alias glt="git log --no-color --date-order --tags --simplify-by-decoration --pretty=format:'%ai %h %d' --date=format:'%Y-%m-%d %H:%M:%S' | grep --color tag"
-alias gls="gl --simplify-by-decoration"
+alias glist="gl --simplify-by-decoration"
 alias gln="gl --name-status"
+alias gls="gl --stat"
 
 # restore
 ealias gre='git restore --source=[source] -- [path]'
