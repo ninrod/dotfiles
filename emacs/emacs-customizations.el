@@ -25,7 +25,7 @@
      (1 (eq major-mode 'org-mode) org-level-1)))
  '(package-selected-packages
    '(ace-window ag aggressive-indent anaconda-mode atomic-chrome
-                autothemer cargo company-anaconda consult copilot
+                autothemer avy cargo company-anaconda consult copilot
                 docker editorconfig elpa-mirror embark embark-consult
                 emmet-mode evil-args evil-commentary evil-exchange
                 evil-ghostel evil-indent-plus evil-lion evil-matchit
