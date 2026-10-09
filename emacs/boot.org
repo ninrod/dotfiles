@@ -1010,10 +1010,8 @@ M-x subword-mode
     (global-evil-mc-mode 1))
 #+END_SRC
 
-** babysited packages
-*** targets.el
+** custom text objects
 
-- this is the way to add new text-objects without targets.el
 #+BEGIN_SRC emacs-lisp
   ;; modified to be able to specify name and use `function'
   (defmacro define-and-bind-quoted-text-object (name key start-regex end-regex)
@@ -1032,21 +1030,164 @@ M-x subword-mode
   (define-and-bind-quoted-text-object "dollar" "$" "\\$" "\\$")
 #+END_SRC
 
-#+BEGIN_SRC text
-    (use-package targets
-      :load-path "~/.dotfiles/deps/emacs/ninrod/targets.el"
-      :init
-      (setq targets-user-text-objects '((pipe "|" nil separator)
-                                        (paren "(" ")" pair :more-keys "b")
-                                        (bracket "[" "]" pair :more-keys "r")
-                                        (curly "{" "}" pair :more-keys "c")))
-      :config
-      (targets-setup t
-                     :inside-key nil
-                     :around-key nil
-                     :remote-key nil))
+*** delimiter search range
+
+**** Why this restriction exists
+
+The regression case is [[file:../boot/logboot.zsh][boot/logboot.zsh]], with the cursor on line 7,
+=echo $PWD=. That line has no slash delimiter. Without a line restriction,
+=ci/= selects from the =e= in =env= on line 1 through the final =T= of
+=$GIT_ROOT= on line 9, then enters Insert state. The opening delimiter comes
+from the shebang and the closing delimiter from =logdir=$GIT_ROOT/boot/log=.
+=ca/= also includes those slash delimiters. A local edit should not consume
+unrelated lines just because they happen to contain the requested delimiter.
+
+In Emacs, =c= is the Evil change operator. The =i/= and =a/= text objects are
+defined by =define-and-bind-quoted-text-object= above, using
+=evil-select-paren=. Parentheses, brackets, braces, and angle brackets use
+Evil's built-in text objects; quotes use =evil-select-quote=. Neither the
+Emacs surround package nor Neovim's surround plugin causes this =ci/=
+selection: surround primarily handles commands such as =cs=, =ds=, and =ys=.
+
+**** Configuration: the search radius
+
+=ninrod/evil-text-object-n-lines= is the Emacs configuration knob. It counts
+neighboring /buffer lines in each direction/, not the total number of lines
+in the search region and not screen rows created by wrapping.
+
+| Value | Available search region |
+|-------+-------------------------|
+| =0= | Only the current real buffer line; this is the default. |
+| =1= | The current line, one line above, and one line below. |
+| =30= | The current line and up to 30 lines on each side: at most 61 lines. |
+| =nil= | No extra restriction; use the original Evil behavior. |
+
+The region stops at the accessible buffer boundaries. An existing buffer
+narrowing is respected, including when the option is =nil=. Negative numbers
+and non-integer values other than =nil= are rejected.
+
+At =0=, =ci/= and =ca/= on line 7 of the regression file cancel without
+changing the text, moving the cursor, or entering Insert state. Delimiter
+pairs that cross a newline are also unavailable, even if they enclose the
+cursor. With =30= or =nil=, the distant slash pair is available again.
+
+A long logical line remains one line even with =visual-line-mode= enabled.
+Conversely, a real newline creates another buffer line even if its contents
+are hidden or displayed differently.
+
+For a persistent change, edit the default =0= in the =defcustom= below. After
+this configuration has been loaded, use =M-:= to change the running daemon
+immediately, for example =(setq ninrod/evil-text-object-n-lines 30)=. Use
+=0= to restore local-only edits or =nil= to restore the original behavior.
+=M-x customize-variable RET ninrod/evil-text-object-n-lines RET= is another
+way to adjust the live value. Reevaluating a =defcustom= does not overwrite
+an already initialized value; use =setq= when changing it in a running Emacs.
+
+**** How the advice works and what it covers
+
+=ninrod/evil-text-object-limit-lines= is an =:around= advice on the inner and
+outer delimiter text object commands. It computes the allowed buffer region,
+temporarily applies =narrow-to-region= inside =save-restriction=, and calls the
+original Evil command. The original restriction is restored afterward, even
+if selection fails. The entire delimiter pair must fit inside the allowed
+region; limiting the search is not just limiting where the cursor may jump.
+
+The advice covers =()=, =[]=, ={}=, =<>=, single and double quotes, backticks,
+and the custom =|=, =/=, and =$= objects. Aliases bound to the same commands,
+such as =ib= and =iB=, inherit the same limit. It applies to operators other
+than =c= as well, and to Visual text object selection.
+
+Whole-buffer, word, argument, and indentation text objects are not changed.
+=evil-surround-change= and =evil-surround-delete= temporarily bypass the
+restriction because they may call these text objects internally. Thus =cs=
+and =ds= can still edit existing multiline surrounds. An explicit delimiter
+text object used as a motion, such as =ysi(=, still has the configured limit.
+
+The installation is safe to reevaluate: it does not stack duplicate advice
+and removes the previous current-line-only advice when upgrading a running
+daemon. Load the configuration block below with =C-c C-c= without reloading
+the entire Emacs initialization.
+
+**** Comparison with Neovim's Mini.ai
+
+The Neovim configuration is in [[file:../nvim/plugins/mini.lua][nvim/plugins/mini.lua]]. It currently sets
+=n_lines = 0= and =search_method = "cover_or_nearest"=, replacing the previous
+=n_lines = 500=. The two editors share the same default locality rule, but
+their object selection implementations are not identical.
+
+| Aspect | Neovim / Mini.ai | Emacs / Evil advice |
+|--------+-----------------+---------------------|
+| Radius option | =n_lines= | =ninrod/evil-text-object-n-lines= |
+| Default here | =0=: current buffer line only | =0=: current buffer line only |
+| Positive radius | Up to that many lines above and below | Same radius interpretation |
+| Search order | Current line first, then the wider neighborhood if needed | Evil selects within the entire allowed region |
+| Object choice | =cover_or_nearest= | Original Evil rules; no nearest-object policy is added |
+| Unrestricted behavior | No =nil= counterpart is used here; increase the numeric radius | Set the option to =nil= |
+| Scope | Text objects resolved by Mini.ai's search | The delimiter commands listed above |
+| Whole-buffer exception | Custom =ie= / =ae= bypass the search radius | Custom =ae= is not advised |
+| Visual wrapping | Does not create extra buffer lines | Does not create extra buffer lines |
+
+In particular, changing both options to =30= gives a comparable allowed
+radius, not guaranteed identical selections. This advice controls how far
+Evil can inspect the buffer; it does not attempt to reimplement Mini.ai.
+
+#+BEGIN_SRC emacs-lisp
+  ;; >>> DELIMITER SEARCH RADIUS: CHANGE THIS DEFAULT TO ADJUST LOCALITY <<<
+  ;; 0   = current REAL buffer line only (safe default, independent of wrap).
+  ;; 30  = current line plus up to 30 lines ABOVE and 30 lines BELOW.
+  ;; nil = original Evil behavior, WITHOUT this additional search limit.
+  ;; WARNING: positive values/nil can select delimiters across unrelated lines.
+  ;; For a live change, use M-: (setq ninrod/evil-text-object-n-lines 30).
+  (defcustom ninrod/evil-text-object-n-lines 0
+    "Number of buffer lines to search above and below the current line.
+Zero limits delimited text objects to the current line. A nonnegative
+integer expands the search in both directions; nil leaves Evil unrestricted.
+Visual wrapping does not affect this limit. Existing narrowing is respected.
+This limits delimiter text objects, not whole-buffer, word, argument, or
+indentation objects. Surround change/delete commands bypass the limit.
+It controls the search region only; selection still follows Evil's rules."
+    :type '(choice (integer :tag "Neighboring lines in each direction")
+                   (const :tag "Unrestricted (original Evil behavior)" nil))
+    :group 'evil)
+
+  (defvar ninrod/evil-surround-editing nil
+    "Non-nil while surround edits existing delimiters.")
+
+  (defun ninrod/evil-surround-unrestricted (function &rest args)
+    "Call FUNCTION with ARGS without the text object line restriction."
+    (let ((ninrod/evil-surround-editing t))
+      (apply function args)))
+
+  (defun ninrod/evil-text-object-limit-lines (function &rest args)
+    "Call FUNCTION with ARGS within `ninrod/evil-text-object-n-lines'."
+    ;; Surround can call these text objects internally when editing delimiters.
+    (if (or ninrod/evil-surround-editing
+            (null ninrod/evil-text-object-n-lines))
+        (apply function args)
+      (unless (natnump ninrod/evil-text-object-n-lines)
+        (user-error "Text object n-lines must be a nonnegative integer or nil"))
+      (let ((beg (line-beginning-position (- 1 ninrod/evil-text-object-n-lines)))
+            (end (line-end-position (+ 1 ninrod/evil-text-object-n-lines))))
+        (save-restriction
+          (narrow-to-region beg end)
+          (apply function args)))))
+
+  (dolist (map (list evil-inner-text-objects-map evil-outer-text-objects-map))
+    (dolist (key '("(" "[" "{" "<" "'" "\"" "`" "|" "/" "$"))
+      (let ((function (lookup-key map key)))
+        (when (and (symbolp function) (fboundp function))
+          ;; Replace the previous current-line-only advice when reloading.
+          (advice-remove function #'ninrod/evil-text-object-current-line)
+          (unless (advice-member-p #'ninrod/evil-text-object-limit-lines function)
+            (advice-add function :around #'ninrod/evil-text-object-limit-lines))))))
+
+  (with-eval-after-load 'evil-surround
+    (dolist (function '(evil-surround-change evil-surround-delete))
+      (unless (advice-member-p #'ninrod/evil-surround-unrestricted function)
+        (advice-add function :around #'ninrod/evil-surround-unrestricted))))
 #+END_SRC
 
+** babysited packages
 *** evil-rect-ext
 
 #+BEGIN_SRC emacs-lisp
