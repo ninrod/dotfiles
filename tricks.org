@@ -1,8 +1,7 @@
 * tricks
-
 Esse arquivo coleciona alguns truques colecionados ao longo do tempo para demonstrar a utilidade da config
-
-* fd-find + fzf + clip
+* shell
+** fd-find + fzf + clip
 
 escolhe um diretório na árvore profunda do dir atual `.` via fzf e joga para o clipboard
 
@@ -10,17 +9,16 @@ escolhe um diretório na árvore profunda do dir atual `.` via fzf e joga para o
 $ fd --type d . | fzf | clip
 #+END_SRC
 
-* yasnippet (emacs)
+** yasnippet (emacs)
 
 expanda `bang` ou `if` em um shell file no sh-mode
 
-* word wrap (emacs)
+** word wrap (emacs)
 
 em uma linha grande, veja q o emacs quebra a linha automaticamente, mas só em termos de exibição. expanda `bang`
 ou `if` em um shell file no sh-mode. experimente usar `gwip` ou `gwg_`
 
-
-* diretórios
+** diretórios
 
 #+BEGIN_SRC sh
   # voltando na raiz
@@ -38,5 +36,40 @@ ou `if` em um shell file no sh-mode. experimente usar `gwip` ou `gwg_`
   $ cd
   $ cd c/d/e[tab]
 #+END_SRC
+* vim
+** substitua regex A por B apenas dentro de uma visual selection
+*** com multiple cursors
 
+- use `mr`:
 
+#+BEGIN_SRC js
+  function foo=blah. foo(1); foo(2); foo(3);
+  function foo=blah. foo(1); foo(2); foo(3);
+  function foo=blah. foo(1); foo(2); foo(3);
+  function foo=blah. foo(1); foo(2); foo(3);
+
+  function foo=blah. foo(1), foo(2), foo(3)
+  function foo=blah. foo(1), foo(2), foo(3)
+  function foo=blah. foo(1), foo(2), foo(3)
+  function foo=blah. foo(1), foo(2), foo(3)
+#+END_SRC
+
+*** com o operador `:`
+#+BEGIN_SRC vimscript
+:'<,>'s/\%VpadraoA/padraoB/g
+#+END_SRC
+*** com o comando :P (cortesia de veep.vim)
+
+#+BEGIN_SRC js
+  function foo=blah. foo(1); foo(2); foo(3);
+  function foo=blah. foo(1); foo(2); foo(3);
+  function foo=blah. foo(1); foo(2); foo(3);
+  function foo=blah. foo(1); foo(2); foo(3);
+
+  function foo=blah. foo(1), foo(2), foo(3)
+  function foo=blah. foo(1), foo(2), foo(3)
+  function foo=blah. foo(1), foo(2), foo(3)
+  function foo=blah. foo(1), foo(2), foo(3)
+#+END_SRC
+
+* emacs

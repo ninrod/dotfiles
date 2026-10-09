@@ -46,6 +46,72 @@ narrowing has its own matching restore command.
 |  , n | Restrict the buffer to the current subtree (=org-narrow-to-subtree=). |
 |  m w | Remove buffer narrowing (=widen=).                                    |
 
+*** Edit a rectangle with rect-ext
+
+The configured package [[https://github.com/noctuid/rect-ext.el][noctuid/rect-ext.el]] provides two ways to edit
+only a rectangular selection: an Evil Ex =B= command, similar to Vim's
+vis.vim =:B= or Veep's =:P=, and a separate buffer for longer edits.
+These workflows are for rectangles, not arbitrary characterwise regions.
+
+**** Apply an Evil Ex command to the rectangle
+
+1. In Evil Normal state, press =C-v= and use motions to select a rectangle.
+2. Press =:= and replace the automatically inserted range with the
+   backtick range shown below. Backticks preserve character positions;
+   apostrophes address whole lines and can lose the rectangle's columns.
+3. Enter =B= followed by the Ex command, then press =RET=.
+
+Replace every occurrence of =foo= only within the selected rectangle:
+
+#+begin_src vim
+:`<,`>B s/foo/bar/g
+#+end_src
+
+Sort only the selected column:
+
+#+begin_src vim
+:`<,`>B sort
+#+end_src
+
+The package extracts the rectangle into a temporary buffer, executes the
+command over that buffer, and inserts the result back into the original
+rectangle. Surrounding columns are not part of the command's input.
+Plain =:'<,'>s/foo/bar/g= is not an equivalent: its range covers whole lines.
+The configuration does not remap =:= to =rect-ext-evil-ex=, so enter =B=
+and the backtick range explicitly.
+
+**** Edit the rectangle in a separate buffer
+
+| Step | Evil state | Key / command | Command / effect |
+|------+------------+---------------+------------------|
+| Select | Normal | C-v, then motions | Select the rectangular area to edit. |
+| Extract | Visual Block | s n | Run =rect-ext-narrow= to open the rectangle in a separate buffer. |
+| Edit | Normal, extracted buffer | :%s/foo/bar/g or :%sort | Replace or sort throughout the extracted buffer. Other editing commands can be used there as well. |
+| Apply and return | Normal, extracted buffer | s w | Run =rect-ext-widen= to replace the original rectangle with the edited text and close the extracted buffer. |
+
+Return to Normal state before editing if needed. =s w= is the apply-back
+command; native =widen= (=m w=) does not reinsert the rectangle. Saving the
+extracted buffer is not the apply-back operation either. After returning,
+save the original buffer normally if you want to persist the changes.
+
+**** Limitations and precautions
+
+- Reinsertion splits the edited text on runs of newlines, so empty rows can
+  be lost. Avoid these workflows when blank rows must be preserved.
+- The Evil =B= command additionally calls =delete-trailing-whitespace= on
+  the affected region. This may remove trailing spaces beyond the selected
+  columns on affected lines; do not assume whitespace outside the rectangle
+  is completely untouched. The =s n= / =s w= workflow does not perform this
+  additional cleanup.
+- Keep the number of rows unchanged. The implementation replaces the
+  original rectangle row by row and does not handle row-count changes robustly.
+- Do not edit the original buffer while the extracted buffer is open:
+  the package stores numeric positions rather than tracking moving boundaries.
+- The extracted buffer is a plain temporary buffer; do not assume the source
+  buffer's major mode or buffer-local settings are preserved.
+- Use a scratch copy for whitespace-sensitive data. Review the result and
+  use undo in the original buffer if necessary.
+
 ** Split a window and move between windows
 
 |  Key       | Command / effect                              |
@@ -380,4 +446,3 @@ Emacs Lisp executado pelo tangling.
 objeto: ae  = text entire
 movimento: gr "substitui" a motion pelo que está no registrador
 movimento: cx "troca" a motion pela outra motion que vc marcou
-

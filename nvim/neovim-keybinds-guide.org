@@ -149,6 +149,30 @@ that server offers at the cursor.
 | Inspect | Normal | SPC e | Show diagnostics in a floating window. |
 | Act | Normal, with LSP | SPC c a | Request code actions at the cursor. |
 
+** Apply an Ex command only to the visual selection
+
+Veep applies Ex commands to the selected text, including characterwise and
+rectangular selections, rather than to the entire lines. It is a Vimscript
+plugin loaded by lazy.nvim through =plugins/veep.lua=.
+
+| Step | Mode | Key / command | Command / effect |
+|------+------+---------------+------------------|
+| Select text | Normal | v / V / C-v, then select | Use characterwise, linewise, or blockwise Visual mode. |
+| Replace a pattern | Visual | :P s/foo/bar/g, then RET | Replace every occurrence of foo only in the selected text. The command line includes the automatically inserted ='<,'>= range. |
+| Sort a column instead | Visual Block | :P sort, then RET | Sort only the selected column, leaving the surrounding text unchanged. |
+| Filter through a shell command instead | Visual | :Psh rev, then RET | Pass only the selected text through the external rev command. |
+
+Example command after pressing =:= in Visual mode:
+
+#+begin_src vim
+:'<,'>P s/foo/bar/g
+#+end_src
+
+Veep also maps Visual-mode =!= to =:Psh= for characterwise and blockwise
+selections. For linewise selections it keeps the native filter behavior.
+Use =:verbose command P= to verify the command's definition and source file;
+=:scriptnames= lists loaded Vimscript files, and =:Lazy= shows plugin status.
+
 ** Copy text and replace a target with the register
 
 First yank the source, then move to the target and replace it. The

@@ -2138,7 +2138,7 @@ and the Spaceline modeline in directory buffers.
    :prefix ",")
 #+END_SRC
 
-**** fast
+**** comma
 
 #+BEGIN_SRC emacs-lisp
   (org-comma-map

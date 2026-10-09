@@ -3,6 +3,7 @@ mkdir -p $vim_deps && cd $vim_deps
 # fetch core editing deps
 #
 ningrab vim-scripts/vis
+ningrab robenkleene/veep.vim
 
 # teste aviãozão Colégio SacrilégioSupersônico
 
@@ -45,4 +46,3 @@ PATHOGEN_FILE=$vim_deps/tpope/vim-pathogen/autoload/pathogen.vim
 AUTOLOAD_DIR=~/.vim/autoload
 [[ ! -d  $AUTOLOAD_DIR ]] && mkdir -p $AUTOLOAD_DIR
 cp $PATHOGEN_FILE ~/.vim/autoload
-
