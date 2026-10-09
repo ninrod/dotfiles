@@ -326,10 +326,12 @@ is unchanged.
 
 ** Mini.ai
 
-=mini.ai= substitui a resolução de objetos de texto por uma versão que procura
-até 500 linhas e escolhe o objeto que cobre ou está mais próximo do cursor.
-Use os identificadores abaixo depois de =a= ou =i=, com qualquer operador ou
-em Visual.
+=mini.ai= searches only the current buffer line (=n_lines = 0=), selecting the
+textobject that covers or is nearest to the cursor. Wrapped screen lines are
+still part of the same buffer line. If no matching textobject exists on that
+line, the operation is canceled; multiline delimiters are not selected.
+The custom =ae= / =ie= textobject still selects the entire buffer.
+Use the identifiers below after =a= or =i=, with any operator or in Visual mode.
 
 | Tecla | Objeto de texto |
 |-------+-----------------|

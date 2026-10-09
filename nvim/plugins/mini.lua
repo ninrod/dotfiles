@@ -4,7 +4,7 @@ return {
 		local mini_ai = require("mini.ai")
 		local mini_extra = require("mini.extra")
 		mini_ai.setup({
-			n_lines = 500,
+			n_lines = 0,
 			search_method = "cover_or_nearest",
 			mappings = {
 				around = "a",
