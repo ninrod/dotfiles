@@ -60,6 +60,69 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }
 local M = {}
 -- }}}
 
+-- PLUGIN: Multicursor keybindings {{{
+
+function M.setup_multicursor_keybindings(mc)
+	local set = vim.keymap.set
+	local function add_visual_line_cursors_at_start()
+		if vim.fn.mode() ~= "V" then
+			vim.notify("m c requires Visual Line mode", vim.log.levels.WARN)
+			return
+		end
+
+		mc.action(function(ctx)
+			ctx:forEachCursor(function(cursor)
+				cursor:splitVisualLines()
+			end)
+			ctx:forEachCursor(function(cursor)
+				cursor:feedkeys("<esc>0", { keycodes = true })
+			end)
+		end)
+	end
+
+	-- place cursors at the start  of the selected visual lines
+	set("x", "mc", add_visual_line_cursors_at_start, { desc = "[M]ulticursor line [C]ursors" })
+
+	-- place cursors at the start of the matched terms
+	set("n", "m*", mc.matchAllAddCursors, { desc = "[M]ulticursor [*]star matches" })
+	set("n", "ms", mc.searchAllAddCursors, { desc = "[M]ulticursor [S]earch matches" })
+	set("x", "mr", mc.matchCursors)
+	set("x", "m|", mc.splitCursors)
+
+	set({ "n", "x" }, "mN", function()
+		mc.matchSkipCursor(1)
+	end)
+	set({ "n", "x" }, "mp", function()
+		mc.matchAddCursor(-1)
+	end)
+	set({ "n", "x" }, "mn", function()
+		mc.matchAddCursor(1)
+	end)
+	set({ "n", "x" }, "mP", function()
+		mc.matchSkipCursor(-1)
+	end)
+
+	set({ "n", "x" }, "<c-q>", mc.toggleCursor)
+	set({ "n", "x" }, "gm", mc.addCursorOperator)
+
+	set("x", "I", mc.insertVisual)
+	set("x", "A", mc.appendVisual)
+
+	mc.addKeymapLayer(function(layer_set)
+		layer_set({ "n", "x" }, "<left>", mc.prevCursor)
+		layer_set({ "n", "x" }, "<right>", mc.nextCursor)
+		layer_set({ "n", "x" }, "<leader>x", mc.deleteCursor)
+		layer_set("n", "<esc>", function()
+			if not mc.cursorsEnabled() then
+				mc.enableCursors()
+			else
+				mc.clearCursors()
+			end
+		end)
+	end)
+end
+
+-- }}}
 -- PLUGIN: BufExplorer keybindings {{{
 vim.keymap.set("n", "mi", "<cmd>BufExplorer<CR>")
 -- }}}
@@ -107,69 +170,6 @@ function M.setup_snacks_picker_keybindings(picker)
 	vim.keymap.set("n", "<leader>sn", function()
 		picker.files({ cwd = vim.fn.stdpath("config") })
 	end, { desc = "[S]earch [N]eovim files" })
-end
-
--- }}}
--- PLUGIN: Multicursor keybindings {{{
-
-function M.setup_multicursor_keybindings(mc)
-	local set = vim.keymap.set
-	local function add_visual_line_cursors_at_start()
-		if vim.fn.mode() ~= "V" then
-			vim.notify("m c requires Visual Line mode", vim.log.levels.WARN)
-			return
-		end
-
-		mc.action(function(ctx)
-			ctx:forEachCursor(function(cursor)
-				cursor:splitVisualLines()
-			end)
-			ctx:forEachCursor(function(cursor)
-				cursor:feedkeys("<esc>0", { keycodes = true })
-			end)
-		end)
-	end
-
-	-- place cursors at the start  of the selected visual lines
-	set("x", "mc", add_visual_line_cursors_at_start, { desc = "[M]ulticursor line [C]ursors" })
-
-	-- place cursors at the start of the matched terms
-	set("n", "m*", mc.matchAllAddCursors, { desc = "[M]ulticursor [*]start matches" })
-	set("n", "ms", mc.searchAllAddCursors, { desc = "[M]ulticursor [S]earch matches" })
-	set("x", "mr", mc.matchCursors)
-	set("x", "m|", mc.splitCursors)
-
-	set({ "n", "x" }, "mN", function()
-		mc.matchSkipCursor(1)
-	end)
-	set({ "n", "x" }, "mp", function()
-		mc.matchAddCursor(-1)
-	end)
-	set({ "n", "x" }, "mn", function()
-		mc.matchAddCursor(1)
-	end)
-	set({ "n", "x" }, "mP", function()
-		mc.matchSkipCursor(-1)
-	end)
-
-	set({ "n", "x" }, "<c-q>", mc.toggleCursor)
-	set({ "n", "x" }, "gm", mc.addCursorOperator)
-
-	set("x", "I", mc.insertVisual)
-	set("x", "A", mc.appendVisual)
-
-	mc.addKeymapLayer(function(layer_set)
-		layer_set({ "n", "x" }, "<left>", mc.prevCursor)
-		layer_set({ "n", "x" }, "<right>", mc.nextCursor)
-		layer_set({ "n", "x" }, "<leader>x", mc.deleteCursor)
-		layer_set("n", "<esc>", function()
-			if not mc.cursorsEnabled() then
-				mc.enableCursors()
-			else
-				mc.clearCursors()
-			end
-		end)
-	end)
 end
 
 -- }}}
