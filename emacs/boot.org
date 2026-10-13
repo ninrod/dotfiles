@@ -1965,7 +1965,6 @@ and the Spaceline modeline in directory buffers.
     (dirvish-override-dired-mode))
 #+END_SRC
 
-
 * keybinds
 ** SPC-map
 *** definer
