@@ -9,5 +9,5 @@
 
 ** edição
 
-[<leader>y]
+[<leader>y] copia a session
 

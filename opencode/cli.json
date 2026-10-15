@@ -1,4 +1,15 @@
 {
+  "keybinds": {
+    "leader": "ctrl+x",
+    "messages.copy": "<leader>y",
+    "session.copy": "<leader>c",
+    "session.compact": "<leader>z",
+    "prompt.editor": "<leader>e",
+    "model.dialog.favorite": "<leader>f",
+    "model.list": "<leader>m",
+    "variant.cycle": "ctrl+t",
+    "variant.list": "<leader>v",
+  },
   "$schema": "https://opencode.ai/v2/cli.json",
   "theme": {
     "name": "gruvbox",
@@ -13,7 +24,10 @@
     "permissions": "autoaccept"
   },
   "tabs": {
-    "mode": "auto"
+    "mode": "auto",
+    "scope": "cwd",
+    "layout": "horizontal",
+    "indicators": "status"
   },
   "scroll": {
     "speed": 4,
