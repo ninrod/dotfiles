@@ -1,0 +1,5 @@
+{
+  "plugins": [
+    "git+https://github.com/anomalyco/opencode.git#path:packages/plugins/figma"
+  ]
+}
