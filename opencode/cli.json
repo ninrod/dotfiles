@@ -4,6 +4,7 @@
     "messages.copy": "<leader>y",
     "session.copy": "<leader>c",
     "session.compact": "<leader>z",
+    "session.tab.next": "<leader>tab",
     "prompt.editor": "<leader>e",
     "model.dialog.favorite": "<leader>f",
     "model.list": "<leader>m",
