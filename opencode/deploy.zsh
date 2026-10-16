@@ -1,4 +1,4 @@
-local config_path=~/.config
+local config_path="$(realpath ~/.config)
 mkdir -p "$config_path"
 
 local oc_path="$config_path/opencode"
