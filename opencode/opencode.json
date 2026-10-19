@@ -1,5 +1,15 @@
 {
   "plugins": [
     "git+https://github.com/anomalyco/opencode.git#path:packages/plugins/figma"
-  ]
+  ],
+  "mcp": {
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "enabled": true,
+      "headers": {
+        "Authorization": "Bearer ctx7sk-70e32a55-2b0f-44c7-b908-787ab8c584e5"
+      }
+    }
+  }
 }
