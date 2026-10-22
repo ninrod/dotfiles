@@ -16,24 +16,27 @@ alias gp='git push'
 alias gpf='git push --force-with-lease'
 alias gm='git merge'
 ealias gr='git reset'
-# gfall: roda fetch --all --prune em todos os repos dentro do diretório atual
-#
-gf_all() {
+
+# Run a command in each immediate child directory containing .git.
+repo_all() {
   local d
   for d in */(N); do
     [[ -d "$d/.git" ]] || continue
     echo "== ${d%/}"
-    git -C "$d" fetch --all --prune
+    (builtin cd -- "$d" && "$@")
   done
 }
 
+gf_all() {
+  repo_all git fetch --all --prune "$@"
+}
+
 g_all() {
-  local d
-  for d in */(N); do
-    [[ -d "$d/.git" ]] || continue
-    echo "== ${d%/}"
-    git -C "$d" status -sb
-  done
+  repo_all git status -sb "$@"
+}
+
+gm_all() {
+  repo_all git merge "$@"
 }
 
 # branch
