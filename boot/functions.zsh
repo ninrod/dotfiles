@@ -124,7 +124,7 @@ ningrab() {
         return $rc
       fi
     fi
-    echo -e "[${Green}${name}${Rst}] sucessfully cloned."
+    echo -e "[${Green}${name}${Rst}] successfully cloned."
   fi
   echo -e "-------------------"
 }
