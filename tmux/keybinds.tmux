@@ -66,6 +66,7 @@ bind -n F9 next-layout
 
 # rotate through different pre set layouts
 bind -n F10 copy-mode
+bind-key v copy-mode
 
 # mouse support toggle needs tmux 2.2
 bind -n F11 set -g mouse
