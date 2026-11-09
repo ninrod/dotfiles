@@ -50,3 +50,4 @@ alias bssh="~/.dotfiles/scripts/terminal/bssh.sh"
 
 # utils
 alias open=xdg-open
+alias chrome="~/.dotfiles/scripts/chrome/chrome.sh"
