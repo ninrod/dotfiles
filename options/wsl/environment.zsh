@@ -14,6 +14,7 @@ ANDROID_HOME=~/Android/Sdk
 NODE_EXTRA_CA_CERTS=/etc/ssl/certs/TCU-ROOTCA.pem
 PYENV_ROOT="$HOME/.pyenv"
 OPENCODE="$HOME/.opencode/bin"
+SNAPS="/snap/bin"
 
 PATH=${PATH}:$CUSTOM_SCRIPTS
 PATH=${PATH}:$LINUX_SCRIPTS
@@ -26,6 +27,7 @@ PATH=${PATH}:$ANDROID_HOME/platform-tools
 PATH=${PATH}:$PYENV_ROOT
 PATH=${PATH}:$PYENV_ROOT/bin
 PATH=${PATH}:$OPENCODE
+PATH=${PATH}:$SNAPS
 PATH="$PATH:$HOME/.rvm/bin"
 
 typeset -aU path
