@@ -56,7 +56,7 @@ Include, where applicable:
 
 1. **Headword and word class:** distinguish separate parts of speech and homonyms. For an inflected input, identify the lemma and the supplied form before defining the lemma.
 2. **Grammatical details:** gender, number, irregular plural, relevant inflection, countability, verb transitivity or argument patterns, and other useful restrictions. Word class belongs to the lexical entry; a specific syntactic function normally requires a sentence.
-3. **Pronunciation:** include IPA or stress when reliably known or verified. Do not guess it.
+3. **Pronunciation:** for English entries, always provide an IPA transcription, verifying it in a reputable pronunciation dictionary when needed. Label British and American variants when they differ, and associate different pronunciations with their respective senses or word classes when relevant. Do not substitute informal respelling or a stress mark alone for IPA. If reliable IPA cannot be obtained, explicitly disclose the limitation rather than guessing or silently omitting it. For Portuguese and Italian entries, include IPA or stress when reliably known or verified.
 4. **Numbered senses:** cover the main distinct meanings, with register, regional, technical, figurative, or dated labels where needed. Do not claim exhaustive coverage; distinguish rare senses from ordinary usage.
 5. **Examples and usage:** provide natural examples for major senses, common constructions or collocations, and important pitfalls. Mark invented examples as illustrative rather than quotations when attribution might be unclear.
 6. **Etymology:** give the documented source and semantic development, distinguishing the immediate borrowing from deeper ancestry. Do not fabricate intermediate forms, dates, or derivations.
@@ -90,6 +90,7 @@ Do not copy the user's proposed labels without checking them. In particular, in 
 
 ## Behavioral checks
 
+- An English DEF input: include IPA, labeling British and American variants when they differ and distinguishing sense-dependent or word-class-dependent pronunciations where relevant.
 - `def macaco`: produce a Portuguese dictionary entry, including appropriate word classes, major senses, examples, and sourced etymology.
 - `DEF(benzina)` with no language context: ask whether the user means Italian or Portuguese; do not produce an Italian entry yet.
 - After the user chooses Italian for `benzina`: produce the complete entry in Italian, not Portuguese.

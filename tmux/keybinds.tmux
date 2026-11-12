@@ -13,6 +13,9 @@ set -sg escape-time 0
 unbind C-b
 set -g prefix C-Space
 
+# Enter copy mode with prefix + v
+bind-key -T prefix v copy-mode
+
 # Quick key for moving back to the previous window
 bind-key p last-window
 
@@ -64,9 +67,8 @@ bind -n F8 source ~/.tmux.conf
 # rotate through different pre set layouts
 bind -n F9 next-layout
 
-# rotate through different pre set layouts
+# Enter copy mode without the prefix
 bind -n F10 copy-mode
-bind-key v copy-mode
 
 # mouse support toggle needs tmux 2.2
 bind -n F11 set -g mouse
