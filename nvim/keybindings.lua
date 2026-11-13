@@ -7,6 +7,15 @@ vim.keymap.set({ "n", "v" }, "-", "<cmd>nohlsearch<CR>")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.keymap.set("n", "<leader>y", function()
+	local path = vim.fn.expand("%:p")
+	if path == "" or vim.bo.buftype ~= "" then
+		vim.notify("Current buffer has no file path", vim.log.levels.WARN)
+		return
+	end
+	vim.fn.setreg("+", path, "v")
+end, { desc = "Copy current file absolute path to clipboard" })
+
 vim.keymap.set("n", "<leader>tw", "<cmd>setlocal list!<CR>", { desc = "[T]oggle [W]hitespace characters" })
 
 vim.keymap.set("n", "<CR>", "<cmd>w<CR>")

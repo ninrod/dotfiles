@@ -181,7 +181,7 @@ Cloning is an alternative that creates a copy without a separate paste step.
 | SPC DEL | Cria um diretório (=make-directory=)                                                     |
 | DEL     | Abre arquivo (=find-file=).                                                              |
 | q / -   | Fecha conforme =evil-quit= / remove destaque de busca.                                   |
-| m f     | Copy the current file's full path to the kill ring (=ninrod/add-filename-to-kill-ring=). |
+| SPC y   | Copy the current file's full path to the clipboard and kill ring (=ninrod/add-filename-to-kill-ring=). |
 
 ** Manipulação de buffers, windows e posições nos buffers
 

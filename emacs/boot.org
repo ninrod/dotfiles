@@ -1992,6 +1992,7 @@ and the Spaceline modeline in directory buffers.
     "DEL" 'make-directory
 
     "p" 'consult-yank-pop
+    "y" 'ninrod/add-filename-to-kill-ring
     "s" 'sort-lines
 
     "j" (kbd "LztM")
@@ -2160,7 +2161,6 @@ and the Spaceline modeline in directory buffers.
    "e" 'evil-emacs-state
    )
 
-  (general-nmap "mf" 'ninrod/add-filename-to-kill-ring)
 #+END_SRC
 
 ** g prefix
