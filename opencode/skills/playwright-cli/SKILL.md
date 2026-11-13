@@ -6,11 +6,17 @@ allowed-tools: Bash(playwright-cli:*) Bash(npx playwright:*) Bash(npx --no-insta
 
 # Browser Automation with playwright-cli
 
+## Required viewport
+
+Always use a **2560 x 1080** viewport for browser sessions unless the user explicitly requests a different size or device emulation. Immediately after opening or attaching to a browser, run `playwright-cli resize 2560 1080` before inspecting, interacting with, capturing, or sharing the page. Apply this to reused sessions too, and use the same session selector (`-s=<name>`) for named sessions. When using the local CLI fallback, run the equivalent `npx playwright cli resize 2560 1080` command.
+
 ## Quick start
 
 ```bash
 # open new browser
 playwright-cli open
+# apply the required viewport
+playwright-cli resize 2560 1080
 # navigate to a page
 playwright-cli goto https://playwright.dev
 # interact with the page using refs from the snapshot
