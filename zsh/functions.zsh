@@ -1,3 +1,29 @@
+# cpd: copy a file to the current Windows user's Desktop {{{
+
+# usage: cpd file
+cpd() {
+  if (( $# != 1 )); then
+    print -u2 -- 'Usage: cpd file'
+    return 1
+  fi
+  if [[ ! -f "$1" ]]; then
+    print -u2 -- "cpd: not a regular file: $1"
+    return 1
+  fi
+
+  local windows_desktop desktop
+  windows_desktop=$(powershell.exe -NoProfile -NonInteractive -Command \
+    '[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [Environment]::GetFolderPath("Desktop")') || return
+  windows_desktop=${windows_desktop//$'\r'/}
+  if [[ -z "$windows_desktop" ]]; then
+    print -u2 -- 'cpd: could not locate the Windows Desktop'
+    return 1
+  fi
+  desktop=$(wslpath -u "$windows_desktop") || return
+  command cp -- "$1" "$desktop/"
+}
+
+# }}}
 # s: get megabytes measurement {{{
 
 # usage: s [-h] [path]
