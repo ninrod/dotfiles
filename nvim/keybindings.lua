@@ -14,6 +14,7 @@ vim.keymap.set("n", "<leader>y", function()
 		return
 	end
 	vim.fn.setreg("+", path, "v")
+	vim.api.nvim_echo({ { 'Copied file path to clipboard: "' .. path .. '"' } }, false, {})
 end, { desc = "Copy current file absolute path to clipboard" })
 
 vim.keymap.set("n", "<leader>tw", "<cmd>setlocal list!<CR>", { desc = "[T]oggle [W]hitespace characters" })
