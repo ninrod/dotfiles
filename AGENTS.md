@@ -2,7 +2,7 @@
 
 ## Language
 
-talk to me in english unsless asked to do otherwise. Write documentation, tests and code using the english language and no diacritics.
+talk to me in portuguese asked to do otherwise. Write documentation, tests and code using the english language and no diacritics.
 
 ## Install and verification
 
