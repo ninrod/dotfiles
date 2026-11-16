@@ -75,6 +75,7 @@ alias git-ssh-fetch="~/code/secrets/scripts/git-ssh-fetch.sh"
 
 # gitpessoal: faz o repo usar as credenciais pessoais, e não as corporativas
 alias git-pessoal-http="~/code/secrets/scripts/git-pessoal-http.sh"
+alias git-tcu-http="~/code/secrets/scripts/git-tcu-http.sh"
 
 # git user email config: faz o repo usar as credenciais pessoais, e não as corporativas
 alias git-user-email-config="~/code/secrets/scripts/git-user-email-config.sh"
