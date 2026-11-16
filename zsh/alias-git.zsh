@@ -39,6 +39,10 @@ gm_all() {
   repo_all git merge "$@"
 }
 
+gtcu_all() {
+  repo_all ~/code/secrets/scripts/git-tcu-http.sh "$@"
+}
+
 # branch
 ealias gb='git branch'
 ealias gco='git checkout'
