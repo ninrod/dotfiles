@@ -9,7 +9,8 @@
     "model.dialog.favorite": "<leader>f",
     "model.list": "<leader>m",
     "variant.cycle": "ctrl+t",
-    "variant.list": "<leader>v"
+    "variant.list": "<leader>v",
+    "prompt.skills": "<leader>k"
   },
   "$schema": "https://opencode.ai/v2/cli.json",
   "theme": {
