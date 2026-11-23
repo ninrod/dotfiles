@@ -23,7 +23,7 @@ repo_all() {
   for d in */(N); do
     [[ -d "$d/.git" ]] || continue
     echo "== ${d%/}"
-    (builtin cd -- "$d" && "$@")
+    (builtin cd -- "$d" && "$@") || return $?
   done
 }
 
@@ -39,8 +39,9 @@ gm_all() {
   repo_all git merge "$@"
 }
 
-gtcu_all() {
-  repo_all ~/code/secrets/scripts/git-tcu-http.sh "$@"
+g_tcu_all() {
+  repo_all ~/code/secrets/scripts/git-tcu-http.sh &&
+  repo_all ~/code/secrets/scripts/git-user-email-config.sh --tcu
 }
 
 # branch
