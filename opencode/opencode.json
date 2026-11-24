@@ -2,6 +2,11 @@
   "plugins": [
     "git+https://github.com/anomalyco/opencode.git#path:packages/plugins/figma"
   ],
+  "permissions": [
+    { "action": "skill", "resource": "consultar-oracle-tcu", "effect": "deny" },
+    { "action": "skill", "resource": "consultar-oracle-econtrole", "effect": "deny" },
+    { "action": "skill", "resource": "consultar-elasticsearch-econtrole", "effect": "deny" }
+  ],
   "mcp": {
     "context7": {
       "type": "remote",
