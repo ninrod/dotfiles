@@ -38,4 +38,21 @@ rgf() {
   rg "${rg_arguments[@]}" -g "*.$extension"
 }
 
+rc() {
+  if (( $# != 1 )) || ! [[ $1 =~ '^[A-Z]+$' ]]; then
+    print -u2 -- 'usage: rgfc MASK (uppercase initials, e.g. PAER)'
+    return 2
+  fi
 
+  local initial
+  local pattern='(^|/)'
+
+  # Match consecutive initials from the start of the basename.
+  for initial in ${(s::)1}; do
+    pattern+="$initial"'[^/\p{Lu}]*'
+  done
+  pattern+='(\p{Lu}[^/]*)?\.(kt|java)$'
+
+  command rg --files -g '*.kt' -g '*.java' |
+    command rg --no-config --color=never -- "$pattern"
+}
