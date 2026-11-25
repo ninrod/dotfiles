@@ -23,10 +23,11 @@ docs/features/<nome-da-feature>/
 ├── plan.md
 ├── q1.md, q2.md, ...  # somente quando houver questões reais
 ├── bugs/
-└── research/
+├── research/
+└── ux/
 ```
 
-Use os arquivos em `templates/`, relativos a este `SKILL.md`, como ponto de partida. Substitua `{{TITULO}}` pelo título da feature e preencha com o que já tiver sido confirmado na conversa ou documentado no projeto. Sem uma informação, registre que ela não foi definida ou remova a seção inútil; não invente requisitos, respostas, testes executados ou progresso. Crie `bugs/` e `research/`; se ficarem vazios em Git, use `.gitkeep` para que a estrutura possa ser versionada. Reconheça `readme.md` existente como entrada, sem criar um segundo README.
+Use os arquivos em `templates/`, relativos a este `SKILL.md`, como ponto de partida. Substitua `{{TITULO}}` pelo título da feature e preencha com o que já tiver sido confirmado na conversa ou documentado no projeto. Sem uma informação, registre que ela não foi definida ou remova a seção inútil; não invente requisitos, respostas, testes executados ou progresso. Crie `bugs/`, `research/` e `ux/`; se ficarem vazios em Git, use `.gitkeep` para que a estrutura possa ser versionada. Reconheça `readme.md` existente como entrada, sem criar um segundo README.
 
 ## Uma responsabilidade por arquivo
 
@@ -38,6 +39,7 @@ Use os arquivos em `templates/`, relativos a este `SKILL.md`, como ponto de part
 - **`qN.md` — por que esta questão existe e como foi decidida?** Discussão, alternativas, evidências, justificativa e decisão confirmada, se houver. Use `templates/questao.md` quando uma questão real exigir registro detalhado (por exemplo, uma rodada com `grill-me`); substitua `{{NUMERO}}` e `{{PERGUNTA}}` e grave como `q1.md`, `q2.md` etc. Use o número seguinte ao maior ID já usado, buscando no índice e nos arquivos. Se for apenas um resumo no índice, não crie um arquivo vazio.
 - **`research/` — o que sabemos e como apuramos?** Consultas, catálogos, desenhos, rastreamento do legado e evidências reutilizáveis. Identifique limites da evidência, ambiente e versão quando fizerem diferença. Uma hipótese em pesquisa não é uma regra aprovada.
 - **`bugs/` — que defeitos foram observados?** Reprodução, ambiente, observado versus esperado e evidências. Um defeito documentado não passa automaticamente a fazer parte do escopo de implementação.
+- **`ux/` — como as telas são ou devem ficar?** Capturas e referências visuais relevantes para as decisões. Referencie-as no `qN.md` ou no plano que as usar; uma captura não é, por si só, um requisito aprovado.
 
 ## Criar, consolidar ou retomar
 
