@@ -7,4 +7,4 @@ Quando o usuário pedir para retomar esta feature, comece pelo [status](status.m
 - [problems.md](problems.md): questões abertas ou resolvidas e links para os `qN.md` com a discussão.
 - [research/](research/): investigações e referências.
 - [bugs/](bugs/): defeitos e evidências; a presença aqui não os inclui automaticamente no escopo.
-- [ux/](ux/): capturas de telas relevantes, usadas como referência visual nas decisões.
+- [screenshots/](screenshots/): capturas de telas relevantes, usadas como referência visual nas decisões.
