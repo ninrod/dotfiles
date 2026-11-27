@@ -84,3 +84,6 @@ alias git-tcu-http="~/code/secrets/scripts/git-tcu-http.sh"
 
 # git user email config: faz o repo usar as credenciais pessoais, e não as corporativas
 alias git-user-email-config="~/code/secrets/scripts/git-user-email-config.sh"
+
+# switch git credentials
+alias git-switch-cred="~/code/secrets/scripts/git-switch-credentials.sh"
