@@ -87,3 +87,6 @@ alias git-user-email-config="~/code/secrets/scripts/git-user-email-config.sh"
 
 # switch git credentials
 alias git-switch-cred="~/code/secrets/scripts/git-switch-credentials.sh"
+
+# show local config
+alias git-show-local-config="~/code/secrets/scripts/git-show-local-config.sh"
